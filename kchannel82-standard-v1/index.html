@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>K-채널 82 스탠다드 리포트</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  :root {
+    --text: #1d1d1f;
+    --text-sub: #6e6e73;
+    --text-xs: #86868b;
+    --bg: #fff;
+    --bg-alt: #f5f5f7;
+    --bg-dark: #000;
+    --accent: #d70015;
+    --line: #d2d2d7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  section { padding: clamp(64px, 10vw, 120px) 0; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 32px); }
+  .alt { background: var(--bg-alt); }
+  .dark { background: var(--bg-dark); color: #f5f5f7; }
+  .dark .sub, .dark .meta { color: #a1a1a6; }
+
+  /* Typography */
+  h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  h1 {
+    font-size: clamp(40px, 7vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+  h2 {
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  h3 {
+    font-size: clamp(19px, 2.6vw, 24px);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  p { font-size: clamp(15px, 1.6vw, 17px); line-height: 1.7; color: var(--text); }
+  p + p { margin-top: 16px; }
+  .lead { font-size: clamp(18px, 2.2vw, 22px); font-weight: 500; line-height: 1.5; }
+  .meta { font-size: 13px; color: var(--text-xs); font-weight: 500; letter-spacing: 0.02em; }
+  .sub { color: var(--text-sub); }
+  strong { font-weight: 700; }
+  em { font-style: normal; color: var(--accent); font-weight: 600; }
+  .src { font-size: 12px; color: var(--text-xs); font-weight: 500; }
+  .src a { color: var(--text-xs); text-decoration: underline; text-underline-offset: 2px; }
+  .src a:hover { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; background: #f5f5f7; padding: 2px 6px; border-radius: 4px; color: #1d1d1f; }
+
+  /* Hero */
+  .hero { text-align: center; padding: clamp(100px, 15vw, 180px) 0 clamp(80px, 12vw, 140px); }
+  .hero .tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 { margin-bottom: 28px; }
+  .hero .lead { max-width: 720px; margin: 0 auto; color: var(--text-sub); }
+  .hero .stamp {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    display: inline-flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--text-xs);
+  }
+  .hero .stamp b { color: var(--text); font-weight: 600; }
+
+  /* Verdict card */
+  .verdict {
+    padding: clamp(40px, 6vw, 64px);
+    border-radius: 24px;
+    background: linear-gradient(180deg, #fafafc 0%, #f5f5f7 100%);
+    border: 1px solid var(--line);
+  }
+  .verdict .label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .verdict h2 {
+    text-align: left;
+    font-size: clamp(24px, 3.4vw, 34px);
+    line-height: 1.35;
+    margin-bottom: 0;
+  }
+
+  /* Main 3 cards */
+  .main3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .main3 .card {
+    padding: 32px 28px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+  }
+  .main3 .num {
+    font-size: clamp(40px, 6vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .main3 h3 { font-size: 19px; margin-bottom: 10px; }
+  .main3 p { font-size: 15px; line-height: 1.6; color: var(--text-sub); }
+
+  /* Two column */
+  .two {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 48px;
+    align-items: start;
+  }
+  .two h3 { margin-bottom: 16px; }
+
+  /* Bignum */
+  .bignum {
+    text-align: center;
+  }
+  .bignum .n {
+    font-size: clamp(72px, 12vw, 120px);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: var(--text);
+  }
+  .bignum .n.accent { color: var(--accent); }
+  .bignum .u { font-size: clamp(16px, 2vw, 20px); color: var(--text-sub); margin-top: 8px; }
+
+  /* Stats grid */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-top: 48px;
+  }
+  .stats .stat {
+    padding: 32px 20px;
+    text-align: center;
+    border-right: 1px solid var(--line);
+  }
+  .stats .stat:last-child { border-right: 0; }
+  .stats .n {
+    font-size: clamp(32px, 4.5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+  .stats .l { font-size: 13px; color: var(--text-xs); font-weight: 500; letter-spacing: 0.02em; }
+
+  /* Risk list */
+  .risks { margin-top: 32px; display: grid; gap: 12px; }
+  .risk {
+    padding: 24px 28px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 20px;
+    align-items: center;
+  }
+  .risk .id {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .risk .title { font-size: 16px; font-weight: 600; line-height: 1.4; }
+  .risk .risk-note { display: block; margin-top: 6px; font-size: 13px; font-weight: 400; color: var(--text-sub); line-height: 1.5; }
+  .dark .risk { background: #1d1d1f; border-color: #333; }
+  .dark .risk .title { color: #f5f5f7; }
+  .dark .risk .risk-note { color: #a1a1a6; }
+  .dark .risk .score { color: #a1a1a6; }
+  .risk .score {
+    font-size: 13px;
+    color: var(--text-xs);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Strategy steps */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 40px;
+    position: relative;
+  }
+  .step {
+    padding: 36px 28px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-right: 0;
+    position: relative;
+  }
+  .step:last-child { border-right: 1px solid var(--line); }
+  .step:first-child { border-radius: 16px 0 0 16px; }
+  .step:last-child { border-radius: 0 16px 16px 0; }
+  .step .phase {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .step .when { font-size: 13px; color: var(--text-xs); margin-bottom: 16px; font-weight: 500; }
+  .step h3 { font-size: 19px; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+  .step p { font-size: 14px; line-height: 1.6; color: var(--text-sub); }
+
+  /* Details (접기) */
+  details {
+    margin-top: 24px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+  }
+  details + details { margin-top: 12px; }
+  summary {
+    padding: 20px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text);
+    transition: background 0.15s ease;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { background: var(--bg-alt); }
+  summary::after {
+    content: "+";
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text-sub);
+    transition: transform 0.2s ease;
+  }
+  details[open] summary::after { content: "−"; }
+  .details-body {
+    padding: 8px 28px 28px;
+    border-top: 1px solid var(--line);
+  }
+  .details-body p { font-size: 15px; line-height: 1.7; color: var(--text); }
+  .details-body p + p { margin-top: 14px; }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  th, td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+  th {
+    font-weight: 600;
+    color: var(--text-sub);
+    background: var(--bg-alt);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* People dual */
+  .people {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .person {
+    padding: 36px 32px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+  }
+  .person .role {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .person h3 { font-size: 22px; margin-bottom: 8px; }
+  .person .tenure { font-size: 13px; color: var(--text-xs); margin-bottom: 20px; }
+  .person p { font-size: 14px; line-height: 1.65; color: var(--text-sub); }
+
+  /* Leverage list */
+  .leverage {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .lev {
+    padding: 24px 20px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    text-align: center;
+  }
+  .lev .n {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .lev h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; line-height: 1.3; }
+  .lev p { font-size: 13px; color: var(--text-sub); line-height: 1.5; }
+
+  /* Footer */
+  footer {
+    padding: 48px 0 80px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  footer p { font-size: 13px; color: var(--text-xs); }
+  footer p + p { margin-top: 8px; }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .main3 { grid-template-columns: 1fr; }
+    .two { grid-template-columns: 1fr; gap: 32px; }
+    .stats { grid-template-columns: repeat(3, 1fr); }
+    .steps { grid-template-columns: 1fr; }
+    .step { border-right: 1px solid var(--line) !important; border-radius: 0 !important; border-bottom: 0; }
+    .step:first-child { border-radius: 16px 16px 0 0 !important; }
+    .step:last-child { border-radius: 0 0 16px 16px !important; border-bottom: 1px solid var(--line); }
+    .people { grid-template-columns: 1fr; }
+    .leverage { grid-template-columns: repeat(2, 1fr); }
+    .risk { grid-template-columns: auto 1fr; }
+    .risk .score { grid-column: 2; font-size: 12px; }
+  }
+  @media (max-width: 480px) {
+    .stats { grid-template-columns: 1fr; }
+    .stats .stat { border-right: 0; border-bottom: 1px solid var(--line); }
+    .stats .stat:last-child { border-bottom: 0; }
+    .leverage { grid-template-columns: 1fr; }
+  }
+
+  /* Fade-in */
+  .fade { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade.in { opacity: 1; transform: translateY(0); }
+
+  /* Print */
+  @media print {
+    .fade { opacity: 1; transform: none; }
+    details { break-inside: avoid; }
+    details[open] summary::after { content: ""; }
+    section { padding: 40px 0; }
+    body { font-size: 12pt; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="tag">K-Channel 82 · Standard Report</div>
+    <h1>이미 계약은<br>체결되었다.</h1>
+    <p class="lead">질문은 "할 것인가"가 아니라 "어떤 구조로 실행할 것인가"다.</p>
+    <div class="stamp">
+      <span><b>SCA 체결</b> 2026-03-16</span>
+      <span><b>출범 예정</b> 2026-09-14 (가칭)</span>
+      <span><b>D-148</b> 기준 2026-04-19</span>
+    </div>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<section class="alt">
+  <div class="wrap">
+    <div class="verdict fade">
+      <div class="label">한 줄 결론</div>
+      <h2>
+        K-채널 82는 이미 체결된 실행 단계 프로젝트다. 이기면 미국 지상파 24/7 K-콘텐츠의 역사적 공백을
+        <em>Sinclair 플랫폼이 단번에 메우는 사건</em>이다. 단, FCC·콘텐츠 수급·정치 양날검이 남아 있어
+        한국측은 <em>콘텐츠 라이선싱 → 공동 IP → 글로벌 공진화</em>의 3단 구조로만 진입해야 한다.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN 3 -->
+<section>
+  <div class="wrap">
+    <h2>핵심 3</h2>
+    <div class="main3">
+      <div class="card fade">
+        <div class="num">01</div>
+        <h3>계약은 이미 체결되었다</h3>
+        <p>2026-01 KBS-Sinclair MOU → 2026-03-16 전략협력협약(SCA) 정식 체결. 채널명·커버리지·ATSC 3.0 기반까지 확정. 공식 미공시는 출범일 하나다.</p>
+      </div>
+      <div class="card fade">
+        <div class="num">02</div>
+        <h3>모멘텀·플랫폼·공백의 3박자</h3>
+        <p>한류는 Netflix 글로벌 시청 2위까지 올라섰다. Sinclair는 185 스테이션 × 약 3,000만 가구 × ATSC 3.0을 보유한다. 미국 전국 24/7 지상파 K-채널은 아직 존재하지 않는다.</p>
+      </div>
+      <div class="card fade">
+        <div class="num">03</div>
+        <h3>Top-5 리스크 전부가 실행 위험</h3>
+        <p>FCC 310(b), ATSC 3.0 규제, 9-14 스케줄, 콘텐츠 수급, Netflix·Disney 경쟁. 5개 모두 동률 🔴이며 선제 완화가 필수다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COORDINATES -->
+<section class="alt">
+  <div class="wrap">
+    <h2>이미 어디까지 왔는가</h2>
+    <div class="two fade" style="margin-top: 40px;">
+      <div>
+        <h3>실체</h3>
+        <p class="sub">미국 최초 전국 단위 24/7 지상파 K-콘텐츠 채널.</p>
+      </div>
+      <div>
+        <p>K-채널 82는 <strong>미국 최초 전국 단위 24/7 지상파 K-콘텐츠 채널</strong>을 목표로 한다. 2026-01 KBS-Sinclair MOU 체결, 2026-03-16 전략협력협약(SCA) 정식 체결이 이미 완료됐다. 채널은 Sinclair의 185개 지상파 스테이션 중 ATSC 3.0(NextGen TV)이 활성화된 약 <strong>3,000만 가구</strong>(전미 약 40%)를 커버하는 부채널(sub-channel) 형태로 송출될 예정이며, 모바일 스트리밍 앱을 공동 개발 중이다. 콘텐츠 첫 앵커는 KBS이고, 추가 공급사는 미정이다. <span class="src">[출처: <a href="https://thedesk.net/2026/03/kbs-sinclair-tv-channel-pact-korean/" target="_blank" rel="noopener">thedesk.net/2026/03 KBS-Sinclair pact</a>]</span></p>
+        <p>중개자는 <strong>고삼석</strong> 전 방송통신위원회 상임위원(현 동국대 AI융합대학 석좌교수, 대통령 직속 AI국가전략위원회 위원)이다. 2026-01 말레이시아 방문(MITI 차관 면담)과 CES 2026 기조연설 "한-미 엔터테크 얼라이언스"를 통해 한-미-말레이 <strong>3각 공진화 프레임</strong>을 공개적으로 제시한 흐름이 K-채널 82 중개로 이어졌다.</p>
+      </div>
+    </div>
+
+    <details class="fade">
+      <summary>회의록 원문 — 고삼석의 3대 요청</summary>
+      <div class="details-body">
+        <p>SCA 체결 이후 고삼석이 Sinclair 본사를 방문해 Ripley CEO에 공식 전달한 3대 요청이다. 한국측 협업 아키텍처의 뼈대가 된다.</p>
+        <p><strong>① 리더십 기반 신뢰 구축.</strong> Sinclair가 투자 계획을 포함한 리더십으로 한국 기업과 신뢰 구축.</p>
+        <p><strong>② 통합 엔터테크 협업.</strong> 콘텐츠를 넘어 데이터·광고·XR·엔터테크(EnterTech) 통합.</p>
+        <p><strong>③ 글로벌 공진화(Coevolution).</strong> 남미 등 글로벌 네트워크로 확장.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section>
+  <div class="wrap">
+    <h2>의사결정 구조</h2>
+    <p class="lead sub" style="text-align: center; max-width: 680px; margin: 0 auto;">
+      Ripley와 Smith 가문의 분업. 한국측 카운터파트는 Ripley지만, 최종 결정권은 Smith에 있다.
+    </p>
+    <div class="people">
+      <div class="person fade">
+        <div class="role">CEO · 운영·재무·기술</div>
+        <h3>Christopher S. Ripley</h3>
+        <div class="tenure">1976년경생 추정 · 캐나다 출신 · 2017-01-01 CEO 취임 · 9년차 재임</div>
+        <p>UBS 투자은행(M&A·캐피털 마켓) 출신 → 2014년 Sinclair CFO → 2017-01-01 CEO 취임. 2026-04 현재 <strong>약 9년차</strong> 재임(회의록의 "10년째"는 연도 해석 편차로 9년차가 정확). ATSC 3.0 NextGen TV 선제 투자, Compulse·Tennis Channel·CAST.ERA 신설, Diamond Sports Group 분리 결정 등 <strong>금융·기술 중심 의사결정 패턴</strong>. 한국측 실무 카운터파트. <span class="src">[출처: <a href="https://en.wikipedia.org/wiki/Chris_Ripley" target="_blank" rel="noopener">Wikipedia Chris Ripley</a>, sbgi.net leadership]</span></p>
+      </div>
+      <div class="person fade">
+        <div class="role">Executive Chairman · 정치·규제·편성</div>
+        <h3>David Smith</h3>
+        <div class="tenure">Smith 가문 Class B 의결권 80%+ 보유</div>
+        <p>정치·규제·언론 논조 담당. K-채널 82의 편성·정치 논조·FCC 대응 <strong>최종 결정권을 쥔 실질 지배 축</strong>. Ripley 합의가 Smith 측에서 뒤집히는 사고를 방지하려면 이중 구조를 전제해야 한다.</p>
+      </div>
+    </div>
+
+    <details class="fade">
+      <summary>Ripley 재무·경영 상세 · 2024 보수 $10.55M</summary>
+      <div class="details-body">
+        <p><strong>2024 회계년도 총 보수 $10.55M</strong>(약 149~150억원 범위, DEF 14A 공시 기준). "미디어 공룡 → 벤처형 혁신기업" 평가는 ATSC 3.0 NextGen TV 선제 투자, Compulse(프로그래매틱 애드테크)·Tennis Channel·CAST.ERA 신설·Diamond Sports Group 분리 결정 등 금융·기술 중심 의사결정 패턴에 근거한다.</p>
+        <p><strong>대형 베팅의 패턴.</strong> CEO 취임 이후 9년간 주요 거래는 Tribune Media 인수 시도(2018 FCC 반려로 좌절), Diamond Sports Group 인수(2019, $10.6B) 후 분사·파산 정리, Tennis Channel 운영, ATSC 3.0 전미 보급 주도. 큰 베팅에서 한 번 크게 실패했고, 기술 선제투자에서는 선행자 지위를 확보한 패턴이다. K-채널 82는 "기술 선제+콘텐츠 차별화" 카테고리에 속해 성공 패턴 쪽이지만, FCC·스케줄·수급 3축이 무너지면 Tribune 트라우마가 재현될 수 있다.</p>
+      </div>
+    </details>
+
+    <details class="fade">
+      <summary>회의록 검증이 걸러낸 것 — 인용 금지 항목</summary>
+      <div class="details-body">
+        <p><strong>본사 위치.</strong> Washington D.C.가 아니라 메릴랜드 주 <strong>Hunt Valley</strong>(정확히는 Cockeysville 10706 Beaver Dam Road). 워싱턴 면담은 가능하나 본사 주소 인용은 수정 필요.</p>
+        <p><strong>Ripley 배우자 배경.</strong> 공개 자료로 검증 불가. 공식 협상·리포트에서 제외.</p>
+        <p><strong>Ripley 개인 정치 성향.</strong> 회사 차원의 트럼프 행정부 관계는 확인되나 Ripley 개인의 성향은 공개 자료에 없다. 회사 차원으로만 표기.</p>
+      </div>
+    </details>
+
+    <details class="fade">
+      <summary>고삼석의 레버리지와 한계</summary>
+      <div class="details-body">
+        <p><strong>강점.</strong> 방통위 상임위원 2014~2019 경력, 저서 『넥스트 한류』(2025-06), 중국 베스트셀러 『5G 초연결사회』. 미디어 정책·국제 엔터테크 담론의 한국측 앵커이며, 한·미·말레이 3각 공진화 담론을 주도한다.</p>
+        <p><strong>한계 3가지 — 후속 확인 필요.</strong></p>
+        <p>① 현 정부 정책 라인과의 실질 레버리지 미확인.<br>② Sinclair와의 공식 지위(자문·중개·대리 여부) 비공개.<br>③ 실행 단계의 KBS·CJ ENM·MBC 등 개별 콘텐츠 기업 협상권은 별개.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- SINCLAIR -->
+<section class="alt">
+  <div class="wrap">
+    <h2>Sinclair의 체력</h2>
+    <p class="lead sub" style="text-align: center; max-width: 680px; margin: 0 auto;">
+      플랫폼은 강하고, 재무는 조건부다.
+    </p>
+    <div class="stats fade">
+      <div class="stat">
+        <div class="n">185</div>
+        <div class="l">TV 스테이션</div>
+      </div>
+      <div class="stat">
+        <div class="n">3,000만</div>
+        <div class="l">가구 커버 · 전미 약 40%</div>
+      </div>
+      <div class="stat">
+        <div class="n">$3.2B</div>
+        <div class="l">2025 매출 · 흑자 전환 지속</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 40px; text-align: center; max-width: 820px; margin-left: auto; margin-right: auto;">
+      <strong>185개 TV 스테이션, 85~86개 마켓</strong>, 전미 약 40% 가정(약 3,000만 가구) 커버.
+      네트워크 계열 분포는 <strong>FOX 59 · ABC 41 · CBS 30 · NBC 24</strong>가 주축(4사 합계 83%)으로, 친공화·친민주 양쪽 네트워크를 모두 보유한
+      <strong>지상파 포트폴리오 자체는 중립</strong>이다. 편향은 Sinclair의 자체 편성·Central News 제작물에서 발생한다.
+      ATSC 3.0/NextGen TV는 Sinclair가 미국 지상파 중 <strong>가장 먼저·가장 넓게</strong> 투자한 차세대 표준이고,
+      K-채널 82는 이 기술 위에서 <strong>부채널 방송 + 모바일 앱 + 데이터캐스팅</strong>의 3각 송출 구조를 취한다. 185개 스테이션 수는 회의록과 공식 자료가 일치한다.
+    </p>
+
+    <details class="fade">
+      <summary>재무 3개년 스냅샷 및 구조적 부담</summary>
+      <div class="details-body">
+        <table>
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th class="num">2023</th>
+              <th class="num">2024</th>
+              <th class="num">2025</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>매출</td><td class="num">—</td><td class="num">—</td><td class="num">~$3.2B</td></tr>
+            <tr><td>순이익</td><td class="num">-$291M</td><td class="num">+$310M</td><td class="num">흑자 지속</td></tr>
+            <tr><td>조정 EBITDA</td><td class="num">—</td><td class="num">—</td><td class="num">~$483M</td></tr>
+            <tr><td>정치광고</td><td class="num">—</td><td class="num">$405M</td><td class="num">—</td></tr>
+            <tr><td>레버리지</td><td class="num">—</td><td class="num">—</td><td class="num">~5.3x</td></tr>
+            <tr><td>총부채</td><td class="num">—</td><td class="num">—</td><td class="num">~$4.4B</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 20px;">2023 대규모 손실(-$291M) → 2024 사상 최대 정치광고($405M)로 $310M 순이익 전환 → 2025 매출 $3.2B. Diamond Sports Group(Bally Sports) 파산 영향은 분리됐고 소송만 남았다.</p>
+        <p><strong>구조적 부담.</strong> 부채 5.3x·$4.4B와 2029년 부채 만기 도래. Tennis Channel·CAST.ERA 등 자회사 분사 검토 진행 중이라는 점이 K-채널 82 운영 예산의 변동성으로 작용할 수 있다.</p>
+      </div>
+    </details>
+
+    <details class="fade">
+      <summary>세그먼트 구성 — 한국측 기술·광고 레버리지가 열리는 지점</summary>
+      <div class="details-body">
+        <p>Local Media(지상파 방송) 90%+ · Tennis Channel ~$226M 매출 · Compulse(애드테크) · CAST.ERA(콘텐츠·앱·기술) · Digital Remedy(프로그래매틱 DSP).</p>
+        <p>K-채널 82는 Local Media 부채널 + CAST.ERA 기술 스택 조합으로 구동되며, 광고 판매는 Compulse·Digital Remedy 연동으로 프로그래매틱화된다. 이 지점이 Ripley가 "벤처형 혁신"이라 불리는 이유이고, 한국측이 데이터·광고·XR·엔터테크(고삼석 3요청 중 ②)를 밀어붙일 <strong>기술적 여지가 열린 이유</strong>다.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- K-CONTENT LANDSCAPE -->
+<section>
+  <div class="wrap">
+    <h2>왜 지금, 왜 지상파인가</h2>
+    <div class="two fade" style="margin-top: 40px;">
+      <div class="bignum">
+        <div class="n accent">14<span style="font-size: 0.5em;">시간</span></div>
+        <div class="u">월평균 한류 콘텐츠 시청 · 2025 (+2.3시간)</div>
+      </div>
+      <div>
+        <p><strong>Netflix의 한국 콘텐츠 투자 ~$2.5B</strong>, 플랫폼 내 시청시간 점유 <strong>~8~9%</strong>(미국 콘텐츠 다음 2위). 2025년 대표 히트 <strong>케데헌(KPop Demon Hunters, Netflix 2025 애니메이션)</strong>은 누적 <strong>5.4억 뷰급</strong> 글로벌 최대 히트를 기록했고, K-pop·K-드라마의 주류화를 가속했다. 소비자 월평균 한류 콘텐츠 시청 14시간(+2.3), <strong>호감도 70.3%</strong>. 한강 노벨상 이후 K-문학·K-다이닝 등 비영상 장르도 상승.</p>
+      </div>
+    </div>
+
+    <details class="fade" style="margin-top: 32px;">
+      <summary>기존 전용 플랫폼의 구조적 한계</summary>
+      <div class="details-body">
+        <p><strong>MBC America·KBS America</strong>는 지역(LA·NY·SF) 케이블 중심이고 구독 기반이다. <strong>Kocowa+</strong>(CJ ENM·지상파 3사 JV)는 OTT로 전국이나 유료 구독이다. <strong>Netflix·Disney+·Apple TV+</strong>는 한국 콘텐츠를 서비스하되 한국 전용 채널은 아니다. 즉 "미국 전국·무료·24/7·한국 전용"의 교집합은 존재하지 않는다. K-채널 82가 겨냥하는 공백이 바로 이것이다.</p>
+      </div>
+    </details>
+
+    <div class="verdict fade" style="margin-top: 64px;">
+      <div class="label">구조적 공백</div>
+      <h2>"미국 전국 · 무료 · 24/7 · 한국 전용"의 교집합은 존재하지 않는다.</h2>
+      <p style="margin-top: 20px; color: var(--text-sub);">
+        MBC America·KBS America는 지역 케이블. Kocowa+는 유료 OTT. Netflix·Disney+·Apple TV+는 한국 콘텐츠를 서비스하되 한국 전용 채널은 아니다. K-채널 82가 겨냥하는 공백이 바로 이것이다.
+      </p>
+    </div>
+
+    <details class="fade">
+      <summary>지상파의 전략적 의미 — "죽어가는 지상파"가 아니다</summary>
+      <div class="details-body">
+        <p>지상파 광고시장은 OTT·CTV로 이연 중이다. 그러나 (1) 정치광고 주기의 강한 수익 보장(2024 $405M), (2) ATSC 3.0/NextGen TV로 지상파도 IP·인터랙티브·타겟팅·데이터캐스팅이 가능해진 구조 전환, (3) 무료·OTA는 한인 1·2세대 접근성이 구독 OTT보다 압도적이라는 점에서 <strong>"기술 전환 중인 지상파"</strong>로 보는 것이 정확하다.</p>
+        <p>한인 205만(평균 가구소득 $62~71K)과 범아시안 마케팅 예산이 결합하면 초기 광고 수요는 실재한다.</p>
+      </div>
+    </details>
+
+    <details class="fade">
+      <summary>경쟁 지형의 비대칭 — 콘텐츠 수급은 "공동 윈도우" 문제</summary>
+      <div class="details-body">
+        <p>Netflix·Disney는 독점 라이선싱을 공격적으로 집는 중이다. K-채널 82의 콘텐츠 수급은 "OTT가 먼저 집고 남은 것"이 아니라, <strong>공동 윈도우 설계</strong>(지상파 先 공개·OTT 後 공개, 또는 역방향, 또는 지역·형식 분할)를 KBS·CJ·MBC·JTBC·스튜디오드래곤과 계약 구조로 확보해야 하는 문제다.</p>
+        <p>이것이 지연·실패하면 R5(콘텐츠 수급) 리스크가 현실화된다.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- RISKS -->
+<section class="dark">
+  <div class="wrap">
+    <h2 style="color: #f5f5f7;">Top-5 리스크</h2>
+    <p class="lead sub" style="text-align: center; max-width: 720px; margin: 0 auto; color: #a1a1a6;">
+      18개 리스크 중 동률 1위 5개가 모두 🔴(확률×임팩트 6). 이 5개는 모두 9-14 런칭 전에 선제 완화해야 한다.
+    </p>
+    <div class="risks fade" style="margin-top: 40px;">
+      <div class="risk">
+        <div class="id">R1</div>
+        <div class="title">FCC Section 310(b) — 외국자본 25% 상한<br><span class="risk-note">콘텐츠 라이선싱은 제약 없음. 지분 투자는 사전 FCC 허가 필수.</span></div>
+        <div class="score">확률 中 × 임팩트 高 · 스코어 6</div>
+      </div>
+      <div class="risk">
+        <div class="id">R2</div>
+        <div class="title">ATSC 3.0 멀티캐스팅 규제 미정<br><span class="risk-note">FCC 2025-11 permissive use 발표. 정식 룰 미정. 기술·편성 변경 가능성.</span></div>
+        <div class="score">확률 中 × 임팩트 高 · 스코어 6</div>
+      </div>
+      <div class="risk">
+        <div class="id">R4</div>
+        <div class="title">9-14 런칭 스케줄 압박<br><span class="risk-note">185 스테이션 병렬 기술 설치 + 콘텐츠 편성 + FCC 허가 5개월 내.</span></div>
+        <div class="score">확률 高 × 임팩트 中 · 스코어 6</div>
+      </div>
+      <div class="risk">
+        <div class="id">R5</div>
+        <div class="title">한국측 콘텐츠 수급 불발<br><span class="risk-note">KBS 외 CJ ENM·스튜디오드래곤·MBC·JTBC 독점권 협상 필요.</span></div>
+        <div class="score">확률 中 × 임팩트 高 · 스코어 6</div>
+      </div>
+      <div class="risk">
+        <div class="id">R8</div>
+        <div class="title">Netflix·Disney+ 콘텐츠 경쟁 격화<br><span class="risk-note">케데헌 이후 플랫폼 독점 계약 공격 심화.</span></div>
+        <div class="score">확률 高 × 임팩트 中 · 스코어 6</div>
+      </div>
+    </div>
+
+    <details class="fade" style="background: #1d1d1f; border-color: #333;">
+      <summary style="color: #f5f5f7;">R1·R2 법적 한도 — 왜 지분 투자 대신 라이선싱인가</summary>
+      <div class="details-body" style="border-color: #333;">
+        <p style="color: #ccc;">Communications Act Section 310(b)는 방송 라이선스 보유 법인(Sinclair)의 외국 지분 직접 20%·간접 25% 상한. 2013년 이후 FCC는 공익 기준 초과 허가 가능(2017 Univision-Televisa 49% 승인 선례).</p>
+        <p style="color: #ccc;">K-채널 82 구조가 "Sinclair가 라이선스·운영 보유, KBS/한국기업은 콘텐츠 라이선싱·공동 IP·광고 파트너십"에 머물면 <strong style="color:#fff;">Section 310(b) 심사는 불필요</strong>하다. 지분 투자로 넘어가면 KBS의 공영방송 신분이 "정부의 실질 지배"로 해석될 여지가 있어 허가 난도가 높아진다.</p>
+        <p style="color: #ccc;">ATSC 3.0 부채널 규제는 FCC 2025-11 permissive use까지만 확정됐고 정식 규칙은 미정이므로, 런칭 직전 기술·편성 변경 가능성을 예산·계약에 명시해야 한다.</p>
+      </div>
+    </details>
+
+    <details class="fade" style="background: #1d1d1f; border-color: #333;">
+      <summary style="color: #f5f5f7;">R4·R5·R8 실행 병목 — 5개월 내 해결 과제</summary>
+      <div class="details-body" style="border-color: #333;">
+        <p style="color: #ccc;">185 스테이션 동시 조정은 전례가 드문 규모이고, 9-14 일자가 공식 미공시라는 점도 스케줄이 유동적임을 시사한다. 콘텐츠 수급은 KBS 단독으로는 24/7을 못 채운다. 예능·K-pop·드라마·애니·다큐의 주 장르별 앵커 공급사 5곳 이상이 계약으로 확보되지 않으면 초기 공실률이 20%를 넘긴다.</p>
+        <p style="color: #ccc;">Netflix·Disney+는 이미 스튜디오드래곤·CJ ENM 등과 우선권 계약을 쥐고 있으므로, <strong style="color:#fff;">"독점 라이선싱 대신 윈도우 분할"</strong>이 현실적 해법이다.</p>
+      </div>
+    </details>
+
+    <details class="fade" style="background: #1d1d1f; border-color: #333;">
+      <summary style="color: #f5f5f7;">즉시 대응 — 5~7월 선제 완화 액션</summary>
+      <div class="details-body" style="border-color: #333;">
+        <p style="color: #ccc;"><strong style="color:#fff;">R1.</strong> Sinclair 법무 + 한국 방송법·외교통상 전문 변호사 공동 FCC 사전 협의 문서 작성.</p>
+        <p style="color: #ccc;"><strong style="color:#fff;">R2.</strong> FCC 공식 파일링 대응을 Sinclair가 맡고, 변경 시 한국측 비용 전가 한도를 계약에 명시.</p>
+        <p style="color: #ccc;"><strong style="color:#fff;">R4.</strong> 7월 중순 파일럿 송출(주요 20개 마켓 선행) 계획을 Sinclair에 제안.</p>
+        <p style="color: #ccc;"><strong style="color:#fff;">R5.</strong> 4주 내 KBS·CJ·MBC·JTBC·스튜디오드래곤 5사 대상 윈도우 분할 텀시트 초안 작성.</p>
+        <p style="color: #ccc;"><strong style="color:#fff;">R8.</strong> Netflix·Disney와의 기존 계약 상 "지상파 선 송출" 여지가 있는 작품을 한국측이 먼저 스크리닝.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- 18축 패턴매칭 -->
+<section>
+  <div class="wrap">
+    <h2>18축 패턴매칭</h2>
+    <p class="lead sub" style="text-align: center; max-width: 680px; margin: 0 auto;">
+      성공 3 · 실패 3 · 레버리지 5.
+    </p>
+
+    <div class="two fade" style="margin-top: 48px;">
+      <div>
+        <h3>성공 조건 3대</h3>
+        <p><strong>① 광고주 다층화.</strong> 한인 205만 + K-pop 팬덤 + 주류 아시안 마케팅의 3층 광고주 구조로 2027년 광고 수익 <strong>$5M 달성</strong>.</p>
+        <p><strong>② ATSC 3.0 기술 차별화.</strong> 2026-09 출범 시 4K·HDR·위치기반 광고·데이터캐스팅 완비. Digital Remedy 프로그래매틱 연동으로 <strong>광고 단가 2배</strong>.</p>
+        <p><strong>③ Sinclair 재무 안정 경로 유지.</strong> 부채 <strong>5.3x→4.0x</strong> 감축 경로가 실제로 이행되어야 K-채널이 "비핵심 분사" 대상에서 제외된다.</p>
+      </div>
+      <div>
+        <h3>실패 조건 3대</h3>
+        <p><strong>① 정치 논란으로 인한 K-pop 팬층 이탈.</strong> Sinclair의 보수 편향 보도 이력과 K-pop Z세대 진보 성향의 불일치가 광고주 회피로 연결될 수 있다. 완화책 = K-채널 편성의 <strong>완전 독립성 계약 명시</strong>.</p>
+        <p><strong>② 9-14 출범 지연 + 경쟁사 독점.</strong> 6개월 지연 시 Netflix·Disney 독점 계약이 추가 체결되고 "또 지연된 프로젝트" 평판 손상.</p>
+        <p><strong>③ Sinclair Ventures 분사 시 K-채널 표류.</strong> Tennis Channel·CAST.ERA 분사 과정에서 K-채널이 "비핵심"으로 처리되면 기술·광고 지원이 끊긴다. 완화책 = K-채널의 <strong>전략적 중요성</strong>을 Smith 가문·이사회 결의로 명시.</p>
+      </div>
+    </div>
+
+    <h3 style="text-align: center; margin-top: 72px; margin-bottom: 16px;">한국측 레버리지 5</h3>
+    <p class="lead sub" style="text-align: center; max-width: 680px; margin: 0 auto;">
+      협상 테이블에 들고 갈 카드.
+    </p>
+    <div class="leverage">
+      <div class="lev fade">
+        <div class="n">01</div>
+        <h3>콘텐츠 파이프라인</h3>
+        <p>KBS·SBS·JTBC·CJ·스튜디오드래곤 5사 연합 윈도우</p>
+      </div>
+      <div class="lev fade">
+        <div class="n">02</div>
+        <h3>공동 IP</h3>
+        <p>케데헌 시즌2급·K-애니 오리지널 공동 제작·공동 보유</p>
+      </div>
+      <div class="lev fade">
+        <div class="n">03</div>
+        <h3>광고주 네트워크</h3>
+        <p>HYBE·K-푸드·뷰티·전자 대미 예산 연 $50M+</p>
+      </div>
+      <div class="lev fade">
+        <div class="n">04</div>
+        <h3>기술 파트너십</h3>
+        <p>KBS 재난방송 GPS·SKT 5G·K-음성 자막 AI</p>
+      </div>
+      <div class="lev fade">
+        <div class="n">05</div>
+        <h3>글로벌 공진화</h3>
+        <p>2027 말레이 TV3·Astro · 2028 LATAM 유니비전</p>
+      </div>
+    </div>
+
+    <details class="fade">
+      <summary>레버리지 5 — 수치·범위 상세</summary>
+      <div class="details-body">
+        <p><strong>① 콘텐츠 공급 파이프라인.</strong> KBS·SBS·JTBC·CJ·스튜디오드래곤 5사 연합 윈도우. 주 장르별 앵커 공급사 5곳 이상 확보가 초기 공실률 20% 이하 유지 조건.</p>
+        <p><strong>② 공동 IP.</strong> 케데헌 시즌2급·오징어게임 스핀오프·K-애니 오리지널 1~2편 공동 제작·공동 보유(제작비 50:50).</p>
+        <p><strong>③ 광고주 네트워크.</strong> HYBE·K-푸드·K-뷰티·K-전자의 대미 마케팅 예산 연간 <strong>$50M+</strong> 유입 제안.</p>
+        <p><strong>④ 기술 파트너십.</strong> KBS 재난방송 GPS·SKT 5G 스트림·K-음성 자막 AI의 ATSC 3.0 탑재.</p>
+        <p><strong>⑤ 글로벌 공진화.</strong> 고삼석 한-미-말레이 3각 제안 실행화. 2027 말레이시아 TV3/Astro 현지화, 2028 LATAM 유니비전 기술 협력, K-채널 스페인어판.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- STRATEGY 3-STAGE -->
+<section class="alt">
+  <div class="wrap">
+    <h2>한국측 3단 구조</h2>
+    <p class="lead sub" style="text-align: center; max-width: 720px; margin: 0 auto;">
+      FCC·재무·평판 리스크가 모두 🔴인 상황에서
+      지분 투자를 선제 카드로 쓰지 않는다. 콘텐츠·광고·기술 협업으로 신뢰를 축적한 뒤 공동 IP·공진화로 확장한다.
+    </p>
+    <div class="steps">
+      <div class="step fade">
+        <div class="phase">STAGE 1</div>
+        <div class="when">2026-05 ~ 2026-09</div>
+        <h3>콘텐츠 라이선싱 우선</h3>
+        <p>KBS 중심 5사 연합 윈도우 분할 텀시트 체결. 주당 신규 프로그램 6회 확보. "지상파 先 송출·OTT 後 송출" 구조 협상. <strong>FCC Section 310(b) 리스크 회피</strong>.</p>
+      </div>
+      <div class="step fade">
+        <div class="phase">STAGE 2</div>
+        <div class="when">2026-09 ~ 2027</div>
+        <h3>공동 IP · 기술 파트너십</h3>
+        <p>ATSC 3.0 기반 4K·위치기반 광고·데이터캐스팅에 KBS/SKT/K-AI 기술 탑재. 공동 IP 오리지널 1~2편(제작비 50:50). 비의결권 투자 선택적 검토 가능.</p>
+      </div>
+      <div class="step fade">
+        <div class="phase">STAGE 3</div>
+        <div class="when">2027 ~ 2028</div>
+        <h3>글로벌 공진화</h3>
+        <p>남미·동남아·유럽 확장. Sinclair 국제 거점 활용. K-채널 스페인어판·현지어판 단계적 론칭. 한국측은 "파트너십 제공자"에서 "공동 플랫폼 오너"로 전환.</p>
+      </div>
+    </div>
+
+    <details class="fade">
+      <summary>협상 수단 — 단기·중기·장기</summary>
+      <div class="details-body">
+        <p><strong>단기(5-7월).</strong> Ripley·Sinclair 재무·기술 임원 대상 <strong>금융·기술·ROI 1페이저</strong> 송부. 광고 수익 모델·부채 경감 기여도·ATSC 3.0 차별화 기여도 중심.</p>
+        <p><strong>중기(7-9월).</strong> Smith 가문·이사회 대상 <strong>K-채널의 전략적 중요성</strong> 명시. 편성 독립성·정치 리스크 회피·장기 기업가치 기여.</p>
+        <p><strong>장기(9월+).</strong> 월간 성과 리뷰 체제(시청률·광고 수익·콘텐츠 수급·기술 지표) + 3단 구조 단계별 게이트.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- UNRESOLVED -->
+<section>
+  <div class="wrap">
+    <h2>추가 확인이 필요한 것</h2>
+    <details class="fade">
+      <summary>외부 대기 중인 6가지</summary>
+      <div class="details-body">
+        <p><strong>9-14 출범일 공식 발표.</strong> 회의록 주장과 공개 자료 간 공백. SCA 문서상 일정이 어디까지 명시됐는지 한국측 원문 확인 필요.</p>
+        <p><strong>Smith 가문 이사회의 K-채널 태도.</strong> Ripley와의 합의가 실제 최종 결의로 이어질지.</p>
+        <p><strong>KBS 외 한국 방송사 수급 참여 의향.</strong> CJ ENM·스튜디오드래곤·MBC·JTBC 각각의 OTT 독점 계약 상황.</p>
+        <p><strong>Ripley 개인의 K-콘텐츠 관여도.</strong> 9년차 CEO의 개인적 관심·우선순위와 후임 시나리오에서의 지속 가능성.</p>
+        <p><strong>FCC ATSC 3.0 정식 룰 발표 시점.</strong> 2026 하반기 발표 여부에 따라 기술·편성 변경 가능성.</p>
+        <p><strong>두나무·CJ·HYBE 등 민간 투자 의사결정.</strong> 한국측 광고·기술 파트너십의 자본 파트너 확정.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="alt">
+  <div class="wrap">
+    <h2>이 리포트의 근거</h2>
+    <p class="lead sub" style="text-align: center; max-width: 720px; margin: 0 auto;">
+      본문 주장 평균 확신도 보통 70. 검증된 주장(185 스테이션·Ripley 보수 $10.55M·한류 2025 임팩트)은 90.
+    </p>
+    <details class="fade" style="margin-top: 32px;">
+      <summary>참고 문서 9건 (역추적)</summary>
+      <div class="details-body">
+        <p>· <code>_sources/K채널 82_고삼석 중개.txt</code> — 원천 회의록</p>
+        <p>· <code>_research/Ripley_프로파일.md</code> — Christopher S. Ripley 7축 프로파일</p>
+        <p>· <code>_research/고삼석_프로파일.md</code> — 고삼석 프로파일</p>
+        <p>· <code>_research/Sinclair_재무전략.md</code> — Sinclair 재무·세그먼트·지배구조</p>
+        <p>· <code>_research/미국_K콘텐츠_유통.md</code> — 미국 K-콘텐츠 시장 지형</p>
+        <p>· <code>_research/9-14런칭_FCC규제.md</code> — 공식 발표 검증·FCC 외국자본·ATSC 3.0</p>
+        <p>· <code>_research/리스크매트릭스.md</code> — 18개 리스크 확률×임팩트 매트릭스</p>
+        <p>· <code>_research/biz패턴매칭_18축.md</code> — 18축 성공·실패·레버리지 패턴매칭</p>
+        <p>· <code>_research/팩트체크_회의록.md</code> — 회의록 8개 주장 삼각측량 팩트체크</p>
+      </div>
+    </details>
+    <details class="fade">
+      <summary>확신도 종합 · 인용 금지 항목</summary>
+      <div class="details-body">
+        <p>리포트 본문 주장 평균 <strong>보통 70</strong>. 회의록 원문 대비 검증된 주장(스테이션 <strong>185</strong>, Ripley 보수 <strong>$10.55M</strong>, 한류 2025 임팩트)은 <strong>90</strong>.</p>
+        <p><strong>현 단계 인용 금지 3항목.</strong> ① 9-14 출범일(공식 미공시) · ② Ripley 개인 정치 성향(회사 차원만 확인) · ③ Ripley 배우자 한국계(공개 자료 부재).</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>K-채널 82 스탠다드 리포트</strong> · v1 · 2026-04-19</p>
+    <p>인물 · 조직 · 산업 · 리스크 · 전략 통합 · D-148</p>
+  </div>
+</footer>
+
+<script>
+  // Fade-in observer
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
