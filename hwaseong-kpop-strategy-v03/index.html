@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-POP 컨버전스 사업 — 공동사업 구조 및 역할 제안 v0.3</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f5f7;
+    --bg-dark: #0a0a0a;
+    --ink: #1d1d1f;
+    --ink-dim: #6e6e73;
+    --ink-xs: #86868b;
+    --accent: #002147;
+    --accent-soft: #e6ebf2;
+    --accent-line: #c9d3e2;
+    --danger: #b00020;
+    --success: #1a6e3c;
+    --warn: #b4651a;
+    --fold-bg: #fafafa;
+    --fold-border: #e8e8ed;
+    --card-shadow: 0 2px 16px rgba(0,33,71,0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Section ===== */
+  section { padding: 96px 0; }
+  section.hero { padding: 140px 0 110px; }
+  section.alt { background: var(--bg-alt); }
+  section.dark { background: var(--bg-dark); color: #f5f5f7; }
+  .content { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== Typography ===== */
+  h1, h2, h3, h4 { color: var(--ink); letter-spacing: -0.03em; }
+  section.dark h1, section.dark h2, section.dark h3, section.dark h4 { color: #f5f5f7; }
+  h1 { font-size: clamp(40px, 6vw, 68px); font-weight: 800; line-height: 1.08; letter-spacing: -0.04em; }
+  h2 { font-size: clamp(30px, 4.2vw, 48px); font-weight: 700; line-height: 1.15; margin-bottom: 28px; }
+  h3 { font-size: clamp(20px, 2.5vw, 26px); font-weight: 600; line-height: 1.3; margin: 36px 0 14px; }
+  h4 { font-size: clamp(17px, 2vw, 20px); font-weight: 600; margin: 24px 0 10px; }
+  p { font-size: clamp(15px, 1.5vw, 17px); line-height: 1.75; margin: 0 0 16px; color: var(--ink); }
+  section.dark p { color: #d2d2d7; }
+  strong { font-weight: 700; color: var(--ink); }
+  section.dark strong { color: #fff; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 13px; font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 6px 14px;
+    background: var(--accent-soft);
+    border-radius: 999px;
+  }
+  section.dark .eyebrow { background: rgba(255,255,255,0.1); color: #9fb5d0; }
+
+  /* ===== Hero ===== */
+  .hero-title {
+    font-size: clamp(38px, 6.5vw, 76px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+    margin-bottom: 24px;
+  }
+  .hero-title .accent { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(18px, 2.2vw, 24px);
+    font-weight: 500;
+    color: var(--ink-dim);
+    line-height: 1.5;
+    max-width: 780px;
+    margin-bottom: 40px;
+  }
+  .hero-meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    padding-top: 28px;
+    border-top: 1px solid var(--fold-border);
+    font-size: 14px; color: var(--ink-xs);
+  }
+  .hero-meta span { display: flex; gap: 6px; align-items: center; }
+  .hero-meta b { color: var(--ink); font-weight: 600; }
+
+  /* ===== BigNumber Grid (S1) ===== */
+  .bignum-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 56px;
+    background: var(--fold-border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .bignum {
+    background: var(--bg);
+    padding: 36px 28px;
+    text-align: left;
+  }
+  .bignum .n {
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    margin-bottom: 6px;
+  }
+  .bignum .u {
+    font-size: 15px; font-weight: 500;
+    color: var(--ink-dim); margin-bottom: 10px;
+  }
+  .bignum .d {
+    font-size: 13px; color: var(--ink-xs);
+    line-height: 1.5;
+  }
+
+  /* ===== Two Column Compare (S3) ===== */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 40px 0;
+  }
+  .compare-card {
+    padding: 36px 32px;
+    border-radius: 16px;
+    border: 1px solid var(--fold-border);
+    background: var(--bg);
+  }
+  .compare-card.ours {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    box-shadow: var(--card-shadow);
+  }
+  .compare-card.ours h3, .compare-card.ours p, .compare-card.ours li { color: #fff; }
+  .compare-card h3 { margin-top: 0; font-size: 22px; margin-bottom: 14px; }
+  .compare-card .tag {
+    display: inline-block; padding: 4px 10px;
+    font-size: 11px; font-weight: 600;
+    background: var(--fold-bg); color: var(--ink-dim);
+    border-radius: 4px; margin-bottom: 14px;
+    letter-spacing: 0.05em;
+  }
+  .compare-card.ours .tag {
+    background: rgba(255,255,255,0.2); color: #fff;
+  }
+  .compare-card ul { list-style: none; padding: 0; margin: 14px 0 0; }
+  .compare-card li {
+    padding: 10px 0;
+    border-top: 1px solid var(--fold-border);
+    font-size: 15px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .compare-card.ours li { border-top-color: rgba(255,255,255,0.15); }
+  .compare-card li::before {
+    content: "→";
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .compare-card.ours li::before { color: #fff; }
+
+  /* ===== Pillar Cards (3 reasons) ===== */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 40px 0;
+  }
+  .pillar {
+    padding: 32px 28px;
+    border-radius: 14px;
+    border: 1px solid var(--fold-border);
+    background: var(--bg);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .pillar:hover { transform: translateY(-3px); box-shadow: var(--card-shadow); }
+  .pillar .num {
+    display: inline-block;
+    font-size: 14px; font-weight: 800;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 4px 12px; border-radius: 999px;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+  .pillar h4 { margin: 0 0 10px; font-size: 18px; }
+  .pillar p { font-size: 14px; line-height: 1.65; color: var(--ink-dim); margin: 0; }
+
+  /* ===== Hit Score Bar Chart ===== */
+  .hit-chart {
+    background: var(--bg);
+    border: 1px solid var(--fold-border);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 24px 0;
+  }
+  .hit-row {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 14px 0;
+    border-top: 1px solid var(--fold-border);
+  }
+  .hit-row:first-of-type { border-top: none; }
+  .hit-row .label { font-weight: 600; font-size: 15px; }
+  .hit-row .label small { display: block; font-size: 12px; font-weight: 400; color: var(--ink-xs); }
+  .hit-bar-wrap { position: relative; height: 28px; background: var(--bg-alt); border-radius: 4px; overflow: hidden; }
+  .hit-bar {
+    position: absolute; top: 0; left: 0; bottom: 0;
+    background: linear-gradient(90deg, #c9d3e2 0%, var(--accent) 100%);
+    border-radius: 4px;
+    display: flex; align-items: center; padding-left: 12px;
+    color: #fff; font-weight: 700; font-size: 13px;
+    transition: width 0.8s ease;
+  }
+  .hit-bar.low { background: linear-gradient(90deg, #e8d4d6 0%, #b88088 100%); }
+  .hit-bar.mid { background: linear-gradient(90deg, #e8e0d0 0%, #b49860 100%); }
+  .hit-row .need {
+    font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 4px;
+  }
+  .need.need-high { background: var(--accent); color: #fff; }
+  .need.need-mid { background: var(--bg-alt); color: var(--ink-dim); }
+
+  /* ===== 4 Rights Card ===== */
+  .rights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .right-card {
+    padding: 28px 22px;
+    border-radius: 14px;
+    border: 2px solid var(--accent-line);
+    background: var(--bg);
+    text-align: left;
+    position: relative;
+  }
+  .right-card .icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .right-card.primary { background: var(--accent); border-color: var(--accent); }
+  .right-card.primary .icon { background: #fff; color: var(--accent); }
+  .right-card.primary h4, .right-card.primary .meaning { color: #fff; }
+  .right-card.primary .fail { color: #d2d2d7; }
+  .right-card h4 { margin: 0 0 8px; font-size: 16px; }
+  .right-card .meaning { font-size: 13px; color: var(--ink); line-height: 1.5; font-weight: 500; }
+  .right-card .fail { font-size: 12px; color: var(--danger); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--fold-border); }
+
+  /* ===== Revenue Stack Cards ===== */
+  .rev-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .rev-card {
+    padding: 24px 22px;
+    border-radius: 12px;
+    border: 1px solid var(--fold-border);
+    background: var(--bg);
+    position: relative;
+  }
+  .rev-card .n {
+    position: absolute; top: -12px; left: 20px;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .rev-card.outside { border-color: var(--accent); background: var(--accent-soft); }
+  .rev-card.outside .n { background: #fff; color: var(--accent); border: 2px solid var(--accent); }
+  .rev-card h4 { margin: 0 0 8px; font-size: 15px; }
+  .rev-card .owner { font-size: 12px; color: var(--ink-xs); margin-bottom: 8px; }
+  .rev-card .how { font-size: 13px; color: var(--ink-dim); line-height: 1.55; }
+
+  /* ===== Cycle SVG Wrapper ===== */
+  .svg-wrap {
+    background: var(--bg);
+    border: 1px solid var(--fold-border);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 24px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .svg-wrap svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+  .svg-wrap .caption {
+    text-align: center; font-size: 13px; color: var(--ink-xs);
+    margin-top: 16px;
+  }
+
+  /* ===== Contract Timeline ===== */
+  .timeline {
+    position: relative;
+    padding: 20px 0;
+    margin: 32px 0;
+  }
+  .timeline::before {
+    content: ""; position: absolute;
+    left: 24px; top: 40px; bottom: 40px;
+    width: 2px; background: var(--accent-line);
+  }
+  .tl-step {
+    position: relative;
+    padding: 16px 0 16px 64px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .tl-step::before {
+    content: attr(data-step);
+    position: absolute; left: 0; top: 16px;
+    width: 48px; height: 48px;
+    background: var(--accent); color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 18px;
+    border: 4px solid var(--bg-alt);
+  }
+  .tl-step.star::before { background: #b4651a; box-shadow: 0 0 0 3px #ffe9cc; }
+  .tl-step h4 { margin: 0 0 6px; font-size: 17px; }
+  .tl-step .when { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+  .tl-step .desc { font-size: 14px; color: var(--ink-dim); line-height: 1.6; margin: 0; }
+  .tl-step .badge {
+    font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 4px;
+    background: #fff3e0; color: #b4651a;
+    white-space: nowrap;
+  }
+
+  /* ===== Pre-Mortem Matrix ===== */
+  .prem-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .prem-card {
+    padding: 24px 22px;
+    border-radius: 12px;
+    background: var(--bg);
+    border-left: 4px solid var(--danger);
+    box-shadow: var(--card-shadow);
+  }
+  .prem-card .f {
+    font-size: 12px; font-weight: 700;
+    color: var(--danger); letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .prem-card h4 { margin: 0 0 14px; font-size: 16px; }
+  .prem-card .arrow {
+    padding: 12px 0; margin: 0 -22px -24px;
+    padding-left: 22px; padding-right: 22px;
+    background: var(--accent-soft);
+    border-top: 1px solid var(--accent-line);
+    border-radius: 0 0 12px 12px;
+  }
+  .prem-card .defend-label {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    letter-spacing: 0.05em; margin-bottom: 4px;
+  }
+  .prem-card .defend { font-size: 13px; color: var(--ink); font-weight: 500; margin: 0; }
+
+  /* ===== Roadmap Chart ===== */
+  .roadmap-svg-wrap { margin: 28px 0; }
+
+  /* ===== Table ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+    background: var(--bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+  }
+  thead { background: var(--accent); color: #fff; }
+  th, td { padding: 14px 18px; text-align: left; }
+  th { font-weight: 600; font-size: 13px; letter-spacing: 0.03em; }
+  tbody tr { border-top: 1px solid var(--fold-border); }
+  tbody tr:nth-child(even) { background: #fafafa; }
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* ===== Callouts ===== */
+  .spine {
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    margin: 28px 0;
+    background: var(--accent-soft);
+    border-radius: 0 12px 12px 0;
+    font-size: clamp(16px, 1.8vw, 19px);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .callout-warn {
+    background: #fff8e5;
+    border-left: 4px solid #b4651a;
+    padding: 18px 22px;
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0;
+    font-size: 14px; line-height: 1.6;
+  }
+  .callout-warn strong { color: #b4651a; }
+  .callout-do-not {
+    background: #fff0f0;
+    border-left: 4px solid var(--danger);
+    padding: 18px 22px;
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0;
+  }
+  .callout-do-not strong { color: var(--danger); }
+  .callout-do-not ul { list-style: none; padding: 0; margin: 8px 0 0; }
+  .callout-do-not li {
+    padding: 6px 0 6px 20px; position: relative;
+    font-size: 14px;
+  }
+  .callout-do-not li::before {
+    content: "✕"; position: absolute; left: 0;
+    color: var(--danger); font-weight: 700;
+  }
+
+  /* ===== Collapsible (Fold) ===== */
+  details.fold {
+    background: var(--fold-bg);
+    border: 1px solid var(--fold-border);
+    border-radius: 12px;
+    margin: 28px 0;
+    overflow: hidden;
+  }
+  details.fold > summary {
+    padding: 18px 22px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    list-style: none;
+    display: flex; align-items: center; gap: 12px;
+    color: var(--accent);
+    background: #fff;
+    border-bottom: 1px solid transparent;
+    transition: background 0.2s ease;
+  }
+  details.fold > summary:hover { background: #f8f9fc; }
+  details.fold[open] > summary { border-bottom-color: var(--fold-border); }
+  details.fold > summary::-webkit-details-marker { display: none; }
+  details.fold > summary::before {
+    content: "▶";
+    font-size: 10px;
+    color: var(--accent);
+    transition: transform 0.2s ease;
+  }
+  details.fold[open] > summary::before { transform: rotate(90deg); }
+  details.fold .fold-body { padding: 24px 26px; }
+  details.fold .fold-body > *:first-child { margin-top: 0; }
+  details.fold .fold-body > *:last-child { margin-bottom: 0; }
+
+  /* ===== Action List ===== */
+  .action-list { list-style: none; padding: 0; margin: 20px 0; }
+  .action-list li {
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    background: var(--bg);
+    border: 1px solid var(--fold-border);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+  .action-list .num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px;
+  }
+  .action-list h4 { margin: 0 0 4px; font-size: 16px; }
+  .action-list p { margin: 0; font-size: 14px; color: var(--ink-dim); }
+
+  /* ===== Closing ===== */
+  .closing-quote {
+    text-align: center;
+    font-size: clamp(22px, 3.5vw, 36px);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.035em;
+    color: var(--accent);
+    padding: 60px 20px;
+    border-top: 1px solid var(--fold-border);
+    border-bottom: 1px solid var(--fold-border);
+    margin: 40px 0;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 860px) {
+    section { padding: 72px 0; }
+    section.hero { padding: 100px 0 80px; }
+    .bignum-grid { grid-template-columns: repeat(2, 1fr); }
+    .compare-grid { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .rights { grid-template-columns: repeat(2, 1fr); }
+    .rev-grid { grid-template-columns: 1fr; }
+    .prem-grid { grid-template-columns: 1fr; }
+    .hit-row { grid-template-columns: 120px 1fr; }
+    .hit-row .need { grid-column: 1 / -1; justify-self: start; }
+  }
+  @media (max-width: 560px) {
+    .content { padding: 0 18px; }
+    .bignum-grid { grid-template-columns: 1fr; }
+    .rights { grid-template-columns: 1fr; }
+    .tl-step { grid-template-columns: 1fr; }
+    .tl-step { padding-left: 52px; }
+    .tl-step::before { width: 40px; height: 40px; font-size: 16px; }
+    .timeline::before { left: 20px; }
+    .hit-row { grid-template-columns: 1fr; }
+    .action-list li { grid-template-columns: 1fr; }
+  }
+
+  /* ===== Diagram Text ===== */
+  .diagram {
+    font-family: 'SF Mono', Monaco, Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    background: var(--bg);
+    padding: 20px 24px;
+    border-radius: 10px;
+    border: 1px solid var(--fold-border);
+    white-space: pre;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    color: var(--ink);
+  }
+
+  /* Nav dots (anchor) */
+  .nav-sections {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-top: 32px;
+  }
+  .nav-sections a {
+    font-size: 13px; font-weight: 500;
+    padding: 8px 14px; border-radius: 999px;
+    background: var(--bg-alt);
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .nav-sections a:hover { background: var(--accent); color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="content">
+    <span class="eyebrow">K-POP 컨버전스 파크 · 노느니 × 라텔 · v0.3</span>
+    <h1 class="hero-title">
+      참여자가 아니라<br>
+      <span class="accent">설계자</span>로 들어간다
+    </h1>
+    <p class="hero-sub">
+      화성 2조 2천억 K-POP 컨버전스 파크 사업에서, 노느니(콘텐츠)와 라텔(기획·마케팅)이<br>
+      어떤 자리를 잡고, 어떻게 수익을 내고, 어떤 계약으로 그것을 보장받을 것인가.
+    </p>
+
+    <div class="bignum-grid">
+      <div class="bignum">
+        <div class="n">2.2조</div>
+        <div class="u">총사업비 (원)</div>
+        <div class="d">공공 1.1조 + 민간 1.1조 (SPC)</div>
+      </div>
+      <div class="bignum">
+        <div class="n">189만</div>
+        <div class="u">연 방문객 기본선 (명)</div>
+        <div class="d">소스폴더 305만은 38% 과대</div>
+      </div>
+      <div class="bignum">
+        <div class="n">200~400억</div>
+        <div class="u">우리 연 매출 (원)</div>
+        <div class="d">혼합안 기본 시나리오 개장 후</div>
+      </div>
+      <div class="bignum">
+        <div class="n">2,000~3,000억</div>
+        <div class="u">10년 누적 매출 (원)</div>
+        <div class="d">지분·해외수출 가치 미포함</div>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <span><b>작성.</b> 라텔 × 노느니</span>
+      <span><b>대상.</b> 4월 28일 화성시장 면담</span>
+      <span><b>버전.</b> v0.3 · 2026-04-20</span>
+    </div>
+
+    <div class="nav-sections">
+      <a href="#ch1">1. 참여자 vs 설계자</a>
+      <a href="#ch2">2. 혼합안 유도</a>
+      <a href="#ch3">3. 포지션 옵션 A</a>
+      <a href="#ch4">4. 수익 8종</a>
+      <a href="#ch5">5. 계약 실행</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CH1 — 참여자 vs 설계자 ===== -->
+<section class="alt" id="ch1">
+  <div class="content">
+    <span class="eyebrow">1장 · Frame</span>
+    <h2>참여자 vs 설계자 —<br>왜 지금 이 선택을 해야 하는가</h2>
+    <p>이 사업에 들어가는 방법은 두 가지뿐이다. <strong>참여자로 들어가거나, 설계자로 들어가거나.</strong> 이 선택은 한 번뿐이며, 바꿀 기회는 없다.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <span class="tag">OPTION 1 · 참여자</span>
+        <h3>콘텐츠 납품 → 계약 종료 → 다음 일 반복</h3>
+        <ul>
+          <li>사업이 커져도 우리 몫은 정해진 금액</li>
+          <li>구조 밖에서 일당 받는 위치</li>
+          <li>프로젝트가 끝나면 남는 자산 없음</li>
+          <li>해외 확장 시 따라갈 권리 없음</li>
+        </ul>
+      </div>
+      <div class="compare-card ours">
+        <span class="tag">OPTION 2 · 설계자 · 우리</span>
+        <h3>구조 자체를 설계 → 성공할수록 수익이 복리</h3>
+        <ul>
+          <li>사업 뼈대를 우리가 짠다</li>
+          <li>파크 성공 = 우리 수익 복리 확대</li>
+          <li>확장·해외 진출 시 우리가 따라간다</li>
+          <li>IP·브랜드·인재풀이 우리 자산으로 남는다</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spine">이 사업에서 설계자 자리는 단 하나뿐이며, 지금 그 자리를 잡을 수 있는 유일한 주체는 노느니+라텔 조합이다.</div>
+
+    <h3>우리가 유일한 이유 세 가지</h3>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="num">01</span>
+        <h4>아티스트 섭외는<br>돈으로 안 된다</h4>
+        <p>김형석 작곡가급 네트워크는 공개 시장에서 복제 불가. 대기업이 아무리 써도 첫 해 라인업 약하면 파크는 빈 땅.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">02</span>
+        <h4>K-POP 팬덤 언어는<br>외부에서 못 배운다</h4>
+        <p>숏폼 문화, 글로벌 팬 커뮤니티의 작동 원리는 실제로 그 안에서 움직여본 주체만 안다. KT·SPC가 투자해도 팬은 안 움직인다.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">03</span>
+        <h4>공공과 민간 사이의<br>통역이 필요하다</h4>
+        <p>화성시·문화원(공공)과 KT·SPC(민간)은 말이 다르다. 기획·마케팅 전문가가 중간에서 번역하지 않으면 사업은 지체된다.</p>
+      </div>
+    </div>
+
+    <div class="callout-warn">
+      <strong>⏱ 이 무기는 지금 쓰지 않으면 사라진다.</strong><br>
+      시장 의지가 확보되고 SPC가 구성되기 시작하면, 우리의 대체불가성은 급격히 희석된다. 4월 28일이 그 타이밍이다.
+    </div>
+
+    <details class="fold">
+      <summary>📎 부록 A. 파크 히트 진단 상세 — 4방향 점수 매트릭스</summary>
+      <div class="fold-body">
+        <p>현재 검토된 4가지 방향에 대한 히트 가능성 진단. 팬을 매년 다시 오게 하려면 <strong>"희소성"</strong>과 <strong>"반복성"</strong>이 동시에 필요하다.</p>
+
+        <div class="hit-chart">
+          <div class="hit-row">
+            <div class="label">A. 압축 타운<small>3~4만 평 압축</small></div>
+            <div class="hit-bar-wrap"><div class="hit-bar low" style="width: 40%;">4/10</div></div>
+            <span class="need need-mid">필요도 중</span>
+          </div>
+          <div class="hit-row">
+            <div class="label">B. 구역제<small>5구역 분할</small></div>
+            <div class="hit-bar-wrap"><div class="hit-bar mid" style="width: 50%;">5/10</div></div>
+            <span class="need need-mid">필요도 중</span>
+          </div>
+          <div class="hit-row">
+            <div class="label">C. 페스티벌 퍼스트<small>코첼라형</small></div>
+            <div class="hit-bar-wrap"><div class="hit-bar" style="width: 80%;">8/10</div></div>
+            <span class="need need-high">필요도 극상</span>
+          </div>
+          <div class="hit-row">
+            <div class="label">혼합안<small>B뼈대 + C페스티벌 + A단계</small></div>
+            <div class="hit-bar-wrap"><div class="hit-bar" style="width: 78%;">7~8/10</div></div>
+            <span class="need need-high">필요도 극상</span>
+          </div>
+        </div>
+
+        <p><strong>핵심 함의.</strong> 우리 이익은 C안·혼합안 쪽으로 갈수록 커진다. A·B는 시설 중심이라 국제 운영사(AEG·SMG 등)가 주도권을 쥐고 우리는 보조로 밀린다. C·혼합안은 콘텐츠·기획·섭외가 핵심이라 우리가 주도권을 가진다.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== CH2 — 혼합안 유도 ===== -->
+<section id="ch2">
+  <div class="content">
+    <span class="eyebrow">2장 · Strategy</span>
+    <h2>사업 방향을 혼합안으로<br>유도해야 하는 전략적 이유</h2>
+
+    <p>우리 이익을 극대화하는 단 하나의 방향은 <strong>혼합안(구역제 + 페스티벌 + 단계적 확장)</strong>. 그 다음이 C안. A안·B안은 피해야 한다.</p>
+
+    <!-- Direction → Revenue Split -->
+    <div class="svg-wrap">
+      <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ourShare" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#002147"/><stop offset="1" stop-color="#4a6b8f"/>
+          </linearGradient>
+        </defs>
+        <style>
+          .lbl { font: 600 13px Pretendard, sans-serif; fill: #1d1d1f; }
+          .sub { font: 400 11px Pretendard, sans-serif; fill: #6e6e73; }
+          .pct { font: 700 14px Pretendard, sans-serif; fill: #fff; }
+          .axis { font: 500 11px Pretendard, sans-serif; fill: #86868b; }
+        </style>
+        <text class="axis" x="40" y="28">방향별 우리 몫 비중 (상대치)</text>
+        <!-- A bar -->
+        <text class="lbl" x="20" y="72">A. 압축</text>
+        <rect x="90" y="56" width="250" height="22" fill="url(#ourShare)"/>
+        <rect x="340" y="56" width="470" height="22" fill="#e8e8ed"/>
+        <text class="pct" x="100" y="72">25%</text>
+        <text class="sub" x="350" y="72">외부 운영사·건설사 75%</text>
+        <!-- B bar -->
+        <text class="lbl" x="20" y="112">B. 구역제</text>
+        <rect x="90" y="96" width="300" height="22" fill="url(#ourShare)"/>
+        <rect x="390" y="96" width="420" height="22" fill="#e8e8ed"/>
+        <text class="pct" x="100" y="112">35%</text>
+        <text class="sub" x="400" y="112">앵커테넌트 분산 65%</text>
+        <!-- C bar -->
+        <text class="lbl" x="20" y="152">C. 페스티벌</text>
+        <rect x="90" y="136" width="580" height="22" fill="url(#ourShare)"/>
+        <rect x="670" y="136" width="140" height="22" fill="#e8e8ed"/>
+        <text class="pct" x="100" y="152">70%</text>
+        <text class="sub" x="680" y="152">기타 20%</text>
+        <!-- Mix bar -->
+        <text class="lbl" x="20" y="192">혼합안 ★</text>
+        <rect x="90" y="176" width="620" height="22" fill="url(#ourShare)"/>
+        <rect x="710" y="176" width="100" height="22" fill="#e8e8ed"/>
+        <text class="pct" x="100" y="192">75%</text>
+        <text class="sub" x="720" y="192">기타 25%</text>
+        <!-- Legend -->
+        <rect x="20" y="220" width="14" height="14" fill="url(#ourShare)"/>
+        <text class="axis" x="40" y="232">노느니+라텔 주도 영역</text>
+        <rect x="220" y="220" width="14" height="14" fill="#e8e8ed"/>
+        <text class="axis" x="240" y="232">건설·외부 운영사 주도 영역</text>
+      </svg>
+      <p class="caption">시설 중심(A·B) → 콘텐츠 중심(C·혼합) 이동할수록 우리 주도권이 커진다.</p>
+    </div>
+
+    <div class="spine">4월 28일 시장 면담의 숨은 목표는 시장의 선택을 혼합안 쪽으로 유도하는 것이다.</div>
+
+    <h3>혼합안 설득을 위한 3단 논리</h3>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="num">논리 1</span>
+        <h4>리스크 최소화</h4>
+        <p>2.2조를 한 번에 쏟는 B안은 위험합니다. 페스티벌로 먼저 성지를 만들고, 실적이 나온 뒤 단계적으로 확장하는 혼합안이 재정·정치적으로도 가장 안전합니다.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">논리 2</span>
+        <h4>빠른 가시성</h4>
+        <p>A안은 3년 후 개장, B안은 착공 즉시 대규모 공사. 혼합안은 <strong>2027년 첫 페스티벌</strong>부터 시장의 성과가 눈에 보입니다. 선거 일정과 연동 가능.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">논리 3</span>
+        <h4>경쟁 도시 선점</h4>
+        <p>광명 등이 완성된 시설로 승부하려 할 때, 화성은 <strong>글로벌 K-POP 페스티벌 브랜드</strong>를 이미 확보한 상태로 앞서갑니다.</p>
+      </div>
+    </div>
+
+    <div class="callout-warn">
+      <strong>⚠ 설득에서 절대 말하지 말 것.</strong>
+      "혼합안이 우리 회사에 유리하다"는 말은 절대 입 밖으로 꺼내지 않는다. 오직 "이 방향이 사업 성공 확률이 가장 높다"는 논리로만 설득한다. 우리 이익 논리가 보이는 순간 신뢰가 무너진다.
+    </div>
+  </div>
+</section>
+
+<!-- ===== CH3 — 옵션 A + 4대 권리 ===== -->
+<section class="alt" id="ch3">
+  <div class="content">
+    <span class="eyebrow">3장 · Position</span>
+    <h2>우리가 쥘 포지션 —<br>옵션 A (총괄기획사 + 운영사) 추천</h2>
+
+    <p>포지션을 잡는 방식은 두 가지. 둘 중 하나를 고르는 게 아니라, <strong>두 옵션의 장점을 겹쳐서</strong> 가져간다.</p>
+
+    <!-- Option A / B SVG structural diagram -->
+    <div class="svg-wrap">
+      <svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          .box { fill: #fff; stroke: #c9d3e2; stroke-width: 1.5; rx: 10; }
+          .box-us { fill: #002147; stroke: #002147; rx: 10; }
+          .t { font: 700 13px Pretendard, sans-serif; fill: #1d1d1f; }
+          .t-w { font: 700 13px Pretendard, sans-serif; fill: #fff; }
+          .s { font: 500 11px Pretendard, sans-serif; fill: #6e6e73; }
+          .s-w { font: 500 11px Pretendard, sans-serif; fill: #d2d2d7; }
+          .label { font: 700 15px Pretendard, sans-serif; fill: #002147; }
+          .arrow { stroke: #002147; stroke-width: 2; fill: none; marker-end: url(#arr); }
+          .arrow-dash { stroke: #002147; stroke-width: 1.5; fill: none; stroke-dasharray: 4,3; marker-end: url(#arr); }
+        </style>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" fill="#002147"/>
+          </marker>
+        </defs>
+
+        <!-- Option A -->
+        <text class="label" x="30" y="30">옵션 A · 메인 (추천)</text>
+        <text class="s" x="30" y="48">SPC와 별도 계약 — 현금 투자 없이 영향력 확보</text>
+
+        <rect class="box" x="30" y="70" width="180" height="70"/>
+        <text class="t" x="50" y="100">SPC</text>
+        <text class="s" x="50" y="120">KT · 금융 · 화성시</text>
+
+        <rect class="box-us" x="270" y="70" width="220" height="70"/>
+        <text class="t-w" x="290" y="100">노느니 + 라텔</text>
+        <text class="s-w" x="290" y="120">총괄 기획사 · 운영사</text>
+
+        <line class="arrow" x1="210" y1="105" x2="265" y2="105"/>
+        <text class="s" x="218" y="98">장기 계약</text>
+
+        <rect class="box" x="540" y="70" width="160" height="70"/>
+        <text class="t" x="560" y="100">파크·페스티벌</text>
+        <text class="s" x="560" y="120">콘텐츠·운영 산출</text>
+        <line class="arrow" x1="490" y1="105" x2="538" y2="105"/>
+
+        <!-- Option B -->
+        <text class="label" x="30" y="190">옵션 B · 보조</text>
+        <text class="s" x="30" y="208">소량 지분 참여 — 업사이드 캡처</text>
+
+        <rect class="box" x="30" y="230" width="180" height="70"/>
+        <text class="t" x="50" y="260">SPC</text>
+        <text class="s" x="50" y="280">이사회 1석 · 정보권</text>
+
+        <rect class="box-us" x="270" y="230" width="220" height="70"/>
+        <text class="t-w" x="290" y="260">노느니 + 라텔</text>
+        <text class="s-w" x="290" y="280">콘텐츠 현물출자 5~10%</text>
+
+        <line class="arrow-dash" x1="380" y1="228" x2="130" y2="228"/>
+        <text class="s" x="200" y="222">지분</text>
+
+        <rect class="box" x="540" y="230" width="160" height="70"/>
+        <text class="t" x="560" y="260">업사이드</text>
+        <text class="s" x="560" y="280">파크 성공 시 지분가치</text>
+        <line class="arrow-dash" x1="490" y1="265" x2="538" y2="265"/>
+      </svg>
+      <p class="caption">옵션 A로 매년 운영 수익. 옵션 B로 사업 성공의 업사이드 캡처. 두 구조를 겹친다.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <span class="tag">OPTION A · 메인 (추천)</span>
+        <h3>SPC와 별도 계약 — 총괄 기획사 + 운영사</h3>
+        <ul>
+          <li>현금 투자 부담 없음</li>
+          <li>SPC 의사결정 정치에 휘말리지 않음</li>
+          <li>사업 확장 = 계약 규모 확장</li>
+          <li>IP·브랜드 독립 소유 가능</li>
+        </ul>
+        <p style="font-size:13px; color:var(--ink-xs); margin-top:16px; margin-bottom:0;"><strong style="color:var(--warn);">주의.</strong> SPC의 일방 해지 위험 → 장기계약 + 해지제한 조항으로 방어</p>
+      </div>
+      <div class="compare-card">
+        <span class="tag">OPTION B · 보조</span>
+        <h3>SPC 지분 참여 + 역할 수행</h3>
+        <ul>
+          <li>사업 대박 시 지분 가치 상승</li>
+          <li>이사회 참여로 영향력</li>
+          <li>콘텐츠 현물출자 (현금 대안)</li>
+          <li>업사이드 캡처용 소규모만 (5~10%)</li>
+        </ul>
+        <p style="font-size:13px; color:var(--ink-xs); margin-top:16px; margin-bottom:0;"><strong style="color:var(--warn);">주의.</strong> 대주주 KT·금융에 지분 밀림 + 의사결정 속도 지체</p>
+      </div>
+    </div>
+
+    <h3>우리가 반드시 확보해야 할 4대 권리</h3>
+    <p>돈보다 권리가 먼저다. 권리가 있으면 돈은 따라온다.</p>
+
+    <div class="rights">
+      <div class="right-card primary">
+        <div class="icon">1</div>
+        <h4>총괄 기획권</h4>
+        <p class="meaning">사업 구조·콘텐츠 방향 결정권. 단순 참여가 아님.</p>
+        <p class="fail">없으면: 하청업체로 전락</p>
+      </div>
+      <div class="right-card">
+        <div class="icon">2</div>
+        <h4>운영권</h4>
+        <p class="meaning">페스티벌·프로그램·시즌 콘텐츠의 장기 운영</p>
+        <p class="fail">없으면: 일회성 사업</p>
+      </div>
+      <div class="right-card">
+        <div class="icon">3</div>
+        <h4>IP 소유권</h4>
+        <p class="meaning">공연 포맷·프로그램 브랜드·콘텐츠 (또는 공동소유)</p>
+        <p class="fail">없으면: 현장 수익 한 번 받고 끝</p>
+      </div>
+      <div class="right-card">
+        <div class="icon">4</div>
+        <h4>수익 쉐어</h4>
+        <p class="meaning">티켓·스폰서·콘텐츠 판매·플랫폼 수익 지분</p>
+        <p class="fail">없으면: 영향력 없음</p>
+      </div>
+    </div>
+
+    <div class="spine">1번 총괄 기획권이 심장이다. 이것이 계약 문서에 박히지 않으면, 나머지 3개 권리도 시간이 지나면서 하나씩 떨어져 나간다.</div>
+  </div>
+</section>
+
+<!-- ===== CH4 — 수익 8종 ===== -->
+<section id="ch4">
+  <div class="content">
+    <span class="eyebrow">4장 · Revenue</span>
+    <h2>수익 아이템 —<br>틀 안 5종 + 틀 밖 3종</h2>
+
+    <p>사업에서 돈을 버는 지점을 8개로 나눠 잡는다. <strong>틀 안 5개</strong>는 이 사업 자체에서 바로 나오는 수익, <strong>틀 밖 3개</strong>는 이 사업을 지렛대 삼아 확장하는 수익.</p>
+
+    <h3>틀 안 — 이 사업에서 직접 나오는 수익 5종</h3>
+
+    <div class="rev-grid">
+      <div class="rev-card">
+        <div class="n">1</div>
+        <h4>콘텐츠 총괄 기획·자문</h4>
+        <div class="owner">노느니 + 라텔 공동</div>
+        <p class="how">월 고정 Fee + SPC 지분</p>
+      </div>
+      <div class="rev-card">
+        <div class="n">2</div>
+        <h4>페스티벌 라인업 총괄 섭외</h4>
+        <div class="owner">노느니 주도</div>
+        <p class="how">건당 수수료 + 흥행 인센티브</p>
+      </div>
+      <div class="rev-card">
+        <div class="n">3</div>
+        <h4>통합 마케팅·브랜딩 총괄</h4>
+        <div class="owner">라텔 주도</div>
+        <p class="how">연 대행료 + 성과 인센티브</p>
+      </div>
+      <div class="rev-card">
+        <div class="n">4</div>
+        <h4>페스티벌·프로그램 운영</h4>
+        <div class="owner">라텔 (노느니 크리에이티브 감수)</div>
+        <p class="how">회당 + 매출 %</p>
+      </div>
+      <div class="rev-card">
+        <div class="n">5</div>
+        <h4>IP 라이선싱</h4>
+        <div class="owner">공동 법인</div>
+        <p class="how">페스티벌 브랜드·포맷 사용료 %</p>
+      </div>
+    </div>
+
+    <div class="spine">이 5개만 정상 가동되면, 두 회사 합산 연간 200~400억 원 매출이 혼합안 기본 시나리오에서 가능하다.</div>
+
+    <details class="fold">
+      <summary>📎 부록 B. 업무별 수익 규모 추정 상세표</summary>
+      <div class="fold-body">
+        <h4>노느니 (콘텐츠)</h4>
+        <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>업무</th><th>시점</th><th>수익 방식</th><th>연간 추정 (개장 후)</th></tr></thead>
+          <tbody>
+            <tr><td>콘텐츠 총괄 기획·자문</td><td>2026~</td><td>월 고문료 + 지분</td><td>월 2~5천만 원 + SPC 5~10%</td></tr>
+            <tr><td>페스티벌 라인업 총괄</td><td>2027~</td><td>건당 + 인센티브</td><td>회당 3~10억 원</td></tr>
+            <tr><td>아티스트 섭외 에이전시</td><td>2027~</td><td>섭외료의 10~15%</td><td>연 5~20억 원</td></tr>
+            <tr><td>아카데미·스튜디오 운영권</td><td>2029~</td><td>영업권 + 매출 %</td><td>연 10~30억 원</td></tr>
+            <tr><td>IP 라이선싱 (브랜드·포맷)</td><td>2027~</td><td>매출 %</td><td>연 3~15억 원</td></tr>
+            <tr><td>프로듀싱 크레딧 IP</td><td>건별</td><td>작품 단위 로열티</td><td>건당 1~5억 원</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h4>라텔 (기획·마케팅·사업)</h4>
+        <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>업무</th><th>시점</th><th>수익 방식</th><th>연간 추정 (개장 후)</th></tr></thead>
+          <tbody>
+            <tr><td>사업 총괄 PM 대행</td><td>2026~</td><td>월 대행료</td><td>월 3~7천만 원</td></tr>
+            <tr><td>통합 마케팅 대행</td><td>2026~</td><td>연 대행료 + 성과</td><td>연 30~80억 원</td></tr>
+            <tr><td>글로벌 팬덤 커뮤니케이션</td><td>2027~</td><td>월 + 건당</td><td>연 15~40억 원</td></tr>
+            <tr><td>페스티벌 운영 총괄</td><td>2027~</td><td>회당 + 흥행 %</td><td>회당 5~15억 원</td></tr>
+            <tr><td>팬 커머스·MD 기획</td><td>2028~</td><td>매출 %</td><td>연 10~30억 원</td></tr>
+            <tr><td>SPC 실무 행정 지원</td><td>2026~</td><td>월 고정</td><td>월 1~3천만 원</td></tr>
+            <tr><td>데이터·CRM 운영</td><td>2029~</td><td>월 + 데이터 사용권</td><td>연 5~15억 원</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </details>
+
+    <h3>틀 밖 — 이 사업을 지렛대 삼은 확장 수익 3종</h3>
+    <p><strong>여기가 진짜 큰 판이다.</strong> 사업 구조 설계를 우리가 하기에, 이 세 가지 확장을 우리 명의로 끌어올 수 있다.</p>
+
+    <div class="rev-grid">
+      <div class="rev-card outside">
+        <div class="n">1</div>
+        <h4>KISAS 교육·자격</h4>
+        <div class="owner">창작자 인증 파이프라인</div>
+        <p class="how">파크에서 Learn → 프로덕션에서 Prove → 우리 공급풀 편입</p>
+      </div>
+      <div class="rev-card outside">
+        <div class="n">2</div>
+        <h4>AI 프로덕션</h4>
+        <div class="owner">김형석 IP 대량 변환</div>
+        <p class="how">곡 1개 → 여러 아티스트·언어·장르. 파크 공급 + 외부 라이선스</p>
+      </div>
+      <div class="rev-card outside">
+        <div class="n">3</div>
+        <h4>Cre8orClub 플랫폼</h4>
+        <div class="owner">인재·프로젝트 연결</div>
+        <p class="how">콘텐츠 → IP → 인력 → 다시 콘텐츠 자체 순환 완성</p>
+      </div>
+    </div>
+
+    <!-- Cycle SVG -->
+    <div class="svg-wrap">
+      <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" fill="#002147"/>
+          </marker>
+        </defs>
+        <style>
+          .node { fill: #fff; stroke: #002147; stroke-width: 2; }
+          .node-us { fill: #002147; stroke: #002147; }
+          .tnode { font: 700 14px Pretendard, sans-serif; fill: #002147; text-anchor: middle; }
+          .tnode-w { font: 700 14px Pretendard, sans-serif; fill: #fff; text-anchor: middle; }
+          .sn { font: 500 11px Pretendard, sans-serif; fill: #6e6e73; text-anchor: middle; }
+          .sn-w { font: 500 11px Pretendard, sans-serif; fill: #d2d2d7; text-anchor: middle; }
+          .flow { stroke: #002147; stroke-width: 2; fill: none; marker-end: url(#arr2); }
+          .flow-dim { stroke: #c9d3e2; stroke-width: 1.5; fill: none; marker-end: url(#arr2); }
+          .flabel { font: 600 11px Pretendard, sans-serif; fill: #002147; }
+          .center { font: 800 18px Pretendard, sans-serif; fill: #002147; text-anchor: middle; }
+        </style>
+
+        <!-- Center hub -->
+        <circle cx="450" cy="190" r="80" fill="#e6ebf2" stroke="#002147" stroke-width="2" stroke-dasharray="4,3"/>
+        <text class="center" x="450" y="180">화성 파크</text>
+        <text class="sn" x="450" y="202">마중물 · 쇼케이스</text>
+        <text class="sn" x="450" y="222">(독립 생존 가능)</text>
+
+        <!-- KISAS (top-left) -->
+        <rect class="node-us" x="50" y="40" width="220" height="90" rx="12"/>
+        <text class="tnode-w" x="160" y="72">KISAS 교육·자격</text>
+        <text class="sn-w" x="160" y="92">Learn → Prove → 인증</text>
+        <text class="sn-w" x="160" y="110">연 20~50억 원</text>
+
+        <!-- AI Production (top-right) -->
+        <rect class="node-us" x="630" y="40" width="220" height="90" rx="12"/>
+        <text class="tnode-w" x="740" y="72">AI 프로덕션</text>
+        <text class="sn-w" x="740" y="92">김형석 IP 대량변환</text>
+        <text class="sn-w" x="740" y="110">연 30~100억 원</text>
+
+        <!-- Cre8orClub (bottom) -->
+        <rect class="node-us" x="340" y="310" width="220" height="60" rx="12"/>
+        <text class="tnode-w" x="450" y="336">Cre8orClub 플랫폼</text>
+        <text class="sn-w" x="450" y="355">연 10~40억 원</text>
+
+        <!-- Flow arrows -->
+        <!-- KISAS → Cre8orClub (인재 공급) -->
+        <path class="flow" d="M 160 130 Q 160 280 340 340"/>
+        <text class="flabel" x="170" y="220">인증 창작자</text>
+        <text class="flabel" x="170" y="234">→ 플랫폼 등록</text>
+
+        <!-- Cre8orClub → AI Production (프로젝트 투입) -->
+        <path class="flow" d="M 560 340 Q 800 280 740 130"/>
+        <text class="flabel" x="680" y="230">매칭 · 프로덕션</text>
+        <text class="flabel" x="680" y="246">투입</text>
+
+        <!-- AI Production → KISAS (커리큘럼 피드백) -->
+        <path class="flow" d="M 630 85 Q 450 20 270 85"/>
+        <text class="flabel" x="380" y="30">현업 커리큘럼 피드백</text>
+
+        <!-- Park arrows (dotted to each) -->
+        <path class="flow-dim" d="M 380 170 L 270 100"/>
+        <path class="flow-dim" d="M 520 170 L 630 100"/>
+        <path class="flow-dim" d="M 450 270 L 450 310"/>
+      </svg>
+      <p class="caption">KISAS → Cre8orClub → AI 프로덕션 → 다시 KISAS로 순환. 화성 파크는 세 사업의 마중물이자 쇼케이스.</p>
+    </div>
+
+    <details class="fold">
+      <summary>📎 부록 C. 틀밖 파이프라인 상세 설계 + 수익 규모</summary>
+      <div class="fold-body">
+        <p><strong>틀밖 1~3은 별개 사업이 아니라 하나의 순환 구조다.</strong></p>
+        <ul>
+          <li><strong>KISAS 연계</strong> — 노느니 주도 (커리큘럼·강사진), 라텔 운영 (모집·마케팅)</li>
+          <li><strong>AI 프로덕션</strong> — 노느니 IP 공급 + 외부 AI 파트너 기술 결합, 라텔이 사업화·라이선스 판매</li>
+          <li><strong>Cre8orClub</strong> — 라텔 주도 플랫폼 운영, 노느니가 창작자 네트워크 시드 공급</li>
+        </ul>
+        <p><strong>소유 구조.</strong> 세 사업 모두 노느니·라텔 공동 법인에 귀속. SPC가 자기 것이라고 주장하지 못하도록 계약 초기부터 명시.</p>
+        <p><strong>화성 파크의 의미.</strong> 이 세 사업의 쇼케이스이자 마중물. 파크가 없어도 이 사업들은 독립 생존 가능하게 설계한다.</p>
+      </div>
+    </details>
+
+    <h3>추가로 손에 쥐는 3개의 숨은 자산</h3>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="num">자산 1</span>
+        <h4>개장 전 수익 (2027~2028)</h4>
+        <p>온라인 팬 커뮤니티·프리 페스티벌·사전 굿즈로 개장 전에 연 10~30억 원 발생. <strong>이 수익의 100%를 우리가 가져가는 구조를 초기 계약에 박아넣는다.</strong></p>
+      </div>
+      <div class="pillar">
+        <span class="num">자산 2</span>
+        <h4>파크가 안 되어도 남는 자산</h4>
+        <p>페스티벌 브랜드, 팬 DB, 창작자 네트워크, 콘텐츠 포맷. 모두 공동 법인 소유로 등록.</p>
+      </div>
+      <div class="pillar">
+        <span class="num">자산 3</span>
+        <h4>해외 수출 권리</h4>
+        <p>태국·베트남·인도네시아·사우디·UAE에 "화성 모델" 컨설팅·라이선싱 수출. <strong>10년 뒤 수백억 가치로 돌아오는 한 줄.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CH5 — 계약 실행 ===== -->
+<section class="alt" id="ch5">
+  <div class="content">
+    <span class="eyebrow">5장 · Execution</span>
+    <h2>계약 실행 전략 —<br>언제, 무엇을, 어떻게</h2>
+
+    <p>권리와 수익 구조는 <strong>한 번에 계약되지 않는다.</strong> 4단계로 쌓아 올린다. <strong>첫 단계에서 박지 못한 것은 이후에 박을 수 없다.</strong></p>
+
+    <div class="timeline">
+      <div class="tl-step" data-step="1">
+        <div>
+          <div class="when">2026년 4~5월 · MOU</div>
+          <h4>역할 독점 MOU</h4>
+          <p class="desc">"콘텐츠 = 노느니, 기획·마케팅 = 라텔" 독점 지정. 다른 회사 동시 지정 불가 조항.</p>
+        </div>
+      </div>
+      <div class="tl-step star" data-step="2">
+        <div>
+          <div class="when">2026년 하반기 · 업무위탁계약</div>
+          <h4>월 Fee + SPC 승계 강제 조항</h4>
+          <p class="desc"><strong>가장 중요한 단계.</strong> SPC가 만들어지기 <strong>전에</strong> 화성시·문화원과 조건을 고정시킨다. SPC 구성 후에는 "재협상"이라는 리셋이 걸리고 협상력이 떨어진다.</p>
+        </div>
+        <span class="badge">★ 핵심 관문</span>
+      </div>
+      <div class="tl-step" data-step="3">
+        <div>
+          <div class="when">2026년 말~2027년 · 주주간계약</div>
+          <h4>콘텐츠 출자 지분 5~15%</h4>
+          <p class="desc">이사회 1석 + 거부권 + 정보권. 현금 아닌 콘텐츠 현물출자.</p>
+        </div>
+      </div>
+      <div class="tl-step" data-step="4">
+        <div>
+          <div class="when">2028~2029년 · 운영계약</div>
+          <h4>최소 10년 운영권 + IP 공동 법인 귀속</h4>
+          <p class="desc">자동 5년 연장 옵션. 해외 수출권 공동 법인 귀속. 성과 미달 시에도 2~3년 유예.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>반드시 박아넣을 12개 조항</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:50px;">#</th><th>조항</th><th>핵심</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>역할 독점 지정</td><td>콘텐츠=노느니, 기획·마케팅=라텔 (동시 지정 불가)</td></tr>
+        <tr><td>2</td><td><strong>총괄 기획권 명문화</strong></td><td>사업 구조·콘텐츠 방향 결정권 (단순 참여가 아님 명시)</td></tr>
+        <tr><td>3</td><td>우선협상권</td><td>확장·신규 사업 시 우리와 먼저 협상 의무</td></tr>
+        <tr><td>4</td><td>콘텐츠·라인업 거부권</td><td>브랜드 훼손 방지</td></tr>
+        <tr><td>5</td><td>IP 귀속 명확화</td><td>우리가 만든 모든 IP는 공동 법인 귀속</td></tr>
+        <tr><td>6</td><td>해외 수출권의 공동 법인 귀속</td><td>"화성 모델" 해외 라이선싱 단독 보유</td></tr>
+        <tr><td>7</td><td>개장 전 수익 귀속</td><td>프리 페스티벌·사전 커뮤니티 수익 100%</td></tr>
+        <tr><td>8</td><td>KISAS·AI·Cre8orClub 연계권</td><td>3개 파이프라인 파크 내 운영·외부 확장 독점</td></tr>
+        <tr><td>9</td><td>지분 희석 방지 (Anti-dilution)</td><td>추가 증자 시 지분 비율 방어</td></tr>
+        <tr><td>10</td><td>SPC 정보 접근권</td><td>이사회 1석 + 재무 열람권 (지분이 작더라도)</td></tr>
+        <tr><td>11</td><td>장기 운영권 자동 연장 옵션</td><td>최소 10년 + 자동 5년 연장</td></tr>
+        <tr><td>12</td><td>SPC 계약 승계 강제</td><td>2단계 계약이 SPC 구성 후에도 무조건 승계</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout-do-not">
+      <strong>✕ 반드시 피할 5개 조항</strong>
+      <ul>
+        <li>"SPC가 필요하면 콘텐츠 총괄을 변경할 수 있다" (우리 뿌리 자르는 조항)</li>
+        <li>정산 지연 허용 (60일 초과 금지 명시 필수)</li>
+        <li>우리가 만든 IP의 SPC 자동 귀속</li>
+        <li>성과 미달 시 즉시 해지 (2~3년 유예 + 시정 기회 필수)</li>
+        <li>비밀유지 조항으로 레퍼런스 사용 불가 (예외 조항 필수)</li>
+      </ul>
+    </div>
+
+    <h3>프리모템 — 실패 시나리오와 방어 매핑</h3>
+    <div class="prem-grid">
+      <div class="prem-card">
+        <div class="f">FAILURE 1</div>
+        <h4>단순 참여자로 전락 → 수익 없음</h4>
+        <div class="arrow">
+          <div class="defend-label">방어 조항</div>
+          <p class="defend">조항 2 — 총괄 기획권 명문화</p>
+        </div>
+      </div>
+      <div class="prem-card">
+        <div class="f">FAILURE 2</div>
+        <h4>IP 못 가져감 → 일회성 사업</h4>
+        <div class="arrow">
+          <div class="defend-label">방어 조항</div>
+          <p class="defend">조항 5, 6 — IP·해외수출권 귀속</p>
+        </div>
+      </div>
+      <div class="prem-card">
+        <div class="f">FAILURE 3</div>
+        <h4>운영권 없음 → 영향력 없음</h4>
+        <div class="arrow">
+          <div class="defend-label">방어 조항</div>
+          <p class="defend">조항 11 — 장기 운영권 자동 연장</p>
+        </div>
+      </div>
+      <div class="prem-card">
+        <div class="f">FAILURE 4</div>
+        <h4>SPC에 종속 → 통제권 상실</h4>
+        <div class="arrow">
+          <div class="defend-label">방어 조항</div>
+          <p class="defend">조항 10, 12 — 정보권·승계 강제</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="spine">원칙 — 역할이 아니라 권리를 먼저 잡는다. 역할은 협상 중에 얼마든지 바뀌지만, 계약 문서에 박힌 권리는 바뀌지 않는다.</div>
+
+    <details class="fold">
+      <summary>📎 부록 D. 4월 28일 시장 면담 메시지 맵</summary>
+      <div class="fold-body">
+        <h4>반드시 말해야 할 3줄</h4>
+        <ol>
+          <li>"이 사업의 본질은 콘텐츠입니다. 그리고 콘텐츠는 김형석 작곡가와 저희가 이미 준비되어 있습니다."</li>
+          <li>"KT·삼성·CJ 등 기업과 금융의 참여 의향도 확보되어 있습니다. 남은 건 시장님의 정책적 결단입니다."</li>
+          <li>"지금 결단하면 광명 등 경쟁 도시를 확실히 앞섭니다. 이 시점을 놓치면 타 도시가 K-POP 도시 브랜드를 선점합니다."</li>
+        </ol>
+
+        <h4>예상 질문 5개 + 대답</h4>
+        <p><strong>Q1. "2.2조는 너무 큰 돈 아닌가?"</strong><br>
+        A. 한 번에 다 쓰지 않습니다. 1단계 1,500억 원 공공 투자로 시작해, 페스티벌 실적이 나오면 민간 자본 2조를 자연스럽게 유치합니다. 위험 최소, 가능성 최대.</p>
+
+        <p><strong>Q2. "왜 화성인가?"</strong><br>
+        A. 송산그린시티의 15만 평은 수도권 유일. 광명은 부지가 작고 민간이 약합니다. 화성은 콘텐츠·민간·부지가 다 있고 시장님 의지만 추가되면 완성됩니다.</p>
+
+        <p><strong>Q3. "방문객 300만이 현실적인가?"</strong><br>
+        A. 300만은 과대 추정입니다. 현실적 기준선은 연 189만이며, 이 숫자로 재무 모델을 다시 짜고 있습니다. 과장하지 않는 것이 사업 신뢰도를 높입니다.</p>
+
+        <p><strong>Q4. "민간이 정말 돈을 넣을까?"</strong><br>
+        A. KT 참여 의향서는 확보. 삼성·CJ도 긍정적. 다만 이들은 <strong>공공의 의지</strong> 확인 후 움직입니다. 지금이 그 의지를 보여줄 시점입니다.</p>
+
+        <p><strong>Q5. "노느니·라텔이 왜 주도해야 하나?"</strong><br>
+        A. 기술은 대기업이, 자본은 금융이 맡을 수 있습니다. 그러나 K-POP 콘텐츠의 실제 네트워크와 팬덤 언어는 시장에서 사 올 수 없습니다. 저희가 빠지면 "건물은 있는데 아티스트가 안 오는" 사업이 됩니다.</p>
+
+        <div class="callout-do-not">
+          <strong>✕ 절대 먼저 꺼내지 말 5가지</strong>
+          <ul>
+            <li>구체적 수익률·지분율 숫자</li>
+            <li>SPC 내 우리 지분 비율</li>
+            <li>해외 수출 권리 이야기</li>
+            <li>개장 전 수익 소유권 문제</li>
+            <li>"만약 사업이 안 되면…" — 실패 가정을 먼저 말하지 않는다</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="fold">
+      <summary>📎 부록 E. 10년 로드맵과 누적 수익 시나리오 (성장 곡선)</summary>
+      <div class="fold-body">
+        <!-- Growth Curve SVG -->
+        <div class="svg-wrap" style="padding: 16px; margin: 0 0 24px;">
+          <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="grow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#002147" stop-opacity="0.35"/>
+                <stop offset="1" stop-color="#002147" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <style>
+              .grid { stroke: #e8e8ed; stroke-width: 1; }
+              .axis { stroke: #86868b; stroke-width: 1.5; }
+              .axis-t { font: 500 11px Pretendard, sans-serif; fill: #86868b; }
+              .yr-t { font: 600 12px Pretendard, sans-serif; fill: #1d1d1f; text-anchor: middle; }
+              .val-t { font: 700 11px Pretendard, sans-serif; fill: #002147; text-anchor: middle; }
+              .curve { stroke: #002147; stroke-width: 3; fill: none; }
+              .dot { fill: #002147; stroke: #fff; stroke-width: 2; }
+              .milestone { font: 600 10px Pretendard, sans-serif; fill: #6e6e73; text-anchor: middle; }
+            </style>
+            <!-- Y axis grid -->
+            <line class="grid" x1="80" y1="60" x2="860" y2="60"/>
+            <line class="grid" x1="80" y1="130" x2="860" y2="130"/>
+            <line class="grid" x1="80" y1="200" x2="860" y2="200"/>
+            <line class="grid" x1="80" y1="270" x2="860" y2="270"/>
+            <!-- Y axis -->
+            <line class="axis" x1="80" y1="40" x2="80" y2="300"/>
+            <text class="axis-t" x="70" y="65" text-anchor="end">500억</text>
+            <text class="axis-t" x="70" y="135" text-anchor="end">300억</text>
+            <text class="axis-t" x="70" y="205" text-anchor="end">100억</text>
+            <text class="axis-t" x="70" y="275" text-anchor="end">0</text>
+            <!-- X axis -->
+            <line class="axis" x1="80" y1="300" x2="860" y2="300"/>
+            <!-- Data points + area -->
+            <path d="M 130 295 L 240 288 L 350 250 L 470 210 L 580 150 L 700 100 L 820 75 L 820 300 L 130 300 Z" fill="url(#grow)"/>
+            <path class="curve" d="M 130 295 L 240 288 L 350 250 L 470 210 L 580 150 L 700 100 L 820 75"/>
+            <!-- Dots + year labels -->
+            <circle class="dot" cx="130" cy="295" r="6"/>
+            <text class="yr-t" x="130" y="323">2026</text>
+            <text class="val-t" x="130" y="283">0</text>
+            <text class="milestone" x="130" y="338">MOU</text>
+
+            <circle class="dot" cx="240" cy="288" r="6"/>
+            <text class="yr-t" x="240" y="323">2026하</text>
+            <text class="val-t" x="240" y="276">월 Fee</text>
+            <text class="milestone" x="240" y="338">업무위탁</text>
+
+            <circle class="dot" cx="350" cy="250" r="6"/>
+            <text class="yr-t" x="350" y="323">2027</text>
+            <text class="val-t" x="350" y="238">10~30억</text>
+            <text class="milestone" x="350" y="338">프리 페스티벌</text>
+
+            <circle class="dot" cx="470" cy="210" r="6"/>
+            <text class="yr-t" x="470" y="323">2028</text>
+            <text class="val-t" x="470" y="198">50~80억</text>
+            <text class="milestone" x="470" y="338">1단계 착공</text>
+
+            <circle class="dot" cx="580" cy="150" r="6"/>
+            <text class="yr-t" x="580" y="323">2029</text>
+            <text class="val-t" x="580" y="138">100~200억</text>
+            <text class="milestone" x="580" y="338">Phase 1 개장</text>
+
+            <circle class="dot" cx="700" cy="100" r="6" fill="#b4651a"/>
+            <text class="yr-t" x="700" y="323">2030~</text>
+            <text class="val-t" x="700" y="88" fill="#b4651a">200~400억</text>
+            <text class="milestone" x="700" y="338">해외 수출</text>
+
+            <circle class="dot" cx="820" cy="75" r="6" fill="#b4651a"/>
+            <text class="yr-t" x="820" y="323">2032~</text>
+            <text class="val-t" x="820" y="63" fill="#b4651a">300~500억</text>
+            <text class="milestone" x="820" y="338">완전 가동</text>
+          </svg>
+          <p class="caption">연간 매출 성장 곡선. 마중물(2026) → 첫 매출(2027) → 폭발(2029~2030) → 자산 가치 전환(2032~)</p>
+        </div>
+
+        <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>시점</th><th>사업 단계</th><th>우리 액션</th><th>우리 수익 상태</th></tr></thead>
+          <tbody>
+            <tr><td>2026.4</td><td>시장 면담</td><td>역할 독점 MOU</td><td>0</td></tr>
+            <tr><td>2026.하</td><td>시 전략사업 채택</td><td>업무위탁계약, 월 Fee 시작</td><td>월 5~10천만 원</td></tr>
+            <tr><td>2027</td><td>SPC 구성</td><td>콘텐츠 출자 지분 5~15%, 프리 페스티벌 론칭</td><td>월 Fee + 10~30억 원</td></tr>
+            <tr><td>2028</td><td>1단계 착공</td><td>운영계약 체결, 마케팅 본격화</td><td>연 50~80억 원</td></tr>
+            <tr><td>2029</td><td>Phase 1 개장</td><td>아레나 개장, 페스티벌 정례화</td><td>연 100~200억 원</td></tr>
+            <tr><td>2030~</td><td>전체 확장</td><td>해외 수출 법인·IP 라이선싱</td><td>연 200~400억 원 + 지분 가치</td></tr>
+            <tr><td>2032~</td><td>완전 가동</td><td>레퍼런스 기반 타 프로젝트 수주</td><td>연 300~500억 원 + 자산 가치</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p><strong>10년 누적: 두 회사 합산 2,000~3,000억 원이 기본 시나리오.</strong> SPC 지분 가치 상승과 해외 수출 성공을 포함하면 그 이상.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== Action List ===== -->
+<section>
+  <div class="content">
+    <span class="eyebrow">Action</span>
+    <h2>지금 바로 해야 할 5가지</h2>
+
+    <ol class="action-list">
+      <li>
+        <div class="num">1</div>
+        <div>
+          <h4>4/28 시장 면담 메시지 확정</h4>
+          <p>부록 D를 김형석 작곡가님과 공유하고 최종 조율</p>
+        </div>
+      </li>
+      <li>
+        <div class="num">2</div>
+        <div>
+          <h4>MOU 초안 준비</h4>
+          <p>5장 1단계 조항을 변호사와 사전 검토. 면담 후 1주일 이내 체결 목표</p>
+        </div>
+      </li>
+      <li>
+        <div class="num">3</div>
+        <div>
+          <h4>노느니·라텔 공동 법인 설립 검토 착수</h4>
+          <p>해외 수출·IP 라이선싱 귀속 주체가 필요. 세무·책임 측면에서 유리</p>
+        </div>
+      </li>
+      <li>
+        <div class="num">4</div>
+        <div>
+          <h4>KT·CJ·삼성 접촉 일정 사전 조율</h4>
+          <p>시장 결단 직후 바로 MOU 확장 준비</p>
+        </div>
+      </li>
+      <li>
+        <div class="num">5</div>
+        <div>
+          <h4>프리 페스티벌 2027 라인업 초안 작업 착수</h4>
+          <p>개장 전 수익원이자 브랜드 증명. 라인업 확정이 곧 협상력</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== Closing ===== -->
+<section class="dark">
+  <div class="content" style="text-align:center;">
+    <span class="eyebrow">This Document in One Line</span>
+    <h2 style="color:#fff; font-size: clamp(28px, 4.5vw, 52px);">참여자가 아니라<br><span style="color:#9fb5d0;">설계자</span>로 들어간다.</h2>
+    <p style="font-size:clamp(18px, 2.2vw, 24px); color:#d2d2d7; max-width: 720px; margin: 20px auto 0;">콘텐츠로 돈이 도는 구조를 우리가 설계한다.<br>지금 박아넣지 못한 것은 2년 뒤에 박을 수 없다.</p>
+  </div>
+</section>
+
+<!-- ===== Next ===== -->
+<section class="alt">
+  <div class="content">
+    <span class="eyebrow">Next</span>
+    <h2>다음 산출물 후보</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="num">A</span>
+        <h4>계약서 조항 템플릿</h4>
+        <p>12개 필수 조항의 실제 문구화 · 변호사 검토 바로 가능한 수준</p>
+      </div>
+      <div class="pillar">
+        <span class="num">B</span>
+        <h4>SPC 협상 전략서</h4>
+        <p>지분 vs 권리 양자택일 분석 · 협상 테이블별 시나리오</p>
+      </div>
+      <div class="pillar">
+        <span class="num">C</span>
+        <h4>수익 시뮬레이션 모델</h4>
+        <p>4방향 × 시나리오 3종(보수·기본·낙관) 숫자 기반 재무 모델</p>
+      </div>
+    </div>
+    <p style="margin-top: 28px; font-size: 14px; color: var(--ink-xs); text-align: center;">필요한 순서를 지시하시면 즉시 착수합니다.</p>
+  </div>
+</section>
+
+</body>
+</html>
