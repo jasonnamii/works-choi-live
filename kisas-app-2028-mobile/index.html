@@ -1,0 +1,4022 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>KISAS 2028 · Mobile Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; height:100%; background:#0B0B0C; overscroll-behavior:none; -webkit-tap-highlight-color: transparent; font-family:'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+    #root { width:100%; height:100%; }
+    .stage { width:100vw; height:100vh; height:100dvh; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .nav-fab { position:fixed; top:calc(env(safe-area-inset-top) + 10px); right:12px; z-index:200; display:flex; gap:8px; }
+    .nav-fab button { width:40px; height:40px; border-radius:20px; background:rgba(250,250,247,0.92); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(11,11,12,0.08); color:#0B0B0C; font-family:'JetBrains Mono', monospace; font-size:16px; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    .nav-fab button:active { transform:scale(0.94); }
+    @keyframes slideIn { from { transform: translateX(18px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    .slide-in { animation: slideIn 0.22s ease-out; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+  <script>function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+// ===== lib/design-canvas.jsx =====
+
+// DesignCanvas.jsx — Figma-ish design canvas wrapper
+// Warm gray grid bg + Sections + Artboards + PostIt notes.
+// No assets, no deps.
+
+const DC = {
+  bg: '#f0eee9',
+  grid: 'rgba(0,0,0,0.06)',
+  label: 'rgba(60,50,40,0.7)',
+  title: 'rgba(40,30,20,0.85)',
+  subtitle: 'rgba(60,50,40,0.6)',
+  postitBg: '#fef4a8',
+  postitText: '#5a4a2a',
+  font: '-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif'
+};
+
+// ─────────────────────────────────────────────────────────────
+// Main canvas — transform-based pan/zoom viewport
+//
+// Input mapping (Figma-style):
+//   • trackpad pinch  → zoom   (ctrlKey wheel; Safari gesture* events)
+//   • trackpad scroll → pan    (two-finger)
+//   • mouse wheel     → zoom   (notched; distinguished from trackpad scroll)
+//   • middle-drag / primary-drag-on-bg → pan
+//
+// Transform state lives in a ref and is written straight to the DOM
+// (translate3d + will-change) so wheel ticks don't go through React —
+// keeps pans at 60fps on dense canvases.
+// ─────────────────────────────────────────────────────────────
+function DesignCanvas({
+  children,
+  minScale = 0.1,
+  maxScale = 8,
+  style = {}
+}) {
+  const vpRef = React.useRef(null);
+  const worldRef = React.useRef(null);
+  const tf = React.useRef({
+    x: 0,
+    y: 0,
+    scale: 1
+  });
+  const apply = React.useCallback(() => {
+    const {
+      x,
+      y,
+      scale
+    } = tf.current;
+    const el = worldRef.current;
+    if (el) el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+  }, []);
+  React.useEffect(() => {
+    const vp = vpRef.current;
+    if (!vp) return;
+    const zoomAt = (cx, cy, factor) => {
+      const r = vp.getBoundingClientRect();
+      const px = cx - r.left,
+        py = cy - r.top;
+      const t = tf.current;
+      const next = Math.min(maxScale, Math.max(minScale, t.scale * factor));
+      const k = next / t.scale;
+      // keep the world point under the cursor fixed
+      t.x = px - (px - t.x) * k;
+      t.y = py - (py - t.y) * k;
+      t.scale = next;
+      apply();
+    };
+
+    // Mouse-wheel vs trackpad-scroll heuristic. A physical wheel sends
+    // line-mode deltas (Firefox) or large integer pixel deltas with no X
+    // component (Chrome/Safari, typically multiples of 100/120). Trackpad
+    // two-finger scroll sends small/fractional pixel deltas, often with
+    // non-zero deltaX. ctrlKey is set by the browser for trackpad pinch.
+    const isMouseWheel = e => e.deltaMode !== 0 || e.deltaX === 0 && Number.isInteger(e.deltaY) && Math.abs(e.deltaY) >= 40;
+    const onWheel = e => {
+      e.preventDefault();
+      if (isGesturing) return; // Safari: gesture* owns the pinch — discard concurrent wheels
+      if (e.ctrlKey) {
+        // trackpad pinch (or explicit ctrl+wheel)
+        zoomAt(e.clientX, e.clientY, Math.exp(-e.deltaY * 0.01));
+      } else if (isMouseWheel(e)) {
+        // notched mouse wheel — fixed-ratio step per click
+        zoomAt(e.clientX, e.clientY, Math.exp(-Math.sign(e.deltaY) * 0.18));
+      } else {
+        // trackpad two-finger scroll — pan
+        tf.current.x -= e.deltaX;
+        tf.current.y -= e.deltaY;
+        apply();
+      }
+    };
+
+    // Safari sends native gesture* events for trackpad pinch with a smooth
+    // e.scale; preferring these over the ctrl+wheel fallback gives a much
+    // better feel there. No-ops on other browsers. Safari also fires
+    // ctrlKey wheel events during the same pinch — isGesturing makes
+    // onWheel drop those entirely so they neither zoom nor pan.
+    let gsBase = 1;
+    let isGesturing = false;
+    const onGestureStart = e => {
+      e.preventDefault();
+      isGesturing = true;
+      gsBase = tf.current.scale;
+    };
+    const onGestureChange = e => {
+      e.preventDefault();
+      zoomAt(e.clientX, e.clientY, gsBase * e.scale / tf.current.scale);
+    };
+    const onGestureEnd = e => {
+      e.preventDefault();
+      isGesturing = false;
+    };
+
+    // Drag-pan: middle button anywhere, or primary button starting on the
+    // canvas background (not inside an artboard).
+    let drag = null;
+    const onPointerDown = e => {
+      const onBg = e.target === vp || e.target === worldRef.current;
+      if (!(e.button === 1 || e.button === 0 && onBg)) return;
+      e.preventDefault();
+      vp.setPointerCapture(e.pointerId);
+      drag = {
+        id: e.pointerId,
+        lx: e.clientX,
+        ly: e.clientY
+      };
+      vp.style.cursor = 'grabbing';
+    };
+    const onPointerMove = e => {
+      if (!drag || e.pointerId !== drag.id) return;
+      tf.current.x += e.clientX - drag.lx;
+      tf.current.y += e.clientY - drag.ly;
+      drag.lx = e.clientX;
+      drag.ly = e.clientY;
+      apply();
+    };
+    const onPointerUp = e => {
+      if (!drag || e.pointerId !== drag.id) return;
+      vp.releasePointerCapture(e.pointerId);
+      drag = null;
+      vp.style.cursor = '';
+    };
+    vp.addEventListener('wheel', onWheel, {
+      passive: false
+    });
+    vp.addEventListener('gesturestart', onGestureStart, {
+      passive: false
+    });
+    vp.addEventListener('gesturechange', onGestureChange, {
+      passive: false
+    });
+    vp.addEventListener('gestureend', onGestureEnd, {
+      passive: false
+    });
+    vp.addEventListener('pointerdown', onPointerDown);
+    vp.addEventListener('pointermove', onPointerMove);
+    vp.addEventListener('pointerup', onPointerUp);
+    vp.addEventListener('pointercancel', onPointerUp);
+    return () => {
+      vp.removeEventListener('wheel', onWheel);
+      vp.removeEventListener('gesturestart', onGestureStart);
+      vp.removeEventListener('gesturechange', onGestureChange);
+      vp.removeEventListener('gestureend', onGestureEnd);
+      vp.removeEventListener('pointerdown', onPointerDown);
+      vp.removeEventListener('pointermove', onPointerMove);
+      vp.removeEventListener('pointerup', onPointerUp);
+      vp.removeEventListener('pointercancel', onPointerUp);
+    };
+  }, [apply, minScale, maxScale]);
+  const gridSvg = `url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M120 0H0v120' fill='none' stroke='${encodeURIComponent(DC.grid)}' stroke-width='1'/%3E%3C/svg%3E")`;
+  return /*#__PURE__*/React.createElement("div", {
+    ref: vpRef,
+    className: "design-canvas",
+    style: {
+      height: '100vh',
+      width: '100vw',
+      background: DC.bg,
+      overflow: 'hidden',
+      overscrollBehavior: 'none',
+      touchAction: 'none',
+      position: 'relative',
+      fontFamily: DC.font,
+      boxSizing: 'border-box',
+      ...style
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    ref: worldRef,
+    style: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      transformOrigin: '0 0',
+      willChange: 'transform',
+      width: 'max-content',
+      minWidth: '100%',
+      minHeight: '100%',
+      padding: '60px 0 80px',
+      backgroundImage: gridSvg,
+      backgroundSize: '120px 120px'
+    }
+  }, children));
+}
+
+// ─────────────────────────────────────────────────────────────
+// Section — title + subtitle + h-stack of artboards (no wrap)
+// ─────────────────────────────────────────────────────────────
+function DCSection({
+  title,
+  subtitle,
+  children,
+  gap = 48
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 80,
+      position: 'relative'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 60px 36px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 22,
+      fontWeight: 600,
+      color: DC.title,
+      letterSpacing: -0.3,
+      marginBottom: 4
+    }
+  }, title), subtitle && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 14,
+      fontWeight: 400,
+      color: DC.subtitle
+    }
+  }, subtitle)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap,
+      padding: '0 60px',
+      alignItems: 'flex-start',
+      width: 'max-content'
+    }
+  }, children));
+}
+
+// ─────────────────────────────────────────────────────────────
+// Artboard — labeled card
+// ─────────────────────────────────────────────────────────────
+function DCArtboard({
+  label,
+  children,
+  width,
+  height,
+  style = {}
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'relative',
+      flexShrink: 0
+    }
+  }, label && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      bottom: '100%',
+      left: 0,
+      paddingBottom: 8,
+      fontSize: 12,
+      fontWeight: 500,
+      color: DC.label,
+      whiteSpace: 'nowrap'
+    }
+  }, label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderRadius: 2,
+      boxShadow: '0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06)',
+      overflow: 'hidden',
+      width,
+      height,
+      background: '#fff',
+      ...style
+    }
+  }, children));
+}
+
+// ─────────────────────────────────────────────────────────────
+// Post-it — absolute-positioned sticky note
+// ─────────────────────────────────────────────────────────────
+function DCPostIt({
+  children,
+  top,
+  left,
+  right,
+  bottom,
+  rotate = -2,
+  width = 180
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      top,
+      left,
+      right,
+      bottom,
+      width,
+      background: DC.postitBg,
+      padding: '14px 16px',
+      fontFamily: '"Comic Sans MS", "Marker Felt", "Segoe Print", cursive',
+      fontSize: 14,
+      lineHeight: 1.4,
+      color: DC.postitText,
+      boxShadow: '0 2px 8px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)',
+      transform: `rotate(${rotate}deg)`,
+      zIndex: 5
+    }
+  }, children);
+}
+Object.assign(window, {
+  DesignCanvas,
+  DCSection,
+  DCArtboard,
+  DCPostIt
+});
+
+// ===== lib/tokens.jsx =====
+// KISAS design tokens — editorial minimalism
+// Palette: Ink + Paper + Mist + Navy (single accent)
+
+const K = {
+  ink: '#0B0B0C',
+  ink80: 'rgba(11,11,12,0.80)',
+  ink60: 'rgba(11,11,12,0.60)',
+  ink40: 'rgba(11,11,12,0.40)',
+  ink20: 'rgba(11,11,12,0.20)',
+  ink10: 'rgba(11,11,12,0.10)',
+  ink06: 'rgba(11,11,12,0.06)',
+  paper: '#FAFAF7',
+  mist: '#EBEBEB',
+  mist2: '#F3F3F0',
+  navy: '#10367D',
+  navy80: 'rgba(16,54,125,0.80)',
+  navy10: 'rgba(16,54,125,0.10)',
+  navy06: 'rgba(16,54,125,0.06)',
+  // image placeholder stripes
+  stripeLight: '#E6E4DE',
+  stripeDark: '#D3D1C9'
+};
+const KFont = {
+  sans: "'Pretendard', 'Pretendard Variable', Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+  serif: "'Newsreader', 'Iowan Old Style', Georgia, 'Times New Roman', serif",
+  mono: "'JetBrains Mono', 'SF Mono', Menlo, monospace"
+};
+
+// Small inline SVG — striped placeholder image. Pass label to annotate.
+function Placeholder({
+  w = '100%',
+  h = 120,
+  label = 'image',
+  dark = false,
+  style = {}
+}) {
+  const bg1 = dark ? '#1A1A1C' : K.stripeLight;
+  const bg2 = dark ? '#222225' : K.stripeDark;
+  const fg = dark ? 'rgba(255,255,255,0.55)' : K.ink60;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: w,
+      height: h,
+      position: 'relative',
+      overflow: 'hidden',
+      background: `repeating-linear-gradient(135deg, ${bg1} 0 8px, ${bg2} 8px 16px)`,
+      ...style
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      inset: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: fg,
+      letterSpacing: 0.6,
+      textTransform: 'uppercase'
+    }
+  }, label));
+}
+
+// KISAS monogram — tiny shield glyph reduced for mobile use
+function KisasMark({
+  size = 20,
+  color = K.ink
+}) {
+  return /*#__PURE__*/React.createElement("svg", {
+    width: size,
+    height: size * 1.15,
+    viewBox: "0 0 40 46",
+    fill: "none"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M20 2 L36 6 L36 26 C36 36 28 42 20 44 C12 42 4 36 4 26 L4 6 Z",
+    stroke: color,
+    strokeWidth: "1.6",
+    fill: "none"
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "20",
+    y: "27",
+    textAnchor: "middle",
+    fontFamily: "'Newsreader', Georgia, serif",
+    fontSize: "15",
+    fontWeight: "600",
+    fill: color,
+    letterSpacing: "-0.5"
+  }, "KS"));
+}
+Object.assign(window, {
+  K,
+  KFont,
+  Placeholder,
+  KisasMark
+});
+
+// ===== lib/proof-badges.jsx =====
+// Proof badge system — KISAS signature visual
+// Three tiers: Activity (circle outline) / Achievement (hexagon solid) / Reputation (diamond solid)
+// Tweakable: metaphor='geom' | 'cert' (certificate-paper style)
+
+function ProofBadge({
+  tier = 'activity',
+  size = 44,
+  sbt = false,
+  metaphor = 'geom',
+  label
+}) {
+  if (metaphor === 'cert') return /*#__PURE__*/React.createElement(CertBadge, {
+    tier: tier,
+    size: size,
+    sbt: sbt,
+    label: label
+  });
+  return /*#__PURE__*/React.createElement(GeomBadge, {
+    tier: tier,
+    size: size,
+    sbt: sbt
+  });
+}
+function GeomBadge({
+  tier,
+  size = 44,
+  sbt = false
+}) {
+  const s = size;
+  const center = s / 2;
+  const r = s * 0.42;
+  if (tier === 'activity') {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: 'relative',
+        width: s,
+        height: s
+      }
+    }, /*#__PURE__*/React.createElement("svg", {
+      width: s,
+      height: s,
+      viewBox: `0 0 ${s} ${s}`
+    }, /*#__PURE__*/React.createElement("circle", {
+      cx: center,
+      cy: center,
+      r: r,
+      stroke: K.ink,
+      strokeWidth: "1.2",
+      fill: "none"
+    }), /*#__PURE__*/React.createElement("circle", {
+      cx: center,
+      cy: center,
+      r: r * 0.3,
+      fill: K.ink
+    })), sbt && /*#__PURE__*/React.createElement(SBTDot, {
+      s: s
+    }));
+  }
+  if (tier === 'achievement') {
+    const pts = hexPoints(center, center, r);
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: 'relative',
+        width: s,
+        height: s
+      }
+    }, /*#__PURE__*/React.createElement("svg", {
+      width: s,
+      height: s,
+      viewBox: `0 0 ${s} ${s}`
+    }, /*#__PURE__*/React.createElement("polygon", {
+      points: pts,
+      fill: K.navy
+    }), /*#__PURE__*/React.createElement("polygon", {
+      points: hexPoints(center, center, r * 0.55),
+      fill: "none",
+      stroke: K.paper,
+      strokeWidth: "1"
+    })), sbt && /*#__PURE__*/React.createElement(SBTDot, {
+      s: s
+    }));
+  }
+  // reputation
+  const d = [[center, center - r], [center + r * 0.82, center], [center, center + r], [center - r * 0.82, center]].map(p => p.join(',')).join(' ');
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'relative',
+      width: s,
+      height: s
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: s,
+    height: s,
+    viewBox: `0 0 ${s} ${s}`
+  }, /*#__PURE__*/React.createElement("polygon", {
+    points: d,
+    fill: K.ink
+  }), /*#__PURE__*/React.createElement("polygon", {
+    points: [[center, center - r * 0.45], [center + r * 0.37, center], [center, center + r * 0.45], [center - r * 0.37, center]].map(p => p.join(',')).join(' '),
+    fill: "none",
+    stroke: K.navy,
+    strokeWidth: "1.4"
+  })), sbt && /*#__PURE__*/React.createElement(SBTDot, {
+    s: s
+  }));
+}
+function hexPoints(cx, cy, r) {
+  const pts = [];
+  for (let i = 0; i < 6; i++) {
+    const a = Math.PI / 6 + i * Math.PI / 3;
+    pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+  }
+  return pts.map(p => p.join(',')).join(' ');
+}
+function SBTDot({
+  s
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      width: Math.max(6, s * 0.14),
+      height: Math.max(6, s * 0.14),
+      borderRadius: '50%',
+      background: K.navy,
+      border: `1.5px solid ${K.paper}`
+    }
+  });
+}
+
+// Certificate paper variant — small scroll/stamp visual
+function CertBadge({
+  tier,
+  size = 44,
+  sbt = false,
+  label
+}) {
+  const colors = {
+    activity: {
+      bg: K.paper,
+      border: K.ink40,
+      mark: K.ink60
+    },
+    achievement: {
+      bg: K.paper,
+      border: K.navy,
+      mark: K.navy
+    },
+    reputation: {
+      bg: K.ink,
+      border: K.ink,
+      mark: K.paper,
+      text: K.paper
+    }
+  }[tier];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'relative',
+      width: size,
+      height: size
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: size,
+      height: size,
+      background: colors.bg,
+      border: `1px solid ${colors.border}`,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: KFont.serif,
+      fontSize: size * 0.34,
+      color: colors.text || colors.mark,
+      fontWeight: 500,
+      fontStyle: 'italic',
+      position: 'relative'
+    }
+  }, tier === 'activity' ? 'a' : tier === 'achievement' ? 'A' : 'R', /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: 'absolute',
+      top: 3,
+      left: 3,
+      width: 4,
+      height: 1,
+      background: colors.mark
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: 'absolute',
+      top: 3,
+      right: 3,
+      width: 4,
+      height: 1,
+      background: colors.mark
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: 'absolute',
+      bottom: 3,
+      left: 3,
+      width: 4,
+      height: 1,
+      background: colors.mark
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: 'absolute',
+      bottom: 3,
+      right: 3,
+      width: 4,
+      height: 1,
+      background: colors.mark
+    }
+  })), sbt && /*#__PURE__*/React.createElement(SBTDot, {
+    s: size
+  }));
+}
+
+// Proof counter triplet — label + number for three tiers
+function ProofTriplet({
+  activity = 0,
+  achievement = 0,
+  reputation = 0,
+  metaphor = 'geom',
+  size = 'md'
+}) {
+  const big = size === 'lg';
+  const n = big ? 32 : 24;
+  const item = (tier, count, title) => /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement(ProofBadge, {
+    tier: tier,
+    size: big ? 36 : 28,
+    metaphor: metaphor
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.sans,
+      fontWeight: 600,
+      fontSize: n,
+      color: K.ink,
+      lineHeight: 1,
+      letterSpacing: -1
+    }
+  }, count), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: K.ink60,
+      textTransform: 'uppercase',
+      letterSpacing: 0.6,
+      marginTop: 4
+    }
+  }, title)));
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: big ? 28 : 20
+    }
+  }, item('activity', activity, 'Activity'), item('achievement', achievement, 'Achievement'), item('reputation', reputation, 'Reputation'));
+}
+Object.assign(window, {
+  ProofBadge,
+  ProofTriplet,
+  CertBadge
+});
+
+// ===== lib/phone.jsx =====
+// Phone shell + tab bar — editorial flavored
+// Replaces the starter's nav bar with a more minimal wrapper
+
+function Phone({
+  children,
+  dark = false,
+  label,
+  tab = null,
+  noStatus = false
+}) {
+  return /*#__PURE__*/React.createElement(DCArtboard, {
+    label: label,
+    width: 390,
+    height: 844
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: '100%',
+      height: '100%',
+      position: 'relative',
+      background: dark ? K.ink : K.paper,
+      overflow: 'hidden',
+      fontFamily: KFont.sans
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      top: 11,
+      left: '50%',
+      transform: 'translateX(-50%)',
+      width: 112,
+      height: 32,
+      borderRadius: 20,
+      background: '#000',
+      zIndex: 50
+    }
+  }), !noStatus && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 40,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '16px 28px 0',
+      pointerEvents: 'none'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.sans,
+      fontWeight: 600,
+      fontSize: 15,
+      color: dark ? K.paper : K.ink,
+      paddingTop: 2
+    }
+  }, "9:41"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 5,
+      alignItems: 'center',
+      paddingTop: 3
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "10",
+    viewBox: "0 0 16 10"
+  }, [0, 4, 8, 12].map((x, i) => /*#__PURE__*/React.createElement("rect", {
+    key: i,
+    x: x,
+    y: 8 - i * 2,
+    width: "3",
+    height: 2 + i * 2,
+    rx: "0.5",
+    fill: dark ? K.paper : K.ink
+  }))), /*#__PURE__*/React.createElement("svg", {
+    width: "22",
+    height: "10",
+    viewBox: "0 0 22 10"
+  }, /*#__PURE__*/React.createElement("rect", {
+    x: "0.5",
+    y: "0.5",
+    width: "18",
+    height: "9",
+    rx: "2",
+    fill: "none",
+    stroke: dark ? K.paper : K.ink,
+    strokeOpacity: "0.5"
+  }), /*#__PURE__*/React.createElement("rect", {
+    x: "2",
+    y: "2",
+    width: "15",
+    height: "6",
+    rx: "1",
+    fill: dark ? K.paper : K.ink
+  }), /*#__PURE__*/React.createElement("rect", {
+    x: "20",
+    y: "3",
+    width: "1.5",
+    height: "4",
+    rx: "0.5",
+    fill: dark ? K.paper : K.ink,
+    opacity: "0.5"
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: tab ? 83 : 0,
+      overflow: 'hidden'
+    }
+  }, children), tab && /*#__PURE__*/React.createElement(TabBar, {
+    active: tab,
+    dark: dark
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      bottom: 8,
+      left: 0,
+      right: 0,
+      zIndex: 60,
+      display: 'flex',
+      justifyContent: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 134,
+      height: 5,
+      borderRadius: 4,
+      background: dark ? 'rgba(255,255,255,0.85)' : K.ink
+    }
+  }))));
+}
+function TabBar({
+  active,
+  dark
+}) {
+  const bg = dark ? K.ink : K.paper;
+  const border = dark ? 'rgba(255,255,255,0.08)' : K.ink10;
+  const muted = dark ? 'rgba(255,255,255,0.4)' : K.ink40;
+  const on = dark ? K.paper : K.ink;
+  const tabs = ['home', 'discover', 'learn', 'proof', 'me'];
+  const labels = {
+    home: 'Home',
+    discover: 'Discover',
+    learn: 'Learn',
+    proof: 'Proof',
+    me: 'Me'
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      height: 83,
+      background: bg,
+      borderTop: `1px solid ${border}`,
+      zIndex: 45,
+      display: 'flex',
+      alignItems: 'flex-start',
+      paddingTop: 10
+    }
+  }, tabs.map(t => /*#__PURE__*/React.createElement("div", {
+    key: t,
+    style: {
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement(TabIcon, {
+    name: t,
+    color: t === active ? on : muted
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      letterSpacing: 0.5,
+      textTransform: 'uppercase',
+      color: t === active ? on : muted,
+      fontWeight: t === active ? 600 : 400
+    }
+  }, labels[t]))));
+}
+function TabIcon({
+  name,
+  color
+}) {
+  const common = {
+    stroke: color,
+    strokeWidth: 1.4,
+    fill: 'none',
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round'
+  };
+  if (name === 'home') return /*#__PURE__*/React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 22 22"
+  }, /*#__PURE__*/React.createElement("path", _extends({}, common, {
+    d: "M3 10 L11 3 L19 10 L19 19 L13 19 L13 13 L9 13 L9 19 L3 19 Z"
+  })));
+  if (name === 'discover') return /*#__PURE__*/React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 22 22"
+  }, /*#__PURE__*/React.createElement("rect", _extends({}, common, {
+    x: "3",
+    y: "4",
+    width: "16",
+    height: "14"
+  })), /*#__PURE__*/React.createElement("line", _extends({}, common, {
+    x1: "3",
+    y1: "9",
+    x2: "19",
+    y2: "9"
+  })), /*#__PURE__*/React.createElement("line", _extends({}, common, {
+    x1: "7",
+    y1: "13",
+    x2: "15",
+    y2: "13"
+  })), /*#__PURE__*/React.createElement("line", _extends({}, common, {
+    x1: "7",
+    y1: "15.5",
+    x2: "12",
+    y2: "15.5"
+  })));
+  if (name === 'learn') return /*#__PURE__*/React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 22 22"
+  }, /*#__PURE__*/React.createElement("path", _extends({}, common, {
+    d: "M3 6 L11 3 L19 6 L11 9 Z"
+  })), /*#__PURE__*/React.createElement("path", _extends({}, common, {
+    d: "M6 8 V15 C6 17 8 18 11 18 C14 18 16 17 16 15 V8"
+  })));
+  if (name === 'proof') return /*#__PURE__*/React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 22 22"
+  }, /*#__PURE__*/React.createElement("polygon", _extends({}, common, {
+    points: "11,3 18,7 18,14 11,18 4,14 4,7"
+  })), /*#__PURE__*/React.createElement("polygon", {
+    fill: color,
+    stroke: "none",
+    points: "11,7 14,9 14,13 11,15 8,13 8,9"
+  }));
+  // me
+  return /*#__PURE__*/React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 22 22"
+  }, /*#__PURE__*/React.createElement("circle", _extends({}, common, {
+    cx: "11",
+    cy: "8",
+    r: "3.5"
+  })), /*#__PURE__*/React.createElement("path", _extends({}, common, {
+    d: "M4 19 C4 15 7 13 11 13 C15 13 18 15 18 19"
+  })));
+}
+
+// Section header — editorial kicker + title
+function Kicker({
+  children,
+  color = K.ink60
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      letterSpacing: 1.2,
+      textTransform: 'uppercase',
+      color,
+      fontWeight: 500
+    }
+  }, children);
+}
+function Serif({
+  children,
+  size = 24,
+  weight = 500,
+  italic = false,
+  color = K.ink,
+  style = {}
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: size,
+      fontWeight: weight,
+      fontStyle: italic ? 'italic' : 'normal',
+      color,
+      lineHeight: 1.1,
+      letterSpacing: -0.4,
+      ...style
+    }
+  }, children);
+}
+function Rule({
+  color = K.ink20,
+  margin = '0'
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: 1,
+      background: color,
+      margin
+    }
+  });
+}
+function Pill({
+  children,
+  variant = 'outline',
+  style = {}
+}) {
+  const v = {
+    outline: {
+      bg: 'transparent',
+      fg: K.ink,
+      bd: K.ink40
+    },
+    solid: {
+      bg: K.ink,
+      fg: K.paper,
+      bd: K.ink
+    },
+    navy: {
+      bg: K.navy,
+      fg: K.paper,
+      bd: K.navy
+    },
+    navy_o: {
+      bg: 'transparent',
+      fg: K.navy,
+      bd: K.navy
+    },
+    mist: {
+      bg: K.mist,
+      fg: K.ink,
+      bd: 'transparent'
+    }
+  }[variant];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      padding: '5px 10px',
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      letterSpacing: 0.6,
+      textTransform: 'uppercase',
+      background: v.bg,
+      color: v.fg,
+      border: `1px solid ${v.bd}`,
+      borderRadius: 999,
+      ...style
+    }
+  }, children);
+}
+Object.assign(window, {
+  Phone,
+  TabBar,
+  Kicker,
+  Serif,
+  Rule,
+  Pill
+});
+
+// ===== screens/screens-1.jsx =====
+// Screens 01-05: Onboarding, Home (Dian), Discover (editorial), Case article, Subscribe modal
+
+// 01 — Onboarding: language & interest
+function ScreenOnboarding() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "01  \xB7  Onboarding \u2014 Language & Interest"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '60px 28px 28px',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      marginBottom: 40
+    }
+  }, /*#__PURE__*/React.createElement(KisasMark, {
+    size: 22
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 18,
+      letterSpacing: -0.3,
+      fontWeight: 500
+    }
+  }, "KISAS")), /*#__PURE__*/React.createElement(Kicker, null, "Step 1 of 3"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement(Serif, {
+    size: 30,
+    weight: 500
+  }, "What do you want"), /*#__PURE__*/React.createElement(Serif, {
+    size: 30,
+    weight: 500,
+    italic: true
+  }, "to learn first?")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: K.ink60,
+      marginTop: 10,
+      lineHeight: 1.5
+    }
+  }, "Pick one or more. We'll tailor your feed \u2014", /*#__PURE__*/React.createElement("br", null), "you can change it anytime in settings."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 28,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 1,
+      background: K.ink10
+    }
+  }, [['Songwriting & Production', 'songwriting', true], ['Choreography', 'choreo', false], ['Visual Direction', 'visual', true], ['Producing & A&R', 'producing', false], ['Performance', 'perf', false]].map(([label, id, on]) => /*#__PURE__*/React.createElement("div", {
+    key: id,
+    style: {
+      background: K.paper,
+      padding: '18px 4px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 17,
+      fontWeight: on ? 500 : 400,
+      color: K.ink
+    }
+  }, label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 20,
+      height: 20,
+      border: `1.2px solid ${on ? K.ink : K.ink40}`,
+      background: on ? K.ink : 'transparent',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  }, on && /*#__PURE__*/React.createElement("svg", {
+    width: "10",
+    height: "10",
+    viewBox: "0 0 10 10"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M1 5l3 3 5-6",
+    stroke: K.paper,
+    strokeWidth: "1.6",
+    fill: "none",
+    strokeLinecap: "round"
+  })))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: K.ink,
+      color: K.paper,
+      padding: '16px',
+      textAlign: 'center',
+      fontSize: 15,
+      fontWeight: 500,
+      letterSpacing: -0.2,
+      marginBottom: 12
+    }
+  }, "Continue"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      fontSize: 12,
+      color: K.ink60
+    }
+  }, "Already a member? ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: K.ink,
+      textDecoration: 'underline'
+    }
+  }, "Sign in"))));
+}
+
+// 02 — Home: Dian (L4 fan) — editorial hub
+function ScreenHome() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "02  \xB7  Home \u2014 Dian (L4 Fan)",
+    tab: "home"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '58px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      letterSpacing: 1,
+      color: K.ink60,
+      textTransform: 'uppercase'
+    }
+  }, "Mon \xB7 Apr 18"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 26,
+      letterSpacing: -0.5,
+      marginTop: 4
+    }
+  }, "Good morning, ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "Dian"), ".")), /*#__PURE__*/React.createElement(KisasMark, {
+    size: 22
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      margin: '24px 20px 0',
+      border: `1px solid ${K.ink20}`,
+      background: K.paper
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px 0',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, {
+    color: K.navy
+  }, "Today \xB7 Next action"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "#03/07")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '12px 16px 18px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 21,
+      letterSpacing: -0.3,
+      lineHeight: 1.15
+    }
+  }, "How hitmakers choose a hook"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: K.ink60,
+      marginTop: 8
+    }
+  }, "Frame #4 \xB7 9 min read \xB7 continues from last Thursday"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10,
+      marginTop: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: K.ink,
+      color: K.paper,
+      padding: '8px 14px',
+      fontSize: 12,
+      fontWeight: 500
+    }
+  }, "Continue reading"), /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline"
+  }, "+1 activity")))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '22px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'baseline',
+      justifyContent: 'space-between',
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Your Proof"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "See all \u2192")), /*#__PURE__*/React.createElement(ProofTriplet, {
+    activity: 18,
+    achievement: 2,
+    reputation: 0
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '26px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Today's Magazine"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 14
+    }
+  }, /*#__PURE__*/React.createElement(Placeholder, {
+    h: 140,
+    label: "editorial photo \u2014 studio desk"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline",
+    style: {
+      fontSize: 9
+    }
+  }, "Case \xB7 Producing"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "12 min")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 19,
+      letterSpacing: -0.3,
+      lineHeight: 1.15,
+      marginTop: 8
+    }
+  }, "The quiet economy of a ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "3-minute"), " K-pop single")))));
+}
+
+// 03 — Discover: editorial magazine feed
+function ScreenDiscover() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "03  \xB7  Discover \u2014 Editorial feed",
+    tab: "discover"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '58px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Issue 14 \xB7 April"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 32,
+      letterSpacing: -0.6,
+      marginTop: 4,
+      fontWeight: 500
+    }
+  }, "Discover"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      marginTop: 14,
+      overflowX: 'auto'
+    }
+  }, /*#__PURE__*/React.createElement(Pill, {
+    variant: "solid"
+  }, "All"), /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline"
+  }, "Case"), /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline"
+  }, "Framework"), /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline"
+  }, "Interview"), /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline"
+  }, "Data"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '22px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderTop: `1px solid ${K.ink}`,
+      paddingTop: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, {
+    color: K.navy
+  }, "Feature"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "No. 047")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 28,
+      letterSpacing: -0.6,
+      lineHeight: 1.08,
+      marginTop: 8,
+      fontWeight: 500
+    }
+  }, "How a hitmaker ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "chooses"), /*#__PURE__*/React.createElement("br", null), "the hook"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: K.ink60,
+      marginTop: 10,
+      lineHeight: 1.5
+    }
+  }, "Five producers, twelve sessions, one decision framework drawn from inside HYBE, SM and an independent Bangkok studio."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 12
+    }
+  }, /*#__PURE__*/React.createElement(Placeholder, {
+    h: 160,
+    label: "feature photo \u2014 mixing console"
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '22px 24px 0',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 14
+    }
+  }, [['Framework', 'Choreo', 'The five beats of a chorus body.'], ['Data', 'Market', 'Who streams K-pop at 2am in Jakarta.']].map(([k, tag, t], i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      borderTop: `0.5px solid ${K.ink40}`,
+      paddingTop: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: K.navy,
+      letterSpacing: 0.8,
+      textTransform: 'uppercase'
+    }
+  }, k), /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 3,
+      height: 3,
+      borderRadius: '50%',
+      background: K.ink40
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: K.ink60,
+      letterSpacing: 0.8,
+      textTransform: 'uppercase'
+    }
+  }, tag)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 15,
+      lineHeight: 1.2,
+      marginTop: 6,
+      letterSpacing: -0.2
+    }
+  }, t))))));
+}
+
+// 04 — Case article reading view
+function ScreenCaseArticle() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "04  \xB7  Case \u2014 Reading view"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '56px 20px 12px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 11
+    }
+  }, "\u2190"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60,
+      letterSpacing: 0.6
+    }
+  }, "CASE \xB7 047 / FRAME 4"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 11
+    }
+  }, "\xB7\xB7\xB7")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 28px'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, {
+    color: K.navy
+  }, "Producing"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 28,
+      lineHeight: 1.08,
+      letterSpacing: -0.5,
+      marginTop: 10,
+      fontWeight: 500
+    }
+  }, "How a hitmaker ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "chooses"), /*#__PURE__*/React.createElement("br", null), "the hook"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: K.ink60,
+      marginTop: 14,
+      display: 'flex',
+      gap: 8,
+      fontFamily: KFont.mono
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "9 MIN"), /*#__PURE__*/React.createElement("span", null, "\xB7"), /*#__PURE__*/React.createElement("span", null, "\uC11C\uC6B8"), /*#__PURE__*/React.createElement("span", null, "\xB7"), /*#__PURE__*/React.createElement("span", null, "KR / EN")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      margin: '20px 0'
+    }
+  }, /*#__PURE__*/React.createElement(Placeholder, {
+    h: 150,
+    label: "production studio"
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 16,
+      lineHeight: 1.5,
+      color: K.ink
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 44,
+      float: 'left',
+      fontWeight: 500,
+      lineHeight: 0.9,
+      marginRight: 8,
+      marginTop: 4,
+      letterSpacing: -2
+    }
+  }, "T"), "he demo lands at 2am. The producer plays it once, then again with the monitors dimmed. What he is listening for is not melody \u2014 it is ", /*#__PURE__*/React.createElement("em", null, "what the listener will remember at a red light tomorrow.")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 16,
+      lineHeight: 1.5,
+      color: K.ink,
+      marginTop: 14
+    }
+  }, "This framework has four filters\u2026")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: K.paper,
+      borderTop: `1px solid ${K.ink10}`,
+      padding: '12px 20px 22px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement(ProofBadge, {
+    tier: "activity",
+    size: 28
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: K.ink60,
+      letterSpacing: 0.6,
+      textTransform: 'uppercase'
+    }
+  }, "Upon finish"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13
+    }
+  }, "+1 Activity Proof \xB7 Frame #4")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: K.ink,
+      color: K.paper,
+      padding: '8px 12px',
+      fontSize: 12
+    }
+  }, "Continue")))));
+}
+
+// 05 — Subscribe modal — Dian conversion
+function ScreenSubscribe() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "05  \xB7  Subscribe \u2014 L4 conversion",
+    dark: true
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '60px 24px 28px',
+      height: '100%',
+      color: K.paper,
+      display: 'flex',
+      flexDirection: 'column'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement(KisasMark, {
+    size: 22,
+    color: K.paper
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: 'rgba(255,255,255,0.6)'
+    }
+  }, "CLOSE \xD7")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 44
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, {
+    color: "rgba(255,255,255,0.6)"
+  }, "Subscription"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 30,
+      lineHeight: 1.1,
+      letterSpacing: -0.5,
+      marginTop: 10,
+      color: K.paper
+    }
+  }, "Keep the case", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "open.")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: 'rgba(255,255,255,0.6)',
+      marginTop: 14,
+      lineHeight: 1.5
+    }
+  }, "Full access to KISAS Magazine, Frameworks and weekly cases from working producers, choreographers and A&Rs.")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 28
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      border: `1px solid ${K.paper}`,
+      padding: 16,
+      position: 'relative'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      top: -8,
+      left: 14,
+      background: K.paper,
+      color: K.ink,
+      padding: '2px 6px',
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      letterSpacing: 0.6
+    }
+  }, "RECOMMENDED"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'baseline'
+    }
+  }, /*#__PURE__*/React.createElement(Serif, {
+    size: 18,
+    color: K.paper
+  }, "Yearly"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.sans,
+      fontWeight: 600,
+      fontSize: 22,
+      color: K.paper,
+      letterSpacing: -0.4
+    }
+  }, "$48")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'rgba(255,255,255,0.6)',
+      marginTop: 4
+    }
+  }, "$4 / month \xB7 20% off \xB7 7-day trial")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      border: '1px solid rgba(255,255,255,0.3)',
+      padding: 16,
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'baseline'
+    }
+  }, /*#__PURE__*/React.createElement(Serif, {
+    size: 18,
+    color: K.paper
+  }, "Monthly"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.sans,
+      fontWeight: 500,
+      fontSize: 22,
+      color: K.paper,
+      letterSpacing: -0.4
+    }
+  }, "$5")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: 'rgba(255,255,255,0.6)',
+      marginTop: 4
+    }
+  }, "Billed monthly \xB7 cancel anytime"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: K.paper,
+      color: K.ink,
+      padding: 16,
+      textAlign: 'center',
+      fontWeight: 500,
+      fontSize: 15
+    }
+  }, "Start 7-day free trial"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: 'rgba(255,255,255,0.4)',
+      textAlign: 'center',
+      marginTop: 14,
+      letterSpacing: 0.6
+    }
+  }, "LOCALIZED PRICE \xB7 THB 180 / MO \xB7 RECURRING")));
+}
+Object.assign(window, {
+  ScreenOnboarding,
+  ScreenHome,
+  ScreenDiscover,
+  ScreenCaseArticle,
+  ScreenSubscribe
+});
+
+// ===== screens/screens-2.jsx =====
+// Screens 06-10: Learn home, Course detail, Masterclass syllabus, Proof home, Badge detail
+
+// 06 — Learn: course catalog
+function ScreenLearn() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "06  \xB7  Learn \u2014 Catalog",
+    tab: "learn"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '58px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Catalog"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 32,
+      letterSpacing: -0.6,
+      marginTop: 4,
+      fontWeight: 500
+    }
+  }, "Learn"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 18,
+      marginTop: 18,
+      borderBottom: `1px solid ${K.ink10}`
+    }
+  }, [['Courses', true], ['Camps', false], ['Masterclass', false], ['Bootcamp', false]].map(([t, on]) => /*#__PURE__*/React.createElement("div", {
+    key: t,
+    style: {
+      paddingBottom: 10,
+      fontFamily: KFont.sans,
+      fontSize: 13,
+      fontWeight: on ? 600 : 400,
+      color: on ? K.ink : K.ink60,
+      borderBottom: on ? `2px solid ${K.ink}` : 'none',
+      marginBottom: on ? -1 : 0
+    }
+  }, t)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '18px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "In progress"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 10,
+      border: `1px solid ${K.ink20}`,
+      padding: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 16,
+      letterSpacing: -0.2
+    }
+  }, "K-pop Frameworks 101"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "4/12")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: 2,
+      background: K.ink10,
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: '34%',
+      height: '100%',
+      background: K.navy
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 10,
+      fontSize: 12,
+      color: K.ink60
+    }
+  }, "Next \u2014 Frame 05 \xB7 Verse economy"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '22px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "New this week"), [['Producing', 'The session-to-release workflow', '$39', 'L4'], ['Choreography', 'Body beat — reading a track with your spine', '$29', 'L5'], ['A&R', 'Inside a label demo meeting', 'Subscriber', 'L6']].map(([cat, t, price, lvl], i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '64px 1fr auto',
+      gap: 14,
+      padding: '14px 0',
+      borderBottom: `0.5px solid ${K.ink20}`,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement(Placeholder, {
+    h: 64,
+    w: 64,
+    label: ""
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Kicker, {
+    color: K.navy
+  }, cat), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 15,
+      lineHeight: 1.2,
+      marginTop: 4,
+      letterSpacing: -0.2
+    }
+  }, t), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      marginTop: 6
+    }
+  }, /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline",
+    style: {
+      fontSize: 9
+    }
+  }, lvl), /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline",
+    style: {
+      fontSize: 9
+    }
+  }, "Certifiable"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 11,
+      color: K.ink
+    }
+  }, price))))));
+}
+
+// 07 — Course detail — Masterclass
+function ScreenCourseDetail() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "07  \xB7  Masterclass detail \u2014 \uBBFC\uC11C\uC758 \uC785\uAD6C"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '56px 20px 12px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\u2190"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "MASTERCLASS \xB7 12 WK"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\u2661")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 24px'
+    }
+  }, /*#__PURE__*/React.createElement(Placeholder, {
+    h: 160,
+    label: "masterclass cover"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 16
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, {
+    color: K.navy
+  }, "Masterclass \xB7 L6"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 26,
+      letterSpacing: -0.5,
+      lineHeight: 1.1,
+      marginTop: 8,
+      fontWeight: 500
+    }
+  }, "K-pop ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "Producing"), " \u2014 a 12-week diagnostic"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: K.ink60,
+      marginTop: 10,
+      fontFamily: KFont.mono,
+      display: 'flex',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "5 MENTORS"), /*#__PURE__*/React.createElement("span", null, "\xB7"), /*#__PURE__*/React.createElement("span", null, "12 WEEKS"), /*#__PURE__*/React.createElement("span", null, "\xB7"), /*#__PURE__*/React.createElement("span", null, "KR / EN"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 20,
+      padding: '14px 0',
+      borderTop: `1px solid ${K.ink20}`,
+      borderBottom: `1px solid ${K.ink20}`
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Mentors"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10,
+      marginTop: 10,
+      overflow: 'hidden'
+    }
+  }, ['Prod. A', 'Prod. B', 'A&R C', 'Mix D', 'Top E'].map((n, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      textAlign: 'center',
+      flex: '0 0 52px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 52,
+      height: 52,
+      borderRadius: '50%',
+      background: K.mist,
+      border: `1px solid ${K.ink20}`
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: K.ink60,
+      marginTop: 6,
+      letterSpacing: 0.4
+    }
+  }, n))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 18
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Proof upon completion"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 14,
+      marginTop: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      padding: 12,
+      background: K.mist2
+    }
+  }, /*#__PURE__*/React.createElement(ProofBadge, {
+    tier: "achievement",
+    size: 28
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 500,
+      marginTop: 8
+    }
+  }, "Achievement"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: K.ink60,
+      marginTop: 2
+    }
+  }, "Certificate of completion")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      padding: 12,
+      background: K.mist2
+    }
+  }, /*#__PURE__*/React.createElement(ProofBadge, {
+    tier: "reputation",
+    size: 28
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      fontWeight: 500,
+      marginTop: 8
+    }
+  }, "Reputation"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: K.ink60,
+      marginTop: 2
+    }
+  }, "For top 20% works"))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      padding: '12px 20px 22px',
+      background: K.paper,
+      borderTop: `1px solid ${K.ink10}`,
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: K.ink60,
+      letterSpacing: 0.6
+    }
+  }, "ENROLL"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.sans,
+      fontWeight: 600,
+      fontSize: 20,
+      letterSpacing: -0.4
+    }
+  }, "$480")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: K.ink,
+      color: K.paper,
+      padding: '12px 18px',
+      fontSize: 14,
+      fontWeight: 500
+    }
+  }, "Enroll \u2014 Cohort opens May 6"))));
+}
+
+// 08 — Assignment submit + feedback
+function ScreenAssignment() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "08  \xB7  Assignment \u2014 Mentor feedback"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '56px 20px 12px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\u2190"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "WEEK 06 \xB7 ASSIGNMENT"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\xB7\xB7\xB7")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 24px'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, {
+    color: K.navy
+  }, "Submitted"), /*#__PURE__*/React.createElement(Serif, {
+    size: 22,
+    weight: 500,
+    style: {
+      marginTop: 6
+    }
+  }, "Demo \u2014 ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "Still Awake")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 14,
+      padding: 14,
+      background: K.ink,
+      color: K.paper
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      letterSpacing: 0.6,
+      opacity: 0.6
+    }
+  }, "STILL_AWAKE_V3.WAV \xB7 2:47"), /*#__PURE__*/React.createElement("svg", {
+    width: "100%",
+    height: "40",
+    style: {
+      marginTop: 10
+    },
+    viewBox: "0 0 300 40",
+    preserveAspectRatio: "none"
+  }, Array.from({
+    length: 80
+  }, (_, i) => {
+    const h = 8 + Math.abs(Math.sin(i * 0.37) * 16) + Math.abs(Math.cos(i * 0.91) * 10);
+    return /*#__PURE__*/React.createElement("rect", {
+      key: i,
+      x: i * 3.75,
+      y: 20 - h / 2,
+      width: "1.5",
+      height: h,
+      fill: K.paper,
+      opacity: i < 34 ? 1 : 0.35
+    });
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginTop: 6,
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      opacity: 0.6
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "1:02"), /*#__PURE__*/React.createElement("span", null, "2:47"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 22
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Mentor feedback"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 10,
+      padding: 14,
+      background: K.mist2,
+      borderLeft: `2px solid ${K.navy}`
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: K.ink60,
+      letterSpacing: 0.6,
+      textTransform: 'uppercase'
+    }
+  }, "Prod. A \u2014 42 min ago"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 14,
+      lineHeight: 1.5,
+      marginTop: 8,
+      fontStyle: 'italic'
+    }
+  }, "\"The pre-chorus at 1:12 is already the hook. Consider moving it earlier and letting the chorus body breathe \u2014 you're over-serving.\""), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline",
+    style: {
+      fontSize: 9
+    }
+  }, "Pacing"), /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline",
+    style: {
+      fontSize: 9
+    }
+  }, "Structure")))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 18
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Peer reviews \xB7 3"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 4,
+      marginTop: 10
+    }
+  }, [8.2, 7.6, 8.8].map((n, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      flex: 1,
+      padding: 10,
+      background: K.paper,
+      border: `1px solid ${K.ink20}`,
+      fontFamily: KFont.sans,
+      fontSize: 20,
+      fontWeight: 500,
+      letterSpacing: -0.4
+    }
+  }, n, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10,
+      color: K.ink60,
+      marginLeft: 2
+    }
+  }, "/10"))))))));
+}
+
+// 09 — Proof home (민서)
+function ScreenProofHome() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "09  \xB7  Proof \u2014 \uBBFC\uC11C (L5)",
+    tab: "proof"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '58px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Kicker, null, "Proof profile"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 28,
+      letterSpacing: -0.5,
+      marginTop: 4,
+      fontWeight: 500
+    }
+  }, "MINSEO.", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "kim"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '6px 10px',
+      border: `1px solid ${K.ink}`,
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      letterSpacing: 0.6
+    }
+  }, "SHARE URL \u2192")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60,
+      marginTop: 6,
+      letterSpacing: 0.4
+    }
+  }, "SEOUL \xB7 COMPOSER \xB7 OPEN TO WORK")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      margin: '22px 24px 0',
+      padding: '18px 0',
+      borderTop: `1px solid ${K.ink}`,
+      borderBottom: `1px solid ${K.ink20}`
+    }
+  }, /*#__PURE__*/React.createElement(ProofTriplet, {
+    activity: 87,
+    achievement: 6,
+    reputation: 2,
+    size: "lg"
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '18px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'baseline',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Recent badges"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "grid view \u25A6")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4, 1fr)',
+      gap: 12,
+      marginTop: 14
+    }
+  }, [['reputation', true, 'TOP 20%'], ['achievement', true, 'MC · WK12'], ['achievement', false, 'MC · WK10'], ['activity', false, 'WK06'], ['achievement', true, 'BC · FIN'], ['activity', false, 'LIVE'], ['activity', false, 'CASE'], ['activity', false, 'CASE']].map(([t, sbt, label], i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 56,
+      height: 56,
+      margin: '0 auto',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  }, /*#__PURE__*/React.createElement(ProofBadge, {
+    tier: t,
+    size: 40,
+    sbt: sbt
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 8,
+      color: K.ink60,
+      marginTop: 4,
+      letterSpacing: 0.4
+    }
+  }, label))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '22px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'baseline',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Portfolio \xB7 3 public"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "Curate \u2192")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr',
+      gap: 8,
+      marginTop: 12
+    }
+  }, /*#__PURE__*/React.createElement(Placeholder, {
+    h: 80,
+    label: "track 01"
+  }), /*#__PURE__*/React.createElement(Placeholder, {
+    h: 80,
+    label: "track 02"
+  }), /*#__PURE__*/React.createElement(Placeholder, {
+    h: 80,
+    label: "track 03"
+  })))));
+}
+
+// 10 — Badge detail modal
+function ScreenBadgeDetail() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "10  \xB7  Badge detail \u2014 Reputation Proof"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden',
+      background: K.paper
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '56px 20px 12px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\u2190 PROOF"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "BADGE 0087"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\u2197")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      padding: '14px 0 20px',
+      borderBottom: `1px solid ${K.ink20}`,
+      margin: '0 24px'
+    }
+  }, /*#__PURE__*/React.createElement(ProofBadge, {
+    tier: "reputation",
+    size: 120,
+    sbt: true
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.navy,
+      letterSpacing: 1,
+      marginTop: 14
+    }
+  }, "REPUTATION \xB7 L3"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 24,
+      letterSpacing: -0.4,
+      marginTop: 6,
+      fontWeight: 500
+    }
+  }, "Top ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "20%"), " \u2014 Masterclass 12"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: K.ink60,
+      marginTop: 8
+    }
+  }, "Awarded by 5 mentors \xB7 peer rank 03 / 28")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 24px 0',
+      fontFamily: KFont.sans,
+      fontSize: 12
+    }
+  }, [['Issued', '2026 · 04 · 17'], ['Issuer', 'KISAS · 5 verified mentors'], ['Scope', 'K-pop Producing · 12 wk'], ['Portability', 'SBT · chain-verified'], ['Visibility', 'Public + URL share']].map(([k, v], i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      padding: '10px 0',
+      borderBottom: `0.5px solid ${K.ink10}`
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: K.ink60,
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      textTransform: 'uppercase',
+      letterSpacing: 0.6
+    }
+  }, k), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: K.ink
+    }
+  }, v)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      padding: '12px 20px 22px',
+      background: K.paper,
+      borderTop: `1px solid ${K.ink10}`,
+      display: 'flex',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      padding: 12,
+      textAlign: 'center',
+      border: `1px solid ${K.ink}`,
+      fontSize: 13
+    }
+  }, "Verify"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      padding: 12,
+      textAlign: 'center',
+      background: K.ink,
+      color: K.paper,
+      fontSize: 13
+    }
+  }, "Attach to r\xE9sum\xE9"))));
+}
+Object.assign(window, {
+  ScreenLearn,
+  ScreenCourseDetail,
+  ScreenAssignment,
+  ScreenProofHome,
+  ScreenBadgeDetail
+});
+
+// ===== screens/screens-3.jsx =====
+// Screens 11-15: Portfolio curator, SBT issue, Public URL preview, Network, Me tab, Talent view
+
+// 11 — Portfolio curation
+function ScreenPortfolio() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "11  \xB7  Portfolio \u2014 Curate & permissions"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '56px 20px 12px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\u2190 PROOF"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "PORTFOLIO \xB7 12 TRACKS"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "+")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 24px'
+    }
+  }, /*#__PURE__*/React.createElement(Serif, {
+    size: 26,
+    weight: 500
+  }, "Curate ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "what the world sees")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: K.ink60,
+      marginTop: 8,
+      lineHeight: 1.5
+    }
+  }, "Drag to reorder. Toggle visibility per track \u2014 Public / Link-only / Private.")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '18px 0 0'
+    }
+  }, [['01', 'Still Awake', 'public', 'R&B · 82 BPM', true], ['02', 'Orbit Light', 'public', 'Pop · 118 BPM', true], ['03', 'Brake Fluid', 'link', 'Dance · 124 BPM', false], ['04', 'The Third Seat', 'private', 'OST · 72 BPM', false], ['05', 'Nighttown', 'private', 'Demo · 96 BPM', false]].map(([n, title, vis, meta, repProof], i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      padding: '12px 24px',
+      borderTop: `0.5px solid ${K.ink10}`,
+      display: 'grid',
+      gridTemplateColumns: '24px 1fr auto',
+      gap: 12,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 11,
+      color: K.ink40
+    }
+  }, n), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 16,
+      letterSpacing: -0.2
+    }
+  }, title), repProof && /*#__PURE__*/React.createElement(ProofBadge, {
+    tier: "reputation",
+    size: 14
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60,
+      marginTop: 4,
+      letterSpacing: 0.4
+    }
+  }, meta)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '4px 8px',
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      letterSpacing: 0.6,
+      border: `1px solid ${vis === 'public' ? K.ink : K.ink40}`,
+      background: vis === 'public' ? K.ink : 'transparent',
+      color: vis === 'public' ? K.paper : K.ink60
+    }
+  }, vis.toUpperCase())))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      margin: '22px 24px 0',
+      padding: 14,
+      background: K.mist2,
+      display: 'flex',
+      gap: 10,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60,
+      letterSpacing: 0.6,
+      textTransform: 'uppercase'
+    }
+  }, "Share"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 11,
+      marginTop: 4
+    }
+  }, "kisas.co/minseo.kim")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: K.ink,
+      color: K.paper,
+      padding: '8px 12px',
+      fontSize: 12
+    }
+  }, "Copy"))));
+}
+
+// 12 — Public URL preview (what others see)
+function ScreenPublicURL() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "12  \xB7  Public profile \u2014 kisas.co/minseo.kim"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden',
+      background: K.paper
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '52px 20px 10px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: K.mist,
+      padding: '8px 12px',
+      fontFamily: KFont.mono,
+      fontSize: 11,
+      color: K.ink60,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDD12"), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: K.ink
+    }
+  }, "kisas.co/", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: K.ink60
+    }
+  }, "p/"), "minseo.kim"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 28px'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Proof profile \xB7 public"), /*#__PURE__*/React.createElement(Serif, {
+    size: 30,
+    weight: 500,
+    style: {
+      marginTop: 6,
+      lineHeight: 1.05
+    }
+  }, "Minseo", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "."), "kim"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: K.ink60,
+      marginTop: 8,
+      lineHeight: 1.5
+    }
+  }, "Composer \xB7 Seoul \xB7 open to label demos and co-writes. Verified by KISAS Masterclass 12 \xB7 5 mentors."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 18,
+      padding: '14px 0',
+      borderTop: `1px solid ${K.ink}`,
+      borderBottom: `1px solid ${K.ink20}`
+    }
+  }, /*#__PURE__*/React.createElement(ProofTriplet, {
+    activity: 87,
+    achievement: 6,
+    reputation: 2
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 18
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Public works"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10,
+      marginTop: 10
+    }
+  }, /*#__PURE__*/React.createElement(Placeholder, {
+    h: 90,
+    label: "still awake"
+  }), /*#__PURE__*/React.createElement(Placeholder, {
+    h: 90,
+    label: "orbit light"
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 18
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Verified credentials"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 10
+    }
+  }, [['Masterclass 12 · Top 20%', 'REPUTATION · 2026 · 04'], ['Bootcamp Spring — Finished', 'ACHIEVEMENT · 2025 · 11'], ['87 activity entries', 'ACTIVITY · since 2024']].map(([t, m], i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12,
+      padding: '10px 0',
+      borderBottom: `0.5px solid ${K.ink10}`
+    }
+  }, /*#__PURE__*/React.createElement(ProofBadge, {
+    tier: i === 0 ? 'reputation' : i === 1 ? 'achievement' : 'activity',
+    size: 22
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 14
+    }
+  }, t), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: K.ink60,
+      marginTop: 2,
+      letterSpacing: 0.6
+    }
+  }, m)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.navy
+    }
+  }, "VERIFY"))))))));
+}
+
+// 13 — Network: nearby Proof profiles
+function ScreenNetwork() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "13  \xB7  Network \u2014 similar Proof profiles"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '56px 20px 12px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\u2190 PROOF"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60
+    }
+  }, "NETWORK"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\uD83D\uDD0D")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 24px'
+    }
+  }, /*#__PURE__*/React.createElement(Serif, {
+    size: 24,
+    weight: 500
+  }, "People like ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "you")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: K.ink60,
+      marginTop: 8,
+      lineHeight: 1.5
+    }
+  }, "Matched by Proof tier, region and craft. Follow to exchange assignments and peer reviews."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 6,
+      marginTop: 16,
+      overflowX: 'auto'
+    }
+  }, /*#__PURE__*/React.createElement(Pill, {
+    variant: "solid"
+  }, "Composer"), /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline"
+  }, "L5+"), /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline"
+  }, "Seoul"), /*#__PURE__*/React.createElement(Pill, {
+    variant: "outline"
+  }, "+ Reputation"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '18px 0 0'
+    }
+  }, [['Haesu, J.', '작곡가 · 23 · Seoul', 75, 4, 1, true], ['Bima Arya', '프로듀서 · 26 · Jakarta', 61, 3, 1, false], ['Sara Park', '작곡가 · 27 · Seoul', 104, 8, 3, true], ['Taro I.', '프로듀서 · 29 · Tokyo', 44, 2, 0, false]].map(([n, meta, a, ach, rep, following], i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      padding: '14px 24px',
+      borderTop: `0.5px solid ${K.ink10}`,
+      display: 'grid',
+      gridTemplateColumns: '40px 1fr auto',
+      gap: 12,
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 40,
+      height: 40,
+      borderRadius: '50%',
+      background: K.mist,
+      border: `1px solid ${K.ink20}`
+    }
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 6
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 15,
+      letterSpacing: -0.2
+    }
+  }, n), rep > 0 && /*#__PURE__*/React.createElement(ProofBadge, {
+    tier: "reputation",
+    size: 10
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60,
+      letterSpacing: 0.4,
+      marginTop: 3
+    }
+  }, meta), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 10,
+      marginTop: 6,
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: K.ink60
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "A", a), /*#__PURE__*/React.createElement("span", null, "Ach", ach), /*#__PURE__*/React.createElement("span", null, "Rep", rep))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '5px 10px',
+      fontSize: 10,
+      fontFamily: KFont.mono,
+      letterSpacing: 0.6,
+      border: `1px solid ${following ? K.ink40 : K.ink}`,
+      background: following ? 'transparent' : K.ink,
+      color: following ? K.ink60 : K.paper
+    }
+  }, following ? 'FOLLOWING' : 'FOLLOW'))))));
+}
+
+// 14 — Me tab
+function ScreenMe() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "14  \xB7  Me \u2014 Settings & org switch",
+    tab: "me"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '58px 24px 0'
+    }
+  }, /*#__PURE__*/React.createElement(Kicker, null, "Account"), /*#__PURE__*/React.createElement(Serif, {
+    size: 28,
+    weight: 500,
+    style: {
+      marginTop: 4
+    }
+  }, "Me")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      margin: '22px 24px 0',
+      padding: '16px 0',
+      borderTop: `1px solid ${K.ink}`,
+      borderBottom: `1px solid ${K.ink20}`,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 14
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 56,
+      height: 56,
+      borderRadius: '50%',
+      background: K.mist,
+      border: `1px solid ${K.ink20}`
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 17,
+      letterSpacing: -0.2
+    }
+  }, "\uBBFC\uC11C kim"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60,
+      marginTop: 4,
+      letterSpacing: 0.4
+    }
+  }, "KISAS \xB7 since 2024 \xB7 L5 \xB7 YEARLY")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\u2192")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '18px 24px 0'
+    }
+  }, [['Subscription', 'Yearly · renews 2027·03'], ['Language', '한국어 · KR'], ['Content language', 'KR + EN'], ['Privacy & data', 'Proof · public'], ['Parent / Guardian', '— off'], ['Notifications', 'Essential only']].map(([k, v], i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      padding: '14px 0',
+      borderBottom: `0.5px solid ${K.ink10}`,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 14,
+      color: K.ink
+    }
+  }, k), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60,
+      marginTop: 3,
+      letterSpacing: 0.4
+    }
+  }, v)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12,
+      color: K.ink40
+    }
+  }, "\u2192")))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      margin: '18px 24px 0',
+      padding: 14,
+      border: `1px dashed ${K.ink40}`,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 28,
+      height: 28,
+      background: K.ink,
+      color: K.paper,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: KFont.serif,
+      fontSize: 14
+    }
+  }, "K"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.ink60,
+      letterSpacing: 0.6,
+      textTransform: 'uppercase'
+    }
+  }, "Enterprise"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      marginTop: 2
+    }
+  }, "Switch to ORG workspace")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.navy,
+      letterSpacing: 0.6
+    }
+  }, "WEB \u2192"))));
+}
+
+// 15 — Talent view: L7 perspective on someone else's Proof profile
+function ScreenTalentView() {
+  return /*#__PURE__*/React.createElement(Phone, {
+    label: "15  \xB7  L7 HR view \u2014 Candidate profile (ORG mobile companion)",
+    dark: true
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: '100%',
+      overflow: 'hidden',
+      color: K.paper
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '56px 20px 10px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      color: 'rgba(255,255,255,0.7)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 11
+    }
+  }, "\u2190 CANDIDATES"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      letterSpacing: 0.6
+    }
+  }, "ORG \xB7 MID-LABEL / HR"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 12
+    }
+  }, "\u22EF")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0 24px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: K.navy80,
+      letterSpacing: 1,
+      textTransform: 'uppercase'
+    }
+  }, "Shortlist \xB7 07 / 10"), /*#__PURE__*/React.createElement(Serif, {
+    size: 28,
+    weight: 500,
+    color: K.paper,
+    style: {
+      marginTop: 6,
+      letterSpacing: -0.4
+    }
+  }, "Minseo", /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontStyle: 'italic'
+    }
+  }, "."), "kim"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: 'rgba(255,255,255,0.5)',
+      letterSpacing: 0.4,
+      marginTop: 6
+    }
+  }, "COMPOSER \xB7 SEOUL \xB7 L5 \xB7 OPEN-TO-WORK"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 20,
+      padding: '14px 0',
+      borderTop: '1px solid rgba(255,255,255,0.2)',
+      borderBottom: '1px solid rgba(255,255,255,0.1)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 22
+    }
+  }, [['activity', 87, 'Activity'], ['achievement', 6, 'Achievement'], ['reputation', 2, 'Reputation']].map(([t, n, l], i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      filter: 'invert(1) hue-rotate(180deg) saturate(0.3)'
+    }
+  }, /*#__PURE__*/React.createElement(ProofBadge, {
+    tier: t,
+    size: 22
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.sans,
+      fontWeight: 600,
+      fontSize: 22,
+      letterSpacing: -0.6,
+      lineHeight: 1
+    }
+  }, n), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 8,
+      color: 'rgba(255,255,255,0.5)',
+      letterSpacing: 0.6,
+      textTransform: 'uppercase',
+      marginTop: 2
+    }
+  }, l)))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 18
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 10,
+      color: 'rgba(255,255,255,0.5)',
+      letterSpacing: 1,
+      textTransform: 'uppercase'
+    }
+  }, "HR Signals"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: 10,
+      marginTop: 10
+    }
+  }, [['Mentor-verified', '5 / 5'], ['Peer rank (MC12)', '03 / 28'], ['Response time', '< 12h'], ['Region mobility', 'SEL · TYO · JKT']].map(([k, v], i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      border: '1px solid rgba(255,255,255,0.18)',
+      padding: '10px 12px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      color: 'rgba(255,255,255,0.5)',
+      letterSpacing: 0.6,
+      textTransform: 'uppercase'
+    }
+  }, k), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.serif,
+      fontSize: 16,
+      marginTop: 3,
+      letterSpacing: -0.2
+    }
+  }, v))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 20,
+      display: 'flex',
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      padding: 12,
+      textAlign: 'center',
+      border: `1px solid ${K.paper}`,
+      fontSize: 12
+    }
+  }, "Add to project"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      padding: 12,
+      textAlign: 'center',
+      background: K.paper,
+      color: K.ink,
+      fontSize: 12,
+      fontWeight: 500
+    }
+  }, "Request KISAS screening")))));
+}
+Object.assign(window, {
+  ScreenPortfolio,
+  ScreenPublicURL,
+  ScreenNetwork,
+  ScreenMe,
+  ScreenTalentView
+});
+
+// ===== lib/demo-app.jsx =====
+// DemoApp — interactive prototype shell that mounts existing ScreenX visuals
+// inside a single iOS device frame, with persona-based scripted flows and
+// hotspot-based navigation.
+
+// ─────────────────────────────────────────────────────────────
+// Override Phone at demo time so screens render without their DCArtboard
+// wrapper, status bar, and tab bar. The frame supplies those.
+// ─────────────────────────────────────────────────────────────
+const _OriginalPhone = window.Phone;
+function PhoneInline({
+  children,
+  dark = false,
+  tab = null
+}) {
+  // strip outer chrome — frame provides it
+  return /*#__PURE__*/React.createElement("div", {
+    "data-phone-inline": true,
+    "data-dark": dark ? '1' : '0',
+    "data-tab": tab || '',
+    style: {
+      width: '100%',
+      height: '100%',
+      position: 'relative',
+      background: dark ? K.ink : K.paper,
+      overflow: 'hidden',
+      fontFamily: KFont.sans,
+      color: dark ? K.paper : K.ink
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: tab ? 83 : 0,
+      overflow: 'auto'
+    }
+  }, children));
+}
+window.Phone = PhoneInline;
+
+// ─────────────────────────────────────────────────────────────
+// Route registry — name → { component, tab, dark, scenario }
+// ─────────────────────────────────────────────────────────────
+const ROUTES = {
+  // Dian (L4) flow
+  onboarding: {
+    Comp: window.ScreenOnboarding,
+    tab: null,
+    dark: false,
+    persona: 'dian'
+  },
+  home: {
+    Comp: window.ScreenHome,
+    tab: 'home',
+    dark: false,
+    persona: 'dian'
+  },
+  discover: {
+    Comp: window.ScreenDiscover,
+    tab: 'discover',
+    dark: false,
+    persona: 'dian'
+  },
+  case: {
+    Comp: window.ScreenCaseArticle,
+    tab: null,
+    dark: false,
+    persona: 'dian'
+  },
+  subscribe: {
+    Comp: window.ScreenSubscribe,
+    tab: null,
+    dark: true,
+    persona: 'dian'
+  },
+  // Minseo (L5) Learn flow
+  learn: {
+    Comp: window.ScreenLearn,
+    tab: 'learn',
+    dark: false,
+    persona: 'minseo'
+  },
+  course: {
+    Comp: window.ScreenCourseDetail,
+    tab: null,
+    dark: false,
+    persona: 'minseo'
+  },
+  assignment: {
+    Comp: window.ScreenAssignment,
+    tab: null,
+    dark: false,
+    persona: 'minseo'
+  },
+  proof: {
+    Comp: window.ScreenProofHome,
+    tab: 'proof',
+    dark: false,
+    persona: 'minseo'
+  },
+  badge: {
+    Comp: window.ScreenBadgeDetail,
+    tab: null,
+    dark: false,
+    persona: 'minseo'
+  },
+  // Outward-facing
+  portfolio: {
+    Comp: window.ScreenPortfolio,
+    tab: null,
+    dark: false,
+    persona: 'minseo'
+  },
+  publicURL: {
+    Comp: window.ScreenPublicURL,
+    tab: null,
+    dark: false,
+    persona: 'minseo'
+  },
+  network: {
+    Comp: window.ScreenNetwork,
+    tab: null,
+    dark: false,
+    persona: 'minseo'
+  },
+  me: {
+    Comp: window.ScreenMe,
+    tab: 'me',
+    dark: false,
+    persona: 'minseo'
+  },
+  talent: {
+    Comp: window.ScreenTalentView,
+    tab: null,
+    dark: true,
+    persona: 'kim'
+  }
+};
+
+// Scripted flow for each persona — used by FAB next-arrow + autoplay
+const FLOWS = {
+  dian: {
+    label: 'Dian · L4 fan',
+    color: '#10367D',
+    steps: ['onboarding', 'home', 'discover', 'case', 'subscribe', 'home'],
+    blurb: '한국 콘텐츠 첫 접근 → Discover에서 케이스 → 구독 전환'
+  },
+  minseo: {
+    label: 'Minseo · L5 learner',
+    color: '#0B0B0C',
+    steps: ['home', 'learn', 'course', 'assignment', 'proof', 'badge', 'portfolio', 'publicURL', 'network', 'me'],
+    blurb: '코스 수강 → 과제 제출 → Proof 누적 → 포트폴리오 공개 → 네트워킹'
+  },
+  kim: {
+    label: 'Kim · L7 HR',
+    color: '#7A2E2E',
+    steps: ['talent'],
+    blurb: 'L5/L6 후보를 모바일에서 빠르게 검토 (정식은 ORG 웹 대시보드)'
+  }
+};
+
+// Hotspot config — clickable overlays per route. Coords are % of phone viewport.
+// Each: { top, left, width, height, to, label? }
+const HOTSPOTS = {
+  onboarding: [{
+    top: 88,
+    left: 6,
+    width: 88,
+    height: 7,
+    to: 'home',
+    label: 'CONTINUE'
+  }],
+  home: [{
+    top: 22,
+    left: 5,
+    width: 90,
+    height: 28,
+    to: 'discover',
+    label: 'Today\'s feature →'
+  }, {
+    top: 53,
+    left: 5,
+    width: 90,
+    height: 18,
+    to: 'case',
+    label: 'Open case'
+  }],
+  discover: [{
+    top: 22,
+    left: 5,
+    width: 90,
+    height: 32,
+    to: 'case',
+    label: 'Read article'
+  }, {
+    top: 60,
+    left: 5,
+    width: 90,
+    height: 18,
+    to: 'case',
+    label: 'Read article'
+  }],
+  case: [{
+    top: 88,
+    left: 50,
+    width: 45,
+    height: 8,
+    to: 'subscribe',
+    label: 'Subscribe →'
+  }, {
+    top: 88,
+    left: 5,
+    width: 45,
+    height: 8,
+    to: 'discover',
+    label: '← Back'
+  }],
+  subscribe: [{
+    top: 80,
+    left: 5,
+    width: 90,
+    height: 8,
+    to: 'home',
+    label: 'Confirm subscribe'
+  }, {
+    top: 90,
+    left: 5,
+    width: 90,
+    height: 6,
+    to: 'case',
+    label: 'Maybe later'
+  }],
+  learn: [{
+    top: 32,
+    left: 5,
+    width: 90,
+    height: 22,
+    to: 'course',
+    label: 'Open masterclass'
+  }, {
+    top: 60,
+    left: 5,
+    width: 90,
+    height: 18,
+    to: 'course',
+    label: 'Open course'
+  }],
+  course: [{
+    top: 88,
+    left: 5,
+    width: 90,
+    height: 8,
+    to: 'assignment',
+    label: 'Start assignment'
+  }],
+  assignment: [{
+    top: 88,
+    left: 5,
+    width: 90,
+    height: 8,
+    to: 'proof',
+    label: 'Submit & view Proof'
+  }],
+  proof: [{
+    top: 32,
+    left: 5,
+    width: 28,
+    height: 18,
+    to: 'badge',
+    label: 'Open badge'
+  }, {
+    top: 32,
+    left: 36,
+    width: 28,
+    height: 18,
+    to: 'badge',
+    label: 'Open badge'
+  }, {
+    top: 70,
+    left: 5,
+    width: 90,
+    height: 12,
+    to: 'portfolio',
+    label: 'Curate portfolio'
+  }],
+  badge: [{
+    top: 88,
+    left: 5,
+    width: 90,
+    height: 8,
+    to: 'proof',
+    label: '← Back to Proof'
+  }],
+  portfolio: [{
+    top: 88,
+    left: 5,
+    width: 90,
+    height: 8,
+    to: 'publicURL',
+    label: 'Preview public URL'
+  }],
+  publicURL: [{
+    top: 88,
+    left: 5,
+    width: 90,
+    height: 8,
+    to: 'network',
+    label: 'See similar profiles'
+  }],
+  network: [{
+    top: 88,
+    left: 5,
+    width: 90,
+    height: 8,
+    to: 'me',
+    label: 'Done'
+  }, {
+    top: 32,
+    left: 5,
+    width: 90,
+    height: 12,
+    to: 'talent',
+    label: '(L7 perspective)'
+  }],
+  me: [{
+    top: 88,
+    left: 5,
+    width: 90,
+    height: 8,
+    to: 'home',
+    label: 'Switch persona'
+  }],
+  talent: [{
+    top: 88,
+    left: 5,
+    width: 90,
+    height: 8,
+    to: 'me',
+    label: '← Back'
+  }]
+};
+
+// ─────────────────────────────────────────────────────────────
+// Demo frame — fixed-size iOS phone with status bar, tab bar, and
+// transition animation between routes
+// ─────────────────────────────────────────────────────────────
+function PhoneFrame({
+  route,
+  prevRoute,
+  dir,
+  onNav,
+  hotspotsVisible
+}) {
+  const meta = ROUTES[route];
+  if (!meta || !meta.Comp) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: 40
+      }
+    }, "Missing route: ", route);
+  }
+  const dark = meta.dark;
+  const Comp = meta.Comp;
+  const hotspots = HOTSPOTS[route] || [];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 390,
+      height: 844,
+      borderRadius: 48,
+      overflow: 'hidden',
+      position: 'relative',
+      background: dark ? K.ink : K.paper,
+      boxShadow: '0 60px 120px rgba(0,0,0,0.22), 0 0 0 1px rgba(0,0,0,0.18), 0 0 0 12px #0B0B0C, 0 0 0 14px #2A2A2C',
+      fontFamily: KFont.sans
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 70,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '16px 28px 0',
+      pointerEvents: 'none',
+      height: 44,
+      boxSizing: 'border-box'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.sans,
+      fontWeight: 600,
+      fontSize: 15,
+      color: dark ? K.paper : K.ink,
+      paddingTop: 2
+    }
+  }, "9:41"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: 5,
+      alignItems: 'center',
+      paddingTop: 3
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "10",
+    viewBox: "0 0 16 10"
+  }, [0, 4, 8, 12].map((x, i) => /*#__PURE__*/React.createElement("rect", {
+    key: i,
+    x: x,
+    y: 8 - i * 2,
+    width: "3",
+    height: 2 + i * 2,
+    rx: "0.5",
+    fill: dark ? K.paper : K.ink
+  }))), /*#__PURE__*/React.createElement("svg", {
+    width: "22",
+    height: "10",
+    viewBox: "0 0 22 10"
+  }, /*#__PURE__*/React.createElement("rect", {
+    x: "0.5",
+    y: "0.5",
+    width: "18",
+    height: "9",
+    rx: "2",
+    fill: "none",
+    stroke: dark ? K.paper : K.ink,
+    strokeOpacity: "0.5"
+  }), /*#__PURE__*/React.createElement("rect", {
+    x: "2",
+    y: "2",
+    width: "15",
+    height: "6",
+    rx: "1",
+    fill: dark ? K.paper : K.ink
+  }), /*#__PURE__*/React.createElement("rect", {
+    x: "20",
+    y: "3",
+    width: "1.5",
+    height: "4",
+    rx: "0.5",
+    fill: dark ? K.paper : K.ink,
+    opacity: "0.5"
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      top: 11,
+      left: '50%',
+      transform: 'translateX(-50%)',
+      width: 112,
+      height: 32,
+      borderRadius: 20,
+      background: '#000',
+      zIndex: 80
+    }
+  }), /*#__PURE__*/React.createElement(ScreenSwap, {
+    route: route,
+    prevRoute: prevRoute,
+    dir: dir,
+    Comp: Comp
+  }), hotspots.map((h, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    onClick: () => onNav(h.to),
+    title: h.label,
+    style: {
+      position: 'absolute',
+      top: `${h.top}%`,
+      left: `${h.left}%`,
+      width: `${h.width}%`,
+      height: `${h.height}%`,
+      cursor: 'pointer',
+      zIndex: 65,
+      background: hotspotsVisible ? 'rgba(16,54,125,0.18)' : 'transparent',
+      outline: hotspotsVisible ? '1px dashed #10367D' : 'none',
+      transition: 'background 0.18s',
+      display: hotspotsVisible ? 'flex' : 'block',
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      padding: 6
+    }
+  }, hotspotsVisible && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      padding: '2px 6px',
+      background: '#10367D',
+      color: '#fff',
+      letterSpacing: 0.6,
+      textTransform: 'uppercase',
+      whiteSpace: 'nowrap'
+    }
+  }, h.label))), /*#__PURE__*/React.createElement(DemoTabBar, {
+    active: meta.tab,
+    dark: dark,
+    onNav: onNav
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      bottom: 8,
+      left: 0,
+      right: 0,
+      zIndex: 90,
+      display: 'flex',
+      justifyContent: 'center',
+      pointerEvents: 'none'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 134,
+      height: 5,
+      borderRadius: 4,
+      background: dark ? 'rgba(255,255,255,0.85)' : K.ink
+    }
+  })));
+}
+function ScreenSwap({
+  route,
+  prevRoute,
+  dir,
+  Comp
+}) {
+  // simple slide animation using key change
+  const [renderKey, setRenderKey] = React.useState(route);
+  const [animClass, setAnimClass] = React.useState('');
+  React.useEffect(() => {
+    if (renderKey !== route) {
+      setAnimClass(dir === 'forward' ? 'slide-in-right' : 'slide-in-left');
+      setRenderKey(route);
+      const t = setTimeout(() => setAnimClass(''), 320);
+      return () => clearTimeout(t);
+    }
+  }, [route]);
+  return /*#__PURE__*/React.createElement("div", {
+    key: renderKey,
+    className: animClass,
+    style: {
+      position: 'absolute',
+      inset: 0,
+      zIndex: 10
+    }
+  }, /*#__PURE__*/React.createElement(Comp, null));
+}
+function DemoTabBar({
+  active,
+  dark,
+  onNav
+}) {
+  const tabRoutes = {
+    home: 'home',
+    discover: 'discover',
+    learn: 'learn',
+    proof: 'proof',
+    me: 'me'
+  };
+  if (!active) return null;
+  const bg = dark ? K.ink : K.paper;
+  const border = dark ? 'rgba(255,255,255,0.08)' : K.ink10;
+  const muted = dark ? 'rgba(255,255,255,0.4)' : K.ink40;
+  const on = dark ? K.paper : K.ink;
+  const tabs = ['home', 'discover', 'learn', 'proof', 'me'];
+  const labels = {
+    home: 'Home',
+    discover: 'Discover',
+    learn: 'Learn',
+    proof: 'Proof',
+    me: 'Me'
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      height: 83,
+      background: bg,
+      borderTop: `1px solid ${border}`,
+      zIndex: 75,
+      display: 'flex',
+      alignItems: 'flex-start',
+      paddingTop: 10
+    }
+  }, tabs.map(t => /*#__PURE__*/React.createElement("div", {
+    key: t,
+    onClick: () => onNav(tabRoutes[t]),
+    style: {
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 4,
+      cursor: 'pointer'
+    }
+  }, /*#__PURE__*/React.createElement(TabIcon, {
+    name: t,
+    color: t === active ? on : muted
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: KFont.mono,
+      fontSize: 9,
+      letterSpacing: 0.5,
+      textTransform: 'uppercase',
+      color: t === active ? on : muted,
+      fontWeight: t === active ? 600 : 400
+    }
+  }, labels[t]))));
+}
+Object.assign(window, {
+  PhoneFrame,
+  ROUTES,
+  FLOWS,
+  HOTSPOTS
+});
+
+// ===== Mobile Mount =====
+function MobileApp() {
+  const [route, setRoute] = React.useState('home');
+  const [history, setHistory] = React.useState(['home']);
+  const [dir, setDir] = React.useState('forward');
+  const [prevRoute, setPrevRoute] = React.useState(null);
+  const [hotspotsVisible, setHotspots] = React.useState(false);
+  const [scale, setScale] = React.useState(1);
+  React.useEffect(function () {
+    function compute() {
+      var vw = window.innerWidth;
+      var vh = window.innerHeight;
+      var baseW = 390 + 28;
+      var baseH = 844 + 28;
+      setScale(Math.min(vw / baseW, vh / baseH));
+    }
+    compute();
+    window.addEventListener('resize', compute);
+    window.addEventListener('orientationchange', compute);
+    return function () {
+      window.removeEventListener('resize', compute);
+      window.removeEventListener('orientationchange', compute);
+    };
+  }, []);
+  function onNav(to) {
+    if (!to || to === route) return;
+    setPrevRoute(route);
+    setDir('forward');
+    setRoute(to);
+    setHistory(function (h) {
+      return h.concat([to]);
+    });
+  }
+  function onBack() {
+    setHistory(function (h) {
+      if (h.length <= 1) return h;
+      var next = h.slice(0, -1);
+      var target = next[next.length - 1];
+      setPrevRoute(route);
+      setDir('back');
+      setRoute(target);
+      return next;
+    });
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    className: "stage"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "nav-fab"
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    title: "back"
+  }, "\u2190"), /*#__PURE__*/React.createElement("button", {
+    onClick: function () {
+      setHotspots(function (v) {
+        return !v;
+      });
+    },
+    title: "hotspots",
+    style: {
+      background: hotspotsVisible ? '#0B0B0C' : 'rgba(250,250,247,0.92)',
+      color: hotspotsVisible ? '#FAFAF7' : '#0B0B0C'
+    }
+  }, "\u25C9")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      transform: 'scale(' + scale + ')',
+      transformOrigin: 'center center'
+    }
+  }, /*#__PURE__*/React.createElement(PhoneFrame, {
+    route: route,
+    prevRoute: prevRoute,
+    dir: dir,
+    onNav: onNav,
+    hotspotsVisible: hotspotsVisible
+  })));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(MobileApp, null));</script>
+</body>
+</html>
