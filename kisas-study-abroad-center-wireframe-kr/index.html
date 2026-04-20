@@ -550,6 +550,16 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
   margin-left:8px; vertical-align:middle;
 }
 .new-badge{background:#d6f4d6;color:#1d6b1d;}
+.example-badge{background:#ffe0e0;color:#b00020;}
+.example-banner{
+  background:#fff1f1; border-bottom:2px solid #ffb3b3;
+  color:#8b0a1a; font-size:13px; font-weight:600;
+  text-align:center; padding:10px 20px; line-height:1.5;
+  letter-spacing:-0.2px;
+}
+.example-banner strong{color:#b00020;}
+@media (max-width:640px){ .example-banner{font-size:12px;padding:8px 14px;} }
+
 
 /* Responsive tuning */
 @media (max-width:640px){
@@ -560,6 +570,12 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
 </style>
 </head>
 <body>
+
+<!-- 와이어프레임 예시 공지 -->
+<div class="example-banner">
+  ⚠️ <strong>[와이어프레임 예시]</strong> 본 페이지에 표기된 <strong>대학명·합격자 사례·수치·뉴스·장학 정보</strong>는 모두 레이아웃 검토를 위한 <strong>예시(더미)</strong>이며, 실제 파트너십·합격 사실과 무관합니다.
+</div>
+
 
 <!-- ============ GNB ============ -->
 <header class="gnb">
@@ -596,7 +612,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
       <span class="cn">한국 예술, 세계의 중심에서.</span>
       <span class="kr">자녀분의 다음 10년을 준비하는 프리미엄 유학 컨설팅</span>
     </h1>
-    <p class="lead">서울대·한예종·홍익대·중앙대를 비롯한 11개 파트너 대학. 20년 한국 예술계 네트워크를 기반으로, 실기 준비부터 입학·정착까지 동행합니다.</p>
+    <p class="lead">서울대·한예종·홍익대·중앙대를 비롯한 11개 파트너 대학. 20년 한국 예술계 네트워크를 기반으로, 실기 준비부터 입학·정착까지 동행합니다. <span class="sot-badge example-badge">대학명·수치 예시</span></p>
     <div class="cta-row">
       <a class="btn-primary" onclick="goPage('p13')">무료 실력 평가 신청</a>
       <a class="btn-secondary" onclick="goPage('p2')">프로그램 안내</a>
@@ -612,7 +628,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
       <div class="card">
         <div class="icon">01</div>
         <h4>공식 파트너십</h4>
-        <p>서울대·한예종·홍익대·중앙대 등 11개 한국 명문 예술대학과 직접 협약. 입학 기준·전형 변화를 가장 먼저 받아봅니다.</p>
+        <p>서울대·한예종·홍익대·중앙대 등 11개 한국 명문 예술대학과 직접 협약. 입학 기준·전형 변화를 가장 먼저 받아봅니다. <span class="sot-badge example-badge">예시</span></p>
       </div>
       <div class="card">
         <div class="icon">02</div>
@@ -640,6 +656,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
     <p class="sec-sub center">Tier 1 명문부터 지역 특성화 대학까지. 학생의 실력과 목표에 맞춰 매칭합니다.</p>
     <div class="logo-strip">
       <div class="logo-item">SNU</div>
+      <div style="grid-column:1/-1;text-align:center;font-size:12px;color:#b00020;font-weight:600;margin-bottom:8px;">⚠ 아래 대학 로고는 <span class="sot-badge example-badge">예시</span>입니다 (실제 파트너십 확정 아님)</div>
       <div class="logo-item">한예종</div>
       <div class="logo-item">고려대</div>
       <div class="logo-item">연세대</div>
@@ -694,7 +711,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="st-img">[모자이크 사진]</div>
         <div class="st-body">
           <div class="st-name">A 학생 · 산동성</div>
-          <div class="st-uni">한예종 실용보컬 · 2025 합격</div>
+          <div class="st-uni">한예종 실용보컬 · 2025 합격 <span class="sot-badge example-badge">예시</span></div>
           <div class="st-story">TOPIK 초급부터 시작하여 8개월간 실기 중심 준비. 사전 평가 → 맞춤 플랜 → 영상 포트폴리오 과정을 거쳐 한예종 합격.</div>
         </div>
       </div>
@@ -702,7 +719,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="st-img">[모자이크 사진]</div>
         <div class="st-body">
           <div class="st-name">B 학생 · 광둥성</div>
-          <div class="st-uni">홍익대 미디어 · 2024 합격</div>
+          <div class="st-uni">홍익대 미디어 · 2024 합격 <span class="sot-badge example-badge">예시</span></div>
           <div class="st-story">GKS-U 국가장학 수혜. TOPIK 5급 취득으로 학비 50% 감면.</div>
         </div>
       </div>
@@ -710,7 +727,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="st-img">[모자이크 사진]</div>
         <div class="st-body">
           <div class="st-name">C 학생 · 상하이</div>
-          <div class="st-uni">중앙대 영화영상 · 2024 합격</div>
+          <div class="st-uni">중앙대 영화영상 · 2024 합격 <span class="sot-badge example-badge">예시</span></div>
           <div class="st-story">한국어 무기초로 출발, 조건부 입학 후 6개월 만에 전공 수업 소화.</div>
         </div>
       </div>
@@ -834,7 +851,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
 <section class="hero">
   <div class="container">
     <div class="eyebrow">협력 대학</div>
-    <h2 class="sec-title">서울대부터 한예종까지<br>11개 명문 예술대학 공식 협력</h2>
+    <h2 class="sec-title">서울대부터 한예종까지<br>11개 명문 예술대학 공식 협력 <span class="sot-badge example-badge">예시</span></h2>
     <p class="lead">한국을 대표하는 예술대학들과 공식 협력 관계입니다. 예산·실력·전공에 맞춰 최적의 대학을 안내드립니다. 학비 상세는 P4에서 확인하실 수 있습니다.</p>
   </div>
 </section>
@@ -851,7 +868,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
       <div class="uni-card">
         <div class="uni-logo">SNU</div>
         <div class="uni-tier">공식 협력 · Tier1</div>
-        <h4>서울대학교</h4>
+        <h4>서울대학교 <span class="sot-badge example-badge">예시</span></h4>
         <div class="uni-loc">서울</div>
         <div class="uni-meta">
           <strong>주요 전공:</strong> 작곡 · 성악 · 국악 · 디자인<br>
@@ -863,7 +880,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
       <div class="uni-card">
         <div class="uni-logo">KNUA</div>
         <div class="uni-tier">공식 협력 · Tier1</div>
-        <h4>한국예술종합학교</h4>
+        <h4>한국예술종합학교 <span class="sot-badge example-badge">예시</span></h4>
         <div class="uni-loc">서울</div>
         <div class="uni-meta">
           <strong>주요 전공:</strong> 실용보컬 · 연극 · 무용 · 영상<br>
@@ -875,7 +892,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
       <div class="uni-card">
         <div class="uni-logo">HI</div>
         <div class="uni-tier">공식 협력 · Tier1</div>
-        <h4>홍익대학교</h4>
+        <h4>홍익대학교 <span class="sot-badge example-badge">예시</span></h4>
         <div class="uni-loc">서울</div>
         <div class="uni-meta">
           <strong>주요 전공:</strong> 미디어 · 디자인 · 미술<br>
@@ -887,7 +904,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
       <div class="uni-card">
         <div class="uni-logo">SKKU</div>
         <div class="uni-tier">공식 협력</div>
-        <h4>성균관대학교</h4>
+        <h4>성균관대학교 <span class="sot-badge example-badge">예시</span></h4>
         <div class="uni-loc">서울</div>
         <div class="uni-meta">
           <strong>주요 전공:</strong> 영상 · 공연예술 · 디자인<br>
@@ -899,7 +916,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
       <div class="uni-card">
         <div class="uni-logo">CAU</div>
         <div class="uni-tier">공식 협력</div>
-        <h4>중앙대학교</h4>
+        <h4>중앙대학교 <span class="sot-badge example-badge">예시</span></h4>
         <div class="uni-loc">서울</div>
         <div class="uni-meta">
           <strong>주요 전공:</strong> 영화영상 · 연극 · 음악<br>
@@ -990,6 +1007,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
     <h2 class="sec-title center">대학별 실학비 안내</h2>
     <p class="sec-sub center">4년 총액까지 사전 공개하여 결정에 도움을 드립니다.</p>
     <div class="table-wrap">
+      <div style="font-size:12px;color:#b00020;font-weight:600;margin:0 0 10px 0;">⚠ 아래 학비·장학 수치는 <span class="sot-badge example-badge">예시</span>입니다 (대학명·금액 모두 검증 필요)</div>
       <table class="tuition-table">
         <thead>
           <tr>
@@ -1020,7 +1038,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
       <div class="card"><div class="icon">💡</div><h4>TOPIK 5급</h4><p>학비 50% 감면 · 대부분의 파트너 대학에 공통 적용.</p></div>
       <div class="card"><div class="icon">🏅</div><h4>TOPIK 6급</h4><p>학비 전액 면제 · 고급 한국어 역량 입증 시.</p></div>
       <div class="card"><div class="icon">🎓</div><h4>GKS-U 국가장학</h4><p>학비 및 월 생활비 전액 · 한국 정부 국가장학 프로그램.</p></div>
-      <div class="card"><div class="icon">🎨</div><h4>한예종 AMA+</h4><p>실기 우수 인정 시 전액 면제 · 한국예술종합학교 전용.</p></div>
+      <div class="card"><div class="icon">🎨</div><h4>한예종 AMA+ <span class="sot-badge example-badge">예시</span></h4><p>실기 우수 인정 시 전액 면제 · 한국예술종합학교 전용.</p></div>
     </div>
   </div>
 </section>
@@ -1193,11 +1211,11 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
     <p class="sec-sub center">TOPIK 없이 조건부 입학이 가능한 대학 2곳. 입국 후 어학 과정으로 요건 충족.</p>
     <div class="grid-2">
       <div class="card">
-        <h4>성균관대학교</h4>
+        <h4>성균관대학교 <span class="sot-badge example-badge">예시</span></h4>
         <p>조건부 무언어 입학. 입국 후 어학원 6개월 + 전공 병행.</p>
       </div>
       <div class="card">
-        <h4>중앙대학교</h4>
+        <h4>중앙대학교 <span class="sot-badge example-badge">예시</span></h4>
         <p>조건부 무언어 입학. 1학년 TOPIK 3급 이상 취득 조건.</p>
       </div>
     </div>
@@ -1492,7 +1510,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="st-img">[모자이크]</div>
         <div class="st-body">
           <div class="st-name">A · 산동성 · 2025</div>
-          <div class="st-uni">한예종 실용보컬</div>
+          <div class="st-uni">한예종 실용보컬 <span class="sot-badge example-badge">예시</span></div>
           <div class="st-story">한국어 무기초 출발. 8개월 실기 집중 과정을 거쳐 AMA+ 장학 수혜. 현재 한예종 2학년.</div>
         </div>
       </div>
@@ -1500,7 +1518,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="st-img">[모자이크]</div>
         <div class="st-body">
           <div class="st-name">B · 광둥성 · 2024</div>
-          <div class="st-uni">홍익대 미디어</div>
+          <div class="st-uni">홍익대 미디어 <span class="sot-badge example-badge">예시</span></div>
           <div class="st-story">GKS-U 국가장학 + TOPIK 5급 감면 결합. 실부담 최소로 홍익대 미디어 재학 중.</div>
         </div>
       </div>
@@ -1508,7 +1526,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="st-img">[모자이크]</div>
         <div class="st-body">
           <div class="st-name">C · 상하이 · 2024</div>
-          <div class="st-uni">중앙대 영화영상</div>
+          <div class="st-uni">중앙대 영화영상 <span class="sot-badge example-badge">예시</span></div>
           <div class="st-story">한국어 무기초로 중앙대 영화영상 합격. 입학 6개월 후 TOPIK 4급 취득.</div>
         </div>
       </div>
@@ -1516,7 +1534,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="st-img">[모자이크]</div>
         <div class="st-body">
           <div class="st-name">D · 베이징 · 2025</div>
-          <div class="st-uni">경희대 작곡</div>
+          <div class="st-uni">경희대 작곡 <span class="sot-badge example-badge">예시</span></div>
           <div class="st-story">1년 프리미엄 과정 이수 · 오리지널 곡 3편 완성 · 경희대 작곡과 합격. 현재 DJ 활동 병행.</div>
         </div>
       </div>
@@ -1524,7 +1542,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="st-img">[모자이크]</div>
         <div class="st-body">
           <div class="st-name">E · 쓰촨성 · 2024</div>
-          <div class="st-uni">동국대 연극영화</div>
+          <div class="st-uni">동국대 연극영화 <span class="sot-badge example-badge">예시</span></div>
           <div class="st-story">연기 경험 무 · 6개월 과정으로 동국대 연극영화 합격. 현재 독립영화 출연.</div>
         </div>
       </div>
@@ -1532,7 +1550,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="st-img">[모자이크]</div>
         <div class="st-body">
           <div class="st-name">F · 저장성 · 2025</div>
-          <div class="st-uni">지방 거점 음악대</div>
+          <div class="st-uni">지방 거점 음악대 <span class="sot-badge example-badge">예시</span></div>
           <div class="st-story">지역 명문 + 장학 조합으로 연 실부담 1.5만 RMB 수준. 합리적 선택의 모범 사례.</div>
         </div>
       </div>
@@ -1588,7 +1606,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="news-date">2026.03</div>
         <div>
           <span class="news-cat">마스터 클래스</span>
-          <div class="news-title" style="margin-top:6px;">한예종 실용보컬 교수 초청 마스터 클래스 (상하이)</div>
+          <div class="news-title" style="margin-top:6px;">한예종 실용보컬 교수 초청 마스터 클래스 (상하이) <span class="sot-badge example-badge">예시</span></div>
         </div>
         <a class="btn-secondary">자세히</a>
       </div>
@@ -1604,7 +1622,7 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
         <div class="news-date">2026.01</div>
         <div>
           <span class="news-cat">한중 교류</span>
-          <div class="news-title" style="margin-top:6px;">홍익대 미디어 학부 교류 프로그램 발족</div>
+          <div class="news-title" style="margin-top:6px;">홍익대 미디어 학부 교류 프로그램 발족 <span class="sot-badge example-badge">예시</span></div>
         </div>
         <a class="btn-secondary">자세히</a>
       </div>
