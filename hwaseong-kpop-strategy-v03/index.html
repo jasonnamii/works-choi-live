@@ -303,7 +303,13 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  .svg-wrap svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+  .svg-wrap svg {
+    display: block; margin: 0 auto; max-width: 100%; height: auto;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  }
+  .svg-wrap svg text {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  }
   .svg-wrap .caption {
     text-align: center; font-size: 13px; color: var(--ink-xs);
     margin-top: 16px;
@@ -723,48 +729,49 @@
 
     <!-- Direction → Revenue Split -->
     <div class="svg-wrap">
-      <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="ourShare" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stop-color="#002147"/><stop offset="1" stop-color="#4a6b8f"/>
           </linearGradient>
         </defs>
         <style>
-          .lbl { font: 600 13px Pretendard, sans-serif; fill: #1d1d1f; }
-          .sub { font: 400 11px Pretendard, sans-serif; fill: #6e6e73; }
-          .pct { font: 700 14px Pretendard, sans-serif; fill: #fff; }
-          .axis { font: 500 11px Pretendard, sans-serif; fill: #86868b; }
+          .lbl { font-size: 15px; font-weight: 700; fill: #1d1d1f; }
+          .sub { font-size: 13px; font-weight: 500; fill: #6e6e73; }
+          .pct { font-size: 15px; font-weight: 800; fill: #fff; }
+          .axis { font-size: 13px; font-weight: 600; fill: #1d1d1f; }
+          .title { font-size: 15px; font-weight: 700; fill: #1d1d1f; }
         </style>
-        <text class="axis" x="40" y="28">방향별 우리 몫 비중 (상대치)</text>
+        <text class="title" x="20" y="28">방향별 우리 몫 비중 (상대치)</text>
         <!-- A bar -->
-        <text class="lbl" x="20" y="72">A. 압축</text>
-        <rect x="90" y="56" width="250" height="22" fill="url(#ourShare)"/>
-        <rect x="340" y="56" width="470" height="22" fill="#e8e8ed"/>
-        <text class="pct" x="100" y="72">25%</text>
-        <text class="sub" x="350" y="72">외부 운영사·건설사 75%</text>
+        <text class="lbl" x="20" y="76">A. 압축</text>
+        <rect x="110" y="58" width="230" height="26" fill="url(#ourShare)"/>
+        <rect x="340" y="58" width="490" height="26" fill="#e8e8ed"/>
+        <text class="pct" x="122" y="76">25%</text>
+        <text class="sub" x="352" y="76">외부 운영사·건설사 75%</text>
         <!-- B bar -->
-        <text class="lbl" x="20" y="112">B. 구역제</text>
-        <rect x="90" y="96" width="300" height="22" fill="url(#ourShare)"/>
-        <rect x="390" y="96" width="420" height="22" fill="#e8e8ed"/>
-        <text class="pct" x="100" y="112">35%</text>
-        <text class="sub" x="400" y="112">앵커테넌트 분산 65%</text>
+        <text class="lbl" x="20" y="118">B. 구역제</text>
+        <rect x="110" y="100" width="280" height="26" fill="url(#ourShare)"/>
+        <rect x="390" y="100" width="440" height="26" fill="#e8e8ed"/>
+        <text class="pct" x="122" y="118">35%</text>
+        <text class="sub" x="402" y="118">앵커테넌트 분산 65%</text>
         <!-- C bar -->
-        <text class="lbl" x="20" y="152">C. 페스티벌</text>
-        <rect x="90" y="136" width="580" height="22" fill="url(#ourShare)"/>
-        <rect x="670" y="136" width="140" height="22" fill="#e8e8ed"/>
-        <text class="pct" x="100" y="152">70%</text>
-        <text class="sub" x="680" y="152">기타 20%</text>
+        <text class="lbl" x="20" y="160">C. 페스티벌</text>
+        <rect x="110" y="142" width="560" height="26" fill="url(#ourShare)"/>
+        <rect x="670" y="142" width="160" height="26" fill="#e8e8ed"/>
+        <text class="pct" x="122" y="160">70%</text>
+        <text class="sub" x="682" y="160">기타 20%</text>
         <!-- Mix bar -->
-        <text class="lbl" x="20" y="192">혼합안 ★</text>
-        <rect x="90" y="176" width="620" height="22" fill="url(#ourShare)"/>
-        <rect x="710" y="176" width="100" height="22" fill="#e8e8ed"/>
-        <text class="pct" x="100" y="192">75%</text>
-        <text class="sub" x="720" y="192">기타 25%</text>
+        <text class="lbl" x="20" y="202">혼합안 ★</text>
+        <rect x="110" y="184" width="600" height="26" fill="url(#ourShare)"/>
+        <rect x="710" y="184" width="120" height="26" fill="#e8e8ed"/>
+        <text class="pct" x="122" y="202">75%</text>
+        <text class="sub" x="722" y="202">기타 25%</text>
         <!-- Legend -->
-        <rect x="20" y="220" width="14" height="14" fill="url(#ourShare)"/>
-        <text class="axis" x="40" y="232">노느니+라텔 주도 영역</text>
-        <rect x="220" y="220" width="14" height="14" fill="#e8e8ed"/>
-        <text class="axis" x="240" y="232">건설·외부 운영사 주도 영역</text>
+        <rect x="20" y="242" width="16" height="16" fill="url(#ourShare)"/>
+        <text class="axis" x="44" y="255">노느니+라텔 주도 영역</text>
+        <rect x="240" y="242" width="16" height="16" fill="#e8e8ed"/>
+        <text class="axis" x="264" y="255">건설·외부 운영사 주도 영역</text>
       </svg>
       <p class="caption">시설 중심(A·B) → 콘텐츠 중심(C·혼합) 이동할수록 우리 주도권이 커진다.</p>
     </div>
@@ -811,11 +818,11 @@
         <style>
           .box { fill: #fff; stroke: #c9d3e2; stroke-width: 1.5; rx: 10; }
           .box-us { fill: #002147; stroke: #002147; rx: 10; }
-          .t { font: 700 13px Pretendard, sans-serif; fill: #1d1d1f; }
-          .t-w { font: 700 13px Pretendard, sans-serif; fill: #fff; }
-          .s { font: 500 11px Pretendard, sans-serif; fill: #6e6e73; }
-          .s-w { font: 500 11px Pretendard, sans-serif; fill: #d2d2d7; }
-          .label { font: 700 15px Pretendard, sans-serif; fill: #002147; }
+          .t { font-size: 15px; font-weight: 700; fill: #1d1d1f; }
+          .t-w { font-size: 15px; font-weight: 700; fill: #fff; }
+          .s { font-size: 13px; font-weight: 500; fill: #6e6e73; }
+          .s-w { font-size: 13px; font-weight: 500; fill: #d2d2d7; }
+          .label { font-size: 17px; font-weight: 700; fill: #002147; }
           .arrow { stroke: #002147; stroke-width: 2; fill: none; marker-end: url(#arr); }
           .arrow-dash { stroke: #002147; stroke-width: 1.5; fill: none; stroke-dasharray: 4,3; marker-end: url(#arr); }
         </style>
@@ -1043,14 +1050,14 @@
         <style>
           .node { fill: #fff; stroke: #002147; stroke-width: 2; }
           .node-us { fill: #002147; stroke: #002147; }
-          .tnode { font: 700 14px Pretendard, sans-serif; fill: #002147; text-anchor: middle; }
-          .tnode-w { font: 700 14px Pretendard, sans-serif; fill: #fff; text-anchor: middle; }
-          .sn { font: 500 11px Pretendard, sans-serif; fill: #6e6e73; text-anchor: middle; }
-          .sn-w { font: 500 11px Pretendard, sans-serif; fill: #d2d2d7; text-anchor: middle; }
+          .tnode { font-size: 16px; font-weight: 700; fill: #002147; text-anchor: middle; }
+          .tnode-w { font-size: 16px; font-weight: 700; fill: #fff; text-anchor: middle; }
+          .sn { font-size: 13px; font-weight: 500; fill: #6e6e73; text-anchor: middle; }
+          .sn-w { font-size: 13px; font-weight: 500; fill: #d2d2d7; text-anchor: middle; }
           .flow { stroke: #002147; stroke-width: 2; fill: none; marker-end: url(#arr2); }
           .flow-dim { stroke: #c9d3e2; stroke-width: 1.5; fill: none; marker-end: url(#arr2); }
-          .flabel { font: 600 11px Pretendard, sans-serif; fill: #002147; }
-          .center { font: 800 18px Pretendard, sans-serif; fill: #002147; text-anchor: middle; }
+          .flabel { font-size: 13px; font-weight: 600; fill: #002147; }
+          .center { font-size: 20px; font-weight: 800; fill: #002147; text-anchor: middle; }
         </style>
 
         <!-- Center hub -->
@@ -1298,12 +1305,12 @@
             <style>
               .grid { stroke: #e8e8ed; stroke-width: 1; }
               .axis { stroke: #86868b; stroke-width: 1.5; }
-              .axis-t { font: 500 11px Pretendard, sans-serif; fill: #86868b; }
-              .yr-t { font: 600 12px Pretendard, sans-serif; fill: #1d1d1f; text-anchor: middle; }
-              .val-t { font: 700 11px Pretendard, sans-serif; fill: #002147; text-anchor: middle; }
+              .axis-t { font-size: 13px; font-weight: 600; fill: #6e6e73; }
+              .yr-t { font-size: 14px; font-weight: 700; fill: #1d1d1f; text-anchor: middle; }
+              .val-t { font-size: 13px; font-weight: 700; fill: #002147; text-anchor: middle; }
               .curve { stroke: #002147; stroke-width: 3; fill: none; }
               .dot { fill: #002147; stroke: #fff; stroke-width: 2; }
-              .milestone { font: 600 10px Pretendard, sans-serif; fill: #6e6e73; text-anchor: middle; }
+              .milestone { font-size: 12px; font-weight: 600; fill: #6e6e73; text-anchor: middle; }
             </style>
             <!-- Y axis grid -->
             <line class="grid" x1="80" y1="60" x2="860" y2="60"/>
