@@ -48,11 +48,30 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   min-height:44px; display:inline-flex; align-items:center; cursor:pointer;
 }
 .gnb .cta-btn:hover{background:#000;}
-.hamb{display:none;font-size:22px;min-width:44px;min-height:44px;align-items:center;justify-content:center;}
+.hamb{display:none;font-size:24px;min-width:44px;min-height:44px;align-items:center;justify-content:center;background:none;border:0;cursor:pointer;color:var(--ink);padding:0;line-height:1;}
+.nav-backdrop{display:none;position:fixed;inset:56px 0 0 0;background:rgba(0,0,0,0.35);z-index:98;}
+.nav-backdrop.open{display:block;}
 @media (max-width:900px){
   .gnb{padding:0 20px;}
-  .gnb nav{display:none;}
+  .gnb nav{
+    position:fixed; top:56px; left:0; right:0;
+    background:rgba(255,255,255,0.98);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--line);
+    transform:translateY(-120%);
+    transition:transform .28s cubic-bezier(.4,0,.2,1);
+    z-index:99;
+    padding:12px 20px 20px;
+    display:block;
+  }
+  .gnb nav.open{transform:translateY(0);}
+  .gnb nav ul{flex-direction:column;gap:0;}
+  .gnb nav ul li{border-bottom:1px solid var(--line);}
+  .gnb nav ul li:last-child{border-bottom:0;}
+  .gnb nav a{width:100%;padding:14px 4px;font-size:16px;min-height:48px;}
   .hamb{display:inline-flex;}
+  .hamb[aria-expanded="true"]{color:var(--accent);}
   .gnb .cta-btn{padding:8px 14px;font-size:12px;}
 }
 
@@ -552,13 +571,21 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
 .new-badge{background:#d6f4d6;color:#1d6b1d;}
 .example-badge{background:#ffe0e0;color:#b00020;}
 .example-banner{
+  position:relative; z-index:1;
   background:#fff1f1; border-bottom:2px solid #ffb3b3;
   color:#8b0a1a; font-size:13px; font-weight:600;
   text-align:center; padding:10px 20px; line-height:1.5;
   letter-spacing:-0.2px;
+  word-break:keep-all; overflow-wrap:break-word;
 }
+.example-banner .full{display:inline;}
+.example-banner .short{display:none;}
 .example-banner strong{color:#b00020;}
-@media (max-width:640px){ .example-banner{font-size:12px;padding:8px 14px;} }
+@media (max-width:900px){
+  .example-banner{font-size:11px;padding:8px 14px;line-height:1.4;}
+  .example-banner .full{display:none;}
+  .example-banner .short{display:inline;}
+}
 
 
 /* Responsive tuning */
@@ -573,26 +600,28 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
 
 <!-- 와이어프레임 예시 공지 -->
 <div class="example-banner">
-  ⚠️ <strong>[와이어프레임 예시]</strong> 본 페이지에 표기된 <strong>대학명·합격자 사례·수치·뉴스·장학 정보</strong>는 모두 레이아웃 검토를 위한 <strong>예시(더미)</strong>이며, 실제 파트너십·합격 사실과 무관합니다.
+  <span class="full">⚠️ <strong>[와이어프레임 예시]</strong> 본 페이지에 표기된 <strong>대학명·합격자 사례·수치·뉴스·장학 정보</strong>는 모두 레이아웃 검토를 위한 <strong>예시(더미)</strong>이며, 실제 파트너십·합격 사실과 무관합니다.</span>
+  <span class="short">⚠️ <strong>[예시 와이어프레임]</strong> 대학명·사례·수치 모두 더미입니다.</span>
 </div>
 
 
 <!-- ============ GNB ============ -->
+<div class="nav-backdrop" id="navBackdrop" onclick="closeMobileNav()"></div>
 <header class="gnb">
   <a href="#p1" class="logo" onclick="goPage('p1');return false;">
     KISAS <span>국제 예술유학센터</span>
   </a>
-  <nav>
+  <nav id="gnbNav">
     <ul>
-      <li><a onclick="goPage('p2')">소개</a></li>
-      <li><a onclick="goPage('p3')">협력 대학</a></li>
-      <li><a onclick="goPage('p5')">유학 신청</a></li>
-      <li><a onclick="goPage('p9')">학생·활동</a></li>
-      <li><a onclick="goPage('p12')">문의</a></li>
+      <li><a onclick="goPage('p2');closeMobileNav();">소개</a></li>
+      <li><a onclick="goPage('p3');closeMobileNav();">협력 대학</a></li>
+      <li><a onclick="goPage('p5');closeMobileNav();">유학 신청</a></li>
+      <li><a onclick="goPage('p9');closeMobileNav();">학생·활동</a></li>
+      <li><a onclick="goPage('p12');closeMobileNav();">문의</a></li>
     </ul>
   </nav>
-  <a class="cta-btn" onclick="goPage('p13')">상담 신청</a>
-  <span class="hamb">≡</span>
+  <a class="cta-btn" onclick="goPage('p13');closeMobileNav();">상담 신청</a>
+  <button class="hamb" id="hambBtn" aria-label="메뉴 열기" aria-expanded="false" aria-controls="gnbNav" onclick="toggleMobileNav()">≡</button>
 </header>
 
 <!-- ============================================ -->
@@ -1850,10 +1879,42 @@ function goPage(id){
   }
   document.querySelectorAll('.gnb nav a').forEach(a=>a.classList.remove('active'));
 }
+// 모바일 햄버거 메뉴 토글
+function toggleMobileNav(){
+  const nav=document.getElementById('gnbNav');
+  const hamb=document.getElementById('hambBtn');
+  const bd=document.getElementById('navBackdrop');
+  const opened=nav.classList.toggle('open');
+  bd.classList.toggle('open',opened);
+  hamb.setAttribute('aria-expanded',opened?'true':'false');
+  hamb.setAttribute('aria-label',opened?'메뉴 닫기':'메뉴 열기');
+  hamb.textContent=opened?'×':'≡';
+  document.body.style.overflow=opened?'hidden':'';
+}
+function closeMobileNav(){
+  const nav=document.getElementById('gnbNav');
+  const hamb=document.getElementById('hambBtn');
+  const bd=document.getElementById('navBackdrop');
+  nav.classList.remove('open');
+  bd.classList.remove('open');
+  hamb.setAttribute('aria-expanded','false');
+  hamb.setAttribute('aria-label','메뉴 열기');
+  hamb.textContent='≡';
+  document.body.style.overflow='';
+}
+// ESC 닫기
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape')closeMobileNav();
+});
+// 데스크톱 리사이즈 시 자동 닫기
+window.addEventListener('resize',()=>{
+  if(window.innerWidth>900)closeMobileNav();
+});
 // Hash 라우팅
 window.addEventListener('hashchange',()=>{
   const id=location.hash.replace('#','')||'p1';
   goPage(id);
+  closeMobileNav();
 });
 if(location.hash){
   goPage(location.hash.replace('#',''));
