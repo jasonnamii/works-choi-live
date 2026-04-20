@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>K-Pop Camp by PD.K — 서울에서 보내는 7일</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Gaegu:wght@400;700&family=Pretendard:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===========================================================
+   K-Pop Camp by PD.K — Student Proposal v1.0
+   Palette: Oxford Blue (authority) × Young Playful (energy)
+   Design-skill v1.5 · young-playful + C3 override
+   =========================================================== */
+
+:root {
+  /* Oxford Anchor */
+  --oxford: #002147;
+  --oxford-soft: #0a2e5c;
+  --oxford-ink: #001330;
+
+  /* Young Playful — 형광펜 5색 */
+  --hl-pink:   #ff5e8a;
+  --hl-yellow: #ffd93d;
+  --hl-mint:   #4ecdc4;
+  --hl-coral:  #ff8a5b;
+  --hl-lilac:  #b980f0;
+
+  /* 블록배경 5색 — pastel wash */
+  --bg-cream:   #fff9e6;
+  --bg-rose:    #ffe9ef;
+  --bg-mint:    #e6faf6;
+  --bg-sky:     #e6f0fc;
+  --bg-lilac:   #f1eaff;
+
+  /* Base */
+  --ink: #0a1020;
+  --ink-soft: #3b4a6b;
+  --line: #e7ecf3;
+  --paper: #ffffff;
+  --paper-off: #f7f9fc;
+
+  /* Type scale — C1: 4 : 2.3 : 1.5 : 1 */
+  --t-display: clamp(2.8rem, 7vw, 5.6rem);  /* L1 */
+  --t-heading: clamp(1.8rem, 4vw, 3.22rem); /* L2 */
+  --t-sub:     clamp(1.25rem, 2.4vw, 2.1rem); /* L3 */
+  --t-body:    clamp(1rem, 1.5vw, 1.4rem);    /* L4 */
+  --t-small:   clamp(0.85rem, 1.1vw, 1rem);
+
+  /* Radius · shadow */
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --shadow-1: 0 4px 16px rgba(0,33,71,0.06);
+  --shadow-2: 0 12px 40px rgba(0,33,71,0.10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: var(--t-body);
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==== Container ==== */
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+section {
+  padding: clamp(3rem, 8vw, 7rem) 0;
+}
+
+/* ==== Typography ==== */
+h1, h2, h3, h4 {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--oxford-ink);
+}
+h1 { font-size: var(--t-display); }
+h2 { font-size: var(--t-heading); }
+h3 { font-size: var(--t-sub); }
+h4 { font-size: calc(var(--t-body) * 1.1); }
+
+p { font-weight: 400; }
+strong { font-weight: 700; color: var(--oxford); }
+
+/* ==== Highlight pen ==== */
+.hl-pink   { background: linear-gradient(180deg, transparent 55%, var(--hl-pink) 55%); padding: 0 .15em; }
+.hl-yellow { background: linear-gradient(180deg, transparent 55%, var(--hl-yellow) 55%); padding: 0 .15em; }
+.hl-mint   { background: linear-gradient(180deg, transparent 55%, var(--hl-mint) 55%); padding: 0 .15em; }
+.hl-coral  { background: linear-gradient(180deg, transparent 55%, var(--hl-coral) 55%); padding: 0 .15em; }
+.hl-lilac  { background: linear-gradient(180deg, transparent 55%, var(--hl-lilac) 55%); padding: 0 .15em; }
+
+/* ==== HERO ==== */
+.hero {
+  background: radial-gradient(ellipse at 30% 20%, #0a2e5c 0%, #002147 55%, #001330 100%);
+  color: #ffffff;
+  padding: clamp(3rem, 10vw, 8rem) 0 clamp(3rem, 8vw, 6rem);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(255,217,61,0.18) 0%, transparent 40%),
+    radial-gradient(circle at 10% 85%, rgba(255,94,138,0.15) 0%, transparent 40%);
+  pointer-events: none;
+}
+.hero .wrap { position: relative; z-index: 1; text-align: center; }
+.hero .eyebrow {
+  display: inline-block;
+  font-size: var(--t-small);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hl-yellow);
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  color: #ffffff;
+  margin: 0 0 1.2rem;
+}
+.hero h1 .playful {
+  font-family: 'Gaegu', 'Pretendard', cursive;
+  font-weight: 700;
+  color: var(--hl-yellow);
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+.hero .tagline {
+  font-size: var(--t-sub);
+  font-weight: 300;
+  color: rgba(255,255,255,0.88);
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.5;
+}
+.hero .meta {
+  font-size: var(--t-small);
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.04em;
+}
+
+/* ==== Big Number (V4) ==== */
+.bignum-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.bignum {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.bignum .n {
+  font-size: clamp(3rem, 7vw, 5.6rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--hl-yellow);
+  display: block;
+  letter-spacing: -0.04em;
+}
+.bignum .u { font-size: var(--t-small); color: rgba(255,255,255,0.7); margin-top: .3rem; display: block; font-weight: 500; }
+.bignum .l { font-size: var(--t-small); color: rgba(255,255,255,0.9); margin-top: .8rem; display: block; font-weight: 600; letter-spacing: 0.04em; }
+
+/* ==== Section header ==== */
+.sec-num {
+  font-family: 'Gaegu', cursive;
+  font-size: clamp(3rem, 8vw, 5rem);
+  color: var(--hl-pink);
+  font-weight: 700;
+  line-height: 1;
+  display: block;
+  margin-bottom: .5rem;
+}
+.sec-title {
+  margin: 0 0 1rem;
+}
+.sec-lead {
+  font-size: var(--t-sub);
+  color: var(--ink-soft);
+  font-weight: 300;
+  max-width: 760px;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  line-height: 1.5;
+}
+
+/* ==== Backgrounds alternating (C7 방지) ==== */
+.bg-cream { background: var(--bg-cream); }
+.bg-rose  { background: var(--bg-rose); }
+.bg-mint  { background: var(--bg-mint); }
+.bg-sky   { background: var(--bg-sky); }
+.bg-lilac { background: var(--bg-lilac); }
+.bg-oxford { background: var(--oxford); color: #fff; }
+.bg-oxford .sec-title, .bg-oxford h2, .bg-oxford h3 { color: #fff; }
+.bg-oxford .sec-lead { color: rgba(255,255,255,0.8); }
+
+/* ==== Before/After Matrix ==== */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+}
+.ba-cell {
+  background: var(--paper);
+  padding: clamp(1.2rem, 2.5vw, 2rem);
+}
+.ba-head {
+  font-size: var(--t-small);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: .8rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.ba-head.before { color: var(--ink-soft); }
+.ba-head.after  { color: var(--oxford); }
+.ba-head .dot { width: 10px; height: 10px; border-radius: 50%; }
+.ba-head.before .dot { background: #c8d2e0; }
+.ba-head.after  .dot { background: var(--hl-pink); }
+.ba-cell p { margin: 0 0 1rem; font-size: var(--t-body); line-height: 1.5; }
+.ba-cell.before p { color: var(--ink-soft); }
+.ba-cell.after p strong { color: var(--oxford-ink); }
+
+/* ==== Trust card ==== */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.8rem);
+}
+.trust-card {
+  background: var(--paper);
+  border-radius: var(--r-md);
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  box-shadow: var(--shadow-1);
+  border-top: 4px solid var(--oxford);
+}
+.trust-card h4 { margin: 0 0 .5rem; color: var(--oxford-ink); }
+.trust-card .role {
+  font-size: var(--t-small);
+  color: var(--hl-pink);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+}
+.trust-card p { margin: .5rem 0 0; font-size: var(--t-body); line-height: 1.55; color: var(--ink-soft); }
+.trust-card blockquote {
+  margin: 1rem 0 0;
+  padding: .8rem 1rem;
+  background: var(--bg-cream);
+  border-left: 3px solid var(--hl-yellow);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: var(--t-small);
+  font-weight: 500;
+  color: var(--oxford-ink);
+}
+
+/* ==== Timeline — 가로 스크롤 (V2·V3) ==== */
+.timeline-wrap {
+  position: relative;
+  margin: 0 calc(-1 * clamp(1rem, 3vw, 2rem));
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+.timeline {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(360px, 80vw);
+  gap: 1.2rem;
+  overflow-x: auto;
+  padding: 1rem 0 2rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.timeline::-webkit-scrollbar { height: 8px; }
+.timeline::-webkit-scrollbar-thumb { background: var(--oxford); border-radius: 4px; }
+.day-card {
+  background: var(--paper);
+  border-radius: var(--r-md);
+  padding: 1.8rem;
+  box-shadow: var(--shadow-1);
+  scroll-snap-align: start;
+  display: flex; flex-direction: column;
+  border-top: 6px solid;
+}
+.day-card:nth-child(1) { border-color: var(--hl-pink); }
+.day-card:nth-child(2) { border-color: var(--hl-yellow); }
+.day-card:nth-child(3) { border-color: var(--hl-mint); }
+.day-card:nth-child(4) { border-color: var(--hl-coral); }
+.day-card:nth-child(5) { border-color: var(--hl-lilac); }
+.day-card.final { border-color: var(--oxford); background: var(--oxford); color: #fff; }
+.day-card.final h4, .day-card.final .day-label { color: #fff; }
+.day-label {
+  font-family: 'Gaegu', cursive;
+  font-size: var(--t-sub);
+  font-weight: 700;
+  color: var(--oxford);
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+.day-card h4 { margin: 0 0 1rem; font-size: calc(var(--t-body) * 1.15); }
+.day-card ul { margin: 0; padding: 0; list-style: none; }
+.day-card li {
+  padding: .4rem 0;
+  font-size: var(--t-small);
+  line-height: 1.5;
+  border-bottom: 1px dashed rgba(0,33,71,0.12);
+}
+.day-card li:last-child { border: none; }
+.day-card.final li { border-color: rgba(255,255,255,0.2); }
+.timeline-hint {
+  font-size: var(--t-small);
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: .5rem;
+}
+
+/* ==== Takeaway icon grid ==== */
+.take-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.8rem);
+}
+.take-card {
+  background: var(--paper);
+  border-radius: var(--r-md);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: var(--shadow-1);
+  position: relative;
+}
+.take-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: var(--bg-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.take-card:nth-child(1) .take-icon { background: var(--bg-rose); }
+.take-card:nth-child(2) .take-icon { background: var(--bg-cream); }
+.take-card:nth-child(3) .take-icon { background: var(--bg-mint); }
+.take-card:nth-child(4) .take-icon { background: var(--bg-sky); }
+.take-card:nth-child(5) .take-icon { background: var(--bg-lilac); }
+.take-card h4 { margin: 0 0 .5rem; font-size: calc(var(--t-body) * 1.1); }
+.take-card p { margin: 0; font-size: var(--t-small); color: var(--ink-soft); line-height: 1.55; }
+
+/* ==== Safety table ==== */
+.safety-list {
+  display: grid;
+  gap: .6rem;
+}
+.safety-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 3fr;
+  gap: 1.2rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--paper);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-1);
+  align-items: start;
+}
+.safety-row .key {
+  font-weight: 700;
+  color: var(--oxford);
+  font-size: var(--t-body);
+}
+.safety-row .val {
+  color: var(--ink-soft);
+  font-size: var(--t-body);
+  line-height: 1.55;
+}
+.safety-row .val strong { color: var(--oxford-ink); }
+.safety-row .tba {
+  display: inline-block;
+  font-size: var(--t-small);
+  padding: .15em .6em;
+  background: var(--bg-cream);
+  border-radius: 99px;
+  color: var(--oxford);
+  font-weight: 600;
+}
+
+/* ==== Recommend chips ==== */
+.chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.chip {
+  padding: 1.2rem 1.4rem;
+  background: var(--paper);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-1);
+  display: flex; align-items: start; gap: .8rem;
+  font-size: var(--t-body);
+  line-height: 1.5;
+}
+.chip .emoji { flex-shrink: 0; font-size: 1.5rem; }
+
+/* ==== Pricing / Info block ==== */
+.info-card {
+  background: var(--paper);
+  border-radius: var(--r-lg);
+  padding: clamp(1.8rem, 4vw, 3rem);
+  box-shadow: var(--shadow-2);
+  border-top: 8px solid var(--oxford);
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.info-item {
+  padding: 1.2rem;
+  background: var(--paper-off);
+  border-radius: var(--r-sm);
+}
+.info-item .k {
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--hl-pink);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+}
+.info-item .v {
+  font-size: var(--t-body);
+  font-weight: 500;
+  color: var(--oxford-ink);
+}
+
+/* ==== FAQ accordion ==== */
+.faq {
+  display: grid;
+  gap: .6rem;
+}
+.faq details {
+  background: var(--paper);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+}
+.faq summary {
+  padding: 1.2rem 1.5rem;
+  font-weight: 700;
+  font-size: var(--t-body);
+  color: var(--oxford-ink);
+  cursor: pointer;
+  list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem;
+  min-height: 44px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  font-size: 1.6rem;
+  color: var(--hl-pink);
+  font-weight: 700;
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq .answer {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--ink-soft);
+  font-size: var(--t-body);
+  line-height: 1.6;
+}
+.faq .answer strong { color: var(--oxford-ink); }
+
+/* ==== CTA sticky bar ==== */
+.cta-sticky {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--oxford);
+  color: #fff;
+  padding: .9rem 1rem;
+  z-index: 100;
+  box-shadow: 0 -8px 24px rgba(0,33,71,0.2);
+  display: none;
+}
+.cta-sticky .inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.cta-sticky .msg {
+  font-weight: 700;
+  font-size: var(--t-small);
+}
+.cta-sticky .btn {
+  background: var(--hl-yellow);
+  color: var(--oxford-ink);
+  padding: .7rem 1.4rem;
+  border-radius: 99px;
+  font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex; align-items: center;
+  font-size: var(--t-small);
+}
+@media (min-width: 768px) { .cta-sticky { display: block; } body { padding-bottom: 80px; } }
+
+/* ==== Final CTA ==== */
+.final-cta {
+  background: radial-gradient(ellipse at 50% 50%, #0a2e5c 0%, #002147 70%, #001330 100%);
+  color: #fff;
+  text-align: center;
+  padding: clamp(4rem, 10vw, 7rem) 0;
+}
+.final-cta h2 { color: #fff; margin-bottom: 1rem; }
+.final-cta .closing {
+  font-family: 'Gaegu', cursive;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--hl-yellow);
+  margin: 2.5rem 0 1rem;
+  line-height: 1.3;
+}
+.final-cta .sig { color: rgba(255,255,255,0.6); font-size: var(--t-small); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 2.5rem auto 0;
+  max-width: 800px;
+  text-align: left;
+}
+.contact-item {
+  background: rgba(255,255,255,0.06);
+  padding: 1.2rem;
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.contact-item .icon { font-size: 1.5rem; }
+.contact-item .label { font-size: var(--t-small); color: var(--hl-yellow); font-weight: 700; margin: .4rem 0 .2rem; }
+.contact-item .value { font-size: var(--t-body); color: #fff; }
+
+/* ==== Image Placeholder ==== */
+.img-ph {
+  background: repeating-linear-gradient(45deg, var(--paper-off), var(--paper-off) 10px, var(--bg-sky) 10px, var(--bg-sky) 20px);
+  border: 2px dashed var(--oxford);
+  border-radius: var(--r-md);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--oxford);
+  font-family: monospace;
+  font-size: var(--t-small);
+  margin: 1.5rem 0;
+}
+.img-ph .tag {
+  display: inline-block;
+  background: var(--oxford);
+  color: #fff;
+  padding: .2em .6em;
+  border-radius: 4px;
+  font-size: .75rem;
+  font-weight: 700;
+  margin-bottom: .5rem;
+  letter-spacing: .05em;
+}
+
+/* ==== Quote block ==== */
+.pullquote {
+  font-family: 'Gaegu', cursive;
+  font-size: var(--t-sub);
+  font-weight: 700;
+  color: var(--oxford);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  border-left: 6px solid var(--hl-pink);
+  background: var(--bg-rose);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  line-height: 1.5;
+}
+
+/* ==== Limited notice ==== */
+.limited {
+  background: var(--oxford);
+  color: #fff;
+  border-radius: var(--r-lg);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.limited::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255,217,61,0.15), transparent 50%);
+}
+.limited h3 {
+  color: var(--hl-yellow);
+  font-family: 'Gaegu', cursive;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 1rem;
+  position: relative;
+}
+.limited p {
+  color: rgba(255,255,255,0.9);
+  font-size: var(--t-body);
+  max-width: 620px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ==== Footer ==== */
+footer {
+  background: var(--oxford-ink);
+  color: rgba(255,255,255,0.7);
+  padding: 2.5rem 0;
+  text-align: center;
+  font-size: var(--t-small);
+}
+footer .wrap { padding-top: 0; padding-bottom: 0; }
+footer .quote {
+  font-family: 'Gaegu', cursive;
+  color: var(--hl-yellow);
+  font-size: var(--t-sub);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 640px) {
+  .bignum-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .ba-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .safety-row { grid-template-columns: 1fr; gap: .3rem; padding: 1rem 1.2rem; }
+  .safety-row .key { font-size: var(--t-small); text-transform: uppercase; letter-spacing: 0.08em; }
+  .info-grid { grid-template-columns: 1fr; }
+  .final-cta .closing { font-size: 1.4rem; }
+  .cta-sticky { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================ HERO ================================ -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">For Indonesian Youth · Seoul Inbound</div>
+    <h1>서울에서 보내는 <span class="playful">7일</span>,<br>아이가 자기 목소리를 찾는 시간</h1>
+    <p class="tagline">초등 4학년부터 중학생까지, 인도네시아 청소년을 위한<br>서울 인바운드 K-Pop 캠프</p>
+    <div class="meta">
+      주최 · KISAS 패밀리 (KISAS / KISAS Plus / KISAS 유학센터) &nbsp;·&nbsp; 총괄 · 김형석 작곡가 (PD.K)
+    </div>
+
+    <div class="bignum-grid">
+      <div class="bignum">
+        <span class="n">7</span>
+        <span class="u">DAYS</span>
+        <span class="l">서울 6박 7일</span>
+      </div>
+      <div class="bignum">
+        <span class="n">1</span>
+        <span class="u">STAGE</span>
+        <span class="l">나만의 쇼케이스 무대</span>
+      </div>
+      <div class="bignum">
+        <span class="n">∞</span>
+        <span class="u">MEMORY</span>
+        <span class="l">평생 남는 영상·기록</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================================ 01 WHY K-POP ================================ -->
+<section class="bg-cream">
+  <div class="wrap">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">왜 지금, <span class="hl-pink">K-Pop</span>인가?</h2>
+    <p class="sec-lead">아이가 방에서 혼자 K-Pop을 따라 춥니다. 거울 앞에서 안무를 맞추고, 좋아하는 그룹의 가사를 외우고, 친구들과 커버 영상을 찍습니다.</p>
+
+    <p style="font-size: var(--t-sub); font-weight: 700; color: var(--oxford-ink); margin: 2rem 0;">그 시간은 그냥 <span class="hl-yellow">노는 시간</span>이 아닙니다.</p>
+    <p>아이는 지금 자기가 누구인지, 무엇에 끌리는지를 <strong>몸으로 탐색</strong>하고 있습니다. K-Pop Camp by PD.K는 그 탐색을 <strong>7일 동안 서울에서, 제대로</strong> 해볼 수 있게 만든 캠프입니다. 방에서 혼자 하던 것을 무대 위에서, 또래와 함께, 전문가의 손을 거쳐서요.</p>
+
+    <div class="pullquote">
+      단순히 안무를 따라 하는 커버 댄스 학원이 아닙니다.<br>
+      K-Pop이라는 문화 현상을 몸으로 체험하면서,<br>
+      "나는 어떤 음악에 끌리는가", "무대 위에서 나는 누구인가"를 탐색하는 캠프입니다.
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 02 BEFORE / AFTER (V6 매트릭스) ================================ -->
+<section class="bg-rose">
+  <div class="wrap">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">캠프가 끝날 때,<br>아이는 <span class="hl-mint">이렇게 달라집니다</span></h2>
+    <p class="sec-lead">7일 동안 아이가 거쳐가는 변화. 입소 전 모습과 수료 후의 아이를 나란히 보세요.</p>
+
+    <div class="img-ph">
+      <span class="tag">IMG-02 · BEFORE/AFTER</span><br>
+      좌: 연습실에서 혼자 거울 보며 연습하는 모습 / 우: 쇼케이스 무대에서 조명 받으며 공연하는 모습 (2컷 비교)
+    </div>
+
+    <div class="ba-grid">
+      <div class="ba-cell before">
+        <div class="ba-head before"><span class="dot"></span>BEFORE · 입소 전</div>
+        <p>혼자 방에서 K-Pop을 따라 추던 아이</p>
+        <p>"내가 뭘 좋아하는지 잘 모르겠어요"</p>
+        <p>낯선 사람 앞에서 말이 줄어들던 아이</p>
+        <p>숙제로 책을 읽던 아이</p>
+        <p>사진 몇 장으로 남는 여행</p>
+      </div>
+      <div class="ba-cell after">
+        <div class="ba-head after"><span class="dot"></span>AFTER · 수료 후</div>
+        <p><strong>무대 위에서 팀과 함께 공연을 완성한</strong> 아이</p>
+        <p>"나는 <strong>이런 음악, 이런 무대 스타일</strong>이 좋아요"</p>
+        <p><strong>또래 친구들과 토론하고, 역할을 나누고, 설득해 본</strong> 아이</p>
+        <p><em>"어린 왕자"·"나는 말랄라"</em>를 읽고 <strong>자기 질문을 만들어 본</strong> 아이</p>
+        <p><strong>전문 영상팀이 촬영한 자신만의 쇼케이스 영상</strong>을 가진 아이</p>
+      </div>
+    </div>
+
+    <p style="font-size: var(--t-sub); font-weight: 700; color: var(--oxford-ink); text-align: center; margin-top: 3rem; line-height: 1.4;">
+      7일 후, 아이는 <span class="hl-yellow">"내가 서울에서 무대에 섰다"</span>는 기억과<br>그 기억을 증명하는 실물·영상 기록을 가지고 돌아갑니다.
+    </p>
+  </div>
+</section>
+
+<!-- ================================ 03 WHO MADE THIS ================================ -->
+<section class="bg-sky">
+  <div class="wrap">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">누가 이 캠프를 <span class="hl-coral">만들었나요?</span></h2>
+    <p class="sec-lead">아이를 서울로 보내시기 전, 꼭 확인하셔야 할 것. 누가, 왜, 어떻게 설계했는가.</p>
+
+    <div class="img-ph">
+      <span class="tag">IMG-03 · 김형석 PD 프로필</span><br>
+      스튜디오 포트레이트 또는 피아노 앞 작업 중 · 캡션 "김형석 · 작곡가 / 프로듀서 / K-Pop Camp by PD.K 총괄"
+    </div>
+
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="role">PROGRAM DIRECTOR</div>
+        <h4>김형석 작곡가 (PD.K)</h4>
+        <p>한국 대중음악의 대표 작곡가·프로듀서. 수많은 히트곡을 만들어 온 <strong>실전 현장의 전문가</strong>가 직접 캠프를 설계하고, Masterclass에 참여합니다.</p>
+        <blockquote>"어려운 것을 쉽게, 쉬운 것을 깊게, 깊은 것을 즐겁게." — 김형석</blockquote>
+      </div>
+
+      <div class="trust-card">
+        <div class="role">HOST · OPERATOR</div>
+        <h4>KISAS 패밀리</h4>
+        <p><strong>KISAS (교육 법인) · KISAS Plus · KISAS 유학센터</strong> 3개 법인이 함께 운영합니다. 한국 교육·유학 분야의 전문성과 운영 인프라가 캠프의 <strong>안전·운영·행정</strong>을 책임집니다.</p>
+      </div>
+
+      <div class="trust-card">
+        <div class="role">HUMANITIES PARTNER</div>
+        <h4>Oxford-style 교수법</h4>
+        <p>K-Pop 퍼포먼스와 함께 <strong>Oxford Character Education 프레임 기반 인문학 수업</strong>을 운영합니다. <em>"나는 누구인가"·"나의 목소리"·"우리는 왜 함께하는가"</em> 같은 질문을 <strong>인도네시아어</strong>로 읽고 토론합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 04 7-DAY JOURNEY (V2 타임라인) ================================ -->
+<section class="bg-mint">
+  <div class="wrap">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">7일 동안 아이가<br><span class="hl-lilac">경험하는 것</span></h2>
+    <p class="sec-lead">도착부터 쇼케이스까지 — 하루하루가 명확한 의미를 가지는 7일 플로우. 오른쪽으로 스와이프해서 확인하세요.</p>
+
+    <div class="timeline-wrap">
+      <div class="timeline">
+        <div class="day-card">
+          <span class="day-label">Day 1</span>
+          <h4>도착, 그리고 팀을 만나는 날</h4>
+          <ul>
+            <li>✈️ 서울 도착 · 기숙사 배정</li>
+            <li>🎉 환영 공연</li>
+            <li>🤝 팀 배정 (Creative Check-in)</li>
+          </ul>
+        </div>
+
+        <div class="day-card">
+          <span class="day-label">Day 2~3</span>
+          <h4>탐색과 기초의 날들</h4>
+          <ul>
+            <li>🌅 오전 (인도네시아어): Oxford-style 인문학 Session 1·2 — <em>"나는 누구인가"·"나의 목소리"</em></li>
+            <li>🎤 오후: 김형석 PD의 <strong>K-Pop Masterclass</strong> → 보컬·댄스 기초 → 선곡·커버곡 확정</li>
+            <li>🌙 저녁: 팀 리허설</li>
+          </ul>
+        </div>
+
+        <div class="day-card">
+          <span class="day-label">Day 4</span>
+          <h4>서울을 걷는 날 <em>(부모 합류 가능)</em></h4>
+          <ul>
+            <li>📍 K-Pop 성지 투어</li>
+            <li>👘 한국 문화 체험 (한복·전통 시장·한식 쿠킹)</li>
+            <li>🏙️ 서울 관광</li>
+            <li>👨‍👩‍👧 이 날은 <strong>부모님도 함께하실 수 있습니다</strong></li>
+          </ul>
+        </div>
+
+        <div class="day-card">
+          <span class="day-label">Day 5~6</span>
+          <h4>무대를 완성하는 날들</h4>
+          <ul>
+            <li>💃 팀별 커버 퍼포먼스 안무 완성 · 무대 동선 · 최종 런스루</li>
+            <li>📖 인문학 Session 3~5 — <em>"우리는 왜 함께하는가"·"감정과 표현"·"나의 선택"</em></li>
+            <li>🎥 전문 영상팀이 <strong>연습 과정부터 촬영</strong></li>
+          </ul>
+        </div>
+
+        <div class="day-card final">
+          <span class="day-label">Day 7</span>
+          <h4>FINAL SHOWCASE</h4>
+          <ul>
+            <li><strong>1부</strong> 팀별 커버 퍼포먼스</li>
+            <li><strong>2부</strong> 전원 합창 <em>"You Are a Miracle"</em> (김형석 작곡)</li>
+            <li><strong>3부</strong> 수료식 · Creative Spirit Award · 기념 패키지 증정</li>
+          </ul>
+        </div>
+      </div>
+      <p class="timeline-hint">← 좌우로 스크롤하여 전체 일정 보기 →</p>
+    </div>
+
+    <div class="img-ph">
+      <span class="tag">IMG-05 · SHOWCASE</span><br>
+      Day 7 쇼케이스 감정적 절정 — 팀 단체 무대 사진 (조명·의상·관객석 부모) 또는 전원 합창 장면
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 05 TAKEAWAY ================================ -->
+<section class="bg-lilac">
+  <div class="wrap">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">아이가 집에 <span class="hl-coral">가져가는 것</span></h2>
+    <p class="sec-lead">이 캠프의 약속입니다. 7일의 기억이 사라지지 않도록, 실물과 영상으로 남깁니다.</p>
+
+    <div class="img-ph">
+      <span class="tag">IMG-06 · TAKEAWAY PACKAGE</span><br>
+      수료증·Creative Journal Workbook·티셔츠·뱃지·포트레이트 플랫레이(flat-lay)
+    </div>
+
+    <div class="take-grid">
+      <div class="take-card">
+        <div class="take-icon">🎬</div>
+        <h4>영상 로그북</h4>
+        <p>7일 전체 하이라이트 · 팀 쇼케이스 풀 영상 · 개인 하이라이트 · 메이킹 필름 (QR 디지털)</p>
+      </div>
+      <div class="take-card">
+        <div class="take-icon">🏆</div>
+        <h4>수료증</h4>
+        <p>프리미엄 디자인 · 김형석 PD 인증 · Oxford-style 인문학 수료 인증 (실물 + 디지털)</p>
+      </div>
+      <div class="take-card">
+        <div class="take-icon">📓</div>
+        <h4>Creative Journal Workbook</h4>
+        <p>인문학 감상 저널 · K-Pop 연습 기록 · Daily Reflection이 담긴 실물 북</p>
+      </div>
+      <div class="take-card">
+        <div class="take-icon">👕</div>
+        <h4>굿즈</h4>
+        <p>캠프 티셔츠 · 뱃지 · 단체 사진 · 개인 포트레이트</p>
+      </div>
+      <div class="take-card">
+        <div class="take-icon">📱</div>
+        <h4>디지털 포트폴리오</h4>
+        <p>QR 코드로 평생 접근 가능한 온라인 아카이브 (영상·사진·수료증)</p>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top: 3rem; font-size: var(--t-sub); font-weight: 500; color: var(--oxford-ink);">
+      부모님이 <span class="hl-yellow">자랑스럽게 SNS에 공유하실 수 있는 퀄리티</span>를 목표로 제작합니다.
+    </p>
+  </div>
+</section>
+
+<!-- ================================ 06 SAFETY PROMISE ================================ -->
+<section class="bg-oxford">
+  <div class="wrap">
+    <span class="sec-num" style="color: var(--hl-yellow);">06</span>
+    <h2 class="sec-title" style="color:#fff;">인도네시아 학부모님께<br>드리는 <span style="color: var(--hl-yellow);">약속</span></h2>
+    <p class="sec-lead" style="color: rgba(255,255,255,0.8);">서울로 아이를 보내신다는 것 — 무엇보다 안전과 생활이 우선입니다. 저희는 인도네시아 학부모님들의 걱정을 다음과 같이 준비하고 있습니다.</p>
+
+    <div class="img-ph" style="background: rgba(255,255,255,0.04); border-color: var(--hl-yellow); color: var(--hl-yellow);">
+      <span class="tag" style="background: var(--hl-yellow); color: var(--oxford-ink);">IMG-07 · SAFETY</span><br>
+      기숙사 · 식당 · 생활관 상주 인력 3컷 콜라주
+    </div>
+
+    <div class="safety-list">
+      <div class="safety-row">
+        <div class="key">🍽️ 식사</div>
+        <div class="val"><span class="tba">추후 안내</span> 할랄 식사 제공 여부 · 무슬림 식문화 <strong>존중 원칙</strong></div>
+      </div>
+      <div class="safety-row">
+        <div class="key">🕌 기도·종교</div>
+        <div class="val"><span class="tba">추후 안내</span> 기도 공간 · 시간 운영 방식</div>
+      </div>
+      <div class="safety-row">
+        <div class="key">🏠 숙박</div>
+        <div class="val">캠프 기숙사 · <strong>생활지도 인력 상주</strong> · 야간 관리 · 비상 연락망</div>
+      </div>
+      <div class="safety-row">
+        <div class="key">🗣️ 언어</div>
+        <div class="val">인문학 수업은 <strong>인도네시아어</strong>로 운영 · 한국어 수업은 <strong>동시통역</strong> 제공 · 영어 수업 없음</div>
+      </div>
+      <div class="safety-row">
+        <div class="key">👨‍👩‍👧 부모 동반</div>
+        <div class="val">부모님은 <strong>별도 숙소(호텔)</strong> · 외부활동 · 쇼케이스는 합류 가능</div>
+      </div>
+      <div class="safety-row">
+        <div class="key">🚌 외출 시</div>
+        <div class="val">모든 외부활동에 <strong>인솔 인력</strong> 동행 · 그룹 관리</div>
+      </div>
+      <div class="safety-row">
+        <div class="key">📋 비자·출입국</div>
+        <div class="val"><span class="tba">추후 안내</span> 비자 지원 방식</div>
+      </div>
+    </div>
+
+    <p style="color: var(--hl-yellow); font-family: 'Gaegu', cursive; font-size: var(--t-sub); text-align: center; margin-top: 3rem; font-weight: 700; line-height: 1.4;">
+      아이가 무대에서 빛나는 시간만큼,<br>기숙사에서의 하루도 안전하게 설계되어 있습니다.
+    </p>
+  </div>
+</section>
+
+<!-- ================================ 07 RECOMMEND ================================ -->
+<section class="bg-cream">
+  <div class="wrap">
+    <span class="sec-num">07</span>
+    <h2 class="sec-title">이런 아이에게 <span class="hl-pink">특별히 추천</span>합니다</h2>
+    <p class="sec-lead">연령 · 초등 4학년 ~ 중학생 &nbsp;·&nbsp; 경험 · 댄스·보컬 경험 없어도 됩니다 (기초 훈련부터 시작)</p>
+
+    <div class="chip-grid">
+      <div class="chip">
+        <span class="emoji">💃</span>
+        <div>K-Pop을 좋아하지만, <strong>혼자 따라 추기만 하던</strong> 아이</div>
+      </div>
+      <div class="chip">
+        <span class="emoji">🎤</span>
+        <div><strong>무대에 서보고 싶다</strong>는 마음이 있지만 기회가 없던 아이</div>
+      </div>
+      <div class="chip">
+        <span class="emoji">🤝</span>
+        <div>또래 친구들과 <strong>팀으로 무언가를 만들어 본 경험</strong>이 필요한 아이</div>
+      </div>
+      <div class="chip">
+        <span class="emoji">🇰🇷</span>
+        <div><strong>한국 문화·한국어</strong>에 관심이 있는 아이</div>
+      </div>
+      <div class="chip">
+        <span class="emoji">✨</span>
+        <div>방학을 <strong>의미 있는 성취의 기억</strong>으로 채워주고 싶은 부모님의 자녀</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 08 INFO / PRICING ================================ -->
+<section class="bg-sky">
+  <div class="wrap">
+    <span class="sec-num">08</span>
+    <h2 class="sec-title">참가 정보</h2>
+    <p class="sec-lead">캠프 기본 정보를 한눈에. 세부 일정과 수강료는 확정 즉시 업데이트 됩니다.</p>
+
+    <div class="img-ph">
+      <span class="tag">IMG-08 · PRICE BLOCK</span><br>
+      캠프 로고 + 포함 항목 5가지 아이콘(숙박·식사·수업·기념 패키지·통역) 인포그래픽
+    </div>
+
+    <div class="info-card">
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="k">기간</div>
+          <div class="v">7일 (6박 7일)</div>
+        </div>
+        <div class="info-item">
+          <div class="k">장소</div>
+          <div class="v">서울 (인바운드)</div>
+        </div>
+        <div class="info-item">
+          <div class="k">대상 인원</div>
+          <div class="v">추후 안내</div>
+        </div>
+        <div class="info-item">
+          <div class="k">수업 언어</div>
+          <div class="v">인도네시아어 · 한국어(동시통역)</div>
+        </div>
+        <div class="info-item">
+          <div class="k">일정</div>
+          <div class="v">추후 안내</div>
+        </div>
+        <div class="info-item">
+          <div class="k">수강료</div>
+          <div class="v">KRW · IDR 병기 (추후 안내)</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--line);">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+          <div>
+            <div style="font-size: var(--t-small); font-weight: 700; color: var(--hl-mint); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: .5rem;">✓ 포함 사항</div>
+            <div style="font-size: var(--t-body); line-height: 1.6;">기숙사 숙박 · 식사(할랄 운영 원칙) · 전 수업료 · 기념 패키지 · 통역 · 인솔</div>
+          </div>
+          <div>
+            <div style="font-size: var(--t-small); font-weight: 700; color: var(--hl-coral); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: .5rem;">✗ 불포함</div>
+            <div style="font-size: var(--t-body); line-height: 1.6;">항공료 · 부모 숙박 · 개인 용돈 · 비자 수수료</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 09 FAQ ================================ -->
+<section class="bg-rose">
+  <div class="wrap">
+    <span class="sec-num">09</span>
+    <h2 class="sec-title">자주 묻는 <span class="hl-lilac">질문</span></h2>
+    <p class="sec-lead">학부모님이 가장 많이 궁금해하시는 8가지.</p>
+
+    <div class="faq">
+      <details>
+        <summary>Q1. K-Pop 경험이 전혀 없어도 괜찮나요?</summary>
+        <div class="answer">네. Day 2~3에 <strong>보컬·댄스 기초 훈련</strong>부터 시작합니다. 경험 없는 아이를 기준으로 설계된 커리큘럼입니다.</div>
+      </details>
+      <details>
+        <summary>Q2. 수업이 너무 힘들지 않을까요?</summary>
+        <div class="answer">오전 인문학(2.5시간) · 오후 K-Pop(4시간) · 저녁 팀 연습(2시간) 블록으로 <strong>쉬는 시간이 분리</strong>되어 있습니다. Day 4는 외부 활동 중심으로 휴식 역할을 합니다.</div>
+      </details>
+      <details>
+        <summary>Q3. 한국어를 전혀 모르는데 괜찮나요?</summary>
+        <div class="answer">인문학 수업은 <strong>인도네시아어</strong>로 진행됩니다. 한국어 수업과 안내는 <strong>동시통역</strong>을 제공합니다. 영어 수업은 없습니다.</div>
+      </details>
+      <details>
+        <summary>Q4. 부모가 함께 서울에 가도 되나요?</summary>
+        <div class="answer">가능합니다. <strong>별도 숙소(호텔)</strong>에 묵으시고, <strong>Day 4 외부활동</strong> · <strong>Day 7 쇼케이스</strong> · <strong>자유 시간</strong>에 합류하실 수 있습니다.</div>
+      </details>
+      <details>
+        <summary>Q5. 할랄 식사와 기도 시간은 어떻게 운영되나요?</summary>
+        <div class="answer">식사·기도 운영 상세는 <strong>추후 공지</strong> 드립니다. 인도네시아 무슬림 학부모님들의 문화를 존중하여 별도 안내 드리겠습니다.</div>
+      </details>
+      <details>
+        <summary>Q6. 아이가 "연습생"이 되거나 "데뷔"할 수 있는 캠프인가요?</summary>
+        <div class="answer"><strong>아닙니다.</strong> 본 캠프는 연습생 트레이닝 · 오디션 · 데뷔 프로그램이 <strong>아닙니다</strong>. K-Pop을 매개로 한 <strong>자기 탐색 · 팀 협업 · 인문학 교육</strong> 캠프입니다.</div>
+      </details>
+      <details>
+        <summary>Q7. 영상·사진은 어떻게 받나요?</summary>
+        <div class="answer"><strong>QR 코드 기반 디지털 아카이브</strong>로 마지막 날 전달됩니다. 캠프 다큐 · 팀 퍼포먼스 풀 영상 · 개인 하이라이트가 포함되며 평생 접근 가능합니다.</div>
+      </details>
+      <details>
+        <summary>Q8. 저작권이 걱정됩니다. 커버 영상을 올려도 되나요?</summary>
+        <div class="answer">캠프 내 사용은 교육 목적이며, <strong>외부 공개 시에는 저작권 확인을 안내</strong>드립니다.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 10 LIMITED ================================ -->
+<section style="background: var(--paper-off);">
+  <div class="wrap">
+    <div class="limited">
+      <span class="sec-num" style="color: var(--hl-yellow); display:inline-block; margin-bottom: 1rem;">10</span>
+      <h3>정원이 제한적입니다</h3>
+      <p>K-Pop Camp by PD.K는 김형석 PD가 직접 참여하는 프로그램 특성상 정원이 제한됩니다. 한 팀의 규모, 한 캠프의 운영 가능 인원이 정해져 있으므로 <strong style="color: var(--hl-yellow);">선착순 마감</strong>됩니다.</p>
+      <p style="margin-top: 1.5rem; font-size: var(--t-small);">문의는 <strong style="color:#fff;">에이전트 파트너</strong> 또는 <strong style="color:#fff;">KISAS 유학센터</strong>로 해주시기 바랍니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 11 FINAL CTA ================================ -->
+<section class="final-cta" id="contact">
+  <div class="wrap">
+    <span class="sec-num" style="color: var(--hl-yellow); display:inline-block;">11</span>
+    <h2>신청 문의</h2>
+
+    <div class="img-ph" style="background: rgba(255,255,255,0.04); border-color: var(--hl-yellow); color: var(--hl-yellow); max-width: 600px; margin: 2rem auto;">
+      <span class="tag" style="background: var(--hl-yellow); color: var(--oxford-ink);">IMG-09 · CTA</span><br>
+      캠프 로고 + QR 코드(문의 링크) + 연락처 인포그래픽
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="icon">📧</div>
+        <div class="label">EMAIL</div>
+        <div class="value">추후 안내</div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📱</div>
+        <div class="label">WHATSAPP</div>
+        <div class="value">인도네시아 핫라인 (추후)</div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">🌐</div>
+        <div class="label">WEBSITE</div>
+        <div class="value">공식 사이트 (추후)</div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">🤝</div>
+        <div class="label">AGENT</div>
+        <div class="value">본 제안서 전달 에이전트에게 문의</div>
+      </div>
+    </div>
+
+    <div class="closing">
+      "Think deeply.<br>Move boldly.<br>Perform your own story."
+    </div>
+    <div class="sig">K-Pop Camp by PD.K · 7-Day K-Pop Cover Camp in Seoul<br>© KISAS 패밀리 · 김형석 작곡가 총괄</div>
+  </div>
+</section>
+
+<!-- ================================ STICKY CTA ================================ -->
+<div class="cta-sticky">
+  <div class="inner">
+    <div class="msg">정원 제한 · 선착순 마감 — 지금 에이전트에게 문의하세요</div>
+    <a href="#contact" class="btn">신청 문의 →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="quote">"Think deeply. Move boldly. Perform your own story."</div>
+    <div>K-Pop Camp by PD.K · © KISAS 패밀리 · 김형석 작곡가 총괄 · v1.0 초안</div>
+    <div style="margin-top: .8rem; font-size: .8rem; opacity: .5;">본 문서는 v1.0 초안입니다. 가격·일정·정원·할랄/기도 운영 상세·비자 지원 방식·공식 연락처는 추후 안내 예정이며, 확정 후 v2.0으로 업데이트됩니다.</div>
+  </div>
+</footer>
+
+</body>
+</html>
