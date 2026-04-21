@@ -594,6 +594,68 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
   section.hero{padding:80px 20px;}
   .page-mark{padding:10px 20px;}
 }
+
+/* ============ CLICK-MAP (디자이너 핸드오프용) ============ */
+.clickmap-toggle{
+  position:fixed; left:14px; bottom:14px; z-index:200;
+  background:#1d1d1f; color:#fff;
+  padding:8px 14px; border-radius:980px;
+  font-size:12px; font-weight:600; letter-spacing:-0.2px;
+  border:1px solid #1d1d1f; cursor:pointer;
+  box-shadow:0 4px 14px rgba(0,0,0,0.18);
+  transition:background .2s, color .2s;
+}
+.clickmap-toggle:hover{background:#002147;border-color:#002147;}
+.clickmap-toggle.active{background:#ff3b30;border-color:#ff3b30;}
+@media (max-width:900px){
+  .clickmap-toggle{left:10px; bottom:10px; padding:6px 11px; font-size:11px;}
+}
+
+/* 클릭맵 ON 시: 모든 [data-goto] 요소 강조 */
+body.clickmap-on [data-goto]{
+  position:relative;
+  outline:2px dashed #ff3b30 !important;
+  outline-offset:3px;
+  background-color:rgba(255,59,48,0.06) !important;
+  transition:outline-color .2s;
+}
+body.clickmap-on [data-goto]::after{
+  content:"→ " attr(data-goto);
+  position:absolute;
+  top:-10px; left:-2px;
+  background:#ff3b30; color:#fff;
+  font-size:10px; font-weight:700; letter-spacing:0.3px;
+  padding:2px 6px; border-radius:4px;
+  font-family:'Pretendard Variable',Pretendard,sans-serif;
+  line-height:1.2;
+  pointer-events:none;
+  white-space:nowrap;
+  z-index:10;
+  box-shadow:0 2px 4px rgba(0,0,0,0.2);
+}
+body.clickmap-on [data-goto="popup"]::after{content:"→ 팝업";background:#ff9500;}
+body.clickmap-on [data-goto="menu"]::after{content:"→ 메뉴토글";background:#5856d6;}
+
+/* 클릭맵 범례 */
+.clickmap-legend{
+  display:none;
+  position:fixed; left:14px; bottom:60px; z-index:200;
+  background:rgba(29,29,31,0.95); color:#fff;
+  padding:10px 14px; border-radius:8px;
+  font-size:11px; line-height:1.7;
+  max-width:220px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.25);
+}
+body.clickmap-on .clickmap-legend{display:block;}
+.clickmap-legend b{color:#ff3b30;font-weight:700;}
+.clickmap-legend .lg-row{display:flex;gap:8px;align-items:center;}
+.clickmap-legend .lg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+.clickmap-legend .lg-dot.red{background:#ff3b30;}
+.clickmap-legend .lg-dot.orange{background:#ff9500;}
+.clickmap-legend .lg-dot.purple{background:#5856d6;}
+@media (max-width:900px){
+  .clickmap-legend{left:10px;bottom:52px;max-width:180px;font-size:10px;}
+}
 </style>
 </head>
 <body>
@@ -602,6 +664,16 @@ p.body{font-size:15px;line-height:1.7;color:var(--ink-soft);}
 <div class="example-banner">
   <span class="full">⚠️ <strong>[와이어프레임 예시]</strong> 본 페이지에 표기된 <strong>대학명·합격자 사례·수치·뉴스·장학 정보</strong>는 모두 레이아웃 검토를 위한 <strong>예시(더미)</strong>이며, 실제 파트너십·합격 사실과 무관합니다.</span>
   <span class="short">⚠️ <strong>[예시 와이어프레임]</strong> 대학명·사례·수치 모두 더미입니다.</span>
+</div>
+
+<!-- 디자이너용 클릭맵 토글 -->
+<button class="clickmap-toggle" id="clickmapToggle" onclick="toggleClickmap()" aria-pressed="false">🎯 클릭영역 표시</button>
+<div class="clickmap-legend" aria-hidden="true">
+  <div style="font-weight:700;margin-bottom:6px;">클릭 영역 범례</div>
+  <div class="lg-row"><span class="lg-dot red"></span>페이지 이동 (p1~p13)</div>
+  <div class="lg-row"><span class="lg-dot orange"></span>팝업/모달</div>
+  <div class="lg-row"><span class="lg-dot purple"></span>메뉴 토글</div>
+  <div style="opacity:0.7;margin-top:6px;font-size:10px;">라벨의 p# = 이동 목적지</div>
 </div>
 
 
@@ -1918,6 +1990,34 @@ window.addEventListener('hashchange',()=>{
 });
 if(location.hash){
   goPage(location.hash.replace('#',''));
+}
+
+// ============ 클릭맵 (디자이너 핸드오프용) ============
+// onclick 속성을 파싱해서 data-goto 자동 주입 → CSS에서 시각화
+(function initClickmap(){
+  document.querySelectorAll('[onclick]').forEach(el=>{
+    const s=el.getAttribute('onclick')||'';
+    const m=s.match(/goPage\(\s*['"]([^'"]+)['"]\s*\)/);
+    if(m){
+      el.setAttribute('data-goto',m[1].toUpperCase());
+      return;
+    }
+    if(/alert\(/.test(s)||/popup/i.test(s)){
+      el.setAttribute('data-goto','popup');
+      return;
+    }
+    if(/toggleMobileNav|closeMobileNav/.test(s)){
+      el.setAttribute('data-goto','menu');
+    }
+  });
+})();
+
+function toggleClickmap(){
+  const btn=document.getElementById('clickmapToggle');
+  const on=document.body.classList.toggle('clickmap-on');
+  btn.classList.toggle('active',on);
+  btn.setAttribute('aria-pressed',on?'true':'false');
+  btn.textContent=on?'✕ 클릭영역 숨김':'🎯 클릭영역 표시';
 }
 </script>
 
