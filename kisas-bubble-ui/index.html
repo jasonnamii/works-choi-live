@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KISAS — 트렌드 버블 UI 와이어프레임</title>
+<style>
+  :root{
+    --ink:#111;
+    --line:#D81B60;
+    --bg:#FAFAFA;
+    --paper:#FFFFFF;
+    --muted:#888;
+    --purple:#6B4EFF;
+    --gold:#E8B923;
+    --bts:#8B5CF6;
+    --pink:#FF4D8D;
+    --red:#E50914;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Pretendard","Apple SD Gothic Neo",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 16px 80px;gap:32px}
+
+  /* ── 언어 토글 (화면 밖 고정) ─── */
+  .lang-toggle{
+    position:fixed;top:20px;right:20px;z-index:999;
+    display:flex;align-items:center;gap:6px;
+    padding:8px 14px;border-radius:99px;
+    background:#fff;border:1.5px solid var(--line);
+    box-shadow:0 4px 14px -4px rgba(216,27,96,.3);
+    font-size:12px;font-weight:700;cursor:pointer;
+    user-select:none;
+  }
+  .lang-toggle .globe{font-size:13px}
+  .lang-toggle .lang{padding:2px 6px;border-radius:99px;color:#999;transition:all .2s}
+  html[data-lang="ko"] .lang-toggle .ko,
+  html[data-lang="en"] .lang-toggle .en{background:var(--line);color:#fff}
+
+  /* 번역 표시 스위칭 */
+  [data-ko],[data-en]{display:inline}
+  html[data-lang="ko"] [data-en-only]{display:none}
+  html[data-lang="en"] [data-ko-only]{display:none}
+
+  /* ── Header ─────────────────────────── */
+  header{max-width:420px;width:100%;text-align:center}
+  header .eyebrow{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+  header h1{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+  header p{font-size:13px;color:var(--muted)}
+
+  /* ── Phone frame (스케치 톤) ─────────── */
+  .phone{
+    position:relative;
+    width:420px;
+    max-width:100%;
+    aspect-ratio: 420 / 880;
+    background:var(--paper);
+    border:2.5px solid var(--line);
+    border-radius:24px;
+    padding:18px;
+    overflow:hidden;
+    box-shadow:0 24px 60px -20px rgba(216,27,96,.18);
+  }
+  .phone::before{
+    /* 종이 질감 */
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(216,27,96,.02) 0, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(216,27,96,.02) 0, transparent 40%);
+  }
+
+  /* 상태바 (미니) */
+  .statusbar{
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:10px;color:var(--muted);margin-bottom:10px;padding:0 4px;
+  }
+  .statusbar .title{font-weight:600;color:var(--ink);letter-spacing:.3px}
+
+  /* ── Bubble grid ────────────────────── */
+  .grid{
+    position:relative;
+    width:100%;
+    height: calc(100% - 28px);
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(28, 1fr);
+    gap:6px; /* 16개 수용 · 균일 간격 · 밀어내는 긴장감 */
+  }
+  /* phone 자체를 세로로 조금 늘려 16개 수용 */
+  .phone{aspect-ratio: 420 / 1020}
+
+  .bubble{
+    position:relative;
+    border:2px solid var(--line);
+    /* 사각 동그라미 (squircle) — 물방울이 서로 밀어내는 팽팽한 느낌 */
+    border-radius: 38% 42% 40% 40% / 42% 38% 42% 40%;
+    background:var(--paper);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px;
+    overflow:hidden;
+    transition:transform .2s;
+    cursor:pointer;
+  }
+  /* 버블별 미세 변주 — 각자 조금씩 다른 사각동그라미로 "밀어내는 긴장감" */
+  .b1{border-radius: 40% 42% 38% 40% / 40% 38% 42% 40%}
+  .b2{border-radius: 42% 40% 40% 38% / 38% 42% 40% 40%}
+  .b3{border-radius: 38% 40% 42% 40% / 42% 40% 38% 40%}
+  .b4{border-radius: 40% 38% 40% 42% / 40% 42% 38% 40%}
+  .b5{border-radius: 40% 40% 38% 42% / 42% 38% 40% 40%}
+  .b6{border-radius: 38% 42% 40% 40% / 40% 40% 42% 38%}
+  .b7{border-radius: 42% 38% 40% 40% / 40% 42% 40% 38%}
+  .b8{border-radius: 40% 40% 42% 38% / 38% 40% 42% 40%}
+  .b9{border-radius: 38% 40% 40% 42% / 42% 40% 38% 40%}
+  .b10{border-radius: 40% 42% 38% 40% / 38% 40% 42% 40%}
+  .b11{border-radius: 42% 38% 40% 40% / 40% 40% 38% 42%}
+  .b12{border-radius: 40% 40% 42% 38% / 38% 42% 40% 40%}
+  .b13{border-radius: 38% 42% 40% 40% / 40% 38% 42% 40%}
+  .b14{border-radius: 40% 38% 40% 42% / 42% 40% 40% 38%}
+  .b15{border-radius: 42% 40% 38% 40% / 38% 40% 42% 40%}
+  .b16{border-radius: 40% 40% 42% 40% / 40% 42% 38% 40%}
+  .bubble:hover{transform:scale(1.02)}
+  .bubble .rank{
+    position:absolute;top:6px;left:8px;
+    font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.5px;
+  }
+  .bubble .label{
+    font-weight:700;letter-spacing:-.01em;line-height:1.1;
+  }
+  .bubble .sub{font-size:9px;color:var(--muted);margin-top:2px}
+
+  /* 조회수 배지 (트렌드 강도) */
+  .bubble .views{
+    position:absolute;top:6px;right:8px;z-index:3;
+    display:flex;align-items:center;gap:3px;
+    padding:2px 7px;border-radius:99px;
+    background:rgba(0,0,0,.08);
+    font-size:9.5px;font-weight:700;color:#222;
+    letter-spacing:.2px;
+    backdrop-filter:blur(4px);
+  }
+  .bubble .views .eye{font-size:9px;opacity:.8}
+  .bubble.top5 .views{
+    background:rgba(255,255,255,.25);
+    color:#fff;
+  }
+  /* 작은 버블은 폰트 축소 */
+  .size-s .views,.size-m .views{font-size:8.5px;padding:1.5px 6px}
+  .size-xs .views{font-size:8px;padding:1px 5px}
+  .size-xs .label{font-size:10.5px}
+  .size-xs .rank{display:none} /* 작은 버블은 랭크 숨김 — 공간 확보 */
+  .size-xs{padding:6px}
+
+  /* Top5 = 이미지 버블 (이모지 콜라주로 대체 · 스케치 시안) */
+  .bubble.top5{color:#fff;border-color:transparent}
+  .bubble.top5 .rank{color:rgba(255,255,255,.8)}
+  .bubble.top5 .label{font-size:15px;text-shadow:0 1px 6px rgba(0,0,0,.3)}
+  .bubble.top5 .sub{color:rgba(255,255,255,.85)}
+  .bubble.top5 .visual{
+    position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;
+    font-size:54px;opacity:.55;filter:blur(.2px);
+  }
+  .bubble.top5 .content{position:relative;z-index:1}
+
+  /* 각 키워드 개별 톤 */
+  .b-kpdh{background:linear-gradient(135deg,#1a0033 0%,#6B0F8F 60%,#E8B923 100%)}
+  .b-golden{background:radial-gradient(circle at 50% 40%, #FFE082 0%, #E8B923 40%, #5D4200 100%)}
+  .b-bts{background:linear-gradient(135deg,#3D1A78 0%, #8B5CF6 100%)}
+  .b-katseye{background:linear-gradient(135deg,#FF4D8D 0%, #FFB3D1 60%, #FFE3EC 100%)}
+  .b-netflix{background:linear-gradient(135deg,#141414 0%, #E50914 100%)}
+
+  /* ── 16개 버블 배치 (28행 × 12열 · 중첩 없음) ──
+     위계:
+       Top5 (컬러 이미지): #1~#5
+       Mid  (중간 크기):   #6~#10
+       Small(키워드만):    #11~#16
+  */
+  /* --- 행 1~6: #1 #2 --- */
+  .b1 {grid-column: 1/6;   grid-row: 1/6}    /* KPDH 소-중 */
+  .b2 {grid-column: 6/13;  grid-row: 1/7}    /* Golden 대 */
+  /* --- 행 6~10: #3 #4 --- */
+  .b3 {grid-column: 1/6;   grid-row: 6/10}   /* BTS 소-중 */
+  .b4 {grid-column: 8/13;  grid-row: 7/11}   /* KATSEYE 중 */
+  /* --- 행 10~16: #5 #6 --- */
+  .b5 {grid-column: 1/8;   grid-row: 10/16}  /* Netflix 대 */
+  .b6 {grid-column: 8/13;  grid-row: 11/16}  /* KCON LA 중 */
+  /* --- 행 16~19: #7 #8 #9 --- */
+  .b7 {grid-column: 1/5;   grid-row: 16/19}  /* BLACKPINK 소 */
+  .b8 {grid-column: 5/9;   grid-row: 16/19}  /* Squid Game 소 */
+  .b9 {grid-column: 9/13;  grid-row: 16/20}  /* Bloodhounds 소 */
+  /* --- 행 19~23: #10 #11 #12 --- */
+  .b10{grid-column: 1/5;   grid-row: 19/23}  /* Coachella 소 */
+  .b11{grid-column: 5/9;   grid-row: 19/22}  /* Lollapalooza 소 */
+  .b12{grid-column: 9/13;  grid-row: 20/23}  /* K-Beauty 소 */
+  /* --- 행 22~25: #13 #14 #15 --- */
+  .b13{grid-column: 1/5;   grid-row: 23/26}  /* K-Food 소 */
+  .b14{grid-column: 5/9;   grid-row: 22/25}  /* Webtoon 소 */
+  .b15{grid-column: 9/13;  grid-row: 23/26}  /* Solo Leveling 소 */
+  /* --- 행 26~29: #16 --- */
+  .b16{grid-column: 3/11;  grid-row: 26/29}  /* Photocards 중 (마지막 강조) */
+
+  /* 버블 크기별 타이포 */
+  .size-xxl .label{font-size:20px}
+  .size-xl  .label{font-size:17px}
+  .size-l   .label{font-size:15px}
+  .size-m   .label{font-size:13px}
+  .size-s   .label{font-size:12px}
+
+  /* ── 범례 ───────────────────────────── */
+  .legend{
+    max-width:420px;width:100%;background:var(--paper);
+    border:1px dashed #DDD;border-radius:16px;padding:16px 18px;
+    font-size:12px;color:#444;line-height:1.7;
+  }
+  .legend h3{font-size:12px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;font-weight:700}
+  .legend .row{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .legend .chip{
+    display:inline-block;padding:2px 8px;border-radius:99px;background:#F3F3F3;
+    font-size:11px;color:#333;
+  }
+  .legend .top5-list .chip{background:#FFF3E0;color:#5D4200}
+  .legend .rest-list .chip{background:#F0EFFF;color:#3D1A78}
+
+  /* 반응형 */
+  @media (max-width:480px){
+    .phone{width:100%;aspect-ratio:9/19}
+    .bubble.top5 .label{font-size:13px}
+    .size-xxl .label{font-size:17px}
+    .size-xl  .label{font-size:15px}
+    .size-l   .label{font-size:13px}
+  }
+
+  /* ═══════════════════════════════════════════════
+     상세화면 (버블 탭 후): 히어로 + 대화 + KISAS 4종
+     ═══════════════════════════════════════════════ */
+  .screens{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;width:100%}
+  .screen-label{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;text-align:center;margin-bottom:10px;font-weight:700}
+
+  .phone.detail{padding:0;overflow:hidden}
+  .detail-scroll{height:100%;overflow-y:auto;position:relative}
+  .detail-scroll::-webkit-scrollbar{display:none}
+
+  /* 상단 네비 */
+  .nav{
+    position:sticky;top:0;z-index:10;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 18px 10px;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid #EEE;
+  }
+  .nav .back{font-size:18px;color:#333;cursor:pointer}
+  .nav .title{font-size:13px;font-weight:600;letter-spacing:.3px}
+  .nav .more{font-size:16px;color:#999}
+
+  /* Hero (버블 이미지가 화면 상단으로 확장) */
+  .hero{
+    position:relative;
+    height:220px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:#fff;overflow:hidden;
+    background:radial-gradient(circle at 50% 40%, #FFE082 0%, #E8B923 40%, #5D4200 100%);
+  }
+  .hero .bg-emoji{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:140px;opacity:.35}
+  .hero .hero-content{position:relative;z-index:2;text-align:center}
+  .hero .rank-tag{
+    display:inline-block;padding:3px 10px;border-radius:99px;
+    background:rgba(255,255,255,.25);font-size:10px;letter-spacing:1px;
+    font-weight:700;margin-bottom:10px;
+  }
+  .hero h2{font-size:32px;font-weight:800;letter-spacing:-.02em;text-shadow:0 2px 12px rgba(0,0,0,.25);margin-bottom:6px}
+  .hero .meta{font-size:12px;opacity:.92}
+  .hero .stats{
+    display:flex;gap:16px;margin-top:14px;font-size:11px;
+    padding:6px 14px;background:rgba(0,0,0,.25);border-radius:99px;
+  }
+  .hero .stats b{font-weight:700}
+
+  /* 대화 섹션 (커뮤니티 스레드) */
+  .section{padding:20px 18px;border-bottom:8px solid #F5F5F5}
+  .section:last-child{border-bottom:none;padding-bottom:40px}
+  .section-head{
+    display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
+  }
+  .section-head h3{font-size:14px;font-weight:700;letter-spacing:-.01em}
+  .section-head .count{font-size:11px;color:var(--muted)}
+  .section-head .more-link{font-size:11px;color:var(--line);font-weight:600}
+
+  /* 글쓰기 박스 */
+  .compose{
+    display:flex;align-items:center;gap:10px;
+    padding:10px 14px;border:1px solid #E5E5E5;border-radius:99px;
+    margin-bottom:14px;background:#FAFAFA;cursor:text;
+  }
+  .compose .avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#FF4D8D,#6B4EFF);flex-shrink:0}
+  .compose .placeholder{font-size:12px;color:#999;flex:1}
+  .compose .send{font-size:11px;color:var(--line);font-weight:700}
+
+  /* 스레드 카드 */
+  .thread{
+    padding:12px 0;border-bottom:1px solid #F0F0F0;
+  }
+  .thread:last-child{border-bottom:none}
+  .thread .head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .thread .avatar{width:22px;height:22px;border-radius:50%;background:#DDD;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:700}
+  .thread .user{font-size:12px;font-weight:600}
+  .thread .time{font-size:10px;color:#AAA}
+  .thread .badge{
+    font-size:9px;padding:1px 6px;border-radius:4px;
+    background:#FFF3E0;color:#B8860B;font-weight:700;letter-spacing:.3px;
+  }
+  .thread .body{font-size:13px;line-height:1.5;color:#222;margin-left:30px;margin-bottom:6px}
+  .thread .actions{display:flex;gap:14px;margin-left:30px;font-size:11px;color:var(--muted)}
+  .thread .actions span{display:flex;align-items:center;gap:3px}
+
+  /* KISAS 콘텐츠 카드 */
+  .kcard{
+    display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #F0F0F0;
+    cursor:pointer;
+  }
+  .kcard:last-child{border-bottom:none}
+  .kcard .thumb{
+    width:70px;height:70px;border-radius:12px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:28px;color:#fff;
+  }
+  .kcard .info{flex:1;min-width:0}
+  .kcard .tag{
+    font-size:9px;letter-spacing:1px;font-weight:700;text-transform:uppercase;
+    color:var(--line);margin-bottom:3px;
+  }
+  .kcard h4{font-size:13px;font-weight:700;line-height:1.35;margin-bottom:4px;
+    overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .kcard .sub-meta{font-size:11px;color:var(--muted)}
+
+  /* 크리에이터 칩 가로 스크롤 */
+  .creators{display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;margin:0 -18px;padding-left:18px;padding-right:18px}
+  .creators::-webkit-scrollbar{display:none}
+  .creator{
+    flex-shrink:0;width:72px;text-align:center;cursor:pointer;
+  }
+  .creator .ava{
+    width:64px;height:64px;border-radius:50%;margin:0 auto 6px;
+    background:linear-gradient(135deg,#FF4D8D,#E8B923);
+    display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;
+    border:2px solid #fff;box-shadow:0 0 0 2px var(--line);
+  }
+  .creator .name{font-size:11px;font-weight:600;line-height:1.2;
+    overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .creator .role{font-size:9px;color:var(--muted);margin-top:2px}
+
+  /* 썸네일 컬러 프리셋 */
+  .tc-curri{background:linear-gradient(135deg,#6B4EFF,#B09CFF)}
+  .tc-column{background:linear-gradient(135deg,#111,#555)}
+  .tc-pod{background:linear-gradient(135deg,#FF4D8D,#FFB3D1)}
+  .tc-conf{background:linear-gradient(135deg,#E8B923,#FFE082)}
+
+  /* ── 2 화면 가로 배치 래퍼 ─── */
+  .dual-screens{
+    display:flex;gap:32px;align-items:flex-start;justify-content:center;
+    width:100%;flex-wrap:wrap;
+  }
+  .screen-col{display:flex;flex-direction:column;align-items:center;gap:10px}
+
+  /* 모바일: dual-screens의 flex-wrap:wrap 덕분에 자동 세로 스택 */
+  @media (max-width:480px){
+    .lang-toggle{top:12px;right:12px;padding:6px 10px;font-size:11px}
+    .phone{width:100%;max-width:380px}
+  }
+</style>
+</head>
+<body>
+
+<!-- 언어 토글 -->
+<div class="lang-toggle" onclick="toggleLang()">
+  <span class="globe">🌐</span>
+  <span class="lang ko">KO</span>
+  <span class="lang en">EN</span>
+</div>
+
+<header>
+  <div class="eyebrow">KISAS · Trend Bubble UI</div>
+  <h1>
+    <span data-ko-only>요즘 뭐가 뜨지?</span>
+    <span data-en-only>What's Trending?</span>
+  </h1>
+  <p>
+    <span data-ko-only>버블 크기 = 트렌드 강도 · Top5는 비주얼 · 탭하면 커리큘럼·컬럼·팟캐스트 연결</span>
+    <span data-en-only>Bubble size = trend intensity · Top 5 with visuals · Tap to explore curriculum, columns, podcasts</span>
+  </p>
+</header>
+
+<!-- 2 화면 가로 배치 -->
+<div class="dual-screens">
+
+<div class="screen-col">
+<div style="text-align:center;width:100%">
+  <div class="screen-label">
+    <span data-ko-only>↓ 메인 · 트렌드 버블</span>
+    <span data-en-only>↓ Main · Trend Bubbles</span>
+  </div>
+</div>
+
+<div class="phone">
+  <div class="statusbar">
+    <span>9:41</span>
+    <span class="title">K-Trend Now</span>
+    <span>🇺🇸 US</span>
+  </div>
+
+  <!-- 서브 타이틀 (토글 시 전환) -->
+  <!-- 버블 label은 영문이 많아 그대로 유지, sub만 전환 -->
+
+
+  <div class="grid">
+
+    <!-- #1 KPop Demon Hunters (Top5 · 이미지) -->
+    <div class="bubble top5 b-kpdh b1 size-xl">
+      <div class="visual">🗡️✨</div>
+      <div class="views"><span class="eye">👁</span>4.2M</div>
+      <div class="content">
+        <div class="rank">#1</div>
+        <div class="label">KPop<br>Demon<br>Hunters</div>
+      </div>
+    </div>
+
+    <!-- #2 Golden (Top5 · 이미지) -->
+    <div class="bubble top5 b-golden b2 size-xxl">
+      <div class="visual">🎤🌟</div>
+      <div class="views"><span class="eye">👁</span>3.8M</div>
+      <div class="content">
+        <div class="rank">#2</div>
+        <div class="label">Golden</div>
+        <div class="sub">HUNTR/X · Hot 100 #1</div>
+      </div>
+    </div>
+
+    <!-- #3 BTS (Top5 · 이미지) -->
+    <div class="bubble top5 b-bts b3 size-l">
+      <div class="visual">💜🎆</div>
+      <div class="views"><span class="eye">👁</span>3.1M</div>
+      <div class="content">
+        <div class="rank">#3</div>
+        <div class="label">BTS</div>
+        <div class="sub">ARIRANG Tour</div>
+      </div>
+    </div>
+
+    <!-- #4 KATSEYE (Top5 · 이미지) -->
+    <div class="bubble top5 b-katseye b4 size-l">
+      <div class="visual">💖✨</div>
+      <div class="views"><span class="eye">👁</span>2.4M</div>
+      <div class="content">
+        <div class="rank">#4</div>
+        <div class="label">KATSEYE</div>
+        <div class="sub">Pinky Up</div>
+      </div>
+    </div>
+
+    <!-- #5 Netflix K-Drama (Top5 · 이미지) -->
+    <div class="bubble top5 b-netflix b5 size-xxl">
+      <div class="visual">🎬🔥</div>
+      <div class="views"><span class="eye">👁</span>2.1M</div>
+      <div class="content">
+        <div class="rank">#5</div>
+        <div class="label">Netflix<br>K-Drama</div>
+        <div class="sub">Bloodhounds · Squid Game</div>
+      </div>
+    </div>
+
+    <!-- #6 KCON LA -->
+    <div class="bubble b6 size-xl">
+      <div class="views"><span class="eye">👁</span>1.6M</div>
+      <div class="rank">#6</div>
+      <div class="label">KCON LA</div>
+      <div class="sub">Aug 14–16</div>
+    </div>
+
+    <!-- #7 BLACKPINK -->
+    <div class="bubble b7 size-m">
+      <div class="views"><span class="eye">👁</span>1.3M</div>
+      <div class="rank">#7</div>
+      <div class="label">BLACK<br>PINK</div>
+    </div>
+
+    <!-- #8 Squid Game -->
+    <div class="bubble b8 size-l">
+      <div class="views"><span class="eye">👁</span>980K</div>
+      <div class="rank">#8</div>
+      <div class="label">Squid Game</div>
+    </div>
+
+    <!-- #9 Bloodhounds -->
+    <div class="bubble b9 size-m">
+      <div class="views"><span class="eye">👁</span>740K</div>
+      <div class="rank">#9</div>
+      <div class="label">Blood<br>hounds 2</div>
+    </div>
+
+    <!-- #10 Coachella K-pop -->
+    <div class="bubble b10 size-s">
+      <div class="views"><span class="eye">👁</span>520K</div>
+      <div class="rank">#10</div>
+      <div class="label">Coachella</div>
+    </div>
+
+    <!-- #11 Lollapalooza K-pop -->
+    <div class="bubble b11 size-xs">
+      <div class="views"><span class="eye">👁</span>410K</div>
+      <div class="label">Lolla<br>K-pop</div>
+    </div>
+
+    <!-- #12 K-Beauty -->
+    <div class="bubble b12 size-xs">
+      <div class="views"><span class="eye">👁</span>380K</div>
+      <div class="label">K-Beauty</div>
+    </div>
+
+    <!-- #13 K-Food -->
+    <div class="bubble b13 size-xs">
+      <div class="views"><span class="eye">👁</span>340K</div>
+      <div class="label">K-Food</div>
+    </div>
+
+    <!-- #14 Webtoon -->
+    <div class="bubble b14 size-xs">
+      <div class="views"><span class="eye">👁</span>290K</div>
+      <div class="label">Webtoon</div>
+    </div>
+
+    <!-- #15 Solo Leveling -->
+    <div class="bubble b15 size-xs">
+      <div class="views"><span class="eye">👁</span>260K</div>
+      <div class="label">Solo<br>Leveling</div>
+    </div>
+
+    <!-- #16 Photocards -->
+    <div class="bubble b16 size-s">
+      <div class="views"><span class="eye">👁</span>210K</div>
+      <div class="label">Photocards</div>
+      <div class="sub">collectible fandom</div>
+    </div>
+
+  </div>
+</div>
+
+</div> <!-- /screen-col (main) -->
+
+<div class="screen-col">
+<!-- ═══════════════════════════════════════════════
+     상세화면: 버블 #2 Golden 을 탭하고 들어간 화면 예시
+     ═══════════════════════════════════════════════ -->
+<div style="text-align:center;width:100%">
+  <div class="screen-label">
+    <span data-ko-only>↓ 버블 탭 후 · 상세 화면</span>
+    <span data-en-only>↓ After Tap · Detail View</span>
+  </div>
+</div>
+
+<div class="phone detail">
+  <div class="detail-scroll">
+
+    <!-- 상단 네비 -->
+    <div class="nav">
+      <span class="back">←</span>
+      <span class="title">Trending</span>
+      <span class="more">⋯</span>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="bg-emoji">🎤</div>
+      <div class="hero-content">
+        <div class="rank-tag">
+          <span data-ko-only>#2 · 트렌딩 나우</span>
+          <span data-en-only>#2 · TRENDING NOW</span>
+        </div>
+        <h2>Golden</h2>
+        <div class="meta">HUNTR/X · KPop Demon Hunters OST</div>
+        <div class="stats">
+          <span>👁 <b>3.8M</b> <span data-ko-only>조회</span><span data-en-only>views</span></span>
+          <span><b>12.4K</b> <span data-ko-only>대화</span><span data-en-only>talks</span></span>
+          <span><b>38</b> <span data-ko-only>콘텐츠</span><span data-en-only>contents</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. 대화 (커뮤니티 게시글 스레드) -->
+    <section class="section">
+      <div class="section-head">
+        <h3><span data-ko-only>💬 팬들의 이야기</span><span data-en-only>💬 Fan Talk</span></h3>
+        <span class="count"><span data-ko-only>12,412개</span><span data-en-only>12,412 posts</span></span>
+      </div>
+
+      <div class="compose">
+        <div class="avatar"></div>
+        <div class="placeholder">
+          <span data-ko-only>Golden에 대한 생각을 나눠보세요…</span>
+          <span data-en-only>Share your thoughts on Golden…</span>
+        </div>
+        <span class="send"><span data-ko-only>게시</span><span data-en-only>Post</span></span>
+      </div>
+
+      <div class="thread">
+        <div class="head">
+          <div class="avatar" style="background:#6B4EFF">M</div>
+          <span class="user">minji_kpop</span>
+          <span class="badge">HOT</span>
+          <span class="time">· <span data-ko-only>2시간 전</span><span data-en-only>2h ago</span></span>
+        </div>
+        <div class="body">
+          <span data-ko-only>Golden이 Hot 100 8주 1위 한 게 K-pop 역사상 최초래요. 가상 그룹이 실제 차트를 뒤집은 거 진짜 상징적이지 않나요?</span>
+          <span data-en-only>Golden topping Hot 100 for 8 weeks is a K-pop first. A virtual group flipping the actual charts — pretty symbolic, no?</span>
+        </div>
+        <div class="actions">
+          <span>♡ 892</span><span>💬 47</span><span>↗ <span data-ko-only>공유</span><span data-en-only>Share</span></span>
+        </div>
+      </div>
+
+      <div class="thread">
+        <div class="head">
+          <div class="avatar" style="background:#E8B923">J</div>
+          <span class="user">jae_writes</span>
+          <span class="time">· <span data-ko-only>5시간 전</span><span data-en-only>5h ago</span></span>
+        </div>
+        <div class="body">
+          <span data-ko-only>그래미 첫 K-pop 수상까지… 이제 "K-pop 문법"이 뭔지 정의를 다시 써야 할 때인 듯</span>
+          <span data-en-only>First K-pop Grammy win too… time to redefine what "K-pop grammar" even means.</span>
+        </div>
+        <div class="actions">
+          <span>♡ 214</span><span>💬 18</span><span>↗</span>
+        </div>
+      </div>
+
+      <div class="thread">
+        <div class="head">
+          <div class="avatar" style="background:#FF4D8D">S</div>
+          <span class="user">soo_dancer</span>
+          <span class="time">· <span data-ko-only>어제</span><span data-en-only>Yesterday</span></span>
+        </div>
+        <div class="body">
+          <span data-ko-only>코첼라에서 KATSEYE랑 합동무대 본 사람?? 관객들이 첫 소절에 다 따라부름 ㄷㄷ</span>
+          <span data-en-only>Anyone caught the KATSEYE joint stage at Coachella?? Crowd sang along from the first line 🤯</span>
+        </div>
+        <div class="actions">
+          <span>♡ 1.2K</span><span>💬 83</span><span>↗</span>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:12px">
+        <span class="more-link">
+          <span data-ko-only>모든 대화 보기 →</span>
+          <span data-en-only>See all conversations →</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- 2. KISAS 커리큘럼 -->
+    <section class="section">
+      <div class="section-head">
+        <h3><span data-ko-only>🎓 KISAS 커리큘럼</span><span data-en-only>🎓 KISAS Curriculum</span></h3>
+        <span class="more-link"><span data-ko-only>전체 →</span><span data-en-only>See all →</span></span>
+      </div>
+
+      <div class="kcard">
+        <div class="thumb tc-curri">📚</div>
+        <div class="info">
+          <div class="tag"><span data-ko-only>L4 · 구독</span><span data-en-only>L4 · Subscription</span></div>
+          <h4>
+            <span data-ko-only>가상 아이돌은 어떻게 진짜가 되는가 — HUNTR/X 해부</span>
+            <span data-en-only>How Virtual Idols Become Real — Anatomy of HUNTR/X</span>
+          </h4>
+          <div class="sub-meta">
+            <span data-ko-only>4주 과정 · 12강 · 287명 수강중</span>
+            <span data-en-only>4-week course · 12 lectures · 287 enrolled</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kcard">
+        <div class="thumb tc-curri">📚</div>
+        <div class="info">
+          <div class="tag"><span data-ko-only>L5 · 프로</span><span data-en-only>L5 · Pro</span></div>
+          <h4>
+            <span data-ko-only>K-pop 히트곡의 후크 설계 — 'Golden' 사례</span>
+            <span data-en-only>Designing a K-pop Hook — The 'Golden' Case</span>
+          </h4>
+          <div class="sub-meta">
+            <span data-ko-only>2주 집중 · 작곡가 멘토링 포함</span>
+            <span data-en-only>2-week intensive · composer mentoring included</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. KISAS 컬럼 -->
+    <section class="section">
+      <div class="section-head">
+        <h3><span data-ko-only>📰 KISAS 컬럼</span><span data-en-only>📰 KISAS Columns</span></h3>
+        <span class="more-link"><span data-ko-only>전체 →</span><span data-en-only>See all →</span></span>
+      </div>
+
+      <div class="kcard">
+        <div class="thumb tc-column">✍️</div>
+        <div class="info">
+          <div class="tag"><span data-ko-only>HBR 미러 · 분석</span><span data-en-only>HBR Mirror · Analysis</span></div>
+          <h4>
+            <span data-ko-only>Golden이 증명한 것: K-pop은 장르가 아니라 문법이다</span>
+            <span data-en-only>What Golden Proved: K-pop Is Grammar, Not Genre</span>
+          </h4>
+          <div class="sub-meta">
+            <span data-ko-only>피디님(김형석) · 8분 읽기</span>
+            <span data-en-only>Kim Hyung-seok · 8 min read</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kcard">
+        <div class="thumb tc-column">✍️</div>
+        <div class="info">
+          <div class="tag"><span data-ko-only>케이스북</span><span data-en-only>Casebook</span></div>
+          <h4>
+            <span data-ko-only>넷플릭스 × 소니뮤직 × 맥도날드 — Golden의 유통 3각편대</span>
+            <span data-en-only>Netflix × Sony Music × McDonald's — Golden's Distribution Trident</span>
+          </h4>
+          <div class="sub-meta">
+            <span data-ko-only>12분 읽기 · 추천 24</span>
+            <span data-en-only>12 min read · 24 recommends</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. KISAS 팟캐스트 -->
+    <section class="section">
+      <div class="section-head">
+        <h3><span data-ko-only>🎙️ KISAS 팟캐스트</span><span data-en-only>🎙️ KISAS Podcast</span></h3>
+        <span class="more-link"><span data-ko-only>전체 →</span><span data-en-only>See all →</span></span>
+      </div>
+
+      <div class="kcard">
+        <div class="thumb tc-pod">🎧</div>
+        <div class="info">
+          <div class="tag">EP 47</div>
+          <h4>
+            <span data-ko-only>가상 그룹이 그래미를 받기까지 — HUNTR/X 뒷이야기</span>
+            <span data-en-only>How a Virtual Group Won a Grammy — The HUNTR/X Story</span>
+          </h4>
+          <div class="sub-meta">
+            <span data-ko-only>42분 · 이번 주 인기 #1</span>
+            <span data-en-only>42 min · #1 this week</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kcard">
+        <div class="thumb tc-pod">🎧</div>
+        <div class="info">
+          <div class="tag">EP 41</div>
+          <h4>
+            <span data-ko-only>K-pop 작곡가들이 말하는 '미국에서 먹히는 훅'</span>
+            <span data-en-only>K-pop Composers on 'Hooks That Work in the US'</span>
+          </h4>
+          <div class="sub-meta">
+            <span data-ko-only>58분 · 3.2K 재생</span>
+            <span data-en-only>58 min · 3.2K plays</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. KISAS 컨퍼런스 -->
+    <section class="section">
+      <div class="section-head">
+        <h3><span data-ko-only>🎤 지난 컨퍼런스</span><span data-en-only>🎤 Past Conferences</span></h3>
+        <span class="more-link"><span data-ko-only>전체 →</span><span data-en-only>See all →</span></span>
+      </div>
+
+      <div class="kcard">
+        <div class="thumb tc-conf">🏛️</div>
+        <div class="info">
+          <div class="tag">KISAS Summit 2026</div>
+          <h4>
+            <span data-ko-only>패널: K-IP는 어디까지 확장되는가 — KPDH 이후의 판</span>
+            <span data-en-only>Panel: How Far Can K-IP Stretch — The Board After KPDH</span>
+          </h4>
+          <div class="sub-meta">
+            <span data-ko-only>2026.03 · 아카이브 영상 74분</span>
+            <span data-en-only>Mar 2026 · 74 min archive</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kcard">
+        <div class="thumb tc-conf">🏛️</div>
+        <div class="info">
+          <div class="tag"><span data-ko-only>1기 캠프 특강</span><span data-en-only>Camp 1 Masterclass</span></div>
+          <h4>
+            <span data-ko-only>가상 아이돌 IP 설계 워크숍</span>
+            <span data-en-only>Virtual Idol IP Design Workshop</span>
+          </h4>
+          <div class="sub-meta">
+            <span data-ko-only>2026.04 · 60명 참여</span>
+            <span data-en-only>Apr 2026 · 60 participants</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 관련 크리에이터 -->
+    <section class="section">
+      <div class="section-head">
+        <h3><span data-ko-only>✨ 관련 크리에이터</span><span data-en-only>✨ Related Creators</span></h3>
+        <span class="more-link"><span data-ko-only>전체 →</span><span data-en-only>See all →</span></span>
+      </div>
+
+      <div class="creators">
+        <div class="creator">
+          <div class="ava" style="background:linear-gradient(135deg,#6B4EFF,#B09CFF)">🎵</div>
+          <div class="name"><span data-ko-only>박지원</span><span data-en-only>Jiwon Park</span></div>
+          <div class="role"><span data-ko-only>작곡가</span><span data-en-only>Composer</span></div>
+        </div>
+        <div class="creator">
+          <div class="ava" style="background:linear-gradient(135deg,#FF4D8D,#FFB3D1)">💃</div>
+          <div class="name">Hana Kim</div>
+          <div class="role"><span data-ko-only>안무가</span><span data-en-only>Choreographer</span></div>
+        </div>
+        <div class="creator">
+          <div class="ava" style="background:linear-gradient(135deg,#E8B923,#FFE082)">🎬</div>
+          <div class="name"><span data-ko-only>최영석</span><span data-en-only>Youngseok Choi</span></div>
+          <div class="role"><span data-ko-only>MV 감독</span><span data-en-only>MV Director</span></div>
+        </div>
+        <div class="creator">
+          <div class="ava" style="background:linear-gradient(135deg,#111,#555)">✍️</div>
+          <div class="name">Jae Park</div>
+          <div class="role"><span data-ko-only>평론가</span><span data-en-only>Critic</span></div>
+        </div>
+        <div class="creator">
+          <div class="ava" style="background:linear-gradient(135deg,#8B5CF6,#C4B5FD)">🎤</div>
+          <div class="name"><span data-ko-only>수민</span><span data-en-only>Sumin</span></div>
+          <div class="role"><span data-ko-only>보컬 코치</span><span data-en-only>Vocal Coach</span></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+</div> <!-- /screen-col (detail) -->
+</div> <!-- /dual-screens -->
+
+<div class="legend">
+  <h3><span data-ko-only>Top 5 (이미지 버블)</span><span data-en-only>Top 5 (Image Bubbles)</span></h3>
+  <div class="row top5-list">
+    <span class="chip">1. KPop Demon Hunters</span>
+    <span class="chip">2. Golden</span>
+    <span class="chip">3. BTS</span>
+    <span class="chip">4. KATSEYE</span>
+    <span class="chip">5. Netflix K-Drama</span>
+  </div>
+  <br>
+  <h3><span data-ko-only>다음 페이지 (#11–#20 · 키워드 버블)</span><span data-en-only>Next Page (#11–#20 · Keyword Bubbles)</span></h3>
+  <div class="row rest-list">
+    <span class="chip">11. Lollapalooza K-pop</span>
+    <span class="chip">12. K-Beauty</span>
+    <span class="chip">13. K-Food</span>
+    <span class="chip">14. Webtoon</span>
+    <span class="chip">15. Solo Leveling</span>
+    <span class="chip">16. K-Drama Romance</span>
+    <span class="chip">17. K-Action</span>
+    <span class="chip">18. Photocards</span>
+    <span class="chip">19. Global Girl Group</span>
+    <span class="chip">20. K-Lifestyle</span>
+  </div>
+</div>
+
+<script>
+  function toggleLang(){
+    const html = document.documentElement;
+    const cur = html.getAttribute('data-lang') || 'ko';
+    html.setAttribute('data-lang', cur === 'ko' ? 'en' : 'ko');
+  }
+</script>
+
+</body>
+</html>
