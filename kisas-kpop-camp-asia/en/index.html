@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>KISAS Kpop Camp — 10 Days in Seoul</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Gaegu:wght@400;700&family=Pretendard:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===========================================================
+   KISAS Kpop Camp — Student Proposal v2.1 Asia Edition (English)
+   Palette: Oxford Blue (authority) × Young Playful (energy)
+   Design-skill v1.5 · young-playful + C3 override
+   =========================================================== */
+
+:root {
+  /* Oxford Anchor */
+  --oxford: #002147;
+  --oxford-soft: #0a2e5c;
+  --oxford-ink: #001330;
+
+  /* Young Playful — 5 highlighter colors */
+  --hl-pink:   #ff5e8a;
+  --hl-yellow: #ffd93d;
+  --hl-mint:   #4ecdc4;
+  --hl-coral:  #ff8a5b;
+  --hl-lilac:  #b980f0;
+
+  /* 5 block backgrounds — pastel wash */
+  --bg-cream:   #fff9e6;
+  --bg-rose:    #ffe9ef;
+  --bg-mint:    #e6faf6;
+  --bg-sky:     #e6f0fc;
+  --bg-lilac:   #f1eaff;
+
+  /* Base */
+  --ink: #0a1020;
+  --ink-soft: #3b4a6b;
+  --line: #e7ecf3;
+  --paper: #ffffff;
+  --paper-off: #f7f9fc;
+
+  /* Type scale — C1: 4 : 2.3 : 1.5 : 1 */
+  --t-display: clamp(2.8rem, 7vw, 5.6rem);  /* L1 */
+  --t-heading: clamp(1.8rem, 4vw, 3.22rem); /* L2 */
+  --t-sub:     clamp(1.25rem, 2.4vw, 2.1rem); /* L3 */
+  --t-body:    clamp(1rem, 1.5vw, 1.4rem);    /* L4 */
+  --t-small:   clamp(0.85rem, 1.1vw, 1rem);
+
+  /* Radius · shadow */
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --shadow-1: 0 4px 16px rgba(0,33,71,0.06);
+  --shadow-2: 0 12px 40px rgba(0,33,71,0.10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: var(--t-body);
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==== Container ==== */
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+section {
+  padding: clamp(3rem, 8vw, 7rem) 0;
+}
+
+/* ==== Typography ==== */
+h1, h2, h3, h4 {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--oxford-ink);
+}
+h1 { font-size: var(--t-display); }
+h2 { font-size: var(--t-heading); }
+h3 { font-size: var(--t-sub); }
+h4 { font-size: calc(var(--t-body) * 1.1); }
+
+p { font-weight: 400; }
+strong { font-weight: 700; color: var(--oxford); }
+
+/* ==== Highlight pen ==== */
+.hl-pink   { background: linear-gradient(180deg, transparent 55%, var(--hl-pink) 55%); padding: 0 .15em; }
+.hl-yellow { background: linear-gradient(180deg, transparent 55%, var(--hl-yellow) 55%); padding: 0 .15em; }
+.hl-mint   { background: linear-gradient(180deg, transparent 55%, var(--hl-mint) 55%); padding: 0 .15em; }
+.hl-coral  { background: linear-gradient(180deg, transparent 55%, var(--hl-coral) 55%); padding: 0 .15em; }
+.hl-lilac  { background: linear-gradient(180deg, transparent 55%, var(--hl-lilac) 55%); padding: 0 .15em; }
+
+/* ==== HERO ==== */
+.hero {
+  background: radial-gradient(ellipse at 30% 20%, #0a2e5c 0%, #002147 55%, #001330 100%);
+  color: #ffffff;
+  padding: clamp(3rem, 10vw, 8rem) 0 clamp(3rem, 8vw, 6rem);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(255,217,61,0.18) 0%, transparent 40%),
+    radial-gradient(circle at 10% 85%, rgba(255,94,138,0.15) 0%, transparent 40%);
+  pointer-events: none;
+}
+.hero .wrap { position: relative; z-index: 1; text-align: center; }
+.hero .eyebrow {
+  display: inline-block;
+  font-size: var(--t-small);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hl-yellow);
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  color: #ffffff;
+  margin: 0 0 1.2rem;
+}
+.hero h1 .playful {
+  font-family: 'Gaegu', 'Pretendard', cursive;
+  font-weight: 700;
+  color: var(--hl-yellow);
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+.hero .tagline {
+  font-size: var(--t-sub);
+  font-weight: 300;
+  color: rgba(255,255,255,0.88);
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.5;
+}
+.hero .meta {
+  font-size: var(--t-small);
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.04em;
+}
+
+/* ==== Big Number (V4) ==== */
+.bignum-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+.bignum {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.bignum .n {
+  font-size: clamp(3rem, 7vw, 5.6rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--hl-yellow);
+  display: block;
+  letter-spacing: -0.04em;
+}
+.bignum .u { font-size: var(--t-small); color: rgba(255,255,255,0.7); margin-top: .3rem; display: block; font-weight: 500; }
+.bignum .l { font-size: var(--t-small); color: rgba(255,255,255,0.9); margin-top: .8rem; display: block; font-weight: 600; letter-spacing: 0.04em; }
+
+/* ==== Section header ==== */
+.sec-num {
+  font-family: 'Gaegu', cursive;
+  font-size: clamp(3rem, 8vw, 5rem);
+  color: var(--hl-pink);
+  font-weight: 700;
+  line-height: 1;
+  display: block;
+  margin-bottom: .5rem;
+}
+.sec-title {
+  margin: 0 0 1rem;
+}
+.sec-lead {
+  font-size: var(--t-sub);
+  color: var(--ink-soft);
+  font-weight: 300;
+  max-width: 760px;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
+  line-height: 1.5;
+}
+
+/* ==== Backgrounds alternating ==== */
+.bg-cream { background: var(--bg-cream); }
+.bg-rose  { background: var(--bg-rose); }
+.bg-mint  { background: var(--bg-mint); }
+.bg-sky   { background: var(--bg-sky); }
+.bg-lilac { background: var(--bg-lilac); }
+.bg-oxford { background: var(--oxford); color: #fff; }
+.bg-oxford .sec-title, .bg-oxford h2, .bg-oxford h3 { color: #fff; }
+.bg-oxford .sec-lead { color: rgba(255,255,255,0.8); }
+
+/* ==== Before/After Matrix ==== */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+}
+.ba-cell {
+  background: var(--paper);
+  padding: clamp(1.2rem, 2.5vw, 2rem);
+}
+.ba-head {
+  font-size: var(--t-small);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: .8rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.ba-head.before { color: var(--ink-soft); }
+.ba-head.after  { color: var(--oxford); }
+.ba-head .dot { width: 10px; height: 10px; border-radius: 50%; }
+.ba-head.before .dot { background: #c8d2e0; }
+.ba-head.after  .dot { background: var(--hl-pink); }
+.ba-cell p { margin: 0 0 1rem; font-size: var(--t-body); line-height: 1.5; }
+.ba-cell.before p { color: var(--ink-soft); }
+.ba-cell.after p strong { color: var(--oxford-ink); }
+
+/* ==== Trust card ==== */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.8rem);
+}
+.trust-card {
+  background: var(--paper);
+  border-radius: var(--r-md);
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  box-shadow: var(--shadow-1);
+  border-top: 4px solid var(--oxford);
+}
+.trust-card h4 { margin: 0 0 .5rem; color: var(--oxford-ink); }
+.trust-card .role {
+  font-size: var(--t-small);
+  color: var(--hl-pink);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+}
+.trust-card p { margin: .5rem 0 0; font-size: var(--t-body); line-height: 1.55; color: var(--ink-soft); }
+.trust-card blockquote {
+  margin: 1rem 0 0;
+  padding: .8rem 1rem;
+  background: var(--bg-cream);
+  border-left: 3px solid var(--hl-yellow);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: var(--t-small);
+  font-weight: 500;
+  color: var(--oxford-ink);
+}
+
+/* ==== Timeline — horizontal scroll ==== */
+.timeline-wrap {
+  position: relative;
+  margin: 0 calc(-1 * clamp(1rem, 3vw, 2rem));
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+.timeline {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(360px, 80vw);
+  gap: 1.2rem;
+  overflow-x: auto;
+  padding: 1rem 0 2rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.timeline::-webkit-scrollbar { height: 8px; }
+.timeline::-webkit-scrollbar-thumb { background: var(--oxford); border-radius: 4px; }
+.day-card {
+  background: var(--paper);
+  border-radius: var(--r-md);
+  padding: 1.8rem;
+  box-shadow: var(--shadow-1);
+  scroll-snap-align: start;
+  display: flex; flex-direction: column;
+  border-top: 6px solid;
+}
+.day-card:nth-child(1) { border-color: var(--hl-pink); }
+.day-card:nth-child(2) { border-color: var(--hl-yellow); }
+.day-card:nth-child(3) { border-color: var(--hl-mint); }
+.day-card:nth-child(4) { border-color: var(--hl-coral); }
+.day-card:nth-child(5) { border-color: var(--hl-lilac); }
+.day-card.final { border-color: var(--oxford); background: var(--oxford); color: #fff; }
+.day-card.final h4, .day-card.final .day-label { color: #fff; }
+.day-label {
+  font-family: 'Gaegu', cursive;
+  font-size: var(--t-sub);
+  font-weight: 700;
+  color: var(--oxford);
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+.day-card h4 { margin: 0 0 1rem; font-size: calc(var(--t-body) * 1.15); }
+.day-card ul { margin: 0; padding: 0; list-style: none; }
+.day-card li {
+  padding: .4rem 0;
+  font-size: var(--t-small);
+  line-height: 1.5;
+  border-bottom: 1px dashed rgba(0,33,71,0.12);
+}
+.day-card li:last-child { border: none; }
+.day-card.final li { border-color: rgba(255,255,255,0.2); }
+.timeline-hint {
+  font-size: var(--t-small);
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: .5rem;
+}
+
+/* ==== Takeaway icon grid ==== */
+.take-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.8rem);
+}
+.take-card {
+  background: var(--paper);
+  border-radius: var(--r-md);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: var(--shadow-1);
+  position: relative;
+}
+.take-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: var(--bg-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.take-card:nth-child(1) .take-icon { background: var(--bg-rose); }
+.take-card:nth-child(2) .take-icon { background: var(--bg-cream); }
+.take-card:nth-child(3) .take-icon { background: var(--bg-mint); }
+.take-card:nth-child(4) .take-icon { background: var(--bg-sky); }
+.take-card:nth-child(5) .take-icon { background: var(--bg-lilac); }
+.take-card h4 { margin: 0 0 .5rem; font-size: calc(var(--t-body) * 1.1); }
+.take-card p { margin: 0; font-size: var(--t-small); color: var(--ink-soft); line-height: 1.55; }
+
+/* ==== Safety table ==== */
+.safety-list {
+  display: grid;
+  gap: .6rem;
+}
+.safety-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 3fr;
+  gap: 1.2rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--paper);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-1);
+  align-items: start;
+}
+.safety-row .key {
+  font-weight: 700;
+  color: var(--oxford);
+  font-size: var(--t-body);
+}
+.safety-row .val {
+  color: var(--ink-soft);
+  font-size: var(--t-body);
+  line-height: 1.55;
+}
+.safety-row .val strong { color: var(--oxford-ink); }
+.safety-row .tba {
+  display: inline-block;
+  font-size: var(--t-small);
+  padding: .15em .6em;
+  background: var(--bg-cream);
+  border-radius: 99px;
+  color: var(--oxford);
+  font-weight: 600;
+}
+
+/* ==== Recommend chips ==== */
+.chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.chip {
+  padding: 1.2rem 1.4rem;
+  background: var(--paper);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-1);
+  display: flex; align-items: start; gap: .8rem;
+  font-size: var(--t-body);
+  line-height: 1.5;
+}
+.chip .emoji { flex-shrink: 0; font-size: 1.5rem; }
+
+/* ==== Pricing / Info block ==== */
+.info-card {
+  background: var(--paper);
+  border-radius: var(--r-lg);
+  padding: clamp(1.8rem, 4vw, 3rem);
+  box-shadow: var(--shadow-2);
+  border-top: 8px solid var(--oxford);
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.info-item {
+  padding: 1.2rem;
+  background: var(--paper-off);
+  border-radius: var(--r-sm);
+}
+.info-item .k {
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--hl-pink);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+}
+.info-item .v {
+  font-size: var(--t-body);
+  font-weight: 500;
+  color: var(--oxford-ink);
+}
+
+/* ==== FAQ accordion ==== */
+.faq {
+  display: grid;
+  gap: .6rem;
+}
+.faq details {
+  background: var(--paper);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+}
+.faq summary {
+  padding: 1.2rem 1.5rem;
+  font-weight: 700;
+  font-size: var(--t-body);
+  color: var(--oxford-ink);
+  cursor: pointer;
+  list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem;
+  min-height: 44px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  font-size: 1.6rem;
+  color: var(--hl-pink);
+  font-weight: 700;
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq .answer {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--ink-soft);
+  font-size: var(--t-body);
+  line-height: 1.6;
+}
+.faq .answer strong { color: var(--oxford-ink); }
+
+/* ==== CTA sticky bar ==== */
+.cta-sticky {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--oxford);
+  color: #fff;
+  padding: .9rem 1rem;
+  z-index: 100;
+  box-shadow: 0 -8px 24px rgba(0,33,71,0.2);
+  display: none;
+}
+.cta-sticky .inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.cta-sticky .msg {
+  font-weight: 700;
+  font-size: var(--t-small);
+}
+.cta-sticky .btn {
+  background: var(--hl-yellow);
+  color: var(--oxford-ink);
+  padding: .7rem 1.4rem;
+  border-radius: 99px;
+  font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex; align-items: center;
+  font-size: var(--t-small);
+}
+@media (min-width: 768px) { .cta-sticky { display: block; } body { padding-bottom: 80px; } }
+
+/* ==== Final CTA ==== */
+.final-cta {
+  background: radial-gradient(ellipse at 50% 50%, #0a2e5c 0%, #002147 70%, #001330 100%);
+  color: #fff;
+  text-align: center;
+  padding: clamp(4rem, 10vw, 7rem) 0;
+}
+.final-cta h2 { color: #fff; margin-bottom: 1rem; }
+.final-cta .closing {
+  font-family: 'Gaegu', cursive;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--hl-yellow);
+  margin: 2.5rem 0 1rem;
+  line-height: 1.3;
+}
+.final-cta .sig { color: rgba(255,255,255,0.6); font-size: var(--t-small); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 2.5rem auto 0;
+  max-width: 800px;
+  text-align: left;
+}
+.contact-item {
+  background: rgba(255,255,255,0.06);
+  padding: 1.2rem;
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.contact-item .icon { font-size: 1.5rem; }
+.contact-item .label { font-size: var(--t-small); color: var(--hl-yellow); font-weight: 700; margin: .4rem 0 .2rem; }
+.contact-item .value { font-size: var(--t-body); color: #fff; }
+
+/* ==== Image Placeholder ==== */
+.img-ph {
+  background: repeating-linear-gradient(45deg, var(--paper-off), var(--paper-off) 10px, var(--bg-sky) 10px, var(--bg-sky) 20px);
+  border: 2px dashed var(--oxford);
+  border-radius: var(--r-md);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--oxford);
+  font-family: monospace;
+  font-size: var(--t-small);
+  margin: 1.5rem 0;
+}
+.img-ph .tag {
+  display: inline-block;
+  background: var(--oxford);
+  color: #fff;
+  padding: .2em .6em;
+  border-radius: 4px;
+  font-size: .75rem;
+  font-weight: 700;
+  margin-bottom: .5rem;
+  letter-spacing: .05em;
+}
+
+/* ==== Quote block ==== */
+.pullquote {
+  font-family: 'Gaegu', cursive;
+  font-size: var(--t-sub);
+  font-weight: 700;
+  color: var(--oxford);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  border-left: 6px solid var(--hl-pink);
+  background: var(--bg-rose);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  line-height: 1.5;
+}
+
+/* ==== Limited notice ==== */
+.limited {
+  background: var(--oxford);
+  color: #fff;
+  border-radius: var(--r-lg);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.limited::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255,217,61,0.15), transparent 50%);
+}
+.limited h3 {
+  color: var(--hl-yellow);
+  font-family: 'Gaegu', cursive;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 1rem;
+  position: relative;
+}
+.limited p {
+  color: rgba(255,255,255,0.9);
+  font-size: var(--t-body);
+  max-width: 620px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ==== Footer ==== */
+footer {
+  background: var(--oxford-ink);
+  color: rgba(255,255,255,0.7);
+  padding: 2.5rem 0;
+  text-align: center;
+  font-size: var(--t-small);
+}
+footer .wrap { padding-top: 0; padding-bottom: 0; }
+footer .quote {
+  font-family: 'Gaegu', cursive;
+  color: var(--hl-yellow);
+  font-size: var(--t-sub);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 640px) {
+  .bignum-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .ba-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .safety-row { grid-template-columns: 1fr; gap: .3rem; padding: 1rem 1.2rem; }
+  .safety-row .key { font-size: var(--t-small); text-transform: uppercase; letter-spacing: 0.08em; }
+  .info-grid { grid-template-columns: 1fr; }
+  .final-cta .closing { font-size: 1.4rem; }
+  .cta-sticky { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================ HERO ================================ -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">For Asian Youth · Seoul Inbound</div>
+    <h1><span class="playful">KISAS Kpop Camp</span>,<br>10 Days in Seoul</h1>
+    <p class="tagline">For Asian youth from Grade 4 to Middle School<br>A Seoul inbound K-Pop experience camp</p>
+    <div class="meta">
+      Host · KISAS Family (KISAS / KISAS Plus / KISAS Study Abroad Center) &nbsp;·&nbsp; Director · Composer Hyung-suk Kim (PD.K)
+    </div>
+
+    <div class="bignum-grid">
+      <div class="bignum">
+        <span class="n">3</span>
+        <span class="u">TRACKS</span>
+        <span class="l">AI Songwriting · Choir · Cover Dance</span>
+      </div>
+      <div class="bignum">
+        <span class="n">1</span>
+        <span class="u">STAGE</span>
+        <span class="l">Seoul Showcase Stage</span>
+      </div>
+      <div class="bignum">
+        <span class="n">∞</span>
+        <span class="u">MEMORY</span>
+        <span class="l">Lifelong Video & Records</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================================ 01 WHY K-POP ================================ -->
+<section class="bg-cream">
+  <div class="wrap">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Why <span class="hl-pink">K-Pop</span>, Why Now?</h2>
+    <p class="sec-lead">Your child dances to K-Pop alone in their room. They match choreography in front of the mirror, memorize lyrics of their favorite groups, and film cover videos with friends.</p>
+
+    <p style="font-size: var(--t-sub); font-weight: 700; color: var(--oxford-ink); margin: 2rem 0;">That time is not just <span class="hl-yellow">playtime</span>.</p>
+    <p>Right now, your child is <strong>exploring — through body and emotion</strong> — who they are and what moves them. KISAS Kpop Camp is an experience camp designed so this exploration can happen <strong>in Seoul, for 10 days, with space and joy</strong>. <strong>Turn emotions into songs with AI, sing K-Pop together, and express it through cover dance.</strong></p>
+
+    <div class="pullquote">
+      This is not an intensive training camp.<br>
+      A camp where students lightly experience 3 tracks — <strong>AI Lyrics & Composition · K-Pop Choir · Cover Dance</strong> —<br>
+      and complete it all on a Seoul stage as a showcase.
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 02 BEFORE / AFTER ================================ -->
+<section class="bg-rose">
+  <div class="wrap">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">When the camp ends,<br>your child <span class="hl-mint">will be different</span></h2>
+    <p class="sec-lead">The transformation your child goes through in 10 days. See them before and after, side by side.</p>
+
+    <div class="img-ph">
+      <span class="tag">IMG-02 · BEFORE/AFTER</span><br>
+      Left: Practicing alone in front of a mirror / Right: Performing on the showcase stage under lights (2-shot comparison)
+    </div>
+
+    <div class="ba-grid">
+      <div class="ba-cell before">
+        <div class="ba-head before"><span class="dot"></span>BEFORE · Before the Camp</div>
+        <p>A child who danced to K-Pop alone in their room</p>
+        <p>"I'm not really sure what I like"</p>
+        <p>A child who grew quiet around strangers</p>
+        <p>A child who read books as homework</p>
+        <p>A trip remembered only through a few photos</p>
+      </div>
+      <div class="ba-cell after">
+        <div class="ba-head after"><span class="dot"></span>AFTER · After Completion</div>
+        <p>A child who <strong>completed a showcase on stage with their team</strong></p>
+        <p>"I love <strong>this kind of music, this kind of stage style</strong>"</p>
+        <p>A child who <strong>turned their feelings into a single sentence and made a song with AI</strong></p>
+        <p>A child who <strong>found their voice in the K-Pop choir and bonded with friends</strong></p>
+        <p>A child with <strong>their own showcase video filmed by a professional crew</strong></p>
+      </div>
+    </div>
+
+    <p style="font-size: var(--t-sub); font-weight: 700; color: var(--oxford-ink); text-align: center; margin-top: 3rem; line-height: 1.4;">
+      After 10 days, your child returns home with the memory of <span class="hl-yellow">"I stood on a stage in Seoul"</span><br>and tangible, filmed records that prove it.
+    </p>
+  </div>
+</section>
+
+<!-- ================================ 03 WHO MADE THIS ================================ -->
+<section class="bg-sky">
+  <div class="wrap">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Who <span class="hl-coral">built this camp?</span></h2>
+    <p class="sec-lead">Before sending your child to Seoul, this is what you must know. Who designed it, why, and how.</p>
+
+    <div class="img-ph">
+      <span class="tag">IMG-03 · PD.K Profile</span><br>
+      Studio portrait or at the piano · Caption: "Hyung-suk Kim · Composer / Producer / Director of KISAS Kpop Camp"
+    </div>
+
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="role">PROGRAM DIRECTOR</div>
+        <h4>Composer Hyung-suk Kim (PD.K)</h4>
+        <p>One of Korea's leading composers and producers in popular music. A <strong>veteran practitioner</strong> behind countless hit songs designs the camp directly and leads key sessions.</p>
+        <blockquote>"Make the hard easy, the easy deep, and the deep joyful." — Hyung-suk Kim</blockquote>
+      </div>
+
+      <div class="trust-card">
+        <div class="role">HOST · OPERATOR</div>
+        <h4>KISAS Family</h4>
+        <p>Three entities operate together: <strong>KISAS (Education) · KISAS Plus · KISAS Study Abroad Center</strong>. The expertise and infrastructure of Korea's education and study-abroad sector handle the camp's <strong>safety, operations, and administration</strong>.</p>
+      </div>
+
+      <div class="trust-card">
+        <div class="role">3 TRACKS</div>
+        <h4>AI Songwriting · Choir · Cover Dance</h4>
+        <p>A light humanities seed talk → <strong>turn your emotions into a K-Pop song with AI</strong> · <strong>K-Pop Choir (strong voices naturally become soloists during practice)</strong> · <strong>K-Pop Cover Dance</strong>. Experience all three tracks evenly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 04 7-DAY JOURNEY ================================ -->
+<section class="bg-mint">
+  <div class="wrap">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">What your child will<br><span class="hl-lilac">experience in 10 days</span></h2>
+    <p class="sec-lead">From arrival to showcase — a 10-day flow where every day carries clear meaning. Swipe right to see the full schedule.</p>
+
+    <div class="timeline-wrap">
+      <div class="timeline">
+        <div class="day-card">
+          <span class="day-label">Day 1</span>
+          <h4>Arrival, and meeting your team</h4>
+          <ul>
+            <li>✈️ Arrival in Seoul · Dormitory assignment</li>
+            <li>🎉 Welcome performance</li>
+            <li>🤝 Team assignment (Creative Check-in)</li>
+          </ul>
+        </div>
+
+        <div class="day-card">
+          <span class="day-label">Day 2~3</span>
+          <h4>Making your own K-Pop with AI</h4>
+          <ul>
+            <li>🌱 Morning (English + major-country interpretation): <strong>Humanities Seed Talk</strong> — "What's your feeling today, in one sentence?" A light opening conversation</li>
+            <li>🤖 Afternoon: <strong>AI Lyrics & Composition Workshop</strong> — From one sentence of emotion to a complete K-Pop song with AI (team original)</li>
+            <li>🎤 Evening: <strong>K-Pop Choir Opening</strong> · Vocal basics warm-up</li>
+          </ul>
+        </div>
+
+        <div class="day-card">
+          <span class="day-label">Day 4</span>
+          <h4>A day walking through Seoul <em>(parents may join)</em></h4>
+          <ul>
+            <li>📍 K-Pop landmark tour</li>
+            <li>👘 Korean culture experience (Hanbok · traditional market · Korean cooking)</li>
+            <li>🏙️ Seoul sightseeing</li>
+            <li>👨‍👩‍👧 Today, <strong>parents are welcome to join</strong></li>
+          </ul>
+        </div>
+
+        <div class="day-card">
+          <span class="day-label">Day 5~6</span>
+          <h4>Learning the cover dance</h4>
+          <ul>
+            <li>💃 <strong>K-Pop Cover Dance Basics</strong> — Song selection · learning the choreography part by part</li>
+            <li>🧭 <strong>Stage Blocking</strong> — Formations · positioning · detail work</li>
+            <li>🎥 A professional film crew <strong>captures the process from class to rehearsal</strong> (making-of footage)</li>
+          </ul>
+        </div>
+
+        <div class="day-card">
+          <span class="day-label">Day 7</span>
+          <h4>Completing the choir</h4>
+          <ul>
+            <li>🎤 <strong>K-Pop Choir Completion</strong> — Everyone sings together; <strong>strong voices naturally take on soloist parts</strong></li>
+            <li>🎶 <strong>Harmony Detail</strong> — Part assignments · choir run-through</li>
+            <li>🌿 Short free-time blocks help your child <strong>recover energy</strong></li>
+          </ul>
+        </div>
+
+        <div class="day-card">
+          <span class="day-label">Day 8~9</span>
+          <h4>Polishing the stage</h4>
+          <ul>
+            <li>✨ <strong>Full run-through with costumes &amp; lights</strong> — a true dress rehearsal</li>
+            <li>🎬 <strong>Making-of Filming</strong> — on-site interviews · rehearsal highlights</li>
+            <li>🎯 <strong>Final Rehearsal</strong> — end-to-end check across Parts 1–5</li>
+          </ul>
+        </div>
+
+        <div class="day-card final">
+          <span class="day-label">Day 10</span>
+          <h4>FINAL SHOWCASE</h4>
+          <ul>
+            <li><strong>Part 1</strong> Making-of video screening (class footage + AI songwriting documentary, casual tone)</li>
+            <li><strong>Part 2</strong> K-Pop Choir (with live soloists)</li>
+            <li><strong>Part 3</strong> K-Pop Cover Dance team performances</li>
+            <li><strong>Part 4</strong> Finale Choir (iconic Korean K-Pop song, performed by everyone)</li>
+            <li><strong>Part 5</strong> Completion ceremony · Creative Spirit Award · Commemorative package</li>
+          </ul>
+        </div>
+      </div>
+      <p class="timeline-hint">← Scroll left and right to see the full schedule →</p>
+    </div>
+
+    <div class="img-ph">
+      <span class="tag">IMG-05 · SHOWCASE</span><br>
+      Day 10 showcase emotional peak — team group stage photo (lights · costumes · parents in audience) or full-group choir scene
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 05 TAKEAWAY ================================ -->
+<section class="bg-lilac">
+  <div class="wrap">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">What your child <span class="hl-coral">takes home</span></h2>
+    <p class="sec-lead">This is our promise. So that 10 days of memories never fade, we preserve them in tangible form and on video.</p>
+
+    <div class="img-ph">
+      <span class="tag">IMG-06 · TAKEAWAY PACKAGE</span><br>
+      Certificate · Creative Journal Workbook · T-shirt · Badge · Portrait flat-lay
+    </div>
+
+    <div class="take-grid">
+      <div class="take-card">
+        <div class="take-icon">🎬</div>
+        <h4>Video Logbook</h4>
+        <p>10-day full highlights · Choir & cover dance showcase full footage · AI songwriting making-of video · Personal highlights (QR digital)</p>
+      </div>
+      <div class="take-card">
+        <div class="take-icon">🎵</div>
+        <h4>AI Original Song</h4>
+        <p>The <strong>K-Pop original song</strong> you completed with your team using AI · Audio file · Lyric card (digital)</p>
+      </div>
+      <div class="take-card">
+        <div class="take-icon">🏆</div>
+        <h4>Certificate</h4>
+        <p>Premium design · Signed by PD.K · 3-track completion certification (AI Songwriting · Choir · Cover Dance) (physical + digital)</p>
+      </div>
+      <div class="take-card">
+        <div class="take-icon">📓</div>
+        <h4>Creative Journal Workbook</h4>
+        <p>Physical book containing emotion journal · AI lyric notes · K-Pop practice logs · Daily Reflection</p>
+      </div>
+      <div class="take-card">
+        <div class="take-icon">👕</div>
+        <h4>Merchandise</h4>
+        <p>Camp t-shirt · Badge · Group photo · Personal portrait</p>
+      </div>
+      <div class="take-card">
+        <div class="take-icon">📱</div>
+        <h4>Digital Portfolio</h4>
+        <p>QR-accessible online archive for life (videos · photos · certificate)</p>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top: 3rem; font-size: var(--t-sub); font-weight: 500; color: var(--oxford-ink);">
+      Crafted to a <span class="hl-yellow">quality parents are proud to share on social media</span>.
+    </p>
+  </div>
+</section>
+
+<!-- ================================ EXTRA · ASIA COUNTRY CARE ================================ -->
+<section style="background: var(--paper-off);">
+  <div class="wrap">
+    <span class="sec-num" style="color: var(--hl-mint);">EXTRA</span>
+    <h2 class="sec-title">Tailored for students<br><span class="hl-mint">from every Asian country</span></h2>
+    <p class="sec-lead">A single camp where students from across Asia come together. Each country's <strong>cuisine, religion, language, and schedule</strong> is reflected according to the nationality mix of each cohort.</p>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 2.5rem;">
+
+      <!-- Tier 1 -->
+      <div style="padding: 1.5rem; background: var(--bg-rose); border-radius: var(--r-md); border-top: 4px solid var(--hl-pink);">
+        <div style="font-size: 1.8rem; margin-bottom: .5rem;">🇮🇩</div>
+        <h4 style="margin: 0 0 .75rem;">Indonesia</h4>
+        <p style="font-size: var(--t-small); line-height: 1.6; color: var(--ink-soft); margin: 0;">Halal meals · Muslim prayer space · <strong>Bahasa Indonesia interpretation</strong></p>
+      </div>
+      <div style="padding: 1.5rem; background: var(--bg-rose); border-radius: var(--r-md); border-top: 4px solid var(--hl-pink);">
+        <div style="font-size: 1.8rem; margin-bottom: .5rem;">🇲🇾</div>
+        <h4 style="margin: 0 0 .75rem;">Malaysia</h4>
+        <p style="font-size: var(--t-small); line-height: 1.6; color: var(--ink-soft); margin: 0;">Halal meals · Multicultural care · <strong>English-friendly</strong></p>
+      </div>
+
+      <!-- Tier 2 -->
+      <div style="padding: 1.5rem; background: var(--bg-cream); border-radius: var(--r-md); border-top: 4px solid var(--hl-yellow);">
+        <div style="font-size: 1.8rem; margin-bottom: .5rem;">🇹🇭</div>
+        <h4 style="margin: 0 0 .75rem;">Thailand</h4>
+        <p style="font-size: var(--t-small); line-height: 1.6; color: var(--ink-soft); margin: 0;">Buddhist etiquette respected · <strong>Thai-adjusted cuisine and spice levels</strong></p>
+      </div>
+      <div style="padding: 1.5rem; background: var(--bg-cream); border-radius: var(--r-md); border-top: 4px solid var(--hl-yellow);">
+        <div style="font-size: 1.8rem; margin-bottom: .5rem;">🇻🇳</div>
+        <h4 style="margin: 0 0 .75rem;">Vietnam</h4>
+        <p style="font-size: var(--t-small); line-height: 1.6; color: var(--ink-soft); margin: 0;">Ingredient and spice consideration · <strong>Vietnamese key-term support</strong></p>
+      </div>
+      <div style="padding: 1.5rem; background: var(--bg-cream); border-radius: var(--r-md); border-top: 4px solid var(--hl-yellow);">
+        <div style="font-size: 1.8rem; margin-bottom: .5rem;">🇵🇭</div>
+        <h4 style="margin: 0 0 .75rem;">Philippines</h4>
+        <p style="font-size: var(--t-small); line-height: 1.6; color: var(--ink-soft); margin: 0;">Catholic worship time respected · <strong>English-friendly classes</strong></p>
+      </div>
+
+      <!-- Tier 3 -->
+      <div style="padding: 1.5rem; background: var(--bg-mint); border-radius: var(--r-md); border-top: 4px solid var(--hl-mint);">
+        <div style="font-size: 1.8rem; margin-bottom: .5rem;">🇮🇳</div>
+        <h4 style="margin: 0 0 .75rem;">India</h4>
+        <p style="font-size: var(--t-small); line-height: 1.6; color: var(--ink-soft); margin: 0;">Vegetarian & vegan options · <strong>Hindu and Muslim cuisine separated</strong></p>
+      </div>
+      <div style="padding: 1.5rem; background: var(--bg-sky); border-radius: var(--r-md); border-top: 4px solid var(--hl-lilac);">
+        <div style="font-size: 1.8rem; margin-bottom: .5rem;">🇸🇬 🇭🇰</div>
+        <h4 style="margin: 0 0 .75rem;">Singapore · Hong Kong</h4>
+        <p style="font-size: var(--t-small); line-height: 1.6; color: var(--ink-soft); margin: 0;">Accustomed to multi-religious environments · <strong>English-based self-guided operation</strong></p>
+      </div>
+      <div style="padding: 1.5rem; background: var(--bg-lilac); border-radius: var(--r-md); border-top: 4px solid var(--hl-lilac);">
+        <div style="font-size: 1.8rem; margin-bottom: .5rem;">🌏</div>
+        <h4 style="margin: 0 0 .75rem;">Other Asian Countries</h4>
+        <p style="font-size: var(--t-small); line-height: 1.6; color: var(--ink-soft); margin: 0;">Individual inquiries welcome · <strong>Tailored guidance through your agent</strong></p>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top: 2.5rem; font-size: var(--t-sub); font-weight: 700; color: var(--oxford-ink); line-height: 1.5;">
+      A camp joined not by nationality, but by <span class="hl-mint">"a heart that loves K-Pop"</span>.<br>
+      <span style="font-size: var(--t-body); font-weight: 500; color: var(--ink-soft);">Country-specific needs are reflected according to each cohort's nationality mix.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ================================ 06 SAFETY PROMISE ================================ -->
+<section class="bg-oxford">
+  <div class="wrap">
+    <span class="sec-num" style="color: var(--hl-yellow);">06</span>
+    <h2 class="sec-title" style="color:#fff;">Our promise to<br>Asian <span style="color: var(--hl-yellow);">parents</span></h2>
+    <p class="sec-lead" style="color: rgba(255,255,255,0.8);">Sending your child to Seoul — safety and daily life come before anything else. We are preparing for parents across Asia as follows.</p>
+
+    <div class="img-ph" style="background: rgba(255,255,255,0.04); border-color: var(--hl-yellow); color: var(--hl-yellow);">
+      <span class="tag" style="background: var(--hl-yellow); color: var(--oxford-ink);">IMG-07 · SAFETY</span><br>
+      3-shot collage: dormitory · dining hall · on-site residence staff
+    </div>
+
+    <div class="safety-list">
+      <div class="safety-row">
+        <div class="key">🍽️ Meals</div>
+        <div class="val">Halal · Vegetarian · <strong>Respect for each country's cuisine</strong> · <span class="tba">Customized per cohort nationality mix</span></div>
+      </div>
+      <div class="safety-row">
+        <div class="key">🕌 Prayer · Religion</div>
+        <div class="val"><strong>Multi-religious consideration</strong> for Islam · Catholicism · Buddhism and more · <span class="tba">Prayer and worship spaces operated per cohort</span></div>
+      </div>
+      <div class="safety-row">
+        <div class="key">🏠 Accommodation</div>
+        <div class="val">Camp dormitory · <strong>Live-in supervisory staff</strong> · Night management · Emergency contact network</div>
+      </div>
+      <div class="safety-row">
+        <div class="key">🗣️ Language</div>
+        <div class="val">Morning Seed Talk and AI Composition Workshop are <strong>conducted in English</strong> · Korean classes provide <strong>simultaneous interpretation</strong> · Major-country interpretation is <em>provided based on cohort nationality mix</em></div>
+      </div>
+      <div class="safety-row">
+        <div class="key">👨‍👩‍👧 Parent Accompaniment</div>
+        <div class="val">Parent accommodation and travel can be arranged via <strong>individual booking</strong> or <strong>All-in-One Package</strong>. The All-in-One Package is <em>under review and preparation with per-cohort custom quotations</em>. Parents may join outdoor activities and the showcase.</div>
+      </div>
+      <div class="safety-row">
+        <div class="key">🚌 Outings</div>
+        <div class="val">All outdoor activities have <strong>accompanying staff</strong> · Group supervision</div>
+      </div>
+      <div class="safety-row">
+        <div class="key">📋 Visa · Immigration</div>
+        <div class="val"><span class="tba">To be announced</span> Visa support arrangements</div>
+      </div>
+    </div>
+
+    <p style="color: var(--hl-yellow); font-family: 'Gaegu', cursive; font-size: var(--t-sub); text-align: center; margin-top: 3rem; font-weight: 700; line-height: 1.4;">
+      As brightly as your child shines on stage,<br>the dormitory day is designed to be just as safe.
+    </p>
+  </div>
+</section>
+
+<!-- ================================ 07 RECOMMEND ================================ -->
+<section class="bg-cream">
+  <div class="wrap">
+    <span class="sec-num">07</span>
+    <h2 class="sec-title">Especially recommended <span class="hl-pink">for children like this</span></h2>
+    <p class="sec-lead">Age · Grade 4 to Middle School &nbsp;·&nbsp; Experience · No dance or vocal background required (starts from basic warm-ups)</p>
+
+    <div class="chip-grid">
+      <div class="chip">
+        <span class="emoji">💃</span>
+        <div>A child who loves K-Pop but has only been <strong>dancing alone at home</strong></div>
+      </div>
+      <div class="chip">
+        <span class="emoji">🎤</span>
+        <div>A child who <strong>wants to stand on a stage</strong> but has had no opportunity</div>
+      </div>
+      <div class="chip">
+        <span class="emoji">🤝</span>
+        <div>A child who needs <strong>the experience of creating something as a team</strong> with peers</div>
+      </div>
+      <div class="chip">
+        <span class="emoji">🇰🇷</span>
+        <div>A child interested in <strong>Korean culture and the Korean language</strong></div>
+      </div>
+      <div class="chip">
+        <span class="emoji">✨</span>
+        <div>Children of parents who want to fill the holiday with <strong>a meaningful memory of achievement</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 08 INFO / PRICING ================================ -->
+<section class="bg-sky">
+  <div class="wrap">
+    <span class="sec-num">08</span>
+    <h2 class="sec-title">Camp Information</h2>
+    <p class="sec-lead">Essential camp information at a glance. Detailed schedule and tuition will be updated upon confirmation.</p>
+
+    <div class="img-ph">
+      <span class="tag">IMG-08 · PRICE BLOCK</span><br>
+      Infographic: camp logo + 5 included-item icons (accommodation · meals · classes · commemorative package · interpretation)
+    </div>
+
+    <div class="info-card">
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="k">Duration</div>
+          <div class="v">10 days (9 nights · 10 days)</div>
+        </div>
+        <div class="info-item">
+          <div class="k">Location</div>
+          <div class="v">Seoul (Inbound)</div>
+        </div>
+        <div class="info-item">
+          <div class="k">Capacity</div>
+          <div class="v">To be announced</div>
+        </div>
+        <div class="info-item">
+          <div class="k">Languages</div>
+          <div class="v">English base · Korean (simultaneous interpretation) · Major-country interpretation (per cohort)</div>
+        </div>
+        <div class="info-item">
+          <div class="k">Schedule</div>
+          <div class="v">To be announced</div>
+        </div>
+        <div class="info-item">
+          <div class="k">Tuition</div>
+          <div class="v">KRW · USD (with local currency on request — TBA)</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--line);">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+          <div>
+            <div style="font-size: var(--t-small); font-weight: 700; color: var(--hl-mint); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: .5rem;">✓ Included</div>
+            <div style="font-size: var(--t-body); line-height: 1.6;">Dormitory accommodation · Meals (halal operation as principle) · All tuition · Commemorative package · Interpretation · Escort staff</div>
+          </div>
+          <div>
+            <div style="font-size: var(--t-small); font-weight: 700; color: var(--hl-coral); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: .5rem;">✗ Not Included in Base Package</div>
+            <div style="font-size: var(--t-body); line-height: 1.6;">Airfare · Parent accommodation · Personal allowance · Visa fees<br><span style="font-size: var(--t-small); color: var(--ink-soft);">※ With the <strong>All-in-One Package</strong>, airfare, parent accommodation, and Seoul tour can be bundled — see below</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTIONAL · All-in-One Package -->
+    <div style="margin-top: 2.5rem; padding: clamp(1.5rem, 3vw, 2.5rem); background: var(--bg-cream); border: 2px dashed var(--hl-coral); border-radius: var(--r-lg);">
+      <div style="font-size: var(--t-small); font-weight: 700; color: var(--hl-coral); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1rem;">OPTIONAL</div>
+      <h3 style="margin: 0 0 1rem; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;">
+        <span style="font-size: 1.2em;">✈️</span>
+        All-in-One Package
+      </h3>
+      <p style="font-size: var(--t-body); line-height: 1.7; color: var(--ink); margin: 0 0 1rem;">
+        An optional package bundling <strong>airfare · parent accommodation · Seoul tour</strong>. Prepared for families who prefer not to arrange bookings separately.
+      </p>
+      <p style="font-size: var(--t-body); line-height: 1.7; color: var(--oxford-ink); margin: 0 0 1rem; font-weight: 500;">
+        <em>Per-cohort customized quotations are under review and preparation.</em>
+      </p>
+      <p style="font-size: var(--t-small); color: var(--ink-soft); margin: 0;">
+        Inquiries · <strong>Your Agent Partner</strong> or <strong>KISAS Study Abroad Center</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 09 FAQ ================================ -->
+<section class="bg-rose">
+  <div class="wrap">
+    <span class="sec-num">09</span>
+    <h2 class="sec-title">Frequently Asked <span class="hl-lilac">Questions</span></h2>
+    <p class="sec-lead">The 8 most common questions from parents.</p>
+
+    <div class="faq">
+      <details>
+        <summary>Q1. Is it okay if my child has no K-Pop experience at all?</summary>
+        <div class="answer">Yes. From Day 2 we begin with <strong>gentle vocal &amp; dance warm-ups</strong>. This is an <strong>experience-based camp</strong>, not intensive training, so children with no prior experience can join comfortably.</div>
+      </details>
+      <details>
+        <summary>Q2. Won't the schedule be too demanding?</summary>
+        <div class="answer">Mornings are Seed Talks &amp; AI songwriting workshops · afternoons are cover dance &amp; choir · evenings are self-directed practice, with <strong>clearly separated rest periods</strong>. Day 4 centers on outdoor activities, and <strong>practice from Day 5~9 is spread out so no single day feels too heavy</strong>.</div>
+      </details>
+      <details>
+        <summary>Q3. My child doesn't speak Korean at all — is that okay?</summary>
+        <div class="answer">Morning Seed Talks &amp; AI songwriting workshops are conducted <strong>primarily in English</strong>. Korean-language sessions and announcements come with <strong>simultaneous interpretation</strong>, and <strong>major-country language interpretation</strong> is provided based on each cohort's national mix.</div>
+      </details>
+      <details>
+        <summary>Q4. Can parents travel to Seoul together?</summary>
+        <div class="answer">Yes. Parent <strong>accommodation · airfare · tours</strong> can be arranged via <strong>individual booking</strong> or through the <strong>All-in-One Package</strong>. The All-in-One Package is <em>under review and preparation with per-cohort customized quotations</em>, and once confirmed will be communicated via your agent. Parents can join on <strong>Day 4 outdoor activities</strong> · <strong>Day 10 Showcase</strong> · <strong>free time</strong>.</div>
+      </details>
+      <details>
+        <summary>Q5. How are Halal meals and prayer/worship times handled?</summary>
+        <div class="answer">We respect the diverse <strong>food cultures and religions</strong> across Asia. Halal · vegetarian · and <strong>prayer/worship spaces</strong> for Islam · Catholicism · Buddhism and more are customized per cohort based on <strong>national and religious composition</strong>. Details are communicated separately after enrollment.</div>
+      </details>
+      <details>
+        <summary>Q6. Is this a camp where my child can become a "trainee" or "debut"?</summary>
+        <div class="answer"><strong>No.</strong> This camp is <strong>not</strong> a trainee-training · audition · or debut program. It is an <strong>AI songwriting · choir · cover dance experience + self-exploration</strong> camp using K-Pop as a medium. During choir sessions, a child who excels may naturally take a solo part, but this is a <strong>natural on-site role — not an audition or selection</strong>.</div>
+      </details>
+      <details>
+        <summary>Q7. How do we receive the videos and photos?</summary>
+        <div class="answer">Delivered on the final day via a <strong>QR-code-based digital archive</strong>. Includes the camp documentary · full team performance video · and individual highlights, with lifetime access.</div>
+      </details>
+      <details>
+        <summary>Q8. We're worried about copyright. Can we post the cover videos?</summary>
+        <div class="answer">In-camp use is for educational purposes; for <strong>external publication, we provide guidance on copyright verification</strong>.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 10 LIMITED ================================ -->
+<section style="background: var(--paper-off);">
+  <div class="wrap">
+    <div class="limited">
+      <span class="sec-num" style="color: var(--hl-yellow); display:inline-block; margin-bottom: 1rem;">10</span>
+      <h3>Seats Are Limited</h3>
+      <p>Because KISAS Kpop Camp is led directly by Composer Hyung-suk Kim (PD.K), seats are limited by design. Team size and camp capacity are fixed, so enrollment closes on a <strong style="color: var(--hl-yellow);">first-come, first-served basis</strong>.</p>
+      <p style="margin-top: 1.5rem; font-size: var(--t-small);">For inquiries, please contact your <strong style="color:#fff;">Agent Partner</strong> or the <strong style="color:#fff;">KISAS Study Abroad Center</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================ 11 FINAL CTA ================================ -->
+<section class="final-cta" id="contact">
+  <div class="wrap">
+    <span class="sec-num" style="color: var(--hl-yellow); display:inline-block;">11</span>
+    <h2>Enrollment Inquiries</h2>
+
+    <div class="img-ph" style="background: rgba(255,255,255,0.04); border-color: var(--hl-yellow); color: var(--hl-yellow); max-width: 600px; margin: 2rem auto;">
+      <span class="tag" style="background: var(--hl-yellow); color: var(--oxford-ink);">IMG-09 · CTA</span><br>
+      Camp logo + QR code (inquiry link) + contact infographic
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="icon">📧</div>
+        <div class="label">EMAIL</div>
+        <div class="value">To be announced</div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📱</div>
+        <div class="label">WHATSAPP</div>
+        <div class="value">Asia Hotline (TBA)</div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">🌐</div>
+        <div class="label">WEBSITE</div>
+        <div class="value">Official site (TBA)</div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">🤝</div>
+        <div class="label">AGENT</div>
+        <div class="value">Contact the agent who shared this proposal</div>
+      </div>
+    </div>
+
+    <div class="closing">
+      "Think deeply.<br>Move boldly.<br>Perform your own story."
+    </div>
+    <div class="sig">KISAS Kpop Camp · 10-Day K-Pop Experience Camp in Seoul<br>© KISAS Family · Directed by Composer Hyung-suk Kim</div>
+  </div>
+</section>
+
+<!-- ================================ STICKY CTA ================================ -->
+<div class="cta-sticky">
+  <div class="inner">
+    <div class="msg">Limited seats · first-come, first-served — contact your agent today</div>
+    <a href="#contact" class="btn">Enrollment Inquiry →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="quote">"Think deeply. Move boldly. Perform your own story."</div>
+    <div>KISAS Kpop Camp · © KISAS Family · Directed by Composer Hyung-suk Kim · v2.1 Asia</div>
+    <div style="margin-top: .8rem; font-size: .8rem; opacity: .5;">This document is v2.1 Asia Edition. Pricing · schedule · capacity · food-culture and religious accommodation details · visa support · and official contacts will be tailored and communicated per cohort based on national composition.</div>
+  </div>
+</footer>
+
+</body>
+</html>

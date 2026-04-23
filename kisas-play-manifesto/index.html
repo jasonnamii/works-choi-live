@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KISAS — Learn이 아니라, Play다.</title>
+<style>
+  :root{
+    --bg:#000; --fg:#fff; --mute:#8a8a8e; --line:#1c1c1e;
+    --accent:#FFD60A; --accent2:#FF375F; --accent3:#30D158; --accent4:#0A84FF;
+    --card:#0d0d0f; --card2:#141417;
+    --serif:'Noto Serif KR','Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'SF Pro Display','Pretendard','Apple SD Gothic Neo','Helvetica Neue',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-snap-type:y mandatory; scroll-behavior:smooth}
+  html,body{background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.4;font-size:clamp(14px,1.6vw,17px)}
+  .arr{font-family:var(--sans),'Apple Symbols','Segoe UI Symbol','Arial Unicode MS',sans-serif; font-feature-settings:normal; -webkit-font-feature-settings:normal}
+  body{overflow-y:auto}
+  .slide{
+    min-height:100vh; padding:clamp(48px,8vw,96px) clamp(20px,8vw,8vw); display:flex; flex-direction:column;
+    justify-content:center; position:relative;
+    border-bottom:1px solid var(--line);
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+  }
+  /* s17은 시연용 긴 섹션 → 스냅 제외 */
+  #s17{scroll-snap-align:none}
+  .num{position:absolute; top:clamp(16px,3vw,32px); left:clamp(20px,8vw,8vw); font-size:clamp(9px,1vw,11px); letter-spacing:.2em; color:var(--mute); font-weight:600}
+  .label{position:absolute; top:clamp(16px,3vw,32px); right:clamp(20px,8vw,8vw); font-size:clamp(9px,1vw,11px); letter-spacing:.2em; color:var(--mute); font-weight:600; text-transform:uppercase}
+
+  /* 척추 1줄 */
+  .spine{
+    font-weight:800; font-size:clamp(26px,5.5vw,84px); line-height:1.15;
+    letter-spacing:-0.02em;
+  }
+  .spine.xl{font-size:clamp(40px,8.5vw,140px); line-height:1.05; font-weight:900}
+  .spine.serif{font-family:var(--serif); font-weight:700; font-style:italic}
+  .spine .em{color:var(--accent)}
+  .spine .red{color:var(--accent2)}
+  .spine .green{color:var(--accent3)}
+  .spine .blue{color:var(--accent4)}
+  .spine .strike{text-decoration:line-through; text-decoration-thickness:6px; color:var(--mute)}
+  .spine, .closing-q, .spine.serif{word-break:keep-all; overflow-wrap:break-word}
+  .spine.closing-final{font-size:clamp(32px,5vw,72px)}
+
+  /* 표면 보조 */
+  .surface{margin-top:clamp(24px,4vw,40px); max-width:1200px}
+  .surface.center{margin-left:auto;margin-right:auto;text-align:center}
+  .lead{font-size:clamp(14px,1.4vw,20px); color:#c7c7cc; max-width:800px; line-height:1.6}
+  .kicker{font-size:clamp(11px,1.1vw,13px); letter-spacing:.3em; color:var(--mute); text-transform:uppercase; margin-bottom:clamp(16px,2vw,24px); font-weight:700}
+
+  /* 박스/벤토 */
+  .grid{display:grid; gap:clamp(12px,1.6vw,20px); margin-top:clamp(24px,4vw,40px)}
+  .grid.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .grid.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .box{background:var(--card); border:1px solid var(--line); border-radius:clamp(14px,1.6vw,20px); padding:clamp(20px,2.6vw,32px); min-height:clamp(160px,20vw,220px); display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; word-break:keep-all}
+  .box.dark{background:#000; border-color:#2c2c2e}
+  .box.fill-yellow{background:var(--accent); color:#000; border:none}
+  .box.fill-red{background:var(--accent2); color:#fff; border:none}
+  .box.fill-green{background:var(--accent3); color:#000; border:none}
+  .box.fill-blue{background:var(--accent4); color:#fff; border:none}
+  .box .tag{font-size:clamp(10px,1vw,11px); letter-spacing:.2em; font-weight:700; opacity:.7; text-transform:uppercase}
+  .box .h{font-size:clamp(16px,1.8vw,24px); font-weight:800; line-height:1.25; margin-top:auto; letter-spacing:-0.01em; word-break:keep-all; overflow-wrap:break-word}
+  .box .sub{font-size:clamp(12px,1.2vw,14px); opacity:.75; margin-top:8px; line-height:1.5; word-break:keep-all}
+
+  /* 빅 넘버 */
+  .bignum{display:flex; flex-direction:column; gap:8px}
+  .bignum .n{font-size:clamp(36px,6vw,88px); font-weight:900; line-height:1; letter-spacing:-0.03em}
+  .bignum .l{font-size:clamp(11px,1.1vw,13px); letter-spacing:.2em; text-transform:uppercase; opacity:.7; font-weight:700}
+
+  /* Stat 박스 — s13 전용 통일 정렬 */
+  .box.stat{justify-content:space-between; gap:clamp(12px,1.4vw,18px); min-width:0; overflow:hidden}
+  .box.stat .tag{margin-bottom:0}
+  .box.stat .stat-n{font-size:clamp(28px,3.4vw,52px); font-weight:900; line-height:1.05; letter-spacing:-0.02em; margin-top:auto; min-width:0; max-width:100%; overflow-wrap:break-word; word-break:keep-all}
+  .box.stat .stat-n.text{font-size:clamp(20px,2.2vw,32px); line-height:1.2; font-weight:800}
+  .box.stat .stat-l{font-size:clamp(11px,1.1vw,13px); letter-spacing:.08em; opacity:.75; font-weight:600; margin-top:4px; word-break:keep-all}
+  .box.stat .stat-sub{font-size:clamp(10px,1vw,12px); opacity:.6; margin-top:10px; line-height:1.5; word-break:keep-all; padding-top:10px; border-top:1px solid rgba(255,255,255,.08)}
+  .box.stat.fill-yellow .stat-sub, .box.stat.fill-green .stat-sub{border-top-color:rgba(0,0,0,.15)}
+
+  /* 시간 왜곡 — 로고 행 */
+  .logos{display:flex; gap:clamp(24px,5vw,60px); flex-wrap:wrap; margin-top:clamp(32px,5vw,60px); align-items:baseline}
+  .logos .logo{font-size:clamp(22px,3vw,48px); font-weight:800; letter-spacing:-0.02em}
+  .logos .logo small{display:block; font-size:clamp(11px,1.2vw,13px); color:var(--mute); font-weight:500; margin-top:8px; letter-spacing:0}
+
+  /* 화살표 (메커니즘) */
+  .flow{display:flex; align-items:center; gap:clamp(12px,2vw,24px); margin-top:clamp(24px,4vw,40px); flex-wrap:wrap}
+  .flow .step{flex:1 1 240px; padding:clamp(20px,2.6vw,32px); border-radius:clamp(14px,1.6vw,20px); background:var(--card); border:1px solid var(--line); min-height:clamp(160px,20vw,200px); display:flex; flex-direction:column; gap:12px}
+  .flow .arrow{color:var(--mute); flex:0 0 auto; display:flex; align-items:center; justify-content:center}
+  .flow .arrow svg{width:clamp(28px,2.6vw,40px); height:auto}
+  .flow .step .n{font-size:clamp(10px,1vw,11px); letter-spacing:.3em; color:var(--mute); font-weight:700}
+  .flow .step .t{font-size:clamp(20px,2.6vw,38px); font-weight:800; letter-spacing:-0.01em}
+  .flow .step .d{font-size:clamp(12px,1.2vw,14px); color:#c7c7cc; line-height:1.5; margin-top:auto}
+
+  /* HERO 비교 */
+  .hero-compare{display:grid; grid-template-columns:1fr auto 1fr; gap:clamp(20px,3vw,40px); align-items:center; margin-top:clamp(32px,5vw,60px)}
+  .hero-compare .col{padding:clamp(24px,3.2vw,40px); border-radius:clamp(16px,2vw,24px); background:var(--card); border:1px solid var(--line)}
+  .hero-compare .col.new{background:var(--accent); color:#000; border:none}
+  .hero-compare .col h4{font-size:clamp(10px,1vw,11px); letter-spacing:.3em; opacity:.7; font-weight:700; margin-bottom:clamp(12px,1.6vw,20px)}
+  .hero-compare .col .arrow-line{font-size:clamp(18px,2.4vw,32px); font-weight:800; letter-spacing:-0.01em; line-height:1.3}
+  .hero-compare .vs{display:flex; align-items:center; justify-content:center; color:var(--mute)}
+  .hero-compare .vs svg{width:clamp(32px,3.6vw,48px); height:auto}
+
+  /* 접기 */
+  details{margin-top:clamp(20px,3vw,32px); max-width:900px}
+  details summary{
+    cursor:pointer; font-size:clamp(11px,1.2vw,13px); letter-spacing:.2em;
+    color:var(--mute); text-transform:uppercase; font-weight:700;
+    padding:14px 16px; border-top:1px solid var(--line); list-style:none;
+    margin:0 -16px; border-radius:12px;
+    position:relative; overflow:hidden;
+    transition:color .3s ease, background .3s ease;
+    animation:summary-pulse 3.2s ease-in-out infinite;
+  }
+  details summary:hover{color:var(--accent); background:rgba(255,214,10,.06)}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{
+    content:'+ 펼치기'; float:right; opacity:.75; color:var(--accent);
+    display:inline-block;
+    animation:chevron-bounce 2.4s ease-in-out infinite;
+  }
+  details[open] summary{animation:none; color:#c7c7cc}
+  details[open] summary::after{content:'− 접기'; animation:none; color:var(--mute)}
+
+  @keyframes summary-pulse{
+    0%,100%{box-shadow:inset 0 0 0 0 rgba(255,214,10,0); background:transparent}
+    50%{box-shadow:inset 0 0 24px -4px rgba(255,214,10,.18); background:rgba(255,214,10,.035)}
+  }
+  @keyframes chevron-bounce{
+    0%,100%{transform:translateX(0); opacity:.65}
+    50%{transform:translateX(4px); opacity:1}
+  }
+  @media (prefers-reduced-motion:reduce){
+    details summary{animation:none}
+    details summary::after{animation:none}
+  }
+  details .body{padding:20px 0; font-size:clamp(13px,1.3vw,15px); color:#c7c7cc; line-height:1.7}
+  details .body p{margin-bottom:12px}
+  details .body ul{padding-left:20px; margin:8px 0}
+  details .body li{margin-bottom:6px}
+  details .body strong{color:#fff}
+  details .body blockquote{border-left:2px solid var(--accent); padding-left:16px; margin:16px 0; color:#c7c7cc; font-style:italic}
+
+  /* 시안 슬라이드 */
+  .shot-row{display:flex; gap:clamp(16px,3vw,32px); margin-top:clamp(32px,5vw,48px); align-items:flex-start; justify-content:center; flex-wrap:wrap}
+  .shot{display:flex; flex-direction:column; align-items:center; gap:clamp(10px,1.4vw,16px)}
+  .shot img{width:clamp(200px,28vw,300px); max-width:100%; border-radius:clamp(20px,3vw,32px); border:3px solid rgba(255,255,255,.18); box-shadow:none; display:block; box-sizing:border-box}
+  .shot .cap{font-size:clamp(11px,1.2vw,13px); color:var(--mute); letter-spacing:.1em; font-weight:600; text-align:center}
+  .shot.pair{position:relative}
+  .pair-wrap{display:flex; align-items:flex-start; gap:clamp(16px,3vw,32px); flex-wrap:wrap; justify-content:center}
+  .tap-arrow{font-size:clamp(28px,4vw,48px); color:var(--accent); align-self:flex-start; font-weight:300; margin-top:clamp(160px,22vw,300px)}
+
+  /* Closing */
+  .closing-q{font-size:clamp(36px,7vw,108px); font-weight:900; line-height:1.05; letter-spacing:-0.03em}
+  .closing-q .strike{text-decoration:line-through; text-decoration-thickness:8px; color:var(--mute)}
+  .closing-q .em{color:var(--accent)}
+
+  /* Section caption (시안 그룹) */
+  .caption-line{font-size:clamp(20px,3.2vw,44px); font-weight:800; letter-spacing:-0.02em; max-width:720px; margin:0 auto; line-height:1.3; text-align:center; padding:0 16px}
+  .caption-line .em{color:var(--accent)}
+  .caption-line strong{color:var(--accent); font-weight:800}
+  .shot-group{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:clamp(20px,2.4vw,32px); margin:0 auto; min-height:100vh; padding:clamp(40px,6vw,80px) 0; scroll-snap-align:start; scroll-snap-stop:always}
+  .shot-group .kicker{margin:0}
+
+  /* 시안 위 한줄 (#17 인트로) */
+  .lead-line{font-size:clamp(16px,2vw,28px); font-weight:600; color:#fff; max-width:900px; margin:0 auto clamp(24px,3vw,40px); line-height:1.4; text-align:center; letter-spacing:-0.01em}
+  .lead-line .em{color:var(--accent)}
+
+  /* footer */
+  .footer-tag{position:absolute; bottom:32px; left:8vw; font-size:clamp(10px,1vw,11px); letter-spacing:.2em; color:var(--mute); font-weight:600}
+  .footer-tag .dot{display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent); margin-right:8px; vertical-align:middle}
+
+  /* 플로팅 버튼 — 전체 펼침/접기 */
+  .fab-expand{
+    position:fixed; right:24px; bottom:24px; z-index:9999;
+    width:52px; height:52px; border-radius:50%;
+    background:var(--accent); color:#000; border:none;
+    font-size:20px; font-weight:800; cursor:pointer;
+    box-shadow:0 8px 24px rgba(0,0,0,.5), 0 2px 6px rgba(255,214,10,.3);
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    font-family:var(--sans); line-height:1;
+  }
+  .fab-expand:hover{transform:translateY(-2px) scale(1.05); box-shadow:0 12px 32px rgba(0,0,0,.6), 0 4px 12px rgba(255,214,10,.5)}
+  .fab-expand:active{transform:translateY(0) scale(0.98)}
+  .fab-expand .fab-label{
+    position:absolute; right:62px; top:50%; transform:translateY(-50%);
+    background:#000; color:#fff; padding:6px 12px; border-radius:8px;
+    font-size:11px; letter-spacing:.1em; font-weight:600;
+    white-space:nowrap; opacity:0; pointer-events:none;
+    transition:opacity .2s ease; border:1px solid var(--line);
+  }
+  .fab-expand:hover .fab-label{opacity:1}
+  @media (max-width:600px){
+    .fab-expand{width:48px; height:48px; right:16px; bottom:16px; font-size:18px}
+    .fab-expand .fab-label{display:none}
+  }
+
+  /* 단독 슬라이드 (Cover, 점프, Closing, One more thing) */
+  .slide.solo{justify-content:center; align-items:flex-start}
+  .slide.solo.center{align-items:center; text-align:center}
+
+  /* 챕터 간지 — 딥톤 액센트 면 (톤다운, 가독성 우선) */
+  .slide.chapter{border-bottom:none}
+  .slide.chapter .num,
+  .slide.chapter .label,
+  .slide.chapter .kicker{opacity:1}
+  .slide.chapter .spine .em,
+  .slide.chapter .closing-q .em{text-decoration:underline; text-decoration-thickness:4px; text-underline-offset:0.12em}
+  .slide.chapter .lead,
+  .slide.chapter .surface .lead{color:inherit; opacity:.75}
+
+  /* 옐로 간지 — Cover·Manifesto (딥 머스터드) */
+  .slide.chapter.c-yellow{background:#E8B800; color:#1a1a1a}
+  .slide.chapter.c-yellow .num,
+  .slide.chapter.c-yellow .label,
+  .slide.chapter.c-yellow .kicker{color:rgba(26,26,26,.7)}
+  .slide.chapter.c-yellow .spine .em,
+  .slide.chapter.c-yellow .closing-q .em{color:#1a1a1a; text-decoration-color:#1a1a1a}
+  .slide.chapter.c-yellow .spine .strike,
+  .slide.chapter.c-yellow .closing-q .strike{color:rgba(26,26,26,.45); text-decoration-color:#1a1a1a}
+  .slide.chapter.c-yellow .lead{color:rgba(26,26,26,.75); opacity:1}
+
+  /* 레드 간지 — The Question (코랄레드 · 검정 글자) */
+  .slide.chapter.c-red{background:#E04E5C; color:#111}
+  .slide.chapter.c-red .num,
+  .slide.chapter.c-red .label,
+  .slide.chapter.c-red .kicker{color:rgba(0,0,0,.65)}
+  .slide.chapter.c-red .spine .em,
+  .slide.chapter.c-red .closing-q .em{color:#FFE066; text-decoration-color:#FFE066}
+  .slide.chapter.c-red .spine .strike,
+  .slide.chapter.c-red .closing-q .strike{color:rgba(0,0,0,.4); text-decoration-color:#000}
+
+  /* 그린 간지 — The Hint (딥 그린 · 검정 글자) */
+  .slide.chapter.c-green{background:#28B84A; color:#111}
+  .slide.chapter.c-green .num,
+  .slide.chapter.c-green .label,
+  .slide.chapter.c-green .kicker{color:rgba(0,0,0,.65)}
+  .slide.chapter.c-green .spine .em,
+  .slide.chapter.c-green .closing-q .em{color:#FFE066; text-decoration-color:#FFE066}
+  .slide.chapter.c-green .spine .strike,
+  .slide.chapter.c-green .closing-q .strike{color:rgba(0,0,0,.4); text-decoration-color:#000}
+
+  /* 블루 간지 — The Jump (딥 로얄블루) */
+  .slide.chapter.c-blue{background:#1E5AC7; color:#fff}
+  .slide.chapter.c-blue .num,
+  .slide.chapter.c-blue .label,
+  .slide.chapter.c-blue .kicker{color:rgba(255,255,255,.78)}
+  .slide.chapter.c-blue .spine .em,
+  .slide.chapter.c-blue .closing-q .em{color:#FFE066; text-decoration-color:#FFE066}
+  .slide.chapter.c-blue .spine .strike,
+  .slide.chapter.c-blue .closing-q .strike{color:rgba(255,255,255,.5); text-decoration-color:#fff}
+
+  /* 한국 단위 */
+  .ko-unit{font-variant-numeric:tabular-nums}
+
+  @media (max-width:900px){
+    .grid.g3,.grid.g4{grid-template-columns:1fr 1fr}
+    .hero-compare{grid-template-columns:1fr}
+    .hero-compare .vs{justify-self:center}
+    .hero-compare .vs svg{transform:rotate(90deg)}
+    .pair-wrap{flex-direction:column; align-items:center}
+    .tap-arrow{transform:none; padding-top:0; margin-top:0 !important; align-self:center !important}
+    .tap-arrow svg{transform:rotate(90deg)}
+    .flow{flex-direction:column; align-items:stretch}
+    .flow .arrow{transform:rotate(90deg); align-self:center}
+  }
+  @media (max-width:600px){
+    html,body{font-size:13px}
+    .grid.g2,.grid.g3,.grid.g4{grid-template-columns:1fr}
+    .logos{gap:20px}
+    .footer-tag{left:20px; bottom:20px}
+
+    /* 모바일 히어로 문장 강렬하게 */
+    .spine{font-size:42px; line-height:1.12; letter-spacing:-0.03em}
+    .spine.xl{font-size:60px; line-height:1.05; letter-spacing:-0.035em}
+    .spine.serif{font-size:38px; line-height:1.2}
+    .spine.closing-final{font-size:36px; line-height:1.15}
+    .closing-q{font-size:52px; line-height:1.08; letter-spacing:-0.03em}
+    .closing-q .strike{text-decoration-thickness:5px}
+    .spine .strike{text-decoration-thickness:4px}
+
+    /* 캡션·리드 모바일 비례 조정 */
+    .caption-line{font-size:22px; line-height:1.3}
+    .lead-line{font-size:18px}
+    .lead{font-size:15px; line-height:1.55}
+    .kicker{font-size:11px; letter-spacing:.25em}
+
+    /* s12 HERO 비교 — 모바일 깨짐 픽스 */
+    .hero-compare{gap:16px; margin-top:32px}
+    .hero-compare .col{padding:24px}
+    .hero-compare .col h4{font-size:10px; letter-spacing:.25em; margin-bottom:12px}
+    .hero-compare .col .arrow-line{font-size:22px; line-height:1.35; word-break:keep-all; overflow-wrap:break-word}
+    .hero-compare .col .sub{font-size:12px !important}
+    .hero-compare .vs{font-size:28px; padding:4px 0}
+
+    /* s11 flow 모바일 */
+    .flow .step{min-height:auto; padding:20px}
+    .flow .step .t{font-size:24px}
+    .flow .step .d{font-size:13px}
+    .flow .arrow svg{width:32px}
+
+    /* s17 시안 pair 화살표 — 세로 배치 중앙 */
+    .pair-wrap{gap:20px}
+    .tap-arrow{margin:0 !important; padding:0; align-self:center !important; transform:none; line-height:1}
+    .tap-arrow svg{transform:rotate(90deg); width:40px; height:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 1. COVER ===== -->
+<section class="slide solo center chapter c-yellow" id="s1">
+  <div class="num">01 / 17</div>
+  <div class="label">KISAS · Manifesto</div>
+  <div class="kicker">2026.04</div>
+  <h1 class="spine xl">Learn이 아니라,<br><span class="em">Play다.</span></h1>
+  <div class="surface center">
+    <p class="lead" style="margin-top:40px">K 창작의 운영체제 — KISAS Platform</p>
+  </div>
+</section>
+
+<!-- ===== 2. 시간 왜곡 ===== -->
+<section class="slide" id="s2">
+  <div class="num">02 / 17</div>
+  <div class="label">Time Warp</div>
+  <h2 class="spine">모든 새로운 카테고리는,<br>처음엔 <span class="em">미친 짓</span>이었다.</h2>
+  <div class="logos">
+    <div class="logo">Uber<small>"남의 차를 부른다고?"</small></div>
+    <div class="logo">Airbnb<small>"남의 집에서 잔다고?"</small></div>
+    <div class="logo">TikTok<small>"15초 영상이 뭐?"</small></div>
+  </div>
+  <div class="logos" style="margin-top:24px; padding-top:32px; border-top:1px solid var(--line)">
+    <div class="logo">LinkedIn<small>처음엔 이력서 사이트였다</small></div>
+    <div class="logo">Coursera<small>처음엔 강의였다</small></div>
+    <div class="logo" style="color:var(--accent)">KISAS<small style="color:var(--accent);opacity:.85">처음부터 OS다</small></div>
+  </div>
+
+  <details>
+    <summary>당시 회의론 · 현재 위상</summary>
+    <div class="body">
+      <p><strong>Uber (2009)</strong> — "택시 산업에 정면 도전? 규제로 6개월 안에 죽는다." 현재: 시가총액 약 1500억 USD.</p>
+      <p><strong>Airbnb (2008)</strong> — "낯선 사람을 집에 들인다? 무모하다." 현재: 시가총액 약 800억 USD.</p>
+      <p><strong>TikTok (2016)</strong> — "유튜브가 있는데?" 현재: 월 활성 사용자 약 15억 명.</p>
+      <p><strong>핵심:</strong> 새로운 카테고리는 항상 "이건 뭐야?"로 시작한다. KISAS도 마찬가지다.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 3. KISAS는? ===== -->
+<section class="slide" id="s3">
+  <div class="num">03 / 17</div>
+  <div class="label">Definition</div>
+  <div class="kicker">그렇다면, KISAS는 무엇인가</div>
+  <h2 class="spine">KISAS는 K 창작의<br><span class="em">운영체제</span>다.</h2>
+  <div class="surface">
+    <p class="lead" style="margin-top:32px">교육 ✗ &nbsp;·&nbsp; 매거진 ✗ &nbsp;·&nbsp; 콘텐츠 플랫폼 ✗<br>K 창작 지식의 글로벌 OS — Operating System</p>
+  </div>
+
+  <details>
+    <summary>정의 근거</summary>
+    <div class="body">
+      <blockquote>"K 창작의 하버드 비즈니스 리뷰. 그 매거진이 비즈니스 지식으로 한 것을, KISAS는 K 창작 지식으로 한다."</blockquote>
+      <p>하버드 비즈니스 리뷰가 단순 매거진이 아니라 <strong>구독 · 기업 교육 · 케이스 · 라이선싱의 다층 엔진</strong>이듯, KISAS도 외형이 아니라 엔진을 따라간다.</p>
+      <p>운영체제 = 진입(Play) · 학습(Skill) · 증명(Proof) · 시장(Opportunity)이 한 위에서 돌아가는 것.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 4. 미션 ===== -->
+<section class="slide" id="s4">
+  <div class="num">04 / 17</div>
+  <div class="label">Mission</div>
+  <div class="kicker">미션</div>
+  <h2 class="spine">따라 하다가,<br><span class="em">기회가 온다.</span></h2>
+  <div class="surface">
+    <p class="lead" style="margin-top:32px">K팝·K콘텐츠·K컬처는 지금 <strong>소비된다</strong>.<br>우리는 그 소비가 <strong>플랫폼으로 영속</strong>하고, <strong>시장에 기여</strong>하고, <strong>선순환</strong>하도록 만든다.</p>
+  </div>
+
+  <details>
+    <summary>영속·선순환 메커니즘</summary>
+    <div class="body">
+      <p><strong>현재:</strong> 팬덤은 거대하지만 (글로벌 수억 명), 소비에서 멈춘다.</p>
+      <p><strong>전환:</strong> 소비 → 따라하기 → 능력 → 증명 → 기회 → 더 큰 소비.</p>
+      <p><strong>결과:</strong> K는 한 번 소비되고 끝나는 콘텐츠가 아니라, <strong>창작자를 만들어내는 산업</strong>이 된다.</p>
+      <blockquote>K-콘텐츠 = "흥행 콘텐츠"가 아니라 → 글로벌 영향력 시스템 (문화 + 산업 + 국가 전략)</blockquote>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 5. 그래서 어떻게? ===== -->
+<section class="slide solo chapter c-red" id="s5">
+  <div class="num">05 / 17</div>
+  <div class="label">The Question</div>
+  <div class="kicker">그래서, 어떻게?</div>
+  <h2 class="spine serif">질문은 하나다 —<br>무엇이 <span class="em">대중</span>을 움직이는가.</h2>
+</section>
+
+<!-- ===== 6. 반론 차단 ===== -->
+<section class="slide" id="s6">
+  <div class="num">06 / 17</div>
+  <div class="label">Honest Truth</div>
+  <h2 class="spine">학술은 옳다.<br>그러나 <span class="em">옳음</span>은<br><span class="strike">시장을</span> 만들지 못한다.</h2>
+  <div class="grid g4" style="margin-top:48px">
+    <div class="box dark"><span class="tag">Analysis</span><div class="h">분석</div><p class="sub">맞다</p></div>
+    <div class="box dark"><span class="tag">Research</span><div class="h">연구</div><p class="sub">맞다</p></div>
+    <div class="box dark"><span class="tag">Academia</span><div class="h">학술</div><p class="sub">맞다</p></div>
+    <div class="box fill-red"><span class="tag">But</span><div class="h">대중을 못 움직인다</div><p class="sub">→ 경제 ✗ → 오래 못 간다</p></div>
+  </div>
+
+  <details>
+    <summary>왜 분석·학술만으론 안 되는가</summary>
+    <div class="body">
+      <p><strong>닫힌 루프:</strong> 경험 → 학습 → 창작 → 자기만족 반복 = 취미·교양 시스템.</p>
+      <p><strong>열린 루프:</strong> 경험 → 학습 → 창작 → <strong>Proof → 기회·수익</strong> → 더 큰 경험 = 산업 시스템.</p>
+      <blockquote>Signaling Theory — 시장은 "실력"이 아니라 "신호(signal)"를 보고 판단한다.<br>Proof 없이 능력은 존재하지만, 거래되지 않는다.</blockquote>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 7. 대중과 호흡 ===== -->
+<section class="slide" id="s7">
+  <div class="num">07 / 17</div>
+  <div class="label">Pulse</div>
+  <h2 class="spine">대중과 호흡하지 않는 것은,<br><span class="em">오래</span>가지 않는다.</h2>
+  <div class="grid g3" style="margin-top:48px">
+    <div class="box fill-yellow">
+      <div class="bignum"><span class="n">90<span style="font-size:.4em">%</span></span><span class="l">소비자</span></div>
+      <p class="sub" style="margin-top:16px">그냥 즐긴다</p>
+    </div>
+    <div class="box dark">
+      <div class="bignum"><span class="n">9<span style="font-size:.4em">%</span></span><span class="l">따라하는 사람</span></div>
+      <p class="sub" style="margin-top:16px">크리에이터 지망</p>
+    </div>
+    <div class="box dark">
+      <div class="bignum"><span class="n">1<span style="font-size:.4em">%</span></span><span class="l">파고드는 사람</span></div>
+      <p class="sub" style="margin-top:16px">프로·산업 플레이어</p>
+    </div>
+  </div>
+
+  <details>
+    <summary>3층 구조의 시장 행동</summary>
+    <div class="body">
+      <p><strong>Roblox</strong> — 유저가 콘텐츠 제작 → 따라함이 시작점.</p>
+      <p><strong>YouTube</strong> — 아마추어 → 프로 전환의 표준 경로.</p>
+      <p><strong>TikTok</strong> — 따라하기 → 확산 → 스타 탄생.</p>
+      <p>핵심: <strong>"재밌어서 시작 → 점점 생산으로 이동"</strong> — 모든 거대 플랫폼의 공통 경로.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 8. 방법은? ===== -->
+<section class="slide solo chapter c-green" id="s8">
+  <div class="num">08 / 17</div>
+  <div class="label">The Hint</div>
+  <div class="kicker">방법은?</div>
+  <h2 class="spine serif">답은 이미<br>그들의 <span class="em">행동</span> 안에 있다.</h2>
+</section>
+
+<!-- ===== 9. 진단 ===== -->
+<section class="slide" id="s9">
+  <div class="num">09 / 17</div>
+  <div class="label">Diagnosis</div>
+  <h2 class="spine">대중은 <span class="em">따라 하며</span> 즐기고,<br>창작자는 <span class="em">더 큰 무대</span>를 원한다.</h2>
+  <div class="grid g2" style="margin-top:48px">
+    <div class="box fill-blue">
+      <span class="tag">Mass · 대중</span>
+      <div class="h">따라하면서 즐긴다</div>
+      <p class="sub">댄스 챌린지 · AI 커버 · 밈 재현. 보상은 즉각, 진입은 가볍게.</p>
+    </div>
+    <div class="box fill-green">
+      <span class="tag">Creator · 창작자</span>
+      <div class="h">나를 더 뽐내고 싶다</div>
+      <p class="sub">더 큰 무대, 더 큰 시장, 더 큰 인정. 자연스럽게 시장을 키운다.</p>
+    </div>
+  </div>
+
+  <details>
+    <summary>두 욕구가 만드는 시장</summary>
+    <div class="body">
+      <p><strong>대중의 욕구:</strong> 짧다(즉각 보상) · 쉽다(진입 낮음) · 공유된다(인정·확산).</p>
+      <p><strong>창작자의 욕구:</strong> 표준화된 증명 · 더 큰 무대 · 거래 가능한 능력.</p>
+      <p>두 욕구가 한 위에서 만나면 — <strong>그게 시장이다.</strong></p>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 10. 점프 ===== -->
+<section class="slide solo center chapter c-blue" id="s10">
+  <div class="num">10 / 17</div>
+  <div class="label">The Jump</div>
+  <div class="kicker">그래서</div>
+  <h2 class="spine xl"><span class="strike">Learn</span>이 아니라,<br><span class="em">Play</span>다.</h2>
+  <div class="surface center">
+    <p class="lead" style="margin-top:48px">학생으로 대하지 말고, 전문가처럼 만들게 하지 말고 — TikTok처럼 시작하게 만들어라.</p>
+  </div>
+</section>
+
+<!-- ===== 11. 3단 메커니즘 ===== -->
+<section class="slide" id="s11">
+  <div class="num">11 / 17</div>
+  <div class="label">Mechanism</div>
+  <h2 class="spine"><span class="em">놀이</span>로 들어와,<br><span class="em">활동</span>으로 번지고,<br><span class="em">인증</span>으로 증명된다.</h2>
+  <div class="flow">
+    <div class="step">
+      <span class="n">01 · ENTRY</span>
+      <span class="t">놀이</span>
+      <p class="d">팬덤·트렌드·숏폼으로 진입. 교육 냄새 ✗. 따라하기 가능한 템플릿.</p>
+    </div>
+    <div class="arrow" aria-hidden="true"><svg width="40" height="20" viewBox="0 0 40 20" fill="none"><path d="M2 10h34M28 3l8 7-8 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="step">
+      <span class="n">02 · SCALE</span>
+      <span class="t">활동 세트</span>
+      <p class="d">학교·학원에 공급되는 재미있는 활동 패키지. 프레임을 갖춘 전문성.</p>
+    </div>
+    <div class="arrow" aria-hidden="true"><svg width="40" height="20" viewBox="0 0 40 20" fill="none"><path d="M2 10h34M28 3l8 7-8 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="step">
+      <span class="n">03 · PROOF</span>
+      <span class="t">인증</span>
+      <p class="d">시장이 인정하는 표준 증명. 위변조 불가 디지털 인증 기반. 시장에서 나를 입증한다.</p>
+    </div>
+  </div>
+
+  <details>
+    <summary>실행 디테일</summary>
+    <div class="body">
+      <p><strong>① 놀이 (진입 · 따라하기):</strong> 트렌드 버블, 댄스 챌린지, AI 커버. 핵심 지표 = 체류·생성률.</p>
+      <p><strong>② 활동 세트 (경쟁 · 숙련):</strong> 학교·학원·캠프용 프로그램. 프레임 + 커리큘럼 + 평가표. 핵심 지표 = 수료·성장.</p>
+      <p><strong>③ 인증 (증명 · 기회):</strong> 위변조 불가 디지털 뱃지 → 포트폴리오 → 기업·기관 매칭. 핵심 지표 = 매칭·수익.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 12. HERO 재정의 ===== -->
+<section class="slide" id="s12">
+  <div class="num">12 / 17</div>
+  <div class="label">HERO Update</div>
+  <h2 class="spine">Learn → Prove → Earn은,<br><span class="em">Play → Prove → Scale</span>로 진화한다.</h2>
+  <div class="hero-compare">
+    <div class="col">
+      <h4>BEFORE · V2 SoT</h4>
+      <div class="arrow-line"><span style="opacity:.5">Learn</span> → Prove → <span style="opacity:.5">Earn</span></div>
+      <p class="sub" style="margin-top:16px; font-size:13px; color:var(--mute)">학습 출발 · 개인 수익 종결</p>
+    </div>
+    <div class="vs" aria-hidden="true"><svg width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block"><path d="M2 12h42M34 4l10 8-10 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="col new">
+      <h4>AFTER · Play 컨셉</h4>
+      <div class="arrow-line"><strong>Play</strong> → Prove → <strong>Scale</strong></div>
+      <p class="sub" style="margin-top:16px; font-size:13px; opacity:.7">놀이 출발 · 산업 확장 종결</p>
+    </div>
+  </div>
+
+  <details>
+    <summary>왜 이 진화가 필요한가</summary>
+    <div class="body">
+      <p><strong>Learn 출발의 한계:</strong> "교육 언어"로 시작하면 90% 대중을 잃는다.</p>
+      <p><strong>Earn 종결의 한계:</strong> 개인 수익에 머무르면 산업이 안 만들어진다.</p>
+      <p><strong>Play 출발:</strong> 90% 대중이 자연스럽게 진입.</p>
+      <p><strong>Scale 종결:</strong> 개인 → 학교·학원 → 기업·기관 → 글로벌 라이선싱으로 확장.</p>
+      <p>※ V2 SoT의 본질(Proof Layer 차별점)은 그대로 유지. 입구와 출구만 시장 언어로 재정의.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 13. 시장 데이터 ===== -->
+<section class="slide" id="s13">
+  <div class="num">13 / 17</div>
+  <div class="label">Market</div>
+  <h2 class="spine">시장은 <span class="em">이미</span><br>우리를 기다리고 있다.</h2>
+  <div class="grid g4" style="margin-top:48px">
+    <div class="box stat fill-yellow">
+      <span class="tag">중동·북아프리카 · 2024</span>
+      <div class="stat-n ko-unit">+22.8%</div>
+      <div class="stat-l">음악 시장 성장률</div>
+    </div>
+    <div class="box stat dark">
+      <span class="tag">대상 폭</span>
+      <div class="stat-n text">어린이 ~ 해외 기관</div>
+      <div class="stat-l">8 계층 전부</div>
+      <p class="stat-sub">기존 매거진은 임원층만</p>
+    </div>
+    <div class="box stat dark">
+      <span class="tag">K 팬덤</span>
+      <div class="stat-n">8</div>
+      <div class="stat-l">전략 지역</div>
+      <p class="stat-sub">동남아 · 일·미 · 유럽·중동</p>
+    </div>
+    <div class="box stat fill-green">
+      <span class="tag">확신도</span>
+      <div class="stat-n">90<span style="font-size:.4em;font-weight:700">/100</span></div>
+      <div class="stat-l">시장 규모 확신도</div>
+      <p class="stat-sub">2026 해외 한류 실태조사 + 국제음반산업협회 2024·25</p>
+    </div>
+  </div>
+
+  <details>
+    <summary>출처·맥락</summary>
+    <div class="body">
+      <ul>
+        <li><strong>중동·북아프리카 +22.8%</strong> — 2024 음악 시장 성장률.</li>
+        <li><strong>8 계층 전부</strong> — 어린이 · 청소년 · 일반 팬 · 지망생 · 프로 · 기업 임원 · 해외 기관까지.</li>
+        <li><strong>지역 우선순위</strong> — 인도네시아·태국(대중 입구) → 일본·미국(프리미엄 기업 교육) → 유럽·중동(라이선싱·해외 기관·학교 거래).</li>
+        <li><strong>확신도 종합</strong> — 매거진 수익 구조 85, 시장 규모 90, AI 필터 88, 플랫폼 형태 90, 지역 전략 86.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 14. BM 4층 ===== -->
+<section class="slide" id="s14">
+  <div class="num">14 / 17</div>
+  <div class="label">Business Model</div>
+  <h2 class="spine">놀이가 <span class="em">구독</span>이 되고,<br>구독이 <span class="em">산업</span>이 된다.</h2>
+  <div class="grid g4" style="margin-top:48px">
+    <div class="box dark">
+      <span class="tag">Layer 1</span>
+      <div class="h">구독</div>
+      <p class="sub">일반 팬·취미층. 트래픽 엔진.</p>
+    </div>
+    <div class="box fill-yellow">
+      <span class="tag">Layer 2 · Core</span>
+      <div class="h">기업 / 프로 / 데뷔준비 교육</div>
+      <p class="sub">현업 프로 · 데뷔 준비생 · 기업 임원 대상 고마진. 기존 매거진의 최대 매출원.</p>
+    </div>
+    <div class="box dark">
+      <span class="tag">Layer 3</span>
+      <div class="h">콘텐츠 판매</div>
+      <p class="sub">케이스북·프레임워크·마스터클래스.</p>
+    </div>
+    <div class="box dark">
+      <span class="tag">Layer 4</span>
+      <div class="h">라이선싱</div>
+      <p class="sub">해외 기관·국제학교. 반복 매출.</p>
+    </div>
+  </div>
+
+  <details>
+    <summary>수익 구조 디테일</summary>
+    <div class="body">
+      <p>하버드 비즈니스 리뷰는 매거진으로 시작했지만, 실제 엔진은 <strong>구독 + 기업 교육 + 케이스 + 라이선싱</strong>의 4층이다.</p>
+      <p>KISAS는 <strong>외형(매거진)이 아닌 엔진(4층 수익 구조)</strong>을 따라간다.</p>
+      <p>일반 팬층 = 트래픽 엔진(매출 ✗) · 프로·임원·해외 기관 = 매출 엔진. <em>"K팬 많으니 구독 잘 팔림"이 가장 큰 착각.</em></p>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 15. CLOSING ===== -->
+<section class="slide solo center chapter c-yellow" id="s15">
+  <div class="num">15 / 17</div>
+  <div class="label">Manifesto</div>
+  <h2 class="closing-q">K는 <span class="strike">소비</span>되지 않는다.<br>K는 <span class="em">플레이</span>된다.</h2>
+  <div class="surface center">
+    <p class="lead" style="margin-top:48px">— KISAS Platform Manifesto · 2026</p>
+  </div>
+</section>
+
+<!-- ===== 16. ONE MORE THING ===== -->
+<section class="slide solo center" id="s16" style="background:#000">
+  <div class="num">16 / 17</div>
+  <div class="label">One more thing.</div>
+  <h2 class="spine serif" style="font-size:clamp(36px,7vw,108px); line-height:1.15; text-align:center; width:100%">이제,<br>그 <span class="em">OS</span>를 보여드립니다.</h2>
+</section>
+
+<!-- ===== 17. 시안 풀 노출 ===== -->
+<section class="slide" id="s17" style="min-height:auto; padding:0 4vw 0">
+  <div class="s17-intro" style="min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:clamp(40px,6vw,80px) 0; scroll-snap-align:start; scroll-snap-stop:always; position:relative">
+    <div class="num" style="position:absolute; top:clamp(16px,3vw,32px); left:0">17 / 17</div>
+    <div class="label" style="position:absolute; top:clamp(16px,3vw,32px); right:0">The Product</div>
+    <p class="lead-line">이제, 그 <span class="em">OS</span>를 보여드립니다.</p>
+    <h2 class="spine" style="font-size:clamp(28px,5vw,64px); text-align:center; margin-bottom:24px">KISAS App — <span class="em">Concept Sketch</span></h2>
+    <p class="lead" style="text-align:center; max-width:700px; margin:0 auto">매니페스토의 모든 문장이 — 화면이 된다.</p>
+  </div>
+
+  <!-- G1 Home -->
+  <div class="shot-group">
+    <div class="caption-line">아침에 열면, <strong>오늘의 트레이닝</strong>이 있다.</div>
+    <p class="kicker">Home · 진입의 첫 화면</p>
+    <div class="shot-row">
+      <div class="shot"><img src="images/page-1.png" alt="Home"><div class="cap">Home — Dian.</div></div>
+    </div>
+  </div>
+
+  <!-- G2 Tracks -->
+  <div class="shot-group">
+    <div class="caption-line">강의가 아니다. <strong>종목</strong>이다.</div>
+    <p class="kicker">Discover · Tracks</p>
+    <div class="shot-row">
+      <div class="shot"><img src="images/page-2.png" alt="Tracks"><div class="cap">Discover — Tracks</div></div>
+    </div>
+  </div>
+
+  <!-- G3 Insight Vault -->
+  <div class="shot-group">
+    <div class="caption-line">학술은 옳다. 그래서 <strong>놀이 옆에</strong> 둔다.</div>
+    <p class="kicker">Discover · Insight Vault</p>
+    <div class="shot-row">
+      <div class="shot"><img src="images/page-3.png" alt="Insight Vault"><div class="cap">Discover — Insight Vault</div></div>
+    </div>
+  </div>
+
+  <!-- G4 Bubble → Golden 가로 페어 -->
+  <div class="shot-group">
+    <div class="caption-line">팬덤은 <strong>진입로</strong>다. 탭하면 안으로 들어온다.</div>
+    <p class="kicker">Discover · Bubble → Golden (탭 동작)</p>
+    <div class="pair-wrap">
+      <div class="shot"><img src="images/page-4.png" alt="Bubble"><div class="cap">Bubble · Golden 탭</div></div>
+      <div class="tap-arrow" aria-hidden="true"><svg width="56" height="28" viewBox="0 0 56 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 14h50M40 4l12 10-12 10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="shot"><img src="images/page-5.png" alt="Golden detail"><div class="cap">Golden · 안으로 들어옴</div></div>
+    </div>
+  </div>
+
+  <!-- G5 Studio -->
+  <div class="shot-group">
+    <div class="caption-line">놀이가 <strong>활동 세트</strong>가 되는 곳.</div>
+    <p class="kicker">Studio · Camps · Masterclass · Bootcamp</p>
+    <div class="shot-row">
+      <div class="shot"><img src="images/page-6.png" alt="Studio"><div class="cap">Studio</div></div>
+    </div>
+  </div>
+
+  <!-- G6 Proof -->
+  <div class="shot-group">
+    <div class="caption-line">이 사람이 무엇을 할 수 있는가, <strong>증명</strong>된다.</div>
+    <p class="kicker">Proof · 뱃지 · 포트폴리오 · 평판</p>
+    <div class="shot-row">
+      <div class="shot"><img src="images/page-7.png" alt="Proof"><div class="cap">Proof — Recent Badges</div></div>
+    </div>
+  </div>
+
+  <!-- G7 Me ↔ Profile 가로 페어 -->
+  <div class="shot-group">
+    <div class="caption-line"><strong>개인</strong>이 시작하고, <strong>조직</strong>이 합류한다.</div>
+    <p class="kicker">Me · ORG workspace · Profile</p>
+    <div class="pair-wrap">
+      <div class="shot"><img src="images/page-8.png" alt="Me"><div class="cap">Me · 구독 · ORG</div></div>
+      <div class="tap-arrow" aria-hidden="true"><svg width="56" height="28" viewBox="0 0 56 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 14h50M40 4l12 10-12 10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="shot"><img src="images/page-9.png" alt="Profile"><div class="cap">Profile · 외부 공개</div></div>
+    </div>
+  </div>
+
+  <!-- 마무리 -->
+  <div class="s17-outro" style="min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:clamp(40px,6vw,80px) 0; scroll-snap-align:start; scroll-snap-stop:always; max-width:1000px; margin:0 auto">
+    <div style="border-top:1px solid var(--line); padding-top:80px; width:100%; text-align:center">
+      <h3 class="spine closing-final" style="text-align:center">이게 — <span class="em">K 창작의 OS</span>다.</h3>
+      <p class="lead" style="margin:32px auto 0; text-align:center; max-width:720px">Talent is everywhere. <strong style="color:var(--accent)">Proof is not.</strong></p>
+      <p class="lead" style="margin:8px auto 0; font-size:14px; color:var(--mute); text-align:center; max-width:720px">기회는 재능이 아니라, 증명 방식에 의해 결정된다. 우리는 그 방식을 바꾼다.</p>
+    </div>
+    <div class="footer-tag" style="position:relative; left:auto; bottom:auto; margin-top:60px; text-align:center"><span class="dot"></span>KISAS Platform · Play Manifesto · 2026.04</div>
+  </div>
+</section>
+
+<!-- 플로팅 버튼: 모든 접기 펼침/접기 토글 -->
+<button class="fab-expand" id="fabExpand" type="button" aria-label="모든 섹션 펼치기/접기" title="모든 섹션 펼치기/접기">
+  <span id="fabIcon">+</span>
+  <span class="fab-label" id="fabLabel">모두 펼치기</span>
+</button>
+
+<script>
+  // 플로팅 버튼: 모든 <details> 토글
+  (function(){
+    const btn = document.getElementById('fabExpand');
+    const icon = document.getElementById('fabIcon');
+    const label = document.getElementById('fabLabel');
+    let allOpen = false;
+    btn.addEventListener('click', function(){
+      const list = document.querySelectorAll('details');
+      allOpen = !allOpen;
+      list.forEach(d => { d.open = allOpen; });
+      icon.textContent = allOpen ? '−' : '+';
+      label.textContent = allOpen ? '모두 접기' : '모두 펼치기';
+    });
+  })();
+
+  // 화살표 키 슬라이드 네비게이션
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+  function go(i){
+    if(i<0) i=0; if(i>=slides.length) i=slides.length-1;
+    current=i; slides[i].scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '){e.preventDefault(); go(current+1);}
+    if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault(); go(current-1);}
+    if(e.key==='Home'){e.preventDefault(); go(0);}
+    if(e.key==='End'){e.preventDefault(); go(slides.length-1);}
+  });
+  // 스크롤로 current 동기화
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        current = Array.from(slides).indexOf(en.target);
+      }
+    });
+  }, {threshold:.5});
+  slides.forEach(s=>io.observe(s));
+
+  /* 자성 스크롤 = CSS scroll-snap (W3C 표준) 으로 이전. JS 엔진 제거. */
+</script>
+</body>
+</html>
