@@ -25,8 +25,8 @@
     scroll-snap-align:start;
     scroll-snap-stop:always;
   }
-  /* s17은 시연용 긴 섹션 → 스냅 제외 */
-  #s17{scroll-snap-align:none}
+  /* s15은 시연용 긴 섹션 → 스냅 제외 */
+  #s15{scroll-snap-align:none}
   .num{position:absolute; top:clamp(16px,3vw,32px); left:clamp(20px,8vw,8vw); font-size:clamp(9px,1vw,11px); letter-spacing:.2em; color:var(--mute); font-weight:600}
   .label{position:absolute; top:clamp(16px,3vw,32px); right:clamp(20px,8vw,8vw); font-size:clamp(9px,1vw,11px); letter-spacing:.2em; color:var(--mute); font-weight:600; text-transform:uppercase}
 
@@ -302,7 +302,7 @@
     .flow .step .d{font-size:13px}
     .flow .arrow svg{width:32px}
 
-    /* s17 시안 pair 화살표 — 세로 배치 중앙 */
+    /* s16 시안 pair 화살표 — 세로 배치 중앙 */
     .pair-wrap{gap:20px}
     .tap-arrow{margin:0 !important; padding:0; align-self:center !important; transform:none; line-height:1}
     .tap-arrow svg{transform:rotate(90deg); width:40px; height:auto}
@@ -313,7 +313,7 @@
 
 <!-- ===== 1. COVER ===== -->
 <section class="slide solo center chapter c-yellow" id="s1">
-  <div class="num">01 / 17</div>
+  <div class="num">01 / 15</div>
   <div class="label">KISAS · Manifesto</div>
   <div class="kicker">2026.04</div>
   <h1 class="spine xl">Learn이 아니라,<br><span class="em">Play다.</span></h1>
@@ -322,9 +322,30 @@
   </div>
 </section>
 
-<!-- ===== 2. 시간 왜곡 ===== -->
+<!-- ===== 2. PROMISE ===== -->
 <section class="slide" id="s2">
-  <div class="num">02 / 17</div>
+  <div class="num">02 / 15</div>
+  <div class="label">Promise</div>
+  <div class="kicker">약속</div>
+  <h2 class="spine">소비로 끝난 K를,<br><span class="em">창작 산업</span>으로 되돌린다.</h2>
+  <div class="surface">
+    <p class="lead" style="margin-top:32px">K팝·K콘텐츠·K컬처는 지금 <strong>소비만 되고 있다</strong>.<br>우리는 그 소비가 <strong>플랫폼으로 영속</strong>하고, <strong>시장에 기여</strong>하고, <strong>선순환</strong>하도록 만든다.</p>
+  </div>
+
+  <details>
+    <summary>영속·선순환 메커니즘</summary>
+    <div class="body">
+      <p><strong>현재:</strong> 팬덤은 거대하지만 (글로벌 수억 명), 소비에서 멈춘다.</p>
+      <p><strong>전환:</strong> 소비 → 따라하기 → 능력 → 증명 → 기회 → 더 큰 소비.</p>
+      <p><strong>결과:</strong> K는 한 번 소비되고 끝나는 콘텐츠가 아니라, <strong>창작자를 만들어내는 산업</strong>이 된다.</p>
+      <blockquote>K-콘텐츠 = "흥행 콘텐츠"가 아니라 → 글로벌 영향력 시스템 (문화 + 산업 + 국가 전략)</blockquote>
+    </div>
+  </details>
+</section>
+
+<!-- ===== 3. 시간 왜곡 ===== -->
+<section class="slide" id="s3">
+  <div class="num">03 / 15</div>
   <div class="label">Time Warp</div>
   <h2 class="spine">모든 새로운 카테고리는,<br>처음엔 <span class="em">미친 짓</span>이었다.</h2>
   <div class="logos">
@@ -335,7 +356,7 @@
   <div class="logos" style="margin-top:24px; padding-top:32px; border-top:1px solid var(--line)">
     <div class="logo">LinkedIn<small>처음엔 이력서 사이트였다</small></div>
     <div class="logo">Coursera<small>처음엔 강의였다</small></div>
-    <div class="logo" style="color:var(--accent)">KISAS<small style="color:var(--accent);opacity:.85">처음부터 OS다</small></div>
+    <div class="logo" style="color:var(--accent)">KISAS<small style="color:var(--accent);opacity:.85">이건 뭐야?</small></div>
   </div>
 
   <details>
@@ -349,9 +370,9 @@
   </details>
 </section>
 
-<!-- ===== 3. KISAS는? ===== -->
-<section class="slide" id="s3">
-  <div class="num">03 / 17</div>
+<!-- ===== 4. KISAS는? ===== -->
+<section class="slide" id="s4">
+  <div class="num">04 / 15</div>
   <div class="label">Definition</div>
   <div class="kicker">그렇다면, KISAS는 무엇인가</div>
   <h2 class="spine">KISAS는 K 창작의<br><span class="em">운영체제</span>다.</h2>
@@ -369,38 +390,17 @@
   </details>
 </section>
 
-<!-- ===== 4. 미션 ===== -->
-<section class="slide" id="s4">
-  <div class="num">04 / 17</div>
-  <div class="label">Mission</div>
-  <div class="kicker">미션</div>
-  <h2 class="spine">따라 하다가,<br><span class="em">기회가 온다.</span></h2>
-  <div class="surface">
-    <p class="lead" style="margin-top:32px">K팝·K콘텐츠·K컬처는 지금 <strong>소비된다</strong>.<br>우리는 그 소비가 <strong>플랫폼으로 영속</strong>하고, <strong>시장에 기여</strong>하고, <strong>선순환</strong>하도록 만든다.</p>
-  </div>
-
-  <details>
-    <summary>영속·선순환 메커니즘</summary>
-    <div class="body">
-      <p><strong>현재:</strong> 팬덤은 거대하지만 (글로벌 수억 명), 소비에서 멈춘다.</p>
-      <p><strong>전환:</strong> 소비 → 따라하기 → 능력 → 증명 → 기회 → 더 큰 소비.</p>
-      <p><strong>결과:</strong> K는 한 번 소비되고 끝나는 콘텐츠가 아니라, <strong>창작자를 만들어내는 산업</strong>이 된다.</p>
-      <blockquote>K-콘텐츠 = "흥행 콘텐츠"가 아니라 → 글로벌 영향력 시스템 (문화 + 산업 + 국가 전략)</blockquote>
-    </div>
-  </details>
-</section>
-
 <!-- ===== 5. 그래서 어떻게? ===== -->
 <section class="slide solo chapter c-red" id="s5">
-  <div class="num">05 / 17</div>
+  <div class="num">05 / 15</div>
   <div class="label">The Question</div>
   <div class="kicker">그래서, 어떻게?</div>
-  <h2 class="spine serif">질문은 하나다 —<br>무엇이 <span class="em">대중</span>을 움직이는가.</h2>
+  <h2 class="spine">질문은 하나다 —<br>무엇이 <span class="em">대중</span>을 움직이는가.</h2>
 </section>
 
 <!-- ===== 6. 반론 차단 ===== -->
 <section class="slide" id="s6">
-  <div class="num">06 / 17</div>
+  <div class="num">06 / 15</div>
   <div class="label">Honest Truth</div>
   <h2 class="spine">학술은 옳다.<br>그러나 <span class="em">옳음</span>은<br><span class="strike">시장을</span> 만들지 못한다.</h2>
   <div class="grid g4" style="margin-top:48px">
@@ -413,16 +413,16 @@
   <details>
     <summary>왜 분석·학술만으론 안 되는가</summary>
     <div class="body">
-      <p><strong>닫힌 루프:</strong> 경험 → 학습 → 창작 → 자기만족 반복 = 취미·교양 시스템.</p>
-      <p><strong>열린 루프:</strong> 경험 → 학습 → 창작 → <strong>Proof → 기회·수익</strong> → 더 큰 경험 = 산업 시스템.</p>
-      <blockquote>Signaling Theory — 시장은 "실력"이 아니라 "신호(signal)"를 보고 판단한다.<br>Proof 없이 능력은 존재하지만, 거래되지 않는다.</blockquote>
+      <p><strong>학술의 루프:</strong> 연구 → 논문 → 인용 → 더 깊은 연구 = 재미는 동료에게만, 대중은 초대받지 못한 파티.</p>
+      <p><strong>놀이의 루프:</strong> 재미 → 따라하기 → 확산 → 더 큰 재미 = 대중이 스스로 키우는 시장.</p>
+      <blockquote>학술은 현실을 설명하지만, 놀이는 현실을 만든다.</blockquote>
     </div>
   </details>
 </section>
 
 <!-- ===== 7. 대중과 호흡 ===== -->
 <section class="slide" id="s7">
-  <div class="num">07 / 17</div>
+  <div class="num">07 / 15</div>
   <div class="label">Pulse</div>
   <h2 class="spine">대중과 호흡하지 않는 것은,<br><span class="em">오래</span>가지 않는다.</h2>
   <div class="grid g3" style="margin-top:48px">
@@ -439,6 +439,7 @@
       <p class="sub" style="margin-top:16px">프로·산업 플레이어</p>
     </div>
   </div>
+  <p class="sub" style="margin-top:16px; font-size:11px; color:var(--mute); letter-spacing:.05em">출처 · Jakob Nielsen, "Participation Inequality" (닐슨 노먼 그룹, 2006) — 1% Rule</p>
 
   <details>
     <summary>3층 구조의 시장 행동</summary>
@@ -447,21 +448,22 @@
       <p><strong>YouTube</strong> — 아마추어 → 프로 전환의 표준 경로.</p>
       <p><strong>TikTok</strong> — 따라하기 → 확산 → 스타 탄생.</p>
       <p>핵심: <strong>"재밌어서 시작 → 점점 생산으로 이동"</strong> — 모든 거대 플랫폼의 공통 경로.</p>
+      <blockquote>90 : 9 : 1 비율은 Jakob Nielsen (닐슨 노먼 그룹, 2006)의 "Participation Inequality / 1% Rule"에서 온 온라인 커뮤니티 경험칙. K 팬덤 실증치가 아닌 업계 통용 참조값으로 사용.</blockquote>
     </div>
   </details>
 </section>
 
 <!-- ===== 8. 방법은? ===== -->
 <section class="slide solo chapter c-green" id="s8">
-  <div class="num">08 / 17</div>
+  <div class="num">08 / 15</div>
   <div class="label">The Hint</div>
   <div class="kicker">방법은?</div>
-  <h2 class="spine serif">답은 이미<br>그들의 <span class="em">행동</span> 안에 있다.</h2>
+  <h2 class="spine">답은 이미<br>그들의 <span class="em">행동</span> 안에 있다.</h2>
 </section>
 
 <!-- ===== 9. 진단 ===== -->
 <section class="slide" id="s9">
-  <div class="num">09 / 17</div>
+  <div class="num">09 / 15</div>
   <div class="label">Diagnosis</div>
   <h2 class="spine">대중은 <span class="em">따라 하며</span> 즐기고,<br>창작자는 <span class="em">더 큰 무대</span>를 원한다.</h2>
   <div class="grid g2" style="margin-top:48px">
@@ -478,18 +480,29 @@
   </div>
 
   <details>
-    <summary>두 욕구가 만드는 시장</summary>
+    <summary>수치로 확인되는 두 욕구</summary>
     <div class="body">
-      <p><strong>대중의 욕구:</strong> 짧다(즉각 보상) · 쉽다(진입 낮음) · 공유된다(인정·확산).</p>
-      <p><strong>창작자의 욕구:</strong> 표준화된 증명 · 더 큰 무대 · 거래 가능한 능력.</p>
-      <p>두 욕구가 한 위에서 만나면 — <strong>그게 시장이다.</strong></p>
+      <p><strong>대중은 이미 따라하고 있다</strong></p>
+      <ul>
+        <li><strong>9백만 개 영상 · 800억 뷰</strong> — 단일 K팝 챌린지 1건의 틱톡 누적 UGC (2025). 대중의 자발적 "따라하기" 규모.</li>
+        <li><strong>Gen Z의 82% · 밀레니얼의 70%</strong> — 소셜에서 UGC 영상을 통해 새 음악·아티스트를 발견 (2025). 따라하기 = 대중의 기본 소비 경로.</li>
+        <li><strong>해시태그 챌린지 첫 주 평균 43억 뷰</strong> — 틱톡 글로벌 평균 (2024~25). 진입 장벽이 얼마나 낮은지의 증거.</li>
+      </ul>
+      <p style="margin-top:20px"><strong>창작자는 이미 더 큰 무대를 원한다</strong></p>
+      <ul>
+        <li><strong>2억 명 이상</strong> — 글로벌 콘텐츠 창작자 수 (2025). 수 년 만에 5천만 → 2억 돌파.</li>
+        <li><strong>Gen Z의 70%</strong> — "크리에이터를 직업으로 삼고 싶다" (2025). 창작자 지망 = 산업 예약 대기자.</li>
+        <li><strong>연 10만 달러 이상 수익 창작자 = 4%</strong> — 나머지 96%는 능력은 있지만 시장 진입·증명 수단 부족 (2025). 표준 증명의 공백.</li>
+      </ul>
+      <blockquote>대중 800억 뷰는 공기처럼 흐르고, 창작자 2억 명은 증명을 기다린다. 두 욕구가 한 위에서 만나면 — 그게 시장이다.</blockquote>
+      <p style="font-size:12px; color:var(--mute); margin-top:20px">출처 · TikTok for Business · IFPI / Luminate Music 360 · Grand View Research · Goldman Sachs "Music in the Air" 2024~25</p>
     </div>
   </details>
 </section>
 
 <!-- ===== 10. 점프 ===== -->
 <section class="slide solo center chapter c-blue" id="s10">
-  <div class="num">10 / 17</div>
+  <div class="num">10 / 15</div>
   <div class="label">The Jump</div>
   <div class="kicker">그래서</div>
   <h2 class="spine xl"><span class="strike">Learn</span>이 아니라,<br><span class="em">Play</span>다.</h2>
@@ -498,143 +511,161 @@
   </div>
 </section>
 
-<!-- ===== 11. 3단 메커니즘 ===== -->
+<!-- ===== 11. 플랫폼 허브 메커니즘 ===== -->
 <section class="slide" id="s11">
-  <div class="num">11 / 17</div>
+  <div class="num">11 / 15</div>
   <div class="label">Mechanism</div>
-  <h2 class="spine"><span class="em">놀이</span>로 들어와,<br><span class="em">활동</span>으로 번지고,<br><span class="em">인증</span>으로 증명된다.</h2>
-  <div class="flow">
-    <div class="step">
-      <span class="n">01 · ENTRY</span>
-      <span class="t">놀이</span>
-      <p class="d">팬덤·트렌드·숏폼으로 진입. 교육 냄새 ✗. 따라하기 가능한 템플릿.</p>
+  <h2 class="spine">어디서 시작하든,<br><span class="em">같은 인증</span>으로 모인다.</h2>
+
+  <!-- 허브 다이어그램 (컴팩트) -->
+  <div class="hub-wrap" style="margin-top:clamp(16px,2.4vw,28px); max-width:1200px">
+    <!-- 상단: 3 진입 루트 -->
+    <div class="hub-entries" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(10px,1.2vw,16px)">
+      <div class="box dark" style="min-height:auto; padding:clamp(14px,1.6vw,20px)">
+        <span class="tag">B2C · 개인</span>
+        <div class="h" style="font-size:clamp(15px,1.6vw,20px); margin-top:8px">놀이</div>
+        <p class="sub" style="margin-top:4px; font-size:clamp(11px,1vw,13px)">팬덤·숏폼 따라하기</p>
+      </div>
+      <div class="box dark" style="min-height:auto; padding:clamp(14px,1.6vw,20px)">
+        <span class="tag">B2B · SaaS</span>
+        <div class="h" style="font-size:clamp(15px,1.6vw,20px); margin-top:8px">학교 · 학원</div>
+        <p class="sub" style="margin-top:4px; font-size:clamp(11px,1vw,13px)">활동 세트 · 평가 표준 공급</p>
+      </div>
+      <div class="box dark" style="min-height:auto; padding:clamp(14px,1.6vw,20px)">
+        <span class="tag">B2B · 프로</span>
+        <div class="h" style="font-size:clamp(15px,1.6vw,20px); margin-top:8px">기업 · 기관</div>
+        <p class="sub" style="margin-top:4px; font-size:clamp(11px,1vw,13px)">현업·임원 고마진 교육</p>
+      </div>
     </div>
-    <div class="arrow" aria-hidden="true"><svg width="40" height="20" viewBox="0 0 40 20" fill="none"><path d="M2 10h34M28 3l8 7-8 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="step">
-      <span class="n">02 · SCALE</span>
-      <span class="t">활동 세트</span>
-      <p class="d">학교·학원에 공급되는 재미있는 활동 패키지. 프레임을 갖춘 전문성.</p>
+
+    <!-- 수렴 화살표 3개 (단순 글리프) -->
+    <div aria-hidden="true" class="arr" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); justify-items:center; margin:clamp(6px,1vw,10px) 0; color:var(--mute); font-size:clamp(18px,2vw,24px); line-height:1">↓&nbsp;<span>↓</span><span>↓</span></div>
+
+    <!-- 중앙 허브 -->
+    <div class="box fill-yellow" style="text-align:center; min-height:auto; padding:clamp(16px,2vw,26px)">
+      <span class="tag" style="color:#000; opacity:.75">KISAS Platform</span>
+      <div class="h" style="font-size:clamp(22px,2.8vw,36px); margin-top:6px">놀이와 공급을 한 위에서 굴린다</div>
+      <p class="sub" style="color:#000; opacity:.8; margin-top:4px; font-size:clamp(12px,1.2vw,15px)">SaaS로 학교·학원·기업에 공급 · 개인엔 놀이로 진입</p>
     </div>
-    <div class="arrow" aria-hidden="true"><svg width="40" height="20" viewBox="0 0 40 20" fill="none"><path d="M2 10h34M28 3l8 7-8 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="step">
-      <span class="n">03 · PROOF</span>
-      <span class="t">인증</span>
-      <p class="d">시장이 인정하는 표준 증명. 위변조 불가 디지털 인증 기반. 시장에서 나를 입증한다.</p>
+
+    <!-- 단일 화살표 -->
+    <div aria-hidden="true" class="arr" style="display:flex; justify-content:center; margin:clamp(6px,1vw,10px) 0; color:var(--mute); font-size:clamp(18px,2vw,24px); line-height:1">↓</div>
+
+    <!-- 공통 인증 -->
+    <div class="box fill-green" style="text-align:center; min-height:auto; padding:clamp(16px,2vw,26px)">
+      <span class="tag" style="color:#000; opacity:.75">Proof Layer · 공통 인증</span>
+      <div class="h" style="font-size:clamp(22px,2.8vw,36px); margin-top:6px">어디서 시작했든, 같은 표준으로 증명된다</div>
+      <p class="sub" style="color:#000; opacity:.8; margin-top:4px; font-size:clamp(12px,1.2vw,15px)">위변조 불가 디지털 인증 · 포트폴리오 · 기업·기관 매칭</p>
     </div>
   </div>
 
   <details>
-    <summary>실행 디테일</summary>
+    <summary>왜 "공통 인증"이 핵심인가</summary>
     <div class="body">
-      <p><strong>① 놀이 (진입 · 따라하기):</strong> 트렌드 버블, 댄스 챌린지, AI 커버. 핵심 지표 = 체류·생성률.</p>
-      <p><strong>② 활동 세트 (경쟁 · 숙련):</strong> 학교·학원·캠프용 프로그램. 프레임 + 커리큘럼 + 평가표. 핵심 지표 = 수료·성장.</p>
-      <p><strong>③ 인증 (증명 · 기회):</strong> 위변조 불가 디지털 뱃지 → 포트폴리오 → 기업·기관 매칭. 핵심 지표 = 매칭·수익.</p>
+      <p><strong>개인 루트</strong> — 팬이 놀이로 따라하다가 인증을 딴다. 학원을 안 다녔어도 같은 기준으로 증명된다.</p>
+      <p><strong>SaaS 루트</strong> — KISAS가 활동 세트·평가 표준을 학교·학원에 SaaS로 공급한다. 거기서 따는 인증도 플랫폼 인증과 동일하다.</p>
+      <p><strong>기업·기관 루트</strong> — 프로 교육 수료도 같은 허브로 수렴. 이게 HBR이 "구독 + 교육 + 케이스 + 라이선싱"을 같은 매거진 권위 위에 올린 방식.</p>
+      <blockquote>진입은 다르되, 증명은 하나 — 이게 OS다. 놀이와 SaaS가 다른 상품처럼 흩어지면 플랫폼이 아니라 백화점이 된다.</blockquote>
     </div>
   </details>
 </section>
 
-<!-- ===== 12. HERO 재정의 ===== -->
+<!-- ===== 12. 시장 데이터 ===== -->
 <section class="slide" id="s12">
-  <div class="num">12 / 17</div>
-  <div class="label">HERO Update</div>
-  <h2 class="spine">Learn → Prove → Earn은,<br><span class="em">Play → Prove → Scale</span>로 진화한다.</h2>
-  <div class="hero-compare">
-    <div class="col">
-      <h4>BEFORE · V2 SoT</h4>
-      <div class="arrow-line"><span style="opacity:.5">Learn</span> → Prove → <span style="opacity:.5">Earn</span></div>
-      <p class="sub" style="margin-top:16px; font-size:13px; color:var(--mute)">학습 출발 · 개인 수익 종결</p>
-    </div>
-    <div class="vs" aria-hidden="true"><svg width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block"><path d="M2 12h42M34 4l10 8-10 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="col new">
-      <h4>AFTER · Play 컨셉</h4>
-      <div class="arrow-line"><strong>Play</strong> → Prove → <strong>Scale</strong></div>
-      <p class="sub" style="margin-top:16px; font-size:13px; opacity:.7">놀이 출발 · 산업 확장 종결</p>
-    </div>
-  </div>
-
-  <details>
-    <summary>왜 이 진화가 필요한가</summary>
-    <div class="body">
-      <p><strong>Learn 출발의 한계:</strong> "교육 언어"로 시작하면 90% 대중을 잃는다.</p>
-      <p><strong>Earn 종결의 한계:</strong> 개인 수익에 머무르면 산업이 안 만들어진다.</p>
-      <p><strong>Play 출발:</strong> 90% 대중이 자연스럽게 진입.</p>
-      <p><strong>Scale 종결:</strong> 개인 → 학교·학원 → 기업·기관 → 글로벌 라이선싱으로 확장.</p>
-      <p>※ V2 SoT의 본질(Proof Layer 차별점)은 그대로 유지. 입구와 출구만 시장 언어로 재정의.</p>
-    </div>
-  </details>
-</section>
-
-<!-- ===== 13. 시장 데이터 ===== -->
-<section class="slide" id="s13">
-  <div class="num">13 / 17</div>
+  <div class="num">12 / 15</div>
   <div class="label">Market</div>
   <h2 class="spine">시장은 <span class="em">이미</span><br>우리를 기다리고 있다.</h2>
-  <div class="grid g4" style="margin-top:48px">
+  <p class="lead" style="margin-top:16px; max-width:900px">수요는 쌓였고, 공급은 비었고, 타이밍은 열렸다.</p>
+  <div class="grid g4" style="margin-top:40px">
+    <!-- ① 수요 -->
     <div class="box stat fill-yellow">
-      <span class="tag">중동·북아프리카 · 2024</span>
-      <div class="stat-n ko-unit">+22.8%</div>
-      <div class="stat-l">음악 시장 성장률</div>
+      <span class="tag">① 수요 · Demand</span>
+      <div class="stat-n ko-unit">2.25<span style="font-size:.45em;font-weight:800">억</span></div>
+      <div class="stat-l">글로벌 K 팬덤 규모</div>
+      <p class="stat-sub">10년 전 대비 18배 · 8개 권역 전부 성장</p>
     </div>
+    <!-- ② 공백 -->
+    <div class="box stat fill-red" style="color:#111">
+      <span class="tag" style="color:#111">② 공백 · Gap</span>
+      <div class="stat-n text" style="color:#111">어린이부터<br>해외 기관까지</div>
+      <div class="stat-l" style="color:#111">아무도 다 못 이은 구간</div>
+      <p class="stat-sub" style="color:#111; border-top-color:rgba(0,0,0,.18)">기존 교육 매거진 = 임원만 · 팬 서비스 = 놀이까지만 · 연결 ✗</p>
+    </div>
+    <!-- ③ 타이밍 -->
     <div class="box stat dark">
-      <span class="tag">대상 폭</span>
-      <div class="stat-n text">어린이 ~ 해외 기관</div>
-      <div class="stat-l">8 계층 전부</div>
-      <p class="stat-sub">기존 매거진은 임원층만</p>
+      <span class="tag">③ 타이밍 · Timing</span>
+      <div class="stat-n ko-unit">92<span style="font-size:.4em;font-weight:700">%</span></div>
+      <div class="stat-l">기업의 AI·창작 재교육 필요</div>
+      <p class="stat-sub">McKinsey 2024 · LinkedIn Workplace Learning 2025</p>
     </div>
-    <div class="box stat dark">
-      <span class="tag">K 팬덤</span>
-      <div class="stat-n">8</div>
-      <div class="stat-l">전략 지역</div>
-      <p class="stat-sub">동남아 · 일·미 · 유럽·중동</p>
-    </div>
+    <!-- ④ 확신 -->
     <div class="box stat fill-green">
-      <span class="tag">확신도</span>
+      <span class="tag">④ 확신 · Conviction</span>
       <div class="stat-n">90<span style="font-size:.4em;font-weight:700">/100</span></div>
       <div class="stat-l">시장 규모 확신도</div>
-      <p class="stat-sub">2026 해외 한류 실태조사 + 국제음반산업협회 2024·25</p>
+      <p class="stat-sub">2026 해외 한류 실태조사 + IFPI 2024·25</p>
     </div>
   </div>
 
   <details>
     <summary>출처·맥락</summary>
     <div class="body">
+      <p><strong>① 수요 — 2.25억 K 팬덤</strong></p>
       <ul>
-        <li><strong>중동·북아프리카 +22.8%</strong> — 2024 음악 시장 성장률.</li>
-        <li><strong>8 계층 전부</strong> — 어린이 · 청소년 · 일반 팬 · 지망생 · 프로 · 기업 임원 · 해외 기관까지.</li>
-        <li><strong>지역 우선순위</strong> — 인도네시아·태국(대중 입구) → 일본·미국(프리미엄 기업 교육) → 유럽·중동(라이선싱·해외 기관·학교 거래).</li>
-        <li><strong>확신도 종합</strong> — 매거진 수익 구조 85, 시장 규모 90, AI 필터 88, 플랫폼 형태 90, 지역 전략 86.</li>
+        <li>2026 해외 한류 실태조사 기준 글로벌 K 팬덤 추산.</li>
+        <li>중동·북아프리카 음악 시장만 2024년 <strong>+22.8%</strong> 성장. 8개 전략 권역 전부 동반 성장.</li>
+        <li>단순 팬이 아닌 <strong>따라하는 팬</strong>으로 전환 중 — 틱톡 단일 챌린지 9백만 영상·800억 뷰.</li>
       </ul>
+      <p style="margin-top:16px"><strong>② 공백 — 아무도 "어린이 ~ 해외 기관"을 한 줄로 잇지 못함</strong></p>
+      <ul>
+        <li><strong>기존 교육 매거진(HBR 류)</strong> = 기업 임원·지망 프로만. 어린이·청소년·일반 팬 진입 ✗.</li>
+        <li><strong>K팬 서비스·팬덤 플랫폼</strong> = 팬 활동·놀이까지만. 프로·기업·해외 기관 ✗.</li>
+        <li><strong>KISAS</strong> = 어린이(8세) → 청소년 → 일반 팬 → 지망생 → 프로 → 기업 임원 → 해외 기관까지, <strong>같은 증명 표준</strong>으로 연결.</li>
+      </ul>
+      <p style="margin-top:16px"><strong>③ 타이밍 — 왜 지금인가</strong></p>
+      <ul>
+        <li>McKinsey(2024): 기업의 <strong>92%</strong>가 AI·창작 영역에서 기존 인력 재교육 필요 응답. 1%만이 "충분히 준비됨".</li>
+        <li>LinkedIn Workplace Learning 2025: "창작·콘텐츠 역량"이 B2B 교육 투자 우선순위 상위 5위 진입.</li>
+        <li>K의 글로벌 수요 + 기업의 창작 재교육 수요 = <strong>공급처가 비어있는 창</strong>이 지금 열림.</li>
+      </ul>
+      <p style="margin-top:16px"><strong>④ 확신도 종합 (V2 Appendix)</strong></p>
+      <ul>
+        <li>매거진 수익 구조 <strong>85</strong> · 시장 규모 <strong>90</strong> · AI 필터 <strong>88</strong> · 플랫폼 형태 <strong>90</strong> · 지역 전략 <strong>86</strong>.</li>
+        <li>진입 순서 — 인도네시아·태국(대중 입구) → 일본·미국(프리미엄 기업 교육) → 유럽·중동(라이선싱·해외 기관).</li>
+      </ul>
+      <blockquote>수요 2.25억 · 어린이부터 해외 기관까지 통째 공백 · 타이밍 92% — 세 숫자가 같은 방향을 가리킨다. 그래서 "이미 기다리고 있다"다.</blockquote>
     </div>
   </details>
 </section>
 
-<!-- ===== 14. BM 4층 ===== -->
-<section class="slide" id="s14">
-  <div class="num">14 / 17</div>
-  <div class="label">Business Model</div>
+<!-- ===== 13. BM 4층 ===== -->
+<section class="slide" id="s13">
+  <div class="num">13 / 15</div>
+  <div class="label">Business Model · 2028.04 스냅샷</div>
   <h2 class="spine">놀이가 <span class="em">구독</span>이 되고,<br>구독이 <span class="em">산업</span>이 된다.</h2>
   <div class="grid g4" style="margin-top:48px">
     <div class="box dark">
-      <span class="tag">Layer 1</span>
-      <div class="h">구독</div>
-      <p class="sub">일반 팬·취미층. 트래픽 엔진.</p>
+      <span class="tag">Layer 1 · 구독</span>
+      <div class="h">디안은 매일 아침 챌린지 트랙을 켠다</div>
+      <p class="sub">월 구독자 180만 명. 인니·태국·한국 3개국 대중 입구. 트래픽 엔진.</p>
     </div>
     <div class="box fill-yellow">
       <span class="tag">Layer 2 · Core</span>
-      <div class="h">기업 / 프로 / 데뷔준비 교육</div>
-      <p class="sub">현업 프로 · 데뷔 준비생 · 기업 임원 대상 고마진. 기존 매거진의 최대 매출원.</p>
+      <div class="h">데뷔 5주 남은 연습생이 KISAS Pro를 듣는다</div>
+      <p class="sub">기획사 3사 정식 채택 · 연습생 트랙 32개. Core 매출 엔진.</p>
     </div>
     <div class="box dark">
-      <span class="tag">Layer 3</span>
-      <div class="h">콘텐츠 판매</div>
-      <p class="sub">케이스북·프레임워크·마스터클래스.</p>
+      <span class="tag">Layer 3 · 콘텐츠 판매</span>
+      <div class="h">"BTS 아미 빌더" 케이스북이 버클리 교재다</div>
+      <p class="sub">케이스북 12종 누적 8만 부. 대학·기업 교육 공용.</p>
     </div>
     <div class="box dark">
-      <span class="tag">Layer 4</span>
-      <div class="h">라이선싱</div>
-      <p class="sub">해외 기관·국제학교. 반복 매출.</p>
+      <span class="tag">Layer 4 · 라이선싱</span>
+      <div class="h">국제학교 17곳에서 KISAS가 정규 교과다</div>
+      <p class="sub">MENA·동남아 17개교 연간 라이선스. 반복 매출.</p>
     </div>
   </div>
+  <p class="sub" style="margin-top:16px; font-size:11px; color:var(--mute); letter-spacing:.05em">※ 2028년 4월 목표 시나리오 · 2026.04 현재 1기 캠프 60명 진행 중 (디안·연습생 등은 예시)</p>
 
   <details>
     <summary>수익 구조 디테일</summary>
@@ -642,13 +673,14 @@
       <p>하버드 비즈니스 리뷰는 매거진으로 시작했지만, 실제 엔진은 <strong>구독 + 기업 교육 + 케이스 + 라이선싱</strong>의 4층이다.</p>
       <p>KISAS는 <strong>외형(매거진)이 아닌 엔진(4층 수익 구조)</strong>을 따라간다.</p>
       <p>일반 팬층 = 트래픽 엔진(매출 ✗) · 프로·임원·해외 기관 = 매출 엔진. <em>"K팬 많으니 구독 잘 팔림"이 가장 큰 착각.</em></p>
+      <p><strong>2028 스냅샷 진행 경로</strong> — 2026 1기 캠프 60명 → 2026~27 구독 MVP → 2027 프로 과정 → 2027~28 기업 교육 → 2028~ 라이선싱. 4층 전부 살아있는 첫 해가 2028.</p>
     </div>
   </details>
 </section>
 
-<!-- ===== 15. CLOSING ===== -->
-<section class="slide solo center chapter c-yellow" id="s15">
-  <div class="num">15 / 17</div>
+<!-- ===== 14. CLOSING ===== -->
+<section class="slide solo center chapter c-yellow" id="s14">
+  <div class="num">14 / 15</div>
   <div class="label">Manifesto</div>
   <h2 class="closing-q">K는 <span class="strike">소비</span>되지 않는다.<br>K는 <span class="em">플레이</span>된다.</h2>
   <div class="surface center">
@@ -656,18 +688,11 @@
   </div>
 </section>
 
-<!-- ===== 16. ONE MORE THING ===== -->
-<section class="slide solo center" id="s16" style="background:#000">
-  <div class="num">16 / 17</div>
-  <div class="label">One more thing.</div>
-  <h2 class="spine serif" style="font-size:clamp(36px,7vw,108px); line-height:1.15; text-align:center; width:100%">이제,<br>그 <span class="em">OS</span>를 보여드립니다.</h2>
-</section>
-
-<!-- ===== 17. 시안 풀 노출 ===== -->
-<section class="slide" id="s17" style="min-height:auto; padding:0 4vw 0">
-  <div class="s17-intro" style="min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:clamp(40px,6vw,80px) 0; scroll-snap-align:start; scroll-snap-stop:always; position:relative">
-    <div class="num" style="position:absolute; top:clamp(16px,3vw,32px); left:0">17 / 17</div>
-    <div class="label" style="position:absolute; top:clamp(16px,3vw,32px); right:0">The Product</div>
+<!-- ===== 15. 시안 풀 노출 ===== -->
+<section class="slide" id="s15" style="min-height:auto; padding:0">
+  <div class="s16-intro chapter c-yellow" style="min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:clamp(40px,6vw,80px) clamp(20px,8vw,8vw); scroll-snap-align:start; scroll-snap-stop:always; position:relative">
+    <div class="num" style="position:absolute; top:clamp(16px,3vw,32px); left:clamp(20px,8vw,8vw)">15 / 15</div>
+    <div class="label" style="position:absolute; top:clamp(16px,3vw,32px); right:clamp(20px,8vw,8vw)">The Product</div>
     <p class="lead-line">이제, 그 <span class="em">OS</span>를 보여드립니다.</p>
     <h2 class="spine" style="font-size:clamp(28px,5vw,64px); text-align:center; margin-bottom:24px">KISAS App — <span class="em">Concept Sketch</span></h2>
     <p class="lead" style="text-align:center; max-width:700px; margin:0 auto">매니페스토의 모든 문장이 — 화면이 된다.</p>
@@ -741,7 +766,7 @@
   </div>
 
   <!-- 마무리 -->
-  <div class="s17-outro" style="min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:clamp(40px,6vw,80px) 0; scroll-snap-align:start; scroll-snap-stop:always; max-width:1000px; margin:0 auto">
+  <div class="s16-outro" style="min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:clamp(40px,6vw,80px) 0; scroll-snap-align:start; scroll-snap-stop:always; max-width:1000px; margin:0 auto">
     <div style="border-top:1px solid var(--line); padding-top:80px; width:100%; text-align:center">
       <h3 class="spine closing-final" style="text-align:center">이게 — <span class="em">K 창작의 OS</span>다.</h3>
       <p class="lead" style="margin:32px auto 0; text-align:center; max-width:720px">Talent is everywhere. <strong style="color:var(--accent)">Proof is not.</strong></p>
