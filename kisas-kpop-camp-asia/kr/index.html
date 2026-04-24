@@ -661,9 +661,58 @@ footer .quote {
   .final-cta .closing { font-size: 1.4rem; }
   .cta-sticky { display: none; }
 }
+/* ==== Lang Toggle ==== */
+.lang-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  background: rgba(0,33,71,0.92);
+  backdrop-filter: blur(10px);
+  border-radius: 99px;
+  padding: 4px;
+  gap: 2px;
+  box-shadow: 0 4px 20px rgba(0,33,71,0.3);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.lang-toggle a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: all 0.2s;
+  min-height: 36px;
+  white-space: nowrap;
+}
+.lang-toggle a.active {
+  background: var(--hl-yellow);
+  color: var(--oxford-ink);
+}
+.lang-toggle a.inactive {
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+}
+.lang-toggle a.inactive:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
 </style>
 </head>
 <body>
+
+<!-- ==== Lang Toggle ==== -->
+<div class="lang-toggle">
+  <a class="active" href="#">한국어</a>
+  <a class="inactive" href="#" onclick="var p=location.pathname.replace(/\/kr\/?$/,'/en/');if(p===location.pathname)p=location.pathname.replace(/(\/kisas-kpop-camp-asia)\/?$/,'$1/en/');location.href=p;return false;">English</a>
+</div>
 
 <!-- ================================ HERO ================================ -->
 <header class="hero" id="top">
