@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>방향전환 — 설계 재정리</title>
+<style>
+:root{
+  --ox-deep: #002147;
+  --ox-mid:  #1B3A6B;
+  --ox-soft: #4A6B96;
+  --ox-pale: #E6EBF2;
+  --ox-mist: #F4F6FA;
+  --bg: #ffffff;
+  --line: rgba(0,33,71,0.12);
+  --line-strong: rgba(0,33,71,0.28);
+  /* 매거진 톤 — 64/40/24/16 + 인용 20 + 표 13~14 */
+  --t-xl:  clamp(36px, 5.2vw, 64px);
+  --t-l:   clamp(24px, 3.4vw, 40px);
+  --t-m:   clamp(19px, 2vw, 24px);
+  --t-s:   clamp(15px, 1.2vw, 16px);
+  --t-xs:  clamp(12px, 1vw, 13px);
+  --t-quote: clamp(17px, 1.6vw, 20px);
+  --t-tbl: 13.5px;
+  --w-black: 950;
+  --w-bold:  700;
+  --w-mid:   500;
+  --w-light: 300;
+  --gap-xl: clamp(48px, 8vw, 120px);
+  --gap-l:  clamp(32px, 5vw, 64px);
+  --gap-m:  clamp(20px, 3vw, 32px);
+  --gap-s:  clamp(12px, 1.6vw, 18px);
+  --gap-xs: 8px;
+  --radius-l: 24px;
+  --radius-m: 16px;
+  --radius-s: 8px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ox-deep);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif;
+  font-weight: var(--w-light);
+  font-size: var(--t-s);
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img,svg{max-width:100%;display:block}
+.wrap{ max-width: 880px; margin: 0 auto; padding: var(--gap-xl) clamp(20px, 5vw, 56px) var(--gap-xl); }
+.hero{ background: var(--ox-deep); color:#fff; padding: clamp(64px, 10vw, 140px) clamp(20px, 5vw, 56px); margin: 0; }
+.hero-inner{ max-width: 880px; margin: 0 auto; }
+.hero-eyebrow{ font-size: var(--t-xs); font-weight: var(--w-bold); letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.7; margin-bottom: var(--gap-m); }
+.hero-title{ font-size: clamp(72px, 11vw, 140px); font-weight: var(--w-black); line-height: 1.0; letter-spacing: -0.03em; margin: 0 0 var(--gap-m); }
+.hero-meta{ font-size: var(--t-xs); opacity: 0.6; margin-bottom: var(--gap-l); }
+.part{ margin-top: var(--gap-xl); padding-top: var(--gap-l); border-top: 2px solid var(--ox-deep); }
+.part-num{ font-size: var(--t-xs); font-weight: var(--w-bold); letter-spacing: 0.2em; color: var(--ox-soft); text-transform: uppercase; margin-bottom: var(--gap-xs); }
+.part-title{ font-size: var(--t-l); font-weight: var(--w-black); line-height: 1.1; margin: 0 0 var(--gap-m); color: var(--ox-deep); }
+.sec{ margin-top: var(--gap-l); padding-top: var(--gap-m); border-top: 1px solid var(--line); }
+.sec-head{ display: block; margin-bottom: var(--gap-m); }
+.sec-num{ display: block; font-size: var(--t-xs); font-weight: var(--w-black); color: var(--ox-soft); letter-spacing: 0.08em; font-variant-numeric: tabular-nums; margin-bottom: var(--gap-s); }
+.sec-title{ font-size: clamp(48px, 5vw, 60px); font-weight: var(--w-black); line-height: 1.15; letter-spacing: -0.025em; margin: 0; color: var(--ox-deep); text-align: left; }
+.sec-body p{ margin: 0 0 var(--gap-s); font-weight: var(--w-light); }
+.sec-body p strong, .sec-body strong{ font-weight: var(--w-bold); color: var(--ox-deep); }
+.tbl-wrap{ margin: var(--gap-m) 0; overflow-x: auto; border-radius: var(--radius-s); border: 1px solid var(--line-strong); }
+table{ width: 100%; border-collapse: collapse; font-size: var(--t-tbl); min-width: 480px; line-height: 1.55; }
+thead th{ background: var(--ox-deep); color: #fff; font-weight: var(--w-bold); text-align: left; padding: 11px 14px; font-size: 12px; letter-spacing: 0.04em; border-right: 1px solid rgba(255,255,255,0.15); }
+thead th:last-child{ border-right: none }
+tbody td{ padding: 11px 14px; border-top: 1px solid var(--line); border-right: 1px solid var(--line); vertical-align: top; font-weight: var(--w-light); color: var(--ox-deep); }
+tbody td:last-child{ border-right: none }
+tbody td strong{ font-weight: var(--w-bold); }
+tbody tr:hover td{ background: var(--ox-mist); }
+.sec-meta{ background: var(--ox-mist); border: 1px solid var(--line-strong); border-radius: var(--radius-m); padding: var(--gap-m) var(--gap-l); margin-top: var(--gap-l); }
+.sec-meta .sec-head{ margin-bottom: var(--gap-s); }
+.sec-meta .sec-num{ font-size: var(--t-xs); margin-bottom: 6px; color: var(--ox-soft); }
+.sec-meta .sec-title{ font-size: clamp(20px, 2.4vw, 28px); line-height: 1.3; letter-spacing: -0.02em; }
+.sec-meta .sec-body p{ font-size: var(--t-s); line-height: 1.65; margin: 0 0 var(--gap-s); }
+.sec-meta table{ font-size: 12.5px; }
+.sec-meta thead th{ padding: 8px 10px; font-size: 11px; }
+.sec-meta tbody td{ padding: 8px 10px; }
+.flow-five{ margin: var(--gap-m) 0; }
+.flow-grid{ display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: var(--gap-s); }
+.flow-step{ background: var(--ox-mist); border: 1.5px solid var(--ox-deep); border-radius: var(--radius-m); padding: var(--gap-s); position: relative; }
+.flow-step.is-key{ background: var(--ox-deep); color: #fff; }
+.flow-step.is-key .flow-h, .flow-step.is-key .flow-list{ color: #fff; }
+.flow-step.is-sub{ background: #4A6B96; color: #fff; border-color: #4A6B96; }
+.flow-step.is-sub .flow-h, .flow-step.is-sub .flow-list{ color: #fff; }
+.flow-h{ font-size: var(--t-s); font-weight: var(--w-black); letter-spacing: 0.06em; margin: 0 0 var(--gap-xs); text-transform: uppercase; color: var(--ox-deep); }
+.flow-sub{ font-size: var(--t-s); font-weight: var(--w-black); margin-bottom: var(--gap-s); opacity: 1; }
+.flow-list{ list-style: none; padding: 0; margin: 0; font-size: var(--t-s); font-weight: var(--w-mid); line-height: 1.6; }
+.flow-list li{ padding: 6px 0; border-top: 1px dashed currentColor; opacity: 1; }
+.flow-list li:first-child{ border-top: none; padding-top: 0; }
+@media (max-width: 900px){ .flow-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 520px){ .flow-grid{ grid-template-columns: 1fr; } }
+.recruit-grid{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--gap-m); margin: var(--gap-m) 0; }
+@media (max-width: 720px){ .recruit-grid{ grid-template-columns: 1fr; } }
+.recruit-card{ background: var(--ox-deep); color: #fff; border: 1.5px solid var(--ox-deep); border-radius: var(--radius-m); padding: var(--gap-m); }
+.recruit-card.is-creator{ background: var(--ox-deep); color: #fff; }
+.sec-body .recruit-card p strong, .sec-body .recruit-card strong{ color: #fff; font-weight: var(--w-bold); }
+.recruit-card h4{ font-size: var(--t-m); font-weight: var(--w-black); margin: 0 0 var(--gap-s); }
+.recruit-card p{ margin: 0 0 var(--gap-s); }
+details{ border: 1px solid var(--line-strong); border-radius: var(--radius-s); background: var(--ox-mist); margin: var(--gap-s) 0; overflow: hidden; }
+details > summary{ list-style: none; cursor: pointer; padding: 14px 18px; font-weight: var(--w-bold); font-size: var(--t-s); color: var(--ox-deep); display: flex; align-items: center; justify-content: space-between; gap: var(--gap-s); user-select: none; min-height: 44px; }
+details > summary::-webkit-details-marker{ display: none }
+details > summary::after{ content: "+"; font-size: var(--t-m); font-weight: var(--w-bold); width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid var(--ox-deep); border-radius: 50%; flex-shrink: 0; }
+details[open] > summary::after{ content: "−"; }
+details > .det-body{ padding: 0 18px 18px; border-top: 1px solid var(--line); background: #fff; }
+details > .det-body > *:first-child{ margin-top: var(--gap-s); }
+.quote-card{ background: var(--ox-deep); color: #fff; border-radius: var(--radius-m); padding: var(--gap-m); margin: var(--gap-s) 0; }
+.quote-card .who{ font-size: var(--t-xs); font-weight: var(--w-bold); letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-bottom: var(--gap-s); }
+.quote-card blockquote{ margin: 0; font-size: var(--t-s); line-height: 1.65; font-weight: var(--w-light); }
+.quote-card blockquote p{ margin: 0 0 var(--gap-s); padding-left: 18px; border-left: 2px solid rgba(255,255,255,0.5); }
+.quote-card blockquote p:last-child{ margin-bottom: 0 }
+.floating{ position: fixed; bottom: clamp(16px, 3vw, 32px); right: clamp(16px, 3vw, 32px); z-index: 100; display: flex; flex-direction: column; gap: 8px; }
+.fab{ appearance: none; border: none; background: var(--ox-deep); color: #fff; font-family: inherit; font-size: var(--t-xs); font-weight: var(--w-bold); letter-spacing: 0.08em; padding: 12px 18px; border-radius: 999px; cursor: pointer; box-shadow: 0 6px 24px rgba(0,33,71,0.3); min-height: 44px; white-space: nowrap; }
+.fab:hover{ background: var(--ox-mid); }
+.fab.is-secondary{ background: #fff; color: var(--ox-deep); border: 1.5px solid var(--ox-deep); }
+.fab.is-secondary:hover{ background: var(--ox-mist); }
+.closing{ margin-top: var(--gap-xl); padding: var(--gap-l) 0; border-top: 2px solid var(--ox-deep); text-align: center; }
+.closing-tag{ font-size: var(--t-xs); font-weight: var(--w-bold); letter-spacing: 0.18em; color: var(--ox-soft); text-transform: uppercase; }
+.closing-line{ font-size: var(--t-s); margin-top: var(--gap-s); color: var(--ox-deep); }
+::selection{ background: var(--ox-deep); color: #fff; }
+@media (max-width: 640px){
+  table{ font-size: var(--t-xs); }
+  thead th, tbody td{ padding: 10px 12px; }
+  .hero{ padding: clamp(48px, 12vw, 80px) 20px; }
+  .hero-title{ font-size: clamp(56px, 14vw, 96px); line-height: 1.02; }
+  .sec-title{ font-size: clamp(24px, 6vw, 36px); }
+}
+</style>
+</head>
+<body>
+
+<div class="floating" role="region" aria-label="접기 펴기 컨트롤">
+  <button type="button" class="fab" id="btnToggleAll" data-state="collapsed" aria-pressed="false">전체 펴기</button>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">방향전환 · 설계 재정리</div>
+    <h1 class="hero-title">1회 캠프에서<br>지속 사업으로</h1>
+    <div class="hero-meta">v1.0 · 2026-04-26</div>
+
+  </div>
+</section>
+
+<main class="wrap">
+
+<section class="part" id="part-a">
+  <div class="part-num">PART A</div>
+  <h2 class="part-title">캠프 상품 재정의</h2>
+
+  <article class="sec" id="s01">
+    <header class="sec-head">
+      <div class="sec-num">01</div>
+      <h3 class="sec-title">한 상품으로 모든 학생을 담기 어렵다는 것이 분명해졌다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>기존 프로그램은 초등 4학년부터 중등 3학년까지 <strong>한 묶음으로 운영하는 구조</strong>다. <strong>학습자·학부모·가격 세 면</strong> 모두에서 한계가 드러난다.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>면</th><th>한 상품의 한계</th><th>진단</th></tr></thead>
+          <tbody>
+            <tr><td><strong>학습자</strong></td><td>같은 커리큘럼이 <strong>초등에는 어려움, 중등에는 가벼움</strong>으로 받아들여진다</td><td><strong>동시 만족 어려움</strong></td></tr>
+            <tr><td><strong>학부모</strong></td><td>초등 학부모는 <strong>경험·자신감</strong>, 중등 학부모는 <strong>진로·결과물</strong>을 기준으로 판단한다</td><td><strong>단일 메시지로 설명 어려움</strong></td></tr>
+            <tr><td><strong>가격</strong></td><td><strong>480만원</strong>이 초등 기준에서는 <strong>부담</strong>, 중등 기준에서는 <strong>평범</strong>하게 보인다</td><td><strong>가격 정당성</strong>을 양쪽에 동시에 갖추기 어려움</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>세 면이 동시에 어긋난다. <strong>분리는 선택이 아니라 설계 정합성 문제</strong>다.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s02">
+    <header class="sec-head">
+      <div class="sec-num">02</div>
+      <h3 class="sec-title">분리의 기준은 연령이 아니라 학습 목적이다.</h3>
+    </header>
+    <div class="sec-body">
+      <p><strong>연령으로 나누면</strong> 같은 상품의 난이도 차이만 생긴다. <strong>목적으로 나누면</strong> 다른 상품이 된다.</p>
+      <p>대화에 참여한 <strong>네 사람의 합의</strong>가 같은 원리로 수렴했다.</p>
+      <details>
+        <summary>네 사람의 합의 — 네 갈래 정리</summary>
+        <div class="det-body">
+          <ul>
+            <li>커리큘럼을 진중한 창작 중심(메시지 전달)과 경험 중심(커버 위주)으로 나누는 안.</li>
+            <li>현재 만들고 있는 커리큘럼은 이미 창작 중심에 가깝고, 강사진도 자연스럽게 두 갈래로 나뉜다(창작 트랙: chris·yoonki·jason / 경험 트랙: todd·yeni·haeseong).</li>
+            <li>영어 편차와 인지·신체 발달 차이도 함께 고려해 초등·중등 분리를 더한다.</li>
+            <li>두 트랙 모두 결과물을 완성하는 구조로 운영하되, 시설·시간·강사·비용 영향을 인지하고 진행한다.</li>
+          </ul>
+        </div>
+      </details>
+      <p>AKMU <strong>'소문의 낙원'</strong>처럼 큰 안무 대신 <strong>가사와 스토리를 몸으로 표현</strong>하는 방식이 <strong>창작 트랙의 방향성</strong>을 잘 보여주는 사례로 공유되었다.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s03">
+    <header class="sec-head">
+      <div class="sec-num">03</div>
+      <h3 class="sec-title">세 트랙은 같은 캠프의 옵션이 아니라 서로 다른 상품이다.</h3>
+    </header>
+    <div class="sec-body">
+      <p><strong>비대칭이 의도된 설계</strong>다. <strong>정의·메시지·가격·결과물·학부모 타깃</strong>이 모두 다르다.</p>
+      <details>
+        <summary>세 트랙 비교 — 정의·메시지·가격·결과물·타깃 전수</summary>
+        <div class="det-body">
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>트랙</th><th>정의</th><th>메시지</th><th>가격(만원)</th><th>결과물</th><th>학부모 타깃</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Explorer</strong></td>
+                  <td><strong>표현의 첫 경험</strong> (Discover → Express → Perform)</td>
+                  <td>"<strong>처음 자기 이야기를 표현하는 경험</strong>"</td>
+                  <td><strong>350~420</strong></td>
+                  <td>간단한 영어 가사·팀 퍼포먼스 영상·<strong>참여 중심 포트폴리오</strong></td>
+                  <td><strong>경험·자신감</strong>을 중요하게 여기는 학부모</td>
+                </tr>
+                <tr>
+                  <td><strong>Creator</strong></td>
+                  <td><strong>콘텐츠 제작 프로그램</strong> (Identity → Creation → Production)</td>
+                  <td>"<strong>내 이름으로 된 콘텐츠를 만드는 프로그램</strong>"</td>
+                  <td><strong>520~700</strong></td>
+                  <td>영어 가사·AI 창작곡·퍼포먼스 영상·<strong>개인 포트폴리오</strong></td>
+                  <td><strong>진로·차별성·포트폴리오</strong>를 중요하게 여기는 학부모</td>
+                </tr>
+                <tr>
+                  <td><strong>Elite</strong></td>
+                  <td><strong>Artist Development</strong> (1:1 디렉팅)</td>
+                  <td><strong>진심으로 깊이 가고 싶은 학생만</strong></td>
+                  <td><strong>980+</strong></td>
+                  <td><strong>고품질 음원·영상</strong>·이후 멘토링</td>
+                  <td><strong>진로 의지가 분명한</strong> 학부모와 학생</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <article class="sec" id="s04">
+    <header class="sec-head">
+      <div class="sec-num">04</div>
+      <h3 class="sec-title">트랙 안에는 영어 수준별 분반이 한 단계 더 들어간다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>학습자의 <strong>영어 편차</strong>가 트랙 안에서도 크다. <strong>트랙과 영어 수준을 함께 고려한 4분반 구조</strong>로 운영한다.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>영어 수준</th><th>Explorer</th><th>Creator</th></tr></thead>
+          <tbody>
+            <tr><td><strong>고급</strong></td><td><strong>영어 토론·창작</strong> 위주, 활동을 더한다</td><td><strong>영어 토론·창작</strong> 중심, <strong>깊이 있는 글쓰기</strong></td></tr>
+            <tr><td><strong>보통</strong></td><td><strong>활동·참여 중심</strong>, 예시문 제공</td><td><strong>창작 중심</strong>이지만 <strong>예시문으로 진입</strong>을 낮춘다</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>예시문 제공의 핵심은 <strong>빈칸을 채우는 주입식이 아니라</strong>, <strong>자기 표현을 위한 출발점</strong>을 제공하는 방식이다.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s05">
+    <header class="sec-head">
+      <div class="sec-num">05</div>
+      <h3 class="sec-title">같은 공간을 함께 쓰되 동선은 분리한다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>오전과 오후, <strong>결과물의 분리 정도</strong>가 다르다. <strong>운영 자원은 공유</strong>하면서 <strong>트랙 정체성은 흐리지 않는다</strong>.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>시간대</th><th>분리 정도</th><th>운영</th></tr></thead>
+          <tbody>
+            <tr><td><strong>오전</strong></td><td><strong>분리</strong></td><td>트랙별로 <strong>다른 인문학 세션</strong></td></tr>
+            <tr><td><strong>오후</strong></td><td><strong>부분 통합</strong></td><td>일부 활동은 함께(<strong>마스터클래스·게스트 세션</strong> 등)</td></tr>
+            <tr><td><strong>결과물·발표</strong></td><td><strong>완전 분리</strong></td><td>트랙별 <strong>결과물의 형식·평가 기준</strong>이 다름</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </article>
+
+  <article class="sec" id="s06">
+    <header class="sec-head">
+      <div class="sec-num">06</div>
+      <h3 class="sec-title">기존 프로그램은 트랙·가격·강사·시설 네 면에서 다시 설계한다.</h3>
+    </header>
+    <div class="sec-body">
+      <details open>
+        <summary>네 면의 충돌 지점과 갱신 방향 — 표 전수</summary>
+        <div class="det-body">
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>기존 설계</th><th>충돌 지점</th><th>갱신 방향</th></tr></thead>
+              <tbody>
+                <tr><td><strong>60명 6분반</strong> (수준별 분반)</td><td>분반은 <strong>난이도 분리</strong>, 트랙은 <strong>목적 분리</strong></td><td>분반 구조를 <strong>트랙 + 영어 4분반</strong>으로 전환</td></tr>
+                <tr><td><strong>8과목 통합 일과</strong></td><td><strong>Creator 트랙 중심 설계</strong>, Explorer는 단순화 필요</td><td>트랙별 <strong>8과목 비대칭화</strong></td></tr>
+                <tr><td><strong>480만원 단일가</strong></td><td>트랙별 <strong>가격 차등 미반영</strong></td><td>트랙별 <strong>350·580·980</strong> 재설계</td></tr>
+                <tr><td><strong>강사 24명 통합 풀</strong></td><td>강사 <strong>자연 분리</strong>가 운영안에 미반영</td><td>트랙별 <strong>강사 풀 명문화</strong></td></tr>
+                <tr><td><strong>시설·시간표 단일 운영</strong></td><td>두 트랙 동시 운영 시 <strong>동선·시간표 충돌</strong></td><td>트랙별 <strong>동선·시간표 별도 설계</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details>
+        <summary>강사 인원을 늘리지 않고 두 그룹을 동시에 운영하는 방법 — 네 가지 재조합 방식</summary>
+        <div class="det-body">
+          <p>두 트랙 분리는 <strong>강사 추가 채용을 전제하지 않는다</strong>. 기존 24명의 <strong>시간·콘텐츠·동선을 재조합</strong>하면 두 그룹을 같은 기간에 동시 운영할 수 있다. 핵심 원칙은 <strong>새 자원 추가가 아니라 기존 자원의 재배치</strong>다.</p>
+
+          <p><strong>현재 강사 구성 24명의 분포</strong></p>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>영역</th><th>인원</th><th>현재 역할</th></tr></thead>
+              <tbody>
+                <tr><td><strong>인문학·영어</strong></td><td><strong>9명</strong></td><td>학술 책임자 1, 메인 원어민 1, <strong>분반 교사 6</strong>, 글쓰기 보조 1</td></tr>
+                <tr><td><strong>보컬</strong></td><td><strong>3명</strong></td><td>보컬 수업 전담</td></tr>
+                <tr><td><strong>댄스</strong></td><td><strong>3명</strong></td><td>댄스 수업 전담</td></tr>
+                <tr><td><strong>음악 제작·AI 창작</strong></td><td><strong>3명</strong></td><td>AI 창작 수업과 <strong>곡 단위 제작 지원</strong></td></tr>
+                <tr><td><strong>저녁 연습 운영</strong></td><td><strong>3명</strong></td><td>저녁 시간 연습 진행</td></tr>
+                <tr><td><strong>생활 지도</strong></td><td><strong>2명</strong></td><td>숙소·식사·<strong>24시간 케어</strong></td></tr>
+                <tr><td><strong>총괄 매니저</strong></td><td><strong>1명</strong></td><td>전체 운영 총괄</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>네 가지 재조합 방식</strong></p>
+
+          <p><strong>① 시간 슬롯 교차 운영</strong></p>
+          <p><strong>같은 강사가 시간대를 바꿔 두 트랙을 차례로 담당</strong>한다. 보컬 강사가 첫 슬롯에 Explorer 트랙, 다음 슬롯에 Creator 트랙을 맡는 식이다. 댄스·음악 제작·AI 창작도 같은 원리로 운영한다. <strong>인문학 분반 교사 6명은 트랙별로 3명씩 배치</strong>해 그대로 유지한다.</p>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>시간대</th><th>Explorer 트랙</th><th>Creator 트랙</th><th>강사 사용</th></tr></thead>
+              <tbody>
+                <tr><td><strong>오전</strong></td><td>인문학 분반 3개</td><td>인문학 분반 3개</td><td><strong>분반 교사 6명</strong>을 트랙별로 분배</td></tr>
+                <tr><td><strong>오후 첫 슬롯</strong></td><td>보컬 마스터클래스</td><td>댄스 마스터클래스</td><td>보컬 강사·댄스 강사 <strong>각각 한쪽</strong></td></tr>
+                <tr><td><strong>오후 둘째 슬롯</strong></td><td>댄스 마스터클래스</td><td>보컬 마스터클래스</td><td><strong>같은 강사가 트랙 교차</strong></td></tr>
+                <tr><td><strong>오후 셋째 슬롯</strong></td><td>AI 창작 (<strong>간소형</strong>)</td><td>AI 창작 (<strong>심화형</strong>)</td><td>음악 제작·AI 강사 3명을 <strong>양쪽에 분산</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>② 콘텐츠 비대칭 설계</strong></p>
+          <p>두 트랙이 같은 양의 강사 시간을 필요로 하지 않도록 <strong>콘텐츠 자체를 다르게 설계</strong>한다. <strong>Explorer는 강사 개입이 적은 구조</strong>로, <strong>Creator는 깊은 피드백을 요구하는 구조</strong>로 짠다. 결과적으로 같은 시간 안에 <strong>강사 1명이 Explorer 두 반을 동시에 케어</strong>할 수 있다.</p>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>활동</th><th>Explorer 설계</th><th>Creator 설계</th></tr></thead>
+              <tbody>
+                <tr><td><strong>AI 창작</strong></td><td>사전 준비된 템플릿을 변형·<strong>강사 1명이 두 반 순회</strong></td><td>각자 곡 구조부터 설계·<strong>강사 1명이 한 반 전담</strong></td></tr>
+                <tr><td><strong>가사 작성</strong></td><td>예시문에서 <strong>핵심 부분만 자기 표현으로</strong>·글쓰기 보조가 메인</td><td><strong>주제부터 자유 작성</strong>·메인 원어민이 직접 토론·피드백</td></tr>
+                <tr><td><strong>결과물</strong></td><td><strong>팀 단위 영상 한 편</strong></td><td><strong>개인 곡과 팀 영상</strong> 모두 완성</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>③ 통합 가능한 활동은 합쳐서 운영</strong></p>
+          <p><strong>모든 활동을 트랙별로 분리할 필요는 없다</strong>. 게스트 세션·대형 마스터클래스·시설 강의처럼 강사 1명이 다수를 동시에 가르치는 형태는 <strong>두 트랙을 합쳐 한 번에 운영</strong>한다. <strong>강사 시간이 절반으로 줄어든다</strong>.</p>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>활동 유형</th><th>운영 방식</th></tr></thead>
+              <tbody>
+                <tr><td><strong>게스트 마스터클래스</strong></td><td><strong>두 트랙 통합</strong>·전체 학생을 한 강의실에서 진행</td></tr>
+                <tr><td><strong>비주얼 스토리 세션</strong></td><td><strong>두 트랙 통합</strong>·강사 1명</td></tr>
+                <tr><td><strong>스테이지 리허설</strong></td><td>같은 무대를 <strong>시간차로 공유</strong>·강사 동일 인원</td></tr>
+                <tr><td><strong>인문학 본 수업</strong></td><td><strong>완전 분리</strong>·트랙별 다른 텍스트와 토론 주제</td></tr>
+                <tr><td><strong>최종 결과물·평가</strong></td><td><strong>완전 분리</strong>·트랙별 결과물 형식과 기준이 다름</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>④ 학생 자율 운영과 보조 인력 활용</strong></p>
+          <p>저녁 연습 시간은 <strong>강사가 직접 가르치는 시간이 아니라</strong> 학생이 낮에 배운 것을 연습하는 시간이다. 이 시간을 <strong>학생 자율 운영과 보조 인력 중심</strong>으로 재설계하면 저녁 연습 운영 강사를 <strong>3명에서 2명으로</strong> 줄이고도 두 트랙을 모두 커버할 수 있다.</p>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>운영 요소</th><th>방식</th></tr></thead>
+              <tbody>
+                <tr><td><strong>저녁 연습 운영</strong></td><td><strong>3명에서 2명으로 압축</strong>·트랙별 라운지 분리·글쓰기 보조 1명을 시간대 한정 추가 투입</td></tr>
+                <tr><td><strong>피드백 구조</strong></td><td><strong>학생끼리 서로 피드백</strong>·우수작만 강사가 라이브로 검토</td></tr>
+                <tr><td><strong>운영 절감 효과</strong></td><td><strong>강사 1명 분량</strong>의 시간이 다른 영역으로 재배치됨</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>네 가지를 합친 결과</strong></p>
+          <p><strong>강사 24명을 늘리지 않고 두 트랙을 같은 기간에 동시 운영할 수 있다</strong>. 인문학 분반 교사는 트랙별로 자연스럽게 나뉘고, 보컬·댄스·음악 제작 강사는 시간을 교차해 양쪽을 모두 담당하며, 게스트 강의와 마스터클래스는 통합 운영해 강사 시간을 아끼고, 저녁 연습은 학생 자율 운영으로 인력 부담을 낮춘다.</p>
+
+          <p><strong>주의해야 할 지점</strong></p>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>위험</th><th>대응 방향</th></tr></thead>
+              <tbody>
+                <tr><td>Explorer 콘텐츠를 <strong>단순화하면서 깊이가 약해질 수</strong> 있다</td><td>트랙 정의가 "<strong>표현의 첫 경험</strong>"이므로 <strong>경험의 밀도</strong>를 강조한다</td></tr>
+                <tr><td>강사가 <strong>시간을 교차로 사용하면 피로가 누적</strong>된다</td><td><strong>휴식 시간과 준비 시간</strong>을 시간표에 별도 블록으로 명시한다</td></tr>
+                <tr><td>통합 마스터클래스가 <strong>트랙 정체성을 흐릴 수</strong> 있다</td><td>트랙별 결과물을 <strong>분명하게 분리</strong>해 정체성 차이를 결과물에서 만든다</td></tr>
+                <tr><td><strong>1:1 디렉팅이 필요한 상위 트랙</strong>은 별도 처리가 필요하다</td><td>1기는 <strong>두 트랙만 운영</strong>하고 상위 트랙은 <strong>다음 기수부터</strong> 도입하거나 캠프 후 멘토링으로 분리</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><strong>한 줄 결론</strong></p>
+          <p>강사 추가 채용 없이 두 그룹을 동시에 운영하려면 <strong>콘텐츠를 비대칭으로 설계</strong>하고, <strong>시간을 교차 배치</strong>하고, <strong>통합 가능한 활동은 통합</strong>한다는 <strong>세 가지 원칙</strong>을 받아들여야 한다. 이 세 가지가 갖춰지면 <strong>24명 그대로 두 트랙 동시 운영이 가능</strong>하다.</p>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <article class="sec" id="s07">
+    <header class="sec-head">
+      <div class="sec-num">07</div>
+      <h3 class="sec-title">설명회는 정보 전달이 아니라 학부모가 캠프를 이해하고 결정하기까지의 흐름이다.</h3>
+    </header>
+    <div class="sec-body">
+      <p><strong>10장 구조</strong>는 학부모가 <strong>자신의 상황을 이해</strong>하고, <strong>캠프의 가치를 받아들이고</strong>, <strong>결정을 내릴 수 있도록</strong> 단계적으로 안내한다.</p>
+      <details>
+        <summary>설명회 10장 구조 — 장별 제목·내용 전수</summary>
+        <div class="det-body">
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>장</th><th>제목</th><th>내용</th></tr></thead>
+              <tbody>
+                <tr><td><strong>1</strong></td><td><strong>우리 아이는 무엇을 준비해야 할까</strong></td><td>AI 시대에 <strong>표현력의 중요성</strong>을 환기한다</td></tr>
+                <tr><td><strong>2</strong></td><td><strong>지금 교육으로 충분할까</strong></td><td>영어·공부·스펙만으로는 <strong>부족한 지점</strong>을 짚는다</td></tr>
+                <tr><td><strong>3</strong></td><td><strong>이제 필요한 능력</strong></td><td><strong>생각하는 힘·표현하는 힘·만드는 힘</strong> 세 가지</td></tr>
+                <tr><td><strong>4</strong></td><td><strong>KISAS는 무엇인가</strong></td><td><strong>옥스포드 인문학·K-pop 창작·AI 제작</strong>의 결합</td></tr>
+                <tr><td><strong>5</strong></td><td><strong>10일 동안 아이는 어떻게 성장하는가</strong></td><td><strong>내 이야기 찾기·내 곡 만들기·내 정체성 무대화</strong> 세 단계</td></tr>
+                <tr><td><strong>6</strong></td><td><strong>10일 후 무엇이 남는가</strong></td><td><strong>영어 가사·AI 창작곡·퍼포먼스 영상·포트폴리오</strong></td></tr>
+                <tr><td><strong>7</strong></td><td><strong>다른 캠프와 무엇이 다른가</strong></td><td><strong>배우는 것이 아니라 만드는 것</strong>, 결과물이 남는다</td></tr>
+                <tr><td><strong>8</strong></td><td><strong>이런 학생을 위한 프로그램</strong></td><td><strong>자기 생각·표현 욕구·글로벌 진로</strong>를 가진 학생</td></tr>
+                <tr><td><strong>9</strong></td><td><strong>이 가격의 근거</strong></td><td>교육·체험이 아니라 <strong>결과물·포트폴리오</strong>를 함께 만든다</td></tr>
+                <tr><td><strong>10</strong></td><td><strong>결정을 도와드립니다</strong></td><td><strong>인원 제한·일정·신청 안내</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+      <p>핵심 메시지 골격은 <strong>"생각하는 힘 → 표현하는 힘 → 만드는 힘"</strong>이며, 학생이 10일 동안 거치는 단계는 <strong>"내 이야기 찾기 → 내 곡 만들기 → 내 정체성 무대화"</strong>다.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s08">
+    <header class="sec-head">
+      <div class="sec-num">08</div>
+      <h3 class="sec-title">모집 페이지는 트랙마다 별도로 구성한다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>같은 캠프지만 <strong>학부모가 보는 화면은 트랙별로 다르다</strong>.</p>
+      <div class="recruit-grid">
+        <div class="recruit-card">
+          <h4>Explorer 페이지</h4>
+          <p><strong>헤드라인</strong> · 우리 아이가 처음으로 자기 이야기를 표현하는 순간</p>
+          <p><strong>본문</strong> · 좋아하는 음악을 듣고, 간단한 영어로 생각을 표현하고, 친구들과 함께 무대를 만든다</p>
+          <p><strong>핵심 포인트</strong> · 영어 부담 없음·협업 경험·무대 경험</p>
+          <p><strong>마무리</strong> · 처음이 중요한 학생에게 권한다</p>
+        </div>
+        <div class="recruit-card is-creator">
+          <h4>Creator 페이지</h4>
+          <p><strong>헤드라인</strong> · 10일 안에 내 이름으로 된 콘텐츠를 만든다</p>
+          <p><strong>본문</strong> · 영어로 생각하고, 직접 가사를 쓰고, AI로 음악을 만들고, 무대에서 자기 이야기를 표현한다. 마지막 날 하나의 콘텐츠가 완성된다</p>
+          <p><strong>핵심 포인트</strong> · 단순 체험이 아닌 결과물·포트폴리오·글로벌 표현력</p>
+          <p><strong>마무리</strong> · 자기 이름으로 된 작품을 남기고 싶은 학생에게 권한다</p>
+        </div>
+      </div>
+      <p>학부모 커뮤니티와 인스타그램 등 채널별 변형은 <strong>본 페이지의 헤드라인·핵심 포인트를 그대로 가져가되</strong> 길이와 시각 비중만 조정한다.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s09">
+    <header class="sec-head">
+      <div class="sec-num">09</div>
+      <h3 class="sec-title">설명회에서는 트랙을 의도적으로 분리해 설명한다.</h3>
+    </header>
+    <div class="sec-body">
+      <p><strong>다섯 단계</strong>로 진행한다.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>단계</th><th>핵심</th></tr></thead>
+          <tbody>
+            <tr><td><strong>오프닝</strong></td><td>캠프 전체 비전을 <strong>짧게 공유</strong></td></tr>
+            <tr><td><strong>의도적 분리</strong></td><td>"이 캠프는 <strong>두 가지 트랙으로 나뉩니다</strong>. 모든 학생이 같은 프로그램을 듣는 것이 아니라, <strong>학생의 단계에 맞게 다른 경험</strong>을 제공합니다"</td></tr>
+            <tr><td><strong>Explorer 설명</strong></td><td><strong>짧게</strong>. 표현의 첫 경험·자신감·재미 중심</td></tr>
+            <tr><td><strong>Creator 설명</strong></td><td><strong>길게·강하게</strong>. 콘텐츠 제작 프로그램·결과물·진로 연결</td></tr>
+            <tr><td><strong>선택 안내</strong></td><td>"<strong>초등은 경험을 얻고, 중등은 결과를 가져갑니다</strong>. 학생의 현재 단계에 맞는 선택을 하시면 됩니다"</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="part" id="part-b">
+  <div class="part-num">PART B</div>
+  <h2 class="part-title">지속 사업으로</h2>
+
+  <article class="sec" id="s10">
+    <header class="sec-head">
+      <div class="sec-num">10</div>
+      <h3 class="sec-title">7월에 바로 1기 60명 모집을 시작하기는 어렵다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>기존 진단에서 <strong>세 가지 공백</strong>이 확인되어 있다. <strong>후기 자산 부재·운영 품질 검증 시스템 부재·성과 지표 체계 부재</strong>. 이 상태에서 60명 유료 모집은 <strong>실패 확률이 높다</strong>. <strong>행동보다 준비가 먼저</strong>다. <strong>7월의 결과는 7월에 만들어지지 않는다</strong>.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s11">
+    <header class="sec-head">
+      <div class="sec-num">11</div>
+      <h3 class="sec-title">5월 Pilot, 6월 모집, 7월 본 캠프, 8월 이후 Post-Camp Membership Program(이하 포스트 캠프)의 다섯 단계로 나눈다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>각 단계는 <strong>다음 단계에 필요한 자산을 만들어 넘긴다</strong>.</p>
+
+      <div class="flow-five" aria-label="다섯 단계 흐름도">
+        <div class="flow-grid">
+          <div class="flow-step">
+            <div class="flow-h">4월 말</div>
+            <div class="flow-sub">사전 준비</div>
+            <ul class="flow-list">
+              <li>보도자료 2종</li>
+              <li>광고 크리에이티브</li>
+              <li>소셜 계정·콘텐츠</li>
+              <li>홈페이지 랜딩</li>
+              <li>인터뷰 선촬영</li>
+            </ul>
+          </div>
+          <div class="flow-step is-sub">
+            <div class="flow-h">5월</div>
+            <div class="flow-sub">Pilot</div>
+            <ul class="flow-list">
+              <li>무료 10명</li>
+              <li>3~5일 운영</li>
+              <li>영상·인터뷰</li>
+              <li>후기 자산</li>
+            </ul>
+          </div>
+          <div class="flow-step">
+            <div class="flow-h">6월</div>
+            <div class="flow-sub">모집</div>
+            <ul class="flow-list">
+              <li>결과 공개</li>
+              <li>광고 본격</li>
+              <li>학부모 시딩</li>
+            </ul>
+          </div>
+          <div class="flow-step is-key">
+            <div class="flow-h">7월</div>
+            <div class="flow-sub">본 캠프</div>
+            <ul class="flow-list">
+              <li>60명 결과물</li>
+              <li>데일리 SNS</li>
+              <li>후기 누적</li>
+            </ul>
+          </div>
+          <div class="flow-step">
+            <div class="flow-h">8월 이후</div>
+            <div class="flow-sub">Post-Camp Membership</div>
+            <ul class="flow-list">
+              <li>구독 콘텐츠</li>
+              <li>다음 기수 자산</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <details>
+        <summary>원본 흐름도 보기 (텍스트)</summary>
+        <div class="det-body">
+<pre style="background:var(--ox-mist); border:1px solid var(--line); border-radius:8px; padding:16px; overflow-x:auto; font-size:12px; line-height:1.6; color:var(--ox-deep);">[4월 말 사전 준비]   [5월 시범]      [6월 모집]      [7월 본 캠프]   [8월 이후 Post-Camp Membership]
+보도자료 2종     ─→ 무료 10명     ─→ 결과 공개   ─→ 60명 결과물  ─→ 구독 콘텐츠
+광고 크리에이티브 ─→ 3~5일 운영    ─→ 광고 본격   ─→ 데일리 SNS   ─→ 다음 기수 자산
+소셜 계정·콘텐츠  ─→ 영상·인터뷰   ─→ 학부모 시딩 ─→ 후기 누적
+홈페이지 랜딩    ─→ 후기 자산
+인터뷰 선촬영</pre>
+        </div>
+      </details>
+
+      <p>본 캠프와 포스트 캠프는 <strong>별도 사업이 아니라 한 사업의 두 단계</strong>다. <strong>한 번의 캠프는 고객 발견</strong>, <strong>포스트 캠프는 고객 유지</strong>에 해당한다.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s12">
+    <header class="sec-head">
+      <div class="sec-num">12</div>
+      <h3 class="sec-title">5월 Pilot은 본 캠프의 리허설이자 6~8월 마케팅의 Key Driver이다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>시범 캠프 자체보다 <strong>그것을 가능하게 만드는 일곱 갈래의 사전 작업이 더 무겁다</strong>. 보도자료 없이 무료 10명을 한 주 안에 모으기 어렵고, 모집이 안 되면 영상도 없고, 영상이 없으면 <strong>6월 콘텐츠가 끊긴다</strong>.</p>
+      <details>
+        <summary>일곱 갈래 — 산출물·쓰임 전수</summary>
+        <div class="det-body">
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>갈래</th><th>4월 말~5월 1주 산출물</th><th>6~8월 어디 쓰임</th></tr></thead>
+              <tbody>
+                <tr><td><strong>보도자료</strong></td><td>"무료 시범 캠프 10명 선발" <strong>기사 2종 + 배포 채널 리스트</strong></td><td>6월 결과 공개·7월 마감 임박·8월 성과 사례</td></tr>
+                <tr><td><strong>광고</strong></td><td><strong>크리에이티브 5~8종</strong>·학부모·K콘텐츠 타깃</td><td>6월 <strong>본격 집행</strong>·7월 핵심 소재 집중</td></tr>
+                <tr><td><strong>소셜</strong></td><td>인스타·틱톡 신규 계정·<strong>초기 콘텐츠 10개</strong></td><td>6월 <strong>주 5~7회</strong>·7월 마감 콘텐츠·8월 성공 사례</td></tr>
+                <tr><td><strong>홈페이지</strong></td><td>랜딩(<strong>선발·지원폼·결과물</strong>)·동의 플로우</td><td>6월 결과물 업로드·7월 <strong>결제</strong>·8월 포스트 캠프 상품</td></tr>
+                <tr><td><strong>인터뷰 선촬영</strong></td><td>캠프 대표·학술 디렉터 <strong>30·60초 컷</strong></td><td><strong>광고 베이스</strong>·보도자료 사진·학부모 신뢰 메시지</td></tr>
+                <tr><td><strong>디자인</strong></td><td>썸네일 템플릿 3종·<strong>키 비주얼</strong>·배너</td><td>광고·소셜·<strong>인쇄 자산</strong></td></tr>
+                <tr><td><strong>굿즈</strong></td><td><strong>참가자 키트</strong>·촬영용 브랜딩 소품</td><td><strong>영상 자산화</strong>·이후 프리미엄 키트</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <article class="sec" id="s13">
+    <header class="sec-head">
+      <div class="sec-num">13</div>
+      <h3 class="sec-title">4월 말부터 5월 첫 주 사이에 발사 준비가 끝나야 한다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>발사 준비가 <strong>5월 중순으로 밀리면</strong> 모집이 5월 말로, 시범 캠프가 6월 초로 밀린다. 그러면 6월 마케팅 콘텐츠가 6월 말부터만 흐르고, <strong>7월 본 캠프 모집의 시간이 부족해진다</strong>.</p>
+      <details>
+        <summary>일정·책임 영역·산출물 — 표 전수</summary>
+        <div class="det-body">
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>일정</th><th>책임 영역</th><th>산출물</th></tr></thead>
+              <tbody>
+                <tr><td><strong>4월 27~30일</strong></td><td><strong>인터뷰 선촬영</strong></td><td>캠프 대표·학술 디렉터 인터뷰 영상 <strong>30·60초 컷</strong>·키 비주얼</td></tr>
+                <tr><td><strong>4월 28일~5월 2일</strong></td><td><strong>보도자료·홈페이지</strong></td><td>보도자료 <strong>2종 초안</strong>·배포 채널 리스트·랜딩 페이지</td></tr>
+                <tr><td><strong>4월 28일~5월 4일</strong></td><td><strong>광고·소셜</strong></td><td>크리에이티브 <strong>5~8종</strong>·인스타·틱톡 계정·초기 콘텐츠 10개</td></tr>
+                <tr><td><strong>5월 1주</strong></td><td><strong>디자인·굿즈</strong></td><td>썸네일 템플릿·배너·<strong>참가자 키트 시안</strong></td></tr>
+                <tr><td><strong>5월 1주</strong></td><td><strong>동시 발사</strong></td><td><strong>모집 시작</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+      <p>내부 진행은 <strong>캠프 운영 책임자가 영상·디자인·굿즈를 외주로 운영</strong>하고, <strong>보도자료·광고 카피·홈페이지 카피·소셜 콘텐츠 디렉팅은 마케팅 담당이 직접 맡는다</strong>. 외주 분담의 기준은 <strong>카피·전략은 내부, 시각 산출은 외부</strong>다.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s14">
+    <header class="sec-head">
+      <div class="sec-num">14</div>
+      <h3 class="sec-title">강사의 역할은 캠프와 포스트 캠프에서 역할이 다르다.</h3>
+    </header>
+    <div class="sec-body">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>단계</th><th>강사 모델</th><th>비용 구조</th><th>마진</th></tr></thead>
+          <tbody>
+            <tr><td><strong>캠프 10일</strong></td><td><strong>24명 풀투입</strong> (보컬·댄스·미디·AI·생활지도·관리)</td><td><strong>인원 비례 고비용</strong></td><td>한 번의 운영에 적합</td></tr>
+            <tr><td><strong>Post-Camp Membership</strong></td><td>강사 1명 <strong>주 1회 60~90분</strong> 그룹 피드백</td><td><strong>학생 인원이 늘어도 강사 시간은 고정</strong></td><td><strong>인원 증가가 마진 증가</strong>로 이어짐</td></tr>
+            <tr><td><strong>1:1 프리미엄</strong></td><td><strong>1:1 디렉팅</strong></td><td>인원 비례</td><td><strong>월 100~200만원</strong> 가격 구조에서 정당화</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>운영 원리는 <strong>강사가 가르치는 것이 아니라 방향을 잡고 피드백을 주는 역할로 축소</strong>되는 것이다. <strong>콘텐츠 제작은 학생이 한다</strong>.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s15">
+    <header class="sec-head">
+      <div class="sec-num">15</div>
+      <h3 class="sec-title">포스트 캠프는 가르치는 곳이 아니라, 캠프가 끝난 학생이 계속 창작을 하는 환경이다.</h3>
+    </header>
+    <div class="sec-body">
+      <p><strong>신규 커리큘럼을 만들지 않는다</strong>. 캠프의 <strong>8과목 체계를 축소한 미션 템플릿</strong>을 <strong>12주 주기로 반복</strong>한다.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>주차</th><th>미션</th></tr></thead>
+          <tbody>
+            <tr><td><strong>W1</strong></td><td><strong>내 이야기</strong></td></tr>
+            <tr><td><strong>W2</strong></td><td><strong>가사 작성</strong></td></tr>
+            <tr><td><strong>W3</strong></td><td><strong>음악 생성</strong></td></tr>
+            <tr><td><strong>W4</strong></td><td><strong>퍼포먼스</strong></td></tr>
+            <tr><td><strong>W5~W12</strong></td><td>동일 사이클을 <strong>주제·난이도만 변형해 반복</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <details>
+        <summary>운영 방식 — 요소·운영 표</summary>
+        <div class="det-body">
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>요소</th><th>운영 방식</th></tr></thead>
+              <tbody>
+                <tr><td><strong>미션 업로드</strong></td><td><strong>주 1회 자동</strong></td></tr>
+                <tr><td><strong>학생 제출</strong></td><td>학생이 <strong>직접 업로드</strong></td></tr>
+                <tr><td><strong>일상 피드백</strong></td><td>커뮤니티 댓글, <strong>학생 상호 + 운영자</strong></td></tr>
+                <tr><td><strong>강사 그룹 피드백</strong></td><td><strong>주 1회 60~90분 라이브</strong></td></tr>
+                <tr><td><strong>1:1 프리미엄</strong></td><td>별도 일정·시간</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+      <p>플랫폼은 <strong>Circle 단일</strong>을 사용한다. 피드·과제·댓글·라이브 기능이 모두 들어 있어 <strong>추가 개발이 필요 없다</strong>. <strong>운영자 1명이 주 2~3시간</strong> 운영하고 자동화로 보완한다. <strong>학생 결과물은 그대로 다음 기수 모집의 콘텐츠 자산</strong>이 된다.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s16">
+    <header class="sec-head">
+      <div class="sec-num">16</div>
+      <h3 class="sec-title">포스트 캠프에는 세 가지 실패 패턴과 각각의 차단책이 있다.</h3>
+    </header>
+    <div class="sec-body">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>실패 패턴</th><th>증상</th><th>차단책</th></tr></thead>
+          <tbody>
+            <tr><td><strong>강사 과투입</strong></td><td>강사 시간이 인원 비례로 늘어나 <strong>마진이 무너진다</strong></td><td><strong>강사 개입을 주 1회로 제한</strong>하는 운영 규칙을 명문화</td></tr>
+            <tr><td><strong>커리큘럼 과복잡</strong></td><td>매주 새 커리큘럼을 만들면 <strong>운영이 지속 불가능</strong>해진다</td><td><strong>미션 템플릿을 1개로 고정</strong>하고 변형만 한다</td></tr>
+            <tr><td><strong>참여율 저하</strong></td><td>미션 제출이 줄어들면 <strong>커뮤니티 가치가 빠르게 떨어진다</strong></td><td><strong>우수작 강조·랭킹·리워드 시스템</strong>을 운영 안에 미리 넣는다</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </article>
+
+  <article class="sec" id="s17">
+    <header class="sec-head">
+      <div class="sec-num">17</div>
+      <h3 class="sec-title">매출은 한 번이 아니라 매달 발생하고, 다음 기수의 모집 비용은 점점 0에 가까워진다.</h3>
+    </header>
+    <div class="sec-body">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>구조</th><th>산식</th><th>Year 1</th></tr></thead>
+          <tbody>
+            <tr><td><strong>기존</strong></td><td>1기 <strong>60명 × 480만원</strong></td><td><strong>2.88억</strong> (1회성)</td></tr>
+            <tr><td><strong>갱신</strong></td><td>캠프 <strong>2.88억</strong> + 포스트 캠프 <strong>월 1,400~1,900만 × 5개월</strong></td><td><strong>3.4~3.8억</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>매출 절대치보다 중요한 변화는 <strong>다음 기수 모집의 콘텐츠 비용이 점점 0에 가까워진다</strong>는 점이다. <strong>학생 결과물이 마케팅 자산으로 누적</strong>된다.</p>
+    </div>
+  </article>
+</section>
+
+<section class="part" id="part-c">
+  <div class="part-num">PART C</div>
+  <h2 class="part-title">교차정리</h2>
+
+  <article class="sec sec-meta" id="s17b">
+    <header class="sec-head">
+      <div class="sec-num">교차</div>
+      <h3 class="sec-title">두 변화는 같은 자리에서 만난다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>PART A는 <strong>한 묶음 → 트랙 분리</strong>, PART B는 <strong>1회 캠프 → 포스트 캠프</strong>. 두 변화는 <strong>같은 학생·강사·결과물 위에서 동시에 작동</strong>한다.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>축</th><th>캠프 (PART A)</th><th>캠프 그 후 (PART B)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>학생</strong></td><td>Explorer·Creator·Elite 분리</td><td>각 트랙이 <strong>월 구독</strong>으로 합류</td></tr>
+            <tr><td><strong>강사</strong></td><td>24명·매일 수업</td><td>같은 강사·매주 피드백·<strong>시간 고정</strong></td></tr>
+            <tr><td><strong>결과물</strong></td><td>영어 가사·AI 곡·영상</td><td><strong>다음 기수 모집 자산</strong>으로 누적</td></tr>
+            <tr><td><strong>매출</strong></td><td><strong>2.88억</strong> (60명 × 480)</td><td>+ 월 1,400~1,900만 × 5 = <strong>3.4~3.8억</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>트랙 분리는 포스트 캠프의 입구를, 포스트 캠프는 트랙 분리의 출구를 만든다.</strong></p>
+    </div>
+  </article>
+
+  <article class="sec" id="s18">
+    <header class="sec-head">
+      <div class="sec-num">18</div>
+      <h3 class="sec-title">트랙 분리는 포스트 캠프로 자연스럽게 이어진다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>각 트랙의 학습자는 캠프 종료 후 <strong>다른 형태의 포스트 캠프 상품으로 합류</strong>한다.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>트랙</th><th>진입 방식</th><th>구독 상품</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Creator</strong></td><td>콘텐츠 제작 경험이 <strong>월 단위 창작 환경</strong>으로 자연스럽게 연결된다</td><td><strong>30만원/월</strong></td></tr>
+            <tr><td><strong>Explorer</strong></td><td>표현 경험을 <strong>가벼운 형태의 구독</strong>으로 연장한다</td><td><strong>15만원/월</strong> (별도 설계)</td></tr>
+            <tr><td><strong>Elite</strong></td><td>캠프의 <strong>1:1 디렉팅이 그대로 1:1 멘토링</strong>으로 이어진다</td><td><strong>100~200만원/월</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </article>
+
+  <article class="sec" id="s19">
+    <header class="sec-head">
+      <div class="sec-num">19</div>
+      <h3 class="sec-title">같은 강사가 캠프에서는 매일, 캠프 후에는 매주 학생과 만난다.</h3>
+    </header>
+    <div class="sec-body">
+      <p>캠프 강사 풀이 그대로 <strong>포스트 캠프의 그룹 피드백 강사 풀로 환원</strong>된다. <strong>트랙별 자연 분리</strong>가 이어진다.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>캠프 트랙</th><th>캠프 강사</th><th>포스트 캠프 역할</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Creator</strong></td><td>chris·yoonki·jason</td><td><strong>Creator 구독 그룹 피드백</strong>·1:1 프리미엄 일부</td></tr>
+            <tr><td><strong>Explorer</strong></td><td>todd·yeni·haeseong</td><td><strong>Explorer 구독 그룹 피드백</strong></td></tr>
+            <tr><td><strong>Elite</strong></td><td>캠프 마스터클래스 강사 일부</td><td><strong>1:1 프리미엄 디렉팅</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>강사 입장에서는 캠프 출강이 끝난 후에도 <strong>포스트 캠프에서 추가 수입과 콘텐츠 노출이 이어진다</strong>.</p>
+    </div>
+  </article>
+
+  <article class="sec" id="s20">
+    <header class="sec-head">
+      <div class="sec-num">20</div>
+      <h3 class="sec-title">1기를 어떻게 운영할지에는 네 개의 결정이 남는다.</h3>
+    </header>
+    <div class="sec-body">
+      <details>
+        <summary>네 개 결정 — 선택지 A·B·트레이드오프 전수</summary>
+        <div class="det-body">
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>결정</th><th>선택지 A</th><th>선택지 B</th><th>트레이드오프</th></tr></thead>
+              <tbody>
+                <tr><td><strong>트랙 분리 적용 시점</strong></td><td><strong>1기부터 분리</strong></td><td>1기는 통합, <strong>2기부터 분리</strong></td><td>A: <strong>가격·만족도 정합</strong>·운영 복잡 / B: 기존 설계 유지·양면 어색함 지속</td></tr>
+                <tr><td><strong>포스트 캠프 시작 시점</strong></td><td><strong>1기 종료 직후 8월</strong></td><td>2기 안정 후 시작</td><td>A: <strong>Year 1 매출 3.4~3.8억</strong>·운영 부담 / B: 1기 단순함·<strong>Year 1 2.88억</strong></td></tr>
+                <tr><td><strong>시범 캠프 구성</strong></td><td><strong>5+5명 트랙 분리</strong></td><td><strong>10명 단일</strong></td><td>A: <strong>두 트랙 동시 검증</strong>·콘텐츠 분산 / B: <strong>콘텐츠 집중</strong>·한 트랙만 검증</td></tr>
+                <tr><td><strong>사전 준비 발사 시점</strong></td><td><strong>4월 말~5월 1주 동시 발사</strong></td><td>5월 중순 이후 순차</td><td>A: <strong>7월 모집 가능성</strong>·일정 압박 / B: 압박 완화·<strong>모집·콘텐츠 라인 위태로움</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <article class="sec" id="s21">
+    <header class="sec-head">
+      <div class="sec-num">21</div>
+      <h3 class="sec-title">다음 단계로 가려면 다섯 가지가 정해져야 한다.</h3>
+    </header>
+    <div class="sec-body">
+      <ol style="padding-left: 24px; margin: 0;">
+        <li style="padding: 6px 0;"><strong>사전 준비 발사 GO/NO-GO</strong> — 4월 말~5월 1주 동시 발사 여부. <strong>이 결정이 모든 후속 단계를 결정한다.</strong></li>
+        <li style="padding: 6px 0;"><strong>트랙 분리 적용 시점</strong> — <strong>1기·2기·1기 부분 적용</strong> 중 선택.</li>
+        <li style="padding: 6px 0;"><strong>가격 재설계</strong> — 기존 <strong>480만원</strong>을 트랙별 <strong>350·580·980</strong>으로 재설계할지, 1기는 <strong>통합가를 유지</strong>할지.</li>
+        <li style="padding: 6px 0;"><strong>기존 프로그램 갱신 범위</strong> — <strong>프로그램 문서·사업기획 문서·홈페이지 와이어프레임·중국어 프레젠테이션</strong> 중 어디까지 즉시 갱신할지.</li>
+        <li style="padding: 6px 0;"><strong>포스트 캠프 시작 시점</strong> — <strong>1기 종료 8월·2기 후·1기 중반 사전 마케팅</strong> 중 선택.</li>
+      </ol>
+    </div>
+  </article>
+</section>
+
+<section class="part" id="appendix">
+  <div class="part-num">부록</div>
+  <h2 class="part-title">발화 인용</h2>
+
+  <details>
+    <summary>캠프 대표와 ChatGPT 대화</summary>
+    <div class="det-body">
+      <div class="quote-card">
+        <div class="who">캠프 대표 · ChatGPT 대화</div>
+        <blockquote>
+          <p>"초등은 경험을 사고, 중학생은 결과를 가져갑니다."</p>
+          <p>"하나의 캠프로 묶지 말고, 두 개의 다른 상품으로 운영해야 합니다."</p>
+        </blockquote>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>커리큘럼 담당의 대화 메시지</summary>
+    <div class="det-body">
+      <div class="quote-card">
+        <div class="who">커리큘럼 담당 · 대화 메시지</div>
+        <blockquote>
+          <p>"수준 편차나 인지·신체 발달에 따라 분반이 된다면, 두 트랙을 난이도 차이가 아니라 목적 차이로 나누는 게 맞을 것 같습니다."</p>
+          <p>"AKMU '소문의 낙원'처럼 안무를 크게 하기보다는 가사나 스토리를 몸으로 표현하는 방식이 Creator 트랙 방향과 잘 맞는 레퍼런스입니다."</p>
+        </blockquote>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>학술 디렉터의 대화 메시지</summary>
+    <div class="det-body">
+      <div class="quote-card">
+        <div class="who">학술 디렉터 · 대화 메시지</div>
+        <blockquote>
+          <p>"지금 만들고 있는 커리큘럼은 Creator 트랙 중심인 것 같습니다. 강사진이 Creator 트랙: chris·yoonki·jason / Explorer 트랙: todd·yeni·haeseong 이렇게 나눌 수 있을 것 같습니다."</p>
+          <p>"원래 계획도 영어 고급반(토론·창작 위주) / 영어 보통반(활동·예시문 제공해서 주입식이 되지 않게) 이렇게 나눠서 교사 훈련을 시키려고 했는데 이걸 조금 더 세분화하면 될 것 같습니다."</p>
+        </blockquote>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>캠프 대표의 대화 메시지</summary>
+    <div class="det-body">
+      <div class="quote-card">
+        <div class="who">캠프 대표 · 대화 메시지</div>
+        <blockquote>
+          <p>"영어 편차가 있을 것 같아서 분반을 잘 해야 될 것 같습니다."</p>
+          <p>"초등과 중등으로 나누는 게 좋을 것 같습니다. 영어 실력 편차뿐만 아니라 인지·신체 발달 측면도 있어서요."</p>
+          <p>"그 부분도 홈페이지에 올려야 될 것 같습니다."</p>
+        </blockquote>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>운영 담당의 대화 메시지</summary>
+    <div class="det-body">
+      <div class="quote-card">
+        <div class="who">운영 담당 · 대화 메시지</div>
+        <blockquote>
+          <p>"Creator는 의미 중심, Explorer는 경험 중심으로 분리하되 두 트랙 모두 결과를 완성하는 구조로 보고 있습니다."</p>
+          <p>"두 개의 캠프로 초등·중등을 나눠야 되지 않을까 하는 시각도 있습니다."</p>
+        </blockquote>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>캠프 시간 재정의 관련 대화</summary>
+    <div class="det-body">
+      <div class="quote-card">
+        <div class="who">캠프 시간 재정의 · 대화</div>
+        <blockquote>
+          <p>"행동보다 준비가 먼저입니다. 준비된 구조만 다음 단계로 넘어갑니다."</p>
+          <p>"강사는 가르치지 않고 방향만 잡습니다."</p>
+          <p>"포스트 캠프는 교육이 아니라 지속 창작 환경입니다."</p>
+        </blockquote>
+      </div>
+    </div>
+  </details>
+</section>
+
+<section class="closing">
+  <div class="closing-tag">확신도 · 86</div>
+  <div class="closing-line">검증 — 입력 다섯 종 전수 재검토 후 단위별 도달점·살리는 근거·실행 정보 분류 적용. 작업 라벨·인물 호칭·버전·약자·장사 어휘 ✗ 룰 준수</div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var btn = document.getElementById('btnToggleAll');
+  function getAll(){ return document.querySelectorAll('details'); }
+  function setAll(open){
+    getAll().forEach(function(d){ d.open = open; });
+    btn.dataset.state = open ? 'expanded' : 'collapsed';
+    btn.setAttribute('aria-pressed', open ? 'true' : 'false');
+    btn.textContent = open ? '전체 접기' : '전체 펴기';
+  }
+  btn.addEventListener('click', function(){
+    var isOpen = btn.dataset.state === 'expanded';
+    setAll(!isOpen);
+  });
+})();
+</script>
+
+</body>
+</html>
