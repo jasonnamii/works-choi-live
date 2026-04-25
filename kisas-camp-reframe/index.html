@@ -58,8 +58,8 @@ img,svg{max-width:100%;display:block}
 .hero-eyebrow{ font-size: var(--t-xs); font-weight: var(--w-bold); letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.7; margin-bottom: var(--gap-m); }
 .hero-title{ font-size: clamp(72px, 11vw, 140px); font-weight: var(--w-black); line-height: 1.0; letter-spacing: -0.03em; margin: 0 0 var(--gap-m); }
 .hero-meta{ font-size: var(--t-xs); opacity: 0.6; margin-bottom: var(--gap-l); }
-.part{ margin-top: var(--gap-xl); padding: var(--gap-l) var(--gap-l); background: var(--ox-deep); color: #fff; border-radius: var(--radius-l); }
-.part > .part-num, .part > .part-title{ position: relative; z-index: 1; }
+.part{ margin-top: var(--gap-xl); }
+.part-header{ background: var(--ox-deep); color: #fff; padding: clamp(28px, 4vw, 48px) clamp(24px, 4vw, 40px); margin-bottom: var(--gap-l); }
 .part-num{ font-size: var(--t-xs); font-weight: var(--w-bold); letter-spacing: 0.2em; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: var(--gap-s); }
 .part-title{ font-size: clamp(36px, 5.5vw, 70px); font-weight: var(--w-black); line-height: 1.05; letter-spacing: -0.02em; margin: 0; color: #fff; }
 .sec{ margin-top: var(--gap-l); padding-top: var(--gap-m); border-top: 1px solid var(--line); }
@@ -155,8 +155,10 @@ details > .det-body > *:first-child{ margin-top: var(--gap-s); }
 <main class="wrap">
 
 <section class="part" id="part-a">
-  <div class="part-num">PART A</div>
-  <h2 class="part-title">캠프 상품 재정의</h2>
+  <div class="part-header">
+    <div class="part-num">PART A</div>
+    <h2 class="part-title">캠프 상품 재정의</h2>
+  </div>
 
   <article class="sec" id="s01">
     <header class="sec-head">
@@ -497,8 +499,10 @@ details > .det-body > *:first-child{ margin-top: var(--gap-s); }
 </section>
 
 <section class="part" id="part-b">
-  <div class="part-num">PART B</div>
-  <h2 class="part-title">지속 사업으로</h2>
+  <div class="part-header">
+    <div class="part-num">PART B</div>
+    <h2 class="part-title">지속 사업으로</h2>
+  </div>
 
   <article class="sec" id="s10">
     <header class="sec-head">
@@ -743,8 +747,10 @@ details > .det-body > *:first-child{ margin-top: var(--gap-s); }
 </section>
 
 <section class="part" id="part-c">
-  <div class="part-num">PART C</div>
-  <h2 class="part-title">교차정리</h2>
+  <div class="part-header">
+    <div class="part-num">PART C</div>
+    <h2 class="part-title">교차정리</h2>
+  </div>
 
   <article class="sec sec-meta" id="s17b">
     <header class="sec-head">
@@ -852,8 +858,10 @@ details > .det-body > *:first-child{ margin-top: var(--gap-s); }
 </section>
 
 <section class="part" id="appendix">
-  <div class="part-num">부록</div>
-  <h2 class="part-title">발화 인용</h2>
+  <div class="part-header">
+    <div class="part-num">부록</div>
+    <h2 class="part-title">발화 인용</h2>
+  </div>
 
   <details>
     <summary>캠프 대표와 ChatGPT 대화</summary>
