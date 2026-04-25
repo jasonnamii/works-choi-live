@@ -58,9 +58,10 @@ img,svg{max-width:100%;display:block}
 .hero-eyebrow{ font-size: var(--t-xs); font-weight: var(--w-bold); letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.7; margin-bottom: var(--gap-m); }
 .hero-title{ font-size: clamp(72px, 11vw, 140px); font-weight: var(--w-black); line-height: 1.0; letter-spacing: -0.03em; margin: 0 0 var(--gap-m); }
 .hero-meta{ font-size: var(--t-xs); opacity: 0.6; margin-bottom: var(--gap-l); }
-.part{ margin-top: var(--gap-xl); padding-top: var(--gap-l); border-top: 2px solid var(--ox-deep); }
-.part-num{ font-size: var(--t-xs); font-weight: var(--w-bold); letter-spacing: 0.2em; color: var(--ox-soft); text-transform: uppercase; margin-bottom: var(--gap-xs); }
-.part-title{ font-size: var(--t-l); font-weight: var(--w-black); line-height: 1.1; margin: 0 0 var(--gap-m); color: var(--ox-deep); }
+.part{ margin-top: var(--gap-xl); padding: var(--gap-l) var(--gap-l); background: var(--ox-deep); color: #fff; border-radius: var(--radius-l); }
+.part > .part-num, .part > .part-title{ position: relative; z-index: 1; }
+.part-num{ font-size: var(--t-xs); font-weight: var(--w-bold); letter-spacing: 0.2em; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: var(--gap-s); }
+.part-title{ font-size: clamp(36px, 5.5vw, 70px); font-weight: var(--w-black); line-height: 1.05; letter-spacing: -0.02em; margin: 0; color: #fff; }
 .sec{ margin-top: var(--gap-l); padding-top: var(--gap-m); border-top: 1px solid var(--line); }
 .sec-head{ display: block; margin-bottom: var(--gap-m); }
 .sec-num{ display: block; font-size: var(--t-xs); font-weight: var(--w-black); color: var(--ox-soft); letter-spacing: 0.08em; font-variant-numeric: tabular-nums; margin-bottom: var(--gap-s); }
@@ -131,6 +132,8 @@ details > .det-body > *:first-child{ margin-top: var(--gap-s); }
   .hero{ padding: clamp(48px, 12vw, 80px) 20px; }
   .hero-title{ font-size: clamp(56px, 14vw, 96px); line-height: 1.02; }
   .sec-title{ font-size: clamp(24px, 6vw, 36px); }
+  .part-title{ font-size: clamp(28px, 7vw, 48px); line-height: 1.05; }
+  .part{ padding: var(--gap-m); }
 }
 </style>
 </head>
