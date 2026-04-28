@@ -280,11 +280,15 @@ h3.head{
 }
 
 /* details / SHE 접기 */
+html{scroll-behavior:auto}
+body{overflow-anchor:auto}
 details.fold{
   margin-top:18px;
   border-top:1px solid var(--line);
   padding-top:14px;
+  overflow-anchor:auto;
 }
+details.fold > summary{overflow-anchor:none}
 .cell.dark details.fold{border-top-color:#3a3a3c}
 details.fold > summary{
   cursor:pointer;
@@ -1433,6 +1437,12 @@ ul.clean.invert li::before{color:#1d1d1f}
     var group = getGroup(src);
     var open = src.open;
 
+    // Capture click target's viewport position BEFORE syncing siblings
+    var summary = src.querySelector('summary');
+    var anchorEl = summary || src;
+    var rectBefore = anchorEl.getBoundingClientRect();
+    var topBefore = rectBefore.top;
+
     syncing = true;
     group.querySelectorAll('details.fold').forEach(function(d){
       if(d !== src && d.open !== open){
@@ -1440,6 +1450,15 @@ ul.clean.invert li::before{color:#1d1d1f}
       }
     });
     syncing = false;
+
+    // Restore the clicked summary's screen position so the page doesn't jump
+    requestAnimationFrame(function(){
+      var rectAfter = anchorEl.getBoundingClientRect();
+      var delta = rectAfter.top - topBefore;
+      if(Math.abs(delta) > 1){
+        window.scrollBy({top: delta, left: 0, behavior: 'instant'});
+      }
+    });
 
     syncState();
   }, true);
