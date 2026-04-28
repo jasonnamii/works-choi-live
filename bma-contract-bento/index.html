@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMA 계약서 — 11개 수정사항</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --label-info:    #1d1d1f;
+    --label-caption: #424245;
+    --label-deco:    #86868b;
+    --bg:            #f5f5f7;
+    --card:          #ffffff;
+    --dark:          #1d1d1f;
+    --oxford:        #002147;
+    --red:           #ff3b30;
+    --amber:         #ff9f0a;
+    --green:         #30d158;
+    --mint:          #a8e6cf;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--label-info);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 64px);
+  }
+
+  /* ========== HEADER ========== */
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    color: var(--label-deco);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .doc-meta strong { color: var(--label-caption); font-weight: 600; }
+
+  /* ========== HERO (Pattern D 좌측) ========== */
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr);
+    gap: 16px;
+  }
+  .hero {
+    background: var(--dark);
+    color: #fff;
+    border-radius: 28px;
+    padding: clamp(32px, 4vw, 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    min-height: 600px;
+  }
+  .hero-tag {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #86868b;
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 950;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 1.6vw, 19px);
+    font-weight: 300;
+    line-height: 1.55;
+    color: #d1d1d6;
+    margin-bottom: 36px;
+  }
+  .score-block {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-top: 28px;
+    border-top: 1px solid #3a3a3c;
+  }
+  .score-num {
+    font-size: clamp(72px, 10vw, 120px);
+    font-weight: 950;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: #ff9f0a;
+  }
+  .score-denom {
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 300;
+    color: #86868b;
+  }
+  .score-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #86868b;
+    margin-bottom: 8px;
+  }
+  .verdict {
+    font-size: clamp(15px, 1.4vw, 17px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: #fff;
+  }
+  .verdict strong { font-weight: 700; }
+
+  /* ========== CARD GRID (우측 11개) ========== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    grid-auto-rows: minmax(180px, auto);
+  }
+  .card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: clamp(20px, 2vw, 28px);
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    min-height: 180px;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  }
+  .card:focus-visible {
+    outline: 2px solid var(--oxford);
+    outline-offset: 2px;
+  }
+  .card-num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--label-deco);
+    margin-bottom: 12px;
+  }
+  .card-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+    width: fit-content;
+  }
+  .flag-critical { background: #ffeae8; color: var(--red); }
+  .flag-warn     { background: #fff4dc; color: #b87000; }
+  .flag-other    { background: #eef2f7; color: #5a6678; }
+  .card-title {
+    font-size: clamp(17px, 1.6vw, 20px);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    color: var(--label-info);
+  }
+  .card-summary {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--label-caption);
+  }
+  .card-bottom {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--label-deco);
+    font-weight: 500;
+  }
+  .card-clue {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .arrow { font-size: 18px; }
+
+  /* span 강조용 */
+  .card.wide   { grid-column: span 2; }
+  .card.tall   { grid-row: span 2; }
+
+  /* 다크 카드 (CTA·핵심 결론용) */
+  .card.dark {
+    background: var(--oxford);
+    color: #fff;
+  }
+  .card.dark .card-title,
+  .card.dark .card-summary { color: #fff; }
+  .card.dark .card-summary { color: #d1d1d6; }
+  .card.dark .card-num,
+  .card.dark .card-bottom,
+  .card.dark .card-clue { color: #a8b4c4; }
+
+  /* ========== FOOTER (협상 카드 5종) ========== */
+  .footer {
+    margin-top: 40px;
+    padding: clamp(28px, 3vw, 44px);
+    background: #fff;
+    border-radius: 24px;
+  }
+  .footer-head {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--label-deco);
+    margin-bottom: 16px;
+  }
+  .footer-title {
+    font-size: clamp(24px, 2.8vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  .neg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 14px;
+  }
+  .neg-card {
+    background: #f5f5f7;
+    border-radius: 16px;
+    padding: 20px;
+    min-width: 0;
+  }
+  .neg-num {
+    font-size: 28px;
+    font-weight: 950;
+    color: var(--oxford);
+    line-height: 1;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+  .neg-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.35;
+  }
+  .neg-desc {
+    font-size: 13px;
+    color: var(--label-caption);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* ========== MODAL ========== */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    z-index: 1000;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(16px, 4vh, 48px);
+    overflow-y: auto;
+  }
+  .modal-backdrop.open {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal {
+    background: #fff;
+    border-radius: 28px;
+    max-width: 760px;
+    width: 100%;
+    padding: clamp(28px, 4vw, 48px);
+    position: relative;
+    animation: slideUp 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #f5f5f7;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--label-caption);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+  .modal-close:hover { background: #e8e8ed; }
+
+  .modal-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+  .modal-num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--label-deco);
+    margin-bottom: 8px;
+  }
+  .modal-title {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    color: var(--label-info);
+  }
+
+  .modal-section { margin-bottom: 26px; }
+  .modal-section:last-child { margin-bottom: 0; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--label-deco);
+    margin-bottom: 10px;
+  }
+  .modal-section p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--label-info);
+    margin-bottom: 8px;
+  }
+  .modal-section p:last-child { margin-bottom: 0; }
+  .modal-section ul, .modal-section ol {
+    padding-left: 20px;
+    margin-top: 4px;
+  }
+  .modal-section li {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--label-info);
+    margin-bottom: 6px;
+  }
+  .quote-block {
+    background: #f5f5f7;
+    border-left: 3px solid var(--oxford);
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--label-caption);
+    font-weight: 400;
+    white-space: pre-wrap;
+  }
+  .scenario-block {
+    background: #fff8f5;
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--label-info);
+  }
+  .fix-block {
+    background: #f1f8f4;
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--label-info);
+  }
+  .fix-block strong { font-weight: 700; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .hero { min-height: auto; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card.wide { grid-column: span 2; }
+  }
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    .card.wide { grid-column: span 1; }
+    .card { min-height: auto; }
+    .doc-meta { font-size: 11px; gap: 8px 16px; }
+    .modal { padding: 24px 20px; border-radius: 20px; }
+    .modal-close { top: 12px; right: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="doc-meta">
+    <span><strong>대상</strong> 김형석 (양수인)</span>
+    <span><strong>상대</strong> ㈜비이교육 — ㈜비엠에이서울</span>
+    <span><strong>일자</strong> 2026-04-27</span>
+    <span><strong>범위</strong> 본 계약 11개 조항</span>
+  </header>
+
+  <div class="layout">
+
+    <!-- ========== HERO ========== -->
+    <aside class="hero">
+      <div>
+        <div class="hero-tag">BMA 계약서 검토</div>
+        <h1 class="hero-title">지배권은 잡았는데<br>방어장치가 없다.</h1>
+        <p class="hero-sub">60%·대표이사로 표면 권력은 확보. 부속서·"별도 합의"·"협의" 세 공백이 모두 김형석 핵심자산 영역에 정확히 배치되어 있음.</p>
+      </div>
+
+      <div>
+        <div class="score-block">
+          <div>
+            <div class="score-label">종합 점수</div>
+            <div style="display: flex; align-items: baseline; gap: 12px;">
+              <span class="score-num">5</span>
+              <span class="score-denom">/ 10</span>
+            </div>
+          </div>
+        </div>
+        <p class="verdict"><strong>현 계약서 그대로 서명 ✗.</strong> 부속서 4종과 본 계약을 함께 협상 → 핵심 4가지(중대·1·2·3·5)를 받아낸 뒤 서명. 협상 결렬 시 인수 철회 검토.</p>
+      </div>
+    </aside>
+
+    <!-- ========== 11 카드 그리드 ========== -->
+    <main class="grid">
+
+      <!-- 1. 대금·마감 (중대) -->
+      <article class="card" tabindex="0" data-id="1">
+        <div>
+          <div class="card-num">01 · 제2조③·제3조①</div>
+          <span class="card-flag flag-critical">🔴 중대</span>
+          <h2 class="card-title">대금과 마감 조건이<br>부속서로 빠져 있다</h2>
+          <p class="card-summary">양도대금·지급시기·분할·담보·에스크로 전부 부속서. 본 계약에 한 줄도 없음.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <!-- 2. 이사회 1대 2 (중대) -->
+      <article class="card" tabindex="0" data-id="2">
+        <div>
+          <div class="card-num">02 · 제4조③</div>
+          <span class="card-flag flag-critical">🔴 중대</span>
+          <h2 class="card-title">이사회가<br>1대 2 소수로 짜였다</h2>
+          <p class="card-summary">60% 최대주주가 이사회 셋 중 하나. "주요 경영" 정의 없음 → 양도인 사실상 거부권.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <!-- 3. 공간 우선권 (중대) -->
+      <article class="card" tabindex="0" data-id="3">
+        <div>
+          <div class="card-num">03 · 제6조④</div>
+          <span class="card-flag flag-critical">🔴 중대</span>
+          <h2 class="card-title">공간 우선권에<br>가드레일이 없다</h2>
+          <p class="card-summary">"긴급한 사정"·"교육 행정 목적" 정의 없음. 통지·한도·보상 모두 빠짐.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <!-- 4. 지식재산권 (중대 · wide) -->
+      <article class="card dark wide" tabindex="0" data-id="4">
+        <div>
+          <div class="card-num">04 · 제9조</div>
+          <span class="card-flag flag-critical">🔴 중대</span>
+          <h2 class="card-title">지식재산권이 백지다 — 분쟁 시 통째로 양도인에게 넘어갈 수 있다</h2>
+          <p class="card-summary">커리큘럼·교재·브랜드·학부모 DB·강사 매뉴얼 모두 무주공산. 김형석이 만든 자산조차 못 쓸 위험.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <!-- 5. 진술과 보장 (주의) -->
+      <article class="card" tabindex="0" data-id="5">
+        <div>
+          <div class="card-num">05 · 누락 조항</div>
+          <span class="card-flag flag-warn">⚠️ 주의</span>
+          <h2 class="card-title">진술과 보장이<br>한 줄도 없다</h2>
+          <p class="card-summary">우발채무·세금·소송·노무·인허가 보증 0. 한국 표준은 10~30개.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <!-- 6. 해지·종료 (주의) -->
+      <article class="card" tabindex="0" data-id="6">
+        <div>
+          <div class="card-num">06 · 누락 조항</div>
+          <span class="card-flag flag-warn">⚠️ 주의</span>
+          <h2 class="card-title">해지·종료 조항이<br>없다</h2>
+          <p class="card-summary">위반·신뢰파탄·마감실패 시 빠져나갈 길 없음. 계약이 영영 안 끝나는 위험.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <!-- 7. 매출 정산 (주의) -->
+      <article class="card" tabindex="0" data-id="7">
+        <div>
+          <div class="card-num">07 · 제5조③</div>
+          <span class="card-flag flag-warn">⚠️ 주의</span>
+          <h2 class="card-title">매출 정산 규칙이<br>별도 합의다</h2>
+          <p class="card-summary">현금흐름이 양도인 손을 거침. 60% 자산이어도 운영자금 막힐 수 있음.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <!-- 8. 우선매수권 가격 (주의) -->
+      <article class="card" tabindex="0" data-id="8">
+        <div>
+          <div class="card-num">08 · 제8조②</div>
+          <span class="card-flag flag-warn">⚠️ 주의</span>
+          <h2 class="card-title">우선매수권에<br>가격 산식이 없다</h2>
+          <p class="card-summary">양도인 명목상 고가 거래로 위장 가능. 김형석 포기 시 외부자에게 넘어감.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <!-- 9. 경업금지 (그밖) -->
+      <article class="card" tabindex="0" data-id="9">
+        <div>
+          <div class="card-num">09 · 누락 조항</div>
+          <span class="card-flag flag-other">그밖</span>
+          <h2 class="card-title">경업금지<br>조항이 없다</h2>
+          <p class="card-summary">"옥스포드 캠프 제외"만 있고, 양도인이 다른 캠프 새로 차리는 것 못 막음.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <!-- 10. 비밀유지 종료 (그밖) -->
+      <article class="card" tabindex="0" data-id="10">
+        <div>
+          <div class="card-num">10 · 제10조</div>
+          <span class="card-flag flag-other">그밖</span>
+          <h2 class="card-title">비밀유지에<br>끝나는 날이 없다</h2>
+          <p class="card-summary">한국 통상 3~5년. 무기한은 운영을 영영 제약.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <!-- 11. 분쟁해결 단계 (그밖) -->
+      <article class="card" tabindex="0" data-id="11">
+        <div>
+          <div class="card-num">11 · 제11조</div>
+          <span class="card-flag flag-other">그밖</span>
+          <h2 class="card-title">분쟁 해결 단계가<br>없다</h2>
+          <p class="card-summary">바로 소송 = 1~3년 + 학부모·언론 노출. 교육 사업 평판 타격.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+    </main>
+  </div>
+
+  <!-- ========== FOOTER: 협상 카드 5종 ========== -->
+  <section class="footer">
+    <div class="footer-head">김형석이 쓸 수 있는 카드</div>
+    <h2 class="footer-title">5가지 협상 레버리지</h2>
+    <div class="neg-grid">
+      <div class="neg-card">
+        <div class="neg-num">01</div>
+        <div class="neg-name">양도인이 김형석을 고른 이유</div>
+        <div class="neg-desc">자본·운영 역량·신뢰. 다른 인수자 찾기 어려움 = 협상 우위.</div>
+      </div>
+      <div class="neg-card">
+        <div class="neg-num">02</div>
+        <div class="neg-name">60% → 51% 카드</div>
+        <div class="neg-desc">이사회 균형·IP·공간 받으면 51%로 줄여 인수. 양도인 49% 유지로 수용 가능성↑.</div>
+      </div>
+      <div class="neg-card">
+        <div class="neg-num">03</div>
+        <div class="neg-name">단계 인수 카드</div>
+        <div class="neg-desc">30%부터 시작 → 1년 운영 후 30% 추가. 양도인이 계약 지키게 만드는 압박장치.</div>
+      </div>
+      <div class="neg-card">
+        <div class="neg-num">04</div>
+        <div class="neg-name">대금 분할 + 매출 연동</div>
+        <div class="neg-desc">50% 즉시 + 50% 2년 매출 연동. 매출 약속 미달 시 잔금 차감.</div>
+      </div>
+      <div class="neg-card">
+        <div class="neg-num">05</div>
+        <div class="neg-name">인수 철회 (마지막)</div>
+        <div class="neg-desc">핵심 4가지 중 하나라도 양보 못 받으면 인수 접음. 협상 결렬 카드.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ========== MODAL ========== -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" id="modalClose" aria-label="닫기">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  "1": {
+    flag: "critical", flagText: "🔴 중대",
+    num: "01 · 제2조③ · 제3조①",
+    title: "대금과 마감 조건이 부속서로 빠져 있다",
+    quote: "제2조 ③ 양도 주식의 수, 주당 가액, 총 양도대금, 지급 시기 및 방법은 본 계약의 부속서(주식양수도 조건표)에 따른다.\n제3조 ① 양수인이 제2조에 따른 양도대금을 완납한 날을 본 계약의 종결일(Closing Date)로 한다.",
+    problem: "양도대금, 지급 시기와 방법, 분할납입, 담보, 에스크로, 거래 직전 회사가치가 무너졌을 때 빠져나갈 권리, 마감 전 충족해야 할 선행조건이 본 계약에 하나도 없다. \"양도대금을 다 낸 날이 마감일\"이라는 한 줄만 있어서, 분할로 내면 마감이 무한정 늦어질 수 있다. 주식 명의 변경과 대표이사 등기가 완납일에 묶여 있으니, 김형석이 1차 대금만 낸 상태에서 60%를 못 받은 채 대표이사 책임만 먼저 질 수도 있고, 반대로 양도인이 잔금이 안 들어왔다는 이유로 명의 변경을 거부할 수도 있다.",
+    scenario: "김형석이 1·2차 분할 대금을 내고 운영을 시작 → 학교 교사·학부모에게서 불만이 나옴 → 양도인이 \"신뢰가 깨졌다\"며 잔금을 안 받고 마감일을 미룸 → 김형석은 60%도 못 받았고 대표이사도 아니며 이미 들어간 운영비도 회수 못 한다.",
+    fix: "<strong>제2조 ④ 신설:</strong> \"본 계약을 맺은 뒤 30일 안에 부속서(주식양수도 조건표)를 맺지 못하면 본 계약은 효력을 잃는다.\"<br><br><strong>제3조 ②-1 신설:</strong> \"양도인은 양수인의 1차 대금이 들어온 날로부터 7일 안에 양도 주식 명의 변경과 주주명부 변경 절차에 협력한다. 잔금이 안 들어왔어도 들어온 대금 비율만큼 지분을 단계적으로 옮긴다(예: 1차로 30%를 냈으면 18%를 먼저 옮긴다).\""
+  },
+  "2": {
+    flag: "critical", flagText: "🔴 중대",
+    num: "02 · 제4조③",
+    title: "이사회가 1대 2 소수로 짜였다",
+    quote: "제4조 ③ 양도인과 양수인은 회사의 안정적 성장과 양도인과의 장기적 협력을 위하여 주요 경영 및 사업 방향에 관하여 비이교육 COO, 양도인, 그리고 양수인으로 구성된 이사회의 협의를 거쳐 결정한다.",
+    problem: "이사회 셋 = 비이교육 COO(양도인이 임명) + 양도인 + 양수인 → 양도인 쪽 둘, 양수인 하나. 60%를 가진 최대주주이자 대표이사인 김형석이 이사회에서는 셋 중 하나로 밀린다. 더 큰 문제는 \"주요 경영 및 사업 방향\"이 무엇인지 정의가 없다는 것. 양도인이 모든 결정을 \"주요 경영\"이라고 주장하면서 협의 의무를 걸면, 김형석이 혼자 결정할 수 있는 영역이 사라진다.<br><br><strong>한국 통상 사례와 비교:</strong> 60% 인수 거래에서 이사회는 보통 (가) 지분에 비례해서 인수자가 우위에 서거나 (나) 동수(2대 2, 3대 3)로 짠다. 1대 2는 드물고, \"협의\" 조항과 합쳐지면 사실상 양도인에게 거부권을 주는 것과 같다.",
+    fix: "<strong>강한 안.</strong> 이사회를 4~5명으로 다시 짜고 양수인이 추천하는 사람을 둘이나 셋 넣어 2대 2 또는 3대 2로 만든다.<br><br><strong>중간 안.</strong> 지금의 1대 2를 그대로 두되 \"주요 경영\"을 다음으로만 한정한다 — ① 자본금 변동 ② 영업양수도 ③ 자본 5억 원 이상 들어가는 신규 사업 ④ 옥스포드 캠프 관련 사항. 그 외 일상 경영(인사, 커리큘럼, 캠프 운영, 외부 제휴 등)은 대표이사가 혼자 결정한다.<br><br><strong>약한 안.</strong> \"협의\"를 \"사전 통지 후 결정\"으로 바꾼다. 양도인 동의가 없어도 통지만 하면 대표이사가 결정한다.<br><br><strong>권고:</strong> 중간 안을 우선 시도하고, 양도인이 거부하면 약한 안으로."
+  },
+  "3": {
+    flag: "critical", flagText: "🔴 중대",
+    num: "03 · 제6조④",
+    title: "공간 우선권에 가드레일이 없다",
+    quote: "제6조 ① 양도인은 정규 수업 종료 이후인 오후 4시 30분 이후, 방학 기간 및 주말에 발생하는 양도인 소유 또는 관리 하의 유휴 교육 공간을 회사가 예술 교육 및 캠프 사업을 위하여 사용할 수 있도록 제공한다.\n④ 회사의 공간 사용권에도 불구하고, 양도인의 회사 운영상 긴급한 사정이나 교육 행정 목적에 따른 요청이 있을 경우 양도인의 시설 사용 권한이 우선하며, 이 경우 회사는 양도인과 협의하여 사용 일정을 조정하여야 한다.",
+    problem: "<ul><li>\"긴급한 사정\"과 \"교육 행정 목적\"이 무엇인지 정의가 없다.</li><li>사전 통지 기간이 없어서 당일 통보도 가능하다.</li><li>1년에 며칠까지 빼앗아 갈 수 있는지 한도가 없어서 이론상 365일 가능하다.</li><li>빼앗아 갔을 때 회사·학생·학부모에게 손해배상하는 조항이 없다.</li><li>\"임대차 관계가 아니다\"라고 명시되어(제6조 ②) 임대차보호법으로도 못 막는다.</li></ul>",
+    scenario: "김형석이 여름 K-pop 캠프 학생 50명을 모집하고 수강료 1억을 받았다 → 캠프 시작 1주 전에 양도인이 \"교사 워크숍 일정\"을 \"교육 행정 목적\"이라며 공간을 회수 → 캠프를 못 연다 → 환불 + 브랜드 신뢰 붕괴. 양도인이 일부러 그런 것이든 아니든, 회사가 사실상 운영을 못 하는 상황이 생길 수 있다.",
+    fix: "<strong>제6조 ④ 재작성:</strong><ul><li>우선권 사유 한정 — ① 정규 수업과 시험 ② 교사 회의·워크숍(연간 횟수 한정) ③ 학교 행사(졸업식·입학식·운동회·축제로 한정).</li><li>사전 통지: 보통 14일 전, 급할 때만 72시간 전.</li><li>1년 한도: 회사가 쓸 수 있는 시간(평일 16:30~22:00, 방학, 주말) 가운데 양도인이 회수할 수 있는 날을 1년에 30일 안으로 묶는다.</li><li>회수 시 보상: 이미 모집한 캠프와 수업의 환불·재배치 비용을 양도인이 부담.</li><li>사용권 보장 기간: 본 계약이 살아 있는 동안 + 5년 자동 갱신.</li></ul>"
+  },
+  "4": {
+    flag: "critical", flagText: "🔴 중대",
+    num: "04 · 제9조",
+    title: "지식재산권이 백지다",
+    quote: "제9조 회사에서 개발·운영되는 교육 커리큘럼, 콘텐츠 및 관련 지식재산권의 귀속과 이용에 관한 사항은 양도인과 양수인이 별도의 합의로 정한다.",
+    problem: "누가 가질지, 기본 원칙은 어떻게 할지조차 안 적혀 있다. \"별도 합의\"는 영영 안 맺어질 수도 있다. 그동안 김형석이 돈과 시간을 들여 만든 자산이 분쟁이 터지면 누구 것인지 불분명해지고, 양도인이 \"비이교육 학생 데이터와 기존 교과 위에서 만들어진 것이니 비이교육 자산\"이라고 주장할 수 있다.<br><br><strong>1~3년 안에 쌓일 위험 자산 목록:</strong><ul><li>K-pop·미술·음악 캠프 커리큘럼·교재</li><li>입시·유학 프로그램 매뉴얼</li><li>학생 포트폴리오·작품 라이브러리</li><li>강사 매뉴얼·평가 시스템</li><li>회사 브랜드(\"비엠에이서울\"과 새로 만들 보조 브랜드)</li><li>학부모 데이터베이스와 고객관리 시스템</li><li>외부 제휴(K-pop 기획사·해외 음악대학) 계약과 노하우</li></ul>",
+    scenario: "2~3년 뒤 김형석과 양도인 사이에 갈등이 생긴다 → 김형석이 회사를 나와 새 학원을 차린다 → 양도인이 \"회사가 가진 모든 지식재산권은 따로 합의된 게 없으니 회사(현재 양도인이 40% 보유) 자산\"이라며 회사 명의로 등록한다 → 김형석은 자기가 만든 것조차 못 쓴다.",
+    fix: "<strong>제9조 개정안 (본 계약 직접 명시):</strong><br><br>① 본 계약을 맺은 뒤 회사가 개발하거나 취득하는 모든 지식재산권(커리큘럼·교재·콘텐츠·소프트웨어·브랜드·데이터베이스 포함)은 회사가 갖는다.<br><br>② 양도인은 학교 정규 수업 목적에 한해서만 회사 지식재산권을 무상으로 쓸 수 있고, 외부에 제공하거나 상업적으로 쓰려면 따로 사용 계약을 맺는다.<br><br>③ 본 계약을 맺기 전에 양도인이 이미 갖고 있던 지식재산권(기존 학교 커리큘럼·교재 등)은 양도인 것으로 남고, 회사가 쓸 때는 무상으로 쓸 권리를 받는다."
+  },
+  "5": {
+    flag: "warn", flagText: "⚠️ 주의",
+    num: "05 · 누락 조항",
+    title: "진술과 보장이 한 줄도 없다",
+    problem: "회사의 우발채무, 세금, 소송, 노무, 인허가, 재무제표, 자산 정확성에 대해 양도인이 보증해주는 문구가 한 줄도 없다. 한국 주식양수도 계약의 표준은 진술과 보장 조항이 10~30개 들어가는 것. 인수 뒤에 우발채무(미납세금, 직원 미지급금, 계약 위약금)가 발견되면 김형석이 60% 지분 비율로 손해를 떠안는다.<br><br><strong>김형석이 받지 못한 보증 예시:</strong><ul><li>회사가 가진 자산(현금, 매출채권, 집기)이 정확한지</li><li>안 알린 빚이 없는지</li><li>진행 중이거나 예상되는 소송 공개</li><li>학원법·교육법·노동법을 어긴 게 없는지</li><li>핵심 강사와 직원이 계속 남을 의사가 있는지</li><li>주요 계약(임대차, 외주, 제휴)이 정상적으로 굴러가는지</li><li>재무제표가 한국채택국제회계기준에 맞는지</li></ul>",
+    scenario: "인수 6개월 뒤 비엠에이서울이 학원법 위반(신고 안 한 캠프 운영)으로 영업정지를 받는다 → 손해 5억 → 김형석이 60% 비율로 책임을 진다. 진술과 보장이 있으면 양도인에게 청구할 수 있지만, 없으면 혼자 떠안는다.",
+    fix: "한국 주식양수도의 표준 진술·보장 묶음에 더해서 <strong>(가) 손해배상 상한</strong>(보통 양도대금의 30~50%) <strong>(나) 소액 청구 컷오프</strong>(보통 양도대금의 1%) <strong>(다) 효력 기간</strong>(보통 18~24개월, 세무·환경은 5~7년)을 명시한다."
+  },
+  "6": {
+    flag: "warn", flagText: "⚠️ 주의",
+    num: "06 · 누락 조항",
+    title: "해지·종료 조항이 없다",
+    problem: "계약을 어기거나 신뢰가 깨지거나 마감을 못 하거나 경영 분쟁이 생겼을 때 빠져나갈 길이 없다. 계약을 끝내는 사유, 고칠 시간, 끝난 뒤에도 살아 있을 의무, 정산 방법이 모두 빠져 있다. <strong>계약이 영영 안 끝나는 위험.</strong>",
+    fix: "<strong>해지 사유:</strong> ① 본 계약을 크게 어겼을 때 ② 30일 안에 못 고쳤을 때 ③ 양쪽이 합의했을 때 ④ 한쪽이 파산하거나 회생할 때 ⑤ 마감일까지 마감을 못 했을 때.<br><br><strong>해지 시 효과:</strong> 못 받은 양도대금 정산, 이미 옮긴 지분 처리, 지식재산권과 공간 사용권 정리, 끝난 뒤에도 살아 있을 의무(비밀유지·경업금지·미정산 채권) 정리.<br><br><strong>위약금:</strong> 양도인 잘못으로 해지될 때는 받은 대금의 1.5배 반환 등."
+  },
+  "7": {
+    flag: "warn", flagText: "⚠️ 주의",
+    num: "07 · 제5조③",
+    title: "매출 정산 규칙이 별도 합의다",
+    quote: "제5조 ③ 수업료의 수납 방식, 정산 주기, 환불 기준 등 구체적인 정산 사항은 양도인과 양수인이 별도의 합의 또는 부속서로 정한다.",
+    problem: "회사 매출(제5조 ②)이 학부모 → 비이교육(기존 결제 채널) → 회사로 흘러갈 가능성이 크다. 양도인이 (가) 정산을 늦추거나 (나) 일부만 보내거나 (다) 거부하면 회사 운영자금이 막힌다. 회사는 김형석이 60%를 가진 자산인데도 현금흐름은 양도인이 쥐게 된다.",
+    fix: "<ul><li>학부모 결제 채널을 회사 명의로 분리한다(별도 사업자번호와 계좌).</li><li>통합 결제를 그대로 둘 거면 정산은 한 달에 한 번 매월 5일에 회사 계좌로 입금하고, 늦으면 연 6%의 지연이자를 붙인다.</li><li>환불 정책을 미리 합의한다(중도 해지 때 남은 수업만큼 환불 등).</li><li>분기마다 회사가 회계를 들여다볼 권한을 둔다.</li></ul>"
+  },
+  "8": {
+    flag: "warn", flagText: "⚠️ 주의",
+    num: "08 · 제8조②",
+    title: "우선매수권에 가격 산식이 없다",
+    problem: "\"우선매수권이 있다\"는 한 줄뿐, 가격을 어떻게 정할지, 통지와 행사는 며칠 안에 할지가 비어 있다. 양도인이 제3자와 명목상 거래나 비현실적 고가 거래를 꾸며놓고 김형석에게 같은 가격에 사라고 요구할 수 있다 → 김형석이 포기하면 외부자에게 넘어간다.",
+    fix: "<ul><li><strong>가격 산정:</strong> ① 외부 회계법인이 평가한 가격 ② 직전 3년 영업이익(EBITDA) × 동종업계 배수(보통 5~8배) ③ 양쪽이 합의한 가격 가운데 가장 낮은 가격.</li><li><strong>통지:</strong> 양도인이 제3자에게 팔겠다는 의사가 생기면 30일 전에 김형석에게 서면으로 알리고, 매각 조건을 공개한다.</li><li><strong>행사 기간:</strong> 통지를 받은 뒤 60일 안에 살 의사를 밝히고 90일 안에 대금을 낸다.</li><li>절차를 어겨서 제3자에게 양도하면 그 양도는 무효이고 위약금을 문다.</li></ul>"
+  },
+  "9": {
+    flag: "other", flagText: "그밖",
+    num: "09 · 누락 조항",
+    title: "경업금지 조항이 없다",
+    problem: "본 계약 11개 조항 어디에도 경업금지가 없다. \"옥스포드 캠프 제외\"(제1조)만 적혀 있을 뿐, 양도인이 다른 캠프나 예술교육 사업을 새로 차리는 것을 막는 조항이 없다.",
+    fix: "<ul><li><strong>양도인 경업금지:</strong> 본 계약이 살아 있는 동안 + 끝난 뒤 3년, 한국 안에서 음악·미술·K-pop 캠프와 학원 사업을 새로 차리지 못하게 한다.</li><li><strong>옥스포드 캠프 정의 한정:</strong> ① 누가 주최하는지 ② 어디서 하는지(영국 옥스포드 또는 한국 안에서 같은 브랜드를 쓰는 곳) ③ 누구를 대상으로 하는지(나이·과목) ④ 언제 하는지 — 이 네 가지로 묶는다. 그 밖의 캠프를 새로 차리면 회사 사업 영역을 침범한 것으로 본다.</li><li><strong>핵심 인력 빼가기 금지:</strong> 회사 직원과 강사를 양도인 쪽이 채용하지 못하게 한다(3년).</li></ul>"
+  },
+  "10": {
+    flag: "other", flagText: "그밖",
+    num: "10 · 제10조",
+    title: "비밀유지에 끝나는 날이 없다",
+    quote: "제10조 본 의무는 계약 종료 후에도 유효하다.",
+    problem: "한국에서 비밀유지는 보통 3~5년. 끝나는 날이 없으면 영업비밀이 아닌 정보(이미 공개된 것, 스스로 만든 것, 법으로 공개해야 하는 것)까지 영영 묶어놔서 운영을 제약한다.",
+    fix: "<ul><li><strong>기간:</strong> 계약이 살아 있는 동안 + 끝난 뒤 5년(영업비밀로 보호되는 한 영구).</li><li><strong>예외:</strong> ① 이미 공개된 정보 ② 스스로 만든 정보 ③ 제3자에게서 정당하게 얻은 정보 ④ 법령·법원·규제기관 때문에 공개해야 하는 정보.</li></ul>"
+  },
+  "11": {
+    flag: "other", flagText: "그밖",
+    num: "11 · 제11조",
+    title: "분쟁 해결 단계가 없다",
+    quote: "제11조 본 계약은 대한민국 법을 준거법으로 하며, 본 계약과 관련하여 발생하는 분쟁의 관할 법원은 서울중앙지방법원으로 한다.",
+    problem: "무난한 조항이지만 (가) 소송으로 가면 1~3년이 걸리고 (나) 공개 분쟁이라 학부모와 언론에 노출되어 학교와 회사 브랜드가 동시에 타격을 입는다. 교육 사업의 평판 민감성을 생각하면 비공개로 빨리 끝내는 쪽이 김형석에게 유리하다.",
+    fix: "<ul><li><strong>단계 조항:</strong> ① 이사회 협의 30일 → ② 한국조정학회 조정 60일 → ③ 대한상사중재원 중재(서울·한국어·중재인 1명) 또는 서울중앙지법 소송.</li><li><strong>사안에 따라 나누기:</strong> 5억 원 이상은 중재로, 그보다 적은 사건과 임시처분은 법원으로.</li></ul>"
+  }
+};
+
+const FLAG_CLASSES = {
+  critical: "flag-critical",
+  warn:     "flag-warn",
+  other:    "flag-other"
+};
+
+const backdrop = document.getElementById('modalBackdrop');
+const body     = document.getElementById('modalBody');
+const closeBtn = document.getElementById('modalClose');
+
+function openModal(id) {
+  const d = DATA[id];
+  if (!d) return;
+  let html = '';
+  html += `<span class="modal-flag ${FLAG_CLASSES[d.flag]}">${d.flagText}</span>`;
+  html += `<div class="modal-num">${d.num}</div>`;
+  html += `<h2 class="modal-title" id="modalTitle">${d.title}</h2>`;
+
+  if (d.quote) {
+    html += `<div class="modal-section"><div class="section-label">원문</div><div class="quote-block">${d.quote}</div></div>`;
+  }
+  if (d.problem) {
+    html += `<div class="modal-section"><div class="section-label">문제</div><div>${d.problem}</div></div>`;
+  }
+  if (d.scenario) {
+    html += `<div class="modal-section"><div class="section-label">터질 수 있는 시나리오</div><div class="scenario-block">${d.scenario}</div></div>`;
+  }
+  if (d.fix) {
+    html += `<div class="modal-section"><div class="section-label">수정 방향</div><div class="fix-block">${d.fix}</div></div>`;
+  }
+
+  body.innerHTML = html;
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  closeBtn.focus();
+}
+
+function closeModal() {
+  backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', () => openModal(card.dataset.id));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openModal(card.dataset.id);
+    }
+  });
+});
+
+closeBtn.addEventListener('click', closeModal);
+backdrop.addEventListener('click', e => {
+  if (e.target === backdrop) closeModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
+});
+</script>
+</body>
+</html>
