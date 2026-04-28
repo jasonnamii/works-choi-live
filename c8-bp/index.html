@@ -128,6 +128,24 @@ td[style*="--lavender"] .tiny{color:rgba(29,29,31,0.78)}
 .accent-lime{color:var(--lime)}
 .accent-sky{color:var(--sky)}
 .accent-violet{color:var(--lavender)}
+/* Inside any color cell, accent text becomes black (color-on-color is unreadable) */
+.cell.tone-pink .accent-pink, .cell.tone-pink .accent-yellow, .cell.tone-pink .accent-lime, .cell.tone-pink .accent-sky, .cell.tone-pink .accent-violet,
+.cell.tone-peach .accent-pink, .cell.tone-peach .accent-yellow, .cell.tone-peach .accent-lime, .cell.tone-peach .accent-sky, .cell.tone-peach .accent-violet,
+.cell.tone-yellow .accent-pink, .cell.tone-yellow .accent-yellow, .cell.tone-yellow .accent-lime, .cell.tone-yellow .accent-sky, .cell.tone-yellow .accent-violet,
+.cell.tone-lime .accent-pink, .cell.tone-lime .accent-yellow, .cell.tone-lime .accent-lime, .cell.tone-lime .accent-sky, .cell.tone-lime .accent-violet,
+.cell.tone-sky .accent-pink, .cell.tone-sky .accent-yellow, .cell.tone-sky .accent-lime, .cell.tone-sky .accent-sky, .cell.tone-sky .accent-violet,
+.cell.tone-mint .accent-pink, .cell.tone-mint .accent-yellow, .cell.tone-mint .accent-lime, .cell.tone-mint .accent-sky, .cell.tone-mint .accent-violet,
+.cell.tone-lavender .accent-pink, .cell.tone-lavender .accent-yellow, .cell.tone-lavender .accent-lime, .cell.tone-lavender .accent-sky, .cell.tone-lavender .accent-violet,
+.cell.tone-pink-vivid .accent-pink, .cell.tone-pink-vivid .accent-yellow, .cell.tone-pink-vivid .accent-lime, .cell.tone-pink-vivid .accent-sky, .cell.tone-pink-vivid .accent-violet{
+  color:#000000;
+}
+/* Color td/tr/bar fragments — black text inside */
+td[style*="--lime"], td[style*="--sky"], td[style*="--peach"], td[style*="--yellow"], td[style*="--pink"], td[style*="--mint"], td[style*="--lavender"]{color:#000000 !important}
+td[style*="--lime"] *, td[style*="--sky"] *, td[style*="--peach"] *, td[style*="--yellow"] *, td[style*="--pink"] *, td[style*="--mint"] *, td[style*="--lavender"] *{color:#000000 !important}
+tr[style*="--lime"] td, tr[style*="--sky"] td, tr[style*="--peach"] td, tr[style*="--yellow"] td, tr[style*="--pink"] td, tr[style*="--mint"] td, tr[style*="--lavender"] td{color:#000000 !important}
+tr[style*="--lime"] td *, tr[style*="--sky"] td *, tr[style*="--peach"] td *, tr[style*="--yellow"] td *, tr[style*="--pink"] td *, tr[style*="--mint"] td *, tr[style*="--lavender"] td *{color:#000000 !important}
+.bar > div[style*="--lime"], .bar > div[style*="--sky"], .bar > div[style*="--peach"], .bar > div[style*="--yellow"], .bar > div[style*="--pink"], .bar > div[style*="--mint"], .bar > div[style*="--lavender"], .bar > div[style*="--pink-vivid"]{color:#000000 !important}
+.bar > div[style*="--lime"] *, .bar > div[style*="--sky"] *, .bar > div[style*="--peach"] *, .bar > div[style*="--yellow"] *, .bar > div[style*="--pink"] *, .bar > div[style*="--mint"] *, .bar > div[style*="--lavender"] *{color:#000000 !important}
 .hl-lime{background:var(--lime)}
 .hl-yellow{background:var(--yellow)}
 .hl-sky{background:var(--sky)}
@@ -275,7 +293,7 @@ td[style*="--lavender"] .tiny{color:rgba(29,29,31,0.78)}
 .cell .cap{color:#ffffff}
 .cell .big-cap{color:#ffffff}
 .cell h3.head{color:#ffffff}
-.cell.dark{background:#000000;color:#ffffff;border:none}
+.cell.dark{background:#000000;color:#ffffff;border:1.5px solid #ffffff}
 .cell.dark .body{color:#ffffff}
 .cell.dark .body.muted{color:#c7c7cc}
 .cell.dark .body.soft{color:#c7c7cc}
@@ -290,7 +308,7 @@ td[style*="--lavender"] .tiny{color:rgba(29,29,31,0.78)}
 .cell.tone-pink-vivid{background:var(--pink-vivid)}
 .cell.tone-lavender{background:var(--lavender)}
 .cell.tone-mint{background:var(--mint)}
-.cell.tone-white{background:#0a0a0a;border:none;color:#ffffff}
+.cell.tone-white{background:#0a0a0a;border:1.5px solid #ffffff;color:#ffffff}
 .cell.tone-white,
 .cell.tone-white .body,
 .cell.tone-white h3.head,
@@ -340,6 +358,17 @@ td[style*="--lavender"] .tiny{color:rgba(29,29,31,0.78)}
 .cell.tone-lavender .cell.tone-white .tiny, .cell.tone-lavender .cell.dark .tiny,
 .cell.tone-pink-vivid .cell.tone-white .tiny, .cell.tone-pink-vivid .cell.dark .tiny{
   color:#c7c7cc !important;
+}
+/* color cell 안의 다크 자식 카드는 테두리 제거 */
+.cell.tone-pink .cell.dark, .cell.tone-pink .cell.tone-white,
+.cell.tone-peach .cell.dark, .cell.tone-peach .cell.tone-white,
+.cell.tone-yellow .cell.dark, .cell.tone-yellow .cell.tone-white,
+.cell.tone-lime .cell.dark, .cell.tone-lime .cell.tone-white,
+.cell.tone-sky .cell.dark, .cell.tone-sky .cell.tone-white,
+.cell.tone-mint .cell.dark, .cell.tone-mint .cell.tone-white,
+.cell.tone-lavender .cell.dark, .cell.tone-lavender .cell.tone-white,
+.cell.tone-pink-vivid .cell.dark, .cell.tone-pink-vivid .cell.tone-white{
+  border:none;
 }
 
 .span12{grid-column:span 12}
