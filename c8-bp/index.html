@@ -18,18 +18,18 @@
   --label-info:#ffffff;
   --label-caption:#e8e8ea;
   --label-deco:#c7c7cc;
-  /* young-playful palette */
-  --lime:#C6F68D;
-  --yellow:#FFE76C;
-  --sky:#9BD4F5;
-  --peach:#FFB26B;
-  --pink:#FFB4D1;
-  --pink-vivid:#FF8FB1;
-  --lavender:#B794F6;
-  --mint:#A8E6CF;
+  /* Candy A — full saturation, page on dark bg */
+  --pink:#FF4D8F;
+  --pink-vivid:#FF1F6F;
+  --yellow:#FFCB05;
+  --lime:#4DD964;
+  --sky:#3DB3FF;
+  --lavender:#A855F7;
+  --peach:#FF7A1A;
+  --mint:#22D3A4;
   --coral:#FF6B6B;
   --grape:#845EC2;
-  --black:#1d1d1f;
+  --black:#000000;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -113,14 +113,21 @@ td[style*="--lavender"] .tiny{color:rgba(29,29,31,0.78)}
 /* highlighter pill — text always black inside */
 .hl{
   display:inline;
-  padding:0 10px;
+  padding:0 12px;
   border-radius:999px;
-  font-weight:800;
+  font-weight:900;
   white-space:nowrap;
   line-height:1.6;
-  color:#1d1d1f !important;
-  -webkit-text-fill-color:#1d1d1f;
+  color:#000000 !important;
+  -webkit-text-fill-color:#000000;
 }
+
+/* Candy accent text — only on DARK backgrounds */
+.accent-pink{color:var(--pink)}
+.accent-yellow{color:var(--yellow)}
+.accent-lime{color:var(--lime)}
+.accent-sky{color:var(--sky)}
+.accent-violet{color:var(--lavender)}
 .hl-lime{background:var(--lime)}
 .hl-yellow{background:var(--yellow)}
 .hl-sky{background:var(--sky)}
@@ -268,7 +275,7 @@ td[style*="--lavender"] .tiny{color:rgba(29,29,31,0.78)}
 .cell .cap{color:#ffffff}
 .cell .big-cap{color:#ffffff}
 .cell h3.head{color:#ffffff}
-.cell.dark{background:#000000;color:#ffffff;border:1px solid #1d1d1f}
+.cell.dark{background:#000000;color:#ffffff;border:none}
 .cell.dark .body{color:#ffffff}
 .cell.dark .body.muted{color:#c7c7cc}
 .cell.dark .body.soft{color:#c7c7cc}
@@ -283,11 +290,57 @@ td[style*="--lavender"] .tiny{color:rgba(29,29,31,0.78)}
 .cell.tone-pink-vivid{background:var(--pink-vivid)}
 .cell.tone-lavender{background:var(--lavender)}
 .cell.tone-mint{background:var(--mint)}
-.cell.tone-white{background:#161618;border:1px solid #2c2c2e;color:#ffffff}
-.cell.tone-white .body{color:#ffffff}
-.cell.tone-white .tiny{color:#c7c7cc}
-.cell.tone-white h3.head{color:#ffffff}
-.cell.tone-white .cap{color:#ffffff}
+.cell.tone-white{background:#0a0a0a;border:none;color:#ffffff}
+.cell.tone-white,
+.cell.tone-white .body,
+.cell.tone-white h3.head,
+.cell.tone-white .cap,
+.cell.tone-white .kicker,
+.cell.tone-white .head,
+.cell.tone-white p,
+.cell.tone-white li,
+.cell.tone-white strong{color:#ffffff !important}
+.cell.tone-white .tiny{color:#c7c7cc !important}
+.cell.tone-white .body strong{color:#ffffff !important}
+/* dark/inverted child cells inside any color parent: force white text */
+.cell.tone-pink .cell.tone-white,
+.cell.tone-peach .cell.tone-white,
+.cell.tone-yellow .cell.tone-white,
+.cell.tone-lime .cell.tone-white,
+.cell.tone-sky .cell.tone-white,
+.cell.tone-mint .cell.tone-white,
+.cell.tone-lavender .cell.tone-white,
+.cell.tone-pink-vivid .cell.tone-white,
+.cell.tone-pink .cell.dark,
+.cell.tone-peach .cell.dark,
+.cell.tone-yellow .cell.dark,
+.cell.tone-lime .cell.dark,
+.cell.tone-sky .cell.dark,
+.cell.tone-mint .cell.dark,
+.cell.tone-lavender .cell.dark,
+.cell.tone-pink-vivid .cell.dark{
+  color:#ffffff !important;
+}
+.cell.tone-pink .cell.tone-white *, .cell.tone-pink .cell.dark *,
+.cell.tone-peach .cell.tone-white *, .cell.tone-peach .cell.dark *,
+.cell.tone-yellow .cell.tone-white *, .cell.tone-yellow .cell.dark *,
+.cell.tone-lime .cell.tone-white *, .cell.tone-lime .cell.dark *,
+.cell.tone-sky .cell.tone-white *, .cell.tone-sky .cell.dark *,
+.cell.tone-mint .cell.tone-white *, .cell.tone-mint .cell.dark *,
+.cell.tone-lavender .cell.tone-white *, .cell.tone-lavender .cell.dark *,
+.cell.tone-pink-vivid .cell.tone-white *, .cell.tone-pink-vivid .cell.dark *{
+  color:#ffffff !important;
+}
+.cell.tone-pink .cell.tone-white .tiny, .cell.tone-pink .cell.dark .tiny,
+.cell.tone-peach .cell.tone-white .tiny, .cell.tone-peach .cell.dark .tiny,
+.cell.tone-yellow .cell.tone-white .tiny, .cell.tone-yellow .cell.dark .tiny,
+.cell.tone-lime .cell.tone-white .tiny, .cell.tone-lime .cell.dark .tiny,
+.cell.tone-sky .cell.tone-white .tiny, .cell.tone-sky .cell.dark .tiny,
+.cell.tone-mint .cell.tone-white .tiny, .cell.tone-mint .cell.dark .tiny,
+.cell.tone-lavender .cell.tone-white .tiny, .cell.tone-lavender .cell.dark .tiny,
+.cell.tone-pink-vivid .cell.tone-white .tiny, .cell.tone-pink-vivid .cell.dark .tiny{
+  color:#c7c7cc !important;
+}
 
 .span12{grid-column:span 12}
 .span9{grid-column:span 9}
@@ -467,13 +520,13 @@ ul.clean.checks li::before{content:"✓";color:#30d158;font-weight:900}
 /* matrix grid generic */
 .matrix{display:grid;gap:8px}
 .mat-row{display:grid;grid-template-columns:160px 1fr;gap:12px;align-items:center;font-size:13px;line-height:1.5}
-.mat-row .label{font-weight:700;color:var(--ink)}
-.cell.dark .mat-row .label{color:#fff}
+.mat-row .label{font-weight:700;color:#ffffff}
+.cell.dark .mat-row .label{color:#ffffff}
 
 /* footer */
 .footer{
-  background:var(--ink);
-  color:#fff;
+  background:#000000;
+  color:#ffffff;
   padding:clamp(40px,6vw,72px) clamp(20px,5vw,64px);
   font-size:13px;
   line-height:1.6;
@@ -577,7 +630,7 @@ ul.clean.invert li::before{color:#1d1d1f}
 <section id="cover" class="full hero-section">
   <div class="inner">
     <div class="cap">United in Crazy</div>
-    <h1 class="hero">크리에이티브 산업의 <span class="hl hl-lime">LinkedIn</span>.</h1>
+    <h1 class="hero">크리에이티브 산업의 <span class="accent-lime">LinkedIn</span>.</h1>
     <p class="lead">크리에이티브 산업의 세 면이 각각 다른 고통을 겪지만, 근본 원인은 하나다. <strong>협업의 신뢰와 관계를 구조화한 시스템이 존재하지 않는다.</strong> Cre8orClub이 이 산업의 연결 인프라를 만든다.</p>
     <div class="hero-tag">
       <span class="chip">Cre8orClub</span>
@@ -611,8 +664,8 @@ ul.clean.invert li::before{color:#1d1d1f}
         <div><div class="toc-num">#7</div><div class="toc-sub mt-s">Business Model</div></div>
         <div class="toc-title">도구에 과금한다.</div>
       </a>
-      <div class="toc-cell span3 dark" style="background:var(--ink);color:#fff">
-        <div><div class="toc-num" style="color:#a1a1a6">#8 — #14</div><div class="toc-sub mt-s" style="color:#a1a1a6">Drafting</div></div>
+      <div class="toc-cell span3 dark" style="background:#000000;color:#ffffff">
+        <div><div class="toc-num" style="color:#c7c7cc">#8 — #14</div><div class="toc-sub mt-s" style="color:#c7c7cc">Drafting</div></div>
         <div class="toc-title">Traction · UE · GTM · Team · Ask.</div>
       </div>
     </div>
@@ -622,7 +675,7 @@ ul.clean.invert li::before{color:#1d1d1f}
 <!-- ============ #2 PROBLEM ============ -->
 <section id="problem">
   <div class="cap">#2 · Problem</div>
-  <h2 class="section-head">3면이 각각 아프다. <br>뿌리는 <span class="hl hl-pink">하나다.</span></h2>
+  <h2 class="section-head">3면이 각각 아프다. <br>뿌리는 <span class="accent-pink">하나다.</span></h2>
   <p class="lead">크리에이티브 산업의 세 면 — 만드는 쪽, 맡기는 쪽, 운영하는 쪽 — 이 각각 다른 고통을 겪지만, <strong>협업의 신뢰와 관계를 구조화한 시스템이 존재하지 않는다</strong>는 것 하나로 수렴한다.</p>
 
   <div class="bento mt-xl">
@@ -823,7 +876,7 @@ ul.clean.invert li::before{color:#1d1d1f}
 <!-- ============ #3 SOLUTION ============ -->
 <section id="solution">
   <div class="cap">#3 · Solution</div>
-  <h2 class="section-head">8개 기능. <br>그게 <span class="hl hl-lime">전부다.</span></h2>
+  <h2 class="section-head">8개 기능. <br>그게 <span class="accent-lime">전부다.</span></h2>
   <p class="lead">3면의 20개 Pain은 하나의 부재로 수렴한다 — <strong>"일 찾기 → 연결 → 관계 축적" 여정을 구조화한 전용 플랫폼이 없다.</strong></p>
 
   <div class="bento mt-xl">
@@ -921,7 +974,7 @@ ul.clean.invert li::before{color:#1d1d1f}
 <!-- ============ #4 WHY NOW ============ -->
 <section id="whynow">
   <div class="cap">#4 · Why Now</div>
-  <h2 class="section-head">가능해졌고, <br><span class="hl hl-yellow">급하고,</span> 비어 있다.</h2>
+  <h2 class="section-head">가능해졌고, <br><span class="accent-yellow">급하고,</span> 비어 있다.</h2>
   <p class="lead">AI가 포트폴리오를 읽고 매칭하는 <strong>기술·비용·규모 전제조건</strong>이 2024~2026 동시 충족. 거대 산업에 크리에이티브 전용 플랫폼은 글로벌·국내 모두 0건 — 자리가 비어 있고, 매년 벌어진다.</p>
 
   <div class="bento mt-xl">
@@ -990,7 +1043,7 @@ ul.clean.invert li::before{color:#1d1d1f}
         <tr><td><strong>타이밍</strong></td><td style="color:var(--coral)">×</td><td style="background:var(--lime);color:#1d1d1f;font-weight:700">✓ 6개 전부 충족</td><td>✓</td></tr>
         <tr><td><strong>긴급</strong></td><td>갭 작음</td><td style="background:var(--lime);color:#1d1d1f;font-weight:700">갭 가속 + 데이터 윈도우</td><td style="color:var(--coral)">윈도우 닫힘</td></tr>
         <tr><td><strong>공백</strong></td><td>비어있음</td><td style="background:var(--lime);color:#1d1d1f;font-weight:700">비어있음 (0건)</td><td style="color:var(--coral)">누군가 진입</td></tr>
-        <tr><td><strong>결론</strong></td><td>만들 수 없었다</td><td style="background:var(--ink);color:#fff;font-weight:700">만들 수 있고, 급하고, 비어 있다</td><td style="color:var(--coral);font-weight:600">늦는다</td></tr>
+        <tr><td><strong>결론</strong></td><td>만들 수 없었다</td><td style="background:#000000;color:#ffffff;font-weight:800">만들 수 있고, 급하고, 비어 있다</td><td style="color:var(--coral);font-weight:700">늦는다</td></tr>
       </table>
     </div>
 
