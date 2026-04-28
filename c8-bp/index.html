@@ -443,16 +443,22 @@ ul.clean.checks li::before{content:"✓";color:#30d158;font-weight:900}
 h3.head.xxl{font-size:clamp(32px,4.2vw,52px);line-height:1.1;max-width:880px}
 h3.head.xl{font-size:clamp(28px,3.6vw,44px);max-width:880px}
 h3.head.lg{font-size:clamp(28px,3.6vw,42px);max-width:780px}
-/* invert variant — dark on vivid block */
-.cell.invert{color:#fff}
-.cell.invert .head,.cell.invert h3.head{color:#fff}
-.cell.invert .body{color:#fff}
-.cell.invert .tiny{color:rgba(255,255,255,0.85)}
-.cell.invert .cap{color:rgba(255,255,255,0.85)}
-.cell.invert ul.clean li{color:#fff}
-.cell.invert ul.clean li::before{color:rgba(255,255,255,0.7)}
-ul.clean.invert{color:#fff;font-weight:600}
-.head.invert,h3.head.invert{color:#fff}
+/* invert variant — vivid color block, BLACK text for readability */
+.cell.invert{color:#1d1d1f}
+.cell.invert .head,.cell.invert h3.head{color:#1d1d1f}
+.cell.invert .body{color:#1d1d1f;font-weight:500}
+.cell.invert .tiny{color:rgba(29,29,31,0.78);font-weight:600}
+.cell.invert .cap{color:#1d1d1f;font-weight:800}
+.cell.invert .big-cap{color:#1d1d1f;font-weight:800}
+.cell.invert .kicker{color:#1d1d1f}
+.cell.invert ul.clean li{color:#1d1d1f}
+.cell.invert ul.clean li::before{color:#1d1d1f}
+.cell.invert details.fold > summary{color:#1d1d1f;font-weight:800}
+.cell.invert details.fold > .fold-body{color:#1d1d1f}
+ul.clean.invert{color:#1d1d1f;font-weight:600}
+ul.clean.invert li{color:#1d1d1f}
+ul.clean.invert li::before{color:#1d1d1f}
+.head.invert,h3.head.invert{color:#1d1d1f}
 .body.soft{color:var(--ink-soft)}
 .cell.dark .body.soft{color:#d1d1d6}
 
