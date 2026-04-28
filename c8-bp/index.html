@@ -1382,9 +1382,17 @@ ul.clean.invert{color:#fff;font-weight:600}
   var label = document.getElementById('foldLabel');
   var icon = document.getElementById('foldIcon');
   var allOpen = false;
+  var syncing = false;
+
+  // Group: each <section> is one group. Opening any details in a group
+  // opens all details inside the same section. Closing any closes all.
+  function getGroup(detail){
+    return detail.closest('section') || document;
+  }
 
   function syncState(){
     var details = document.querySelectorAll('details.fold');
+    if(details.length === 0) return;
     var openCount = 0;
     details.forEach(function(d){ if(d.open) openCount++; });
     allOpen = (openCount > details.length / 2);
@@ -1394,17 +1402,32 @@ ul.clean.invert{color:#fff;font-weight:600}
 
   btn.addEventListener('click', function(){
     allOpen = !allOpen;
+    syncing = true;
     document.querySelectorAll('details.fold').forEach(function(d){
       d.open = allOpen;
     });
+    syncing = false;
     label.textContent = allOpen ? '전체 접기' : '전체 펼치기';
     icon.textContent = allOpen ? '▲' : '▼';
   });
 
   document.addEventListener('toggle', function(e){
-    if(e.target && e.target.matches && e.target.matches('details.fold')){
-      syncState();
-    }
+    if(syncing) return;
+    if(!(e.target && e.target.matches && e.target.matches('details.fold'))) return;
+
+    var src = e.target;
+    var group = getGroup(src);
+    var open = src.open;
+
+    syncing = true;
+    group.querySelectorAll('details.fold').forEach(function(d){
+      if(d !== src && d.open !== open){
+        d.open = open;
+      }
+    });
+    syncing = false;
+
+    syncState();
   }, true);
 
   syncState();
