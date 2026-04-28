@@ -9,15 +9,15 @@
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/static/pretendard.css" rel="stylesheet">
 <style>
 :root{
-  --bg:#fff;
-  --bg-soft:#f5f5f7;
-  --ink:#1d1d1f;
-  --ink-soft:#2c2c2e;        /* darker (was #424245) */
-  --ink-deco:#3a3a3c;        /* much darker label (was #86868b) */
-  --line:#e5e5ea;
-  --label-info:#1d1d1f;
-  --label-caption:#2c2c2e;
-  --label-deco:#3a3a3c;
+  --bg:#000000;
+  --bg-soft:#1d1d1f;
+  --ink:#ffffff;
+  --ink-soft:#e8e8ea;
+  --ink-deco:#c7c7cc;
+  --line:#2c2c2e;
+  --label-info:#ffffff;
+  --label-caption:#e8e8ea;
+  --label-deco:#c7c7cc;
   /* young-playful palette */
   --lime:#C6F68D;
   --yellow:#FFE76C;
@@ -54,7 +54,7 @@ section.full > .inner{max-width:1280px;margin:0 auto;padding:clamp(48px,7vw,96px
   font-weight:800;
   letter-spacing:0.18em;
   text-transform:uppercase;
-  color:#1d1d1f;
+  color:#ffffff;
   margin-bottom:14px;
 }
 h1.hero{
@@ -91,14 +91,24 @@ h3.head{
 .lead strong{color:var(--ink);font-weight:700}
 .body{
   font-size:clamp(15px,1.4vw,16px);
-  font-weight:300;
+  font-weight:400;
   line-height:1.7;
   color:var(--ink);
   letter-spacing:-0.005em;
 }
-.body strong{font-weight:700}
+.body strong{font-weight:800}
 .body.muted{color:var(--ink-soft)}
-.tiny{font-size:clamp(11px,1vw,13px);color:var(--ink-deco);font-weight:500;line-height:1.5}
+.tiny{font-size:clamp(11px,1vw,13px);color:#c7c7cc;font-weight:500;line-height:1.5}
+/* tiny inside color cells/rows must be black-ish */
+.cell.tone-pink .tiny, .cell.tone-peach .tiny, .cell.tone-yellow .tiny,
+.cell.tone-lime .tiny, .cell.tone-sky .tiny, .cell.tone-mint .tiny,
+.cell.tone-lavender .tiny, .cell.tone-pink-vivid .tiny{color:rgba(29,29,31,0.78)}
+tr[style*="--lime"] .tiny, tr[style*="--sky"] .tiny, tr[style*="--peach"] .tiny,
+tr[style*="--yellow"] .tiny, tr[style*="--pink"] .tiny, tr[style*="--mint"] .tiny,
+tr[style*="--lavender"] .tiny{color:rgba(29,29,31,0.78)}
+td[style*="--lime"] .tiny, td[style*="--sky"] .tiny, td[style*="--peach"] .tiny,
+td[style*="--yellow"] .tiny, td[style*="--pink"] .tiny, td[style*="--mint"] .tiny,
+td[style*="--lavender"] .tiny{color:rgba(29,29,31,0.78)}
 
 /* highlighter pill — text always black inside */
 .hl{
@@ -231,7 +241,7 @@ h3.head{
   font-weight:800;
   letter-spacing:0.06em;
   text-transform:uppercase;
-  color:#1d1d1f;
+  color:#ffffff;
   margin-top:12px;
 }
 
@@ -242,21 +252,29 @@ h3.head{
   gap:clamp(10px,1.4vw,18px);
 }
 .cell{
-  background:var(--bg-soft);
+  background:#1d1d1f;
   border-radius:24px;
   padding:clamp(20px,2.6vw,32px);
   min-width:0;
   overflow:hidden;
   display:flex;
   flex-direction:column;
+  color:#ffffff;
 }
-.cell.dark{background:var(--black);color:#fff}
-.cell.dark .body{color:#fff}
-.cell.dark .body.muted{color:#d1d1d6}
-.cell.dark .body.soft{color:#d1d1d6}
-.cell.dark .tiny{color:#a1a1a6}
-.cell.dark .big-cap{color:#a1a1a6}
-.cell.dark h3.head{color:#fff}
+.cell .body{color:#ffffff}
+.cell .body.muted{color:#c7c7cc}
+.cell .body.soft{color:#c7c7cc}
+.cell .tiny{color:#c7c7cc}
+.cell .cap{color:#ffffff}
+.cell .big-cap{color:#ffffff}
+.cell h3.head{color:#ffffff}
+.cell.dark{background:#000000;color:#ffffff;border:1px solid #1d1d1f}
+.cell.dark .body{color:#ffffff}
+.cell.dark .body.muted{color:#c7c7cc}
+.cell.dark .body.soft{color:#c7c7cc}
+.cell.dark .tiny{color:#c7c7cc}
+.cell.dark .big-cap{color:#c7c7cc}
+.cell.dark h3.head{color:#ffffff}
 .cell.tone-lime{background:var(--lime)}
 .cell.tone-yellow{background:var(--yellow)}
 .cell.tone-sky{background:var(--sky)}
@@ -265,7 +283,11 @@ h3.head{
 .cell.tone-pink-vivid{background:var(--pink-vivid)}
 .cell.tone-lavender{background:var(--lavender)}
 .cell.tone-mint{background:var(--mint)}
-.cell.tone-white{background:#fff;border:1px solid var(--line)}
+.cell.tone-white{background:#161618;border:1px solid #2c2c2e;color:#ffffff}
+.cell.tone-white .body{color:#ffffff}
+.cell.tone-white .tiny{color:#c7c7cc}
+.cell.tone-white h3.head{color:#ffffff}
+.cell.tone-white .cap{color:#ffffff}
 
 .span12{grid-column:span 12}
 .span9{grid-column:span 9}
@@ -300,14 +322,14 @@ details.fold > summary{
   font-size:clamp(12px,1.1vw,14px);
   font-weight:700;
   letter-spacing:0.04em;
-  color:var(--ink-deco);
+  color:#ffffff;
   list-style:none;
   display:inline-flex;
   align-items:center;
   gap:8px;
   padding:6px 0;
 }
-.cell.dark details.fold > summary{color:#a1a1a6}
+.cell.dark details.fold > summary{color:#ffffff}
 details.fold > summary::-webkit-details-marker{display:none}
 details.fold > summary::after{
   content:"▼";
@@ -319,43 +341,59 @@ details.fold > .fold-body{
   margin-top:14px;
   font-size:clamp(13px,1.3vw,15px);
   line-height:1.7;
-  color:var(--ink-soft);
+  color:#e8e8ea;
 }
-.cell.dark details.fold > .fold-body{color:#d1d1d6}
+.cell.dark details.fold > .fold-body{color:#e8e8ea}
 
 /* tables inside cells (sources) */
-.src-table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.5}
-.src-table th,.src-table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-.src-table th{font-weight:700;color:var(--ink-deco);font-size:11px;text-transform:uppercase;letter-spacing:0.06em}
-.cell.dark .src-table th,.cell.dark .src-table td{border-bottom-color:#3a3a3c}
-.cell.dark .src-table th{color:#a1a1a6}
+.src-table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.5;color:#ffffff}
+.src-table th,.src-table td{padding:8px 10px;text-align:left;border-bottom:1px solid #2c2c2e;vertical-align:top;color:#ffffff}
+.src-table th{font-weight:700;color:#c7c7cc;font-size:11px;text-transform:uppercase;letter-spacing:0.06em}
+.cell.dark .src-table th,.cell.dark .src-table td{border-bottom-color:#2c2c2e}
+.cell.dark .src-table th{color:#c7c7cc}
+/* color cells: tables become black-on-color */
+.cell.tone-pink .src-table, .cell.tone-peach .src-table, .cell.tone-yellow .src-table,
+.cell.tone-lime .src-table, .cell.tone-sky .src-table, .cell.tone-mint .src-table,
+.cell.tone-lavender .src-table, .cell.tone-pink-vivid .src-table{color:#1d1d1f}
+.cell.tone-pink .src-table th, .cell.tone-pink .src-table td,
+.cell.tone-peach .src-table th, .cell.tone-peach .src-table td,
+.cell.tone-yellow .src-table th, .cell.tone-yellow .src-table td,
+.cell.tone-lime .src-table th, .cell.tone-lime .src-table td,
+.cell.tone-sky .src-table th, .cell.tone-sky .src-table td,
+.cell.tone-mint .src-table th, .cell.tone-mint .src-table td,
+.cell.tone-lavender .src-table th, .cell.tone-lavender .src-table td{
+  color:#1d1d1f;border-bottom-color:rgba(29,29,31,0.18);
+}
+.cell.tone-pink .src-table th, .cell.tone-peach .src-table th, .cell.tone-yellow .src-table th,
+.cell.tone-lime .src-table th, .cell.tone-sky .src-table th, .cell.tone-mint .src-table th,
+.cell.tone-lavender .src-table th{color:rgba(29,29,31,0.7)}
 
-/* mini bar */
+/* mini bar — color blocks always carry black text */
 .bar{display:flex;height:48px;border-radius:12px;overflow:hidden;margin:14px 0 8px}
-.bar > div{display:flex;align-items:center;justify-content:center;color:var(--black);font-weight:700;font-size:13px;padding:0 8px;text-align:center;line-height:1.2}
+.bar > div{display:flex;align-items:center;justify-content:center;color:#1d1d1f;font-weight:700;font-size:13px;padding:0 8px;text-align:center;line-height:1.2}
 
 /* divider chip */
 .chip{
   display:inline-block;
   padding:6px 14px;
   border-radius:999px;
-  background:var(--ink);
-  color:#fff;
+  background:#ffffff;
+  color:#1d1d1f;
   font-size:12px;
   font-weight:700;
   letter-spacing:0.04em;
 }
-.chip.outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.chip.outline{background:transparent;color:#ffffff;border:1.5px solid #ffffff}
 
 /* nav top */
 .topnav{
   position:sticky;
   top:0;
   z-index:50;
-  background:rgba(255,255,255,0.85);
+  background:rgba(0,0,0,0.85);
   backdrop-filter:saturate(180%) blur(16px);
   -webkit-backdrop-filter:saturate(180%) blur(16px);
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid #2c2c2e;
 }
 .topnav .inner{
   max-width:1280px;
@@ -366,23 +404,25 @@ details.fold > .fold-body{
   justify-content:space-between;
   gap:16px;
 }
-.topnav .brand{font-weight:900;font-size:18px;letter-spacing:-0.02em}
-.topnav nav{display:flex;gap:clamp(10px,1.6vw,22px);font-size:13px;font-weight:600;color:var(--ink-soft);overflow-x:auto;white-space:nowrap}
-.topnav nav a{text-decoration:none}
-.topnav nav a:hover{color:var(--ink)}
+.topnav .brand{font-weight:900;font-size:18px;letter-spacing:-0.02em;color:#ffffff}
+.topnav nav{display:flex;gap:clamp(10px,1.6vw,22px);font-size:13px;font-weight:600;color:#c7c7cc;overflow-x:auto;white-space:nowrap}
+.topnav nav a{text-decoration:none;color:#c7c7cc}
+.topnav nav a:hover{color:#ffffff}
 
 /* hero block (full bleed) */
 .hero-section{
-  background:linear-gradient(180deg,#fff 0%,#fff 70%,var(--bg-soft) 100%);
+  background:linear-gradient(180deg,#000 0%,#0a0a0a 70%,#1d1d1f 100%);
   padding:clamp(80px,12vw,160px) clamp(20px,5vw,64px) clamp(60px,10vw,120px);
+  color:#ffffff;
 }
 .hero-section .inner{max-width:1280px;margin:0 auto}
 .hero-tag{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
-.hero-tag .chip{background:var(--bg-soft);color:var(--ink)}
+.hero-tag .chip{background:#1d1d1f;color:#ffffff;border:1px solid #2c2c2e}
+.hero-tag .chip.outline{background:transparent;color:#ffffff;border-color:#ffffff}
 
 /* table of contents bento */
 .toc-cell{
-  background:var(--bg-soft);
+  background:#1d1d1f;
   border-radius:24px;
   padding:clamp(20px,2.6vw,32px);
   display:flex;
@@ -390,25 +430,33 @@ details.fold > .fold-body{
   justify-content:space-between;
   min-height:160px;
   text-decoration:none;
-  color:inherit;
+  color:#ffffff;
   transition:transform 0.2s, background 0.2s;
 }
-.toc-cell:hover{transform:translateY(-2px);background:#ececef}
-.toc-num{font-size:14px;font-weight:700;color:var(--ink-deco);letter-spacing:0.08em}
-.toc-title{font-size:clamp(20px,2.2vw,24px);font-weight:800;letter-spacing:-0.02em;line-height:1.2;margin-top:auto}
-.toc-sub{font-size:13px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
+.toc-cell:hover{transform:translateY(-2px);background:#2a2a2c}
+.toc-num{font-size:14px;font-weight:700;color:#c7c7cc;letter-spacing:0.08em}
+.toc-title{font-size:clamp(20px,2.2vw,24px);font-weight:800;letter-spacing:-0.02em;line-height:1.2;margin-top:auto;color:#ffffff}
+.toc-sub{font-size:13px;color:#c7c7cc;margin-top:8px;line-height:1.5}
+/* color toc cells keep black text */
+.toc-cell.toc-color{color:#1d1d1f}
+.toc-cell.toc-color .toc-num{color:rgba(29,29,31,0.65)}
+.toc-cell.toc-color .toc-title{color:#1d1d1f}
+.toc-cell.toc-color .toc-sub{color:rgba(29,29,31,0.78)}
+.toc-cell.toc-color:hover{background:inherit;filter:brightness(0.96)}
+
 
 /* arrow flow */
 .flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .flow .step{
-  background:#fff;
-  border:1px solid var(--line);
+  background:#1d1d1f;
+  border:1px solid #2c2c2e;
   border-radius:14px;
   padding:10px 14px;
   font-size:13px;
   font-weight:600;
+  color:#ffffff;
 }
-.flow .arr{color:var(--ink-deco);font-size:14px;font-weight:600}
+.flow .arr{color:#c7c7cc;font-size:14px;font-weight:600}
 
 /* dot list */
 ul.clean{margin:0;padding:0;list-style:none}
@@ -480,15 +528,31 @@ ul.clean.invert li::before{color:#1d1d1f}
 .cell.dark .body.soft{color:#d1d1d6}
 
 /* wide table for cross-validation */
-.wide-table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.5}
-.wide-table th,.wide-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-.wide-table th{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-deco);background:transparent}
+.wide-table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.5;color:#ffffff}
+.wide-table th,.wide-table td{padding:10px 12px;text-align:left;border-bottom:1px solid #2c2c2e;vertical-align:top;color:#ffffff}
+.wide-table th{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:#c7c7cc;background:transparent}
 .wide-table tr:last-child td{border-bottom:none}
-.cell.dark .wide-table th,.cell.dark .wide-table td{border-bottom-color:#3a3a3c;color:#fff}
-.cell.dark .wide-table th{color:#a1a1a6}
+.cell.dark .wide-table th,.cell.dark .wide-table td{border-bottom-color:#2c2c2e;color:#ffffff}
+.cell.dark .wide-table th{color:#c7c7cc}
+/* color cells: black-on-color tables */
+.cell.tone-pink .wide-table, .cell.tone-peach .wide-table, .cell.tone-yellow .wide-table,
+.cell.tone-lime .wide-table, .cell.tone-sky .wide-table, .cell.tone-mint .wide-table,
+.cell.tone-lavender .wide-table, .cell.tone-pink-vivid .wide-table{color:#1d1d1f}
+.cell.tone-pink .wide-table th, .cell.tone-pink .wide-table td,
+.cell.tone-peach .wide-table th, .cell.tone-peach .wide-table td,
+.cell.tone-yellow .wide-table th, .cell.tone-yellow .wide-table td,
+.cell.tone-lime .wide-table th, .cell.tone-lime .wide-table td,
+.cell.tone-sky .wide-table th, .cell.tone-sky .wide-table td,
+.cell.tone-mint .wide-table th, .cell.tone-mint .wide-table td,
+.cell.tone-lavender .wide-table th, .cell.tone-lavender .wide-table td{
+  color:#1d1d1f;border-bottom-color:rgba(29,29,31,0.18);
+}
+.cell.tone-pink .wide-table th, .cell.tone-peach .wide-table th, .cell.tone-yellow .wide-table th,
+.cell.tone-lime .wide-table th, .cell.tone-sky .wide-table th, .cell.tone-mint .wide-table th,
+.cell.tone-lavender .wide-table th{color:rgba(29,29,31,0.7)}
 
 /* dark divider rule */
-.rule{height:1px;background:var(--line);margin:clamp(48px,6vw,80px) auto;max-width:1180px}
+.rule{height:1px;background:#2c2c2e;margin:clamp(48px,6vw,80px) auto;max-width:1180px}
 </style>
 </head>
 <body>
@@ -527,7 +591,7 @@ ul.clean.invert li::before{color:#1d1d1f}
         <div><div class="toc-num">#2</div><div class="toc-sub mt-s">Problem</div></div>
         <div class="toc-title">3면의 고통, 같은 뿌리.</div>
       </a>
-      <a class="toc-cell span4" href="#solution" style="background:var(--lime)">
+      <a class="toc-cell span4 toc-color" href="#solution" style="background:var(--lime)">
         <div><div class="toc-num">#3</div><div class="toc-sub mt-s">Solution</div></div>
         <div class="toc-title">8개 기능. 그게 전부.</div>
       </a>
@@ -539,7 +603,7 @@ ul.clean.invert li::before{color:#1d1d1f}
         <div><div class="toc-num">#5</div><div class="toc-sub mt-s">Market</div></div>
         <div class="toc-title">₩7.65조 매칭 경제.</div>
       </a>
-      <a class="toc-cell span3" href="#product" style="background:var(--sky)">
+      <a class="toc-cell span3 toc-color" href="#product" style="background:var(--sky)">
         <div><div class="toc-num">#6</div><div class="toc-sub mt-s">Product</div></div>
         <div class="toc-title">앱은 작동한다.</div>
       </a>
@@ -923,9 +987,9 @@ ul.clean.invert li::before{color:#1d1d1f}
       <h3 class="head">이 윈도우는 닫힌다.</h3>
       <table class="wide-table mt-m">
         <tr><th></th><th>2023 이전</th><th>2024~2026 (지금)</th><th>2028 이후</th></tr>
-        <tr><td><strong>타이밍</strong></td><td style="color:var(--coral)">×</td><td style="background:var(--lime);font-weight:700">✓ 6개 전부 충족</td><td>✓</td></tr>
-        <tr><td><strong>긴급</strong></td><td>갭 작음</td><td style="background:var(--lime);font-weight:700">갭 가속 + 데이터 윈도우</td><td style="color:var(--coral)">윈도우 닫힘</td></tr>
-        <tr><td><strong>공백</strong></td><td>비어있음</td><td style="background:var(--lime);font-weight:700">비어있음 (0건)</td><td style="color:var(--coral)">누군가 진입</td></tr>
+        <tr><td><strong>타이밍</strong></td><td style="color:var(--coral)">×</td><td style="background:var(--lime);color:#1d1d1f;font-weight:700">✓ 6개 전부 충족</td><td>✓</td></tr>
+        <tr><td><strong>긴급</strong></td><td>갭 작음</td><td style="background:var(--lime);color:#1d1d1f;font-weight:700">갭 가속 + 데이터 윈도우</td><td style="color:var(--coral)">윈도우 닫힘</td></tr>
+        <tr><td><strong>공백</strong></td><td>비어있음</td><td style="background:var(--lime);color:#1d1d1f;font-weight:700">비어있음 (0건)</td><td style="color:var(--coral)">누군가 진입</td></tr>
         <tr><td><strong>결론</strong></td><td>만들 수 없었다</td><td style="background:var(--ink);color:#fff;font-weight:700">만들 수 있고, 급하고, 비어 있다</td><td style="color:var(--coral);font-weight:600">늦는다</td></tr>
       </table>
     </div>
@@ -1051,7 +1115,7 @@ ul.clean.invert li::before{color:#1d1d1f}
       <div class="bar">
         <div style="flex:22;background:var(--lime)">₩1.7조 · 22%</div>
         <div style="flex:45;background:var(--peach)">₩3.45조 · 45%</div>
-        <div style="flex:33;background:var(--pink-vivid);color:#fff">₩2.5조 · 33%</div>
+        <div style="flex:33;background:var(--pink-vivid);color:#1d1d1f">₩2.5조 · 33%</div>
       </div>
       <div class="row-3 tiny">
         <div><strong>기존 플랫폼 커버</strong><br>크몽·위시켓·숨고·탈잉</div>
@@ -1332,7 +1396,7 @@ ul.clean.invert li::before{color:#1d1d1f}
         <tr><th></th><th>Creator ~560만</th><th>Hiring Side</th><th>Studio &amp; Enterprise</th></tr>
         <tr><td><strong>Free</strong></td><td>프로필카드 + 검색 노출<br><span class="tiny">발견 자체가 가치</span></td><td>기본 검색 + 프로필 열람<br><span class="tiny">찾을 수 있다는 경험</span></td><td>기업 프로필 + 프로젝트 공고<br><span class="tiny">채용 브랜딩 시작</span></td></tr>
         <tr style="background:var(--bg-soft)"><td><strong>Premium</strong><br><span class="tiny">더 많이</span></td><td>₩9,900/월<br><span class="tiny">강화 노출 + 프로필 분석</span></td><td>₩9,900/월<br><span class="tiny">확장 열람 + 필터</span></td><td>₩150,000~/월<br><span class="tiny">브랜드 페이지 + 인재 검색</span></td></tr>
-        <tr style="background:var(--sky)"><td><strong>Talent Solution</strong><br><span class="tiny">더 깊이</span></td><td>—<br><span class="tiny">공급측 확장 예정</span></td><td>₩99,000/월<br><span class="tiny">AI 매칭 + 인재 파이프라인</span></td><td>₩150K~₩1M/월<br><span class="tiny">3-Tier · 전담 매칭 + 대시보드</span></td></tr>
+        <tr style="background:var(--sky);color:#1d1d1f"><td style="color:#1d1d1f"><strong>Talent Solution</strong><br><span class="tiny">더 깊이</span></td><td>—<br><span class="tiny">공급측 확장 예정</span></td><td>₩99,000/월<br><span class="tiny">AI 매칭 + 인재 파이프라인</span></td><td>₩150K~₩1M/월<br><span class="tiny">3-Tier · 전담 매칭 + 대시보드</span></td></tr>
         <tr><td><strong>Ads</strong></td><td colspan="3" style="text-align:center"><strong>₩10,000 CPM</strong> — 인재에게 도달하는 브랜드 도구 <span class="tiny">(LinkedIn ₩27K~88K 대비 11~37%)</span></td></tr>
       </table>
       <p class="tiny mt-m"><strong>원칙:</strong> Creator는 무료로도 충분히 발견된다. Premium은 "더 빨리, 더 많이" 발견되기 위한 도구. Hiring Side·S&amp;E에게 C8는 <strong>업무 도구</strong>다.</p>
