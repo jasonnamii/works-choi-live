@@ -153,10 +153,33 @@ tr[style*="--lime"] td *, tr[style*="--sky"] td *, tr[style*="--peach"] td *, tr
 .hl-pink{background:var(--pink)}
 .hl-mint{background:var(--mint)}
 
-/* Color-block cells — body text must read against vivid bg */
+/* Color-block cells — every text inside MUST be black, regardless of class */
 .cell.tone-pink, .cell.tone-peach, .cell.tone-yellow,
-.cell.tone-lime, .cell.tone-sky, .cell.tone-mint, .cell.tone-lavender{
-  color:#1d1d1f;
+.cell.tone-lime, .cell.tone-sky, .cell.tone-mint, .cell.tone-lavender, .cell.tone-pink-vivid{
+  color:#000000 !important;
+}
+.cell.tone-pink *, .cell.tone-peach *, .cell.tone-yellow *,
+.cell.tone-lime *, .cell.tone-sky *, .cell.tone-mint *, .cell.tone-lavender *, .cell.tone-pink-vivid *{
+  color:#000000 !important;
+}
+/* but: dark/white nested child cards inside color cells stay white */
+.cell.tone-pink .cell.dark, .cell.tone-pink .cell.dark *,
+.cell.tone-pink .cell.tone-white, .cell.tone-pink .cell.tone-white *,
+.cell.tone-peach .cell.dark, .cell.tone-peach .cell.dark *,
+.cell.tone-peach .cell.tone-white, .cell.tone-peach .cell.tone-white *,
+.cell.tone-yellow .cell.dark, .cell.tone-yellow .cell.dark *,
+.cell.tone-yellow .cell.tone-white, .cell.tone-yellow .cell.tone-white *,
+.cell.tone-lime .cell.dark, .cell.tone-lime .cell.dark *,
+.cell.tone-lime .cell.tone-white, .cell.tone-lime .cell.tone-white *,
+.cell.tone-sky .cell.dark, .cell.tone-sky .cell.dark *,
+.cell.tone-sky .cell.tone-white, .cell.tone-sky .cell.tone-white *,
+.cell.tone-mint .cell.dark, .cell.tone-mint .cell.dark *,
+.cell.tone-mint .cell.tone-white, .cell.tone-mint .cell.tone-white *,
+.cell.tone-lavender .cell.dark, .cell.tone-lavender .cell.dark *,
+.cell.tone-lavender .cell.tone-white, .cell.tone-lavender .cell.tone-white *,
+.cell.tone-pink-vivid .cell.dark, .cell.tone-pink-vivid .cell.dark *,
+.cell.tone-pink-vivid .cell.tone-white, .cell.tone-pink-vivid .cell.tone-white *{
+  color:#ffffff !important;
 }
 .cell.tone-pink .body, .cell.tone-peach .body, .cell.tone-yellow .body,
 .cell.tone-lime .body, .cell.tone-sky .body, .cell.tone-mint .body, .cell.tone-lavender .body{
