@@ -1592,13 +1592,64 @@ ul.clean.invert li::before{color:#1d1d1f}
     icon.textContent = allOpen ? '▲' : '▼';
   }
 
+  // Pick the element closest to viewport center as the visual anchor.
+  // We prefer summary/details first (most likely what the user is reading),
+  // then section, then any cell.
+  function pickAnchor(){
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var center = vh / 2;
+    var candidates = document.querySelectorAll(
+      'details.fold > summary, details.fold, section, .cell, h2.section-head, h1.hero'
+    );
+    var best = null;
+    var bestDist = Infinity;
+    for(var i=0;i<candidates.length;i++){
+      var el = candidates[i];
+      var r = el.getBoundingClientRect();
+      // skip non-rendered or off-screen above
+      if(r.bottom < 0) continue;
+      if(r.top > vh) break; // candidates roughly in DOM order; stop early
+      var elCenter = (r.top + r.bottom) / 2;
+      var dist = Math.abs(elCenter - center);
+      if(dist < bestDist){
+        bestDist = dist;
+        best = el;
+      }
+    }
+    return best;
+  }
+
+  function preserveScroll(mutateFn){
+    var anchor = pickAnchor();
+    var topBefore = anchor ? anchor.getBoundingClientRect().top : 0;
+    mutateFn();
+    if(!anchor) return;
+    // Two-phase restore: rAF (after layout) + 50ms (after open animations settle)
+    requestAnimationFrame(function(){
+      var topAfter = anchor.getBoundingClientRect().top;
+      var delta = topAfter - topBefore;
+      if(Math.abs(delta) > 1){
+        window.scrollBy({top: delta, left: 0, behavior: 'instant'});
+      }
+      setTimeout(function(){
+        var topAfter2 = anchor.getBoundingClientRect().top;
+        var delta2 = topAfter2 - topBefore;
+        if(Math.abs(delta2) > 1){
+          window.scrollBy({top: delta2, left: 0, behavior: 'instant'});
+        }
+      }, 50);
+    });
+  }
+
   btn.addEventListener('click', function(){
     allOpen = !allOpen;
-    syncing = true;
-    document.querySelectorAll('details.fold').forEach(function(d){
-      d.open = allOpen;
+    preserveScroll(function(){
+      syncing = true;
+      document.querySelectorAll('details.fold').forEach(function(d){
+        d.open = allOpen;
+      });
+      syncing = false;
     });
-    syncing = false;
     label.textContent = allOpen ? '전체 접기' : '전체 펼치기';
     icon.textContent = allOpen ? '▲' : '▼';
   });
