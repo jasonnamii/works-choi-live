@@ -74,11 +74,12 @@ h2.section-head{
   word-break:keep-all;
 }
 h3.head{
-  font-size:clamp(22px,2.4vw,28px);
-  font-weight:700;
-  line-height:1.2;
-  letter-spacing:-0.02em;
+  font-size:clamp(24px,2.6vw,32px);
+  font-weight:900;
+  line-height:1.15;
+  letter-spacing:-0.03em;
   margin:0 0 12px;
+  word-break:keep-all;
 }
 .lead{
   font-size:clamp(17px,1.7vw,22px);
@@ -90,10 +91,12 @@ h3.head{
 .lead strong{color:var(--ink);font-weight:700}
 .body{
   font-size:clamp(15px,1.4vw,16px);
-  font-weight:400;
-  line-height:1.65;
+  font-weight:300;
+  line-height:1.7;
   color:var(--ink);
+  letter-spacing:-0.005em;
 }
+.body strong{font-weight:700}
 .body.muted{color:var(--ink-soft)}
 .tiny{font-size:clamp(11px,1vw,13px);color:var(--ink-deco);font-weight:500;line-height:1.5}
 
@@ -123,7 +126,11 @@ h3.head{
 .cell.tone-pink .body, .cell.tone-peach .body, .cell.tone-yellow .body,
 .cell.tone-lime .body, .cell.tone-sky .body, .cell.tone-mint .body, .cell.tone-lavender .body{
   color:#1d1d1f;
-  font-weight:500;
+  font-weight:300;
+}
+.cell.tone-pink .body strong, .cell.tone-peach .body strong, .cell.tone-yellow .body strong,
+.cell.tone-lime .body strong, .cell.tone-sky .body strong, .cell.tone-mint .body strong, .cell.tone-lavender .body strong{
+  font-weight:800;
 }
 .cell.tone-pink .tiny, .cell.tone-peach .tiny, .cell.tone-yellow .tiny,
 .cell.tone-lime .tiny, .cell.tone-sky .tiny, .cell.tone-mint .tiny, .cell.tone-lavender .tiny{
@@ -434,9 +441,9 @@ ul.clean.checks li::before{content:"✓";color:#30d158;font-weight:900}
 
 .kicker{
   font-size:clamp(13px,1.2vw,15px);
-  font-weight:700;
+  font-weight:900;
   color:var(--ink);
-  letter-spacing:0.02em;
+  letter-spacing:-0.005em;
 }
 
 /* Big closing headlines (no inline clamp) */
@@ -446,7 +453,8 @@ h3.head.lg{font-size:clamp(28px,3.6vw,42px);max-width:780px}
 /* invert variant — vivid color block, BLACK text for readability */
 .cell.invert{color:#1d1d1f}
 .cell.invert .head,.cell.invert h3.head{color:#1d1d1f}
-.cell.invert .body{color:#1d1d1f;font-weight:500}
+.cell.invert .body{color:#1d1d1f;font-weight:300}
+.cell.invert .body strong{font-weight:800}
 .cell.invert .tiny{color:rgba(29,29,31,0.78);font-weight:600}
 .cell.invert .cap{color:#1d1d1f;font-weight:800}
 .cell.invert .big-cap{color:#1d1d1f;font-weight:800}
