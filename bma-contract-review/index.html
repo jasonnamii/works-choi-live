@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMA 주식양수도계약 검토 의견서</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --label-info:    #1d1d1f;
+    --label-caption: #424245;
+    --label-deco:    #86868b;
+    --bg:            #f5f5f7;
+    --card:          #ffffff;
+    --dark:          #1d1d1f;
+    --navy:          #002147;
+    --key-blue:      #0066cc;
+    --soft-blue:     #f0f7ff;
+    --soft-gray:     #eef2f7;
+    --soft-mint:     #f1f8f4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--label-info);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 64px);
+  }
+
+  /* ========== HEADER ========== */
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    color: var(--label-deco);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .doc-meta strong { color: var(--label-caption); font-weight: 600; }
+
+  /* ========== HERO ========== */
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr);
+    gap: 16px;
+  }
+  .hero {
+    background: var(--dark);
+    color: #fff;
+    border-radius: 28px;
+    padding: clamp(32px, 4vw, 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    min-height: 540px;
+  }
+  .hero-tag {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #86868b;
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 1.6vw, 19px);
+    font-weight: 300;
+    line-height: 1.65;
+    color: #d1d1d6;
+    margin-bottom: 28px;
+  }
+  .hero-frame {
+    padding-top: 24px;
+    border-top: 1px solid #3a3a3c;
+  }
+  .hero-frame-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #86868b;
+    margin-bottom: 12px;
+  }
+  .hero-frame-text {
+    font-size: clamp(15px, 1.4vw, 17px);
+    font-weight: 400;
+    line-height: 1.7;
+    color: #fff;
+  }
+  .hero-frame-text strong { font-weight: 700; color: #fff; }
+
+  /* ========== CARD GRID ========== */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    grid-auto-rows: minmax(180px, auto);
+  }
+  .card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: clamp(20px, 2vw, 28px);
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    min-height: 180px;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  }
+  .card:focus-visible {
+    outline: 2px solid var(--key-blue);
+    outline-offset: 2px;
+  }
+  .card-num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--label-deco);
+    margin-bottom: 12px;
+  }
+  .card-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+    width: fit-content;
+  }
+  .flag-key       { background: #e0edff; color: var(--key-blue); }
+  .flag-clarify   { background: #fff4dc; color: #b87000; }
+  .flag-note      { background: var(--soft-gray); color: #5a6678; }
+  .card-title {
+    font-size: clamp(17px, 1.6vw, 20px);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    color: var(--label-info);
+  }
+  .card-summary {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--label-caption);
+  }
+  .card-bottom {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--label-deco);
+    font-weight: 500;
+  }
+  .card-clue {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .arrow { font-size: 18px; }
+  .card.wide { grid-column: span 2; }
+  .card.dark {
+    background: var(--navy);
+    color: #fff;
+  }
+  .card.dark .card-title { color: #fff; }
+  .card.dark .card-summary { color: #d1d1d6; }
+  .card.dark .card-num,
+  .card.dark .card-bottom,
+  .card.dark .card-clue { color: #a8b4c4; }
+
+  /* ========== NEXT-STEPS ========== */
+  .next-steps {
+    margin-top: 40px;
+    padding: clamp(28px, 3vw, 44px);
+    background: #fff;
+    border-radius: 24px;
+  }
+  .next-head {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--label-deco);
+    margin-bottom: 12px;
+  }
+  .next-title {
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    margin-bottom: 20px;
+    color: var(--label-info);
+  }
+  .next-body {
+    font-size: clamp(15px, 1.4vw, 16px);
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--label-caption);
+    max-width: 920px;
+  }
+  .next-body strong { color: var(--label-info); font-weight: 700; }
+
+  /* ========== FOOTER NOTE ========== */
+  .footnote {
+    margin-top: 24px;
+    padding: 20px 24px;
+    background: #fff;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--label-caption);
+    border-left: 3px solid var(--label-deco);
+  }
+  .footnote strong { color: var(--label-info); font-weight: 700; }
+
+  /* ========== MODAL ========== */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
+    z-index: 1000;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(16px, 4vh, 48px);
+    overflow-y: auto;
+  }
+  .modal-backdrop.open {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal {
+    background: #fff;
+    border-radius: 28px;
+    max-width: 760px;
+    width: 100%;
+    padding: clamp(28px, 4vw, 48px);
+    position: relative;
+    animation: slideUp 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #f5f5f7;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--label-caption);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+  .modal-close:hover { background: #e8e8ed; }
+  .modal-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+  .modal-num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--label-deco);
+    margin-bottom: 8px;
+  }
+  .modal-title {
+    font-size: clamp(22px, 2.6vw, 28px);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    margin-bottom: 28px;
+    color: var(--label-info);
+  }
+  .modal-section { margin-bottom: 26px; }
+  .modal-section:last-child { margin-bottom: 0; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--label-deco);
+    margin-bottom: 10px;
+  }
+  .modal-section p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--label-info);
+    margin-bottom: 8px;
+  }
+  .modal-section p:last-child { margin-bottom: 0; }
+  .modal-section ul, .modal-section ol {
+    padding-left: 20px;
+    margin-top: 6px;
+  }
+  .modal-section li {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--label-info);
+    margin-bottom: 6px;
+  }
+  .quote-block {
+    background: #f5f5f7;
+    border-left: 3px solid var(--navy);
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--label-caption);
+    font-weight: 400;
+    white-space: pre-wrap;
+  }
+  .consider-block {
+    background: var(--soft-blue);
+    border-radius: 12px;
+    padding: 18px 22px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--label-info);
+  }
+  .proposal-block {
+    background: var(--soft-mint);
+    border-radius: 12px;
+    padding: 18px 22px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--label-info);
+  }
+  .proposal-block strong { font-weight: 700; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .layout { grid-template-columns: minmax(0, 1fr); }
+    .hero { min-height: auto; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card.wide { grid-column: span 2; }
+  }
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    .card.wide { grid-column: span 1; }
+    .card { min-height: auto; }
+    .doc-meta { font-size: 11px; gap: 8px 16px; }
+    .modal { padding: 24px 20px; border-radius: 20px; }
+    .modal-close { top: 12px; right: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="doc-meta">
+    <span><strong>문서</strong> 검토 의견서</span>
+    <span><strong>대상 계약</strong> ㈜비이교육 — ㈜비엠에이서울 주식양수도계약</span>
+    <span><strong>일자</strong> 2026-04-27</span>
+    <span><strong>범위</strong> 본 계약 11개 조항</span>
+  </header>
+
+  <div class="layout">
+
+    <!-- ========== HERO ========== -->
+    <aside class="hero">
+      <div>
+        <div class="hero-tag">계약서 검토 의견서</div>
+        <h1 class="hero-title">본 계약의 명확성을<br>높이기 위한 검토 의견</h1>
+        <p class="hero-sub">양 당사자의 장기적 협력과 ㈜비엠에이서울의 안정적 성장을 위해, 본 계약 11개 조항 중 사전 명확화가 필요한 영역을 정리했습니다.</p>
+      </div>
+      <div class="hero-frame">
+        <div class="hero-frame-label">검토 취지</div>
+        <p class="hero-frame-text">본 의견서는 <strong>본 계약을 보다 견고히 하고 양 당사자 모두의 권리·의무를 명확히 하기 위한 보완 제안</strong>입니다. 양도인·양수인이 함께 검토할 수 있는 협의 자료로 활용되기를 희망합니다.</p>
+      </div>
+    </aside>
+
+    <!-- ========== 11 카드 ========== -->
+    <main class="grid">
+
+      <article class="card" tabindex="0" data-id="1">
+        <div>
+          <div class="card-num">01 · 제2조③ · 제3조①</div>
+          <span class="card-flag flag-key">🔵 핵심 협의</span>
+          <h2 class="card-title">대금·종결일<br>조건의 본 계약 명시</h2>
+          <p class="card-summary">양도대금·지급 시기·방법이 부속서로 위임되어 있어, 본 계약과 부속서의 효력 관계 명시가 필요합니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <article class="card" tabindex="0" data-id="2">
+        <div>
+          <div class="card-num">02 · 제4조③</div>
+          <span class="card-flag flag-key">🔵 핵심 협의</span>
+          <h2 class="card-title">이사회 협의 사항의<br>범위 명확화</h2>
+          <p class="card-summary">"주요 경영 및 사업 방향"의 정의가 없어, 일상 경영과 협의 대상의 구분 기준 합의가 필요합니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <article class="card" tabindex="0" data-id="3">
+        <div>
+          <div class="card-num">03 · 제6조④</div>
+          <span class="card-flag flag-key">🔵 핵심 협의</span>
+          <h2 class="card-title">공간 사용 우선권의<br>운영 기준</h2>
+          <p class="card-summary">"긴급한 사정"·"교육 행정 목적"의 범위, 사전 통지 기간 등 운영 기준 합의가 필요합니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <article class="card dark wide" tabindex="0" data-id="4">
+        <div>
+          <div class="card-num">04 · 제9조</div>
+          <span class="card-flag flag-key">🔵 핵심 협의</span>
+          <h2 class="card-title">지식재산권 귀속 원칙의 본 계약 명시 — 양 당사자 모두에게 유리</h2>
+          <p class="card-summary">커리큘럼·콘텐츠·브랜드 등 향후 발생 자산의 귀속 기준을 사전에 명시함으로써, 양 당사자가 안심하고 협력할 수 있는 토대가 마련됩니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <article class="card" tabindex="0" data-id="5">
+        <div>
+          <div class="card-num">05 · 보완 제안</div>
+          <span class="card-flag flag-clarify">📝 명확화</span>
+          <h2 class="card-title">진술 및 보장 조항의<br>도입 검토</h2>
+          <p class="card-summary">한국 주식양수도계약의 표준 항목으로, 인수 후 양 당사자의 책임 범위 명확화에 기여합니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <article class="card" tabindex="0" data-id="6">
+        <div>
+          <div class="card-num">06 · 보완 제안</div>
+          <span class="card-flag flag-clarify">📝 명확화</span>
+          <h2 class="card-title">계약 종료·해지<br>절차의 명시</h2>
+          <p class="card-summary">예상치 못한 사유 발생 시 양 당사자의 절차적 안정성을 위한 종료·해지 조항 도입을 제안드립니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <article class="card" tabindex="0" data-id="7">
+        <div>
+          <div class="card-num">07 · 제5조③</div>
+          <span class="card-flag flag-clarify">📝 명확화</span>
+          <h2 class="card-title">수업료 정산<br>절차의 명확화</h2>
+          <p class="card-summary">정산 주기·환불 기준이 별도 합의로 위임되어 있어, 운영 안정성을 위한 사전 합의를 제안드립니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <article class="card" tabindex="0" data-id="8">
+        <div>
+          <div class="card-num">08 · 제8조②</div>
+          <span class="card-flag flag-clarify">📝 명확화</span>
+          <h2 class="card-title">우선매수권<br>가격 산정 기준</h2>
+          <p class="card-summary">우선매수권 행사 시 가격 산정 방식·통지 절차의 객관적 기준 마련이 필요합니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <article class="card" tabindex="0" data-id="9">
+        <div>
+          <div class="card-num">09 · 보완 제안</div>
+          <span class="card-flag flag-note">참고 사항</span>
+          <h2 class="card-title">사업 영역의<br>상호 명확화</h2>
+          <p class="card-summary">옥스포드 캠프(제1조 단서)의 정의 및 양 당사자의 사업 영역 구분 명시를 제안드립니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <article class="card" tabindex="0" data-id="10">
+        <div>
+          <div class="card-num">10 · 제10조</div>
+          <span class="card-flag flag-note">참고 사항</span>
+          <h2 class="card-title">비밀유지 의무의<br>합리적 기간 설정</h2>
+          <p class="card-summary">통상 관행에 따른 기간 설정과 합리적 예외 사유의 명시를 제안드립니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+      <article class="card" tabindex="0" data-id="11">
+        <div>
+          <div class="card-num">11 · 제11조</div>
+          <span class="card-flag flag-note">참고 사항</span>
+          <h2 class="card-title">분쟁 해결의<br>단계적 절차</h2>
+          <p class="card-summary">교육 사업의 특성상 협의·조정 단계 도입이 양 당사자 모두에게 유익할 것으로 사료됩니다.</p>
+        </div>
+        <div class="card-bottom"><span class="card-clue">상세 보기</span><span class="arrow">→</span></div>
+      </article>
+
+    </main>
+  </div>
+
+  <!-- ========== NEXT STEPS ========== -->
+  <section class="next-steps">
+    <div class="next-head">다음 단계 제안</div>
+    <h2 class="next-title">양 당사자 공동 협의를 통한 본 계약 보완</h2>
+    <p class="next-body">
+      본 의견서는 양 당사자의 장기적 협력을 전제로, ㈜비엠에이서울의 안정적 출범과 운영을 위해 <strong>사전에 명확히 해두면 좋을 영역</strong>을 정리한 것입니다. 위 11개 항목 중 우선 협의가 필요한 영역(<strong>핵심 협의 4건</strong>)을 중심으로 양 당사자가 함께 검토하고, 부속서 4종(주식양수도 조건표·지식재산권 귀속·매출 정산·공간 운영)과 본 계약을 함께 협의하는 자리를 제안드립니다. 본 검토는 양 당사자 모두에게 보다 안정적이고 명확한 계약 기반을 마련하기 위한 것이며, 어느 한쪽의 입장만을 반영한 것이 아닙니다.
+    </p>
+  </section>
+
+  <div class="footnote">
+    <strong>유의사항.</strong> 본 의견서는 양수인 측의 1차 검토 의견이며, 법적 자문이 아닙니다. 본 계약의 최종 문안은 양 당사자가 선임한 법률 전문가의 자문을 거쳐 확정될 필요가 있습니다.
+  </div>
+
+</div>
+
+<!-- ========== MODAL ========== -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" id="modalClose" aria-label="닫기">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  "1": {
+    flag: "key", flagText: "🔵 핵심 협의",
+    num: "01 · 제2조③ · 제3조①",
+    title: "대금·종결일 조건의 본 계약 명시",
+    quote: "제2조 ③ 양도 주식의 수, 주당 가액, 총 양도대금, 지급 시기 및 방법은 본 계약의 부속서(주식양수도 조건표)에 따른다.\n제3조 ① 양수인이 제2조에 따른 양도대금을 완납한 날을 본 계약의 종결일(Closing Date)로 한다.",
+    review: "양도대금·지급 시기·지급 방법·분할 조건·담보·에스크로·선행조건 등 거래의 핵심 조건이 부속서로 위임되어 있습니다. 본 계약에는 종결일이 \"양도대금 완납일\"로만 정의되어 있어, 부속서가 확정되기 전까지 본 계약과 부속서의 효력 관계, 종결일 산정 기준이 다소 모호한 측면이 있습니다.",
+    consider: "분할 지급이 이루어질 경우 명의개서 시점, 대표이사 등기 시점이 부속서 합의 내용에 따라 달라질 수 있어, 양 당사자 모두 본 계약 체결 시점에 종결일 관련 절차의 예측 가능성을 확보해두는 것이 바람직합니다.",
+    proposal: "<strong>제2조 ④ 신설 제안:</strong> \"본 계약 체결일로부터 30일 이내에 부속서(주식양수도 조건표)가 체결되지 않는 경우, 양 당사자 협의를 거쳐 본 계약의 효력에 관해 다시 정한다.\"<br><br><strong>제3조 ②-1 신설 제안:</strong> \"양도인은 양수인의 분할 대금 지급 비율에 상응하여, 양도 주식의 명의개서 및 주주명부 변경 절차에 단계적으로 협력한다(예: 1차 30% 지급 시 18% 명의개서).\""
+  },
+  "2": {
+    flag: "key", flagText: "🔵 핵심 협의",
+    num: "02 · 제4조③",
+    title: "이사회 협의 사항의 범위 명확화",
+    quote: "제4조 ③ 양도인과 양수인은 회사의 안정적 성장과 양도인과의 장기적 협력을 위하여 주요 경영 및 사업 방향에 관하여 비이교육 COO, 양도인, 그리고 양수인으로 구성된 이사회의 협의를 거쳐 결정한다.",
+    review: "본 조항의 \"주요 경영 및 사업 방향\"의 범위가 명시되어 있지 않아, 일상 경영(인사·커리큘럼·캠프 운영·외부 제휴 등)과 이사회 협의 대상의 구분 기준이 다소 모호한 측면이 있습니다. 이로 인해 양 당사자가 협의 대상에 대한 해석 차이를 가질 가능성이 있어, 사전 명확화를 통해 의사결정 효율을 높일 수 있습니다.",
+    consider: "이사회 구성(비이교육 COO·양도인·양수인 3인)을 유지하더라도, 협의 대상을 한정 열거하면 일상 경영의 신속한 의사결정과 주요 사항의 신중한 협의를 양립시킬 수 있습니다.",
+    proposal: "<strong>협의 대상 한정 열거 제안:</strong><br>① 자본금 변동·영업양수도·합병 등 상법상 특별결의 사항<br>② 자본 5억 원 이상이 소요되는 신규 사업 추진<br>③ 옥스포드 캠프(제1조 단서) 관련 사항<br>④ 회사 정관의 중요 사항 변경<br><br>그 외 일상 경영 사항(인사·커리큘럼·캠프 운영·외부 제휴 등)은 대표이사가 결정하되, 정기적으로 이사회에 보고하는 방식을 제안드립니다."
+  },
+  "3": {
+    flag: "key", flagText: "🔵 핵심 협의",
+    num: "03 · 제6조④",
+    title: "공간 사용 우선권의 운영 기준",
+    quote: "제6조 ① 양도인은 정규 수업 종료 이후인 오후 4시 30분 이후, 방학 기간 및 주말에 발생하는 양도인 소유 또는 관리 하의 유휴 교육 공간을 회사가 예술 교육 및 캠프 사업을 위하여 사용할 수 있도록 제공한다.\n④ 회사의 공간 사용권에도 불구하고, 양도인의 회사 운영상 긴급한 사정이나 교육 행정 목적에 따른 요청이 있을 경우 양도인의 시설 사용 권한이 우선하며, 이 경우 회사는 양도인과 협의하여 사용 일정을 조정하여야 한다.",
+    review: "양도인의 \"긴급한 사정\"·\"교육 행정 목적\"의 정의, 사전 통지 기간, 연간 행사 한도 등이 명시되어 있지 않습니다. 이로 인해 회사가 캠프·수업을 사전 모집한 이후 일정 변경 가능성을 학부모에게 사전 안내하기 어려운 운영상의 어려움이 있을 수 있습니다.",
+    consider: "양도인의 정규 수업·학교 행정 우선권은 학교법인의 본질적 권한으로 충분히 존중되어야 하며, 동시에 회사가 사전 모집한 학생·학부모에 대한 신뢰를 유지하기 위해 일정한 운영 기준이 마련되면 양 당사자 모두에게 도움이 됩니다.",
+    proposal: "<strong>제6조 ④ 보완 제안:</strong><ul><li><strong>우선권 행사 사유 한정:</strong> ① 정규 수업·시험 ② 교사 회의·워크숍(연간 횟수 한정) ③ 학교 공식 행사(졸업식·입학식·운동회·축제 등)</li><li><strong>사전 통지:</strong> 원칙 14일 전, 부득이한 경우 72시간 전</li><li><strong>연간 한도:</strong> 회사 사용 가능 시간(평일 16:30 이후·방학·주말) 중 양도인 회수 가능 일수를 연간 30일 이내로 합의</li><li><strong>회수 시 조치:</strong> 사전 모집된 캠프·수업의 환불·재배치 비용은 양 당사자가 합리적으로 분담</li><li><strong>사용권 보장 기간:</strong> 본 계약 유효 기간 + 5년 자동 갱신</li></ul>"
+  },
+  "4": {
+    flag: "key", flagText: "🔵 핵심 협의",
+    num: "04 · 제9조",
+    title: "지식재산권 귀속 원칙의 본 계약 명시",
+    quote: "제9조 회사에서 개발·운영되는 교육 커리큘럼, 콘텐츠 및 관련 지식재산권의 귀속과 이용에 관한 사항은 양도인과 양수인이 별도의 합의로 정한다.",
+    review: "본 조항이 별도 합의로 위임되어 있어, 본 계약 체결 후 회사가 개발·취득하는 지식재산권의 귀속 기준이 정해지지 않은 상태입니다. 양 당사자 모두에게 사전 명시가 유리한 영역으로 사료됩니다.",
+    consider: "<strong>본 계약 체결 후 회사가 개발할 가능성이 있는 자산:</strong><ul><li>K-pop·미술·음악 캠프 커리큘럼 및 교재</li><li>입시·유학 프로그램 매뉴얼</li><li>학생 포트폴리오 및 작품 라이브러리</li><li>강사 매뉴얼·평가 시스템</li><li>회사 브랜드 및 보조 브랜드</li><li>학부모 데이터베이스 및 고객관리 시스템</li><li>외부 제휴(K-pop 기획사·해외 음악대학) 계약 및 관련 자산</li></ul>이러한 자산의 귀속 기준이 사전에 명시되어야 양 당사자 모두 안심하고 협력할 수 있습니다.",
+    proposal: "<strong>제9조 개정 제안 (본 계약에 직접 명시):</strong><br><br><strong>①</strong> 본 계약 체결 후 회사가 개발 또는 취득하는 모든 지식재산권(커리큘럼·교재·콘텐츠·소프트웨어·브랜드·데이터베이스 포함)은 회사에 귀속한다.<br><br><strong>②</strong> 양도인은 학교 정규 수업 목적에 한하여 회사 지식재산권을 무상으로 사용할 수 있으며, 외부 제공 또는 상업적 이용 시에는 별도의 사용 계약을 체결한다.<br><br><strong>③</strong> 본 계약 체결 전 양도인이 보유한 기존 지식재산권(기존 학교 커리큘럼·교재 등)은 양도인에게 귀속되며, 회사는 이를 무상으로 사용할 수 있는 권리를 갖는다."
+  },
+  "5": {
+    flag: "clarify", flagText: "📝 명확화",
+    num: "05 · 보완 제안",
+    title: "진술 및 보장 조항의 도입 검토",
+    review: "본 계약에는 회사의 우발채무·세금·소송·노무·인허가·재무제표 등에 관한 진술 및 보장 조항이 포함되어 있지 않습니다. 한국 주식양수도계약의 표준 관행상 통상 10~30개 항목이 포함되며, 인수 후 양 당사자의 책임 범위를 명확히 하는 데 기여합니다.<br><br><strong>일반적으로 포함되는 진술·보장 항목:</strong><ul><li>회사 자산(현금·매출채권·집기 등)의 정확성</li><li>미공시 채무 부존재</li><li>진행 중·예상되는 소송 공개</li><li>학원법·교육법·노동법 준수</li><li>핵심 강사·직원의 잔류 의사</li><li>주요 계약(임대차·외주·제휴)의 정상 이행 여부</li><li>재무제표의 K-IFRS 부합 여부</li></ul>",
+    consider: "양 당사자가 신뢰 관계에 있더라도, 객관적 사실 확인을 위한 진술·보장은 표준적인 관행으로 양 당사자의 책임 한계를 사전에 분명히 합니다.",
+    proposal: "한국 주식양수도계약의 표준 진술·보장 묶음을 도입하되, 양 당사자의 부담을 합리적으로 조정하기 위해 <strong>(가) 손해배상 상한</strong>(통상 양도대금의 30~50%) <strong>(나) 소액 청구 컷오프</strong>(통상 양도대금의 1%) <strong>(다) 효력 기간</strong>(통상 18~24개월, 세무·환경 사항은 5~7년)을 함께 명시하는 방안을 제안드립니다."
+  },
+  "6": {
+    flag: "clarify", flagText: "📝 명확화",
+    num: "06 · 보완 제안",
+    title: "계약 종료·해지 절차의 명시",
+    review: "본 계약에는 종료 사유·해지 절차·해지 시 효과·존속 의무에 관한 조항이 포함되어 있지 않습니다. 예상치 못한 사유가 발생할 경우 양 당사자가 절차적 안정성을 가질 수 있도록 관련 조항의 도입을 제안드립니다.",
+    proposal: "<strong>해지 사유 (예시):</strong><br>① 본 계약의 중대한 위반 ② 위반 후 30일 내 미시정 ③ 양 당사자 합의 ④ 일방의 파산·회생 ⑤ 종결일까지 거래종결 미완료<br><br><strong>해지 시 효과:</strong> 미지급 양도대금의 정산, 이미 이전된 지분의 처리, 지식재산권 및 공간 사용권의 정리, 존속 의무(비밀유지·경업금지·미정산 채권)의 명시.<br><br><strong>위약 처리:</strong> 귀책사유에 따른 합리적 위약금 기준 마련(예: 귀책사유자가 받은 대금의 1.5배 반환 등)."
+  },
+  "7": {
+    flag: "clarify", flagText: "📝 명확화",
+    num: "07 · 제5조③",
+    title: "수업료 정산 절차의 명확화",
+    quote: "제5조 ③ 수업료의 수납 방식, 정산 주기, 환불 기준 등 구체적인 정산 사항은 양도인과 양수인이 별도의 합의 또는 부속서로 정한다.",
+    review: "회사 매출(제5조 ②)이 학부모로부터 양도인의 기존 결제 채널을 거쳐 회사로 이전되는 구조가 예상됩니다. 정산 주기·환불 기준이 별도 합의로 위임되어 있어, 회사의 운영자금 안정성을 위해 사전 합의가 권장됩니다.",
+    proposal: "<ul><li><strong>결제 채널:</strong> 회사 명의의 별도 사업자번호 및 계좌로 분리하거나, 통합 운영 시 정산 주기·이체일을 명시</li><li><strong>정산 주기:</strong> 매월 5일 회사 계좌로 이체, 지연 시 연 6% 지연이자</li><li><strong>환불 정책:</strong> 중도 해지 시 잔여 수업분 환불 등 사전 합의</li><li><strong>회계 열람권:</strong> 분기 단위로 회사가 관련 회계 자료를 열람할 수 있는 권한</li></ul>"
+  },
+  "8": {
+    flag: "clarify", flagText: "📝 명확화",
+    num: "08 · 제8조②",
+    title: "우선매수권 가격 산정 기준",
+    review: "제8조 ②의 우선매수권 행사 시 가격 산정 방식·통지 절차·행사 기간이 구체적으로 명시되어 있지 않습니다. 객관적 기준 마련을 통해 양 당사자가 절차적 예측 가능성을 확보할 수 있습니다.",
+    proposal: "<ul><li><strong>가격 산정:</strong> ① 외부 회계법인의 평가 가액 ② 직전 3년 EBITDA × 동종업계 배수(통상 5~8배) ③ 양 당사자 합의 가액 — 셋 중 가장 낮은 가액</li><li><strong>통지:</strong> 양도인이 제3자 매각 의사를 갖는 경우, 30일 전 양수인에게 서면 통지하고 매각 조건을 공개</li><li><strong>행사 기간:</strong> 통지 수령 후 60일 내 행사 의사 표시, 90일 내 대금 지급</li><li><strong>위반 효과:</strong> 절차 위반 시 해당 양도의 효력 및 위약금 처리 기준 명시</li></ul>"
+  },
+  "9": {
+    flag: "note", flagText: "참고 사항",
+    num: "09 · 보완 제안",
+    title: "사업 영역의 상호 명확화",
+    review: "본 계약 제1조 단서에 \"옥스포드 캠프\"가 양도인 사업으로 유보되어 있으나, 옥스포드 캠프의 정의·범위가 명시되어 있지 않습니다. 양 당사자의 사업 영역을 사전에 명확히 하면 향후 사업 추진 시 불필요한 해석 차이를 방지할 수 있습니다.",
+    proposal: "<ul><li><strong>옥스포드 캠프 정의:</strong> ① 주최 주체 ② 운영 장소(영국 옥스포드 또는 동일 브랜드의 한국 내 운영 장소) ③ 대상(연령·과목) ④ 운영 시기 — 4가지 요소로 한정</li><li><strong>양도인 측 사업 영역:</strong> 본 계약 유효 기간 동안, 한국 내에서 음악·미술·K-pop 캠프 및 학원 사업을 신규로 영위하지 않음(양 당사자가 합의한 옥스포드 캠프 제외)</li><li><strong>핵심 인력 보호:</strong> 회사 직원·강사에 대한 양 당사자의 채용 자제 기간(예: 3년) 합의</li></ul>"
+  },
+  "10": {
+    flag: "note", flagText: "참고 사항",
+    num: "10 · 제10조",
+    title: "비밀유지 의무의 합리적 기간 설정",
+    quote: "제10조 본 의무는 계약 종료 후에도 유효하다.",
+    review: "비밀유지 의무가 무기한으로 정해져 있어, 통상 관행(국내 3~5년)과 차이가 있습니다. 영업비밀이 아닌 일반 정보까지 무기한 의무가 부과되면 양 당사자의 사업 운영에 부담이 될 수 있습니다.",
+    proposal: "<ul><li><strong>기간:</strong> 본 계약 유효 기간 + 종료 후 5년(영업비밀에 해당하는 정보는 영업비밀로 보호되는 한 영구)</li><li><strong>예외 사유:</strong> ① 이미 공개된 정보 ② 독자적으로 개발한 정보 ③ 제3자로부터 정당하게 취득한 정보 ④ 법령·법원·규제기관의 요구에 따른 공개</li></ul>"
+  },
+  "11": {
+    flag: "note", flagText: "참고 사항",
+    num: "11 · 제11조",
+    title: "분쟁 해결의 단계적 절차",
+    quote: "제11조 본 계약은 대한민국 법을 준거법으로 하며, 본 계약과 관련하여 발생하는 분쟁의 관할 법원은 서울중앙지방법원으로 한다.",
+    review: "본 조항은 그 자체로 적정합니다. 다만 교육 사업의 특성상 양 당사자 모두 평판 보호가 중요하므로, 본격 소송 이전에 협의·조정 단계를 두는 것이 양 당사자에게 유익할 것으로 사료됩니다.",
+    proposal: "<ul><li><strong>단계적 절차 (예시):</strong> ① 이사회 협의(30일) → ② 한국조정학회 등의 조정 절차(60일) → ③ 대한상사중재원 중재(서울·한국어·중재인 1인) 또는 서울중앙지방법원 소송</li><li><strong>사안별 분기:</strong> 5억 원 이상의 분쟁은 중재로, 그 외 분쟁 및 가처분 등 보전 절차는 법원으로</li></ul>"
+  }
+};
+
+const FLAG_CLASSES = {
+  key:     "flag-key",
+  clarify: "flag-clarify",
+  note:    "flag-note"
+};
+
+const backdrop = document.getElementById('modalBackdrop');
+const body     = document.getElementById('modalBody');
+const closeBtn = document.getElementById('modalClose');
+
+function openModal(id) {
+  const d = DATA[id];
+  if (!d) return;
+  let html = '';
+  html += `<span class="modal-flag ${FLAG_CLASSES[d.flag]}">${d.flagText}</span>`;
+  html += `<div class="modal-num">${d.num}</div>`;
+  html += `<h2 class="modal-title" id="modalTitle">${d.title}</h2>`;
+  if (d.quote)    html += `<div class="modal-section"><div class="section-label">관련 조항</div><div class="quote-block">${d.quote}</div></div>`;
+  if (d.review)   html += `<div class="modal-section"><div class="section-label">검토 의견</div><div>${d.review}</div></div>`;
+  if (d.consider) html += `<div class="modal-section"><div class="section-label">고려 사항</div><div class="consider-block">${d.consider}</div></div>`;
+  if (d.proposal) html += `<div class="modal-section"><div class="section-label">보완 제안</div><div class="proposal-block">${d.proposal}</div></div>`;
+  body.innerHTML = html;
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  closeBtn.focus();
+}
+
+function closeModal() {
+  backdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', () => openModal(card.dataset.id));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card.dataset.id); }
+  });
+});
+
+closeBtn.addEventListener('click', closeModal);
+backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && backdrop.classList.contains('open')) closeModal(); });
+</script>
+</body>
+</html>
