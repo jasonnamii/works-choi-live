@@ -263,9 +263,9 @@ tr[style*="--lime"] td *, tr[style*="--sky"] td *, tr[style*="--peach"] td *, tr
   .fold-toggle{padding:10px 14px;font-size:12px}
 }
 
-/* big number — single line, scales down with cell width via cqi (container) */
+/* big number — single line, scales by container width (cqi) so it always fits */
 .big{
-  font-size:clamp(28px,4.6vw,80px);
+  font-size:clamp(24px,16cqi,72px);
   font-weight:900;
   line-height:1.0;
   letter-spacing:-0.03em;
@@ -277,18 +277,14 @@ tr[style*="--lime"] td *, tr[style*="--sky"] td *, tr[style*="--peach"] td *, tr
   white-space:nowrap;
   max-width:100%;
   display:block;
-  overflow:hidden;
-  text-overflow:clip;
 }
-.big.med{font-size:clamp(24px,3.6vw,52px)}
-.big.brand-logo{font-size:clamp(28px,3.8vw,48px);line-height:1.05;white-space:normal;word-break:keep-all}
-@media (max-width:900px){
-  .big{font-size:clamp(24px,5vw,48px)}
-  .big.med{font-size:clamp(22px,4.2vw,40px)}
-}
-@media (max-width:560px){
-  .big{font-size:clamp(20px,8vw,40px)}
-  .big.med{font-size:clamp(18px,7vw,34px)}
+.big.med{font-size:clamp(22px,12cqi,52px)}
+.big.brand-logo{font-size:clamp(28px,11cqi,48px);line-height:1.05;white-space:normal;word-break:keep-all}
+/* fallback for browsers without cqi */
+@supports not (font-size:1cqi){
+  .big{font-size:clamp(24px,4.5vw,72px)}
+  .big.med{font-size:clamp(22px,3.4vw,52px)}
+  .big.brand-logo{font-size:clamp(28px,3.6vw,48px)}
 }
 .big-cap{
   font-size:clamp(12px,1.1vw,14px);
@@ -314,6 +310,8 @@ tr[style*="--lime"] td *, tr[style*="--sky"] td *, tr[style*="--peach"] td *, tr
   display:flex;
   flex-direction:column;
   color:#ffffff;
+  container-type:inline-size;
+  container-name:cell;
 }
 .cell .body{color:#ffffff}
 .cell .body.muted{color:#c7c7cc}
