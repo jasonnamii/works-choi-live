@@ -127,6 +127,14 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 .callout.danger { border-left-color: var(--accent-red); background: rgba(191, 72, 0, 0.04); }
 .callout-title { font-weight: 700; color: var(--headline); margin-bottom: 6px; font-size: 14px; }
 .mail-block { background: var(--bg-alt); border-radius: var(--radius-small); padding: 28px 32px; font-family: ui-monospace, "SF Mono", monospace; font-size: 13px; line-height: 1.7; white-space: pre-wrap; color: var(--text); margin-top: 8px; border: 1px solid var(--line); }
+.dropbox-link { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: linear-gradient(135deg, #E8F2FE 0%, #D1E5FC 100%); border: 1.5px solid var(--accent-blue); border-radius: var(--radius-small); padding: 18px 22px; margin: 12px 0; text-decoration: none; color: var(--headline); font-weight: 700; font-size: 15px; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; }
+.dropbox-link:hover { background: linear-gradient(135deg, #D1E5FC 0%, #B5D4FA 100%); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,113,227,0.18); }
+.dropbox-link-left { display: flex; align-items: center; gap: 14px; }
+.dropbox-link-icon { font-size: 24px; line-height: 1; }
+.dropbox-link-text { display: flex; flex-direction: column; gap: 2px; }
+.dropbox-link-title { font-weight: 800; font-size: 15px; color: var(--headline); letter-spacing: -0.01em; }
+.dropbox-link-sub { font-size: 12px; font-weight: 500; color: var(--accent-blue); letter-spacing: 0.04em; text-transform: uppercase; }
+.dropbox-link-arrow { font-size: 18px; color: var(--accent-blue); font-weight: 700; }
 .section-final { padding: 160px 24px; background: linear-gradient(180deg, var(--bg-alt) 0%, #FFFFFF 100%); text-align: center; }
 .final-eyebrow { margin-bottom: 24px; justify-content: center; display: flex; }
 .final-headline { font-size: clamp(44px, 6vw, 80px); font-weight: 900; line-height: 1.1; letter-spacing: -0.03em; color: var(--headline); max-width: 900px; margin: 0 auto 32px; word-break: keep-all; overflow-wrap: break-word; }
@@ -325,6 +333,10 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
             <tr><td>③</td><td><strong>옵션 부여계약서</strong></td><td>옵션 3% · 베스팅 4년·1년 클리프 · 시리즈A 트리거</td></tr>
             <tr><td>④</td><td><strong>IP·퍼블리시티 부속서</strong></td><td>Stanford 본직 IP·개인 저작물과 회사 IP 경계 명확</td></tr>
           </tbody></table>
+          <a href="https://www.dropbox.com/scl/fo/g0z7uk9nh2dvb3rff5hmj/AEknco1nt8JaW7B57LauXGY?rlkey=6jix9btjsjj23v7f2p8ehhjrc&st=ah25w0cc&dl=0" target="_blank" rel="noopener" class="dropbox-link" aria-label="자문위원 계약서 폴더 Dropbox에서 열기">
+            <span class="dropbox-link-left"><span class="dropbox-link-icon" aria-hidden="true">📁</span><span class="dropbox-link-text"><span class="dropbox-link-title">자문위원 계약서 4종 폴더</span><span class="dropbox-link-sub">Dropbox · 가입 없이 다운로드</span></span></span>
+            <span class="dropbox-link-arrow" aria-hidden="true">↗</span>
+          </a>
           <div class="callout"><div class="callout-title">자문료 약정서는 두지 않는다</div><strong>지분 4% + 옵션 3%가 본 보상.</strong> Stanford 석좌급에 월 자문료를 드리는 건 한국·실리콘밸리 관행상 어색해서 뺐다. 출장 경비만 회사 실비 정산.</div>
           <h4>등기이사 트랙 — 5종 (슬림 4종)</h4>
           <table class="detail-table"><thead><tr><th>#</th><th>계약서</th><th>왜 필요한가</th></tr></thead><tbody>
@@ -334,6 +346,10 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
             <tr><td>④</td><td><strong>NDA</strong></td><td>양방향 비밀 보호 · 5년</td></tr>
             <tr><td>⑤</td><td><strong>D&O 보험 가입의향서</strong></td><td>회사 내부 결재 — 슬림 4종에서는 제외</td></tr>
           </tbody></table>
+          <a href="https://www.dropbox.com/scl/fo/7vag0ffahvjsunxx2pcgm/AOtKADvoCof5s0hIoGJpzug?rlkey=reb5zrkdir9ncy8fnlknqoosm&st=9arpvlel&dl=0" target="_blank" rel="noopener" class="dropbox-link" aria-label="등기이사 계약서 폴더 Dropbox에서 열기">
+            <span class="dropbox-link-left"><span class="dropbox-link-icon" aria-hidden="true">📁</span><span class="dropbox-link-text"><span class="dropbox-link-title">등기이사 계약서 5종 폴더 (슬림 4종 포함)</span><span class="dropbox-link-sub">Dropbox · 가입 없이 다운로드</span></span></span>
+            <span class="dropbox-link-arrow" aria-hidden="true">↗</span>
+          </a>
           <p style="font-size:13px;color:var(--text-mute);margin-top:12px"><strong>공통 분모 3종</strong> = 본 계약 + NDA + 옵션. 자문이 가벼운 이유 = SHA·D&O 불필요(의결권 ✗·이사 책임 ✗).</p>
         </div>
       </details>
