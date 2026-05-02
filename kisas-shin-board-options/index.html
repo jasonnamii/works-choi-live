@@ -164,6 +164,7 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
   .compare-mobile-card.recommend .compare-mobile-row { background: rgba(0,113,227,0.04); }
 }
 @media (min-width: 901px) { .compare-mobile-cards { display: none; } }
+@media (max-width: 900px) { .story-grid + div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; } }
 @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } html { scroll-behavior: auto; } }
 .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -194,11 +195,37 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
   </div>
 </section>
 
+<section class="section" aria-label="세 갈래 정의">
+  <div class="section-inner">
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">02</span>세 갈래 정의</div>
+    <h2 class="typography-section-headline section-headline">먼저 용어부터</h2>
+    <p class="section-lead">신교수님 합류 형태로 가능한 갈래는 셋. 그중 <strong>사외이사는 사실상 검토 대상이 아니라</strong> 실질 갈래는 두 개로 좁혀진다.</p>
+    <div class="story-grid fade-in">
+      <div class="story-card">
+        <div class="story-num" style="color:var(--accent-red)">01</div>
+        <h3 class="story-headline">등기이사<br><span style="font-size:14px;font-weight:600;color:var(--text-mute);letter-spacing:0">Inside Director</span></h3>
+        <p class="story-body">회사의 <strong>법적 이사</strong>. 한국 상법상 이사로 주주총회에서 선임 → <mark>법인등기부에 본인 이름·주소 등재</mark>. 이사회 의결권 행사. 회사·제3자 손해 발생 시 <strong>개인 책임</strong>(상법 §399·§401). 미국 표현 = Inside Director / Registered Director.</p>
+      </div>
+      <div class="story-card" style="background:var(--bg-tint);opacity:0.85">
+        <div class="story-num" style="color:var(--text-mute)">02 ⛔</div>
+        <h3 class="story-headline">사외이사<br><span style="font-size:14px;font-weight:600;color:var(--text-mute);letter-spacing:0">선택지 아님</span></h3>
+        <p class="story-body">이름은 "이사" — 등기이사와 똑같이 <strong>법인등기부에 등재되고 의결권·법적 책임도 동일</strong>. 회사 일상 업무에 관여 ✗ 외부 시선 제공만 다름. <mark class="red" style="background:var(--highlight-red);padding:0 0.1em;font-weight:600">비상장에선 자율 선임이라 등기이사와 구분할 실익 없음 → 사실상 검토 대상 아님</mark>.</p>
+      </div>
+      <div class="story-card" style="border-color:var(--accent-blue);border-width:2px">
+        <div class="story-num">03</div>
+        <h3 class="story-headline">자문위원<br><span style="font-size:14px;font-weight:600;color:var(--text-mute);letter-spacing:0">Advisory Board Member</span></h3>
+        <p class="story-body">회사의 <strong>외부 자문가</strong>. 자문계약(용역계약) 체결한 외부 전문가일 뿐 한국 상법상 이사 ✗. <mark>등기 ✗·이사회 의결권 ✗·법적 책임 사실상 없음</mark>. 미국 표현 = Founding Advisor / Advisory Board Member. 명함에 "Advisor"로 쓰는 자리.</p>
+      </div>
+    </div>
+    <div class="callout success" style="margin-top:32px;font-size:16px;padding:24px 28px"><div class="callout-title" style="font-size:15px">결론 — 우리가 다룰 실질 갈래</div>사외이사 = 등기이사와 법적 신분 동일하여 신교수님 부담 동일. 따라서 우리 측이 다룰 실질 갈래는 <strong style="color:var(--headline)">등기이사 vs 자문위원 두 갈래</strong>로 좁혀진다.</div>
+  </div>
+</section>
+
 <section class="section section-alt" aria-label="등기이사 vs 자문위원">
   <div class="section-inner">
-    <div class="typography-eyebrow section-eyebrow"><span class="section-num">02</span>무엇을 택하나</div>
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">03</span>무엇을 택하나</div>
     <h2 class="typography-section-headline section-headline">등기이사 vs 자문위원</h2>
-    <p class="section-lead">신교수님이 고민하시는 건 <strong>본직 충돌·한국 법적 책임·세금</strong>. 셋 다 등기이사 쪽이 더 무겁다.</p>
+    <p class="section-lead">사외이사가 빠진 이유는 §02 참고. 신교수님이 고민하시는 건 <strong>본직 충돌·한국 법적 책임·세금</strong>. 셋 다 등기이사 쪽이 더 무겁다.</p>
     <div class="compare-grid fade-in">
       <div class="compare-cell head">축</div><div class="compare-cell head">등기이사</div><div class="compare-cell head recommend">자문위원</div>
       <div class="compare-cell">법인등기</div><div class="compare-cell">등재 (성명·주소)</div><div class="compare-cell recommend-col">없음</div>
@@ -238,7 +265,7 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 
 <section class="section" aria-label="자문위원 권장 근거">
   <div class="section-inner">
-    <div class="typography-eyebrow section-eyebrow"><span class="section-num">03</span>권장 근거</div>
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">04</span>권장 근거</div>
     <h2 class="typography-section-headline section-headline">자문위원을 메인으로 두는 이유</h2>
     <p class="section-lead">신교수님 5/2 회신의 결, 5월 일정과의 동행, 그리고 등기이사로 격상하는 카드.</p>
     <div class="story-grid fade-in">
@@ -246,15 +273,47 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
       <div class="story-card"><div class="story-num">02</div><h3 class="story-headline">5월 일정과 동행 가능</h3><p class="story-body">5월 중순 인도네시아·몽골 회동. <mark>자문계약 한 장으로 1주 안에 시작</mark>. 등기이사는 영사관 공증·아포스티유에 4~6주가 필요해 5월 흐름에 못 맞춘다.</p></div>
       <div class="story-card"><div class="story-num">03</div><h3 class="story-headline">등기이사 승격 카드 보유</h3><p class="story-body">자문계약서에 <mark>"시리즈A 클로징 후 등기이사 승격 협의"</mark> 조항. 지금 가볍게 시작, 회사가 커지면 격상. 처음부터 등기이사로 시작하면 부담이 누적돼 되돌릴 수 없다.</p></div>
     </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px">
+      <div class="callout success" style="margin:0;padding:24px 28px;font-size:15px"><div class="callout-title" style="font-size:15px">✅ 등기이사도 받을 준비 완비</div>신교수님이 등기이사를 선택하셔도 우리는 받을 준비가 되어 있다. <strong>워드 5종 완비</strong> — 이사서비스·SHA·옵션·NDA·D&O 의향서. 신교수님 결정에 따라 <mark>양쪽 다 즉시 진행 가능</mark>.</div>
+      <div class="callout warn" style="margin:0;padding:24px 28px;font-size:15px"><div class="callout-title" style="font-size:15px">📋 옵션 비과세 5억 차이 — 회수 가능</div>벤처기업법은 <strong>임직원(등기이사)에만</strong> 옵션 차익 5억 비과세. 자문위원=외부전문가 → 미적용. 단, <mark>시리즈A 후 등기이사 승격 시 회수 가능</mark>. 지금 형태 결정을 뒤집을 무게는 아님.</div>
+    </div>
   </div>
 </section>
 
 <section class="section section-tint" aria-label="상세 펼쳐보기">
   <div class="section-inner">
-    <div class="typography-eyebrow section-eyebrow"><span class="section-num">04</span>무엇을 준비·설명하나</div>
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">05</span>무엇을 준비·설명하나</div>
     <h2 class="typography-section-headline section-headline">필요할 때 열어보세요</h2>
     <p class="section-lead">계약서 패키지·사전 준비물·Q&A 8문·Deadlock 시나리오·우리 측 리스크·회신 메일 본문·발신 후 절차·캡테이블 흐름.</p>
     <div class="detail-stack">
+
+      <details class="detail-block" open>
+        <summary><span><span class="detail-summary-eyebrow">메일 전략</span>회신 메일 5요소 — 어떻게 설명하나</span><span class="detail-icon" aria-hidden="true">+</span></summary>
+        <div class="detail-content">
+          <p style="margin-bottom:16px">신교수님께 두 옵션을 보내드릴 때 다음 5가지를 본질로 잡는다.</p>
+          <table class="detail-table"><thead><tr><th>#</th><th>요소</th><th>의도</th></tr></thead><tbody>
+            <tr><td>1</td><td><strong>첫 옵션 = 등기이사 배치</strong></td><td><mark>큰 책임으로 인식하시게 하면 자문 자연 선호 유도</mark></td></tr>
+            <tr><td>2</td><td><strong>자율성 존중 톤</strong></td><td>"결정은 교수님 일정과 선호에 맞게"</td></tr>
+            <tr><td>3</td><td><strong>강요 ✗</strong></td><td>"두 옵션 모두 우리 측 가용. 등기 선택 시 우리도 즉시 진행"</td></tr>
+            <tr><td>4</td><td><strong>Deadlock 대응</strong></td><td>옵션 4% 요청 → 양보 가능 / 등기 요청 → 즉시 진행</td></tr>
+            <tr><td>5</td><td><strong>발신 후 액션 분기</strong></td><td>자문 = 5/9 서명 완료 / 등기 = 영사관 예약 즉시 가동</td></tr>
+          </tbody></table>
+        </div>
+      </details>
+
+      <details class="detail-block">
+        <summary><span><span class="detail-summary-eyebrow">결정 영역</span>우리(피디님·형) 결정 vs 신교수님 결정</span><span class="detail-icon" aria-hidden="true">+</span></summary>
+        <div class="detail-content">
+          <p style="margin-bottom:16px">두 영역을 분리해 둬야 신교수님께 선택권을 그대로 넘겨드릴 수 있다.</p>
+          <table class="detail-table"><thead><tr><th>우리(피디님·형) 결정</th><th>신교수님 본인 결정</th></tr></thead><tbody>
+            <tr><td><strong>자본금 1천만 유지</strong></td><td><strong>등기이사 vs 자문위원 형태 선택</strong></td></tr>
+            <tr><td>자문 메인·등기 보조 두 옵션 제시</td><td>Stanford 이해상충 신고 처리</td></tr>
+            <tr><td>이학준 별건 캡테이블 동시 반영</td><td>미국 측 세무 (FATCA·외국납부세액공제)</td></tr>
+            <tr><td>외부평가법인 평가서 발주 시점</td><td>신주 송금 시점</td></tr>
+          </tbody></table>
+          <div class="callout warn"><div class="callout-title">우리 측 결정 = 회신 전에 정리</div>신교수님 결정은 두 옵션을 안내드린 후 들어옴. <mark>분리해 둬야 신교수님께 선택권 그대로 넘겨드릴 수 있다.</mark></div>
+        </div>
+      </details>
 
       <details class="detail-block">
         <summary><span><span class="detail-summary-eyebrow">계약서</span>트랙별 계약서 패키지 — 자문 4종 vs 등기 5종</span><span class="detail-icon" aria-hidden="true">+</span></summary>
@@ -431,9 +490,9 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 
 <section class="section" aria-label="지분 흐름 참고">
   <div class="section-inner">
-    <div class="typography-eyebrow section-eyebrow"><span class="section-num">05</span>참고 — 지분 흐름</div>
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">06</span>참고 — 지분 흐름</div>
     <h2 class="typography-section-headline section-headline">결국 신교수님 손에 얼마</h2>
-    <p class="section-lead">참고용 시뮬. <strong>지금 40만원</strong> → 4% 지분 + 옵션 60주 → 시리즈A 100억 시점 행사 → <mark style="background:var(--highlight-yellow);padding:0 0.1em">5.30% 보유 = 5.3억 가치</mark>. (희석률 20% 가정·시리즈A 1회 희석만 반영)</p>
+    <p class="section-lead">참고용 시뮬. <strong>지금 40만원</strong> → 4% 지분 + 옵션 60주 → 시리즈A 100억 시점 행사 → <mark style="background:var(--highlight-yellow);padding:0 0.1em">5.30% 보유 = 5.3억 가치</mark>. (희석률 20% 가정·시리즈A 1회 희석만 반영) · <strong>이학준 작가 2.5%는 신주 발행 시점에 동시 반영</strong>.</p>
     <div class="bento-grid fade-in">
       <div class="bento-item bento-item-blue bento-large-6">
         <div><div class="bento-tile-eyebrow">신주 발행 직후</div><div class="bento-bignumber">4.00<span class="bento-bignumber-unit">%</span></div><div class="bento-bignumber-label">지분 4% = 80주 = 송금 40만원 (액면가 5,000원 기준)</div></div>
@@ -457,8 +516,31 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
   </div>
 </section>
 
+<section class="section section-alt" aria-label="발신 갈래">
+  <div class="section-inner">
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">07</span>언제 발신하나</div>
+    <h2 class="typography-section-headline section-headline">두 갈래 — 기다릴까, 먼저 보낼까</h2>
+    <p class="section-lead">신교수님이 5/2에 "정리해서 연락드리겠습니다"라고 하신 후, 우리가 고를 수 있는 건 두 가지.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px" class="story-grid fade-in">
+      <div class="story-card">
+        <div class="story-num" style="color:var(--text-mute);font-size:42px;letter-spacing:0">갈래 A</div>
+        <h3 class="story-headline">회신 기다리기</h3>
+        <p class="story-body" style="margin-bottom:16px">신교수님이 형태를 정해 회신 주실 때까지 기다림. 회신 오면 즉시 계약서·송금·등기 진행.</p>
+        <div style="font-size:13px;line-height:1.6;color:var(--text-soft)"><strong style="color:var(--accent-green)">+ 장점</strong> 신교수님 자율성 100% 존중·부담 없음<br><strong style="color:var(--accent-red)">− 단점</strong> 회신이 며칠~몇 주 걸릴지 모름·우리 측 진행 멈춤</div>
+      </div>
+      <div class="story-card" style="border-color:var(--accent-blue);border-width:2px;background:linear-gradient(135deg,#FFFFFF 0%,#E8F2FE 100%)">
+        <div class="story-num" style="font-size:42px;letter-spacing:0">갈래 B ⭐</div>
+        <h3 class="story-headline">우리 측이 먼저 제안<br><span style="font-size:13px;color:var(--accent-blue);letter-spacing:0.05em;font-weight:700">우리 권장</span></h3>
+        <p class="story-body" style="margin-bottom:16px">두 형태 비교표 + 우리 입장 + 신교수님 결정 영역을 분리해 한 번에 보내드림. <mark>두 옵션 다 준비됐다는 정보 전달</mark>로 톤 잡기.</p>
+        <div style="font-size:13px;line-height:1.6;color:var(--text-soft)"><strong style="color:var(--accent-green)">+ 장점</strong> 진행 속도 ↑·신교수님 받자마자 결정 가능·5월 액션 동행<br><strong style="color:var(--accent-orange)">− 단점</strong> 톤 잘못 잡으면 "결정 강요"로 읽힐 수 있음</div>
+      </div>
+    </div>
+    <div class="callout success" style="margin-top:32px;font-size:15px;padding:24px 28px"><div class="callout-title" style="font-size:15px">우리 권장 근거 — 두 옵션 다 가능, B가 살짝 권장</div>신교수님 5월 일정이 빡빡하고 우리 후속 작업도 많이 걸려 있다. <strong>두 형태 모두 계약서까지 준비된 상태</strong>라, <mark>정보를 먼저 드리는 게 신교수님 결정 부담을 줄여드리는 길</mark>. 다만 피디님 판단으로 A를 택해도 무리 없음 — 톤·시점은 피디님 결정 영역.</div>
+  </div>
+</section>
+
 <section class="section-final" aria-label="결론">
-  <div class="typography-eyebrow final-eyebrow"><span class="section-num" style="margin-right:8px">06</span>한 줄</div>
+  <div class="typography-eyebrow final-eyebrow"><span class="section-num" style="margin-right:8px">08</span>한 줄</div>
   <h2 class="final-headline">우리 측 입장의<br><mark>뼈대 세 줄</mark></h2>
   <div class="final-three">
     <div class="final-three-item"><div class="final-three-num">01</div><div class="final-three-text">자문위원이<br>일단 답이다.</div></div>
