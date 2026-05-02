@@ -32,9 +32,10 @@
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-kr); background: var(--bg); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; }
 
-.typography-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-blue); }
-.typography-section-headline { font-size: clamp(40px, 5vw, 64px); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; color: var(--headline); }
-.typography-hero-tagline { font-size: clamp(48px, 7vw, 96px); font-weight: 700; line-height: 1.04; letter-spacing: -0.03em; color: var(--headline); }
+.typography-eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-blue); }
+.typography-section-headline { font-size: clamp(64px, 9vw, 112px); font-weight: 900; line-height: 1.02; letter-spacing: -0.035em; color: var(--headline); }
+.typography-hero-tagline { font-size: clamp(80px, 12vw, 168px); font-weight: 900; line-height: 0.98; letter-spacing: -0.045em; color: var(--headline); }
+.section-num { font-size: clamp(15px, 1.4vw, 19px); font-weight: 800; color: var(--accent-blue); letter-spacing: 0.1em; margin-bottom: 14px; display: block; }
 
 .section-hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 24px 80px; background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 100%); position: relative; overflow: hidden; }
 .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
@@ -128,7 +129,7 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 .mail-block { background: var(--bg-alt); border-radius: var(--radius-small); padding: 28px 32px; font-family: ui-monospace, "SF Mono", monospace; font-size: 13px; line-height: 1.7; white-space: pre-wrap; color: var(--text); margin-top: 8px; border: 1px solid var(--line); }
 .section-final { padding: 160px 24px; background: linear-gradient(180deg, var(--bg-alt) 0%, #FFFFFF 100%); text-align: center; }
 .final-eyebrow { margin-bottom: 24px; justify-content: center; display: flex; }
-.final-headline { font-size: clamp(40px, 5vw, 72px); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; color: var(--headline); max-width: 900px; margin: 0 auto 32px; }
+.final-headline { font-size: clamp(64px, 9vw, 128px); font-weight: 900; line-height: 1.0; letter-spacing: -0.04em; color: var(--headline); max-width: 1100px; margin: 0 auto 32px; }
 .final-headline mark { background: var(--highlight-yellow); color: var(--headline); padding: 0 0.1em; }
 .final-three { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1100px; margin-left: auto; margin-right: auto; }
 .final-three-item { background: var(--bg); border-radius: var(--radius-tile); padding: 40px 32px; border: 1px solid var(--line); }
@@ -136,7 +137,33 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 .final-three-text { font-size: 17px; font-weight: 600; color: var(--headline); line-height: 1.4; letter-spacing: -0.01em; }
 .footnote { padding: 48px 24px; background: var(--bg-alt); font-size: 12px; color: var(--text-mute); text-align: center; line-height: 1.6; }
 .footnote-inner { max-width: 800px; margin: 0 auto; }
-@media (max-width: 900px) { .section { padding: 80px 20px; } .section-hero { padding: 100px 20px 60px; } .bento-large-6, .bento-large-3 { grid-column: span 12; } .compare-grid { grid-template-columns: 1fr; } .compare-cell { border-right: none !important; border-left: none !important; } .compare-cell.head { padding: 20px 24px; } .story-grid { grid-template-columns: 1fr; } .timeline { grid-template-columns: 1fr 1fr; } .timeline-item { border-right: none; border-bottom: 1px solid var(--line); } .final-three { grid-template-columns: 1fr; } .bento-item { padding: 32px 28px; min-height: 220px; } }
+@media (max-width: 900px) {
+  .section { padding: 80px 20px; }
+  .section-hero { padding: 100px 20px 60px; }
+  .bento-large-6, .bento-large-3 { grid-column: span 12; }
+  .story-grid { grid-template-columns: 1fr; }
+  .timeline { grid-template-columns: 1fr 1fr; }
+  .timeline-item { border-right: none; border-bottom: 1px solid var(--line); }
+  .final-three { grid-template-columns: 1fr; }
+  .bento-item { padding: 32px 28px; min-height: 220px; }
+  /* Compare → 모바일 카드 모드 */
+  .compare-grid { display: flex; flex-direction: column; gap: 16px; background: transparent; border: none; border-radius: 0; }
+  .compare-cell { display: none; }
+  .compare-mobile-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .compare-mobile-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-small); padding: 0; overflow: hidden; }
+  .compare-mobile-card.recommend { border-color: var(--accent-blue); border-width: 2px; }
+  .compare-mobile-card-head { padding: 16px 18px; background: var(--headline); color: #FFFFFF; font-weight: 800; font-size: 15px; text-align: center; position: relative; }
+  .compare-mobile-card.recommend .compare-mobile-card-head { background: var(--accent-blue); }
+  .compare-mobile-card.recommend .compare-mobile-card-head::after { content: "권장"; position: absolute; top: 4px; right: 6px; font-size: 9px; font-weight: 700; background: rgba(255,255,255,0.22); padding: 2px 7px; border-radius: 10px; letter-spacing: 0.05em; }
+  .compare-mobile-row { padding: 14px 16px; border-bottom: 1px solid var(--line); font-size: 13.5px; line-height: 1.4; color: var(--text); }
+  .compare-mobile-row:last-child { border-bottom: none; }
+  .compare-mobile-row-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 4px; display: block; }
+  .compare-mobile-row.bold-num { font-weight: 800; }
+  .compare-mobile-row.danger { color: var(--accent-red); font-weight: 800; }
+  .compare-mobile-row.good { color: var(--accent-green); font-weight: 800; }
+  .compare-mobile-card.recommend .compare-mobile-row { background: rgba(0,113,227,0.04); }
+}
+@media (min-width: 901px) { .compare-mobile-cards { display: none; } }
 @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } html { scroll-behavior: auto; } }
 .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -146,7 +173,7 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 
 <section class="section-hero" aria-label="Hero">
   <div class="hero-inner">
-    <div class="typography-eyebrow hero-eyebrow">KISAS Platform · Board Onboarding</div>
+    <div class="typography-eyebrow hero-eyebrow"><span class="section-num">00</span>KISAS Platform · Board Onboarding</div>
     <h1 class="typography-hero-tagline hero-tagline">자문위원이<br><mark>일단 답이다.</mark></h1>
     <p class="hero-sub">신기욱 교수님 보드 합류 형태 — 등기이사와 자문위원 두 갈래.<br>미국 시민권자라는 변수, 5월 빠른 일정, 시리즈A 후 등기 승격 카드.<br>세 변수가 가리키는 한 방향.</p>
     <div class="hero-meta"><span><strong>4/24</strong> 보드 합류 수락</span><span><strong>5/2</strong> 형태 검토 회신</span><span><strong>2026-05-02</strong> 작성</span></div>
@@ -155,7 +182,7 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 
 <section class="section section-tint" aria-label="진행 흐름">
   <div class="section-inner">
-    <div class="typography-eyebrow section-eyebrow">현재상황</div>
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">01</span>현재상황</div>
     <h2 class="typography-section-headline section-headline">진행 흐름</h2>
     <p class="section-lead">4/24 회동에서 보드 합류 의향 수락. 5/2 회신에서 본인 입장의 합류 형태 검토 중. 우리 측은 회신 전에 두 옵션 정리 완료.</p>
     <div class="timeline fade-in">
@@ -169,7 +196,7 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 
 <section class="section" aria-label="핵심 숫자">
   <div class="section-inner">
-    <div class="typography-eyebrow section-eyebrow">핵심 숫자</div>
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">02</span>핵심 숫자</div>
     <h2 class="typography-section-headline section-headline">신교수님 지분의 흐름</h2>
     <p class="section-lead"><strong>지금 40만원 송금</strong> → 4% 지분 + 옵션 60주 → 시리즈A 100억 시점 행사 → <mark style="background:var(--highlight-yellow);padding:0 0.1em">회사의 5.30% 보유 = 5.3억 가치</mark>.</p>
     <div class="bento-grid fade-in">
@@ -197,7 +224,7 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 
 <section class="section section-alt" aria-label="등기이사 vs 자문위원">
   <div class="section-inner">
-    <div class="typography-eyebrow section-eyebrow">두 갈래 비교</div>
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">03</span>두 갈래 비교</div>
     <h2 class="typography-section-headline section-headline">등기이사 vs 자문위원</h2>
     <p class="section-lead">신교수님이 고민하시는 건 <strong>본직 충돌·한국 법적 책임·세금</strong>. 셋 다 등기이사 쪽이 더 무겁다.</p>
     <div class="compare-grid fade-in">
@@ -210,12 +237,36 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
       <div class="compare-cell">Stanford 이해상충 신고</div><div class="compare-cell">무거움 ↑</div><div class="compare-cell recommend-col">가벼움 ↓</div>
       <div class="compare-cell" style="border-bottom:none">계약서</div><div class="compare-cell" style="border-bottom:none">5종 (또는 슬림 4종)</div><div class="compare-cell recommend-col" style="border-bottom:none">4종</div>
     </div>
+
+    <!-- 모바일 전용 카드 모드 -->
+    <div class="compare-mobile-cards fade-in">
+      <div class="compare-mobile-card">
+        <div class="compare-mobile-card-head">등기이사</div>
+        <div class="compare-mobile-row"><span class="compare-mobile-row-label">법인등기</span>등재 (성명·주소)</div>
+        <div class="compare-mobile-row"><span class="compare-mobile-row-label">의결권</span>있음</div>
+        <div class="compare-mobile-row danger"><span class="compare-mobile-row-label" style="color:var(--text-mute)">법적 책임</span>무한책임</div>
+        <div class="compare-mobile-row bold-num"><span class="compare-mobile-row-label">절차 기간</span>4 ~ 6주</div>
+        <div class="compare-mobile-row"><span class="compare-mobile-row-label">옵션 비과세 5억</span>적용 (임직원)</div>
+        <div class="compare-mobile-row"><span class="compare-mobile-row-label">Stanford COI</span>무거움 ↑</div>
+        <div class="compare-mobile-row"><span class="compare-mobile-row-label">계약서</span>5종 (슬림 4종)</div>
+      </div>
+      <div class="compare-mobile-card recommend">
+        <div class="compare-mobile-card-head">자문위원</div>
+        <div class="compare-mobile-row"><span class="compare-mobile-row-label">법인등기</span>없음</div>
+        <div class="compare-mobile-row"><span class="compare-mobile-row-label">의결권</span>없음 (옵서버 가능)</div>
+        <div class="compare-mobile-row good"><span class="compare-mobile-row-label" style="color:var(--text-mute)">법적 책임</span>사실상 없음</div>
+        <div class="compare-mobile-row bold-num"><span class="compare-mobile-row-label">절차 기간</span>1주</div>
+        <div class="compare-mobile-row"><span class="compare-mobile-row-label">옵션 비과세 5억</span>미적용 (외부전문가)</div>
+        <div class="compare-mobile-row"><span class="compare-mobile-row-label">Stanford COI</span>가벼움 ↓</div>
+        <div class="compare-mobile-row"><span class="compare-mobile-row-label">계약서</span>4종</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="section" aria-label="자문위원 권장 근거">
   <div class="section-inner">
-    <div class="typography-eyebrow section-eyebrow">권장 근거</div>
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">04</span>권장 근거</div>
     <h2 class="typography-section-headline section-headline">자문위원을 메인으로 두는 이유</h2>
     <p class="section-lead">신교수님 5/2 회신의 결, 5월 일정과의 동행, 그리고 등기이사로 격상하는 카드.</p>
     <div class="story-grid fade-in">
@@ -228,7 +279,7 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 
 <section class="section section-tint" aria-label="상세 펼쳐보기">
   <div class="section-inner">
-    <div class="typography-eyebrow section-eyebrow">상세 — 펼쳐 보기</div>
+    <div class="typography-eyebrow section-eyebrow"><span class="section-num">05</span>상세 — 펼쳐 보기</div>
     <h2 class="typography-section-headline section-headline">필요할 때 열어보세요</h2>
     <p class="section-lead">계약서 패키지·캡테이블 흐름·사전 준비물·Q&A 8문·Deadlock 시나리오·우리 측 리스크·회신 메일 본문·발신 후 절차.</p>
     <div class="detail-stack">
@@ -407,7 +458,7 @@ body { font-family: var(--font-kr); background: var(--bg); color: var(--text); l
 </section>
 
 <section class="section-final" aria-label="결론">
-  <div class="typography-eyebrow final-eyebrow">한 줄</div>
+  <div class="typography-eyebrow final-eyebrow"><span class="section-num" style="margin-right:8px">06</span>한 줄</div>
   <h2 class="final-headline">우리 측 입장의 <mark>뼈대 세 줄</mark></h2>
   <div class="final-three">
     <div class="final-three-item"><div class="final-three-num">01</div><div class="final-three-text">자문위원이<br>일단 답이다.</div></div>
