@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>MAD POP MOU 0504 — 김 프로듀서님께 드리는 진단</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    :root { --font-kr: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; --radius-tile: 28px; }
+    :root[data-theme="dark"] { --bg: #000000; --bg-alt: #1D1D1F; --bg-card: #1D1D1F; --text: #F5F5F7; --headline: #FFFFFF; --accent-blue: #2997FF; --accent-green: #30D158; --accent-orange: #FF9F0A; --accent-purple: #BF5AF2; --accent-pink: #FF375F; --accent-red: #FF453A; --highlight: rgba(255,69,58,0.18); --grid-line: rgba(245,245,247,0.12); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-kr); background: var(--bg); color: var(--text); min-height: 100vh; padding: 28px; }
+    .typography-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.65; }
+    .typography-section-headline { font-size: clamp(32px, 4vw, 52px); font-weight: 900; line-height: 1.05; color: var(--headline); letter-spacing: -0.015em; }
+    .typography-headline-super { font-size: clamp(56px, 8vw, 120px); font-weight: 900; line-height: 0.92; letter-spacing: -0.025em; color: var(--headline); }
+    .typography-banner-card-headline { font-size: clamp(20px, 2vw, 28px); font-weight: 800; line-height: 1.15; color: var(--headline); }
+    .typography-feature-card-headline { font-size: clamp(16px, 1.4vw, 20px); font-weight: 700; color: var(--headline); }
+    .typography-tile-headline { font-size: clamp(14px, 1.2vw, 17px); font-weight: 700; }
+    .typography-body { font-size: clamp(13px, 1vw, 15px); font-weight: 400; line-height: 1.5; }
+    .typography-body-reduced { font-size: clamp(12px, 0.9vw, 13px); font-weight: 400; line-height: 1.5; opacity: 0.85; }
+    .typography-disclaimer { font-size: 10px; font-weight: 400; opacity: 0.55; }
+    mark.highlight { background: var(--highlight); color: var(--accent-red); padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+    .accent-red { color: var(--accent-red); } .accent-orange { color: var(--accent-orange); } .accent-green { color: var(--accent-green); } .accent-blue { color: var(--accent-blue); }
+    .bento-header { max-width: 1440px; margin: 0 auto 24px auto; padding: 8px 0 20px 0; border-bottom: 1px solid var(--grid-line); }
+    .header-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+    .header-left h1 { margin-top: 6px; }
+    .header-meta { text-align: right; }
+    .bento-section { max-width: 1440px; margin: 0 auto; }
+    .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+    .bento-item { padding: 22px 24px; border-radius: var(--radius-tile); background: var(--bg-card); display: flex; flex-direction: column; gap: 10px; min-height: 160px; position: relative; overflow: hidden; }
+    .span-12 { grid-column: span 12; } .span-7 { grid-column: span 7; } .span-5 { grid-column: span 5; }
+    .verdict-box { background: linear-gradient(135deg, rgba(255,69,58,0.18) 0%, rgba(191,90,242,0.12) 100%); border: 1px solid rgba(255,69,58,0.35); }
+    .verdict-eyebrow { color: var(--accent-red); font-weight: 800; }
+    .pillar-item { background: var(--bg-card); border-left: 3px solid var(--accent-red); padding-left: 18px; }
+    .pillar-item.amber { border-left-color: var(--accent-orange); }
+    .pillar-num { font-size: 11px; font-weight: 800; opacity: 0.5; letter-spacing: 0.1em; }
+    .risk-matrix-wrap { display: grid; grid-template-columns: 80px 1fr; gap: 8px; align-items: stretch; }
+    .matrix-y-label { display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 10px; font-weight: 700; opacity: 0.6; letter-spacing: 0.1em; text-transform: uppercase; }
+    .matrix-grid-area { display: flex; flex-direction: column; gap: 6px; }
+    .matrix-rows { display: grid; grid-template-rows: repeat(5, 1fr); gap: 4px; flex: 1; }
+    .matrix-row { display: grid; grid-template-columns: 60px repeat(5, 1fr); gap: 4px; align-items: stretch; }
+    .matrix-y-tick { font-size: 10px; font-weight: 700; opacity: 0.6; display: flex; align-items: center; justify-content: flex-end; padding-right: 6px; }
+    .matrix-cell { background: rgba(245,245,247,0.04); border-radius: 8px; min-height: 48px; padding: 4px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 3px; transition: background 200ms; }
+    .matrix-cell.zone-low { background: rgba(48,209,88,0.06); }
+    .matrix-cell.zone-mid { background: rgba(255,159,10,0.08); }
+    .matrix-cell.zone-high { background: rgba(255,69,58,0.10); }
+    .matrix-cell.zone-critical { background: rgba(255,69,58,0.20); }
+    .risk-dot { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #FFF; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+    .risk-dot.r1, .risk-dot.r2 { background: var(--accent-red); }
+    .risk-dot.r3, .risk-dot.r4 { background: var(--accent-orange); }
+    .risk-dot.r5 { background: var(--accent-blue); }
+    .matrix-x-axis { display: grid; grid-template-columns: 60px repeat(5, 1fr); gap: 4px; }
+    .matrix-x-tick { font-size: 10px; font-weight: 700; opacity: 0.6; text-align: center; padding-top: 4px; }
+    .matrix-x-tick:first-child { visibility: hidden; }
+    .matrix-x-label { text-align: center; font-size: 10px; font-weight: 700; opacity: 0.6; letter-spacing: 0.1em; text-transform: uppercase; padding-top: 6px; }
+    .risk-legend { display: flex; flex-direction: column; gap: 10px; }
+    .risk-legend-item { display: flex; gap: 10px; align-items: flex-start; }
+    .risk-legend-num { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: #FFF; }
+    .walkaway-card { background: var(--bg-card); border-top: 3px solid var(--accent-red); padding-top: 16px; }
+    .walkaway-tag { display: inline-block; background: rgba(255,69,58,0.18); color: var(--accent-red); font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; letter-spacing: 0.05em; }
+    .action-timeline { display: flex; flex-direction: column; gap: 10px; }
+    .action-row { display: grid; grid-template-columns: 70px 1fr; gap: 12px; align-items: baseline; padding-bottom: 10px; border-bottom: 1px solid var(--grid-line); }
+    .action-row:last-child { border-bottom: 0; }
+    .action-date { font-size: 12px; font-weight: 800; color: var(--accent-blue); letter-spacing: 0.02em; }
+    .bento-footer { max-width: 1440px; margin: 24px auto 0 auto; padding: 18px 0 8px 0; border-top: 1px solid var(--grid-line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .footnote { font-size: 10px; opacity: 0.55; line-height: 1.5; } .signature { font-size: 11px; opacity: 0.7; }
+    :focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 4px; border-radius: 4px; }
+    @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+    @page { size: A4 portrait; margin: 10mm; }
+    @media print {
+      body { padding: 0; background: #FFF; color: #000; }
+      :root[data-theme="dark"] { --bg: #FFFFFF; --bg-alt: #F5F5F7; --bg-card: #F5F5F7; --text: #1D1D1F; --headline: #000000; --grid-line: rgba(0,0,0,0.15); }
+      .bento-item { break-inside: avoid; box-shadow: none; padding: 12px 14px; min-height: auto; }
+      .bento-grid { gap: 8px; } .typography-headline-super { font-size: 56px; } .typography-section-headline { font-size: 24px; }
+    }
+    @media (max-width: 1067px) { .bento-item[class*="span-"] { grid-column: span 6; } .span-12 { grid-column: span 12 !important; } }
+    @media (max-width: 733px) { body { padding: 14px; } .bento-item[class*="span-"] { grid-column: span 12; min-height: 140px; padding: 18px; } }
+  </style>
+</head>
+<body>
+  <header class="bento-header" role="banner">
+    <div class="header-row">
+      <div class="header-left">
+        <p class="typography-eyebrow accent-red">계약 진단 · 내부 보고</p>
+        <h1 class="typography-section-headline">MAD POP MOU — 0504 진단</h1>
+        <p class="typography-body-reduced" style="margin-top: 6px; opacity: 0.7;">우정 회장 송부 MOU(2026-05-04) · 김 프로듀서님께 드리는 1pager 진단입니다.</p>
+      </div>
+      <div class="header-meta">
+        <p class="typography-disclaimer">수신: 김형석 프로듀서</p>
+        <p class="typography-disclaimer">발신: MBMG 검토팀</p>
+        <p class="typography-disclaimer">일자: 2026-05-04</p>
+        <p class="typography-disclaimer">버전: v2.0</p>
+      </div>
+    </div>
+  </header>
+  <section class="bento-section" aria-label="MOU 진단 요약">
+    <div class="bento-grid">
+      <div class="bento-item verdict-box span-7" aria-label="진단 결론">
+        <p class="typography-eyebrow verdict-eyebrow">결론 · 의사결정 1줄</p>
+        <h2 class="typography-banner-card-headline">현 MOU <mark class="highlight">서명 ✗</mark>. 다섯 영역 모두 우리 측이 받기 어려운 조건입니다.</h2>
+        <p class="typography-body" style="margin-top: 4px;">이 MOU는 우리 측에 <strong class="accent-red">현금 0·손실 0·리스크 0</strong>을 명문화한 대신, 의사결정권·IP 소유·수익 구조 전부를 갑(MAD POP = MADVERSE Group + MADPOP + 우정 회장 합작 자회사)에 귀속시킵니다. 갑이 비용을 산정하고, 갑이 IP를 소유하고, 갑이 회사를 정의합니다. 김 프로듀서님은 이름·시간·셀럽 네트워크만 투입하는 구조입니다.</p>
+        <p class="typography-body-reduced accent-orange" style="margin-top: 6px;">다음 액션: 5/14 이내 Walk-away 4대 마지노선 갑측 1차 통보. 회신 없으면 협상 종료입니다.</p>
+      </div>
+      <div class="bento-item span-5" style="background: linear-gradient(135deg, rgba(41,151,255,0.10) 0%, rgba(191,90,242,0.08) 100%);">
+        <p class="typography-eyebrow">을 측 수익분배율 (영구 고정)</p>
+        <h2 class="typography-headline-super"><span class="accent-blue">20</span><span style="font-size: 0.4em; vertical-align: super; opacity: 0.7;">%</span></h2>
+        <p class="typography-body-reduced" style="margin-top: -6px;">단, 분배 기준은 <strong>"갑이 산정한 운영비·세금·합의된 비용을 차감한 순이익"</strong>입니다. 회계 감사권 없습니다. 비용 부풀리면 20% × 0 = 0.</p>
+        <p class="typography-disclaimer">근거: §4.3·§4.4</p>
+      </div>
+      <div class="bento-item span-12" aria-label="5층 진단">
+        <p class="typography-eyebrow">MOU 자체 5층 진단 — 영역별 독소 1줄</p>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 10px;">
+          <div class="pillar-item"><p class="pillar-num">01 / PARTY</p><h3 class="typography-tile-headline accent-red" style="margin-top: 4px;">갑 = 3자 합작체</h3><p class="typography-body-reduced" style="margin-top: 4px;">"MADVERSE Group(주도) + MADPOP + 우정 회장 합작 자회사" (§1). 우정 회장의 SEC 10년 임원 금지·중국 限高 노출이 합작체로 전이됩니다.</p></div>
+          <div class="pillar-item"><p class="pillar-num">02 / IP — 디지털휴먼</p><h3 class="typography-tile-headline accent-red" style="margin-top: 4px;">갑 단독 저작권</h3><p class="typography-body-reduced" style="margin-top: 4px;">"All digital human images, virtual stage, finished videos = copyrighted solely to Party A" (§2.1·§5). 김 프로듀서님이 발굴한 한·중·베 셀럽 아바타 전부 갑 소유입니다.</p></div>
+          <div class="pillar-item"><p class="pillar-num">03 / IP — MADPOP 음악</p><h3 class="typography-tile-headline accent-red" style="margin-top: 4px;">3자 공동 소유</h3><p class="typography-body-reduced" style="margin-top: 4px;">"MADPOP 브랜드·음악 IP는 Mr. Kim·MADPOP·우정 3자 공동 소유" (§3.1·§5). 김 프로듀서님 단독 결정권 박탈됩니다.</p></div>
+          <div class="pillar-item"><p class="pillar-num">04 / 수익</p><h3 class="typography-tile-headline accent-red" style="margin-top: 4px;">80:20 영구 고정</h3><p class="typography-body-reduced" style="margin-top: 4px;">"Permanently distributed at fixed ratio" (§4.4). 재협상 조항 ✗. 셀럽·음악·아트디렉팅 3중 기여에도 5분의 1 고정입니다.</p></div>
+          <div class="pillar-item amber"><p class="pillar-num">05 / 해지·기간</p><h3 class="typography-tile-headline accent-orange" style="margin-top: 4px;">조항 자체 ✗</h3><p class="typography-body-reduced" style="margin-top: 4px;">계약 기간·해지 사유·분쟁 해결지·준거법 전부 미기재. "MOU라 간단하다"는 명목으로 우리 측 보호장치 일괄 누락입니다.</p></div>
+        </div>
+      </div>
+      <div class="bento-item span-7" aria-label="5x5 리스크 매트릭스">
+        <p class="typography-eyebrow">리스크 매트릭스 · 확률 × 임팩트</p>
+        <div class="risk-matrix-wrap" style="margin-top: 8px;">
+          <div class="matrix-y-label">임팩트 →</div>
+          <div class="matrix-grid-area">
+            <div class="matrix-rows">
+              <div class="matrix-row"><div class="matrix-y-tick">致命</div><div class="matrix-cell zone-mid"></div><div class="matrix-cell zone-high"></div><div class="matrix-cell zone-critical"><span class="risk-dot r1">R1</span></div><div class="matrix-cell zone-critical"></div><div class="matrix-cell zone-critical"></div></div>
+              <div class="matrix-row"><div class="matrix-y-tick">高</div><div class="matrix-cell zone-low"></div><div class="matrix-cell zone-mid"></div><div class="matrix-cell zone-high"></div><div class="matrix-cell zone-critical"><span class="risk-dot r3">R3</span></div><div class="matrix-cell zone-critical"><span class="risk-dot r2">R2</span></div></div>
+              <div class="matrix-row"><div class="matrix-y-tick">中</div><div class="matrix-cell zone-low"></div><div class="matrix-cell zone-low"></div><div class="matrix-cell zone-mid"><span class="risk-dot r4">R4</span></div><div class="matrix-cell zone-high"></div><div class="matrix-cell zone-high"></div></div>
+              <div class="matrix-row"><div class="matrix-y-tick">低中</div><div class="matrix-cell zone-low"></div><div class="matrix-cell zone-low"></div><div class="matrix-cell zone-mid"><span class="risk-dot r5">R5</span></div><div class="matrix-cell zone-mid"></div><div class="matrix-cell zone-high"></div></div>
+              <div class="matrix-row"><div class="matrix-y-tick">低</div><div class="matrix-cell zone-low"></div><div class="matrix-cell zone-low"></div><div class="matrix-cell zone-low"></div><div class="matrix-cell zone-mid"></div><div class="matrix-cell zone-mid"></div></div>
+            </div>
+            <div class="matrix-x-axis"><div class="matrix-x-tick"></div><div class="matrix-x-tick">매우 낮음</div><div class="matrix-x-tick">낮음</div><div class="matrix-x-tick">중</div><div class="matrix-x-tick">높음</div><div class="matrix-x-tick">확실</div></div>
+            <div class="matrix-x-label">← 확률</div>
+          </div>
+        </div>
+      </div>
+      <div class="bento-item span-5" aria-label="리스크 5건 범례">
+        <p class="typography-eyebrow">Top 5 리스크 — 시나리오</p>
+        <div class="risk-legend" style="margin-top: 8px;">
+          <div class="risk-legend-item"><span class="risk-legend-num" style="background: var(--accent-red);">R1</span><div><p class="typography-tile-headline accent-red">MADVERSE 제재 전이 — 致命/高</p><p class="typography-body-reduced">합작 자회사 등록 시 우정 회장 SEC·限高 이력이 KYC에서 노출됩니다. 1년 내 글로벌 결제·송금 차단 가능합니다.</p></div></div>
+          <div class="risk-legend-item"><span class="risk-legend-num" style="background: var(--accent-red);">R2</span><div><p class="typography-tile-headline accent-red">디지털휴먼 IP 락인 — 高/확실</p><p class="typography-body-reduced">계약 종료 후에도 갑이 김 프로듀서님 발굴 셀럽 아바타로 계속 영업 가능합니다.</p></div></div>
+          <div class="risk-legend-item"><span class="risk-legend-num" style="background: var(--accent-red);">R3</span><div><p class="typography-tile-headline accent-red">MADPOP 브랜드 1/3 희석 — 高/확실</p><p class="typography-body-reduced">상표 출원·라이선스·신곡 사용 매번 우정 동의가 필요해집니다.</p></div></div>
+          <div class="risk-legend-item"><span class="risk-legend-num" style="background: var(--accent-orange);">R4</span><div><p class="typography-tile-headline accent-orange">20% 수익분배 자체 소멸 — 高/中</p><p class="typography-body-reduced">갑이 비용 항목·금액을 단독 산정합니다. 회계 감사권 없으면 순이익 0 가능합니다.</p></div></div>
+          <div class="risk-legend-item"><span class="risk-legend-num" style="background: var(--accent-blue);">R5</span><div><p class="typography-tile-headline accent-blue">셀럽 권리 책임 전가 — 中/低중</p><p class="typography-body-reduced">한·중·베 인격권법상 양도 ✗. 김 프로듀서님이 이행 불가능한 의무를 지는 구조입니다.</p></div></div>
+        </div>
+      </div>
+      <div class="bento-item span-12" aria-label="Walk-away 4대 마지노선">
+        <p class="typography-eyebrow accent-red">Walk-away 4대 마지노선 — 못 받으면 서명 ✗</p>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 10px;">
+          <div class="walkaway-card"><span class="walkaway-tag">W1 · §1</span><h3 class="typography-feature-card-headline">갑 정의에서 MADVERSE Group 제외</h3><p class="typography-body-reduced" style="margin-top: 6px;">"MADVERSE Group + MADPOP + 우정" → "MADPOP + 우정"으로 축소. 제재·限高 전이 차단합니다.</p></div>
+          <div class="walkaway-card"><span class="walkaway-tag">W2 · §2.1·§5</span><h3 class="typography-feature-card-headline">디지털휴먼 IP 공동 소유 또는 우선매수권</h3><p class="typography-body-reduced" style="margin-top: 6px;">갑 단독 → 3자 공동, 또는 계약 종료 시 김 프로듀서님이 우선 매수합니다.</p></div>
+          <div class="walkaway-card"><span class="walkaway-tag">W3 · §3.1·§5</span><h3 class="typography-feature-card-headline">MADPOP 음악 IP는 김형석 단독 소유</h3><p class="typography-body-reduced" style="margin-top: 6px;">"3자 공동" → "Mr. Kim 단독, 갑에게 사업범위 한정 라이선스"입니다.</p></div>
+          <div class="walkaway-card"><span class="walkaway-tag">W4 · §4.3</span><h3 class="typography-feature-card-headline">사전 합의 비용 + 분기 회계 감사권</h3><p class="typography-body-reduced" style="margin-top: 6px;">"갑이 제출하는 비용" → "사전 합의 카테고리 + 한국 회계법인 분기 감사"입니다.</p></div>
+        </div>
+      </div>
+      <div class="bento-item span-7" aria-label="실행 일정">
+        <p class="typography-eyebrow">즉시 조치 · 5월 일정</p>
+        <div class="action-timeline" style="margin-top: 10px;">
+          <div class="action-row"><span class="action-date">5/7</span><p class="typography-body-reduced"><strong>관계 명확화 질의서 송부</strong> — 0504 MOU가 별도 4.20 합의를 대체하는지 보충하는지 갑에 서면 질의합니다.</p></div>
+          <div class="action-row"><span class="action-date">5/14</span><p class="typography-body-reduced"><strong>Walk-away 4대 마지노선 1차 통보</strong> — 1페이지 카운터 문서로 갑 송부. 회신 데드라인 명시합니다.</p></div>
+          <div class="action-row"><span class="action-date">5/21</span><p class="typography-body-reduced"><strong>회신 평가 · 분기점</strong> — Tier 1·2 협상 진입 또는 협상 종료 결정합니다.</p></div>
+          <div class="action-row"><span class="action-date">5/28</span><p class="typography-body-reduced"><strong>협상 진입 시 정관·세부 계약서 입수</strong> — 별도 진단리포트 산출합니다.</p></div>
+        </div>
+      </div>
+      <div class="bento-item span-5" aria-label="협상 카드 3티어">
+        <p class="typography-eyebrow">협상 카드 — 3-Tier</p>
+        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 10px;">
+          <div><p class="typography-tile-headline accent-green">Tier 1 — 첫 카드</p><p class="typography-body-reduced">수익 20% → 30% · IP 합작회사 귀속 · 분쟁 베이징 → 싱가포르 SIAC.</p></div>
+          <div><p class="typography-tile-headline accent-orange">Tier 2 — 실무 타결선</p><p class="typography-body-reduced">W2·W3·W4 관철 + 수익 25% · 영구 고정 → 5년 후 재협상.</p></div>
+          <div><p class="typography-tile-headline accent-red">Tier 3 — Walk-away</p><p class="typography-body-reduced">위 W1~W4 못 받으면 서명 ✗. 협상 종료합니다.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="bento-footer">
+    <p class="footnote">출처: 우정회장_MOU_0504.txt (2026-05-04 송부) · 분석 스킬: contract-reviewer + risk-radar + app-and-jang(IP) + paper-engine + apple-canvas · 부록: MBMG_MOU_0504_부록_v2.0.md (조항 verbatim·법적 근거)</p>
+    <p class="signature">통찰: 자본 게임 → 계약 게임 후퇴 · 확신도: 90</p>
+  </footer>
+</body>
+</html>
