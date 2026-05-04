@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<title>학업계획서 v3 — 코멘트 검토</title>
+<style>
+:root {
+  --bg: #fafaf7;
+  --paper: #ffffff;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-mute: #8a8a8a;
+  --line: #e5e2dc;
+  --accent: #5a4a3a;
+  --accent-soft: #f0ebe2;
+  --highlight: #fff5cc;
+  --filled: #e8f4ea;
+  --filled-dot: #4a8c5a;
+}
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --paper: #242424;
+  --ink: #e8e6e0;
+  --ink-soft: #b8b6b0;
+  --ink-mute: #888680;
+  --line: #3a3a3a;
+  --accent: #d0c0a8;
+  --accent-soft: #2e2820;
+  --highlight: #4a4020;
+  --filled: #2a3a2c;
+  --filled-dot: #80c08a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Serif KR', 'Nanum Myeongjo', 'Apple SD Gothic Neo', serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.85;
+  font-size: var(--font-size, 16px);
+  transition: background 0.3s, color 0.3s;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 진도바 */
+#progress {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 3px; background: transparent; z-index: 1000;
+}
+#progress-bar {
+  height: 100%; background: var(--accent);
+  width: 0%; transition: width 0.1s;
+}
+
+/* 툴바 */
+#toolbar {
+  position: fixed; top: 12px; right: 16px; z-index: 999;
+  display: flex; gap: 8px; flex-wrap: wrap;
+  background: var(--paper); padding: 8px;
+  border: 1px solid var(--line); border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.tbtn {
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 6px 12px; border-radius: 6px;
+  cursor: pointer; font-size: 13px;
+  color: var(--ink); font-family: inherit;
+  transition: all 0.15s;
+}
+.tbtn:hover { background: var(--accent-soft); border-color: var(--accent); }
+.tbtn.primary { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.tbtn.primary:hover { opacity: 0.9; }
+
+/* 메인 레이아웃 */
+.layout {
+  max-width: 1200px; margin: 0 auto;
+  padding: 80px 24px 120px;
+  display: grid; grid-template-columns: 1fr 320px; gap: 32px;
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; padding: 80px 16px 120px; }
+  .sidebar { position: static !important; max-height: none !important; }
+}
+
+/* 본문 */
+article {
+  background: var(--paper);
+  padding: 56px 64px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+@media (max-width: 600px) {
+  article { padding: 32px 24px; }
+}
+article h1 {
+  font-size: 1.6em; font-weight: 700;
+  margin-bottom: 0.3em; line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+article h1.subtitle {
+  font-size: 1.4em; font-weight: 600;
+  margin-top: 0.2em; margin-bottom: 1.5em;
+  color: var(--ink-soft);
+}
+article .meta {
+  font-size: 0.9em; color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0; margin: 24px 0 40px;
+  display: flex; gap: 24px; flex-wrap: wrap;
+}
+article hr {
+  border: none; border-top: 1px solid var(--line);
+  margin: 40px 0;
+}
+article h2 {
+  font-size: 1.4em; font-weight: 700;
+  margin: 48px 0 24px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  letter-spacing: -0.01em;
+}
+article h3 {
+  font-size: 1.1em; font-weight: 700;
+  margin: 32px 0 16px;
+  color: var(--accent);
+  letter-spacing: -0.005em;
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 12px;
+}
+article h3 .title-text { flex: 1; }
+.comment-toggle {
+  background: var(--accent-soft); border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 4px 10px; border-radius: 16px;
+  font-size: 12px; cursor: pointer;
+  font-family: inherit; white-space: nowrap;
+  flex-shrink: 0; margin-top: 4px;
+  transition: all 0.15s;
+}
+.comment-toggle:hover { background: var(--accent); color: var(--paper); }
+.comment-toggle.filled { background: var(--filled); border-color: var(--filled-dot); color: var(--filled-dot); }
+article p {
+  margin-bottom: 1.2em; text-align: justify;
+  word-break: keep-all;
+}
+article ul {
+  margin: 1em 0 1.4em 1.5em;
+  padding-left: 0.5em;
+}
+article li { margin-bottom: 0.7em; }
+article strong { font-weight: 700; color: var(--ink); }
+article p strong:first-child { color: var(--accent); }
+
+/* 인라인 코멘트 박스 */
+.comment-box {
+  display: none;
+  margin: 16px 0 24px;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 16px;
+  border-radius: 0 4px 4px 0;
+}
+.comment-box.open { display: block; }
+.comment-box label {
+  display: block; font-size: 12px;
+  color: var(--ink-soft); margin-bottom: 6px;
+  font-family: 'Apple SD Gothic Neo', sans-serif;
+}
+.comment-box textarea {
+  width: 100%; min-height: 80px;
+  border: 1px solid var(--line); border-radius: 4px;
+  padding: 10px; font-family: inherit;
+  font-size: 14px; line-height: 1.6;
+  background: var(--paper); color: var(--ink);
+  resize: vertical;
+}
+.comment-box textarea:focus {
+  outline: none; border-color: var(--accent);
+}
+.comment-meta {
+  display: flex; justify-content: space-between;
+  margin-top: 8px; font-size: 11px; color: var(--ink-mute);
+  font-family: 'Apple SD Gothic Neo', sans-serif;
+}
+
+/* 사이드바 */
+.sidebar {
+  position: sticky; top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px; padding: 20px;
+  font-family: 'Apple SD Gothic Neo', sans-serif;
+  font-size: 13px;
+}
+.sidebar h4 {
+  font-size: 13px; font-weight: 700;
+  color: var(--ink-soft); margin-bottom: 12px;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  padding-bottom: 8px; border-bottom: 1px solid var(--line);
+}
+.toc-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 0; cursor: pointer;
+  color: var(--ink-soft);
+  border-radius: 4px; padding-left: 8px;
+  transition: all 0.15s;
+}
+.toc-item:hover { background: var(--accent-soft); color: var(--accent); }
+.toc-item .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--line); flex-shrink: 0;
+}
+.toc-item.filled .dot { background: var(--filled-dot); }
+.toc-part {
+  font-weight: 700; color: var(--ink);
+  margin-top: 12px; padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+.toc-part:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.stats {
+  margin-top: 16px; padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 12px; color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+/* 안내 모달 */
+#onboarding {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2000; padding: 16px;
+}
+#onboarding.hidden { display: none; }
+.modal {
+  background: var(--paper); border-radius: 8px;
+  padding: 32px; max-width: 480px; width: 100%;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+.modal h3 {
+  font-size: 1.2em; margin-bottom: 16px;
+  color: var(--accent);
+}
+.modal ol { margin-left: 1.4em; line-height: 1.9; }
+.modal li { margin-bottom: 8px; }
+.modal .actions {
+  margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;
+}
+
+/* 토스트 */
+#toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--ink); color: var(--paper);
+  padding: 12px 24px; border-radius: 24px;
+  font-size: 14px; z-index: 2001;
+  font-family: 'Apple SD Gothic Neo', sans-serif;
+  transition: transform 0.3s;
+  pointer-events: none;
+}
+#toast.show { transform: translateX(-50%) translateY(0); }
+
+/* 인쇄 */
+@media print {
+  #toolbar, #progress, .sidebar, .comment-toggle, #onboarding { display: none !important; }
+  .layout { display: block; padding: 0; }
+  article { border: none; padding: 0; }
+  .comment-box { display: block !important; break-inside: avoid; }
+}
+
+/* 세부 폰트 사이즈 */
+body[data-fontsize="s"] { --font-size: 14px; }
+body[data-fontsize="m"] { --font-size: 16px; }
+body[data-fontsize="l"] { --font-size: 18px; }
+</style>
+</head>
+<body data-fontsize="m">
+
+<div id="progress"><div id="progress-bar"></div></div>
+
+<div id="toolbar">
+  <button class="tbtn" onclick="toggleTheme()" title="다크모드">🌓</button>
+  <button class="tbtn" onclick="cycleFontSize()" title="글자 크기">A±</button>
+  <button class="tbtn" onclick="window.print()" title="인쇄">🖨</button>
+  <button class="tbtn" onclick="document.getElementById('importFile').click()" title="JSON 가져오기">📂</button>
+  <button class="tbtn" onclick="copyAll()">📋 복사</button>
+  <button class="tbtn primary" onclick="downloadJSON()">💾 저장</button>
+  <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
+</div>
+
+<div class="layout">
+
+<article id="content">
+
+<h1>한양대학교 상담심리대학원</h1>
+<h1 class="subtitle">조직심리및인재개발전공 학업계획서</h1>
+
+<div class="meta">
+  <span><strong>수험번호</strong> ____________</span>
+  <span><strong>지원전공</strong> 조직심리및인재개발전공</span>
+  <span><strong>성명</strong> 백선미</span>
+</div>
+
+<hr>
+
+<h2>1. 진학동기</h2>
+
+<h3 data-id="1-1"><span class="title-text">인재 개발은 인재의 마음을 지키는 일에서 출발합니다.</span><button class="comment-toggle" data-target="1-1">💬 코멘트</button></h3>
+<p>저는 1983년에 태어나 2011년 IT 업계에 첫 입사했습니다. 약 16년 동안 한 산업 안에서 동료·후배·리더가 들어오고 나가는 장면을 가까이에서 지켜봤습니다. 사람을 키우는 일은 결국 그 사람의 마음을 지키는 일에서 출발한다는 한 줄을 마음에 새겼습니다. 본 학업계획서를 관통하는 한 문장이며, 한양대학교 상담심리대학원 조직심리및인재개발전공의 문을 두드리게 된 가장 깊은 이유입니다.</p>
+<div class="comment-box" data-id="1-1"></div>
+
+<h3 data-id="1-2"><span class="title-text">16년의 경험은 한 가지 답으로 수렴하지 않았습니다.</span><button class="comment-toggle" data-target="1-2">💬 코멘트</button></h3>
+<p>한 줄의 명제 뒤에는 16년 동안 답을 찾아 헤맨 시간이 있습니다. 시점마다 답이 다르게 보였고, 다음 시점에는 또 다른 답이 보였습니다.</p>
+<ul>
+  <li><strong>게임 업계 입사 초기</strong>: 직장인의 스트레스는 업무에서 온다고 믿었습니다. 일이 쌓이면 사람도 무너진다고 생각했습니다.</li>
+  <li><strong>3~5년차 적응기</strong>: 답이 사람 관계에 있다고 보였습니다. 같은 업무라도 누구와 하느냐에 따라 무게가 달라졌습니다.</li>
+  <li><strong>연차가 쌓이며</strong>: 원인이 나인지, 환경인지, 사람인지 분간되지 않았습니다. 한 가지 변수를 빼도 다른 변수가 그 자리를 메웠습니다.</li>
+  <li><strong>헤드헌터·강사 1인 활동기</strong>: 조직 안의 나와 1인 활동의 나는 다른 사람이라는 사실을 깨달았습니다. 같은 사람도 구조에 따라 다르게 작동했습니다.</li>
+  <li><strong>팀리더 시기</strong>: 사람에 집중해 매니지먼트하기보다, 일에 집중해 사람을 리드할 때 많은 문제가 풀리는 장면을 겪었습니다. 답이 사람이 아니라 일의 설계에 있는 순간이 있었습니다.</li>
+  <li><strong>뉴욕 직장인 어학연수</strong>: 세계 각국의 직장인을 만났습니다. 답이 없다는 사실 자체가 세계 공통이라는 점을 확인했습니다. 한국 IT만의 문제가 아니었습니다.</li>
+</ul>
+<div class="comment-box" data-id="1-2"></div>
+
+<h3 data-id="1-3"><span class="title-text">16년 동안 답을 찾지 못한 자리에서, 학문으로 가야 한다는 결심이 섰습니다.</span><button class="comment-toggle" data-target="1-3">💬 코멘트</button></h3>
+<p>16년의 시간은 한 가지 답을 주지 않았습니다. 시점마다 답이 바뀌었고, 사람·일·구조·문화가 서로 얽혀 어느 하나만으로는 풀리지 않았습니다. 현장에서 직관과 경험으로 답을 찾는 일에는 한계가 있다는 사실을, 16년이 걸려 확인했습니다. 호기심이나 관심으로 학문에 다가가는 단계는 지났습니다. 16년의 답 없음을 학문의 도구로 풀어내는 일에 몰입하고 싶다는 결심이, 본 전공의 문을 두드리는 가장 직접적인 동기입니다.</p>
+<div class="comment-box" data-id="1-3"></div>
+
+<h3 data-id="1-4"><span class="title-text">AI 도입 이후, 한 사무실 안에 두 부류가 갈렸습니다.</span><button class="comment-toggle" data-target="1-4">💬 코멘트</button></h3>
+<p>지난 2~3년 사이 16년의 누적 위에 새 변수가 얹혔습니다. AI 도입입니다. 같은 사무실, 같은 회의실, 같은 슬랙 채널 안에서 사람들이 둘로 갈라지는 장면을 직접 목격했습니다.</p>
+<p><strong>[부류 1] AI를 따라가지 못하는 사람들</strong></p>
+<ul>
+  <li><strong>자기의심</strong>: "내 나이에 따라갈 수 있을까", "더 이상 쓸모가 없는 게 아닐까"라는 말을 1:1 면담에서 자주 들었습니다.</li>
+  <li><strong>번아웃과 감정 소진</strong>: 따라가야 한다는 압박과 따라가지 못한다는 좌절이 엇갈리며 일상의 에너지가 무너졌습니다.</li>
+</ul>
+<p><strong>[부류 2] AI를 자유자재로 활용하는 사람들</strong></p>
+<ul>
+  <li><strong>자기 결정권의 회복</strong>: AI가 답을 빠르게 줄수록, 무엇을 안 할지를 더 단호하게 정했습니다.</li>
+  <li><strong>의미의 재정의</strong>: 'AI가 못하는 일이 내 일'이라는 새 직무 정체성을 스스로 다시 썼습니다.</li>
+</ul>
+<div class="comment-box" data-id="1-4"></div>
+
+<h3 data-id="1-5"><span class="title-text">일반 상담사의 언어로는 진단조차 어려운 영역입니다.</span><button class="comment-toggle" data-target="1-5">💬 코멘트</button></h3>
+<p>이 균열은 일반 심리상담의 언어로는 잘 해석되지 않습니다. IT 현장의 AI 적응 실패는 단순한 적응장애·번아웃·우울로 환원되지 않습니다. 산업의 속도, 직무의 본질, 도구의 진화가 함께 얽힌 복합 현상이기 때문입니다. 외부 상담사를 데려와도 "어떤 도구가 어떤 직무를 어떻게 흔드는지"를 진단하는 단계에서 막히는 장면을 여러 번 봤습니다. 한 가지 사실을 깨달았습니다. 이 현장에 들어가서 진단하고 다룰 수 있는 사람은, 이 현장에 16년을 머물러 본 사람이어야 합니다.</p>
+<div class="comment-box" data-id="1-5"></div>
+
+<h3 data-id="1-6"><span class="title-text">AI가 풀지 못하는 영역은 결국 사람의 마음입니다.</span><button class="comment-toggle" data-target="1-6">💬 코멘트</button></h3>
+<p>AI는 정보 제공·문제 해결·반복 작업에서 사람보다 빠르고 정확합니다. 그러나 AI를 쓰는 사람의 마음은 AI가 풀지 못합니다. 오히려 AI를 쓸수록 인지와 감정 사이의 거리가 깊어지고, 머리로는 받아들였으나 가슴으로는 흔들리는 사람이 늘어납니다. 김밥의 김이 안을 감싸야 비로소 김밥이 완성되듯, 기술의 속도가 빨라질수록 그 안을 감싸 줄 마음의 자리가 더 절실해진다고 판단했습니다. 본 전공이 다루는 영역이 바로 이 자리입니다.</p>
+<div class="comment-box" data-id="1-6"></div>
+
+<h3 data-id="1-7"><span class="title-text">본 전공의 원형은 "인재개발 및 기업상담"이었습니다.</span><button class="comment-toggle" data-target="1-7">💬 코멘트</button></h3>
+<p>본 전공의 옛 명칭이 [인재개발및기업상담전공]이었음을 확인했습니다. 16년 IT 현장에서 마주친 문제와 본 전공이 다뤄 온 문제가 같은 뿌리를 가지고 있다는 확신이 들었습니다. 인재개발과 기업상담은 별개의 학문이 아니라, 인재의 마음을 지키며 인재의 역량을 키우는 한 동전의 양면입니다. 그 동전이 지금 AI 시대를 만나, 가장 절실하게 필요해진 시점에 와 있다는 사실에 마음을 다잡았습니다.</p>
+<div class="comment-box" data-id="1-7"></div>
+
+<h3 data-id="1-8"><span class="title-text">정기수 교수님의 학맥에 합류하고 싶습니다.</span><button class="comment-toggle" data-target="1-8">💬 코멘트</button></h3>
+<p>본 전공 전공주임 정기수 교수님께서 [평생교육 경영론](양서원, 2024) 제5장 "평생교육기관의 리더십 및 의사결정"을 직접 집필하신 사실을 확인했습니다. 평생교육기관의 리더십과 의사결정은, 제가 IT 16년 동안 매일 마주친 "사람을 어떻게 키울 것인가, 누구를 어떻게 결정할 것인가"라는 질문과 같은 질문이었습니다. 교수님께서 평생교육이라는 차원에서 다루신 리더십·의사결정 프레임을, IT 산업 현장의 사례로 검증·확장하는 학생이 되겠습니다.</p>
+<p>교수님께서 한양대학교 사회교육원장·미래인재교육원 원장을 거치시며 평생교육 운영을 직접 수행하셨고, 서울평생교육연합 회장·국가평생교육진흥원 학점인정심의위원회 부위원장으로서 정책까지 학자·행정가·정책가 3중의 학맥을 구축하신 점에 깊이 공감했습니다. 학교 안의 학문에 머물지 않고, 직장인·시민·성인 학습자가 학교의 주인공이 되는 평생교육의 비전을 추구하시는 학맥에 합류하는 길이 비전공·직장인인 제가 가장 잘 자랄 수 있는 길이라고 판단했습니다.</p>
+<div class="comment-box" data-id="1-8"></div>
+
+<h3 data-id="1-9"><span class="title-text">지금이 그 타이밍이고, 한양대가 그 자리입니다.</span><button class="comment-toggle" data-target="1-9">💬 코멘트</button></h3>
+<p>AI 도입은 2024~2026년 사이 한국 IT 현장에서 임계점을 넘었습니다. 두 부류의 균열은 이미 모든 조직에서 진행 중입니다. 이 균열을 다룰 사람을 길러내는 일은 지금이 아니면 늦습니다. 그 자리에 정기수 교수님의 평생교육 경영 학맥과, 본 전공의 [성인학습이론]·[인간자원개발론]·[코칭심리세미나]·[인사심리연구]·[조직이론]이라는 정확한 도구들이 놓여 있습니다. 16년의 답 없음을 학문으로 풀고, AI 시대의 심리적 균열을 IT 산업 현장에서 다루는 사람이 되겠다는 결심이, 본 전공을 선택한 가장 깊은 이유입니다.</p>
+<div class="comment-box" data-id="1-9"></div>
+
+<hr>
+
+<h2>2. 학습목표 및 계획</h2>
+
+<h3 data-id="2-1"><span class="title-text">4가지 역량을 동시에 확보하는 것이 본 학업의 목표입니다.</span><button class="comment-toggle" data-target="2-1">💬 코멘트</button></h3>
+<p>본 전공에서 다음 네 가지 역량을 동시에 갖추겠습니다.</p>
+<ul>
+  <li><strong>이론 역량</strong>: 16년의 현장 직관을 학문 언어로 번역할 수 있는 기초 이론입니다.</li>
+  <li><strong>연구 역량</strong>: IT 산업 현장의 1차 데이터를 학술 가설로 좁히고, 정량·정성 방법으로 검증하는 능력입니다.</li>
+  <li><strong>개입 역량</strong>: 조직 안의 사람을 실제로 코칭·상담·교육할 수 있는 도구입니다.</li>
+  <li><strong>운영 역량</strong>: 학습한 도구를 사내 HRD 프로그램·외부 자문 형태로 설계·운영할 실행력입니다.</li>
+</ul>
+<p>네 역량은 본 전공이 추구하는 과학자-실천자 모델(scientist-practitioner model)과 정합합니다. 이론·연구·실천을 한 사람 안에 갖추는 일이 IT 현장 AI 시대의 심리적 균열을 다루는 가장 단단한 토대입니다.</p>
+<div class="comment-box" data-id="2-1"></div>
+
+<h3 data-id="2-2"><span class="title-text">학기별 계획은 본 전공 10개 강좌에 정렬했습니다.</span><button class="comment-toggle" data-target="2-2">💬 코멘트</button></h3>
+<p><strong>[1학기] 토대 다지기 — [인간자원개발론]·[산업심리세미나]</strong></p>
+<p>첫 학기에는 [인간자원개발론]에서 HRD의 학문 체계를 잡고, [산업심리세미나]에서 산업·조직 안의 인간 행동에 대한 학술 언어를 익힙니다. 16년의 현장 경험을 학문의 격자에 처음 올려 놓는 작업이 이 학기의 핵심입니다.</p>
+<p><strong>[2학기] 사람을 다루는 도구 — [성인학습이론]·[코칭심리세미나]</strong></p>
+<p>두 번째 학기에는 정기수 교수님의 학문 DNA에 가장 가까운 [성인학습이론]을 통해 직장인·성인 학습자에 대한 깊이를 갖추고, [코칭심리세미나]에서 1:1 코칭 도구를 익힙니다. AI 시대 [부류 1]에 속한 동료를 어떻게 일으켜 세울 것인가, [부류 2]에 속한 동료의 학습을 어떻게 가속할 것인가에 대한 답을 찾는 시간이 되겠습니다.</p>
+<p><strong>[3학기] 조직과 인사 — [인사심리연구]·[리더십연구]·[조직이론]</strong></p>
+<p>세 번째 학기에는 [인사심리연구]에서 채용·평가·이직률 의사결정에 심리학 도구를 적용하고, [리더십연구]·[조직이론]에서 조직 단위의 변화 동학을 학습합니다. IT 16년 동안 부서장·인사·임원이 내리는 결정의 뒤편에서 마음이 어떻게 움직였는지를 학문으로 다시 바라봅니다.</p>
+<p><strong>[4학기] 학위논문과 보충 강좌</strong></p>
+<p>마지막 학기에는 [상담 및 심리치료 이론]·[인간관계연구]·[성인교육방법론]을 보충 수강하면서 학위논문을 마무리합니다.</p>
+<div class="comment-box" data-id="2-2"></div>
+
+<h3 data-id="2-3"><span class="title-text">학위논문 연구 주제는 1·2순위를 두고 검토 중입니다.</span><button class="comment-toggle" data-target="2-3">💬 코멘트</button></h3>
+<p>현 시점 1·2순위는 다음과 같습니다. 본 과정에서 [성인학습이론]·[코칭심리세미나]·[인사심리연구]를 학습하며 정기수 교수님과 협의해 좁히겠습니다. 학습 과정에서 주제가 바뀔 가능성도 열어 두고 있습니다.</p>
+<ul>
+  <li><strong>1순위</strong>: <strong>IT 직군 종사자의 번아웃과 회복 요인 — 조직심리 개입의 효과 검증</strong></li>
+  <li><strong>2순위</strong>: <strong>AI 도입 이후 IT 조직 구성원의 자기효능감 변화와 코칭 매개효과</strong></li>
+</ul>
+<p>두 주제 모두 본 전공이 다뤄온 영역이며, 동시에 IT 산업의 1차 데이터로 검증할 수 있는 영역입니다. IT 산업의 HRD·조직심리 학위논문은 학계가 충분히 다루지 못한 영역이며, 1차 데이터에 접근할 수 있는 위치는 본 전공에 작은 가치를 더할 수 있는 자산이라고 판단합니다.</p>
+<div class="comment-box" data-id="2-3"></div>
+
+<h3 data-id="2-4"><span class="title-text">자기주도 학습으로 학기 외 시간을 운영하겠습니다.</span><button class="comment-toggle" data-target="2-4">💬 코멘트</button></h3>
+<p>수업 외 시간에 다음을 운영합니다.</p>
+<ul>
+  <li><strong>매주 1편 RISS·KCI 논문 정독</strong>: 정기수 교수님의 평생교육·HRD 분야 논문을 시작으로, 학기별 핵심 강좌의 주교재·부교재를 사전에 정독합니다.</li>
+  <li><strong>사내 케이스 일지 작성</strong>: 회사 안에서 매주 마주치는 [부류 1]·[부류 2] 사례를 케이스 일지로 정리해, 학기말마다 5~10건의 1차 데이터 묶음을 만듭니다. 학위논문 가설 검증의 토대로 쓰겠습니다.</li>
+  <li><strong>한양대 HRD 학맥 청강·세미나 참여</strong>: 사범대 교육공학과 송지훈 교수님의 [PRO AnalytiX Lab] 세미나에 청강 가능 범위에서 참여합니다.</li>
+</ul>
+<div class="comment-box" data-id="2-4"></div>
+
+<hr>
+
+<h2>3. 졸업 후 진로 및 희망</h2>
+
+<h3 data-id="3-1"><span class="title-text">단기·중기·장기 3단계로 진로 모델을 설계했습니다.</span><button class="comment-toggle" data-target="3-1">💬 코멘트</button></h3>
+<p><strong>[단기 — 졸업 직후 1~2년] 사내 HRD·코칭 트랙 확장</strong></p>
+<p>현재 IT 회사의 직무를 유지하면서, 본 전공에서 익힌 코칭·인사·HRD 도구를 사내에 적용합니다. AI 도입 가속 시기 [부류 1] 동료를 위한 1:1 코칭 프로그램, [부류 2] 동료의 학습 가속을 위한 동료학습 시스템을 사내에서 시범 운영하는 것이 1차 목표입니다. 학교에서 배운 이론을 회사라는 실험실에 즉시 검증하는 단계입니다.</p>
+<p><strong>[중기 — 졸업 후 3~5년] AI 시대 IT 전문 조직심리상담 모델 구축</strong></p>
+<p>사내에서 검증된 모델을 기반으로, IT 산업·디지털 전환 기업·스타트업을 대상으로 하는 조직심리상담 모델을 구체화합니다. 국내에는 IT 산업의 속도와 언어를 이해하면서 동시에 조직심리상담 전문성을 갖춘 서비스가 부족합니다. AI 전환이 확대될수록 이 영역의 수요는 커집니다. 정기수 교수님 학맥의 평생교육·HRD 관점이 결합된 모델이 필요한 자리입니다.</p>
+<p><strong>[장기 — 졸업 후 5년+] IT 전문 조직심리상담 법인 설립과 평생교육 실천</strong></p>
+<p>중기에 검증된 모델을 토대로, IT 전문 조직심리상담 법인을 설립합니다. IT 기업·스타트업·디지털 전환 기업에 상담·코칭·HRD 컨설팅 서비스를 파견하는 형태로 확장합니다. 동시에 본 전공의 외부 산학협력 다리 역할을 자처합니다. 정기수 교수님 학맥의 외연이 IT 산업으로 확장되는 데 작은 통로가 되는 길이 받기만 하는 학생이 아닌, 주는 학생이 되는 길이라고 생각합니다.</p>
+<div class="comment-box" data-id="3-1"></div>
+
+<h3 data-id="3-2"><span class="title-text">두 부류 통합 모델이 본 진로의 핵심 산출물입니다.</span><button class="comment-toggle" data-target="3-2">💬 코멘트</button></h3>
+<p>3단계를 관통하는 한 가지 산출물이 있습니다. AI 시대 IT 조직 안의 [부류 1]과 [부류 2]를 함께 다루는 통합 모델입니다.</p>
+<ul>
+  <li>[부류 1]에게는 자기효능감·정체성·번아웃 관리에 초점을 둔 상담·코칭 트랙</li>
+  <li>[부류 2]에게는 학습 가속·의미 재정의·리더십 확장에 초점을 둔 코칭·HRD 트랙</li>
+</ul>
+<p>이 모델이 IT 산업의 평생교육·HRD 실천가로서 남길 첫 번째 결과물입니다.</p>
+<div class="comment-box" data-id="3-2"></div>
+
+<h3 data-id="3-3"><span class="title-text">단순한 진로 선택이 아니라 실행 계획입니다.</span><button class="comment-toggle" data-target="3-3">💬 코멘트</button></h3>
+<p>본 진로는 단순한 진로 선택이 아닙니다. 16년 동안 현장에서 반복적으로 목격한 문제를 풀기 위한 실행 계획입니다. 학위만 받고 마치는 학생이 아니라, 학위를 도구 삼아 산업의 한 영역을 바꾸는 실천가가 되겠다는 다짐을 본 전공 앞에 걸어 둡니다.</p>
+<div class="comment-box" data-id="3-3"></div>
+
+<hr>
+
+<h2>4. 기타</h2>
+
+<h3 data-id="4-1"><span class="title-text">직장-학업 병행 계획을 4축으로 정리했습니다.</span><button class="comment-toggle" data-target="4-1">💬 코멘트</button></h3>
+<p>본 전공의 수업 운영(화·수·목 18:30~21:20·주 3일·야간) 기준 병행 계획입니다.</p>
+<ul>
+  <li><strong>회사 양해</strong>: 직속 상사와 부서장에게 진학 의사를 사전 공유하고, 화·수·목 18:00 이전 퇴근이 가능하도록 업무 일정을 조율하겠습니다.</li>
+  <li><strong>동선 확보</strong>: 회사에서 한양대학교(서울시 성동구 왕십리로 222)까지의 이동시간을 시뮬했습니다. 18:30 강의 시작 전 도착이 가능한 동선이 확보되었습니다.</li>
+  <li><strong>학습 시간 블록</strong>: 평일 아침 1시간, 주말 6시간을 정기 학습 블록으로 운영합니다. 수업·과제·논문 준비가 일·가정·학업 어느 하나도 무너뜨리지 않도록 설계했습니다.</li>
+  <li><strong>가족 협조</strong>: 가정 안에서 화·수·목 야간 시간이 학업 시간임을 사전에 합의했습니다. 주말 학습 블록에 대한 양해도 마쳤습니다.</li>
+</ul>
+<div class="comment-box" data-id="4-1"></div>
+
+<h3 data-id="4-2"><span class="title-text">본 전공에 줄 수 있는 작은 자산을 함께 가져갑니다.</span><button class="comment-toggle" data-target="4-2">💬 코멘트</button></h3>
+<p>학위만 받는 학생이 아니라, 본 전공에 작은 자산을 더하는 학생이 되겠습니다.</p>
+<ul>
+  <li><strong>IT 산업 1차 데이터</strong>: 학계가 충분히 다루지 못한 IT 산업의 HRD·조직심리 사례를 케이스 발표·세미나·학위논문의 형태로 본 전공에 더하겠습니다.</li>
+  <li><strong>AI 시대 두 부류 케이스북</strong>: 16년의 현장에서 축적한 AI 적응 사례를 본 전공의 산학협력·외부 강연·세미나의 자산으로 정리해 제공하겠습니다.</li>
+  <li><strong>산업 네트워크</strong>: IT 산업·디지털 전환 기업의 인접 네트워크가 본 전공의 산학협력·졸업생 진출의 작은 통로가 될 수 있다면, 다리가 되겠습니다.</li>
+</ul>
+<div class="comment-box" data-id="4-2"></div>
+
+<h3 data-id="4-3"><span class="title-text">마음을 지키는 학문을 한양대에서 시작합니다.</span><button class="comment-toggle" data-target="4-3">💬 코멘트</button></h3>
+<p>지난 16년 동안 IT 현장에서 가장 자주 마주친 장면은, 일을 잘하던 사람이 마음이 무너지면서 일을 놓는 모습이었습니다. 가장 드물게 마주친 장면은, 마음이 단단한 사람이 산업의 변화 한가운데에서 자기 자리를 다시 만들어 내는 모습이었습니다. 두 장면 사이의 거리, 그 거리를 좁히는 학문이 본 전공이라고 믿습니다. 인재 개발은 인재의 마음을 지키는 일에서 출발한다는 한 줄을 가슴에 다시 새기며, 한양대학교 상담심리대학원 조직심리및인재개발전공의 문 앞에 섭니다.</p>
+<div class="comment-box" data-id="4-3"></div>
+
+</article>
+
+<aside class="sidebar" id="sidebar">
+  <h4>📑 코멘트 인덱스</h4>
+  <div id="toc"></div>
+  <div class="stats" id="stats"></div>
+</aside>
+
+</div>
+
+<div id="onboarding">
+  <div class="modal">
+    <h3>📝 학업계획서 v3 검토</h3>
+    <p style="margin-bottom: 16px; color: var(--ink-soft); font-size: 14px;">자기, 안녕. 형이야. 학업계획서 v3 검토 부탁할게.</p>
+    <ol style="font-size: 14px;">
+      <li>각 소제목 옆 <strong>💬 코멘트</strong> 버튼 클릭</li>
+      <li>코멘트 작성 (자동 저장됨)</li>
+      <li>다 끝나면 우상단 <strong>💾 저장</strong> 눌러 .json 파일 다운로드</li>
+      <li>다운로드한 파일 형에게 카톡으로 전달</li>
+    </ol>
+    <p style="margin-top: 16px; font-size: 13px; color: var(--ink-mute);">
+      💡 작성 중 브라우저 닫아도 코멘트는 자동 저장됩니다.<br>
+      💡 다른 기기에서 이어 쓰려면 📂 버튼으로 .json 가져오면 됩니다.
+    </p>
+    <div class="actions">
+      <button class="tbtn primary" onclick="closeOnboarding()">시작하기</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const STORAGE_KEY = 'baek-essay-v3-comments';
+const SECTIONS = [];
+
+document.querySelectorAll('h3[data-id]').forEach(h => {
+  SECTIONS.push({
+    id: h.dataset.id,
+    title: h.querySelector('.title-text').textContent
+  });
+});
+
+// 로드
+function load() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    SECTIONS.forEach(s => {
+      const box = document.querySelector(`.comment-box[data-id="${s.id}"]`);
+      const data = saved[s.id] || {};
+      box.innerHTML = `
+        <label>💬 ${s.title}</label>
+        <textarea data-id="${s.id}" placeholder="이 섹션에 대한 코멘트를 작성하세요...">${data.comment || ''}</textarea>
+        <div class="comment-meta">
+          <span class="counter">${(data.comment || '').length}자</span>
+          <span class="timestamp">${data.timestamp || ''}</span>
+        </div>
+      `;
+      if (data.comment) {
+        box.classList.add('open');
+        markFilled(s.id, true);
+      }
+    });
+    bindTextareas();
+    updateStats();
+    buildTOC();
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function bindTextareas() {
+  document.querySelectorAll('textarea[data-id]').forEach(ta => {
+    let timer;
+    ta.addEventListener('input', () => {
+      const id = ta.dataset.id;
+      const counter = ta.parentElement.querySelector('.counter');
+      counter.textContent = ta.value.length + '자';
+      clearTimeout(timer);
+      timer = setTimeout(() => save(id, ta.value), 500);
+    });
+  });
+}
+
+function save(id, value) {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  if (value.trim()) {
+    data[id] = {
+      comment: value,
+      timestamp: new Date().toLocaleString('ko-KR')
+    };
+  } else {
+    delete data[id];
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  const ts = document.querySelector(`textarea[data-id="${id}"]`).parentElement.querySelector('.timestamp');
+  if (ts) ts.textContent = data[id]?.timestamp || '';
+  markFilled(id, !!value.trim());
+  updateStats();
+  updateTOC();
+}
+
+function markFilled(id, filled) {
+  const btn = document.querySelector(`.comment-toggle[data-target="${id}"]`);
+  if (btn) btn.classList.toggle('filled', filled);
+  const tocItem = document.querySelector(`.toc-item[data-target="${id}"]`);
+  if (tocItem) tocItem.classList.toggle('filled', filled);
+}
+
+function buildTOC() {
+  const toc = document.getElementById('toc');
+  let html = '';
+  let lastPart = '';
+  SECTIONS.forEach(s => {
+    const partNum = s.id.split('-')[0];
+    const partLabel = {1: '1. 진학동기', 2: '2. 학습목표 및 계획', 3: '3. 졸업 후 진로 및 희망', 4: '4. 기타'}[partNum];
+    if (partNum !== lastPart) {
+      html += `<div class="toc-part">${partLabel}</div>`;
+      lastPart = partNum;
+    }
+    const short = s.title.length > 24 ? s.title.slice(0, 24) + '…' : s.title;
+    html += `<div class="toc-item" data-target="${s.id}" onclick="jumpTo('${s.id}')"><span class="dot"></span>${short}</div>`;
+  });
+  toc.innerHTML = html;
+}
+
+function updateTOC() {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  SECTIONS.forEach(s => {
+    const tocItem = document.querySelector(`.toc-item[data-target="${s.id}"]`);
+    if (tocItem) tocItem.classList.toggle('filled', !!(data[s.id]?.comment));
+  });
+}
+
+function updateStats() {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  const total = SECTIONS.length;
+  const filled = Object.keys(data).length;
+  const totalChars = Object.values(data).reduce((sum, d) => sum + (d.comment?.length || 0), 0);
+  document.getElementById('stats').innerHTML = `
+    작성 진도 <strong>${filled} / ${total}</strong><br>
+    총 글자수 <strong>${totalChars}</strong>자
+  `;
+}
+
+function jumpTo(id) {
+  const h3 = document.querySelector(`h3[data-id="${id}"]`);
+  if (h3) {
+    h3.scrollIntoView({behavior: 'smooth', block: 'start'});
+    const box = document.querySelector(`.comment-box[data-id="${id}"]`);
+    if (box) {
+      box.classList.add('open');
+      setTimeout(() => box.querySelector('textarea')?.focus(), 400);
+    }
+  }
+}
+
+document.querySelectorAll('.comment-toggle').forEach(btn => {
+  btn.addEventListener('click', e => {
+    const id = btn.dataset.target;
+    const box = document.querySelector(`.comment-box[data-id="${id}"]`);
+    box.classList.toggle('open');
+    if (box.classList.contains('open')) {
+      setTimeout(() => box.querySelector('textarea')?.focus(), 100);
+    }
+  });
+});
+
+function downloadJSON() {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  const out = {
+    document: '학업계획서_v3_경험서사',
+    reviewer: '백선미',
+    target: '한양대학교 상담심리대학원 조직심리및인재개발전공',
+    timestamp: new Date().toISOString(),
+    timestamp_kr: new Date().toLocaleString('ko-KR'),
+    total_sections: SECTIONS.length,
+    filled_sections: Object.keys(data).length,
+    comments: SECTIONS.map(s => ({
+      section_id: s.id,
+      section_title: s.title,
+      comment: data[s.id]?.comment || '',
+      written_at: data[s.id]?.timestamp || ''
+    })).filter(c => c.comment)
+  };
+  const now = new Date();
+  const stamp = now.getFullYear() + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0') + '_' + String(now.getHours()).padStart(2,'0') + String(now.getMinutes()).padStart(2,'0');
+  const blob = new Blob([JSON.stringify(out, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `학업계획서_코멘트_백선미_${stamp}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('💾 JSON 파일 다운로드 완료. 형에게 전달하세요.');
+}
+
+function importJSON(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const json = JSON.parse(e.target.result);
+      const data = {};
+      json.comments.forEach(c => {
+        if (c.comment) {
+          data[c.section_id] = {comment: c.comment, timestamp: c.written_at};
+        }
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      load();
+      toast('📂 JSON 가져오기 완료');
+    } catch (err) {
+      toast('⚠️ 파일 형식 오류');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+function copyAll() {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  let text = `학업계획서 v3 코멘트 — 백선미\n작성일: ${new Date().toLocaleString('ko-KR')}\n\n`;
+  SECTIONS.forEach(s => {
+    if (data[s.id]?.comment) {
+      text += `[${s.id}] ${s.title}\n${data[s.id].comment}\n작성: ${data[s.id].timestamp}\n\n`;
+    }
+  });
+  if (text.split('\n').length < 4) { toast('⚠️ 작성된 코멘트가 없습니다'); return; }
+  navigator.clipboard.writeText(text).then(() => toast('📋 클립보드에 복사 완료'));
+}
+
+function toggleTheme() {
+  const cur = document.documentElement.dataset.theme;
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem('theme', next);
+}
+
+function cycleFontSize() {
+  const cur = document.body.dataset.fontsize;
+  const next = {s: 'm', m: 'l', l: 's'}[cur];
+  document.body.dataset.fontsize = next;
+  localStorage.setItem('fontsize', next);
+  toast(`글자 크기: ${{s:'작게',m:'중간',l:'크게'}[next]}`);
+}
+
+function closeOnboarding() {
+  document.getElementById('onboarding').classList.add('hidden');
+  localStorage.setItem('onboarded', 'true');
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// 진도바
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// 초기화
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+const savedFont = localStorage.getItem('fontsize');
+if (savedFont) document.body.dataset.fontsize = savedFont;
+if (localStorage.getItem('onboarded')) {
+  document.getElementById('onboarding').classList.add('hidden');
+}
+
+load();
+</script>
+</body>
+</html>
