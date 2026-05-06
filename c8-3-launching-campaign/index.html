@@ -96,6 +96,153 @@ mark.highlight-purple { background: var(--highlight-purple); color: #DBA8FF; pad
 .chapter-nav a.active, .chapter-nav a:hover { background: var(--c-green); transform: scale(1.4); box-shadow: 0 0 12px var(--c-green); }
 @media (max-width: 900px) { .chapter-nav { display: none; } }
 
+/* === Brief v3.1 — 7-section compression additions === */
+details.fold {
+  margin-top: 24px; padding: 18px 22px;
+  background: var(--bg-alt); border: 1px solid var(--border);
+  border-radius: 16px; transition: border-color 240ms;
+}
+details.fold:hover { border-color: rgba(91,255,90,0.25); }
+details.fold[open] { background: var(--bg-elev); }
+details.fold > summary {
+  cursor: pointer; list-style: none;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--c-green); text-transform: uppercase;
+  display: flex; align-items: center; justify-content: space-between;
+}
+details.fold > summary::-webkit-details-marker { display: none; }
+details.fold > summary::after {
+  content: '+'; font-size: 22px; font-weight: 300; color: var(--c-green);
+  transition: transform 240ms;
+}
+details.fold[open] > summary::after { content: '−'; }
+details.fold > .fold-body { margin-top: 18px; }
+
+/* Brief 7 — section 1 condensed glance bar */
+.glance-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  margin-top: 32px;
+}
+.glance-cell {
+  padding: 22px 24px; border-radius: 18px;
+  background: var(--bg-alt); border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.glance-cell .k { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--text-dim); text-transform: uppercase; }
+.glance-cell .v { font-size: clamp(20px, 2.2vw, 28px); font-weight: 800; color: var(--headline); line-height: 1.15; }
+.glance-cell .s { font-size: 12px; color: var(--text-dim); }
+.glance-cell.green .v { color: var(--c-green); }
+.glance-cell.yellow .v { color: var(--c-yellow); }
+.glance-cell.purple .v { color: var(--c-purple); }
+.glance-cell.red .v { color: var(--c-red); }
+@media (max-width: 900px) { .glance-bar { grid-template-columns: repeat(2, 1fr); } }
+
+/* Track × Roadmap matrix */
+.matrix-wrap { display: grid; grid-template-columns: 1fr; gap: 18px; }
+.matrix-table {
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  background: var(--bg-alt); border: 1px solid var(--border);
+  border-radius: var(--radius-tile); overflow: hidden;
+}
+.matrix-table th, .matrix-table td {
+  padding: 18px 20px; text-align: left; vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px; line-height: 1.5;
+}
+.matrix-table thead th {
+  background: var(--bg-elev); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; color: var(--text-dim); text-transform: uppercase;
+}
+.matrix-table tbody tr:last-child td { border-bottom: none; }
+.matrix-table .track-cell { font-weight: 800; color: var(--headline); font-size: 15px; }
+.matrix-table .track-cell .sub { display: block; font-size: 11px; color: var(--text-dim); font-weight: 600; margin-top: 4px; letter-spacing: 0.06em; }
+.matrix-table tr[data-track="A"] .track-cell { border-left: 4px solid var(--c-green); padding-left: 16px; }
+.matrix-table tr[data-track="B"] .track-cell { border-left: 4px solid var(--c-yellow); padding-left: 16px; }
+.matrix-table tr[data-track="C"] .track-cell { border-left: 4px solid var(--c-purple); padding-left: 16px; }
+.matrix-table .kpi-pill {
+  display: inline-block; margin-top: 6px; padding: 4px 10px;
+  background: rgba(91,255,90,0.08); border: 1px solid rgba(91,255,90,0.25);
+  border-radius: 999px; font-size: 11px; font-weight: 700;
+  color: var(--c-green); letter-spacing: 0.04em;
+}
+@media (max-width: 900px) {
+  .matrix-table thead { display: none; }
+  .matrix-table, .matrix-table tbody, .matrix-table tr, .matrix-table td { display: block; width: 100%; }
+  .matrix-table tr { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .matrix-table td { border-bottom: none; padding: 8px 18px; }
+  .matrix-table td::before { content: attr(data-h); display: block; font-size: 10px; font-weight: 700; color: var(--text-dim); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+}
+
+/* §7 budget+kpi+nsm condensed */
+.split-7 { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; }
+.split-7 > .blk {
+  padding: 28px; background: var(--bg-alt);
+  border: 1px solid var(--border); border-radius: var(--radius-tile);
+}
+.split-7 .blk h4 {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--c-green);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.budget-mini { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.budget-mini .row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 10px 14px; background: var(--bg-elev);
+  border: 1px solid var(--border); border-radius: 12px;
+}
+.budget-mini .row .name { font-size: 13px; font-weight: 600; color: var(--text); }
+.budget-mini .row .pct { font-size: 14px; font-weight: 800; color: var(--c-green); }
+.budget-mini .row.media .pct { color: var(--c-green); }
+.budget-mini .row.action .pct { color: var(--c-yellow); }
+.budget-mini .row.exp .pct { color: var(--c-purple); }
+.nsm-compact {
+  padding: 32px; border-radius: var(--radius-tile);
+  background: linear-gradient(135deg, rgba(91,255,90,0.10), rgba(255,214,10,0.06));
+  border: 1px solid rgba(91,255,90,0.20);
+  text-align: center;
+}
+.nsm-compact .lab { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--c-green); }
+.nsm-compact .num {
+  font-size: clamp(56px, 7vw, 96px); font-weight: 900; line-height: 1; letter-spacing: -0.03em;
+  color: var(--headline); margin: 8px 0;
+}
+.nsm-compact .num small { font-size: 0.4em; color: var(--c-green); margin-left: 6px; }
+.nsm-compact .desc { font-size: 14px; color: var(--text-dim); line-height: 1.5; max-width: 420px; margin: 0 auto; }
+@media (max-width: 900px) {
+  .split-7 { grid-template-columns: 1fr; }
+  .budget-mini { grid-template-columns: 1fr; }
+}
+
+/* Why-Now compact pain stack */
+.pain-compact {
+  display: grid; grid-template-columns: 1.5fr 1fr; gap: 18px;
+  align-items: stretch;
+}
+.pain-quote {
+  padding: 40px; border-radius: var(--radius-tile-lg);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  border-left: 4px solid var(--c-red);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.pain-quote .big {
+  font-size: clamp(28px, 3.6vw, 48px); font-weight: 900; line-height: 1.1;
+  letter-spacing: -0.02em; color: var(--c-red); margin-bottom: 16px;
+}
+.pain-quote .big small { display: block; font-size: 0.5em; color: var(--text); font-weight: 600; margin-top: 8px; letter-spacing: -0.01em; }
+.pain-quote .lead { font-size: 14px; color: var(--text-dim); line-height: 1.55; }
+.pain-twin { display: grid; grid-template-rows: 1fr 1fr; gap: 12px; }
+.pain-mini {
+  padding: 22px; background: var(--bg-alt);
+  border: 1px solid var(--border); border-radius: var(--radius-tile);
+}
+.pain-mini .tag { font-size: 11px; font-weight: 700; color: var(--c-red); letter-spacing: 0.1em; }
+.pain-mini h4 { font-size: 18px; font-weight: 700; margin: 6px 0 4px; color: var(--headline); }
+.pain-mini p { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+@media (max-width: 900px) { .pain-compact { grid-template-columns: 1fr; } }
+
+/* Items compact — Big 3 only */
+.items-big3-compact { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 1067px) { .items-big3-compact { grid-template-columns: 1fr; } }
+
 /* === Section base === */
 section.chapter {
   min-height: 100vh; padding: 120px 6vw; display: flex; flex-direction: column; justify-content: center;
@@ -800,27 +947,21 @@ footer.brief-footer {
 
 <!-- Chapter Nav (sticky paddle) -->
 <nav class="chapter-nav" aria-label="Section navigation">
-  <a href="#hero" class="active">Hero</a>
-  <a href="#core">Core</a>
-  <a href="#pain">Pain</a>
+  <a href="#hero" class="active">Brief</a>
+  <a href="#why">Why Now</a>
   <a href="#position">Position</a>
   <a href="#target">Target</a>
-  <a href="#budget">Budget</a>
-  <a href="#items">Items</a>
-  <a href="#message">Message</a>
-  <a href="#tracks">Tracks</a>
-  <a href="#assets">Assets</a>
-  <a href="#roadmap">Roadmap</a>
-  <a href="#kpi">KPI</a>
-  <a href="#numbers">NSM</a>
+  <a href="#plays">Plays</a>
+  <a href="#exec">Exec</a>
+  <a href="#numbers">Numbers</a>
 </nav>
 
-<!-- ===== 1. HERO ===== -->
-<section class="hero" id="hero" aria-label="Hero">
+<!-- ===== §1. BRIEF @ GLANCE (hero + core 통합) ===== -->
+<section class="hero" id="hero" aria-label="Brief at a Glance">
   <div class="section-inner">
     <div class="hero-eyebrow">
       <span class="dot" aria-hidden="true"></span>
-      <span>Cre8orClub 3.0 · Launching Campaign Brief · 2026</span>
+      <span>Cre8orClub 3.0 · Launching Campaign Brief · v3.1 · 2026</span>
     </div>
 
     <h1 class="typography-hero-tagline hero-tagline">
@@ -829,192 +970,178 @@ footer.brief-footer {
     </h1>
 
     <p class="hero-sub typography-body">
-      2.5억으로 앱을 알리는 건 누구나 합니다.<br>
-      우리는 <mark class="highlight-cyan">도시 곳곳에 실제 모집 공고</mark>를 붙이고,
-      <mark class="highlight-yellow">창작자의 색</mark>을 다시 끌어냅니다.
+      <mark class="highlight-cyan">한달 반 · 2.5억</mark>으로
+      <mark class="highlight-yellow">활성 창작자 1만</mark>을 만든다.<br>
+      광고가 아닌 <strong>사건</strong>으로, 디지털·시드·도시 3트랙 동시 가동.
     </p>
 
-    <div class="hero-meta">
-      <div class="hero-meta-item">
-        <div class="label">Total Budget</div>
-        <div class="value">₩250,000,000<br><span style="font-size: 14px; color: var(--text-dim); font-weight: 400;">광고 매체비 62% 몰빵</span></div>
+    <div class="glance-bar">
+      <div class="glance-cell green">
+        <span class="k">Window</span>
+        <span class="v">6.5주</span>
+        <span class="s">2026.06.15 — 07.31 · 병렬 실행</span>
       </div>
-      <div class="hero-meta-item">
-        <div class="label">Launch Window</div>
-        <div class="value">2026.06.15 — 07.31<br><span style="font-size: 14px; color: var(--text-dim); font-weight: 400;">6.5주 압축 스프린트</span></div>
+      <div class="glance-cell yellow">
+        <span class="k">Budget</span>
+        <span class="v">₩2.5억</span>
+        <span class="s">광고 매체비 62% (1.55억) 몰빵</span>
       </div>
-      <div class="hero-meta-item">
-        <div class="label">Tracks</div>
-        <div class="value">3 (Digital · Seed · City)</div>
+      <div class="glance-cell purple">
+        <span class="k">Tracks</span>
+        <span class="v">3 × 3 Phase</span>
+        <span class="s">Digital · Seed · City × Seed→Concentrate→Explosion</span>
       </div>
-      <div class="hero-meta-item">
-        <div class="label">Master Copy</div>
-        <div class="value">"You Are Not Content."</div>
+      <div class="glance-cell">
+        <span class="k">North Star</span>
+        <span class="v">활성 1만</span>
+        <span class="s">D7 기준 · 7.31 누적</span>
       </div>
     </div>
+
+    <p class="typography-body-reduced reveal" style="margin-top: 28px; max-width: 720px;">
+      <strong style="color: var(--c-green);">한달 반 × 2.5억 = 창작 관계 밀도 임계점 돌파.</strong>
+      8월부터 광고 없이 자생.
+    </p>
   </div>
 </section>
 
-<!-- ===== 1.5 CORE STRUCTURE (At a Glance) ===== -->
-<section class="chapter compact" id="core" aria-label="Core Structure">
+<!-- ===== §2. WHY NOW (Pain) ===== -->
+<section class="chapter" id="why" aria-label="Why Now">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-green reveal">02 · At a Glance</p>
-      <h2 class="typography-section-headline reveal reveal-d1"><span style="color: var(--c-green);">한달 반</span>, <span style="color: var(--c-green);">2.5억</span>.<br>이 두 숫자가 모든 것을 결정한다.</h2>
-    </div>
-
-    <div class="core-grid">
-      <div class="core-card reveal" data-color="green">
-        <p class="core-label">DURATION</p>
-        <div class="core-value">6.5<span class="core-unit">주</span></div>
-        <p class="core-sub">2026.06.15 — 07.31</p>
-        <p class="core-desc">P1 시드 2주 · P2 집중 2주 · P3 폭발 2.5주<br><strong>병렬 실행</strong>이 디폴트. 직렬 ✗.</p>
-      </div>
-
-      <div class="core-card reveal reveal-d1" data-color="yellow">
-        <p class="core-label">BUDGET</p>
-        <div class="core-value">2.5<span class="core-unit">억</span></div>
-        <p class="core-sub">광고 매체비 62% 몰빵</p>
-        <p class="core-desc">Meta 42% + TikTok 20% = 광고 1.55억.<br><strong>속도와 학습이 모든 것을 결정.</strong></p>
-      </div>
-
-      <div class="core-card reveal reveal-d2" data-color="purple">
-        <p class="core-label">OUTCOME</p>
-        <div class="core-value">3<span class="core-unit">트랙</span></div>
-        <p class="core-sub">12개 시그니처 아이템</p>
-        <p class="core-desc">Digital · Seed · City 동시 가동.<br><strong>임계점 돌파</strong> = 8월 자생 가능.</p>
-      </div>
-    </div>
-
-    <div class="core-bottom-line reveal reveal-d3">
-      <p>
-        <span class="core-eq">한달 반</span> <span class="core-op">×</span>
-        <span class="core-eq">2.5억</span> <span class="core-op">=</span>
-        <span class="core-eq core-result">"창작 관계 밀도 임계점 돌파"</span>
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 2. PAIN ===== -->
-<section class="chapter" id="pain" aria-label="The Pain">
-  <div class="section-inner">
-    <div class="section-header">
-      <p class="typography-eyebrow eb-red reveal">03 · The Pain</p>
+      <p class="typography-eyebrow eb-red reveal">02 · Why Now</p>
       <h2 class="typography-section-headline reveal reveal-d1">창작자는 지금<br>알고리즘의 노동자입니다.</h2>
-      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 640px; margin-top: 16px;">
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
         콘텐츠가 부족한 시대가 아닙니다. 너무 많고, 너무 빨리 소비되고, 다 비슷하게 묻힙니다.
-        그 안에서 창작자들은 자기 작업이 아니라 <mark class="highlight-red">알고리즘 점수</mark>를 만들고 있습니다.
+        창작자는 자기 작업이 아니라 <mark class="highlight-red">알고리즘 점수</mark>를 만듭니다.
       </p>
     </div>
 
-    <div class="pain-grid">
-      <div class="pain-item feature reveal reveal-d2">
-        <p class="num-tag">PEAK PAIN</p>
-        <div class="big-num">
-          <span class="line">&ldquo;나는 창작자인가,</span>
-          <span class="line">알고리즘 노동자인가.&rdquo;</span>
-        </div>
-        <p class="typography-body-reduced" style="max-width: 640px;">SNS 피로의 본질 — 콘텐츠 소비의 문제가 아니라 정체성 소모의 문제.</p>
+    <div class="pain-compact">
+      <div class="pain-quote reveal">
+        <p class="big">
+          "나는 창작자인가,<br>알고리즘 노동자인가."
+          <small>— SNS 피로의 본질은 콘텐츠 소비가 아니라 정체성 소모.</small>
+        </p>
+        <p class="lead">이 한 문장이 캠페인의 진입점. 모든 카피·트랙·소재가 이 질문에서 출발한다.</p>
       </div>
-
-      <article class="pain-item reveal">
-        <p class="num-tag">01 / INSTAGRAM</p>
-        <h3 class="typography-feature-card-headline">알고리즘 의존</h3>
-        <p class="typography-body-reduced">선택받지 못하면 묻힘. 게시 → 사라짐 → 재게시 무한 루프.</p>
-      </article>
-      <article class="pain-item reveal reveal-d1">
-        <p class="num-tag">02 / TIKTOK</p>
-        <h3 class="typography-feature-card-headline">조회수 중독</h3>
-        <p class="typography-body-reduced">15초 안에 후킹 못하면 끝. 작품이 아닌 자극의 노예.</p>
-      </article>
-      <article class="pain-item reveal reveal-d2">
-        <p class="num-tag">03 / YOUTUBE</p>
-        <h3 class="typography-feature-card-headline">썸네일 노동</h3>
-        <p class="typography-body-reduced">콘텐츠보다 썸네일·후킹 카피에 더 많은 시간.</p>
-      </article>
-      <article class="pain-item reveal">
-        <p class="num-tag">04 / SNS 전체</p>
-        <h3 class="typography-feature-card-headline">비교 지옥</h3>
-        <p class="typography-body-reduced">다른 창작자의 알고리즘 성공이 곧 내 무능감.</p>
-      </article>
-      <article class="pain-item reveal reveal-d1">
-        <p class="num-tag">05 / 포트폴리오</p>
-        <h3 class="typography-feature-card-headline">묻힌 작업물</h3>
-        <p class="typography-body-reduced">DM, 인스타 피드, 노션 페이지에 흩어져 아무도 못 찾음.</p>
-      </article>
-      <article class="pain-item reveal reveal-d2">
-        <p class="num-tag">06 / IDENTITY</p>
-        <h3 class="typography-feature-card-headline">납작한 자아</h3>
-        <p class="typography-body-reduced">한 줄 소개, 한 장 썸네일로 자신을 압축당함.</p>
-      </article>
+      <div class="pain-twin">
+        <div class="pain-mini reveal reveal-d1">
+          <p class="tag">SURFACE 1 · 알고리즘 의존</p>
+          <h4>묻힌 작업물</h4>
+          <p>인스타 피드·DM·노션에 흩어져 아무도 못 찾는다. 게시 → 사라짐 → 재게시 무한 루프.</p>
+        </div>
+        <div class="pain-mini reveal reveal-d2">
+          <p class="tag">SURFACE 2 · 납작한 자아</p>
+          <h4>색을 잃는다</h4>
+          <p>한 줄 소개·한 장 썸네일로 압축당함. 다른 창작자의 알고리즘 성공이 곧 내 무능감.</p>
+        </div>
+      </div>
     </div>
+
+    <details class="fold reveal reveal-d3">
+      <summary>잔여 4개 SNS Pain 보기</summary>
+      <div class="fold-body">
+        <div class="pain-grid">
+          <article class="pain-item">
+            <p class="num-tag">TIKTOK</p>
+            <h3 class="typography-feature-card-headline">조회수 중독</h3>
+            <p class="typography-body-reduced">15초 안에 후킹 못하면 끝. 작품이 아닌 자극의 노예.</p>
+          </article>
+          <article class="pain-item">
+            <p class="num-tag">YOUTUBE</p>
+            <h3 class="typography-feature-card-headline">썸네일 노동</h3>
+            <p class="typography-body-reduced">콘텐츠보다 썸네일·후킹 카피에 더 많은 시간.</p>
+          </article>
+          <article class="pain-item">
+            <p class="num-tag">SNS 전체</p>
+            <h3 class="typography-feature-card-headline">비교 지옥</h3>
+            <p class="typography-body-reduced">다른 창작자의 알고리즘 성공이 곧 내 무능감.</p>
+          </article>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- ===== 3. POSITION ===== -->
-<section class="chapter" id="position" aria-label="Position">
+<!-- ===== §3. POSITION & MESSAGE (4축 = 카피 4축) ===== -->
+<section class="chapter" id="position" aria-label="Position and Message">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-cyan reveal">04 · Position</p>
-      <h2 class="typography-section-headline reveal reveal-d1">우리는 4개의 축을 한꺼번에 움직입니다.</h2>
-      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
-        하나의 카피, 하나의 캠페인이 아닙니다.
-        창작자의 자아·도시의 현장·산업의 연결·플랫폼의 자립 — 네 개의 축이 동시에 작동하는 구조.
+      <p class="typography-eyebrow eb-cyan reveal">03 · Position × Message</p>
+      <h2 class="typography-section-headline reveal reveal-d1">4개 축이 한꺼번에 움직인다.<br>한 카피에 4개 축이 다 들어간다.</h2>
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 760px; margin-top: 16px;">
+        포지션 = 카피 구조. 자아·자립·산업·도시 4축은 곧 4개의 Hook 톤. Master 1줄이 모두를 함축한다.
       </p>
     </div>
 
+    <!-- Master Copy -->
+    <div class="message-stack reveal" style="margin-bottom: 32px;">
+      <div class="message-row master">
+        <span class="level">MASTER</span>
+        <p class="copy en">You Are Not Content.<small>창작자는 콘텐츠가 아니다 — 4개 축을 모두 함축</small></p>
+      </div>
+    </div>
+
+    <!-- 4축 = position + 카피 융합 -->
     <div class="position-grid">
       <article class="position-card reveal" data-color="red">
         <p class="axis">AXIS 01 · IDENTITY</p>
         <p class="from">기능 설명 / 앱 소개</p>
         <p class="arrow">↓</p>
         <p class="to">자기표현 OS<br>— 디지털 페르소나가 살아나는 공간</p>
-        <p class="ex-copy">"I create lonely cyber-pop visuals."</p>
-        <p class="ex-case"><strong>사례 ·</strong> 영상 편집자 프로필이 한 줄 선언과 무드 컬러로 바뀌는 순간 — DM 응답률 3배 ↑ (Behance 자기선언형 프로필 패턴)</p>
+        <p class="ex-copy">"인스타는 당신을 1초만 보여줍니다."<br><span style="font-style: normal; opacity: 0.8;">/ "I create lonely cyber-pop visuals."</span></p>
       </article>
       <article class="position-card reveal reveal-d1" data-color="cyan">
         <p class="axis">AXIS 02 · INDEPENDENCE</p>
         <p class="from">알고리즘 선택 기다리기</p>
         <p class="arrow">↓</p>
         <p class="to">스스로 발견되는 존재<br>— 찾게 되는 사람이 되는 것</p>
-        <p class="ex-copy">"Make People Search You."</p>
-        <p class="ex-case"><strong>사례 ·</strong> 인스타·틱톡 피로 쌓인 디자이너가 C8 프로필을 명함처럼 공유 — 검색 트래픽이 알고리즘 노출보다 안정적 (Linktree·Read.cv 패턴)</p>
+        <p class="ex-copy">"Make People Search You."<br><span style="font-style: normal; opacity: 0.8;">/ "Stop Feeding the Algorithm."</span></p>
       </article>
       <article class="position-card reveal reveal-d2" data-color="yellow">
         <p class="axis">AXIS 03 · INDUSTRY</p>
         <p class="from">유저 수, 다운로드 수</p>
         <p class="arrow">↓</p>
-        <p class="to">실제 산업과 연결된 플랫폼<br>— 음악·영상·댄스 현장의 노드</p>
-        <p class="ex-copy">"색은 따라할 수 없습니다."</p>
-        <p class="ex-case"><strong>사례 ·</strong> 김형석 Pick Challenge — 작곡가가 직접 가능성을 본 팀 1팀 선정 → 음악 산업 진입의 상징. C8은 "유저 수"가 아닌 "기회 노드".</p>
+        <p class="to">실제 산업과 연결된 노드<br>— 음악·영상·댄스 현장</p>
+        <p class="ex-copy">"색은 따라할 수 없습니다."<br><span style="font-style: normal; opacity: 0.8;">/ 김형석 자산 호출 — 감각·취향의 상징</span></p>
       </article>
       <article class="position-card reveal reveal-d3" data-color="purple">
         <p class="axis">AXIS 04 · CITY</p>
         <p class="from">디지털 광고 / 배너</p>
         <p class="arrow">↓</p>
-        <p class="to">도시의 모집 공고<br>— 성수·홍대 벽에 실제 캐스팅 글이 붙는다</p>
-        <p class="ex-copy">"A vocalist who sounds like midnight."</p>
-        <p class="ex-case"><strong>사례 ·</strong> 성수 카페 골목 벽보 — "BAND MEMBERS WANTED, Seoul 2026" Y2K Xerox 톤. QR → 풀스크린 몰입 프로필. 광고가 아닌 "도시의 일부".</p>
+        <p class="to">도시의 모집 공고<br>— 성수·홍대 벽의 실제 캐스팅</p>
+        <p class="ex-copy">"A vocalist who sounds like midnight."<br><span style="font-style: normal; opacity: 0.8;">/ "BAND MEMBERS WANTED, Seoul 2026"</span></p>
       </article>
     </div>
+
+    <details class="fold reveal">
+      <summary>Variation Pool · 매체별 회전 카피</summary>
+      <div class="fold-body">
+        <p class="typography-body-reduced" style="line-height: 1.8;">
+          "당신만의 색이 있습니까?" · "Create Your Presence." · "당신 작업물은 묻혀있습니다" ·
+          "혼자 하지 마세요" · "Make People Search You" · "색은 따라할 수 없습니다"<br>
+          <span style="color: var(--text-dim);">→ Hook·길이·타겟·카테고리·AI 5축 AB 테스트로 회전</span>
+        </p>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- ===== 4. TARGET ===== -->
+<!-- ===== §4. TARGET ===== -->
 <section class="chapter" id="target" aria-label="Target">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-yellow reveal">05 · Target</p>
-      <h2 class="typography-section-headline reveal reveal-d1">"같이 만들어야 결과가 나오는" 6개 직군.</h2>
-      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
-        모든 창작자가 아닙니다. 협업이 결과의 본질인 6개 직군에 집중. 이 6개는 전 단계 대화에서도 변하지 않은 단단한 앵커.
+      <p class="typography-eyebrow eb-yellow reveal">04 · Target</p>
+      <h2 class="typography-section-headline reveal reveal-d1">"같이 만들어야 결과가 나오는"<br>6개 직군에 집중.</h2>
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 760px; margin-top: 16px;">
+        모든 창작자 ✗. 협업이 결과의 본질인 6개 직군 ○. 단단한 앵커 — 변하지 않은 타겟.
       </p>
     </div>
 
-    <div class="target-bento">
+    <div class="target-bento" style="grid-template-columns: repeat(3, 1fr);">
       <article class="target-tile reveal" data-color="cyan">
-        <span class="badge">TIER 1</span>
+        <span class="badge">TIER 1 · 핵심</span>
         <h3 class="typography-tile-headline">K-Pop Cover</h3>
         <ul class="pain-list">
           <li>팀 결성 시급</li>
@@ -1022,8 +1149,17 @@ footer.brief-footer {
           <li>글로벌 침투력 강</li>
         </ul>
       </article>
-      <article class="target-tile reveal reveal-d1" data-color="red">
-        <span class="badge">TIER 1</span>
+      <article class="target-tile reveal reveal-d1" data-color="yellow">
+        <span class="badge">TIER 1 · 핵심</span>
+        <h3 class="typography-tile-headline">비트메이커</h3>
+        <ul class="pain-list">
+          <li>보컬·아티스트 매칭</li>
+          <li>김형석 자산과 직결</li>
+          <li>산업 진입 욕망 최고</li>
+        </ul>
+      </article>
+      <article class="target-tile reveal reveal-d2" data-color="red">
+        <span class="badge">TIER 1 · 핵심</span>
         <h3 class="typography-tile-headline">영상 편집</h3>
         <ul class="pain-list">
           <li>작업물 묻힘 1순위</li>
@@ -1031,155 +1167,58 @@ footer.brief-footer {
           <li>포트폴리오 시각화 강</li>
         </ul>
       </article>
-      <article class="target-tile reveal reveal-d2" data-color="yellow">
-        <span class="badge">TIER 1</span>
-        <h3 class="typography-tile-headline">비트메이커</h3>
-        <ul class="pain-list">
-          <li>보컬·아티스트 매칭</li>
-          <li>곡 픽업 기회 갈구</li>
-          <li>김형석 자산과 직결</li>
-        </ul>
-      </article>
-      <article class="target-tile reveal reveal-d3" data-color="purple">
-        <span class="badge">TIER 1</span>
-        <h3 class="typography-tile-headline">디자이너</h3>
-        <ul class="pain-list">
-          <li>인스타에선 납작해짐</li>
-          <li>세계관 보여줄 곳 없음</li>
-          <li>큐레이션 욕망 강</li>
-        </ul>
-      </article>
-      <article class="target-tile reveal" data-color="cyan">
-        <span class="badge">TIER 1</span>
-        <h3 class="typography-tile-headline">댄서 / 안무팀</h3>
-        <ul class="pain-list">
-          <li>팀 구조 자연스러움</li>
-          <li>숏폼 적합도 최고</li>
-          <li>K-pop 연결 직선</li>
-        </ul>
-      </article>
-      <article class="target-tile reveal reveal-d1" data-color="red">
-        <span class="badge">TIER 1</span>
-        <h3 class="typography-tile-headline">포토그래퍼</h3>
-        <ul class="pain-list">
-          <li>분위기·톤 핵심 자산</li>
-          <li>아티스트 비주얼 연결</li>
-          <li>아우라 표현 강</li>
-        </ul>
-      </article>
     </div>
+
+    <details class="fold reveal reveal-d3">
+      <summary>잔여 3개 직군 보기 · 디자이너 · 댄서 · 포토그래퍼</summary>
+      <div class="fold-body">
+        <div class="target-bento" style="grid-template-columns: repeat(3, 1fr);">
+          <article class="target-tile" data-color="purple">
+            <span class="badge">TIER 1</span>
+            <h3 class="typography-tile-headline">디자이너</h3>
+            <ul class="pain-list">
+              <li>인스타에선 납작해짐</li>
+              <li>세계관 보여줄 곳 없음</li>
+              <li>큐레이션 욕망 강</li>
+            </ul>
+          </article>
+          <article class="target-tile" data-color="cyan">
+            <span class="badge">TIER 1</span>
+            <h3 class="typography-tile-headline">댄서 / 안무팀</h3>
+            <ul class="pain-list">
+              <li>팀 구조 자연스러움</li>
+              <li>숏폼 적합도 최고</li>
+              <li>K-pop 연결 직선</li>
+            </ul>
+          </article>
+          <article class="target-tile" data-color="red">
+            <span class="badge">TIER 1</span>
+            <h3 class="typography-tile-headline">포토그래퍼</h3>
+            <ul class="pain-list">
+              <li>분위기·톤 핵심 자산</li>
+              <li>아티스트 비주얼 연결</li>
+              <li>아우라 표현 강</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- ===== 5. BUDGET ===== -->
-<section class="chapter" id="budget" aria-label="Budget">
+<!-- ===== §5. SIGNATURE PLAYS (Big 3 only) — moved here ===== -->
+<!-- ===== §5. SIGNATURE PLAYS (Big 3 only) ===== -->
+<section class="chapter" id="plays" aria-label="Signature Plays">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-red reveal">06 · Budget Architecture</p>
-      <h2 class="typography-section-headline reveal reveal-d1">2.5억 = 광고 매체비 62% 몰빵.<br>속도와 학습으로 임계점.</h2>
-      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
-        7개 항목은 따로 노는 라인이 아니라 하나의 퍼널. 광고 1.55억 = 학습 가속. 콘텐츠·시드·도시 1억 = 행동 격발.
+      <p class="typography-eyebrow eb-green reveal">05 · Signature Plays</p>
+      <h2 class="typography-section-headline reveal reveal-d1">광고가 아니라<br>사건을 만든다.</h2>
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 760px; margin-top: 16px;">
+        Big 3가 캠페인의 시그니처. 각 트랙의 심장. 나머지는 받쳐주는 무기.
       </p>
     </div>
 
-    <div class="budget-wrap">
-      <!-- Donut -->
-      <div class="budget-donut-card reveal">
-        <div class="donut" role="img" aria-label="2억 원 예산 배분 도넛 차트">
-          <svg viewBox="0 0 100 100">
-            <!-- Stroke-dasharray donut · Total 2.5억 -->
-            <circle cx="50" cy="50" r="40" fill="none" stroke="#1C1C1F" stroke-width="14"/>
-            <!-- Meta 42% -->
-            <circle cx="50" cy="50" r="40" fill="none" stroke="#5BFF5A" stroke-width="14" stroke-dasharray="105.56 251.33" stroke-dashoffset="0"/>
-            <!-- TikTok 20% -->
-            <circle cx="50" cy="50" r="40" fill="none" stroke="#FF3B30" stroke-width="14" stroke-dasharray="50.27 251.33" stroke-dashoffset="-105.56"/>
-            <!-- Seed 12% -->
-            <circle cx="50" cy="50" r="40" fill="none" stroke="#FFD60A" stroke-width="14" stroke-dasharray="30.16 251.33" stroke-dashoffset="-155.83"/>
-            <!-- 콘텐츠 10% -->
-            <circle cx="50" cy="50" r="40" fill="none" stroke="#BF5AF2" stroke-width="14" stroke-dasharray="25.13 251.33" stroke-dashoffset="-185.99"/>
-            <!-- Wanted 12% -->
-            <circle cx="50" cy="50" r="40" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-dasharray="30.16 251.33" stroke-dashoffset="-211.12"/>
-            <!-- CRM 2% -->
-            <circle cx="50" cy="50" r="40" fill="none" stroke="#86868B" stroke-width="14" stroke-dasharray="5.03 251.33" stroke-dashoffset="-241.28"/>
-            <!-- Buffer 2% -->
-            <circle cx="50" cy="50" r="40" fill="none" stroke="#444448" stroke-width="14" stroke-dasharray="5.03 251.33" stroke-dashoffset="-246.31"/>
-          </svg>
-          <div class="donut-center">
-            <div class="total">₩2.5억</div>
-            <div class="label">TOTAL · 7 LINES</div>
-          </div>
-        </div>
-        <p class="typography-body-reduced" style="text-align: center; max-width: 280px;">
-          광고 매체비 <mark class="highlight-green">62% (1.55억) 몰빵</mark>. 학습 가속 + 임계점 돌파.
-        </p>
-      </div>
-
-      <!-- Bento -->
-      <div class="budget-bento">
-        <div class="budget-tile reveal" data-color="cyan">
-          <span class="pct">42%</span>
-          <span class="amt">1억 500만</span>
-          <span class="name">Meta 퍼포먼스</span>
-          <span class="role">설치·포트폴리오 업로드 핵심 · 광고 몰빵</span>
-        </div>
-        <div class="budget-tile reveal reveal-d1" data-color="red">
-          <span class="pct">20%</span>
-          <span class="amt">5,000만</span>
-          <span class="name">TikTok 숏폼</span>
-          <span class="role">발견·바이럴·세계관 감도</span>
-        </div>
-        <div class="budget-tile reveal reveal-d2" data-color="yellow">
-          <span class="pct">12%</span>
-          <span class="amt">3,000만</span>
-          <span class="name">Creator Seed</span>
-          <span class="role">초기 100~300명 밀도</span>
-        </div>
-        <div class="budget-tile reveal" data-color="purple">
-          <span class="pct">10%</span>
-          <span class="amt">2,500만</span>
-          <span class="name">콘텐츠 제작</span>
-          <span class="role">월 50~100개 광고 공장</span>
-        </div>
-        <div class="budget-tile reveal reveal-d1" data-color="white">
-          <span class="pct">12%</span>
-          <span class="amt">3,000만</span>
-          <span class="name">Wanted 도시</span>
-          <span class="role">성수·홍대 벽보 ARG · 강화</span>
-        </div>
-        <div class="budget-tile reveal reveal-d2">
-          <span class="pct">2%</span>
-          <span class="amt">500만</span>
-          <span class="name">CRM / 리텐션</span>
-          <span class="role">푸시·이메일·하이라이트</span>
-        </div>
-        <div class="budget-tile reveal" style="grid-column: span 2;">
-          <span class="pct">2%</span>
-          <span class="amt">500만</span>
-          <span class="name">데이터 / 실험 버퍼</span>
-          <span class="role">Hook·길이·타겟·카테고리·AI 5축 AB 테스트 — 광고비 안에서 빠르게 학습</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 5.5 SIGNATURE ITEMS ===== -->
-<section class="chapter" id="items" aria-label="Signature Items">
-  <div class="section-inner">
-    <div class="section-header">
-      <p class="typography-eyebrow eb-green reveal">07 · The Items We Build</p>
-      <h2 class="typography-section-headline reveal reveal-d1">광고가 아니라<br>사건을 만든다.</h2>
-      <div class="items-intro reveal reveal-d2" style="margin-top: 24px;">
-        <p class="typography-body" style="color: var(--text-dim);">
-          예산은 라인이고, 트랙은 구조다. 실제로 <mark class="highlight-green">사람을 움직이는 것은 12개의 아이템</mark>.
-          이 중 <strong style="color: var(--c-green);">Big 3</strong>가 캠페인의 시그니처. 나머지 9개는 받쳐주는 무기.
-        </p>
-      </div>
-    </div>
-
-    <!-- BIG 3 -->
-    <p class="items-tail-label reveal" style="color: var(--c-green);">★★★★★ · BIG 3 — Signature Items</p>
-    <div class="items-big3">
+    <div class="items-big3-compact">
       <article class="item-big reveal" data-color="green">
         <div class="item-num">01</div>
         <span class="item-stars">★★★★★</span>
@@ -1188,9 +1227,9 @@ footer.brief-footer {
         <p class="item-desc">디자이너·프로듀서·보컬·안무가·편집자의 작업물 2초씩, 마지막 한 줄. 협업 욕망 자극 1순위. 메인 광고 캠페인 핵심 소재.</p>
         <div class="item-meta">
           <div class="item-meta-row"><span class="key">Track</span><span class="val">A · Digital</span></div>
-          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P1 (06.15~) 살포 · P2 (06.29~) 집중</span></div>
-          <div class="item-meta-row"><span class="key">Budget Line</span><span class="val">Meta 1억 500만 + 콘텐츠 2,500만</span></div>
-          <div class="item-meta-row"><span class="key">Primary KPI</span><span class="val kpi">포트폴리오 업로드 CPA</span></div>
+          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P1 살포 · P2 집중</span></div>
+          <div class="item-meta-row"><span class="key">Budget</span><span class="val">Meta 1억 500 + 콘텐츠 2,500</span></div>
+          <div class="item-meta-row"><span class="key">KPI</span><span class="val kpi">포트폴리오 업로드 CPA</span></div>
         </div>
       </article>
 
@@ -1199,12 +1238,12 @@ footer.brief-footer {
         <span class="item-stars">★★★★★</span>
         <h3 class="item-name">72시간<br>K-pop Team Challenge</h3>
         <p class="item-copy">— 작곡·보컬·댄서·영상팀 한 자리에.</p>
-        <p class="item-desc">C8 안에서 4역할 모집 → 72시간 안에 팀 결성·작업·결과물 업로드. 김형석 리뷰가 마무리. 실제 결과물·숏폼 무한 생산·팀 결성 사례·바이럴 4가지를 한 번에.</p>
+        <p class="item-desc">4역할 모집 → 72시간 안에 팀 결성·작업·결과물. 김형석 리뷰 마무리. 결과물·숏폼·팀 결성·바이럴 4가지를 한 번에.</p>
         <div class="item-meta">
           <div class="item-meta-row"><span class="key">Track</span><span class="val">B · Creator Seed</span></div>
-          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P2 본 라운드 (07.04~07.06) + P3 2회차</span></div>
-          <div class="item-meta-row"><span class="key">Budget Line</span><span class="val">Seed 3,000만 (이벤트 비용은 콘텐츠 라인에서 흡수)</span></div>
-          <div class="item-meta-row"><span class="key">Primary KPI</span><span class="val kpi">첫 협업 발생률 / 결과물 수</span></div>
+          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P2 본 라운드 (07.04~06) + P3 2회차</span></div>
+          <div class="item-meta-row"><span class="key">Budget</span><span class="val">Seed 3,000만</span></div>
+          <div class="item-meta-row"><span class="key">KPI</span><span class="val kpi">첫 협업 발생률 / 결과물 수</span></div>
         </div>
       </article>
 
@@ -1213,219 +1252,80 @@ footer.brief-footer {
         <span class="item-stars">★★★★★</span>
         <h3 class="item-name">REAL PROJECT<br>WANTED — 도시 벽보</h3>
         <p class="item-copy">— BAND MEMBERS WANTED, Seoul 2026.</p>
-        <p class="item-desc">성수·홍대 벽보. 인디 공연 포스터·캐스팅 공고 톤. QR → 풀스크린 몰입형 프로필. 김형석 연결 진짜 밴드 모집. "도시의 일부"처럼 보이는 ARG.</p>
+        <p class="item-desc">성수·홍대 벽보. 인디 공연 포스터·캐스팅 공고 톤. QR → 풀스크린 몰입형 프로필. "도시의 일부"처럼 보이는 ARG.</p>
         <div class="item-meta">
           <div class="item-meta-row"><span class="key">Track</span><span class="val">C · City</span></div>
-          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P1 1차 (06.20~) → P2 2차 → P3 3차</span></div>
-          <div class="item-meta-row"><span class="key">Budget Line</span><span class="val">Wanted 도시 3,000만 (강화)</span></div>
-          <div class="item-meta-row"><span class="key">Primary KPI</span><span class="val kpi">QR → 프로필 완성률 / 검색량 lift</span></div>
+          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P1 1차 → P2 2차 → P3 3차</span></div>
+          <div class="item-meta-row"><span class="key">Budget</span><span class="val">Wanted 도시 3,000만</span></div>
+          <div class="item-meta-row"><span class="key">KPI</span><span class="val kpi">QR → 프로필 완성률 / 검색량 lift</span></div>
         </div>
       </article>
     </div>
 
-    <!-- SUPPORTING 6 -->
-    <p class="items-tail-label reveal">★★★★ · SUPPORTING 6 — 받쳐주는 무기</p>
-    <div class="items-supporting">
-      <article class="item-sup reveal" data-color="green">
-        <div class="sup-head"><span>04 · Digital</span><span>★★★★</span></div>
-        <h4 class="sup-name">Before / After 포트폴리오</h4>
-        <p class="sup-desc">인스타 buried → C8 프로필 / DM → 구조화 / 혼자 → 팀 연결.</p>
-        <p class="sup-meta">Track A · <strong>Meta 캠페인 1</strong> 핵심 소재</p>
-      </article>
-      <article class="item-sup reveal reveal-d1" data-color="red">
-        <div class="sup-head"><span>05 · Digital</span><span>★★★★</span></div>
-        <h4 class="sup-name">"당신 작업물은<br>묻혀있습니다"</h4>
-        <p class="sup-desc">디자이너·영상편집자·작곡가·포토그래퍼 pain 직격. Hook 강도 최상.</p>
-        <p class="sup-meta">Track A · <strong>TikTok 발견 캠페인</strong></p>
-      </article>
-      <article class="item-sup reveal reveal-d2" data-color="yellow">
-        <div class="sup-head"><span>06 · Seed</span><span>★★★★</span></div>
-        <h4 class="sup-name">김형석 Pick Challenge</h4>
-        <p class="sup-desc">작곡가가 직접 가능성을 본 팀 선정. 산업 진입의 상징. 개인 ✗ · 팀 ○.</p>
-        <p class="sup-meta">Track B · <strong>P2 집중 1회</strong> · Asset 01 호출</p>
-      </article>
-      <article class="item-sup reveal" data-color="yellow">
-        <div class="sup-head"><span>07 · Seed</span><span>★★★★</span></div>
-        <h4 class="sup-name">Song to Performance</h4>
-        <p class="sup-desc">김형석 측 음악·IP 제공 → C8 팀 결성 → 유저 퍼포먼스 제작. 산업 IP × 시드 결합.</p>
-        <p class="sup-meta">Track B · <strong>P2~P3</strong> · Asset 01 호출</p>
-      </article>
-      <article class="item-sup reveal reveal-d1" data-color="green">
-        <div class="sup-head"><span>08 · Hybrid</span><span>★★★★</span></div>
-        <h4 class="sup-name">MV Collaboration</h4>
-        <p class="sup-desc">작곡·보컬·댄서·촬영·편집 한 팀 → 실제 MV. 광고 소재·UGC·Proof 1석 3조.</p>
-        <p class="sup-meta">Track A·B 혼합 · Asset 02 호출</p>
-      </article>
-      <article class="item-sup reveal reveal-d2" data-color="purple">
-        <div class="sup-head"><span>09 · City</span><span>★★★★</span></div>
-        <h4 class="sup-name">WANTED PROFILE 벽보</h4>
-        <p class="sup-desc">"A vocalist who sounds like midnight." 캐스팅 공고형 포스터. 무드 풀스크린 프로필 등장.</p>
-        <p class="sup-meta">Track C · <strong>P1 성수 5~10곳</strong></p>
-      </article>
-    </div>
-
-    <!-- LONG TAIL 3 -->
-    <p class="items-tail-label reveal">★★★ · LONG TAIL — 실험 풀</p>
-    <div class="items-tail reveal">
-      <div class="item-tail"><span class="tag">10</span><span><strong>AI Creation Camp</strong> — AI MV·작곡·퍼포먼스 배틀</span></div>
-      <div class="item-tail"><span class="tag">11</span><span><strong>Remix 챌린지</strong> — 작업물 업로드 → 다음 창작자가 이어서</span></div>
-      <div class="item-tail"><span class="tag">12</span><span><strong>창작자 유형 테스트</strong> — Solo / Team / K-creator DNA 리드 수집</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 6. MESSAGE ARCHITECTURE ===== -->
-<section class="chapter" id="message" aria-label="Message Architecture">
-  <div class="section-inner">
-    <div class="section-header">
-      <p class="typography-eyebrow eb-purple reveal">08 · Message Architecture</p>
-      <h2 class="typography-section-headline reveal reveal-d1">한 카피에 4개의 축이 다 들어갑니다.</h2>
-    </div>
-
-    <div class="message-stack">
-      <div class="message-row master reveal">
-        <span class="level">MASTER</span>
-        <p class="copy en">You Are Not Content.<small>창작자는 콘텐츠가 아니다 — 4개 축을 모두 함축하는 메인 카피</small></p>
-      </div>
-      <div class="message-row hook reveal reveal-d1">
-        <span class="level">HOOK · IDENTITY</span>
-        <p class="copy">"인스타는 당신을 1초만 보여줍니다."<small>피로 자극 → 자기 발견으로 전환</small></p>
-      </div>
-      <div class="message-row hook reveal reveal-d2">
-        <span class="level">HOOK · INDEPENDENCE</span>
-        <p class="copy en">"Make People Search You."<small>알고리즘에 뜨는 사람 ✗ · 찾아지는 사람 ○</small></p>
-      </div>
-      <div class="message-row hook reveal reveal-d3">
-        <span class="level">HOOK · INDUSTRY</span>
-        <p class="copy">"색은 따라할 수 없습니다."<small>김형석 자산 호출 — 감각·취향의 상징</small></p>
-      </div>
-      <div class="message-row var reveal">
-        <span class="level">VARIATION</span>
-        <p class="copy">"당신만의 색이 있습니까?" · "Create Your Presence." · "Stop Feeding the Algorithm."<small>매체·소재별 회전 카피 풀</small></p>
-      </div>
-      <div class="message-row var reveal reveal-d1">
-        <span class="level">CITY · WANTED</span>
-        <p class="copy en">"A vocalist who sounds like midnight."<small>Wanted 포스터 톤 — 도시 캐스팅 공고 형태</small></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 7. THREE TRACKS ===== -->
-<section class="chapter" id="tracks" aria-label="Three Tracks">
-  <div class="section-inner">
-    <div class="section-header">
-      <p class="typography-eyebrow eb-cyan reveal">09 · Three Execution Tracks</p>
-      <h2 class="typography-section-headline reveal reveal-d1">디지털 · 시드 · 도시 — 3트랙 동시 가동.</h2>
-    </div>
-
-    <div class="tracks-grid">
-      <article class="track-card reveal" data-color="cyan">
-        <p class="num">TRACK A</p>
-        <h3 class="typography-banner-card-headline">Digital Performance</h3>
-        <p class="budget-line"><strong>1억 8,000만</strong> · Meta 1억 500 + TikTok 5,000 + 콘텐츠 2,500</p>
-        <p class="typography-body-reduced" style="line-height: 1.5;">
-          유입·발견·바이럴 트랙. Hook 주간 교체, 50~100개 숏폼 광고 공장 운영. 빠른 폐기·카테고리별 AB로 학습 페이즈 가속.
-        </p>
-        <ul>
-          <li>아이템 #01 · #04 · #05 · #08 (메인 5종)</li>
-          <li>Meta 3캠페인 + TikTok 발견·바이럴</li>
-        </ul>
-        <div class="kpi-mini">
-          <strong>PRIMARY KPI</strong>
-          포트폴리오 업로드 CPA 1.5~3만원 / D7 25%+
+    <details class="fold reveal reveal-d3">
+      <summary>받쳐주는 무기 9개 보기 · Supporting 6 + Long Tail 3</summary>
+      <div class="fold-body">
+        <div class="items-supporting">
+          <article class="item-sup" data-color="green">
+            <div class="sup-head"><span>04 · Digital</span><span>★★★★</span></div>
+            <h4 class="sup-name">Before / After 포트폴리오</h4>
+            <p class="sup-desc">인스타 buried → C8 프로필 / DM → 구조화 / 혼자 → 팀 연결.</p>
+            <p class="sup-meta">Track A · Meta 캠페인 1 핵심 소재</p>
+          </article>
+          <article class="item-sup" data-color="red">
+            <div class="sup-head"><span>05 · Digital</span><span>★★★★</span></div>
+            <h4 class="sup-name">"당신 작업물은 묻혀있습니다"</h4>
+            <p class="sup-desc">디자이너·영상편집자·작곡가·포토그래퍼 pain 직격. Hook 강도 최상.</p>
+            <p class="sup-meta">Track A · TikTok 발견 캠페인</p>
+          </article>
+          <article class="item-sup" data-color="yellow">
+            <div class="sup-head"><span>06 · Seed</span><span>★★★★</span></div>
+            <h4 class="sup-name">김형석 Pick Challenge</h4>
+            <p class="sup-desc">작곡가가 직접 가능성을 본 팀 선정. 산업 진입의 상징. 개인 ✗ · 팀 ○.</p>
+            <p class="sup-meta">Track B · P2 집중 1회 · Asset 01 호출</p>
+          </article>
+          <article class="item-sup" data-color="yellow">
+            <div class="sup-head"><span>07 · Seed</span><span>★★★★</span></div>
+            <h4 class="sup-name">Song to Performance</h4>
+            <p class="sup-desc">김형석 측 IP 제공 → C8 팀 결성 → 유저 퍼포먼스 제작. 산업 IP × 시드 결합.</p>
+            <p class="sup-meta">Track B · P2~P3 · Asset 01 호출</p>
+          </article>
+          <article class="item-sup" data-color="green">
+            <div class="sup-head"><span>08 · Hybrid</span><span>★★★★</span></div>
+            <h4 class="sup-name">MV Collaboration</h4>
+            <p class="sup-desc">작곡·보컬·댄서·촬영·편집 한 팀 → 실제 MV. 광고·UGC·Proof 1석 3조.</p>
+            <p class="sup-meta">Track A·B 혼합 · Asset 02 호출</p>
+          </article>
+          <article class="item-sup" data-color="purple">
+            <div class="sup-head"><span>09 · City</span><span>★★★★</span></div>
+            <h4 class="sup-name">WANTED PROFILE 벽보</h4>
+            <p class="sup-desc">"A vocalist who sounds like midnight." 캐스팅 공고형 포스터. 무드 풀스크린 프로필.</p>
+            <p class="sup-meta">Track C · P1 성수 5~10곳</p>
+          </article>
         </div>
-      </article>
-
-      <article class="track-card reveal reveal-d1" data-color="yellow">
-        <p class="num">TRACK B</p>
-        <h3 class="typography-banner-card-headline">Creator Seed Program</h3>
-        <p class="budget-line"><strong>3,000만</strong> · 초기 100~300명 밀도 (이벤트 = 콘텐츠 라인 흡수)</p>
-        <p class="typography-body-reduced" style="line-height: 1.5;">
-          팔로워 1~5만·작업물 자주·협업 적극형 우선. 보상 = 현금 ✗ / 메인 노출·프로 피드백·팀 매칭권 ○. 김형석 자산 호출 트랙.
-        </p>
-        <ul>
-          <li>아이템 #02 · #06 · #07 · #08 (Big 1 + 4종)</li>
-          <li>72시간 챌린지 + Pick Challenge + Song to Performance</li>
-        </ul>
-        <div class="kpi-mini">
-          <strong>PRIMARY KPI</strong>
-          활동 시드 100명 · 첫 협업 발생률 30%+
+        <p class="items-tail-label" style="margin-top: 24px;">★★★ · LONG TAIL — 실험 풀</p>
+        <div class="items-tail">
+          <div class="item-tail"><span class="tag">10</span><span><strong>AI Creation Camp</strong> — AI MV·작곡·퍼포먼스 배틀</span></div>
+          <div class="item-tail"><span class="tag">11</span><span><strong>Remix 챌린지</strong> — 작업물 업로드 → 다음 창작자가 이어서</span></div>
+          <div class="item-tail"><span class="tag">12</span><span><strong>창작자 유형 테스트</strong> — Solo / Team / K-creator DNA 리드 수집</span></div>
         </div>
-      </article>
-
-      <article class="track-card reveal reveal-d2" data-color="purple">
-        <p class="num">TRACK C</p>
-        <h3 class="typography-banner-card-headline">City Wanted ARG</h3>
-        <p class="budget-line"><strong>3,000만</strong> · 성수·홍대 투트랙 + 확장 (강화)</p>
-        <p class="typography-body-reduced" style="line-height: 1.5;">
-          벽보 = 인디 공연 포스터·캐스팅 공고·Y2K Xerox 톤. 스타트업 광고 ✗ / 도시 일부처럼 보일 것. QR → 풀스크린 몰입 프로필.
-        </p>
-        <ul>
-          <li>아이템 #03 · #09 (Big 1 + 1종)</li>
-          <li>REAL PROJECT WANTED + WANTED PROFILE</li>
-        </ul>
-        <div class="kpi-mini">
-          <strong>PRIMARY KPI</strong>
-          QR 스캔 → 프로필 완성률 / 검색량 lift
-        </div>
-      </article>
-    </div>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- ===== 8. ASSETS ===== -->
-<section class="chapter" id="assets" aria-label="Asset Activation">
+<!-- ===== §6. EXECUTION — 3-Track × Roadmap Matrix ===== -->
+<section class="chapter" id="exec" aria-label="Execution Matrix">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-yellow reveal">10 · Asset Activation</p>
-      <h2 class="typography-section-headline reveal reveal-d1">자산은 4개 — 호출 맥락은 명확히 분리.</h2>
-      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
-        같은 자산이 여러 트랙에서 다른 의미로 쓰이면 메시지가 흐려집니다. 자산별 역할 1개 + 호출 트랙 1~2개로 고정.
-      </p>
-    </div>
-
-    <div class="assets-grid">
-      <article class="asset-tile reveal" data-color="red">
-        <p class="label">ASSET 01</p>
-        <h3 class="typography-feature-card-headline">김형석 작곡가</h3>
-        <p class="role"><strong>감각·취향의 상징</strong> · "색은 따라할 수 없다"</p>
-        <p class="ctx">호출 트랙: Track B(Pick Challenge) + Track C(Wanted 밴드 모집). 일반 광고 ✗ · 산업 진입의 상징으로만.</p>
-      </article>
-      <article class="asset-tile reveal reveal-d1" data-color="cyan">
-        <p class="label">ASSET 02</p>
-        <h3 class="typography-feature-card-headline">영상 제작사 네트워크</h3>
-        <p class="role"><strong>결과물 비주얼</strong> · MV Collaboration</p>
-        <p class="ctx">호출 트랙: Track A(콘텐츠 제작 소재) + Track B(시드 결과물 가시화). UI 광고 ✗ · "멋진 결과물"로.</p>
-      </article>
-      <article class="asset-tile reveal reveal-d2" data-color="yellow">
-        <p class="label">ASSET 03</p>
-        <h3 class="typography-feature-card-headline">댄스 연결</h3>
-        <p class="role"><strong>성장 엔진</strong> · 숏폼·바이럴·글로벌</p>
-        <p class="ctx">호출 트랙: Track A(TikTok 메인) + Track B(Cover Team Match). "춤 자체"보다 "팀 결성 장면".</p>
-      </article>
-      <article class="asset-tile reveal reveal-d3" data-color="purple">
-        <p class="label">ASSET 04</p>
-        <h3 class="typography-feature-card-headline">팝아트 레이어</h3>
-        <p class="role"><strong>세계관 자산</strong> · 굿즈·비주얼·챌린지</p>
-        <p class="ctx">호출 트랙: Track C(Wanted 비주얼) + 브랜딩 굿즈. 메인 acquisition ✗ · 세계관 강화로만.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 9. ROADMAP ===== -->
-<section class="chapter" id="roadmap" aria-label="Roadmap">
-  <div class="section-inner">
-    <div class="section-header">
-      <p class="typography-eyebrow eb-cyan reveal">11 · Phase Roadmap</p>
-      <h2 class="typography-section-headline reveal reveal-d1">씨앗부터 폭발까지<br>6.5주 안에 끝낸다.</h2>
+      <p class="typography-eyebrow eb-cyan reveal">06 · Execution Matrix</p>
+      <h2 class="typography-section-headline reveal reveal-d1">3트랙 × 3페이즈.<br>한 표에 모든 실행이 들어간다.</h2>
       <p class="typography-body-reduced reveal reveal-d2" style="max-width: 760px; margin-top: 16px;">
-        2026.06.15 ~ 07.31 — <mark class="highlight-green">P1·P2는 직렬이 아닌 병렬</mark>. Seed 모집과 광고 실험이 동시 굴러야 2억을 6.5주에 소화.
+        디지털·시드·도시 = 공간축. Seed·Concentrate·Explosion = 시간축. 6.5주 안에 병렬 가동.
       </p>
 
       <!-- Timeline Bar -->
-      <div class="timeline-bar reveal reveal-d3">
+      <div class="timeline-bar reveal reveal-d3" style="margin-top: 32px;">
         <div class="tl-track">
           <div class="tl-seg" style="width: 30.7%; background: var(--c-green);"><span class="tl-label">P1 SEED · 2주</span></div>
           <div class="tl-seg" style="width: 30.7%; background: var(--c-yellow);"><span class="tl-label" style="color: #000;">P2 CONCENTRATE · 2주</span></div>
@@ -1437,83 +1337,177 @@ footer.brief-footer {
       </div>
     </div>
 
-    <div class="roadmap-track">
-      <article class="phase-card reveal" data-color="cyan">
-        <p class="phase-num">PHASE 01 · 06.15 — 06.28</p>
-        <h3 class="typography-banner-card-headline">Seed</h3>
-        <p class="range"><strong>0 ~ 6,000만</strong> · 2주 (학습 스프린트)</p>
-        <ul>
-          <li>50개 소재 살포·CTR/업로드 전환 AB</li>
-          <li>Creator Seed 1차 50~80명 모집</li>
-          <li>Wanted 1차 성수 5~7곳 (06.20~)</li>
-          <li>김형석 Pick Challenge 사전 큐레이션</li>
-          <li>일별 폐기·교체 — 학습 가속</li>
-        </ul>
-        <p class="goal">GOAL · 7일 안에 어떤 소재·직군이 먹히는지 잠금</p>
-      </article>
-
-      <article class="phase-card reveal reveal-d1" data-color="yellow">
-        <p class="phase-num">PHASE 02 · 06.29 — 07.12</p>
-        <h3 class="typography-banner-card-headline">Concentrate</h3>
-        <p class="range"><strong>6,000만 ~ 1.8억</strong> · 2주 (집중 투입)</p>
-        <ul>
-          <li>먹히는 카테고리 3종에 집중 광고</li>
-          <li>72시간 K-pop Team Challenge 1회 (07.04~07.06)</li>
-          <li>김형석 Pick Challenge 본 라운드</li>
-          <li>MV Collaboration 1팀 시작</li>
-          <li>Wanted 2차 성수 + 홍대 확장</li>
-        </ul>
-        <p class="goal">GOAL · 시드 100명 활성화 → 자생 콘텐츠 시작</p>
-      </article>
-
-      <article class="phase-card reveal reveal-d2" data-color="purple">
-        <p class="phase-num">PHASE 03 · 07.13 — 07.31</p>
-        <h3 class="typography-banner-card-headline">Network Explosion</h3>
-        <p class="range"><strong>1.8억 ~ 2.5억</strong> · 2.5주 (확산)</p>
-        <ul>
-          <li>리퍼럴 보상 풀가동 + 챌린지 2회차</li>
-          <li>Wanted 3차 — 건대·이태원·강남 확장</li>
-          <li>MV·곡·밴드 결과물 송출 (07.20~)</li>
-          <li>Song to Performance 가시화</li>
-          <li>Phase 4 시리즈A 스토리 빌드</li>
-        </ul>
-        <p class="goal">GOAL · 네트워크 효과 임계점 돌파 → 8월 자생</p>
-      </article>
+    <div class="matrix-wrap reveal">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Track · 예산</th>
+            <th>P1 · Seed (06.15~28)</th>
+            <th>P2 · Concentrate (06.29~07.12)</th>
+            <th>P3 · Explosion (07.13~31)</th>
+            <th>Primary KPI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-track="A">
+            <td class="track-cell" data-h="Track">A · Digital Performance<span class="sub">₩1.8억 · Meta 1억 500 + TikTok 5,000 + 콘텐츠 2,500</span></td>
+            <td data-h="P1">50개 소재 살포·CTR/업로드 AB · 일별 폐기·교체 — 학습 가속</td>
+            <td data-h="P2">먹히는 카테고리 3종 집중 · Hook 주간 교체 · MV Collab 1팀 시작</td>
+            <td data-h="P3">리퍼럴 풀가동 · TikTok 바이럴 확산 · MV·곡·결과물 송출</td>
+            <td data-h="KPI"><span class="kpi-pill">포트폴리오 업로드 CPA 1.5~3만 / D7 25%+</span></td>
+          </tr>
+          <tr data-track="B">
+            <td class="track-cell" data-h="Track">B · Creator Seed<span class="sub">₩3,000만 · 100~300명 밀도 · 이벤트=콘텐츠 흡수</span></td>
+            <td data-h="P1">1차 50~80명 모집 · 김형석 Pick 사전 큐레이션</td>
+            <td data-h="P2">72시간 K-pop Team Challenge 1회 (07.04~06) · Pick 본 라운드</td>
+            <td data-h="P3">챌린지 2회차 · Song to Performance 가시화</td>
+            <td data-h="KPI"><span class="kpi-pill">활동 시드 100명 / 첫 협업 발생률 30%+</span></td>
+          </tr>
+          <tr data-track="C">
+            <td class="track-cell" data-h="Track">C · City Wanted ARG<span class="sub">₩3,000만 · 성수·홍대 + 확장</span></td>
+            <td data-h="P1">Wanted 1차 성수 5~7곳 (06.20~) · Y2K Xerox 톤 벽보</td>
+            <td data-h="P2">Wanted 2차 — 성수 + 홍대 확장</td>
+            <td data-h="P3">Wanted 3차 — 건대·이태원·강남 확장 · 진짜 밴드 모집 가시화</td>
+            <td data-h="KPI"><span class="kpi-pill">QR → 프로필 완성률 / 검색량 lift +150%</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <details class="fold reveal">
+      <summary>4개 자산 호출 맥락 · 김형석 / 영상망 / 댄스 / 팝아트</summary>
+      <div class="fold-body">
+        <div class="assets-grid">
+          <article class="asset-tile" data-color="red">
+            <p class="label">ASSET 01</p>
+            <h3 class="typography-feature-card-headline">김형석 작곡가</h3>
+            <p class="role"><strong>감각·취향의 상징</strong> · "색은 따라할 수 없다"</p>
+            <p class="ctx">Track B (Pick Challenge) + Track C (밴드 모집). 일반 광고 ✗ · 산업 진입의 상징.</p>
+          </article>
+          <article class="asset-tile" data-color="cyan">
+            <p class="label">ASSET 02</p>
+            <h3 class="typography-feature-card-headline">영상 제작사 네트워크</h3>
+            <p class="role"><strong>결과물 비주얼</strong> · MV Collaboration</p>
+            <p class="ctx">Track A (콘텐츠 소재) + Track B (시드 결과물 가시화). UI 광고 ✗.</p>
+          </article>
+          <article class="asset-tile" data-color="yellow">
+            <p class="label">ASSET 03</p>
+            <h3 class="typography-feature-card-headline">댄스 연결</h3>
+            <p class="role"><strong>성장 엔진</strong> · 숏폼·바이럴·글로벌</p>
+            <p class="ctx">Track A (TikTok 메인) + Track B (Cover Team Match). "팀 결성 장면".</p>
+          </article>
+          <article class="asset-tile" data-color="purple">
+            <p class="label">ASSET 04</p>
+            <h3 class="typography-feature-card-headline">팝아트 레이어</h3>
+            <p class="role"><strong>세계관 자산</strong> · 굿즈·비주얼·챌린지</p>
+            <p class="ctx">Track C (Wanted 비주얼) + 브랜딩 굿즈. 메인 acquisition ✗.</p>
+          </article>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- ===== 10. KPI + GUARDRAILS ===== -->
-<section class="chapter" id="kpi" aria-label="KPI and Guardrails">
+<!-- ===== §7. NUMBERS — Budget · KPI · NSM ===== -->
+<section class="chapter" id="numbers" aria-label="Numbers">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-red reveal">12 · KPI &amp; Guardrails</p>
-      <h2 class="typography-section-headline reveal reveal-d1">설치 수가 아니라<br>"활동·관계·존재" 3축으로 측정합니다.</h2>
+      <p class="typography-eyebrow eb-green reveal">07 · Numbers — Budget · KPI · NSM</p>
+      <h2 class="typography-section-headline reveal reveal-d1">하나의 숫자에 모든 것을 건다.<br><span style="color: var(--c-green);">활성 창작자 1만</span>.</h2>
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 760px; margin-top: 16px;">
+        다운로드 ✗ · ROAS ✗. 활성 1만이 임계점. 8월부터 광고 없이 자생.
+      </p>
     </div>
 
-    <div class="kpi-wrap">
-      <div class="kpi-card reveal">
-        <h3 class="typography-feature-card-headline">Master KPI Set</h3>
+    <!-- NSM Hero — compact -->
+    <div class="nsm-compact reveal" style="margin-bottom: 32px;">
+      <p class="lab">NORTH STAR METRIC</p>
+      <div class="num">10,000<small>명 · D7 활성</small></div>
+      <p class="desc">가입 후 7일 안에 1회 이상 작업 행동(업로드/협업/프로필 갱신). 측정 시점 = 2026.07.31 23:59.</p>
+    </div>
+
+    <!-- Budget(좌) + KPI(우) split -->
+    <div class="split-7">
+      <div class="blk reveal">
+        <h4>Budget Architecture · ₩2.5억 / 7 Lines</h4>
+        <div class="budget-mini">
+          <div class="row media"><span class="name">Meta 퍼포먼스</span><span class="pct">42% · 1억 500</span></div>
+          <div class="row media"><span class="name">TikTok 숏폼</span><span class="pct">20% · 5,000</span></div>
+          <div class="row action"><span class="name">Wanted 도시</span><span class="pct">12% · 3,000</span></div>
+          <div class="row action"><span class="name">Creator Seed</span><span class="pct">12% · 3,000</span></div>
+          <div class="row exp"><span class="name">콘텐츠 제작</span><span class="pct">10% · 2,500</span></div>
+          <div class="row exp"><span class="name">CRM · 버퍼</span><span class="pct">4% · 1,000</span></div>
+        </div>
+        <p class="typography-body-reduced" style="margin-top: 14px;">
+          <mark class="highlight-green">광고 매체비 62% (1.55억) 몰빵</mark> · 콘텐츠·시드·도시 1억 = 행동 격발.
+        </p>
+      </div>
+
+      <div class="blk reveal reveal-d1">
+        <h4>Master KPI · 활동 · 관계 · 존재 3축</h4>
         <table class="kpi-table">
-          <thead>
-            <tr><th>축</th><th>지표</th><th>우선순위</th></tr>
-          </thead>
+          <thead><tr><th>축</th><th>지표</th><th>★</th></tr></thead>
           <tbody>
             <tr><td>존재</td><td>프로필 완성률</td><td><span class="star">★★★★★</span></td></tr>
-            <tr><td>존재</td><td>자기소개 작성률</td><td><span class="star">★★★★★</span></td></tr>
-            <tr><td>활동</td><td>포트폴리오 업로드 수</td><td><span class="star">★★★★★</span></td></tr>
-            <tr><td>활동</td><td>프로젝트 생성률</td><td><span class="star">★★★★</span></td></tr>
+            <tr><td>활동</td><td>포트폴리오 업로드</td><td><span class="star">★★★★★</span></td></tr>
             <tr><td>관계</td><td>협업 발생률</td><td><span class="star">★★★★</span></td></tr>
             <tr><td>관계</td><td>초대율</td><td><span class="star">★★★★</span></td></tr>
             <tr><td>지속</td><td>D7 재방문</td><td><span class="star">★★★★</span></td></tr>
-            <tr><td>지속</td><td>체류시간 / 프로필 공유율</td><td><span class="star">★★★★</span></td></tr>
             <tr><td>입구</td><td>CPI (참고용)</td><td><span class="star">★★</span></td></tr>
           </tbody>
         </table>
+        <p class="typography-body-reduced" style="margin-top: 12px; font-size: 12px;">
+          단가 기준선 — CAC ₩4,400 / 활성 CAC ₩25,000 / 포폴 CPA ₩7만
+        </p>
       </div>
+    </div>
 
-      <div class="guard-card reveal reveal-d1">
-        <h3 class="typography-feature-card-headline">Guardrails — 절대 금지</h3>
+    <details class="fold reveal" style="margin-top: 24px;">
+      <summary>NSM 시나리오 · 1.55억 광고비 → 활성 D7</summary>
+      <div class="fold-body">
+        <div class="scenario-table">
+          <div class="table-head">
+            <h3>가입 80% · 활성 D7 25% 가정</h3>
+            <span class="note">시드·도시 1억이 광고 효율을 +13% 끌어올려 8,850 → 10,000 도달</span>
+          </div>
+          <div class="scenario-grid">
+            <div class="col-head">시나리오</div>
+            <div class="col-head" style="text-align: right;">CPI</div>
+            <div class="col-head" style="text-align: right;">설치</div>
+            <div class="col-head" style="text-align: right;">가입 80%</div>
+            <div class="col-head" style="text-align: right;">활성 D7 25%</div>
+
+            <div class="row-label">공격</div>
+            <div class="num">2,500원</div>
+            <div class="num">62,000</div>
+            <div class="num">49,600</div>
+            <div class="num highlight">12,400</div>
+
+            <div class="row-label real">현실<span class="star">★</span></div>
+            <div class="num">3,500원</div>
+            <div class="num">44,300</div>
+            <div class="num">35,400</div>
+            <div class="num highlight">8,850</div>
+
+            <div class="row-label">보수</div>
+            <div class="num">5,000원</div>
+            <div class="num">31,000</div>
+            <div class="num">24,800</div>
+            <div class="num highlight">6,200</div>
+
+            <div class="row-label" style="color: var(--c-yellow);">★ 목표</div>
+            <div class="num" style="color: var(--text-dim);">—</div>
+            <div class="num" style="color: var(--text-dim);">—</div>
+            <div class="num" style="color: var(--text-dim);">—</div>
+            <div class="num target">10,000</div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="fold reveal">
+      <summary>Guardrails · 절대 금지 8조</summary>
+      <div class="fold-body">
         <div class="guard-list">
           <div class="guard-item">앱 기능 설명 위주 광고 — "추상적, 행동 안 만듦"</div>
           <div class="guard-item">감성 브랜딩 영상 몰빵 — "초기 비효율 1위"</div>
@@ -1522,100 +1516,16 @@ footer.brief-footer {
           <div class="guard-item">긴 영상 / 단일 소재 반복 — "학습 느림"</div>
           <div class="guard-item">"같이 만들자" 강요형 카피 — "초기 규모에선 공허"</div>
           <div class="guard-item">Wanted = 데이팅앱 분기 — "브랜드 흐림"</div>
-          <div class="guard-item">대행사에 세계관·KPI 정의 위임 — "2억이 학비 됨"</div>
+          <div class="guard-item">대행사에 세계관·KPI 정의 위임 — "2.5억이 학비 됨"</div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </details>
 
-<!-- ===== 13. NUMBERS · NSM ===== -->
-<section class="chapter" id="numbers" aria-label="Numbers and NSM">
-  <div class="section-inner">
-    <div class="section-header">
-      <p class="typography-eyebrow eb-green reveal">13 · The Number That Matters</p>
-      <h2 class="typography-section-headline reveal reveal-d1">하나의 숫자에<br>모든 것을 건다.</h2>
-      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 760px; margin-top: 16px;">
-        다운로드도, 노출도, ROAS도 본 게임이 아니다. 이 한 숫자가 임계점을 넘으면 — 8월부터 광고 없이 자생.
-      </p>
-    </div>
-
-    <!-- NSM Hero -->
-    <div class="nsm-hero reveal">
-      <div class="nsm-block">
-        <p class="nsm-eyebrow">NORTH STAR METRIC</p>
-        <p class="nsm-name">활성 창작자 수<br><span style="color: var(--text-dim); font-size: 0.6em; font-weight: 500;">Active Creators · D7 기준</span></p>
-        <div class="nsm-value">10,000<span class="nsm-unit">명</span></div>
-      </div>
-      <div class="nsm-def">
-        <div>
-          <h4>정의</h4>
-          <p>가입 후 7일 안에 <strong>1회 이상 작업 행동</strong>(포트폴리오 업로드 / 협업 시작 / 프로필 갱신)을 한 창작자.</p>
-        </div>
-        <div>
-          <h4>왜 이 숫자인가</h4>
-          <p>설치·노출은 거짓을 만든다. 활성만이 <strong>네트워크 효과의 시작점</strong>. 1만 = 임계점 (한국 신규 창작자 앱 자생 기준).</p>
-        </div>
-        <div>
-          <h4>측정 시점</h4>
-          <p>2026.07.31 23:59 기준 누적 — 6.5주 끝나는 순간 1만이면 8월부터 자생 가능.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Scenario Table -->
-    <div class="scenario-table reveal reveal-d1">
-      <div class="table-head">
-        <h3>시나리오 — 1.55억 광고비 → 활성 창작자</h3>
-        <span class="note">광고 매체비 기준 / 가입 80% · 활성 D7 25% 가정</span>
-      </div>
-      <div class="scenario-grid">
-        <div class="col-head">시나리오</div>
-        <div class="col-head" style="text-align: right;">CPI</div>
-        <div class="col-head" style="text-align: right;">인스톨</div>
-        <div class="col-head" style="text-align: right;">가입 (80%)</div>
-        <div class="col-head" style="text-align: right;">활성 D7 (25%)</div>
-
-        <div class="row-label">공격</div>
-        <div class="num">2,500원</div>
-        <div class="num">62,000</div>
-        <div class="num">49,600</div>
-        <div class="num highlight">12,400</div>
-
-        <div class="row-label real">현실<span class="star">★</span></div>
-        <div class="num">3,500원</div>
-        <div class="num">44,300</div>
-        <div class="num">35,400</div>
-        <div class="num highlight">8,850</div>
-
-        <div class="row-label">보수</div>
-        <div class="num">5,000원</div>
-        <div class="num">31,000</div>
-        <div class="num">24,800</div>
-        <div class="num highlight">6,200</div>
-
-        <div class="row-label" style="color: var(--c-yellow);">★ 목표</div>
-        <div class="num" style="color: var(--text-dim);">—</div>
-        <div class="num" style="color: var(--text-dim);">—</div>
-        <div class="num" style="color: var(--text-dim);">—</div>
-        <div class="num target">10,000</div>
-      </div>
-    </div>
-
-    <!-- Assumption Box -->
-    <div class="assumption-box reveal reveal-d2">
-      <span class="label">ASSUMPTION</span>
-      <strong>현실 가정 8,850 → NSM 1만으로 라운드 업.</strong> 시드·도시 트랙 1억이 광고 효율을 +13% 끌어올리는 시나리오 (Wanted 벽보 QR + Creator Seed 바이럴 + 김형석 자산 효과). CPI·전환·활성률은 P1 첫 7일 실측 후 갱신.
-    </div>
-
-    <!-- Track Outputs -->
-    <p class="items-tail-label reveal" style="color: var(--c-green);">TRACK OUTPUTS · 트랙별 결과 숫자</p>
+    <p class="items-tail-label reveal" style="color: var(--c-green); margin-top: 28px;">트랙별 결과 숫자 · 7월 31일 누적</p>
     <div class="track-outputs">
       <div class="track-out-card reveal" data-color="green">
         <p class="out-name">A · DIGITAL</p>
         <div class="out-list">
-          <div class="out-row"><span class="key">광고 노출</span><span class="val">5,000만</span></div>
-          <div class="out-row"><span class="key">클릭</span><span class="val">100만</span></div>
           <div class="out-row"><span class="key">설치</span><span class="val">44,000</span></div>
           <div class="out-row"><span class="key">가입</span><span class="val">35,000</span></div>
         </div>
@@ -1624,41 +1534,18 @@ footer.brief-footer {
         <p class="out-name">B · SEED</p>
         <div class="out-list">
           <div class="out-row"><span class="key">활성 시드</span><span class="val">150명</span></div>
-          <div class="out-row"><span class="key">첫 협업</span><span class="val">200건</span></div>
-          <div class="out-row"><span class="key">결과물</span><span class="val">30건</span></div>
-          <div class="out-row"><span class="key">김형석 Pick</span><span class="val">1팀</span></div>
+          <div class="out-row"><span class="key">결과물</span><span class="val">30건 · Pick 1팀</span></div>
         </div>
       </div>
       <div class="track-out-card reveal reveal-d2" data-color="purple">
-        <p class="out-name">C · CITY (WANTED)</p>
+        <p class="out-name">C · CITY</p>
         <div class="out-list">
-          <div class="out-row"><span class="key">벽보 부착</span><span class="val">30곳</span></div>
-          <div class="out-row"><span class="key">QR 스캔</span><span class="val">15,000</span></div>
-          <div class="out-row"><span class="key">스캔→가입</span><span class="val">30%</span></div>
-          <div class="out-row"><span class="key">브랜드 검색량</span><span class="val">+150%</span></div>
+          <div class="out-row"><span class="key">벽보 / QR</span><span class="val">30곳 / 15,000</span></div>
+          <div class="out-row"><span class="key">검색량 lift</span><span class="val">+150%</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Cost Targets -->
-    <p class="items-tail-label reveal" style="color: var(--c-yellow); margin-top: 24px;">COST TARGETS · 단가 기준선</p>
-    <div class="cost-strip">
-      <div class="cost-card reveal">
-        <span class="cost-name">CAC · 가입 1건당</span>
-        <span class="cost-val">₩4,400</span>
-        <span class="cost-formula">광고 1.55억 ÷ 가입 35,400</span>
-      </div>
-      <div class="cost-card reveal reveal-d1">
-        <span class="cost-name">활성 CAC · 활성 1명당</span>
-        <span class="cost-val">₩25,000</span>
-        <span class="cost-formula">총 2.5억 ÷ 활성 10,000명</span>
-      </div>
-      <div class="cost-card reveal reveal-d2">
-        <span class="cost-name">포폴 업로드 CPA</span>
-        <span class="cost-val">₩7만</span>
-        <span class="cost-formula">광고 1.55억 ÷ 업로드 22,000</span>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1676,7 +1563,7 @@ footer.brief-footer {
       </div>
       <div class="footer-meta-item">
         <div class="label">Status</div>
-        <div class="value">DRAFT v1 · 2026-05-06</div>
+        <div class="value">v3.1 — 7-section · 2026-05-06</div>
       </div>
       <div class="footer-meta-item">
         <div class="label">Owner</div>
