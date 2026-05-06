@@ -613,23 +613,36 @@ section.hero {
               radial-gradient(circle at 80% 70%, rgba(255,214,10,0.10) 0%, transparent 60%),
               var(--bg-alt);
   border: 1px solid rgba(91,255,90,0.25);
-  display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
+  display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: center;
   margin-bottom: 28px;
+  container-type: inline-size;
 }
+.nsm-hero .nsm-block { min-width: 0; container-type: inline-size; }
 .nsm-hero .nsm-eyebrow {
   font-family: var(--font-en); font-size: 12px; font-weight: 800;
   color: var(--c-green); letter-spacing: 0.18em;
 }
 .nsm-hero .nsm-name {
-  font-size: clamp(20px, 2vw, 28px); font-weight: 700;
+  font-size: clamp(18px, 1.6vw, 26px); font-weight: 700;
   color: var(--text-dim); margin-top: 10px; letter-spacing: -0.01em;
+  word-break: keep-all;
 }
 .nsm-hero .nsm-value {
-  font-size: clamp(96px, 14vw, 220px); font-weight: 900;
+  /* 컨테이너(좌측 블록) 폭에 자동 맞춤 — 콤마 줄바꿈·단위 떨어짐 방지 */
+  font-size: min(220px, max(64px, 22cqi));
+  font-weight: 900;
   line-height: 0.95; letter-spacing: -0.045em; color: var(--c-green);
   margin-top: 12px; text-shadow: 0 0 60px rgba(91,255,90,0.25);
+  white-space: nowrap; /* 10,000 + 명 한 줄 강제 */
+  display: flex; align-items: baseline; gap: 0.12em;
 }
-.nsm-hero .nsm-unit { font-size: 0.32em; color: var(--headline); margin-left: 12px; font-weight: 800; }
+.nsm-hero .nsm-unit {
+  font-size: 0.32em; color: var(--headline); font-weight: 800;
+  white-space: nowrap;
+}
+@supports not (container-type: inline-size) {
+  .nsm-hero .nsm-value { font-size: clamp(64px, 11vw, 200px); }
+}
 .nsm-hero .nsm-def {
   display: flex; flex-direction: column; gap: 14px;
 }
