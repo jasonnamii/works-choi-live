@@ -146,6 +146,67 @@ section.hero {
 .hero-meta-item .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 6px; }
 .hero-meta-item .value { font-size: clamp(20px, 2vw, 26px); font-weight: 700; color: var(--headline); }
 
+/* === Core Structure (§02 At a Glance) === */
+.core-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  margin-bottom: 32px;
+}
+.core-card {
+  padding: 40px; border-radius: var(--radius-tile-lg);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 12px; min-height: 280px;
+  position: relative; overflow: hidden;
+  transition: transform 320ms cubic-bezier(0.22,1,0.36,1), border-color 320ms;
+}
+.core-card:hover { transform: translateY(-4px); border-color: var(--core-color); }
+.core-card[data-color="green"] { --core-color: var(--c-green); }
+.core-card[data-color="yellow"] { --core-color: var(--c-yellow); }
+.core-card[data-color="purple"] { --core-color: var(--c-purple); }
+.core-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--core-color);
+}
+.core-card .core-label {
+  font-family: var(--font-en); font-size: 12px; font-weight: 700;
+  color: var(--core-color); letter-spacing: 0.15em;
+}
+.core-card .core-value {
+  font-size: clamp(72px, 9vw, 140px); font-weight: 900;
+  line-height: 1; letter-spacing: -0.04em; color: var(--headline);
+  margin: 4px 0;
+}
+.core-card .core-unit {
+  font-size: 0.42em; font-weight: 800; color: var(--core-color);
+  margin-left: 8px; letter-spacing: -0.02em;
+}
+.core-card .core-sub {
+  font-size: clamp(13px, 1.1vw, 15px); font-weight: 600;
+  color: var(--text); padding-bottom: 12px; border-bottom: 1px solid var(--border);
+}
+.core-card .core-desc {
+  font-size: 13px; color: var(--text-dim); line-height: 1.55;
+  margin-top: auto;
+}
+.core-card .core-desc strong { color: var(--core-color); font-weight: 700; }
+
+.core-bottom-line {
+  padding: 28px 32px; border-radius: var(--radius-tile);
+  background: linear-gradient(135deg, rgba(91,255,90,0.08), rgba(255,214,10,0.08), rgba(191,90,242,0.08));
+  border: 1px solid var(--border); text-align: center;
+}
+.core-bottom-line p {
+  font-size: clamp(18px, 2vw, 26px); font-weight: 800;
+  letter-spacing: -0.01em; color: var(--headline); line-height: 1.4;
+  display: inline-flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center;
+}
+.core-eq { color: var(--c-green); }
+.core-op { color: var(--text-dim); font-weight: 400; }
+.core-result { color: var(--c-yellow); font-style: italic; }
+
+@media (max-width: 1067px) {
+  .core-grid { grid-template-columns: 1fr; }
+}
+
 /* === Pain Section (Big Number) === */
 .pain-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
 .pain-item {
@@ -202,6 +263,18 @@ section.hero {
 .position-card .from { font-size: 18px; color: var(--text-dim); text-decoration: line-through; opacity: 0.6; }
 .position-card .arrow { font-size: 20px; color: var(--card-color); margin: 4px 0; }
 .position-card .to { font-size: clamp(24px, 2.4vw, 32px); font-weight: 800; color: var(--headline); line-height: 1.2; }
+.position-card .ex-copy {
+  margin-top: 16px; padding: 14px 16px;
+  background: rgba(255,255,255,0.04); border-left: 3px solid var(--card-color);
+  border-radius: 8px; font-size: clamp(14px, 1.3vw, 17px);
+  font-weight: 600; color: var(--card-color); line-height: 1.4;
+  font-style: italic;
+}
+.position-card .ex-case {
+  font-size: 12px; color: var(--text-dim); line-height: 1.5;
+  padding-top: 12px; border-top: 1px solid var(--border); margin-top: 4px;
+}
+.position-card .ex-case strong { color: var(--card-color); font-weight: 700; }
 @media (max-width: 900px) { .position-grid { grid-template-columns: 1fr; } }
 
 /* === Target Bento 6 === */
@@ -576,6 +649,7 @@ footer.brief-footer {
 <!-- Chapter Nav (sticky paddle) -->
 <nav class="chapter-nav" aria-label="Section navigation">
   <a href="#hero" class="active">Hero</a>
+  <a href="#core">Core</a>
   <a href="#pain">Pain</a>
   <a href="#position">Position</a>
   <a href="#target">Target</a>
@@ -628,11 +702,52 @@ footer.brief-footer {
   </div>
 </section>
 
+<!-- ===== 1.5 CORE STRUCTURE (At a Glance) ===== -->
+<section class="chapter compact" id="core" aria-label="Core Structure">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-green reveal">02 · At a Glance</p>
+      <h2 class="typography-section-headline reveal reveal-d1"><span style="color: var(--c-green);">한달 반</span>, <span style="color: var(--c-green);">2억</span>.<br>이 두 숫자가 모든 것을 결정한다.</h2>
+    </div>
+
+    <div class="core-grid">
+      <div class="core-card reveal" data-color="green">
+        <p class="core-label">DURATION</p>
+        <div class="core-value">6.5<span class="core-unit">주</span></div>
+        <p class="core-sub">2026.06.15 — 07.31</p>
+        <p class="core-desc">P1 시드 2주 · P2 집중 2주 · P3 폭발 2.5주<br><strong>병렬 실행</strong>이 디폴트. 직렬 ✗.</p>
+      </div>
+
+      <div class="core-card reveal reveal-d1" data-color="yellow">
+        <p class="core-label">BUDGET</p>
+        <div class="core-value">2<span class="core-unit">억</span></div>
+        <p class="core-sub">7개 라인 + 1개 도시 라인</p>
+        <p class="core-desc">광고비 35% / 콘텐츠·시드·도시·CRM·버퍼 65%.<br><strong>광고가 아니라 씬 점화 자금.</strong></p>
+      </div>
+
+      <div class="core-card reveal reveal-d2" data-color="purple">
+        <p class="core-label">OUTCOME</p>
+        <div class="core-value">3<span class="core-unit">트랙</span></div>
+        <p class="core-sub">12개 시그니처 아이템</p>
+        <p class="core-desc">Digital · Seed · City 동시 점화.<br><strong>임계점 돌파</strong> = 8월 자생 가능.</p>
+      </div>
+    </div>
+
+    <div class="core-bottom-line reveal reveal-d3">
+      <p>
+        <span class="core-eq">한달 반</span> <span class="core-op">×</span>
+        <span class="core-eq">2억</span> <span class="core-op">=</span>
+        <span class="core-eq core-result">"창작 관계 밀도 임계점 돌파"</span>
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== 2. PAIN ===== -->
 <section class="chapter" id="pain" aria-label="The Pain">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-red reveal">02 · The Pain</p>
+      <p class="typography-eyebrow eb-red reveal">03 · The Pain</p>
       <h2 class="typography-section-headline reveal reveal-d1">창작자는 지금<br>알고리즘의 노동자입니다.</h2>
       <p class="typography-body-reduced reveal reveal-d2" style="max-width: 640px; margin-top: 16px;">
         콘텐츠가 부족한 시대가 아닙니다. 너무 많고, 너무 빨리 소비되고, 다 비슷하게 묻힙니다.
@@ -688,7 +803,7 @@ footer.brief-footer {
 <section class="chapter" id="position" aria-label="Position">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-cyan reveal">03 · Position</p>
+      <p class="typography-eyebrow eb-cyan reveal">04 · Position</p>
       <h2 class="typography-section-headline reveal reveal-d1">우리는 4개의 축을 한꺼번에 움직입니다.</h2>
       <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
         하나의 카피, 하나의 캠페인이 아닙니다.
@@ -702,24 +817,32 @@ footer.brief-footer {
         <p class="from">기능 설명 / 앱 소개</p>
         <p class="arrow">↓</p>
         <p class="to">자기표현 OS<br>— 디지털 페르소나가 살아나는 공간</p>
+        <p class="ex-copy">"I create lonely cyber-pop visuals."</p>
+        <p class="ex-case"><strong>사례 ·</strong> 영상 편집자 프로필이 한 줄 선언과 무드 컬러로 바뀌는 순간 — DM 응답률 3배 ↑ (Behance 자기선언형 프로필 패턴)</p>
       </article>
       <article class="position-card reveal reveal-d1" data-color="cyan">
         <p class="axis">AXIS 02 · INDEPENDENCE</p>
         <p class="from">알고리즘 선택 기다리기</p>
         <p class="arrow">↓</p>
         <p class="to">스스로 발견되는 존재<br>— 찾게 되는 사람이 되는 것</p>
+        <p class="ex-copy">"Make People Search You."</p>
+        <p class="ex-case"><strong>사례 ·</strong> 인스타·틱톡 피로 쌓인 디자이너가 C8 프로필을 명함처럼 공유 — 검색 트래픽이 알고리즘 노출보다 안정적 (Linktree·Read.cv 패턴)</p>
       </article>
       <article class="position-card reveal reveal-d2" data-color="yellow">
         <p class="axis">AXIS 03 · INDUSTRY</p>
         <p class="from">유저 수, 다운로드 수</p>
         <p class="arrow">↓</p>
         <p class="to">실제 씬과 연결된 플랫폼<br>— 음악·영상·댄스 산업 노드</p>
+        <p class="ex-copy">"색은 따라할 수 없습니다."</p>
+        <p class="ex-case"><strong>사례 ·</strong> 김형석 Pick Challenge — 작곡가가 직접 가능성을 본 팀 1팀 선정 → 음악 산업 진입의 상징. C8은 "유저 수"가 아닌 "기회 노드".</p>
       </article>
       <article class="position-card reveal reveal-d3" data-color="purple">
         <p class="axis">AXIS 04 · CITY</p>
         <p class="from">디지털 광고 / 배너</p>
         <p class="arrow">↓</p>
         <p class="to">도시 위의 씬(scene)<br>— 성수·홍대에 실제 모집 공고</p>
+        <p class="ex-copy">"A vocalist who sounds like midnight."</p>
+        <p class="ex-case"><strong>사례 ·</strong> 성수 카페 골목 벽보 — "BAND MEMBERS WANTED, Seoul 2026" Y2K Xerox 톤. QR → 풀스크린 몰입 프로필. 광고가 아닌 "도시의 일부".</p>
       </article>
     </div>
   </div>
@@ -729,7 +852,7 @@ footer.brief-footer {
 <section class="chapter" id="target" aria-label="Target">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-yellow reveal">04 · Target</p>
+      <p class="typography-eyebrow eb-yellow reveal">05 · Target</p>
       <h2 class="typography-section-headline reveal reveal-d1">"같이 만들어야 결과가 나오는" 6개 직군.</h2>
       <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
         모든 창작자가 아닙니다. 협업이 결과의 본질인 6개 직군에 집중. 이 6개는 전 단계 대화에서도 변하지 않은 단단한 앵커.
@@ -799,7 +922,7 @@ footer.brief-footer {
 <section class="chapter" id="budget" aria-label="Budget">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-red reveal">05 · Budget Architecture</p>
+      <p class="typography-eyebrow eb-red reveal">06 · Budget Architecture</p>
       <h2 class="typography-section-headline reveal reveal-d1">2억 = "광고비"가 아니라<br>"씬 점화 자금".</h2>
       <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
         7개 항목은 따로 노는 라인이 아니라 하나의 퍼널. 콘텐츠 → 광고 → 유입 → 포트폴리오 → 관계 → 재방문 → 초대.
@@ -891,7 +1014,7 @@ footer.brief-footer {
 <section class="chapter" id="items" aria-label="Signature Items">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-green reveal">06 · The Items We Build</p>
+      <p class="typography-eyebrow eb-green reveal">07 · The Items We Build</p>
       <h2 class="typography-section-headline reveal reveal-d1">광고가 아니라<br>사건을 만든다.</h2>
       <div class="items-intro reveal reveal-d2" style="margin-top: 24px;">
         <p class="typography-body" style="color: var(--text-dim);">
@@ -1002,7 +1125,7 @@ footer.brief-footer {
 <section class="chapter" id="message" aria-label="Message Architecture">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-purple reveal">07 · Message Architecture</p>
+      <p class="typography-eyebrow eb-purple reveal">08 · Message Architecture</p>
       <h2 class="typography-section-headline reveal reveal-d1">한 카피에 4개의 축이 다 들어갑니다.</h2>
     </div>
 
@@ -1039,7 +1162,7 @@ footer.brief-footer {
 <section class="chapter" id="tracks" aria-label="Three Tracks">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-cyan reveal">08 · Three Execution Tracks</p>
+      <p class="typography-eyebrow eb-cyan reveal">09 · Three Execution Tracks</p>
       <h2 class="typography-section-headline reveal reveal-d1">디지털 · 시드 · 도시 — 3트랙 동시 점화.</h2>
     </div>
 
@@ -1102,7 +1225,7 @@ footer.brief-footer {
 <section class="chapter" id="assets" aria-label="Asset Activation">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-yellow reveal">09 · Asset Activation</p>
+      <p class="typography-eyebrow eb-yellow reveal">10 · Asset Activation</p>
       <h2 class="typography-section-headline reveal reveal-d1">자산은 4개 — 호출 맥락은 명확히 분리.</h2>
       <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
         같은 자산이 여러 트랙에서 다른 의미로 쓰이면 메시지가 흐려집니다. 자산별 역할 1개 + 호출 트랙 1~2개로 고정.
@@ -1142,7 +1265,7 @@ footer.brief-footer {
 <section class="chapter" id="roadmap" aria-label="Roadmap">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-cyan reveal">10 · Phase Roadmap</p>
+      <p class="typography-eyebrow eb-cyan reveal">11 · Phase Roadmap</p>
       <h2 class="typography-section-headline reveal reveal-d1">6.5주 압축 스프린트.<br>씨앗 · 집중 · 폭발 병렬 점화.</h2>
       <p class="typography-body-reduced reveal reveal-d2" style="max-width: 760px; margin-top: 16px;">
         2026.06.15 ~ 07.31 — <mark class="highlight-green">P1·P2는 직렬이 아닌 병렬</mark>. Seed 모집과 광고 실험이 동시 굴러야 2억을 6.5주에 소화.
@@ -1211,7 +1334,7 @@ footer.brief-footer {
 <section class="chapter" id="kpi" aria-label="KPI and Guardrails">
   <div class="section-inner">
     <div class="section-header">
-      <p class="typography-eyebrow eb-red reveal">11 · KPI &amp; Guardrails</p>
+      <p class="typography-eyebrow eb-red reveal">12 · KPI &amp; Guardrails</p>
       <h2 class="typography-section-headline reveal reveal-d1">설치 수가 아니라<br>"활동·관계·존재" 3축으로 측정합니다.</h2>
     </div>
 
