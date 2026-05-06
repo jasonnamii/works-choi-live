@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cre8orClub 3.0 — Launching Campaign Brief</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+/* ===== Apple Canvas v1.0 — Mix Mode (Scroll + Bento) ===== */
+:root {
+  --font-en: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-kr: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --radius-tile: 28px;
+  --radius-tile-lg: 40px;
+
+  /* Dark base */
+  --bg: #0A0A0A;
+  --bg-alt: #141416;
+  --bg-elev: #1C1C1F;
+  --text: #F5F5F7;
+  --text-dim: #86868B;
+  --headline: #FFFFFF;
+  --border: rgba(255,255,255,0.08);
+
+  /* Strong accents — C8 Green primary */
+  --c-red: #FF3B30;
+  --c-green: #5BFF5A;        /* C8 brand green (logo) */
+  --c-cyan: #5BFF5A;         /* alias → green (legacy class compatibility) */
+  --c-yellow: #FFD60A;
+  --c-purple: #BF5AF2;
+
+  --highlight-red: rgba(255,59,48,0.15);
+  --highlight-green: rgba(91,255,90,0.18);
+  --highlight-cyan: rgba(91,255,90,0.18);  /* alias */
+  --highlight-yellow: rgba(255,214,10,0.18);
+  --highlight-purple: rgba(191,90,242,0.18);
+}
+
+:root[data-theme="light"] {
+  --bg: #FFFFFF;
+  --bg-alt: #F5F5F7;
+  --bg-elev: #FAFAFC;
+  --text: #1D1D1F;
+  --text-dim: #6E6E73;
+  --headline: #000000;
+  --border: rgba(0,0,0,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-kr);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Typography 16-scale === */
+.typography-eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-dim); }
+.typography-eyebrow.eb-red { color: var(--c-red); }
+.typography-eyebrow.eb-cyan, .typography-eyebrow.eb-green { color: var(--c-green); }
+.typography-eyebrow.eb-yellow { color: var(--c-yellow); }
+.typography-eyebrow.eb-purple { color: var(--c-purple); }
+
+.typography-hero-tagline { font-size: clamp(56px, 11vw, 200px); font-weight: 900; line-height: 0.92; letter-spacing: -0.035em; color: var(--headline); word-break: keep-all; overflow-wrap: break-word; }
+.typography-headline-super { font-size: clamp(56px, 9vw, 140px); font-weight: 900; line-height: 0.95; letter-spacing: -0.025em; color: var(--headline); }
+.typography-section-headline { font-size: clamp(38px, 5.5vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; color: var(--headline); }
+.typography-banner-card-headline { font-size: clamp(22px, 2.6vw, 36px); font-weight: 700; line-height: 1.15; color: var(--headline); }
+.typography-feature-card-headline { font-size: clamp(18px, 2vw, 26px); font-weight: 700; color: var(--headline); }
+.typography-tile-headline { font-size: clamp(16px, 1.4vw, 20px); font-weight: 700; color: var(--headline); }
+.typography-body { font-size: clamp(15px, 1.15vw, 17px); font-weight: 400; line-height: 1.55; color: var(--text); }
+.typography-body-reduced { font-size: clamp(13px, 1vw, 15px); font-weight: 400; line-height: 1.55; color: var(--text-dim); }
+.typography-quote { font-size: clamp(20px, 2.4vw, 32px); font-weight: 600; line-height: 1.3; color: var(--headline); letter-spacing: -0.01em; }
+.typography-disclaimer { font-size: 11px; font-weight: 400; color: var(--text-dim); }
+
+mark.highlight-red { background: var(--highlight-red); color: #FFB3AE; padding: 0 6px; border-radius: 4px; }
+mark.highlight-green, mark.highlight-cyan { background: var(--highlight-green); color: #B6FFB5; padding: 0 6px; border-radius: 4px; }
+mark.highlight-yellow { background: var(--highlight-yellow); color: #FFE56B; padding: 0 6px; border-radius: 4px; }
+mark.highlight-purple { background: var(--highlight-purple); color: #DBA8FF; padding: 0 6px; border-radius: 4px; }
+
+/* === Chapter Nav (sticky) === */
+.chapter-nav {
+  position: fixed; top: 50%; right: 24px; transform: translateY(-50%);
+  z-index: 100; display: flex; flex-direction: column; gap: 14px;
+  padding: 16px 12px; background: rgba(20,20,22,0.6); backdrop-filter: blur(14px);
+  border: 1px solid var(--border); border-radius: 28px;
+}
+.chapter-nav a {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.25); transition: all 240ms ease;
+  text-indent: -9999px; overflow: hidden;
+}
+.chapter-nav a.active, .chapter-nav a:hover { background: var(--c-green); transform: scale(1.4); box-shadow: 0 0 12px var(--c-green); }
+@media (max-width: 900px) { .chapter-nav { display: none; } }
+
+/* === Section base === */
+section.chapter {
+  min-height: 100vh; padding: 120px 6vw; display: flex; flex-direction: column; justify-content: center;
+  position: relative; scroll-margin-top: 0;
+}
+section.chapter.compact { min-height: auto; padding: 100px 6vw; }
+.section-inner { max-width: 1440px; margin: 0 auto; width: 100%; }
+.section-header { margin-bottom: 56px; }
+.section-header .typography-eyebrow { margin-bottom: 16px; }
+.section-header .typography-section-headline { margin-bottom: 20px; }
+
+/* === HERO === */
+section.hero {
+  min-height: 100vh; padding: 0 6vw;
+  display: flex; flex-direction: column; justify-content: center;
+  background: radial-gradient(circle at 30% 30%, rgba(255,59,48,0.18) 0%, transparent 55%),
+              radial-gradient(circle at 75% 70%, rgba(91,255,90,0.18) 0%, transparent 55%),
+              radial-gradient(circle at 50% 100%, rgba(191,90,242,0.12) 0%, transparent 55%),
+              var(--bg);
+  position: relative; overflow: hidden;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 16px; border: 1px solid var(--border); border-radius: 999px;
+  margin-bottom: 36px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+  background: rgba(255,255,255,0.04); backdrop-filter: blur(8px); width: fit-content;
+}
+.hero-eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c-green); box-shadow: 0 0 12px var(--c-green); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.hero-tagline { margin-bottom: 32px; }
+.hero-tagline .stroke {
+  -webkit-text-stroke: 2px var(--c-green); -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.hero-tagline .accent { color: var(--c-green); }
+.hero-tagline .strike { color: var(--c-red); position: relative; }
+.hero-tagline .strike::after {
+  content: ''; position: absolute; left: -2%; right: -2%; top: 50%;
+  height: 0.08em; background: var(--c-red); transform: translateY(-50%) rotate(-3deg);
+  opacity: 0.7;
+}
+.hero-sub { max-width: 780px; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.45; color: var(--text-dim); margin-bottom: 56px; }
+.hero-meta {
+  display: flex; gap: 48px; flex-wrap: wrap; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.hero-meta-item .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 6px; }
+.hero-meta-item .value { font-size: clamp(20px, 2vw, 26px); font-weight: 700; color: var(--headline); }
+
+/* === Pain Section (Big Number) === */
+.pain-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+.pain-item {
+  grid-column: span 4;
+  padding: 36px; border-radius: var(--radius-tile);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+  transition: transform 320ms cubic-bezier(0.22,1,0.36,1), border-color 320ms;
+}
+.pain-item:hover { transform: translateY(-4px); border-color: rgba(255,59,48,0.3); }
+.pain-item.feature { grid-column: span 12; min-height: 320px; display: flex; flex-direction: column; justify-content: center; }
+/* Big Number — 컨테이너 폭 기반 반응형. 어절은 한 줄 강제 */
+.pain-item.feature { container-type: inline-size; }
+.pain-item.feature .big-num {
+  font-weight: 900; line-height: 1.05; letter-spacing: -0.035em;
+  color: var(--c-red); margin-bottom: 24px;
+  /* 9.2cqi = 컨테이너(부모) 폭의 9.2% → 박스 안에서만 큰 글씨 */
+  font-size: min(160px, max(40px, 9.2cqi));
+}
+.pain-item.feature .big-num .line {
+  display: block;
+  white-space: nowrap; /* 한 어절 한 줄 강제 */
+}
+/* container query 미지원 fallback (구형 브라우저) */
+@supports not (container-type: inline-size) {
+  .pain-item.feature .big-num { font-size: clamp(40px, 7vw, 120px); }
+}
+.pain-item .num-tag { font-size: 12px; font-weight: 600; color: var(--c-red); margin-bottom: 12px; letter-spacing: 0.08em; }
+.pain-item h3 { margin-bottom: 8px; }
+@media (max-width: 900px) { .pain-item { grid-column: span 12; } }
+
+/* === Position (Compare Matrix 4분할) === */
+.position-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+  position: relative;
+}
+.position-card {
+  padding: 40px; border-radius: var(--radius-tile-lg);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 14px;
+  transition: transform 320ms cubic-bezier(0.22,1,0.36,1), border-color 320ms;
+  position: relative; overflow: hidden;
+}
+.position-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--card-color, var(--c-cyan));
+}
+.position-card:hover { transform: translateY(-4px); }
+.position-card[data-color="red"] { --card-color: var(--c-red); }
+.position-card[data-color="cyan"] { --card-color: var(--c-cyan); }
+.position-card[data-color="yellow"] { --card-color: var(--c-yellow); }
+.position-card[data-color="purple"] { --card-color: var(--c-purple); }
+.position-card .axis { font-size: 12px; font-weight: 700; color: var(--card-color); letter-spacing: 0.08em; }
+.position-card .from { font-size: 18px; color: var(--text-dim); text-decoration: line-through; opacity: 0.6; }
+.position-card .arrow { font-size: 20px; color: var(--card-color); margin: 4px 0; }
+.position-card .to { font-size: clamp(24px, 2.4vw, 32px); font-weight: 800; color: var(--headline); line-height: 1.2; }
+@media (max-width: 900px) { .position-grid { grid-template-columns: 1fr; } }
+
+/* === Target Bento 6 === */
+.target-bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.target-tile {
+  padding: 28px; border-radius: var(--radius-tile);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 220px; position: relative; overflow: hidden;
+  transition: all 320ms cubic-bezier(0.22,1,0.36,1);
+  cursor: pointer;
+}
+.target-tile:hover {
+  background: var(--bg-elev); border-color: var(--tile-color, var(--c-cyan));
+  box-shadow: 0 12px 40px -8px rgba(0,0,0,0.5);
+}
+.target-tile[data-color="cyan"] { --tile-color: var(--c-cyan); }
+.target-tile[data-color="red"] { --tile-color: var(--c-red); }
+.target-tile[data-color="yellow"] { --tile-color: var(--c-yellow); }
+.target-tile[data-color="purple"] { --tile-color: var(--c-purple); }
+.target-tile .badge {
+  display: inline-block; padding: 4px 10px; border-radius: 999px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  background: var(--tile-color); color: #000; width: fit-content;
+}
+.target-tile h3 { margin-top: 16px; }
+.target-tile .pain-list { list-style: none; padding: 0; }
+.target-tile .pain-list li { font-size: 13px; color: var(--text-dim); padding: 4px 0; line-height: 1.4; }
+.target-tile .pain-list li::before { content: '— '; color: var(--tile-color); }
+@media (max-width: 1067px) { .target-bento { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .target-bento { grid-template-columns: repeat(2, 1fr); } }
+
+/* === Budget Donut + Bento === */
+.budget-wrap { display: grid; grid-template-columns: 380px 1fr; gap: 32px; align-items: stretch; }
+.budget-donut-card {
+  padding: 36px; border-radius: var(--radius-tile-lg);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+}
+.donut { width: 280px; height: 280px; position: relative; }
+.donut svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.donut-center .total { font-size: 48px; font-weight: 900; color: var(--headline); line-height: 1; }
+.donut-center .label { font-size: 12px; color: var(--text-dim); letter-spacing: 0.1em; margin-top: 6px; }
+.budget-bento {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+.budget-tile {
+  padding: 20px; border-radius: 20px;
+  background: var(--bg-alt); border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 6px; min-height: 130px;
+  border-left: 4px solid var(--tile-color, var(--c-cyan));
+}
+.budget-tile[data-color="cyan"] { --tile-color: var(--c-cyan); }
+.budget-tile[data-color="red"] { --tile-color: var(--c-red); }
+.budget-tile[data-color="yellow"] { --tile-color: var(--c-yellow); }
+.budget-tile[data-color="purple"] { --tile-color: var(--c-purple); }
+.budget-tile[data-color="white"] { --tile-color: #FFFFFF; }
+.budget-tile .pct { font-size: 11px; color: var(--tile-color); font-weight: 700; letter-spacing: 0.05em; }
+.budget-tile .amt { font-size: 22px; font-weight: 800; color: var(--headline); }
+.budget-tile .name { font-size: 12px; color: var(--text-dim); }
+.budget-tile .role { font-size: 11px; color: var(--text); opacity: 0.7; line-height: 1.4; margin-top: auto; }
+@media (max-width: 1067px) { .budget-wrap { grid-template-columns: 1fr; } .budget-bento { grid-template-columns: repeat(2, 1fr); } }
+
+/* === Items Section (§05.5) === */
+.items-intro { max-width: 760px; margin: 0 0 64px 0; }
+.items-intro .typography-quote { color: var(--headline); font-size: clamp(22px, 2.6vw, 36px); line-height: 1.3; }
+
+/* Big 3 — 풀너비 가로 3분할 */
+.items-big3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 56px; }
+.item-big {
+  padding: 36px; border-radius: var(--radius-tile-lg);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 540px; position: relative; overflow: hidden;
+  transition: transform 360ms cubic-bezier(0.22,1,0.36,1), border-color 360ms;
+}
+.item-big:hover { transform: translateY(-6px); border-color: var(--item-color); }
+.item-big[data-color="green"] { --item-color: var(--c-green); }
+.item-big[data-color="yellow"] { --item-color: var(--c-yellow); }
+.item-big[data-color="purple"] { --item-color: var(--c-purple); }
+.item-big::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: var(--item-color);
+}
+.item-big .item-num {
+  font-family: var(--font-en); font-size: clamp(56px, 5vw, 80px); font-weight: 900;
+  line-height: 1; color: var(--item-color); letter-spacing: -0.04em;
+}
+.item-big .item-stars { color: var(--c-yellow); letter-spacing: -2px; font-size: 14px; }
+.item-big .item-name {
+  font-size: clamp(22px, 2vw, 30px); font-weight: 800;
+  color: var(--headline); line-height: 1.15; letter-spacing: -0.01em;
+}
+.item-big .item-copy {
+  font-size: clamp(15px, 1.3vw, 18px); font-weight: 600;
+  color: var(--item-color); line-height: 1.35; padding: 12px 0;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.item-big .item-desc { font-size: 14px; color: var(--text); line-height: 1.5; }
+.item-big .item-meta {
+  margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.item-big .item-meta-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px;
+}
+.item-big .item-meta-row .key { color: var(--text-dim); letter-spacing: 0.05em; text-transform: uppercase; font-size: 10px; }
+.item-big .item-meta-row .val { color: var(--text); font-weight: 600; }
+.item-big .item-meta-row .val.kpi { color: var(--item-color); }
+
+/* Supporting 6 — 3x2 grid */
+.items-supporting {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  margin-bottom: 40px;
+}
+.item-sup {
+  padding: 24px; border-radius: var(--radius-tile);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 10px; min-height: 200px;
+  transition: all 280ms ease;
+  border-left: 3px solid var(--sup-color, var(--text-dim));
+}
+.item-sup:hover { background: var(--bg-elev); }
+.item-sup[data-color="green"] { --sup-color: var(--c-green); }
+.item-sup[data-color="yellow"] { --sup-color: var(--c-yellow); }
+.item-sup[data-color="purple"] { --sup-color: var(--c-purple); }
+.item-sup[data-color="red"] { --sup-color: var(--c-red); }
+.item-sup .sup-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 11px; color: var(--sup-color); letter-spacing: 0.08em; font-weight: 700;
+}
+.item-sup .sup-name {
+  font-size: clamp(16px, 1.4vw, 19px); font-weight: 700;
+  color: var(--headline); line-height: 1.2;
+}
+.item-sup .sup-desc { font-size: 13px; color: var(--text-dim); line-height: 1.4; }
+.item-sup .sup-meta {
+  margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--text-dim);
+}
+.item-sup .sup-meta strong { color: var(--sup-color); font-weight: 700; }
+
+/* Long Tail — 1줄 리스트 */
+.items-tail {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  padding: 20px 24px; background: var(--bg-alt); border-radius: var(--radius-tile);
+  border: 1px solid var(--border);
+}
+.item-tail {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--text);
+}
+.item-tail .tag {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  background: rgba(255,255,255,0.08); color: var(--text-dim);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.05em; flex-shrink: 0;
+}
+.items-tail-label {
+  font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em;
+  margin-bottom: 12px; text-transform: uppercase; font-weight: 700;
+}
+
+@media (max-width: 1067px) {
+  .items-big3 { grid-template-columns: 1fr; }
+  .items-supporting { grid-template-columns: repeat(2, 1fr); }
+  .items-tail { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .items-supporting { grid-template-columns: 1fr; }
+}
+
+/* === Message Architecture (Sticky) === */
+.message-stack { display: flex; flex-direction: column; gap: 20px; max-width: 1100px; margin: 0 auto; }
+.message-row {
+  padding: 32px 40px; border-radius: var(--radius-tile);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  display: grid; grid-template-columns: 140px 1fr; gap: 32px; align-items: center;
+}
+.message-row .level {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 4px 10px; border-radius: 999px; width: fit-content;
+}
+.message-row.master .level { background: var(--c-red); color: #000; }
+.message-row.hook .level { background: var(--c-cyan); color: #000; }
+.message-row.var .level { background: var(--c-yellow); color: #000; }
+.message-row .copy { font-size: clamp(20px, 2.2vw, 30px); font-weight: 700; line-height: 1.25; color: var(--headline); letter-spacing: -0.01em; }
+.message-row .copy.en { font-family: var(--font-en); }
+.message-row .copy small { display: block; font-size: 14px; color: var(--text-dim); font-weight: 400; margin-top: 6px; }
+@media (max-width: 700px) { .message-row { grid-template-columns: 1fr; gap: 12px; } }
+
+/* === Tracks 3 === */
+.tracks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.track-card {
+  padding: 36px; border-radius: var(--radius-tile-lg);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 16px; min-height: 480px;
+  position: relative; overflow: hidden;
+  transition: transform 360ms cubic-bezier(0.22,1,0.36,1);
+}
+.track-card:hover { transform: translateY(-6px); }
+.track-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--track-color), transparent);
+}
+.track-card[data-color="cyan"] { --track-color: var(--c-cyan); }
+.track-card[data-color="yellow"] { --track-color: var(--c-yellow); }
+.track-card[data-color="purple"] { --track-color: var(--c-purple); }
+.track-card .num { font-family: var(--font-en); font-size: 14px; font-weight: 700; color: var(--track-color); letter-spacing: 0.1em; }
+.track-card h3 { color: var(--headline); margin-top: 4px; }
+.track-card .budget-line { font-size: 13px; color: var(--text-dim); padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.track-card .budget-line strong { color: var(--track-color); font-weight: 700; }
+.track-card ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.track-card ul li { font-size: 14px; color: var(--text); line-height: 1.4; padding-left: 16px; position: relative; }
+.track-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--track-color); font-weight: 700; }
+.track-card .kpi-mini {
+  margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border);
+  font-size: 12px; color: var(--text-dim);
+}
+.track-card .kpi-mini strong { color: var(--track-color); display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: 0.08em; }
+@media (max-width: 1067px) { .tracks-grid { grid-template-columns: 1fr; } }
+
+/* === Assets Drawer (호버) === */
+.assets-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.asset-tile {
+  padding: 28px; border-radius: var(--radius-tile);
+  background: var(--bg-alt); border: 1px solid var(--border);
+  position: relative; overflow: hidden; min-height: 280px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  cursor: pointer; transition: all 360ms cubic-bezier(0.22,1,0.36,1);
+}
+.asset-tile:hover { background: var(--bg-elev); border-color: var(--asset-color); }
+.asset-tile[data-color="red"] { --asset-color: var(--c-red); }
+.asset-tile[data-color="cyan"] { --asset-color: var(--c-cyan); }
+.asset-tile[data-color="yellow"] { --asset-color: var(--c-yellow); }
+.asset-tile[data-color="purple"] { --asset-color: var(--c-purple); }
+.asset-tile .label { font-size: 11px; color: var(--asset-color); letter-spacing: 0.1em; font-weight: 700; }
+.asset-tile h3 { margin-top: 6px; margin-bottom: 12px; }
+.asset-tile .role { font-size: 13px; color: var(--text); line-height: 1.45; }
+.asset-tile .role strong { color: var(--asset-color); }
+.asset-tile .ctx { font-size: 11px; color: var(--text-dim); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+@media (max-width: 1067px) { .assets-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .assets-grid { grid-template-columns: 1fr; } }
+
+/* === Roadmap (Sticky Phase) === */
+.roadmap-track {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  position: relative; border-radius: var(--radius-tile-lg); overflow: hidden;
+  border: 1px solid var(--border);
+}
+.phase-card {
+  padding: 40px; min-height: 420px;
+  display: flex; flex-direction: column; gap: 14px;
+  background: var(--bg-alt); position: relative;
+  border-right: 1px solid var(--border);
+}
+.phase-card:last-child { border-right: none; }
+.phase-card[data-color="cyan"] { background: linear-gradient(180deg, var(--bg-alt) 0%, rgba(0,212,255,0.05) 100%); }
+.phase-card[data-color="yellow"] { background: linear-gradient(180deg, var(--bg-alt) 0%, rgba(255,214,10,0.05) 100%); }
+.phase-card[data-color="purple"] { background: linear-gradient(180deg, var(--bg-alt) 0%, rgba(191,90,242,0.06) 100%); }
+.phase-card .phase-num {
+  font-family: var(--font-en); font-size: 14px; font-weight: 800;
+  letter-spacing: 0.1em; color: var(--phase-color);
+}
+.phase-card[data-color="cyan"] { --phase-color: var(--c-cyan); }
+.phase-card[data-color="yellow"] { --phase-color: var(--c-yellow); }
+.phase-card[data-color="purple"] { --phase-color: var(--c-purple); }
+.phase-card h3 { color: var(--headline); }
+.phase-card .range { font-size: 13px; color: var(--text-dim); padding: 6px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-top: 6px; }
+.phase-card .range strong { color: var(--phase-color); }
+.phase-card ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.phase-card ul li { font-size: 14px; color: var(--text); padding-left: 14px; position: relative; line-height: 1.4; }
+.phase-card ul li::before { content: '·'; position: absolute; left: 0; color: var(--phase-color); font-weight: 900; font-size: 18px; line-height: 1; }
+.phase-card .goal { font-size: 12px; color: var(--phase-color); font-weight: 700; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); letter-spacing: 0.05em; }
+@media (max-width: 1067px) { .roadmap-track { grid-template-columns: 1fr; } .phase-card { border-right: none; border-bottom: 1px solid var(--border); } .phase-card:last-child { border-bottom: none; } }
+
+/* === KPI + Guardrails === */
+.kpi-wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; }
+.kpi-card, .guard-card {
+  padding: 36px; border-radius: var(--radius-tile-lg);
+  background: var(--bg-alt); border: 1px solid var(--border);
+}
+.kpi-card h3, .guard-card h3 { color: var(--headline); margin-bottom: 24px; }
+.kpi-table { width: 100%; border-collapse: collapse; }
+.kpi-table th { text-align: left; font-size: 11px; color: var(--text-dim); padding: 8px 0; letter-spacing: 0.08em; border-bottom: 1px solid var(--border); }
+.kpi-table td { padding: 14px 0; font-size: 14px; color: var(--text); border-bottom: 1px solid var(--border); }
+.kpi-table td:last-child, .kpi-table th:last-child { text-align: right; }
+.kpi-table tr:last-child td { border-bottom: none; }
+.kpi-table .star { color: var(--c-yellow); letter-spacing: -2px; }
+.guard-list { display: flex; flex-direction: column; gap: 10px; }
+.guard-item {
+  padding: 12px 16px; border-radius: 12px;
+  background: rgba(255,59,48,0.08); border: 1px solid rgba(255,59,48,0.2);
+  font-size: 13px; color: var(--text); line-height: 1.4;
+}
+.guard-item::before { content: '✗ '; color: var(--c-red); font-weight: 700; }
+@media (max-width: 1067px) { .kpi-wrap { grid-template-columns: 1fr; } }
+
+/* === Footer === */
+footer.brief-footer {
+  padding: 60px 6vw; background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.footer-inner { max-width: 1440px; margin: 0 auto; }
+.footer-mark {
+  font-family: var(--font-en); font-size: clamp(80px, 14vw, 200px); font-weight: 900;
+  letter-spacing: -0.04em; line-height: 0.9;
+  color: var(--c-green);
+  margin-bottom: 24px;
+  text-shadow: 0 0 40px rgba(91,255,90,0.25);
+}
+.footer-meta { display: flex; gap: 48px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--border); }
+.footer-meta-item .label { font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 4px; }
+.footer-meta-item .value { font-size: 14px; color: var(--text); font-weight: 600; }
+.footnote-list { margin-top: 32px; display: flex; flex-direction: column; gap: 6px; }
+.footnote-list .footnote { font-size: 11px; color: var(--text-dim); line-height: 1.6; }
+
+/* === Reveal animation === */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 800ms cubic-bezier(0.22,1,0.36,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 80ms; }
+.reveal-d2 { transition-delay: 160ms; }
+.reveal-d3 { transition-delay: 240ms; }
+.reveal-d4 { transition-delay: 320ms; }
+
+/* === Focus === */
+:focus-visible { outline: 2px solid var(--c-green); outline-offset: 4px; border-radius: 6px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Chapter Nav (sticky paddle) -->
+<nav class="chapter-nav" aria-label="Section navigation">
+  <a href="#hero" class="active">Hero</a>
+  <a href="#pain">Pain</a>
+  <a href="#position">Position</a>
+  <a href="#target">Target</a>
+  <a href="#budget">Budget</a>
+  <a href="#items">Items</a>
+  <a href="#message">Message</a>
+  <a href="#tracks">Tracks</a>
+  <a href="#assets">Assets</a>
+  <a href="#roadmap">Roadmap</a>
+  <a href="#kpi">KPI</a>
+</nav>
+
+<!-- ===== 1. HERO ===== -->
+<section class="hero" id="hero" aria-label="Hero">
+  <div class="section-inner">
+    <div class="hero-eyebrow">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Cre8orClub 3.0 · Launching Campaign Brief · 2026</span>
+    </div>
+
+    <h1 class="typography-hero-tagline hero-tagline">
+      You Are<br>
+      <span class="strike">Not</span>&nbsp;<span class="accent">Content</span>.
+    </h1>
+
+    <p class="hero-sub typography-body">
+      2억으로 앱을 알리는 건 누구나 합니다.<br>
+      우리는 <mark class="highlight-cyan">도시 위에 씬(scene)</mark>을 심고,
+      <mark class="highlight-yellow">창작자의 색</mark>을 다시 발견하게 만듭니다.
+    </p>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="label">Total Budget</div>
+        <div class="value">₩200,000,000</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Launch Window</div>
+        <div class="value">2026 Q3</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Tracks</div>
+        <div class="value">3 (Digital · Seed · City)</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Master Copy</div>
+        <div class="value">"You Are Not Content."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. PAIN ===== -->
+<section class="chapter" id="pain" aria-label="The Pain">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-red reveal">02 · The Pain</p>
+      <h2 class="typography-section-headline reveal reveal-d1">창작자는 지금<br>알고리즘의 노동자입니다.</h2>
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 640px; margin-top: 16px;">
+        콘텐츠가 부족한 시대가 아닙니다. 너무 많고, 너무 빨리 소비되고, 다 비슷하게 묻힙니다.
+        그 안에서 창작자들은 자기 작업이 아니라 <mark class="highlight-red">알고리즘 점수</mark>를 만들고 있습니다.
+      </p>
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-item feature reveal reveal-d2">
+        <p class="num-tag">PEAK PAIN</p>
+        <div class="big-num">
+          <span class="line">&ldquo;나는 창작자인가,</span>
+          <span class="line">알고리즘 노동자인가.&rdquo;</span>
+        </div>
+        <p class="typography-body-reduced" style="max-width: 640px;">SNS 피로의 본질 — 콘텐츠 소비의 문제가 아니라 정체성 소모의 문제.</p>
+      </div>
+
+      <article class="pain-item reveal">
+        <p class="num-tag">01 / INSTAGRAM</p>
+        <h3 class="typography-feature-card-headline">알고리즘 의존</h3>
+        <p class="typography-body-reduced">선택받지 못하면 묻힘. 게시 → 사라짐 → 재게시 무한 루프.</p>
+      </article>
+      <article class="pain-item reveal reveal-d1">
+        <p class="num-tag">02 / TIKTOK</p>
+        <h3 class="typography-feature-card-headline">조회수 중독</h3>
+        <p class="typography-body-reduced">15초 안에 후킹 못하면 끝. 작품이 아닌 자극의 노예.</p>
+      </article>
+      <article class="pain-item reveal reveal-d2">
+        <p class="num-tag">03 / YOUTUBE</p>
+        <h3 class="typography-feature-card-headline">썸네일 노동</h3>
+        <p class="typography-body-reduced">콘텐츠보다 썸네일·후킹 카피에 더 많은 시간.</p>
+      </article>
+      <article class="pain-item reveal">
+        <p class="num-tag">04 / SNS 전체</p>
+        <h3 class="typography-feature-card-headline">비교 지옥</h3>
+        <p class="typography-body-reduced">다른 창작자의 알고리즘 성공이 곧 내 무능감.</p>
+      </article>
+      <article class="pain-item reveal reveal-d1">
+        <p class="num-tag">05 / 포트폴리오</p>
+        <h3 class="typography-feature-card-headline">묻힌 작업물</h3>
+        <p class="typography-body-reduced">DM, 인스타 피드, 노션 페이지에 흩어져 아무도 못 찾음.</p>
+      </article>
+      <article class="pain-item reveal reveal-d2">
+        <p class="num-tag">06 / IDENTITY</p>
+        <h3 class="typography-feature-card-headline">납작한 자아</h3>
+        <p class="typography-body-reduced">한 줄 소개, 한 장 썸네일로 자신을 압축당함.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. POSITION ===== -->
+<section class="chapter" id="position" aria-label="Position">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-cyan reveal">03 · Position</p>
+      <h2 class="typography-section-headline reveal reveal-d1">우리는 4개의 축을 한꺼번에 움직입니다.</h2>
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
+        하나의 카피, 하나의 캠페인이 아닙니다.
+        창작자의 자아·도시의 씬·산업의 연결·플랫폼의 자립 — 네 개의 축이 동시에 작동하는 구조.
+      </p>
+    </div>
+
+    <div class="position-grid">
+      <article class="position-card reveal" data-color="red">
+        <p class="axis">AXIS 01 · IDENTITY</p>
+        <p class="from">기능 설명 / 앱 소개</p>
+        <p class="arrow">↓</p>
+        <p class="to">자기표현 OS<br>— 디지털 페르소나가 살아나는 공간</p>
+      </article>
+      <article class="position-card reveal reveal-d1" data-color="cyan">
+        <p class="axis">AXIS 02 · INDEPENDENCE</p>
+        <p class="from">알고리즘 선택 기다리기</p>
+        <p class="arrow">↓</p>
+        <p class="to">스스로 발견되는 존재<br>— 찾게 되는 사람이 되는 것</p>
+      </article>
+      <article class="position-card reveal reveal-d2" data-color="yellow">
+        <p class="axis">AXIS 03 · INDUSTRY</p>
+        <p class="from">유저 수, 다운로드 수</p>
+        <p class="arrow">↓</p>
+        <p class="to">실제 씬과 연결된 플랫폼<br>— 음악·영상·댄스 산업 노드</p>
+      </article>
+      <article class="position-card reveal reveal-d3" data-color="purple">
+        <p class="axis">AXIS 04 · CITY</p>
+        <p class="from">디지털 광고 / 배너</p>
+        <p class="arrow">↓</p>
+        <p class="to">도시 위의 씬(scene)<br>— 성수·홍대에 실제 모집 공고</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. TARGET ===== -->
+<section class="chapter" id="target" aria-label="Target">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-yellow reveal">04 · Target</p>
+      <h2 class="typography-section-headline reveal reveal-d1">"같이 만들어야 결과가 나오는" 6개 직군.</h2>
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
+        모든 창작자가 아닙니다. 협업이 결과의 본질인 6개 직군에 집중. 이 6개는 전 단계 대화에서도 변하지 않은 단단한 앵커.
+      </p>
+    </div>
+
+    <div class="target-bento">
+      <article class="target-tile reveal" data-color="cyan">
+        <span class="badge">TIER 1</span>
+        <h3 class="typography-tile-headline">K-Pop Cover</h3>
+        <ul class="pain-list">
+          <li>팀 결성 시급</li>
+          <li>바이럴 가능성 최대</li>
+          <li>글로벌 침투력 강</li>
+        </ul>
+      </article>
+      <article class="target-tile reveal reveal-d1" data-color="red">
+        <span class="badge">TIER 1</span>
+        <h3 class="typography-tile-headline">영상 편집</h3>
+        <ul class="pain-list">
+          <li>작업물 묻힘 1순위</li>
+          <li>MV·콘텐츠팀 니즈</li>
+          <li>포트폴리오 시각화 강</li>
+        </ul>
+      </article>
+      <article class="target-tile reveal reveal-d2" data-color="yellow">
+        <span class="badge">TIER 1</span>
+        <h3 class="typography-tile-headline">비트메이커</h3>
+        <ul class="pain-list">
+          <li>보컬·아티스트 매칭</li>
+          <li>곡 픽업 기회 갈구</li>
+          <li>김형석 자산과 직결</li>
+        </ul>
+      </article>
+      <article class="target-tile reveal reveal-d3" data-color="purple">
+        <span class="badge">TIER 1</span>
+        <h3 class="typography-tile-headline">디자이너</h3>
+        <ul class="pain-list">
+          <li>인스타에선 납작해짐</li>
+          <li>세계관 보여줄 곳 없음</li>
+          <li>큐레이션 욕망 강</li>
+        </ul>
+      </article>
+      <article class="target-tile reveal" data-color="cyan">
+        <span class="badge">TIER 1</span>
+        <h3 class="typography-tile-headline">댄서 / 안무팀</h3>
+        <ul class="pain-list">
+          <li>팀 구조 자연스러움</li>
+          <li>숏폼 적합도 최고</li>
+          <li>K-pop 연결 직선</li>
+        </ul>
+      </article>
+      <article class="target-tile reveal reveal-d1" data-color="red">
+        <span class="badge">TIER 1</span>
+        <h3 class="typography-tile-headline">포토그래퍼</h3>
+        <ul class="pain-list">
+          <li>분위기·톤 핵심 자산</li>
+          <li>아티스트 비주얼 연결</li>
+          <li>아우라 표현 강</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. BUDGET ===== -->
+<section class="chapter" id="budget" aria-label="Budget">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-red reveal">05 · Budget Architecture</p>
+      <h2 class="typography-section-headline reveal reveal-d1">2억 = "광고비"가 아니라<br>"씬 점화 자금".</h2>
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
+        7개 항목은 따로 노는 라인이 아니라 하나의 퍼널. 콘텐츠 → 광고 → 유입 → 포트폴리오 → 관계 → 재방문 → 초대.
+      </p>
+    </div>
+
+    <div class="budget-wrap">
+      <!-- Donut -->
+      <div class="budget-donut-card reveal">
+        <div class="donut" role="img" aria-label="2억 원 예산 배분 도넛 차트">
+          <svg viewBox="0 0 100 100">
+            <!-- Stroke-dasharray donut -->
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#1C1C1F" stroke-width="14"/>
+            <!-- Meta 35% -->
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#5BFF5A" stroke-width="14" stroke-dasharray="87.92 251.33" stroke-dashoffset="0"/>
+            <!-- TikTok 15% -->
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#FF3B30" stroke-width="14" stroke-dasharray="37.7 251.33" stroke-dashoffset="-87.92"/>
+            <!-- Seed 15% -->
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#FFD60A" stroke-width="14" stroke-dasharray="37.7 251.33" stroke-dashoffset="-125.62"/>
+            <!-- 콘텐츠 12.5% -->
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#BF5AF2" stroke-width="14" stroke-dasharray="31.42 251.33" stroke-dashoffset="-163.32"/>
+            <!-- Wanted 10% -->
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-dasharray="25.13 251.33" stroke-dashoffset="-194.74"/>
+            <!-- CRM 5% -->
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#86868B" stroke-width="14" stroke-dasharray="12.57 251.33" stroke-dashoffset="-219.87"/>
+            <!-- Buffer 7.5% -->
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#444448" stroke-width="14" stroke-dasharray="18.85 251.33" stroke-dashoffset="-232.44"/>
+          </svg>
+          <div class="donut-center">
+            <div class="total">₩2억</div>
+            <div class="label">TOTAL · 7 LINES</div>
+          </div>
+        </div>
+        <p class="typography-body-reduced" style="text-align: center; max-width: 280px;">
+          광고비가 35%일 뿐, 나머지 65%는 <mark class="highlight-cyan">씬을 만드는 비용</mark>.
+        </p>
+      </div>
+
+      <!-- Bento -->
+      <div class="budget-bento">
+        <div class="budget-tile reveal" data-color="cyan">
+          <span class="pct">35%</span>
+          <span class="amt">7,000만</span>
+          <span class="name">Meta 퍼포먼스</span>
+          <span class="role">설치·포트폴리오 업로드 핵심</span>
+        </div>
+        <div class="budget-tile reveal reveal-d1" data-color="red">
+          <span class="pct">15%</span>
+          <span class="amt">3,000만</span>
+          <span class="name">TikTok 숏폼</span>
+          <span class="role">발견·바이럴·세계관 감도</span>
+        </div>
+        <div class="budget-tile reveal reveal-d2" data-color="yellow">
+          <span class="pct">15%</span>
+          <span class="amt">3,000만</span>
+          <span class="name">Creator Seed</span>
+          <span class="role">초기 100~300명 밀도</span>
+        </div>
+        <div class="budget-tile reveal" data-color="purple">
+          <span class="pct">12.5%</span>
+          <span class="amt">2,500만</span>
+          <span class="name">콘텐츠 제작</span>
+          <span class="role">월 50~100개 광고 공장</span>
+        </div>
+        <div class="budget-tile reveal reveal-d1" data-color="white">
+          <span class="pct">10%</span>
+          <span class="amt">2,000만</span>
+          <span class="name">Wanted 도시</span>
+          <span class="role">성수·홍대 벽보 ARG</span>
+        </div>
+        <div class="budget-tile reveal reveal-d2">
+          <span class="pct">5%</span>
+          <span class="amt">1,000만</span>
+          <span class="name">CRM / 리텐션</span>
+          <span class="role">푸시·이메일·하이라이트</span>
+        </div>
+        <div class="budget-tile reveal" style="grid-column: span 2;">
+          <span class="pct">7.5%</span>
+          <span class="amt">1,500만</span>
+          <span class="name">데이터 / 실험 버퍼</span>
+          <span class="role">Hook·길이·타겟·카테고리·AI 5축 AB 테스트 — "실패하기 위한 돈"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5.5 SIGNATURE ITEMS ===== -->
+<section class="chapter" id="items" aria-label="Signature Items">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-green reveal">06 · The Items We Build</p>
+      <h2 class="typography-section-headline reveal reveal-d1">광고가 아니라<br>사건을 만든다.</h2>
+      <div class="items-intro reveal reveal-d2" style="margin-top: 24px;">
+        <p class="typography-body" style="color: var(--text-dim);">
+          예산은 라인이고, 트랙은 구조다. 실제로 <mark class="highlight-green">사람을 움직이는 것은 12개의 아이템</mark>.
+          이 중 <strong style="color: var(--c-green);">Big 3</strong>가 캠페인의 시그니처. 나머지 9개는 받쳐주는 무기.
+        </p>
+      </div>
+    </div>
+
+    <!-- BIG 3 -->
+    <p class="items-tail-label reveal" style="color: var(--c-green);">★★★★★ · BIG 3 — Signature Items</p>
+    <div class="items-big3">
+      <article class="item-big reveal" data-color="green">
+        <div class="item-num">01</div>
+        <span class="item-stars">★★★★★</span>
+        <h3 class="item-name">"이 사람과<br>작업하고 싶다."</h3>
+        <p class="item-copy">— 혼자 하지 마세요.</p>
+        <p class="item-desc">디자이너·프로듀서·보컬·안무가·편집자의 작업물 2초씩, 마지막 한 줄. 협업 욕망 자극 1순위. 메인 광고 캠페인 핵심 소재.</p>
+        <div class="item-meta">
+          <div class="item-meta-row"><span class="key">Track</span><span class="val">A · Digital</span></div>
+          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P1 시드 → P2 집중 메인</span></div>
+          <div class="item-meta-row"><span class="key">Budget Line</span><span class="val">Meta 7,000만 + 콘텐츠 2,500만</span></div>
+          <div class="item-meta-row"><span class="key">Primary KPI</span><span class="val kpi">포트폴리오 업로드 CPA</span></div>
+        </div>
+      </article>
+
+      <article class="item-big reveal reveal-d1" data-color="yellow">
+        <div class="item-num">02</div>
+        <span class="item-stars">★★★★★</span>
+        <h3 class="item-name">72시간<br>K-pop Team Challenge</h3>
+        <p class="item-copy">— 작곡·보컬·댄서·영상팀 한 자리에.</p>
+        <p class="item-desc">C8 안에서 4역할 모집 → 72시간 안에 팀 결성·작업·결과물 업로드. 김형석 리뷰가 마무리. 실제 결과물·숏폼 무한 생산·팀 결성 사례·바이럴 4가지를 한 번에.</p>
+        <div class="item-meta">
+          <div class="item-meta-row"><span class="key">Track</span><span class="val">B · Creator Seed</span></div>
+          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P2 집중 1회 + P3 확장 1회</span></div>
+          <div class="item-meta-row"><span class="key">Budget Line</span><span class="val">Seed 3,000만 + 이벤트 2,000만</span></div>
+          <div class="item-meta-row"><span class="key">Primary KPI</span><span class="val kpi">첫 협업 발생률 / 결과물 수</span></div>
+        </div>
+      </article>
+
+      <article class="item-big reveal reveal-d2" data-color="purple">
+        <div class="item-num">03</div>
+        <span class="item-stars">★★★★★</span>
+        <h3 class="item-name">REAL PROJECT<br>WANTED — 도시 벽보</h3>
+        <p class="item-copy">— BAND MEMBERS WANTED, Seoul 2026.</p>
+        <p class="item-desc">성수·홍대 벽보. 인디 공연 포스터·캐스팅 공고 톤. QR → 풀스크린 몰입형 프로필. 김형석 연결 진짜 밴드 모집. "도시의 일부"처럼 보이는 ARG.</p>
+        <div class="item-meta">
+          <div class="item-meta-row"><span class="key">Track</span><span class="val">C · City</span></div>
+          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P1 1차 → P2 2차 → P3 3차</span></div>
+          <div class="item-meta-row"><span class="key">Budget Line</span><span class="val">Wanted 도시 2,000만</span></div>
+          <div class="item-meta-row"><span class="key">Primary KPI</span><span class="val kpi">QR → 프로필 완성률 / 검색량 lift</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- SUPPORTING 6 -->
+    <p class="items-tail-label reveal">★★★★ · SUPPORTING 6 — 받쳐주는 무기</p>
+    <div class="items-supporting">
+      <article class="item-sup reveal" data-color="green">
+        <div class="sup-head"><span>04 · Digital</span><span>★★★★</span></div>
+        <h4 class="sup-name">Before / After 포트폴리오</h4>
+        <p class="sup-desc">인스타 buried → C8 프로필 / DM → 구조화 / 혼자 → 팀 연결.</p>
+        <p class="sup-meta">Track A · <strong>Meta 캠페인 1</strong> 핵심 소재</p>
+      </article>
+      <article class="item-sup reveal reveal-d1" data-color="red">
+        <div class="sup-head"><span>05 · Digital</span><span>★★★★</span></div>
+        <h4 class="sup-name">"당신 작업물은<br>묻혀있습니다"</h4>
+        <p class="sup-desc">디자이너·영상편집자·작곡가·포토그래퍼 pain 직격. Hook 강도 최상.</p>
+        <p class="sup-meta">Track A · <strong>TikTok 발견 캠페인</strong></p>
+      </article>
+      <article class="item-sup reveal reveal-d2" data-color="yellow">
+        <div class="sup-head"><span>06 · Seed</span><span>★★★★</span></div>
+        <h4 class="sup-name">김형석 Pick Challenge</h4>
+        <p class="sup-desc">작곡가가 직접 가능성을 본 팀 선정. 산업 진입의 상징. 개인 ✗ · 팀 ○.</p>
+        <p class="sup-meta">Track B · <strong>P2 집중 1회</strong> · Asset 01 호출</p>
+      </article>
+      <article class="item-sup reveal" data-color="yellow">
+        <div class="sup-head"><span>07 · Seed</span><span>★★★★</span></div>
+        <h4 class="sup-name">Song to Performance</h4>
+        <p class="sup-desc">김형석 측 음악·IP 제공 → C8 팀 결성 → 유저 퍼포먼스 제작. 산업 IP × 시드 결합.</p>
+        <p class="sup-meta">Track B · <strong>P2~P3</strong> · Asset 01 호출</p>
+      </article>
+      <article class="item-sup reveal reveal-d1" data-color="green">
+        <div class="sup-head"><span>08 · Hybrid</span><span>★★★★</span></div>
+        <h4 class="sup-name">MV Collaboration</h4>
+        <p class="sup-desc">작곡·보컬·댄서·촬영·편집 한 팀 → 실제 MV. 광고 소재·UGC·Proof 1석 3조.</p>
+        <p class="sup-meta">Track A·B 혼합 · Asset 02 호출</p>
+      </article>
+      <article class="item-sup reveal reveal-d2" data-color="purple">
+        <div class="sup-head"><span>09 · City</span><span>★★★★</span></div>
+        <h4 class="sup-name">WANTED PROFILE 벽보</h4>
+        <p class="sup-desc">"A vocalist who sounds like midnight." 캐스팅 공고형 포스터. 무드 풀스크린 프로필 등장.</p>
+        <p class="sup-meta">Track C · <strong>P1 성수 5~10곳</strong></p>
+      </article>
+    </div>
+
+    <!-- LONG TAIL 3 -->
+    <p class="items-tail-label reveal">★★★ · LONG TAIL — 실험 풀</p>
+    <div class="items-tail reveal">
+      <div class="item-tail"><span class="tag">10</span><span><strong>AI Creation Camp</strong> — AI MV·작곡·퍼포먼스 배틀</span></div>
+      <div class="item-tail"><span class="tag">11</span><span><strong>Remix 챌린지</strong> — 작업물 업로드 → 다음 창작자가 이어서</span></div>
+      <div class="item-tail"><span class="tag">12</span><span><strong>창작자 유형 테스트</strong> — Solo / Team / K-creator DNA 리드 수집</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. MESSAGE ARCHITECTURE ===== -->
+<section class="chapter" id="message" aria-label="Message Architecture">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-purple reveal">07 · Message Architecture</p>
+      <h2 class="typography-section-headline reveal reveal-d1">한 카피에 4개의 축이 다 들어갑니다.</h2>
+    </div>
+
+    <div class="message-stack">
+      <div class="message-row master reveal">
+        <span class="level">MASTER</span>
+        <p class="copy en">You Are Not Content.<small>창작자는 콘텐츠가 아니다 — 4개 축을 모두 함축하는 메인 카피</small></p>
+      </div>
+      <div class="message-row hook reveal reveal-d1">
+        <span class="level">HOOK · IDENTITY</span>
+        <p class="copy">"인스타는 당신을 1초만 보여줍니다."<small>피로 자극 → 자기 발견으로 전환</small></p>
+      </div>
+      <div class="message-row hook reveal reveal-d2">
+        <span class="level">HOOK · INDEPENDENCE</span>
+        <p class="copy en">"Make People Search You."<small>알고리즘에 뜨는 사람 ✗ · 찾아지는 사람 ○</small></p>
+      </div>
+      <div class="message-row hook reveal reveal-d3">
+        <span class="level">HOOK · INDUSTRY</span>
+        <p class="copy">"색은 따라할 수 없습니다."<small>김형석 자산 호출 — 감각·취향의 상징</small></p>
+      </div>
+      <div class="message-row var reveal">
+        <span class="level">VARIATION</span>
+        <p class="copy">"당신만의 색이 있습니까?" · "Create Your Presence." · "Stop Feeding the Algorithm."<small>매체·소재별 회전 카피 풀</small></p>
+      </div>
+      <div class="message-row var reveal reveal-d1">
+        <span class="level">CITY · WANTED</span>
+        <p class="copy en">"A vocalist who sounds like midnight."<small>Wanted 포스터 톤 — 도시 캐스팅 공고 형태</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. THREE TRACKS ===== -->
+<section class="chapter" id="tracks" aria-label="Three Tracks">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-cyan reveal">08 · Three Execution Tracks</p>
+      <h2 class="typography-section-headline reveal reveal-d1">디지털 · 시드 · 도시 — 3트랙 동시 점화.</h2>
+    </div>
+
+    <div class="tracks-grid">
+      <article class="track-card reveal" data-color="cyan">
+        <p class="num">TRACK A</p>
+        <h3 class="typography-banner-card-headline">Digital Performance</h3>
+        <p class="budget-line"><strong>1억 3,000만</strong> · Meta + TikTok + 콘텐츠 제작</p>
+        <p class="typography-body-reduced" style="line-height: 1.5;">
+          유입·발견·바이럴 트랙. Hook 주간 교체, 50~100개 숏폼 광고 공장 운영. 빠른 폐기·카테고리별 AB로 학습 페이즈 가속.
+        </p>
+        <ul>
+          <li>아이템 #01 · #04 · #05 · #08 (메인 5종)</li>
+          <li>Meta 3캠페인 + TikTok 발견·바이럴</li>
+        </ul>
+        <div class="kpi-mini">
+          <strong>PRIMARY KPI</strong>
+          포트폴리오 업로드 CPA 1.5~3만원 / D7 25%+
+        </div>
+      </article>
+
+      <article class="track-card reveal reveal-d1" data-color="yellow">
+        <p class="num">TRACK B</p>
+        <h3 class="typography-banner-card-headline">Creator Seed Program</h3>
+        <p class="budget-line"><strong>3,000만 + 이벤트 2,000만</strong> · 초기 100~300명 밀도</p>
+        <p class="typography-body-reduced" style="line-height: 1.5;">
+          팔로워 1~5만·작업물 자주·협업 적극형 우선. 보상 = 현금 ✗ / 메인 노출·프로 피드백·팀 매칭권 ○. 김형석 자산 호출 트랙.
+        </p>
+        <ul>
+          <li>아이템 #02 · #06 · #07 · #08 (Big 1 + 4종)</li>
+          <li>72시간 챌린지 + Pick Challenge + Song to Performance</li>
+        </ul>
+        <div class="kpi-mini">
+          <strong>PRIMARY KPI</strong>
+          활동 시드 100명 · 첫 협업 발생률 30%+
+        </div>
+      </article>
+
+      <article class="track-card reveal reveal-d2" data-color="purple">
+        <p class="num">TRACK C</p>
+        <h3 class="typography-banner-card-headline">City Wanted ARG</h3>
+        <p class="budget-line"><strong>2,000만</strong> · 성수·홍대 투트랙</p>
+        <p class="typography-body-reduced" style="line-height: 1.5;">
+          벽보 = 인디 공연 포스터·캐스팅 공고·Y2K Xerox 톤. 스타트업 광고 ✗ / 도시 일부처럼 보일 것. QR → 풀스크린 몰입 프로필.
+        </p>
+        <ul>
+          <li>아이템 #03 · #09 (Big 1 + 1종)</li>
+          <li>REAL PROJECT WANTED + WANTED PROFILE</li>
+        </ul>
+        <div class="kpi-mini">
+          <strong>PRIMARY KPI</strong>
+          QR 스캔 → 프로필 완성률 / 검색량 lift
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. ASSETS ===== -->
+<section class="chapter" id="assets" aria-label="Asset Activation">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-yellow reveal">09 · Asset Activation</p>
+      <h2 class="typography-section-headline reveal reveal-d1">자산은 4개 — 호출 맥락은 명확히 분리.</h2>
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 720px; margin-top: 16px;">
+        같은 자산이 여러 트랙에서 다른 의미로 쓰이면 메시지가 흐려집니다. 자산별 역할 1개 + 호출 트랙 1~2개로 고정.
+      </p>
+    </div>
+
+    <div class="assets-grid">
+      <article class="asset-tile reveal" data-color="red">
+        <p class="label">ASSET 01</p>
+        <h3 class="typography-feature-card-headline">김형석 작곡가</h3>
+        <p class="role"><strong>감각·취향의 상징</strong> · "색은 따라할 수 없다"</p>
+        <p class="ctx">호출 트랙: Track B(Pick Challenge) + Track C(Wanted 밴드 모집). 일반 광고 ✗ · 산업 진입의 상징으로만.</p>
+      </article>
+      <article class="asset-tile reveal reveal-d1" data-color="cyan">
+        <p class="label">ASSET 02</p>
+        <h3 class="typography-feature-card-headline">영상 제작사 네트워크</h3>
+        <p class="role"><strong>결과물 비주얼</strong> · MV Collaboration</p>
+        <p class="ctx">호출 트랙: Track A(콘텐츠 제작 소재) + Track B(시드 결과물 가시화). UI 광고 ✗ · "멋진 결과물"로.</p>
+      </article>
+      <article class="asset-tile reveal reveal-d2" data-color="yellow">
+        <p class="label">ASSET 03</p>
+        <h3 class="typography-feature-card-headline">댄스 연결</h3>
+        <p class="role"><strong>성장 엔진</strong> · 숏폼·바이럴·글로벌</p>
+        <p class="ctx">호출 트랙: Track A(TikTok 메인) + Track B(Cover Team Match). "춤 자체"보다 "팀 결성 장면".</p>
+      </article>
+      <article class="asset-tile reveal reveal-d3" data-color="purple">
+        <p class="label">ASSET 04</p>
+        <h3 class="typography-feature-card-headline">팝아트 레이어</h3>
+        <p class="role"><strong>세계관 자산</strong> · 굿즈·비주얼·챌린지</p>
+        <p class="ctx">호출 트랙: Track C(Wanted 비주얼) + 브랜딩 굿즈. 메인 acquisition ✗ · 세계관 강화로만.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 9. ROADMAP ===== -->
+<section class="chapter" id="roadmap" aria-label="Roadmap">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-cyan reveal">10 · Phase Roadmap</p>
+      <h2 class="typography-section-headline reveal reveal-d1">씨앗 → 집중 → 폭발. 3페이즈 구조.</h2>
+    </div>
+
+    <div class="roadmap-track">
+      <article class="phase-card reveal" data-color="cyan">
+        <p class="phase-num">PHASE 01</p>
+        <h3 class="typography-banner-card-headline">Seed</h3>
+        <p class="range"><strong>0 ~ 5,000만</strong> · 4주</p>
+        <ul>
+          <li>50~100개 소재 빠른 실험</li>
+          <li>Hook·길이·타겟·카테고리 AB</li>
+          <li>Creator Seed 100명 모집</li>
+          <li>Wanted 1차 성수 5~10곳</li>
+          <li>대행사 학습 페이즈 — 빠른 폐기</li>
+        </ul>
+        <p class="goal">GOAL · 어떤 소재·직군이 먹히는지 데이터 확보</p>
+      </article>
+
+      <article class="phase-card reveal reveal-d1" data-color="yellow">
+        <p class="phase-num">PHASE 02</p>
+        <h3 class="typography-banner-card-headline">Concentrate</h3>
+        <p class="range"><strong>5,000만 ~ 1.5억</strong> · 6주</p>
+        <ul>
+          <li>먹히는 카테고리 집중 투입</li>
+          <li>김형석 Pick Challenge 1차</li>
+          <li>72시간 K-pop Team Challenge 1회</li>
+          <li>MV Collaboration 1팀 가시화</li>
+          <li>Wanted 2차 성수 + 홍대 확장</li>
+        </ul>
+        <p class="goal">GOAL · 시드 활동 유저 → 자생 콘텐츠 점화</p>
+      </article>
+
+      <article class="phase-card reveal reveal-d2" data-color="purple">
+        <p class="phase-num">PHASE 03</p>
+        <h3 class="typography-banner-card-headline">Network Explosion</h3>
+        <p class="range"><strong>1.5억 ~ 2억</strong> · 4주</p>
+        <ul>
+          <li>챌린지·팀매칭·협업 이벤트 강화</li>
+          <li>리퍼럴 보상 풀가동</li>
+          <li>Wanted 3차 — 건대·이태원·강남 확장</li>
+          <li>실제 결과물(밴드·MV·곡) 송출</li>
+          <li>Phase 4 시리즈A 스토리 빌드</li>
+        </ul>
+        <p class="goal">GOAL · 네트워크 효과 임계점 돌파</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10. KPI + GUARDRAILS ===== -->
+<section class="chapter" id="kpi" aria-label="KPI and Guardrails">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="typography-eyebrow eb-red reveal">11 · KPI &amp; Guardrails</p>
+      <h2 class="typography-section-headline reveal reveal-d1">설치 수가 아니라<br>"활동·관계·존재" 3축으로 측정합니다.</h2>
+    </div>
+
+    <div class="kpi-wrap">
+      <div class="kpi-card reveal">
+        <h3 class="typography-feature-card-headline">Master KPI Set</h3>
+        <table class="kpi-table">
+          <thead>
+            <tr><th>축</th><th>지표</th><th>우선순위</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>존재</td><td>프로필 완성률</td><td><span class="star">★★★★★</span></td></tr>
+            <tr><td>존재</td><td>자기소개 작성률</td><td><span class="star">★★★★★</span></td></tr>
+            <tr><td>활동</td><td>포트폴리오 업로드 수</td><td><span class="star">★★★★★</span></td></tr>
+            <tr><td>활동</td><td>프로젝트 생성률</td><td><span class="star">★★★★</span></td></tr>
+            <tr><td>관계</td><td>협업 발생률</td><td><span class="star">★★★★</span></td></tr>
+            <tr><td>관계</td><td>초대율</td><td><span class="star">★★★★</span></td></tr>
+            <tr><td>지속</td><td>D7 재방문</td><td><span class="star">★★★★</span></td></tr>
+            <tr><td>지속</td><td>체류시간 / 프로필 공유율</td><td><span class="star">★★★★</span></td></tr>
+            <tr><td>입구</td><td>CPI (참고용)</td><td><span class="star">★★</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="guard-card reveal reveal-d1">
+        <h3 class="typography-feature-card-headline">Guardrails — 절대 금지</h3>
+        <div class="guard-list">
+          <div class="guard-item">앱 기능 설명 위주 광고 — "추상적, 행동 안 만듦"</div>
+          <div class="guard-item">감성 브랜딩 영상 몰빵 — "초기 비효율 1위"</div>
+          <div class="guard-item">연예인급 인플루언서 중심 — "CAC 급등·유지 ✗"</div>
+          <div class="guard-item">설치·조회 KPI만 — "활동 안 생김"</div>
+          <div class="guard-item">긴 영상 / 단일 소재 반복 — "학습 느림"</div>
+          <div class="guard-item">"같이 만들자" 강요형 카피 — "초기 규모에선 공허"</div>
+          <div class="guard-item">Wanted = 데이팅앱 분기 — "브랜드 흐림"</div>
+          <div class="guard-item">대행사에 세계관·KPI 정의 위임 — "2억이 학비 됨"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="brief-footer">
+  <div class="footer-inner">
+    <div class="footer-mark">CRE8ORCLUB 3.0</div>
+    <p class="typography-quote" style="max-width: 900px; margin-bottom: 32px;">
+      "2억의 진짜 목적은 광고가 아니라 — <mark class="highlight-cyan">창작 관계 밀도를 임계점까지 올리는 것</mark>이다."
+    </p>
+    <div class="footer-meta">
+      <div class="footer-meta-item">
+        <div class="label">Document</div>
+        <div class="value">C8 3.0 Launching Campaign Brief</div>
+      </div>
+      <div class="footer-meta-item">
+        <div class="label">Status</div>
+        <div class="value">DRAFT v1 · 2026-05-06</div>
+      </div>
+      <div class="footer-meta-item">
+        <div class="label">Owner</div>
+        <div class="value">Cre8orClub Founding Team</div>
+      </div>
+      <div class="footer-meta-item">
+        <div class="label">Source</div>
+        <div class="value">증류본 7섹션·6토픽·번복 3건</div>
+      </div>
+    </div>
+    <div class="footnote-list">
+      <p class="footnote">¹ 본 브리프는 2026-05-06 ChatGPT 대화 증류본을 기반으로 작성됨. 포지션은 t6 형 지시 기반 4축 통합 버전.</p>
+      <p class="footnote">² Track별 KPI는 디지털·시드·도시 트랙의 측정 방식이 상이하므로 분리 측정 후 마스터 KPI로 통합.</p>
+      <p class="footnote">³ Wanted 도시 트랙의 측정 방법(QR 스캔 → 프로필 완성률 / 브랜드 검색량)은 Phase 1 Seed 기간 중 실측 후 확정.</p>
+      <p class="footnote">⁴ "같이 만들자" 직설 카피는 t5 형 지시에 따라 초기 4주 구간에서 후순위 — 자기표현 카피 우선 노출.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// === Reveal on scroll ===
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// === Chapter nav active state ===
+const navLinks = document.querySelectorAll('.chapter-nav a');
+const sections = document.querySelectorAll('section[id], footer[id]');
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.getAttribute('id');
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => navObserver.observe(s));
+
+// === Reduced motion fallback ===
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+}
+</script>
+
+</body>
+</html>
