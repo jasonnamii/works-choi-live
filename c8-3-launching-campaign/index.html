@@ -479,6 +479,38 @@ section.hero {
 .phase-card .goal { font-size: 12px; color: var(--phase-color); font-weight: 700; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); letter-spacing: 0.05em; }
 @media (max-width: 1067px) { .roadmap-track { grid-template-columns: 1fr; } .phase-card { border-right: none; border-bottom: 1px solid var(--border); } .phase-card:last-child { border-bottom: none; } }
 
+/* === Timeline Bar (§10 상단) === */
+.timeline-bar {
+  margin-top: 32px; padding: 24px; border-radius: var(--radius-tile);
+  background: var(--bg-alt); border: 1px solid var(--border);
+}
+.tl-track {
+  display: flex; height: 56px; border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.tl-seg {
+  display: flex; align-items: center; justify-content: center;
+  position: relative; transition: filter 240ms;
+}
+.tl-seg:hover { filter: brightness(1.1); }
+.tl-seg + .tl-seg { border-left: 2px solid var(--bg); }
+.tl-label {
+  font-size: clamp(11px, 1vw, 13px); font-weight: 800; color: #000;
+  letter-spacing: 0.05em; padding: 0 8px; text-align: center;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.tl-seg:first-child .tl-label { color: #000; }
+.tl-seg:last-child .tl-label { color: #FFF; }
+.tl-marks {
+  display: flex; justify-content: space-between; margin-top: 10px;
+  font-family: var(--font-en); font-size: 12px; color: var(--text-dim);
+  font-weight: 600; letter-spacing: 0.05em;
+}
+@media (max-width: 700px) {
+  .tl-track { height: 40px; }
+  .tl-label { font-size: 10px; }
+}
+
 /* === KPI + Guardrails === */
 .kpi-wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; }
 .kpi-card, .guard-card {
@@ -582,7 +614,7 @@ footer.brief-footer {
       </div>
       <div class="hero-meta-item">
         <div class="label">Launch Window</div>
-        <div class="value">2026 Q3</div>
+        <div class="value">2026.06.15 — 07.31<br><span style="font-size: 14px; color: var(--text-dim); font-weight: 400;">6.5주 압축 스프린트</span></div>
       </div>
       <div class="hero-meta-item">
         <div class="label">Tracks</div>
@@ -880,7 +912,7 @@ footer.brief-footer {
         <p class="item-desc">디자이너·프로듀서·보컬·안무가·편집자의 작업물 2초씩, 마지막 한 줄. 협업 욕망 자극 1순위. 메인 광고 캠페인 핵심 소재.</p>
         <div class="item-meta">
           <div class="item-meta-row"><span class="key">Track</span><span class="val">A · Digital</span></div>
-          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P1 시드 → P2 집중 메인</span></div>
+          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P1 (06.15~) 살포 · P2 (06.29~) 집중</span></div>
           <div class="item-meta-row"><span class="key">Budget Line</span><span class="val">Meta 7,000만 + 콘텐츠 2,500만</span></div>
           <div class="item-meta-row"><span class="key">Primary KPI</span><span class="val kpi">포트폴리오 업로드 CPA</span></div>
         </div>
@@ -894,7 +926,7 @@ footer.brief-footer {
         <p class="item-desc">C8 안에서 4역할 모집 → 72시간 안에 팀 결성·작업·결과물 업로드. 김형석 리뷰가 마무리. 실제 결과물·숏폼 무한 생산·팀 결성 사례·바이럴 4가지를 한 번에.</p>
         <div class="item-meta">
           <div class="item-meta-row"><span class="key">Track</span><span class="val">B · Creator Seed</span></div>
-          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P2 집중 1회 + P3 확장 1회</span></div>
+          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P2 본 라운드 (07.04~07.06) + P3 2회차</span></div>
           <div class="item-meta-row"><span class="key">Budget Line</span><span class="val">Seed 3,000만 + 이벤트 2,000만</span></div>
           <div class="item-meta-row"><span class="key">Primary KPI</span><span class="val kpi">첫 협업 발생률 / 결과물 수</span></div>
         </div>
@@ -908,7 +940,7 @@ footer.brief-footer {
         <p class="item-desc">성수·홍대 벽보. 인디 공연 포스터·캐스팅 공고 톤. QR → 풀스크린 몰입형 프로필. 김형석 연결 진짜 밴드 모집. "도시의 일부"처럼 보이는 ARG.</p>
         <div class="item-meta">
           <div class="item-meta-row"><span class="key">Track</span><span class="val">C · City</span></div>
-          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P1 1차 → P2 2차 → P3 3차</span></div>
+          <div class="item-meta-row"><span class="key">Phase</span><span class="val">P1 1차 (06.20~) → P2 2차 → P3 3차</span></div>
           <div class="item-meta-row"><span class="key">Budget Line</span><span class="val">Wanted 도시 2,000만</span></div>
           <div class="item-meta-row"><span class="key">Primary KPI</span><span class="val kpi">QR → 프로필 완성률 / 검색량 lift</span></div>
         </div>
@@ -1111,50 +1143,65 @@ footer.brief-footer {
   <div class="section-inner">
     <div class="section-header">
       <p class="typography-eyebrow eb-cyan reveal">10 · Phase Roadmap</p>
-      <h2 class="typography-section-headline reveal reveal-d1">씨앗 → 집중 → 폭발. 3페이즈 구조.</h2>
+      <h2 class="typography-section-headline reveal reveal-d1">6.5주 압축 스프린트.<br>씨앗 · 집중 · 폭발 병렬 점화.</h2>
+      <p class="typography-body-reduced reveal reveal-d2" style="max-width: 760px; margin-top: 16px;">
+        2026.06.15 ~ 07.31 — <mark class="highlight-green">P1·P2는 직렬이 아닌 병렬</mark>. Seed 모집과 광고 실험이 동시 굴러야 2억을 6.5주에 소화.
+      </p>
+
+      <!-- Timeline Bar -->
+      <div class="timeline-bar reveal reveal-d3">
+        <div class="tl-track">
+          <div class="tl-seg" style="width: 30.7%; background: var(--c-green);"><span class="tl-label">P1 SEED · 2주</span></div>
+          <div class="tl-seg" style="width: 30.7%; background: var(--c-yellow);"><span class="tl-label" style="color: #000;">P2 CONCENTRATE · 2주</span></div>
+          <div class="tl-seg" style="width: 38.6%; background: var(--c-purple);"><span class="tl-label">P3 EXPLOSION · 2.5주</span></div>
+        </div>
+        <div class="tl-marks">
+          <span>06.15</span><span>06.29</span><span>07.13</span><span>07.31</span>
+        </div>
+      </div>
     </div>
 
     <div class="roadmap-track">
       <article class="phase-card reveal" data-color="cyan">
-        <p class="phase-num">PHASE 01</p>
+        <p class="phase-num">PHASE 01 · 06.15 — 06.28</p>
         <h3 class="typography-banner-card-headline">Seed</h3>
-        <p class="range"><strong>0 ~ 5,000만</strong> · 4주</p>
+        <p class="range"><strong>0 ~ 5,000만</strong> · 2주 (학습 스프린트)</p>
         <ul>
-          <li>50~100개 소재 빠른 실험</li>
-          <li>Hook·길이·타겟·카테고리 AB</li>
-          <li>Creator Seed 100명 모집</li>
-          <li>Wanted 1차 성수 5~10곳</li>
-          <li>대행사 학습 페이즈 — 빠른 폐기</li>
+          <li>50개 소재 살포·CTR/업로드 전환 AB</li>
+          <li>Creator Seed 1차 50~80명 모집</li>
+          <li>Wanted 1차 성수 5~7곳 (06.20~)</li>
+          <li>김형석 Pick Challenge 사전 큐레이션</li>
+          <li>일별 폐기·교체 — 학습 가속</li>
         </ul>
-        <p class="goal">GOAL · 어떤 소재·직군이 먹히는지 데이터 확보</p>
+        <p class="goal">GOAL · 7일 안에 어떤 소재·직군이 먹히는지 잠금</p>
       </article>
 
       <article class="phase-card reveal reveal-d1" data-color="yellow">
-        <p class="phase-num">PHASE 02</p>
+        <p class="phase-num">PHASE 02 · 06.29 — 07.12</p>
         <h3 class="typography-banner-card-headline">Concentrate</h3>
-        <p class="range"><strong>5,000만 ~ 1.5억</strong> · 6주</p>
+        <p class="range"><strong>5,000만 ~ 1.5억</strong> · 2주 (집중 투입)</p>
         <ul>
-          <li>먹히는 카테고리 집중 투입</li>
-          <li>김형석 Pick Challenge 1차</li>
-          <li>72시간 K-pop Team Challenge 1회</li>
-          <li>MV Collaboration 1팀 가시화</li>
+          <li>먹히는 카테고리 3종에 집중 광고</li>
+          <li>72시간 K-pop Team Challenge 1회 (07.04~07.06)</li>
+          <li>김형석 Pick Challenge 본 라운드</li>
+          <li>MV Collaboration 1팀 시작</li>
           <li>Wanted 2차 성수 + 홍대 확장</li>
         </ul>
-        <p class="goal">GOAL · 시드 활동 유저 → 자생 콘텐츠 점화</p>
+        <p class="goal">GOAL · 시드 100명 활성화 → 자생 콘텐츠 점화</p>
       </article>
 
       <article class="phase-card reveal reveal-d2" data-color="purple">
-        <p class="phase-num">PHASE 03</p>
+        <p class="phase-num">PHASE 03 · 07.13 — 07.31</p>
         <h3 class="typography-banner-card-headline">Network Explosion</h3>
-        <p class="range"><strong>1.5억 ~ 2억</strong> · 4주</p>
+        <p class="range"><strong>1.5억 ~ 2억</strong> · 2.5주 (확산)</p>
         <ul>
-          <li>챌린지·팀매칭·협업 이벤트 강화</li>
-          <li>리퍼럴 보상 풀가동</li>
+          <li>리퍼럴 보상 풀가동 + 챌린지 2회차</li>
           <li>Wanted 3차 — 건대·이태원·강남 확장</li>
-          <li>실제 결과물(밴드·MV·곡) 송출</li>
+          <li>MV·곡·밴드 결과물 송출 (07.20~)</li>
+          <li>Song to Performance 가시화</li>
           <li>Phase 4 시리즈A 스토리 빌드</li>
         </ul>
-        <p class="goal">GOAL · 네트워크 효과 임계점 돌파</p>
+        <p class="goal">GOAL · 네트워크 효과 임계점 돌파 → 8월 자생</p>
       </article>
     </div>
   </div>
