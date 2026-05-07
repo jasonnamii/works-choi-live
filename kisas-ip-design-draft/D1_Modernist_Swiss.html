@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>KISAS Day 2 — S4 Modernist Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --paper-tint:#F7F5F0;
+  --ink:#0A0A0A;
+  --ink-soft:#454545;
+  --rule:#0A0A0A;
+  --grid:#E0E0E0;
+  --pink:#FF2D87;
+  --blue:#2945E5;
+  --lemon:#FFD400;
+  --mint:#0DBA8A;
+  --coral:#E8552A;
+  --oxford:#002147;       /* 옥스포드 네이비 */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#D8D4CC;color:var(--ink);font-family:'Inter',sans-serif;font-size:10.5pt;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+.page{
+  width:210mm;height:297mm;
+  background:var(--paper);
+  margin:18px auto;
+  padding:18mm 18mm 22mm;
+  box-shadow:0 8px 36px rgba(0,0,0,.22);
+  position:relative;overflow:hidden;
+  page-break-after:always;break-after:page;
+}
+.page:last-child{page-break-after:auto;break-after:auto}
+.map-grid,.map-cell,.step,table,.checklist,.chorus-lab,.exit,.starters,.picker-row,.reflect-q,.callout,.steps,.music-header,.frame{break-inside:avoid;page-break-inside:avoid}
+
+/* ===== Top header bar (학술지 스타일) ===== */
+.top-header{
+  position:absolute;top:0;left:0;right:0;height:10mm;
+  border-bottom:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18mm;
+  font-family:'JetBrains Mono',monospace;font-size:8pt;color:var(--ink);
+}
+.top-header .left{display:flex;align-items:center;gap:14px}
+.top-header .seal{
+  width:18px;height:18px;background:var(--oxford);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--lemon);font-family:'Fraunces',serif;font-weight:800;font-size:10pt;
+  border-radius:50%;
+}
+.top-header .meta{display:flex;align-items:center;gap:12px;letter-spacing:.12em}
+.top-header .meta b{color:var(--coral);font-weight:600}
+
+/* ===== Page footer ===== */
+.bottom-footer{
+  position:absolute;bottom:0;left:0;right:0;height:14mm;
+  border-top:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18mm;
+}
+.bottom-footer .left{
+  font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:.14em;color:var(--ink-soft);
+}
+.bottom-footer .right{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;
+  font-size:18pt;color:var(--ink);
+}
+.bottom-footer .right .pn{color:var(--coral)}
+
+/* ===== Color rail (왼쪽 세로 5색) ===== */
+.color-rail{
+  position:absolute;left:0;top:10mm;bottom:14mm;width:4mm;
+  display:flex;flex-direction:column;
+}
+.color-rail span{flex:1}
+.color-rail .c1{background:var(--coral)}
+.color-rail .c2{background:var(--lemon)}
+.color-rail .c3{background:var(--mint)}
+.color-rail .c4{background:var(--blue)}
+.color-rail .c5{background:var(--pink)}
+
+/* ===== Grid baseline ===== */
+.grid12{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+
+/* ===== Cover ===== */
+.cover-eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:9pt;letter-spacing:.22em;color:var(--coral);
+  font-weight:600;
+}
+.cover-title{
+  font-family:'Fraunces',serif;font-weight:800;
+  font-size:80pt;line-height:.92;letter-spacing:-.025em;
+  margin-top:14px;color:var(--ink);
+}
+.cover-title em{
+  font-style:italic;font-weight:800;color:var(--coral);
+}
+.cover-sub{
+  font-family:'Inter';font-size:13pt;line-height:1.45;
+  color:var(--ink);margin-top:18px;max-width:520px;font-weight:400;
+}
+.cover-sub b{font-weight:600;background:linear-gradient(transparent 60%, var(--lemon) 60%);padding:0 2px}
+
+/* ===== Bauhaus shapes ===== */
+.shapes{
+  position:absolute;right:18mm;top:48mm;
+  width:120px;height:120px;pointer-events:none;
+}
+.shapes .circle{width:80px!important;height:80px!important}
+.shapes .triangle{border-left-width:42px!important;border-right-width:42px!important;border-bottom-width:78px!important;left:42px!important;top:42px!important}
+.shapes .square{width:60px!important;height:60px!important}
+.shapes .sh{position:absolute;border:1.5px solid var(--ink)}
+.shapes .circle{
+  width:90px;height:90px;border-radius:50%;
+  background:var(--coral);left:0;top:0;
+}
+.shapes .triangle{
+  width:0;height:0;border:1.5px solid transparent;
+  border-left:50px solid transparent;border-right:50px solid transparent;
+  border-bottom:90px solid var(--blue);
+  background:transparent;left:50px;top:50px;
+}
+.shapes .square{
+  width:70px;height:70px;background:var(--lemon);
+  right:0;bottom:0;
+}
+
+/* ===== Cover modules ===== */
+.module-grid{
+  margin-top:38px;border-top:2px solid var(--ink);border-bottom:1.5px solid var(--ink);
+  display:grid;grid-template-columns:repeat(5,1fr);
+}
+.mod{
+  padding:14px 14px 16px;border-right:1px solid var(--ink);
+  position:relative;
+}
+.mod:last-child{border-right:0}
+.mod .num{
+  font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:.18em;color:var(--coral);
+}
+.mod .name{
+  font-family:'Fraunces',serif;font-style:italic;font-size:14pt;font-weight:600;margin-top:6px;line-height:1.1;
+}
+.mod .swatch{
+  width:14px;height:14px;border:1.5px solid var(--ink);margin-top:10px;
+}
+.mod:nth-child(1) .swatch{background:var(--coral)}
+.mod:nth-child(2) .swatch{background:var(--blue);border-radius:50%}
+.mod:nth-child(3) .swatch{background:var(--mint);transform:rotate(45deg)}
+.mod:nth-child(4) .swatch{background:var(--lemon);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.mod:nth-child(5) .swatch{background:var(--pink)}
+
+/* ===== Cover fields ===== */
+.cover-fields{
+  margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);
+}
+.cf{
+  display:flex;align-items:baseline;gap:14px;padding:12px 0;
+}
+.cf:nth-child(1),.cf:nth-child(2){border-bottom:1px solid var(--grid)}
+.cf:nth-child(odd){padding-right:24px;border-right:1px solid var(--grid);padding-left:0}
+.cf:nth-child(even){padding-left:24px}
+.cf .lbl{
+  font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:.18em;color:var(--ink);
+  flex-shrink:0;font-weight:600;width:60px;
+}
+.cf .ln{
+  flex:1;border-bottom:1.5px solid var(--ink);height:22px;
+  font-family:'Caveat';font-size:14pt;color:var(--coral);
+}
+
+/* ===== Section ===== */
+.fig-tag{
+  display:inline-block;
+  font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:.18em;color:var(--ink);
+  background:var(--lemon);padding:4px 10px;border:1.5px solid var(--ink);
+  font-weight:600;
+}
+.sec-title{
+  font-family:'Fraunces',serif;font-weight:800;
+  font-size:36pt;line-height:.98;
+  margin-top:10px;letter-spacing:-.018em;color:var(--ink);
+}
+.sec-title em{font-style:italic;color:var(--coral)}
+.sec-title .underline{
+  background:linear-gradient(transparent 60%, var(--lemon) 60%);
+  padding:0 4px;
+}
+.sec-lede{
+  font-size:11pt;color:var(--ink);margin-top:12px;max-width:600px;line-height:1.55;
+}
+.sec-lede b{color:var(--coral);font-weight:600}
+
+h3{
+  font-family:'Fraunces',serif;font-weight:600;font-size:18pt;
+  margin-top:22px;margin-bottom:10px;letter-spacing:-.005em;color:var(--ink);
+}
+h3 .num{
+  font-family:'JetBrains Mono',monospace;font-size:11pt;letter-spacing:.1em;color:var(--coral);
+  margin-right:10px;font-weight:600;
+}
+
+/* ===== Goal callout ===== */
+.callout{
+  background:var(--paper);
+  border:1.5px solid var(--ink);
+  padding:16px 20px;margin:14px 0;position:relative;
+}
+.callout .label{
+  font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:.18em;
+  color:var(--ink);font-weight:600;
+  display:flex;align-items:center;gap:14px;
+  padding-bottom:8px;border-bottom:1px solid var(--grid);margin-bottom:10px;
+}
+.callout .label b{color:var(--coral);font-size:9.5pt;letter-spacing:.16em}
+.callout::before{
+  content:"";position:absolute;left:-1px;top:-1px;width:14px;height:14px;
+  background:var(--coral);border:1.5px solid var(--ink);
+}
+.callout p{font-size:11pt;line-height:1.55;font-weight:400}
+.callout p b{color:var(--coral);font-weight:600}
+
+/* ===== Steps (그리드 4개) ===== */
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:16px;
+  border:1.5px solid var(--ink);
+}
+.step{
+  padding:16px 14px 14px;border-right:1px solid var(--ink);
+  background:var(--paper);position:relative;
+}
+.step:last-child{border-right:0}
+.step::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:6px;
+}
+.step:nth-child(1)::before{background:var(--pink)}
+.step:nth-child(2)::before{background:var(--blue)}
+.step:nth-child(3)::before{background:var(--lemon)}
+.step:nth-child(4)::before{background:var(--mint)}
+.step .num{
+  font-family:'JetBrains Mono',monospace;font-size:9pt;letter-spacing:.2em;color:var(--coral);font-weight:600;
+}
+.step h5{
+  font-family:'Fraunces',serif;font-weight:600;font-size:13pt;margin-top:6px;letter-spacing:-.005em;
+}
+.step p{font-size:9.5pt;color:var(--ink);line-height:1.45;margin-top:6px}
+
+/* ===== Identity Map ===== */
+.map-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:14px;
+  border:1.5px solid var(--ink);
+}
+.map-cell{
+  padding:11px 12px 12px;background:var(--paper);min-height:108px;position:relative;
+  border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);
+}
+.map-cell:nth-child(3n){border-right:0}
+.map-cell:nth-child(n+7){border-bottom:0}
+.map-cell.center{background:var(--ink);color:var(--paper)}
+.map-cell.center .cell-title{color:var(--paper)}
+.map-cell.center .cell-hint{color:#A0A0A0}
+.map-cell.center .line{border-bottom-color:#3D3D3D}
+.map-cell.center .cell-tag{background:var(--lemon);color:var(--ink)}
+.map-cell.t-pink::before{background:var(--pink)}
+.map-cell.t-blue::before{background:var(--blue)}
+.map-cell.t-coral::before{background:var(--coral)}
+.map-cell.t-mint::before{background:var(--mint)}
+.map-cell.t-lemon::before{background:var(--lemon)}
+.map-cell::before{content:"";position:absolute;top:0;left:0;width:100%;height:5px;background:var(--ink)}
+
+.cell-tag{
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:7.5pt;letter-spacing:.22em;
+  padding:2px 8px;color:var(--paper);background:var(--ink);font-weight:600;margin-bottom:6px;margin-top:4px;
+}
+.cell-tag.pink{background:var(--pink)}
+.cell-tag.blue{background:var(--blue)}
+.cell-tag.coral{background:var(--coral)}
+.cell-tag.mint{background:var(--mint);color:var(--ink)}
+.cell-tag.lemon{background:var(--lemon);color:var(--ink)}
+.cell-title{font-family:'Fraunces',serif;font-weight:600;font-size:10.5pt;margin-bottom:2px;line-height:1.2;letter-spacing:-.005em}
+.cell-hint{font-family:'JetBrains Mono',monospace;font-size:7pt;color:var(--ink-soft);line-height:1.3;margin-bottom:5px;letter-spacing:.04em}
+.line{display:block;border-bottom:1px solid var(--grid);height:10px;margin-bottom:2px}
+
+/* ===== Sentence starters ===== */
+.starters{
+  background:var(--paper-tint);
+  border:1.5px solid var(--ink);
+  padding:14px 20px;margin-top:14px;
+  position:relative;
+}
+.starters::before{
+  content:"FIG. A — STARTERS";position:absolute;top:-12px;left:18px;
+  background:var(--paper);padding:2px 10px;
+  font-family:'JetBrains Mono',monospace;font-size:7.5pt;letter-spacing:.18em;color:var(--coral);font-weight:600;
+}
+.starter-row{
+  display:flex;gap:14px;align-items:baseline;
+  font-size:10.5pt;line-height:1.7;border-bottom:1px solid var(--grid);
+  padding:6px 0;
+}
+.starter-row:last-child{border:0}
+.starter-row b{
+  font-weight:600;flex-shrink:0;color:var(--ink);
+  font-family:'Fraunces',serif;font-style:italic;font-size:12.5pt;
+}
+.starter-row .ln{
+  flex:1;border-bottom:1.5px solid var(--ink);height:18px;
+  font-family:'Caveat';font-size:14pt;color:var(--coral);
+}
+
+/* ===== Reflection ===== */
+.reflect-q{
+  border:1.5px solid var(--ink);padding:10px 16px 10px 24px;margin-top:8px;
+  background:var(--paper);position:relative;
+}
+.reflect-q::before{
+  content:"";position:absolute;left:0;top:0;width:5px;height:100%;
+}
+.reflect-q.b1::before{background:var(--pink)}
+.reflect-q.b2::before{background:var(--mint)}
+.reflect-q.b3::before{background:var(--blue)}
+.reflect-q .qn{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;
+  font-size:11pt;color:var(--coral);letter-spacing:.04em;display:block;
+}
+.reflect-q .qt{
+  font-family:'Fraunces',serif;font-weight:500;font-size:12pt;line-height:1.35;letter-spacing:-.005em;margin-top:3px;
+}
+.reflect-q .ans{margin-top:8px}
+
+/* ===== Music header ===== */
+.music-header{
+  background:var(--oxford);color:var(--paper);
+  padding:24px 26px;margin:14px 0;position:relative;overflow:hidden;
+  border:1.5px solid var(--ink);
+}
+.music-header::after{
+  content:"♪";position:absolute;font-family:'Fraunces',serif;font-style:italic;font-weight:800;
+  font-size:200pt;right:-30px;top:-100px;color:rgba(255,212,0,.18);
+}
+.music-header .eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:9pt;letter-spacing:.24em;
+  color:var(--lemon);font-weight:600;
+}
+.music-header h2{
+  font-family:'Fraunces',serif;font-weight:800;font-size:34pt;line-height:.98;margin-top:8px;position:relative;
+  letter-spacing:-.018em;
+}
+.music-header h2 em{font-style:italic;color:var(--lemon)}
+.music-header .song{
+  display:inline-block;background:var(--coral);color:var(--paper);
+  padding:6px 14px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:9.5pt;
+  margin-top:14px;border:1.5px solid var(--ink);position:relative;letter-spacing:.04em;
+}
+
+/* ===== Bullets ===== */
+ul.clean{list-style:none;padding:0;margin:8px 0}
+ul.clean li{
+  position:relative;padding-left:24px;font-size:11pt;line-height:1.65;margin-bottom:6px;
+}
+ul.clean li::before{
+  content:"";position:absolute;left:0;top:6px;
+  width:12px;height:12px;background:var(--coral);
+}
+ul.clean.alt li::before{background:var(--blue);border-radius:50%}
+ul.clean.dot li::before{background:var(--mint);transform:rotate(45deg);width:10px;height:10px;top:7px;left:1px}
+
+/* ===== Tables ===== */
+table.dialog,table.asset{
+  width:100%;border-collapse:collapse;margin-top:12px;font-size:10.5pt;
+  border:1.5px solid var(--ink);
+}
+table.dialog th,table.asset th{
+  background:var(--ink);color:var(--lemon);text-align:left;
+  padding:11px 14px;font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:.2em;font-weight:600;
+}
+table.dialog td,table.asset td{
+  padding:12px 14px;vertical-align:top;border-top:1px solid var(--grid);
+}
+table.dialog tr:nth-child(even) td{background:var(--paper-tint)}
+table.dialog .speaker{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;width:120px;color:var(--coral);font-size:13pt;
+}
+table.asset td.label{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;width:36%;
+  background:var(--paper-tint);font-size:12pt;color:var(--ink);
+}
+
+/* ===== CHORUS Lab ===== */
+.chorus-lab{
+  background:var(--coral);color:var(--paper);
+  padding:22px 26px;margin-top:14px;position:relative;overflow:hidden;
+  border:1.5px solid var(--ink);
+}
+.chorus-lab::before{
+  content:"";position:absolute;width:140px;height:140px;background:var(--lemon);
+  right:-40px;top:-40px;border:1.5px solid var(--ink);
+}
+.chorus-lab::after{
+  content:"";position:absolute;width:80px;height:80px;background:var(--blue);
+  right:60px;bottom:-30px;border:1.5px solid var(--ink);border-radius:50%;
+}
+.chorus-lab .lab-tag{
+  font-family:'JetBrains Mono',monospace;font-size:9pt;letter-spacing:.22em;color:var(--lemon);
+  font-weight:600;position:relative;
+}
+.chorus-lab h3{
+  font-family:'Fraunces',serif;font-weight:800;font-size:32pt;color:var(--paper);
+  margin-top:6px;margin-bottom:8px;position:relative;letter-spacing:-.015em;
+}
+.chorus-lab h3 em{font-style:italic;color:var(--lemon)}
+.chorus-lab .sub{font-size:11pt;color:var(--paper);position:relative;max-width:500px;line-height:1.55}
+.frame-list{margin-top:14px;position:relative}
+.frame{
+  background:var(--paper);color:var(--ink);
+  border:1.5px solid var(--ink);
+  padding:8px 16px;margin-bottom:6px;
+  font-size:10.5pt;display:flex;align-items:baseline;gap:14px;
+}
+.frame b{
+  font-family:'JetBrains Mono',monospace;font-size:9pt;letter-spacing:.18em;
+  color:var(--coral);font-weight:600;flex-shrink:0;
+}
+.chorus-final{
+  margin-top:14px;background:var(--lemon);color:var(--ink);
+  border:1.5px solid var(--ink);padding:16px;
+  position:relative;
+}
+.chorus-final .lbl{
+  font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:.22em;color:var(--ink);font-weight:600;
+}
+.chorus-final .write{
+  border-bottom:1.5px solid var(--ink);height:24px;margin-top:8px;
+  font-family:'Caveat';font-size:16pt;color:var(--coral);
+}
+
+/* ===== Word picker ===== */
+.picker-row{
+  border:1.5px solid var(--ink);padding:14px 18px;
+  background:var(--paper);margin-top:12px;
+}
+.picker-row .lbl{
+  font-family:'JetBrains Mono',monospace;font-size:9pt;letter-spacing:.22em;color:var(--ink);font-weight:600;
+}
+.word-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.wchip{
+  display:inline-block;border:1.5px solid var(--ink);
+  padding:5px 16px;font-size:11pt;
+  background:var(--paper);font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+}
+.wchip.on-pink{background:var(--pink);color:var(--paper)}
+.wchip.on-blue{background:var(--blue);color:var(--paper)}
+.wchip.on-mint{background:var(--mint);color:var(--ink)}
+.wchip.on-coral{background:var(--coral);color:var(--paper)}
+.wchip.on-lemon{background:var(--lemon);color:var(--ink)}
+
+/* ===== Checklist ===== */
+.checklist{margin-top:10px;border:1.5px solid var(--ink)}
+.check-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:12px 18px;border-bottom:1px solid var(--grid);
+  position:relative;
+}
+.check-item:last-child{border-bottom:0}
+.check-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px}
+.check-item:nth-child(1)::before{background:var(--pink)}
+.check-item:nth-child(2)::before{background:var(--lemon)}
+.check-item:nth-child(3)::before{background:var(--mint)}
+.check-item:nth-child(4)::before{background:var(--blue)}
+.box{
+  width:20px;height:20px;border:1.5px solid var(--ink);
+  flex-shrink:0;margin-top:1px;background:var(--paper);
+}
+.check-item .ct{font-size:11pt;line-height:1.5}
+.check-item .ct b{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:12pt;color:var(--coral);
+}
+
+/* ===== Field row ===== */
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
+.field-label{
+  font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:.22em;color:var(--ink);font-weight:600;
+}
+.fline{display:block;border-bottom:1.5px solid var(--ink);height:18px;margin-top:4px}
+
+/* ===== Scale ===== */
+.scale{display:flex;align-items:center;gap:10px;margin-top:12px}
+.scale .num{
+  width:42px;height:42px;border:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:16pt;
+  background:var(--paper);
+}
+.scale .num.fill{background:var(--mint)}
+.scale .lbl{
+  font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:.18em;
+  color:var(--ink-soft);margin-left:8px;
+}
+
+/* ===== Exit ticket ===== */
+.exit{
+  border:1.5px solid var(--ink);padding:22px;margin-top:14px;
+  background:var(--paper);position:relative;
+}
+.exit::before{
+  content:"FIG. C — EXIT TICKET";position:absolute;top:-13px;left:18px;
+  background:var(--paper);padding:2px 10px;
+  font-family:'JetBrains Mono',monospace;font-size:7.5pt;letter-spacing:.2em;color:var(--coral);font-weight:600;
+}
+.exit::after{
+  content:"";position:absolute;top:0;right:0;width:10px;height:10px;background:var(--mint);
+}
+.exit .q{font-size:11pt;line-height:1.7;padding:10px 0;border-bottom:1px solid var(--grid)}
+.exit .q:last-child{border:0}
+.exit .q b{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--coral);font-size:13pt;
+}
+.exit .write-line{display:block;border-bottom:1px solid var(--ink);height:18px;margin-top:5px}
+
+/* ===== Lyric pill ===== */
+.lyric-pill{
+  display:inline-block;background:var(--ink);color:var(--lemon);
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;
+  padding:10px 24px;font-size:14pt;
+  border:1.5px solid var(--ink);
+}
+
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.page{margin:0;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 — COVER ============ -->
+<div class="page">
+  <div class="top-header">
+    <div class="left">
+      <div class="seal">K</div>
+      <span>KISAS · HUMANITAS · ANNO MMXXVI</span>
+    </div>
+    <div class="meta">
+      <span>VOL. <b>02</b></span>
+      <span>·</span>
+      <span>FOLIO <b>I</b></span>
+      <span>·</span>
+      <span>SAPERE AUDE</span>
+    </div>
+  </div>
+  <div class="color-rail"><span class="c1"></span><span class="c2"></span><span class="c3"></span><span class="c4"></span><span class="c5"></span></div>
+
+  <div class="cover-eyebrow" style="margin-top:14px">DAY 02 · IDENTITY WORKSHOP · HUMANITIES</div>
+  <h1 class="cover-title">Identity<br>Work<em>shop.</em></h1>
+  <p class="cover-sub">A creative workspace to map who you are, explore what shapes your story, and begin building the words that could become <b>your song</b>. Take your time. Be honest.</p>
+
+  <div class="shapes">
+    <span class="sh circle"></span>
+    <span class="sh triangle"></span>
+    <span class="sh square"></span>
+  </div>
+
+  <div class="module-grid">
+    <div class="mod"><div class="num">M / 01</div><div class="name">Identity<br>Map</div><div class="swatch"></div></div>
+    <div class="mod"><div class="num">M / 02</div><div class="name">Map →<br>Words</div><div class="swatch"></div></div>
+    <div class="mod"><div class="num">M / 03</div><div class="name">Music<br>Session</div><div class="swatch"></div></div>
+    <div class="mod"><div class="num">M / 04</div><div class="name">Partner<br>Share</div><div class="swatch"></div></div>
+    <div class="mod"><div class="num">M / 05</div><div class="name">Asset<br>Bank</div><div class="swatch"></div></div>
+  </div>
+
+  <div class="cover-fields">
+    <div class="cf"><span class="lbl">NAME</span><span class="ln"></span></div>
+    <div class="cf"><span class="lbl">CLASS</span><span class="ln"></span></div>
+    <div class="cf"><span class="lbl">DATE</span><span class="ln"></span></div>
+    <div class="cf"><span class="lbl">TEACHER</span><span class="ln"></span></div>
+  </div>
+
+  <div class="bottom-footer">
+    <div class="left">KISAS · HUMANITAS · IDENTITY · WORKSHOP</div>
+    <div class="right">Folio <span class="pn">01</span></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 — IDENTITY MAP ============ -->
+<div class="page">
+  <div class="top-header">
+    <div class="left"><div class="seal">K</div><span>KISAS · HUMANITAS · ANNO MMXXVI</span></div>
+    <div class="meta"><span>VOL. <b>02</b></span><span>·</span><span>FOLIO <b>II</b></span><span>·</span><span>SAPERE AUDE</span></div>
+  </div>
+  <div class="color-rail"><span class="c1"></span><span class="c2"></span><span class="c3"></span><span class="c4"></span><span class="c5"></span></div>
+
+  <span class="fig-tag">§ 02 — IDENTITY MAP</span>
+  <h2 class="sec-title" style="font-size:30pt">Who am <em>I?</em></h2>
+  <p class="sec-lede" style="font-size:10pt;margin-top:8px">What shapes my story? Identity is a collection of people, places, memories, values, and dreams.</p>
+
+  <div class="callout" style="margin:10px 0;padding:12px 16px">
+    <div class="label">FIG. 01 · <b>TODAY'S GOAL</b></div>
+    <p style="font-size:10.5pt;line-height:1.5"><b>Map</b> people, places, values, interests, experiences. Use words, phrases, symbols, drawings. <b>You don't need to fill every box.</b></p>
+  </div>
+
+  <div class="steps" style="margin-top:10px">
+    <div class="step" style="padding:11px 12px 10px"><div class="num" style="font-size:8pt">M / 01</div><h5 style="font-size:11pt">Brainstorm</h5><p style="font-size:9pt">Jot down what comes first.</p></div>
+    <div class="step" style="padding:11px 12px 10px"><div class="num" style="font-size:8pt">M / 02</div><h5 style="font-size:11pt">Circle 3–5</h5><p style="font-size:9pt">Mark what feels most true.</p></div>
+    <div class="step" style="padding:11px 12px 10px"><div class="num" style="font-size:8pt">M / 03</div><h5 style="font-size:11pt">Statement</h5><p style="font-size:9pt">One statement + one question.</p></div>
+    <div class="step" style="padding:11px 12px 10px"><div class="num" style="font-size:8pt">M / 04</div><h5 style="font-size:11pt">Share One</h5><p style="font-size:9pt">Introduce one part to partner.</p></div>
+  </div>
+
+  <h3 style="margin-top:14px;font-size:15pt"><span class="num">FIG. B</span>Identity Map Workspace</h3>
+
+  <div class="map-grid">
+    <div class="map-cell t-pink">
+      <span class="cell-tag pink">PEOPLE</span>
+      <div class="cell-title">People who shaped me</div>
+      <div class="cell-hint">family · friends · teachers</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell t-blue">
+      <span class="cell-tag blue">PLACES</span>
+      <div class="cell-title">Places that matter</div>
+      <div class="cell-hint">home · school · city · online</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell t-coral">
+      <span class="cell-tag coral">INTERESTS</span>
+      <div class="cell-title">Interests &amp; strengths</div>
+      <div class="cell-hint">music · art · sport · humor</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+
+    <div class="map-cell t-mint">
+      <span class="cell-tag mint">VALUES</span>
+      <div class="cell-title">Values I live by</div>
+      <div class="cell-hint">kindness · honesty · courage</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell center">
+      <span class="cell-tag lemon">★ ME</span>
+      <div class="cell-title">My identity at the center</div>
+      <div class="cell-hint">5–8 words that describe you.</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell t-pink">
+      <span class="cell-tag pink">EXPERIENCES</span>
+      <div class="cell-title">Experiences that changed me</div>
+      <div class="cell-hint">struggles · moves · turning points</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+
+    <div class="map-cell t-blue">
+      <span class="cell-tag blue">CULTURE</span>
+      <div class="cell-title">Languages · cultures · communities</div>
+      <div class="cell-hint">languages · groups I belong to</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell t-coral">
+      <span class="cell-tag coral">DREAMS</span>
+      <div class="cell-title">Goals &amp; dreams</div>
+      <div class="cell-hint">what I hope to become · build</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell t-lemon">
+      <span class="cell-tag lemon">QUESTIONS</span>
+      <div class="cell-title">Questions I'm exploring</div>
+      <div class="cell-hint">Who am I becoming?</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+  </div>
+
+  <div class="bottom-footer">
+    <div class="left">KISAS · HUMANITAS · IDENTITY · MAP</div>
+    <div class="right">Folio <span class="pn">02</span></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 3 — MAP TO WORDS ============ -->
+<div class="page">
+  <div class="top-header">
+    <div class="left"><div class="seal">K</div><span>KISAS · HUMANITAS · ANNO MMXXVI</span></div>
+    <div class="meta"><span>VOL. <b>02</b></span><span>·</span><span>FOLIO <b>III</b></span><span>·</span><span>PER VERITATEM</span></div>
+  </div>
+  <div class="color-rail"><span class="c1"></span><span class="c2"></span><span class="c3"></span><span class="c4"></span><span class="c5"></span></div>
+
+  <span class="fig-tag">§ 03 — MAP » WORDS</span>
+  <h2 class="sec-title">Turn your map into <em>language.</em></h2>
+  <p class="sec-lede">Use your map as a source. Complete the starters to begin shaping your identity in language. Practice for your introduction, your writing, and eventually your <b>CHORUS lyrics</b>.</p>
+
+  <div class="starters">
+    <div class="starter-row"><b>One important part of who I am is</b><span class="ln"></span></div>
+    <div class="starter-row"><b>A person or place that shaped me is</b><span class="ln"></span></div>
+    <div class="starter-row"><b>A value I want to live by is</b><span class="ln"></span></div>
+    <div class="starter-row"><b>An experience that changed me taught me</b><span class="ln"></span></div>
+    <div class="starter-row"><b>A question I am still exploring is</b><span class="ln"></span></div>
+  </div>
+
+  <h3 style="margin-top:22px"><span class="num">FIG. C</span>Quick Reflection</h3>
+
+  <div class="reflect-q b1">
+    <span class="qn">Q. 01</span>
+    <div class="qt">Which part of your identity map feels most important to you right now?</div>
+    <div class="ans"><span class="line"></span><span class="line"></span></div>
+  </div>
+  <div class="reflect-q b2">
+    <span class="qn">Q. 02</span>
+    <div class="qt">Which part would you like to develop more during camp?</div>
+    <div class="ans"><span class="line"></span><span class="line"></span></div>
+  </div>
+  <div class="reflect-q b3">
+    <span class="qn">Q. 03</span>
+    <div class="qt">One word I want people to connect with me is —</div>
+    <div class="ans"><span class="line"></span></div>
+  </div>
+
+  <div class="callout" style="margin-top:20px;background:var(--mint);border:1.5px solid var(--ink);padding:16px 22px;position:relative;break-inside:avoid;page-break-inside:avoid">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:.18em;color:var(--ink);font-weight:600;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,.18);margin-bottom:10px">FIG. 02 · <b style="color:var(--coral);font-size:9.5pt;letter-spacing:.16em">REMEMBER</b></div>
+    <p style="font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:14pt;line-height:1.5">"Your identity is always growing. What you write today is a snapshot — not the whole story. Be kind to yourself as you explore."</p>
+  </div>
+
+  <div class="bottom-footer">
+    <div class="left">KISAS · HUMANITAS · MAP · TO · WORDS</div>
+    <div class="right">Folio <span class="pn">03</span></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 4 — PARTNER SHARE ============ -->
+<div class="page">
+  <div class="top-header">
+    <div class="left"><div class="seal">K</div><span>KISAS · HUMANITAS · ANNO MMXXVI</span></div>
+    <div class="meta"><span>VOL. <b>02</b></span><span>·</span><span>FOLIO <b>IV</b></span><span>·</span><span>SAPERE AUDE</span></div>
+  </div>
+  <div class="color-rail"><span class="c1"></span><span class="c2"></span><span class="c3"></span><span class="c4"></span><span class="c5"></span></div>
+
+  <span class="fig-tag">§ 04 — PARTNER SHARE</span>
+  <h2 class="sec-title">Practice saying it <em>out loud.</em></h2>
+  <p class="sec-lede">Use your identity map to prepare a short introduction. Review the checklist below. After you share, fill in what you learned.</p>
+
+  <h3><span class="num">FIG. D</span>Partner Share Checklist</h3>
+  <div class="checklist">
+    <div class="check-item"><div class="box"></div><div class="ct"><b>I shared 3 parts</b> of my identity map with my partner.</div></div>
+    <div class="check-item"><div class="box"></div><div class="ct"><b>I explained why</b> one part of my identity matters to me.</div></div>
+    <div class="check-item"><div class="box"></div><div class="ct"><b>I asked a question</b> — one open-ended question about their map.</div></div>
+    <div class="check-item"><div class="box"></div><div class="ct"><b>I listened</b> respectfully and took at least one note.</div></div>
+  </div>
+
+  <div class="field-row" style="margin-top:18px">
+    <div>
+      <span class="field-label">⊕ ONE THING I LEARNED</span>
+      <span class="fline"></span><span class="fline"></span>
+    </div>
+    <div>
+      <span class="field-label">⊕ ONE QUESTION I HAVE</span>
+      <span class="fline"></span><span class="fline"></span>
+    </div>
+  </div>
+
+  <h3 style="margin-top:22px"><span class="num">FIG. E</span>30–45 Sec Introduction Planner</h3>
+  <p class="sec-lede" style="font-size:10pt">Aim for honesty over perfection. The goal is to sound real, not polished.</p>
+
+  <div class="starters" style="margin-top:10px">
+    <div class="starter-row"><b>My name is</b><span class="ln"></span></div>
+    <div class="starter-row"><b>One important part of who I am is</b><span class="ln"></span></div>
+    <div class="starter-row"><b>This matters because</b><span class="ln"></span></div>
+    <div class="starter-row"><b>One thing I hope to grow during camp is</b><span class="ln"></span></div>
+  </div>
+
+  <div class="callout" style="margin-top:16px">
+    <div class="label">FIG. 03 · <b style="color:var(--pink)">AUTHENTIC VOICE</b></div>
+    <p style="font-size:11pt">Sound real, not perfect. Use your own examples. Choose words you would actually say. Speak clearly, slowly, and with confidence.</p>
+  </div>
+
+  <div class="bottom-footer">
+    <div class="left">KISAS · HUMANITAS · PARTNER · SHARE</div>
+    <div class="right">Folio <span class="pn">04</span></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 5 — MUSIC ============ -->
+<div class="page">
+  <div class="top-header">
+    <div class="left"><div class="seal">K</div><span>KISAS · HUMANITAS · ANNO MMXXVI</span></div>
+    <div class="meta"><span>VOL. <b>02</b></span><span>·</span><span>FOLIO <b>V</b></span><span>·</span><span>NOMEN EST OMEN</span></div>
+  </div>
+  <div class="color-rail"><span class="c1"></span><span class="c2"></span><span class="c3"></span><span class="c4"></span><span class="c5"></span></div>
+
+  <div class="music-header">
+    <div class="eyebrow">§ MUSIC MINI-SESSION · DAY 02</div>
+    <h2>Names · Respect ·<br><em>Community · Identity.</em></h2>
+    <span class="song">♪ TODAY'S SONG — "Say My Name" by Destiny's Child</span>
+  </div>
+
+  <h3><span class="num">M / 01</span>Today we will</h3>
+  <ul class="clean">
+    <li>Practice saying names clearly and kindly.</li>
+    <li>Think about why names matter for respect and belonging.</li>
+    <li>Write one short CHORUS idea (8–12 words) about identity.</li>
+  </ul>
+
+  <h3 style="margin-top:18px"><span class="num">M / 02</span>Opening Circle — Say · Repeat · Greet</h3>
+  <table class="dialog">
+    <thead><tr><th>SPEAKER</th><th>LINE</th></tr></thead>
+    <tbody>
+      <tr><td class="speaker">Me</td><td>My name is <span style="border-bottom:1px solid var(--ink);padding:0 30px"></span> Please pronounce it like <span style="border-bottom:1px solid var(--ink);padding:0 30px"></span></td></tr>
+      <tr><td class="speaker">Partner</td><td>Hi <span style="border-bottom:1px solid var(--ink);padding:0 30px"></span> Nice to meet you, <span style="border-bottom:1px solid var(--ink);padding:0 30px"></span></td></tr>
+      <tr><td class="speaker">Teacher</td><td>Thank you. I appreciate you saying it carefully.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:18px"><span class="num">M / 03</span>Why Names Matter</h3>
+  <ul class="clean alt">
+    <li>Using someone's name says: <i>"I see you. You matter."</i></li>
+    <li>Names build connection and community.</li>
+    <li>Correct pronunciation shows care and inclusion.</li>
+    <li>It's okay to ask again and practice.</li>
+  </ul>
+
+  <h3 style="margin-top:18px"><span class="num">M / 04</span>While You Listen — One Word</h3>
+  <p style="font-size:11pt">Write one word for how it feels when someone says your name correctly:</p>
+  <p style="margin-top:8px"><b style="font-family:'JetBrains Mono',monospace;font-size:9pt;letter-spacing:.22em">I FEEL —</b> <span style="display:inline-block;width:60%;border-bottom:1.5px solid var(--ink);height:22px"></span></p>
+
+  <div class="bottom-footer">
+    <div class="left">KISAS · HUMANITAS · MUSIC · MINI-SESSION</div>
+    <div class="right">Folio <span class="pn">05</span></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 6 — CHORUS LAB ============ -->
+<div class="page">
+  <div class="top-header">
+    <div class="left"><div class="seal">K</div><span>KISAS · HUMANITAS · ANNO MMXXVI</span></div>
+    <div class="meta"><span>VOL. <b>02</b></span><span>·</span><span>FOLIO <b>VI</b></span><span>·</span><span>SCRIPTA MANENT</span></div>
+  </div>
+  <div class="color-rail"><span class="c1"></span><span class="c2"></span><span class="c3"></span><span class="c4"></span><span class="c5"></span></div>
+
+  <span class="fig-tag">§ 05 — CHORUS LAB</span>
+  <h2 class="sec-title">The part people <em>remember.</em></h2>
+  <p class="sec-lede">CHORUS = the part people remember. Make 2 versions. <b>8–12 words. Clarity beats rhyme.</b></p>
+
+  <div class="chorus-lab">
+    <div class="lab-tag">M / 05 — QUICK BUILDER</div>
+    <h3>Build your <em>chorus.</em></h3>
+    <p class="sub">Pick one frame. Fill the blank. Read aloud. Clap the rhythm. Choose the one that feels true.</p>
+    <div class="frame-list">
+      <div class="frame"><b>FRAME 01</b><span>Say my name — _________ (because _________).</span></div>
+      <div class="frame"><b>FRAME 02</b><span>When you say my name, I feel _________.</span></div>
+      <div class="frame"><b>FRAME 03</b><span>My name is my story — _________.</span></div>
+      <div class="frame"><b>FRAME 04</b><span>You see me when you _________ (say it right).</span></div>
+    </div>
+    <div class="chorus-final">
+      <span class="lbl">★ MY CHORUS LINE — FINAL</span>
+      <div class="write"></div>
+      <div class="write"></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:20px"><span class="num">FIG. F</span>Choose Your Words</h3>
+  <p class="sec-lede" style="font-size:10pt">Pick one message word + one image word. Build two versions: simple, then poetic.</p>
+
+  <div class="picker-row">
+    <span class="lbl">MESSAGE WORD — choose one</span>
+    <div class="word-chips">
+      <span class="wchip on-pink">real</span>
+      <span class="wchip on-blue">brave</span>
+      <span class="wchip on-mint">calm</span>
+      <span class="wchip on-coral">kind</span>
+      <span class="wchip on-lemon">free</span>
+      <span class="wchip">honest</span>
+      <span class="wchip">other —</span>
+    </div>
+  </div>
+  <div class="picker-row">
+    <span class="lbl">IMAGE WORD — choose one</span>
+    <div class="word-chips">
+      <span class="wchip on-coral">fox</span>
+      <span class="wchip on-pink">rose</span>
+      <span class="wchip on-blue">stars</span>
+      <span class="wchip on-mint">strings</span>
+      <span class="wchip on-lemon">invisible</span>
+      <span class="wchip">other —</span>
+    </div>
+  </div>
+
+  <div class="bottom-footer">
+    <div class="left">KISAS · HUMANITAS · CHORUS · LAB</div>
+    <div class="right">Folio <span class="pn">06</span></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 7 — ASSET BANK ============ -->
+<div class="page">
+  <div class="top-header">
+    <div class="left"><div class="seal">K</div><span>KISAS · HUMANITAS · ANNO MMXXVI</span></div>
+    <div class="meta"><span>VOL. <b>02</b></span><span>·</span><span>FOLIO <b>VII</b></span><span>·</span><span>SCRIPTA MANENT</span></div>
+  </div>
+  <div class="color-rail"><span class="c1"></span><span class="c2"></span><span class="c3"></span><span class="c4"></span><span class="c5"></span></div>
+
+  <span class="fig-tag">§ 06 — ASSET BANK</span>
+  <h2 class="sec-title">Save your <em>strongest ideas.</em></h2>
+  <p class="sec-lede">This is where you collect the best of today. Bring this packet every day — your <b>Asset Bank</b> grows from Day 02 → Day 05, when you submit your full lyrics.</p>
+
+  <table class="asset" style="margin-top:14px">
+    <thead><tr><th style="width:36%">ASSET</th><th>WHAT TO WRITE TODAY</th></tr></thead>
+    <tbody>
+      <tr><td class="label">Team Core Question</td><td>ONE best question (1 sentence). <span class="line"></span></td></tr>
+      <tr><td class="label">Message Statement</td><td>"Our song is about ____." + "We want the audience to feel ____." <span class="line"></span></td></tr>
+      <tr><td class="label">Revised Claim</td><td>Your final answer (1–2 sentences) after debate. <span class="line"></span><span class="line"></span></td></tr>
+      <tr><td class="label">CHORUS Candidate #1</td><td>8–12 words (simple version). <span class="line"></span></td></tr>
+      <tr><td class="label">CHORUS Candidate #2</td><td>8–12 words (poetic version). Circle the best. <span class="line"></span></td></tr>
+      <tr><td class="label">Image / Word Bank</td><td>3 feelings + 3 images/metaphors + 2 power verbs. <span class="line"></span><span class="line"></span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="bottom-footer">
+    <div class="left">KISAS · HUMANITAS · ASSET · BANK</div>
+    <div class="right">Folio <span class="pn">07</span></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 8 — EXIT ============ -->
+<div class="page">
+  <div class="top-header">
+    <div class="left"><div class="seal">K</div><span>KISAS · HUMANITAS · ANNO MMXXVI</span></div>
+    <div class="meta"><span>VOL. <b>02</b></span><span>·</span><span>FOLIO <b>VIII</b></span><span>·</span><span>FINIS DIEI II</span></div>
+  </div>
+  <div class="color-rail"><span class="c1"></span><span class="c2"></span><span class="c3"></span><span class="c4"></span><span class="c5"></span></div>
+
+  <span class="fig-tag">§ 07 — EXIT</span>
+  <h2 class="sec-title">One last thing <em>before you go.</em></h2>
+  <p class="sec-lede">Quick and honest. No wrong answers. This helps your teacher know how to support you tomorrow.</p>
+
+  <div class="exit">
+    <div class="q"><b>01 —</b> The most important thing I want people to understand about me is <span class="write-line"></span><span class="write-line"></span></div>
+    <div class="q"><b>02 —</b> One detail from today's identity map that may become part of my speech, lyrics, or writing is <span class="write-line"></span><span class="write-line"></span></div>
+    <div class="q"><b>03 —</b> My confidence level for introducing myself today —
+      <div class="scale">
+        <span class="num">1</span><span class="num">2</span><span class="num">3</span><span class="num fill">4</span><span class="num">5</span>
+        <span class="lbl">circle one</span>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border:0;border-top:1.5px solid var(--ink);margin-top:28px">
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:18px;border:1.5px solid var(--ink)">
+    <div style="padding:16px 18px;border-right:1px solid var(--ink);position:relative">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--pink)"></div>
+      <span class="field-label" style="color:var(--coral)">→ TOMORROW · DAY 03</span>
+      <p style="font-size:10.5pt;line-height:1.55;margin-top:8px">Verses &amp; story imagery. Lines that bring your CHORUS to life with concrete pictures, sounds, and tiny details from your map.</p>
+    </div>
+    <div style="padding:16px 18px;position:relative">
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--lemon)"></div>
+      <span class="field-label">★ KEEP THIS PACKET</span>
+      <p style="font-size:10.5pt;line-height:1.55;margin-top:8px">Bring it every day. Your <b style="color:var(--coral)">Asset Bank</b> grows from Day 02 → Day 05, when you submit your full lyrics.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;text-align:center">
+    <span class="lyric-pill">— You don't have to share everything. Just the truest part. —</span>
+  </div>
+
+  <div class="bottom-footer">
+    <div class="left">KISAS · HUMANITAS · EXIT · BRIDGE</div>
+    <div class="right">Folio <span class="pn">08</span></div>
+  </div>
+</div>
+
+</body>
+</html>

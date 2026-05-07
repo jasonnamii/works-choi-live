@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>KISAS Day 2 — S5 Apple Education Modern</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500;1,700&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;
+  --paper-tint:#F4F6FA;       /* 옥스포드 블루 톤 light tint */
+  --ink:#1D1D1F;
+  --ink-soft:#6E6E73;
+  --ink-faint:#86868B;
+  --rule:#D2D2D7;
+  --grid:#E8E8ED;
+  --tint:#EEF2F8;              /* Oxford-tinted background grey */
+
+  /* 주조색 = 옥스포드 블루 */
+  --oxford:#002147;
+  --oxford-deep:#001631;
+  --oxford-soft:#1A3A6B;       /* 보조 옥스포드 */
+
+  /* K-Pop accent (포인트만) */
+  --pink:#FF2D87;
+  --coral:#E8552A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  background:#E8E8ED;color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;
+  font-size:11pt;line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+
+.page{
+  width:210mm;height:297mm;
+  background:var(--paper);
+  margin:18px auto;
+  padding:14mm 16mm 14mm;
+  box-shadow:0 10px 40px rgba(0,0,0,.16);
+  position:relative;overflow:hidden;
+  page-break-after:always;break-after:page;
+}
+.page:last-child{page-break-after:auto;break-after:auto}
+.map-grid,.map-cell,.step,.card,table,.checklist,.chorus-lab,.exit,.starters,.picker-row,.reflect-q,.callout,.steps,.music-header,.frame,.module-card{break-inside:avoid;page-break-inside:avoid}
+
+/* ===== Top hairline header ===== */
+.top-bar{
+  position:absolute;top:0;left:0;right:0;height:10mm;
+  border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18mm;
+  font-size:9pt;color:var(--ink-soft);font-weight:500;letter-spacing:.04em;
+}
+.top-bar .left{display:flex;align-items:center;gap:14px}
+.top-bar .seal{
+  font-family:'Fraunces',serif;font-weight:700;font-size:13pt;color:var(--ink);
+  letter-spacing:-.02em;
+}
+.top-bar .meta{font-size:8.5pt;color:var(--ink-faint);letter-spacing:.06em}
+.top-bar .meta b{color:var(--ink);font-weight:600}
+
+/* ===== Bottom hairline footer ===== */
+.bottom-bar{
+  position:absolute;bottom:0;left:0;right:0;height:10mm;
+  border-top:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18mm;
+  font-size:8.5pt;color:var(--ink-soft);font-weight:500;letter-spacing:.04em;
+}
+.bottom-bar .right{font-weight:500;color:var(--ink-faint)}
+.bottom-bar .right b{color:var(--ink);font-weight:600;font-family:'Fraunces',serif;font-style:italic;font-size:10pt}
+
+/* ===== COVER ===== */
+.eyebrow{
+  font-size:11pt;color:var(--oxford);font-weight:600;letter-spacing:-.005em;
+  margin-top:12px;
+}
+.cover-title{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:64pt;line-height:1;letter-spacing:-.035em;
+  margin-top:10px;color:var(--oxford);
+}
+.cover-title em{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+  color:var(--oxford-soft);
+}
+.cover-sub{
+  font-family:'Inter';font-size:14pt;line-height:1.4;
+  color:var(--ink-soft);margin-top:14px;max-width:580px;font-weight:400;letter-spacing:-.012em;
+}
+.cover-sub b{color:var(--ink);font-weight:500}
+
+/* ===== Hero divider ===== */
+.hero-divider{
+  margin-top:38px;border-top:1px solid var(--rule);padding-top:14px;
+  display:flex;align-items:baseline;justify-content:space-between;
+}
+.hero-divider .left{
+  font-size:9pt;color:var(--ink-soft);font-weight:500;letter-spacing:.04em;
+}
+.hero-divider .right{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:14pt;
+  color:var(--ink);
+}
+
+/* ===== Module cards (Apple style) ===== */
+.module-grid{
+  margin-top:24px;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:8px;
+}
+.module-card{
+  background:var(--tint);border-radius:14px;padding:16px 14px 18px;
+  position:relative;min-height:140px;
+}
+.module-card .num{
+  font-size:8.5pt;color:var(--ink-faint);font-weight:500;letter-spacing:.06em;
+}
+.module-card .name{
+  font-family:'Fraunces',serif;font-weight:500;font-size:14pt;
+  margin-top:6px;line-height:1.15;letter-spacing:-.012em;color:var(--ink);
+}
+.module-card .dot{
+  position:absolute;bottom:14px;left:14px;
+  width:8px;height:8px;border-radius:50%;background:var(--ink);
+}
+.module-card:nth-child(1) .dot{background:var(--pink)}
+.module-card:nth-child(2) .dot{background:var(--oxford)}
+.module-card:nth-child(3) .dot{background:var(--coral)}
+.module-card:nth-child(4) .dot{background:var(--ink)}
+.module-card:nth-child(5) .dot{background:var(--ink-soft)}
+
+/* ===== Cover fields ===== */
+.cover-fields{
+  margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--rule);
+}
+.cf{
+  display:flex;align-items:baseline;gap:14px;padding:14px 0;
+  border-bottom:1px solid var(--rule);
+}
+.cf:nth-child(odd){padding-right:24px;border-right:1px solid var(--rule);padding-left:0}
+.cf:nth-child(even){padding-left:24px}
+.cf .lbl{
+  font-size:9pt;letter-spacing:.04em;color:var(--ink-soft);
+  flex-shrink:0;font-weight:500;width:60px;
+}
+.cf .ln{
+  flex:1;border-bottom:1px solid var(--ink);height:24px;
+  font-family:'Caveat';font-size:14pt;color:var(--ink);
+}
+
+/* ===== Section ===== */
+.sec-eyebrow{
+  font-size:10pt;color:var(--oxford);font-weight:600;letter-spacing:-.005em;
+}
+.sec-title{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:34pt;line-height:1.04;
+  margin-top:6px;letter-spacing:-.025em;color:var(--oxford);
+}
+.sec-title em{
+  font-style:italic;font-weight:500;color:var(--oxford-soft);
+}
+.sec-lede{
+  font-size:11.5pt;color:var(--ink-soft);margin-top:10px;max-width:620px;line-height:1.5;letter-spacing:-.005em;
+}
+.sec-lede b{color:var(--ink);font-weight:500}
+
+h3{
+  font-family:'Fraunces',serif;font-weight:600;font-size:16pt;
+  margin-top:18px;margin-bottom:10px;letter-spacing:-.018em;color:var(--oxford);
+}
+h3 .num{
+  font-family:'Inter';font-size:11pt;color:var(--oxford);
+  font-weight:600;margin-right:12px;letter-spacing:0;
+}
+
+/* ===== Goal callout (Apple Today card) ===== */
+.callout{
+  background:var(--tint);
+  border-radius:16px;
+  padding:14px 20px;margin:14px 0;
+  position:relative;
+}
+.callout .label{
+  font-size:9pt;letter-spacing:.06em;color:var(--oxford);font-weight:600;
+  text-transform:uppercase;
+}
+.callout p{font-size:11pt;line-height:1.45;color:var(--ink);margin-top:4px;letter-spacing:-.005em}
+.callout p b{color:var(--oxford);font-weight:600}
+
+/* ===== Steps ===== */
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px;
+}
+.step{
+  background:var(--tint);
+  border-radius:12px;padding:13px 14px 13px;
+  position:relative;
+}
+.step-n{
+  font-family:'Fraunces',serif;font-weight:500;font-size:18pt;
+  color:var(--oxford);letter-spacing:-.02em;line-height:1;
+}
+.step h5{
+  font-family:'Fraunces',serif;font-weight:600;font-size:12pt;margin-top:6px;letter-spacing:-.012em;color:var(--oxford);
+}
+.step p{font-size:9.5pt;color:var(--ink-soft);line-height:1.4;margin-top:4px}
+
+/* ===== Identity Map (Apple bento) ===== */
+.map-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;
+}
+.map-cell{
+  background:var(--tint);border-radius:10px;
+  padding:12px 14px;min-height:108px;position:relative;
+}
+.map-cell.center{
+  background:var(--ink);color:var(--paper);
+}
+.map-cell.center .cell-title{color:var(--paper)}
+.map-cell.center .cell-hint{color:#A0A0A0}
+.map-cell.center .line{border-bottom-color:#3D3D3D}
+.map-cell.center .cell-tag{color:var(--pink)}
+.cell-tag{
+  font-size:9pt;letter-spacing:.04em;color:var(--oxford);font-weight:600;
+  margin-bottom:4px;display:inline-block;
+}
+.cell-title{font-family:'Fraunces',serif;font-weight:600;font-size:11pt;letter-spacing:-.01em;line-height:1.2;margin-bottom:2px;color:var(--oxford)}
+.cell-hint{font-size:8pt;color:var(--ink-soft);line-height:1.3;margin-bottom:5px}
+.line{display:block;border-bottom:1px solid var(--rule);height:10px;margin-bottom:2px}
+
+/* ===== Sentence starters ===== */
+.starters{
+  background:var(--paper-tint);
+  border-radius:14px;
+  padding:14px 20px;margin-top:14px;
+  break-inside:avoid;page-break-inside:avoid;
+}
+.starter-row{
+  display:flex;gap:14px;align-items:baseline;
+  font-size:10.5pt;line-height:1.6;border-bottom:1px solid var(--rule);
+  padding:6px 0;
+}
+.starter-row:last-child{border:0}
+.starter-row b{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:13pt;
+  color:var(--oxford);flex-shrink:0;letter-spacing:-.005em;
+}
+.starter-row .ln{
+  flex:1;border-bottom:1px solid var(--ink);height:18px;
+  font-family:'Caveat';font-size:14pt;color:var(--ink);
+}
+
+/* ===== Reflection ===== */
+.reflect-q{
+  background:var(--paper);border:1px solid var(--rule);
+  border-radius:12px;padding:10px 16px 10px 20px;margin-top:8px;
+  position:relative;
+}
+.reflect-q::before{
+  content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:2px;
+  background:var(--oxford);
+}
+.reflect-q.b2::before{background:var(--oxford-soft)}
+.reflect-q.b3::before{background:var(--pink)}
+.reflect-q .qn{
+  font-size:9pt;color:var(--oxford);font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+}
+.reflect-q .qt{
+  font-family:'Fraunces',serif;font-weight:500;font-size:12pt;line-height:1.35;
+  margin-top:3px;letter-spacing:-.012em;color:var(--oxford);
+}
+.reflect-q .ans{margin-top:8px}
+
+/* ===== Music header (Apple Today hero) ===== */
+.music-header{
+  background:linear-gradient(180deg,var(--oxford) 0%, #001631 100%);color:var(--paper);
+  border-radius:18px;padding:24px 28px;margin:14px 0;position:relative;overflow:hidden;
+}
+.music-header::after{
+  content:"";position:absolute;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,45,135,.32) 0%,rgba(255,45,135,0) 70%);
+  right:-100px;top:-100px;
+}
+.music-header .eyebrow{
+  font-size:10pt;color:var(--pink);font-weight:600;letter-spacing:-.005em;
+  position:relative;
+}
+.music-header h2{
+  font-family:'Fraunces',serif;font-weight:600;font-size:28pt;line-height:1.04;margin-top:6px;
+  letter-spacing:-.025em;position:relative;
+}
+.music-header h2 em{font-style:italic;font-weight:500;color:#A8C0E8}
+.music-header .song{
+  display:inline-block;background:rgba(255,255,255,.12);
+  backdrop-filter:blur(20px);
+  padding:8px 16px;border-radius:999px;font-weight:500;font-size:10.5pt;
+  margin-top:18px;color:var(--paper);position:relative;border:1px solid rgba(255,255,255,.2);
+}
+.music-header .song b{color:var(--pink);font-weight:600}
+
+/* ===== Bullets ===== */
+ul.clean{list-style:none;padding:0;margin:8px 0}
+ul.clean li{
+  position:relative;padding-left:22px;font-size:12pt;line-height:1.6;margin-bottom:6px;color:var(--ink);letter-spacing:-.005em;
+}
+ul.clean li::before{
+  content:"";position:absolute;left:0;top:9px;
+  width:6px;height:6px;border-radius:50%;background:var(--oxford);
+}
+ul.clean.alt li::before{background:var(--oxford-soft)}
+ul.clean.dot li::before{background:var(--pink)}
+
+/* ===== Tables ===== */
+table.dialog,table.asset{
+  width:100%;border-collapse:separate;border-spacing:0;margin-top:14px;font-size:11pt;
+  border:1px solid var(--rule);border-radius:14px;overflow:hidden;
+}
+table.dialog th,table.asset th{
+  background:var(--tint);color:var(--ink);text-align:left;
+  padding:12px 18px;font-size:9pt;letter-spacing:.04em;font-weight:600;
+  border-bottom:1px solid var(--rule);
+}
+table.dialog td,table.asset td{
+  padding:14px 18px;vertical-align:top;border-bottom:1px solid var(--rule);
+}
+table.dialog tr:last-child td,table.asset tr:last-child td{border-bottom:0}
+table.dialog .speaker{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:500;width:120px;color:var(--coral);font-size:13pt;letter-spacing:-.005em;
+}
+table.asset td.label{
+  font-family:'Fraunces',serif;font-weight:500;width:36%;
+  background:var(--paper-tint);font-size:12pt;color:var(--ink);letter-spacing:-.012em;
+}
+
+/* ===== CHORUS Lab (Apple feature card) ===== */
+.chorus-lab{
+  background:var(--ink);color:var(--paper);
+  border-radius:20px;padding:22px 26px;margin-top:14px;position:relative;overflow:hidden;
+}
+.chorus-lab::before{
+  content:"";position:absolute;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,85,42,.5) 0%,rgba(232,85,42,0) 70%);
+  right:-90px;bottom:-90px;
+}
+.chorus-lab::after{
+  content:"";position:absolute;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,45,135,.36) 0%,rgba(255,45,135,0) 70%);
+  left:-50px;top:-50px;
+}
+.chorus-lab .lab-tag{
+  font-size:9.5pt;color:var(--pink);font-weight:600;letter-spacing:-.005em;
+  position:relative;
+}
+.chorus-lab h3{
+  font-family:'Fraunces',serif;font-weight:600;font-size:24pt;color:var(--paper);
+  margin:6px 0 8px;letter-spacing:-.022em;line-height:1.05;position:relative;
+}
+.chorus-lab h3 em{font-style:italic;font-weight:500;color:#FFB8D5}
+.chorus-lab .sub{font-size:12pt;color:#C8C8CC;position:relative;max-width:520px;line-height:1.5;letter-spacing:-.005em}
+.frame-list{margin-top:18px;position:relative}
+.frame{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:12px;
+  padding:10px 18px;margin-bottom:7px;
+  font-size:11pt;color:var(--paper);
+  display:flex;align-items:baseline;gap:14px;
+}
+.frame b{
+  color:var(--pink);font-weight:600;font-size:9.5pt;letter-spacing:.04em;flex-shrink:0;
+}
+.chorus-final{
+  margin-top:16px;background:var(--paper);color:var(--ink);
+  border-radius:14px;padding:18px;position:relative;
+}
+.chorus-final .lbl{
+  font-size:9pt;color:var(--coral);font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+}
+.chorus-final .write{
+  border-bottom:1px solid var(--ink);height:24px;margin-top:8px;
+  font-family:'Caveat';font-size:16pt;color:var(--ink);
+}
+
+/* ===== Word picker ===== */
+.picker-row{
+  background:var(--tint);
+  border-radius:14px;padding:16px 20px;margin-top:10px;
+}
+.picker-row .lbl{
+  font-size:9pt;letter-spacing:.04em;color:var(--ink-soft);font-weight:600;text-transform:uppercase;
+}
+.word-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.wchip{
+  display:inline-block;background:var(--paper);border:1px solid var(--rule);
+  border-radius:999px;padding:5px 14px;font-size:11pt;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:500;color:var(--ink);
+}
+.wchip.on-pink{background:var(--pink);color:var(--paper);border-color:var(--pink)}
+.wchip.on-coral{background:var(--coral);color:var(--paper);border-color:var(--coral)}
+.wchip.on-oxford{background:var(--oxford);color:var(--paper);border-color:var(--oxford)}
+.wchip.on-soft{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ===== Checklist ===== */
+.checklist{margin-top:10px;background:var(--tint);border-radius:14px;overflow:hidden}
+.check-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:10px 18px;border-bottom:1px solid var(--rule);
+}
+.check-item:last-child{border-bottom:0}
+.box{
+  width:20px;height:20px;border:1.5px solid var(--ink-soft);border-radius:6px;
+  flex-shrink:0;margin-top:1px;background:var(--paper);
+}
+.check-item .ct{font-size:11pt;line-height:1.45;color:var(--ink);letter-spacing:-.005em}
+.check-item .ct b{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--coral);
+}
+
+/* ===== Field row ===== */
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
+.field-label{
+  font-size:9pt;color:var(--ink-soft);font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+}
+.fline{display:block;border-bottom:1px solid var(--ink);height:20px;margin-top:6px}
+
+/* ===== Scale ===== */
+.scale{display:flex;align-items:center;gap:12px;margin-top:14px}
+.scale .num{
+  width:42px;height:42px;border:1px solid var(--rule);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-weight:500;font-size:15pt;
+  background:var(--paper);color:var(--ink);
+}
+.scale .num.fill{background:var(--coral);color:var(--paper);border-color:var(--coral)}
+.scale .lbl{font-size:10pt;color:var(--ink-soft);margin-left:8px;letter-spacing:.04em}
+
+/* ===== Exit ticket ===== */
+.exit{
+  background:var(--tint);border-radius:16px;padding:18px 22px;margin-top:14px;position:relative;
+}
+.exit::before{
+  content:"EXIT TICKET";position:absolute;top:-10px;left:24px;
+  background:var(--paper);padding:2px 10px;border-radius:999px;
+  font-size:8.5pt;letter-spacing:.06em;color:var(--coral);font-weight:600;
+  border:1px solid var(--rule);
+}
+.exit .q{font-size:11pt;line-height:1.55;padding:8px 0;border-bottom:1px solid var(--rule);color:var(--ink);letter-spacing:-.005em}
+.exit .q:last-child{border:0}
+.exit .q b{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:var(--coral);font-size:13pt;
+}
+.exit .write-line{display:block;border-bottom:1px solid var(--ink);height:20px;margin-top:6px}
+
+/* ===== Lyric pill ===== */
+.lyric-pill{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+  padding:12px 28px;font-size:14pt;border-radius:999px;letter-spacing:-.012em;
+}
+
+/* ===== Card pair (bridge bottom) ===== */
+.card-pair{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;
+}
+.card{
+  background:var(--tint);border-radius:14px;padding:18px 20px;
+}
+.card .ttl{
+  font-size:9.5pt;color:var(--coral);font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+}
+.card p{font-size:12pt;line-height:1.5;margin-top:8px;color:var(--ink);letter-spacing:-.005em}
+.card p b{color:var(--coral);font-weight:600}
+
+@page{size:A4;margin:0}
+@media print{body{background:#fff}.page{margin:0;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 — COVER ============ -->
+<div class="page">
+  <div class="top-bar">
+    <div class="left">
+      <span class="seal">KISAS</span>
+      <span>Humanities · Anno MMXXVI</span>
+    </div>
+    <div class="meta">VOL. <b>02</b> · <b>SAPERE AUDE</b></div>
+  </div>
+
+  <div class="eyebrow" style="margin-top:18px">DAY 02 · IDENTITY WORKSHOP</div>
+  <h1 class="cover-title">Identity<br>Workshop. <em>Begin.</em></h1>
+  <p class="cover-sub">A workspace to map who you are, explore what shapes your story, and begin building the words that could become <b>your song</b>. Take your time. Be honest.</p>
+
+  <div class="hero-divider">
+    <span class="left">TODAY · FIVE MODULES</span>
+    <span class="right">Five steps. One workspace.</span>
+  </div>
+
+  <div class="module-grid">
+    <div class="module-card"><div class="num">M / 01</div><div class="name">Identity<br>Map</div><span class="dot"></span></div>
+    <div class="module-card"><div class="num">M / 02</div><div class="name">Map →<br>Words</div><span class="dot"></span></div>
+    <div class="module-card"><div class="num">M / 03</div><div class="name">Music<br>Mini-Session</div><span class="dot"></span></div>
+    <div class="module-card"><div class="num">M / 04</div><div class="name">Partner<br>Share</div><span class="dot"></span></div>
+    <div class="module-card"><div class="num">M / 05</div><div class="name">Asset<br>Bank</div><span class="dot"></span></div>
+  </div>
+
+  <div class="cover-fields">
+    <div class="cf"><span class="lbl">Name</span><span class="ln"></span></div>
+    <div class="cf"><span class="lbl">Class</span><span class="ln"></span></div>
+    <div class="cf"><span class="lbl">Date</span><span class="ln"></span></div>
+    <div class="cf"><span class="lbl">Teacher</span><span class="ln"></span></div>
+  </div>
+
+  <div class="bottom-bar">
+    <div>KISAS · Humanities · Identity Workshop</div>
+    <div class="right">Folio <b>01</b></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 — IDENTITY MAP ============ -->
+<div class="page">
+  <div class="top-bar">
+    <div class="left"><span class="seal">KISAS</span><span>Humanities · Day 02</span></div>
+    <div class="meta">VOL. <b>02</b> · <b>SAPERE AUDE</b></div>
+  </div>
+
+  <div class="sec-eyebrow" style="margin-top:14px">02 · Identity Map</div>
+  <h2 class="sec-title">Who am I, <em>really?</em></h2>
+  <p class="sec-lede">Identity is a collection of people, places, memories, values, and dreams. The goal of this map is to slow down and look at all the pieces together.</p>
+
+  <div class="callout">
+    <div class="label">Today's Goal</div>
+    <p><b>Map</b> the people, places, values, interests, and experiences that shape you. Use words, phrases, symbols, drawings. <b>You don't need to fill every box.</b></p>
+  </div>
+
+  <div class="steps">
+    <div class="step"><div class="step-n">01</div><h5>Brainstorm</h5><p>Jot down what comes first — speed wins.</p></div>
+    <div class="step"><div class="step-n">02</div><h5>Circle</h5><p>Mark 3–5 details that feel most true.</p></div>
+    <div class="step"><div class="step-n">03</div><h5>Statement</h5><p>One identity statement. One question.</p></div>
+    <div class="step"><div class="step-n">04</div><h5>Share One</h5><p>Introduce one part to a partner.</p></div>
+  </div>
+
+  <h3 style="margin-top:24px"><span class="num">Workspace</span>Identity Map</h3>
+
+  <div class="map-grid">
+    <div class="map-cell">
+      <span class="cell-tag">PEOPLE</span>
+      <div class="cell-title">People who shaped me</div>
+      <div class="cell-hint">family · friends · teachers</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell">
+      <span class="cell-tag">PLACES</span>
+      <div class="cell-title">Places that matter</div>
+      <div class="cell-hint">home · school · city · online</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell">
+      <span class="cell-tag">INTERESTS</span>
+      <div class="cell-title">Interests &amp; strengths</div>
+      <div class="cell-hint">music · art · sport · humor</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+
+    <div class="map-cell">
+      <span class="cell-tag">VALUES</span>
+      <div class="cell-title">Values I live by</div>
+      <div class="cell-hint">kindness · honesty · courage</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell center">
+      <span class="cell-tag">★ ME</span>
+      <div class="cell-title">My identity at the center</div>
+      <div class="cell-hint">5–8 words that describe you.</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell">
+      <span class="cell-tag">EXPERIENCES</span>
+      <div class="cell-title">Experiences that changed me</div>
+      <div class="cell-hint">struggles · moves · turning points</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+
+    <div class="map-cell">
+      <span class="cell-tag">CULTURE</span>
+      <div class="cell-title">Languages · cultures · communities</div>
+      <div class="cell-hint">languages · groups I belong to</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell">
+      <span class="cell-tag">DREAMS</span>
+      <div class="cell-title">Goals &amp; dreams</div>
+      <div class="cell-hint">what I hope to become · build</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+    <div class="map-cell">
+      <span class="cell-tag">QUESTIONS</span>
+      <div class="cell-title">Questions I'm exploring</div>
+      <div class="cell-hint">Who am I becoming?</div>
+      <span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div>KISAS · Humanities · Identity Map</div>
+    <div class="right">Folio <b>02</b></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 3 — MAP TO WORDS ============ -->
+<div class="page">
+  <div class="top-bar">
+    <div class="left"><span class="seal">KISAS</span><span>Humanities · Day 02</span></div>
+    <div class="meta">VOL. <b>02</b> · <b>PER VERITATEM</b></div>
+  </div>
+
+  <div class="sec-eyebrow" style="margin-top:14px">03 · Map → Words</div>
+  <h2 class="sec-title">Turn your map<br>into <em>language.</em></h2>
+  <p class="sec-lede">Use your map as a source. Complete the starters to begin shaping your identity in language. These are practice for your introduction, your writing, and your <b>CHORUS lyrics</b>.</p>
+
+  <div class="starters">
+    <div class="starter-row"><b>One important part of who I am is</b><span class="ln"></span></div>
+    <div class="starter-row"><b>A person or place that shaped me is</b><span class="ln"></span></div>
+    <div class="starter-row"><b>A value I want to live by is</b><span class="ln"></span></div>
+    <div class="starter-row"><b>An experience that changed me taught me</b><span class="ln"></span></div>
+    <div class="starter-row"><b>A question I am still exploring is</b><span class="ln"></span></div>
+  </div>
+
+  <h3 style="margin-top:28px"><span class="num">Reflect</span>Quick Reflection</h3>
+
+  <div class="reflect-q">
+    <span class="qn">Q. 01</span>
+    <div class="qt">Which part of your identity map feels most important to you right now?</div>
+    <div class="ans"><span class="line"></span><span class="line"></span></div>
+  </div>
+  <div class="reflect-q b2">
+    <span class="qn">Q. 02</span>
+    <div class="qt">Which part would you like to develop more during camp?</div>
+    <div class="ans"><span class="line"></span><span class="line"></span></div>
+  </div>
+  <div class="reflect-q b3">
+    <span class="qn">Q. 03</span>
+    <div class="qt">One word I want people to connect with me is —</div>
+    <div class="ans"><span class="line"></span></div>
+  </div>
+
+  <div class="callout" style="margin-top:18px;background:var(--ink);color:var(--paper);page-break-inside:avoid;break-inside:avoid">
+    <div class="label" style="color:var(--pink)">Remember</div>
+    <p style="color:var(--paper);font-family:'Fraunces',serif;font-style:italic;font-weight:500;letter-spacing:-.012em">"Your identity is always growing. What you write today is a snapshot — not the whole story. Be kind to yourself as you explore."</p>
+  </div>
+
+  <div class="bottom-bar">
+    <div>KISAS · Humanities · Map to Words</div>
+    <div class="right">Folio <b>03</b></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 4 — PARTNER SHARE ============ -->
+<div class="page">
+  <div class="top-bar">
+    <div class="left"><span class="seal">KISAS</span><span>Humanities · Day 02</span></div>
+    <div class="meta">VOL. <b>02</b> · <b>SAPERE AUDE</b></div>
+  </div>
+
+  <div class="sec-eyebrow" style="margin-top:14px">04 · Partner Share</div>
+  <h2 class="sec-title">Practice saying<br>it <em>out loud.</em></h2>
+  <p class="sec-lede">Use your identity map to prepare a short introduction. Review the checklist below. After you share, fill in what you learned.</p>
+
+  <h3 style="margin-top:18px"><span class="num">Checklist</span>Partner Share</h3>
+  <div class="checklist">
+    <div class="check-item"><div class="box"></div><div class="ct"><b>I shared 3 parts</b> of my identity map with my partner.</div></div>
+    <div class="check-item"><div class="box"></div><div class="ct"><b>I explained why</b> one part of my identity matters to me.</div></div>
+    <div class="check-item"><div class="box"></div><div class="ct"><b>I asked a question</b> — one open-ended question about their map.</div></div>
+    <div class="check-item"><div class="box"></div><div class="ct"><b>I listened</b> respectfully and took at least one note.</div></div>
+  </div>
+
+  <div class="field-row">
+    <div>
+      <span class="field-label">One thing I learned</span>
+      <span class="fline"></span><span class="fline"></span>
+    </div>
+    <div>
+      <span class="field-label">One question I have</span>
+      <span class="fline"></span><span class="fline"></span>
+    </div>
+  </div>
+
+  <h3 style="margin-top:18px"><span class="num">Planner</span>30–45 Sec Introduction</h3>
+  <p class="sec-lede" style="font-size:10pt;margin-top:6px">Aim for honesty over perfection. The goal is to sound real, not polished.</p>
+
+  <div class="starters" style="margin-top:8px">
+    <div class="starter-row"><b>My name is</b><span class="ln"></span></div>
+    <div class="starter-row"><b>One important part of who I am is</b><span class="ln"></span></div>
+    <div class="starter-row"><b>This matters because</b><span class="ln"></span></div>
+    <div class="starter-row"><b>One thing I hope to grow during camp is</b><span class="ln"></span></div>
+  </div>
+
+  <div class="callout" style="margin-top:14px;padding:10px 18px;page-break-inside:avoid;break-inside:avoid">
+    <div class="label" style="color:var(--pink)">Authentic Voice</div>
+    <p style="font-size:10.5pt">Sound real, not perfect. Use your own examples. Choose words you would actually say. Speak clearly, slowly, and with confidence.</p>
+  </div>
+
+  <div class="bottom-bar">
+    <div>KISAS · Humanities · Partner Share</div>
+    <div class="right">Folio <b>04</b></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 5 — MUSIC ============ -->
+<div class="page">
+  <div class="top-bar">
+    <div class="left"><span class="seal">KISAS</span><span>Humanities · Day 02</span></div>
+    <div class="meta">VOL. <b>02</b> · <b>NOMEN EST OMEN</b></div>
+  </div>
+
+  <div class="music-header" style="margin-top:14px">
+    <div class="eyebrow">Music Mini-Session · Day 02</div>
+    <h2>Names · Respect ·<br><em>Community · Identity.</em></h2>
+    <span class="song">♪ Today's Song — <b>"Say My Name"</b> by Destiny's Child</span>
+  </div>
+
+  <h3><span class="num">M / 01</span>Today we will</h3>
+  <ul class="clean">
+    <li>Practice saying names clearly and kindly.</li>
+    <li>Think about why names matter for respect and belonging.</li>
+    <li>Write one short CHORUS idea (8–12 words) about identity.</li>
+  </ul>
+
+  <h3 style="margin-top:24px"><span class="num">M / 02</span>Opening Circle — Say · Repeat · Greet</h3>
+  <table class="dialog">
+    <thead><tr><th>Speaker</th><th>Line</th></tr></thead>
+    <tbody>
+      <tr><td class="speaker">Me</td><td>My name is <span style="border-bottom:1px solid var(--rule);padding:0 30px"></span> Please pronounce it like <span style="border-bottom:1px solid var(--rule);padding:0 30px"></span></td></tr>
+      <tr><td class="speaker">Partner</td><td>Hi <span style="border-bottom:1px solid var(--rule);padding:0 30px"></span> Nice to meet you, <span style="border-bottom:1px solid var(--rule);padding:0 30px"></span></td></tr>
+      <tr><td class="speaker">Teacher</td><td>Thank you. I appreciate you saying it carefully.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:24px"><span class="num">M / 03</span>Why Names Matter</h3>
+  <ul class="clean alt">
+    <li>Using someone's name says: <i>"I see you. You matter."</i></li>
+    <li>Names build connection and community.</li>
+    <li>Correct pronunciation shows care and inclusion.</li>
+    <li>It's okay to ask again and practice.</li>
+  </ul>
+
+  <h3 style="margin-top:24px"><span class="num">M / 04</span>While You Listen — One Word</h3>
+  <p style="font-size:12pt;color:var(--ink-soft);letter-spacing:-.005em">Write one word for how it feels when someone says your name correctly:</p>
+  <p style="margin-top:10px;font-size:12pt"><b style="color:var(--coral);font-weight:600">I feel —</b> <span style="display:inline-block;width:60%;border-bottom:1px solid var(--ink);height:22px"></span></p>
+
+  <div class="bottom-bar">
+    <div>KISAS · Humanities · Music Mini-Session</div>
+    <div class="right">Folio <b>05</b></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 6 — CHORUS LAB ============ -->
+<div class="page">
+  <div class="top-bar">
+    <div class="left"><span class="seal">KISAS</span><span>Humanities · Day 02</span></div>
+    <div class="meta">VOL. <b>02</b> · <b>SCRIPTA MANENT</b></div>
+  </div>
+
+  <div class="sec-eyebrow" style="margin-top:14px">05 · Chorus Lab</div>
+  <h2 class="sec-title">The part people<br><em>remember.</em></h2>
+  <p class="sec-lede">CHORUS = the part people remember. Make 2 versions. <b>8–12 words. Clarity beats rhyme.</b></p>
+
+  <div class="chorus-lab">
+    <div class="lab-tag">M / 05 · Quick Builder</div>
+    <h3>Build your <em>chorus.</em></h3>
+    <p class="sub">Pick one frame. Fill the blank. Read aloud. Clap the rhythm. Choose the one that feels true.</p>
+    <div class="frame-list">
+      <div class="frame"><b>FRAME 01</b><span>Say my name — _________ (because _________).</span></div>
+      <div class="frame"><b>FRAME 02</b><span>When you say my name, I feel _________.</span></div>
+      <div class="frame"><b>FRAME 03</b><span>My name is my story — _________.</span></div>
+      <div class="frame"><b>FRAME 04</b><span>You see me when you _________ (say it right).</span></div>
+    </div>
+    <div class="chorus-final">
+      <span class="lbl">My Chorus Line — Final</span>
+      <div class="write"></div>
+      <div class="write"></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px"><span class="num">Words</span>Choose Your Words</h3>
+  <p class="sec-lede" style="font-size:11pt">Pick one message word + one image word. Build two versions: simple, then poetic.</p>
+
+  <div class="picker-row">
+    <span class="lbl">Message Word — choose one</span>
+    <div class="word-chips">
+      <span class="wchip on-pink">real</span>
+      <span class="wchip on-oxford">brave</span>
+      <span class="wchip on-coral">calm</span>
+      <span class="wchip on-soft">kind</span>
+      <span class="wchip">free</span>
+      <span class="wchip">honest</span>
+      <span class="wchip">other —</span>
+    </div>
+  </div>
+  <div class="picker-row">
+    <span class="lbl">Image Word — choose one</span>
+    <div class="word-chips">
+      <span class="wchip on-coral">fox</span>
+      <span class="wchip on-pink">rose</span>
+      <span class="wchip on-oxford">stars</span>
+      <span class="wchip on-soft">strings</span>
+      <span class="wchip">invisible</span>
+      <span class="wchip">other —</span>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div>KISAS · Humanities · Chorus Lab</div>
+    <div class="right">Folio <b>06</b></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 7 — ASSET BANK ============ -->
+<div class="page">
+  <div class="top-bar">
+    <div class="left"><span class="seal">KISAS</span><span>Humanities · Day 02</span></div>
+    <div class="meta">VOL. <b>02</b> · <b>SCRIPTA MANENT</b></div>
+  </div>
+
+  <div class="sec-eyebrow" style="margin-top:14px">06 · Asset Bank</div>
+  <h2 class="sec-title">Save your<br><em>strongest ideas.</em></h2>
+  <p class="sec-lede">This is where you collect the best of today. Bring this packet every day — your <b>Asset Bank</b> grows from Day 02 → Day 05, when you submit your full lyrics.</p>
+
+  <table class="asset" style="margin-top:18px">
+    <thead><tr><th style="width:36%">Asset</th><th>What to write today</th></tr></thead>
+    <tbody>
+      <tr><td class="label">Team Core Question</td><td>ONE best question (1 sentence). <span class="line"></span></td></tr>
+      <tr><td class="label">Message Statement</td><td>"Our song is about ____." + "We want the audience to feel ____." <span class="line"></span></td></tr>
+      <tr><td class="label">Revised Claim</td><td>Your final answer (1–2 sentences) after debate. <span class="line"></span><span class="line"></span></td></tr>
+      <tr><td class="label">CHORUS Candidate #1</td><td>8–12 words (simple version). <span class="line"></span></td></tr>
+      <tr><td class="label">CHORUS Candidate #2</td><td>8–12 words (poetic version). Circle the best. <span class="line"></span></td></tr>
+      <tr><td class="label">Image / Word Bank</td><td>3 feelings + 3 images/metaphors + 2 power verbs. <span class="line"></span><span class="line"></span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="bottom-bar">
+    <div>KISAS · Humanities · Asset Bank</div>
+    <div class="right">Folio <b>07</b></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 8 — EXIT ============ -->
+<div class="page">
+  <div class="top-bar">
+    <div class="left"><span class="seal">KISAS</span><span>Humanities · Day 02</span></div>
+    <div class="meta">VOL. <b>02</b> · <b>FINIS DIEI II</b></div>
+  </div>
+
+  <div class="sec-eyebrow" style="margin-top:14px">07 · Exit</div>
+  <h2 class="sec-title">One last thing<br><em>before you go.</em></h2>
+  <p class="sec-lede">Quick and honest. No wrong answers. This helps your teacher know how to support you tomorrow.</p>
+
+  <div class="exit">
+    <div class="q"><b>01 —</b> The most important thing I want people to understand about me is <span class="write-line"></span><span class="write-line"></span></div>
+    <div class="q"><b>02 —</b> One detail from today's identity map that may become part of my speech, lyrics, or writing is <span class="write-line"></span><span class="write-line"></span></div>
+    <div class="q"><b>03 —</b> My confidence level for introducing myself today —
+      <div class="scale">
+        <span class="num">1</span><span class="num">2</span><span class="num">3</span><span class="num fill">4</span><span class="num">5</span>
+        <span class="lbl">circle one</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-pair">
+    <div class="card">
+      <span class="ttl">→ Tomorrow · Day 03</span>
+      <p>Verses &amp; story imagery. Lines that bring your CHORUS to life with concrete pictures, sounds, and tiny details from your map.</p>
+    </div>
+    <div class="card">
+      <span class="ttl">★ Keep this packet</span>
+      <p>Bring it every day. Your <b>Asset Bank</b> grows from Day 02 → Day 05, when you submit your full lyrics.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:36px;text-align:center">
+    <span class="lyric-pill">— You don't have to share everything. Just the truest part. —</span>
+  </div>
+
+  <div class="bottom-bar">
+    <div>KISAS · Humanities · Exit · Bridge</div>
+    <div class="right">Folio <b>08</b></div>
+  </div>
+</div>
+
+</body>
+</html>

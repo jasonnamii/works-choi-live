@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<title>KISAS Day 2 — 9 Design Samples</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFAFA;
+  --ink:#0A1B33;
+  --ink-soft:#5A6A85;
+  --rule:#E2E5EC;
+  --oxford:#002147;
+  --pink:#FF2D87;
+  --coral:#E8552A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+
+/* ===== Sticky GNB ===== */
+.gnb{
+  position:sticky;top:0;left:0;right:0;z-index:100;
+  background:var(--oxford);color:#fff;
+  border-bottom:1px solid var(--oxford);
+  height:54px;display:flex;align-items:center;
+  box-shadow:0 2px 14px rgba(0,16,50,.16);
+}
+.gnb-inner{
+  max-width:1400px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;gap:20px;width:100%;
+}
+.gnb-logo{
+  font-family:'Fraunces',serif;font-weight:700;font-size:18px;letter-spacing:-.02em;
+  color:#fff;flex-shrink:0;
+}
+.gnb-logo span{color:var(--coral);font-style:italic;font-weight:500;margin-left:8px;font-size:13px;letter-spacing:.04em;font-family:'Inter';text-transform:uppercase}
+.gnb-nav{display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none}
+.gnb-nav::-webkit-scrollbar{display:none}
+.gnb-link{
+  color:rgba(255,255,255,.78);text-decoration:none;
+  font-size:12.5px;font-weight:500;letter-spacing:.02em;
+  padding:8px 12px;border-radius:6px;white-space:nowrap;
+  transition:background .15s ease, color .15s ease;
+  display:flex;align-items:center;gap:6px;
+}
+.gnb-link:hover{background:rgba(255,255,255,.12);color:#fff}
+.gnb-link.active{background:var(--coral);color:#fff}
+.gnb-link .grp{
+  font-family:'Fraunces',serif;font-style:italic;font-weight:600;
+  color:var(--coral);margin-right:2px;font-size:13px;
+}
+.gnb-link.active .grp{color:#fff;font-style:italic}
+.gnb-divider{width:1px;height:18px;background:rgba(255,255,255,.18)}
+
+/* ===== Hero ===== */
+.hero{
+  max-width:1400px;margin:0 auto;padding:48px 24px 24px;
+}
+.hero-eyebrow{
+  font-size:13px;color:var(--coral);font-weight:600;letter-spacing:-.005em;
+}
+.hero-title{
+  font-family:'Fraunces',serif;font-weight:700;font-size:42px;line-height:1.05;
+  margin-top:8px;letter-spacing:-.025em;color:var(--oxford);
+}
+.hero-title em{font-style:italic;font-weight:500;color:var(--coral)}
+.hero-sub{
+  font-size:15px;color:var(--ink-soft);margin-top:12px;max-width:720px;line-height:1.55;
+}
+.hero-sub b{color:var(--oxford);font-weight:600}
+
+/* ===== Group section ===== */
+.group{
+  max-width:1400px;margin:0 auto;padding:32px 24px 24px;
+  border-top:1px solid var(--rule);
+}
+.group-header{
+  display:flex;align-items:baseline;gap:14px;margin-bottom:18px;
+}
+.group-letter{
+  font-family:'Fraunces',serif;font-weight:700;font-style:italic;
+  font-size:32px;color:var(--coral);letter-spacing:-.02em;line-height:1;
+}
+.group-name{
+  font-family:'Fraunces',serif;font-weight:700;font-size:22px;color:var(--oxford);letter-spacing:-.02em;
+}
+.group-meta{font-size:12px;color:var(--ink-soft);margin-left:auto;letter-spacing:.04em;text-transform:uppercase;font-weight:500}
+
+/* ===== Variant grid ===== */
+.variants{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+}
+.variants.single{grid-template-columns:1fr;max-width:880px}
+
+.card{
+  background:#fff;border:1px solid var(--rule);border-radius:14px;
+  overflow:hidden;display:flex;flex-direction:column;
+  scroll-margin-top:64px;
+}
+.card-head{
+  padding:14px 18px;border-bottom:1px solid var(--rule);
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+}
+.card-name{
+  font-family:'Fraunces',serif;font-weight:600;font-size:17px;color:var(--oxford);
+  letter-spacing:-.012em;
+}
+.card-name .code{
+  font-family:'Inter';font-weight:700;font-size:11px;color:var(--coral);
+  letter-spacing:.06em;margin-right:8px;background:rgba(232,85,42,.1);padding:2px 7px;border-radius:4px;
+}
+.card-tags{font-size:11.5px;color:var(--ink-soft);font-weight:500;letter-spacing:.02em}
+.card-tags b{color:var(--oxford)}
+
+.thumbs{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);
+  padding:1px;
+}
+.thumb{
+  background:#F2F4F7;display:block;line-height:0;
+  position:relative;
+}
+.thumb img{
+  width:100%;height:auto;display:block;
+}
+.thumb-label{
+  position:absolute;top:8px;left:8px;
+  background:rgba(0,33,71,.85);color:#fff;
+  font-size:10px;font-weight:600;letter-spacing:.05em;
+  padding:3px 7px;border-radius:3px;
+}
+
+.card-foot{
+  padding:12px 18px;border-top:1px solid var(--rule);
+  display:flex;gap:10px;align-items:center;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;font-size:12px;font-weight:600;letter-spacing:.02em;
+  border-radius:7px;text-decoration:none;
+  border:1px solid var(--rule);background:#fff;color:var(--ink);
+  transition:all .15s ease;
+}
+.btn:hover{border-color:var(--oxford);color:var(--oxford)}
+.btn.primary{background:var(--oxford);color:#fff;border-color:var(--oxford)}
+.btn.primary:hover{background:var(--coral);border-color:var(--coral);color:#fff}
+.btn .arr{font-size:11px;opacity:.65}
+
+/* ===== Footer ===== */
+.foot{
+  max-width:1400px;margin:60px auto 40px;padding:32px 24px;
+  border-top:1px solid var(--rule);
+  font-size:12px;color:var(--ink-soft);text-align:center;letter-spacing:.04em;
+}
+.foot b{color:var(--oxford);font-weight:600}
+
+@media (max-width:880px){
+  .variants{grid-template-columns:1fr}
+  .hero-title{font-size:32px}
+  .gnb-link{font-size:11.5px;padding:6px 10px}
+}
+</style>
+</head>
+<body>
+
+<nav class="gnb">
+  <div class="gnb-inner">
+    <div class="gnb-logo">KISAS<span>· Day 2 · 9 Samples</span></div>
+    <div class="gnb-nav">
+      <a class="gnb-link" href="#group-A"><span class="grp">A.</span>Editorial</a>
+      <span class="gnb-divider"></span>
+      <a class="gnb-link" href="#group-B"><span class="grp">B.</span>Pop Sticker</a>
+      <span class="gnb-divider"></span>
+      <a class="gnb-link" href="#group-C"><span class="grp">C.</span>Risograph</a>
+      <span class="gnb-divider"></span>
+      <a class="gnb-link" href="#group-D"><span class="grp">D.</span>Modernist</a>
+      <span class="gnb-divider"></span>
+      <a class="gnb-link" href="#group-E"><span class="grp">E.</span>Apple Edu</a>
+      <span class="gnb-divider"></span>
+      <a class="gnb-link" href="#group-F"><span class="grp">F.</span>Oxford Bold</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">DAY 02 · IDENTITY WORKSHOP · STUDENT HANDOUT</div>
+  <h1 class="hero-title">9 Design Samples, <em>One Day.</em></h1>
+  <p class="hero-sub">동일한 콘텐츠 — Day 2 학생용 워크북 8페이지 — 를 <b>9가지 디자인 언어</b>로 박제했습니다. 6그룹 × 변형. 각 그룹은 노-옥스포드 / 옥스포드 BG 짝으로 구성. 클릭하면 PDF가 열립니다.</p>
+</section>
+
+<!-- ============ GROUP A — Editorial Magazine ============ -->
+<section class="group" id="group-A">
+  <div class="group-header">
+    <span class="group-letter">A.</span>
+    <h2 class="group-name">Editorial Magazine</h2>
+    <span class="group-meta">Playfair Serif · 5색 비비드 · 학술지 격조</span>
+  </div>
+  <div class="variants">
+    <div class="card" id="A1">
+      <div class="card-head">
+        <div class="card-name"><span class="code">A1</span>Editorial Magazine</div>
+        <div class="card-tags">베이지 종이 · 5색 스티커</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb"><span class="thumb-label">P 1</span><img src="_thumbs/A1_Editorial_Magazine_p1-1.png" alt=""></div>
+        <div class="thumb"><span class="thumb-label">P 2</span><img src="_thumbs/A1_Editorial_Magazine_p2-2.png" alt=""></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn primary" href="A1_Editorial_Magazine.pdf" target="_blank">PDF 보기 <span class="arr">↗</span></a>
+        <a class="btn" href="A1_Editorial_Magazine.html" target="_blank">HTML</a>
+      </div>
+    </div>
+    <div class="card" id="A2">
+      <div class="card-head">
+        <div class="card-name"><span class="code">A2</span>Editorial × Oxford BG</div>
+        <div class="card-tags">옥스포드 블루 면 + 흰 카드</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb"><span class="thumb-label">P 1</span><img src="_thumbs/A2_Editorial_OxfordBG_p1-1.png" alt=""></div>
+        <div class="thumb"><span class="thumb-label">P 2</span><img src="_thumbs/A2_Editorial_OxfordBG_p2-2.png" alt=""></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn primary" href="A2_Editorial_OxfordBG.pdf" target="_blank">PDF 보기 <span class="arr">↗</span></a>
+        <a class="btn" href="A2_Editorial_OxfordBG.html" target="_blank">HTML</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GROUP B — Pop Sticker ============ -->
+<section class="group" id="group-B">
+  <div class="group-header">
+    <span class="group-letter">B.</span>
+    <h2 class="group-name">Pop Sticker</h2>
+    <span class="group-meta">Y2K 무드 · Archivo Black 빅타이포 · 풀 fill 스티커</span>
+  </div>
+  <div class="variants">
+    <div class="card" id="B1">
+      <div class="card-head">
+        <div class="card-name"><span class="code">B1</span>Pop Sticker × Crest</div>
+        <div class="card-tags">크레스트 엠블럼 · 라틴 모토</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb"><span class="thumb-label">P 1</span><img src="_thumbs/B1_PopSticker_Crest_p1-1.png" alt=""></div>
+        <div class="thumb"><span class="thumb-label">P 2</span><img src="_thumbs/B1_PopSticker_Crest_p2-2.png" alt=""></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn primary" href="B1_PopSticker_Crest.pdf" target="_blank">PDF 보기 <span class="arr">↗</span></a>
+        <a class="btn" href="B1_PopSticker_Crest.html" target="_blank">HTML</a>
+      </div>
+    </div>
+    <div class="card" id="B2">
+      <div class="card-head">
+        <div class="card-name"><span class="code">B2</span>Pop Sticker × Oxford BG</div>
+        <div class="card-tags">옥스포드 블루 면 + Y2K 비비드</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb"><span class="thumb-label">P 1</span><img src="_thumbs/B2_PopSticker_OxfordBG_p1-1.png" alt=""></div>
+        <div class="thumb"><span class="thumb-label">P 2</span><img src="_thumbs/B2_PopSticker_OxfordBG_p2-2.png" alt=""></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn primary" href="B2_PopSticker_OxfordBG.pdf" target="_blank">PDF 보기 <span class="arr">↗</span></a>
+        <a class="btn" href="B2_PopSticker_OxfordBG.html" target="_blank">HTML</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GROUP C — Risograph ============ -->
+<section class="group" id="group-C">
+  <div class="group-header">
+    <span class="group-letter">C.</span>
+    <h2 class="group-name">Risograph Zine</h2>
+    <span class="group-meta">Riso 노이즈 · DM Serif · 라틴 모토 · 로마숫자</span>
+  </div>
+  <div class="variants single">
+    <div class="card" id="C1">
+      <div class="card-head">
+        <div class="card-name"><span class="code">C1</span>Risograph Zine</div>
+        <div class="card-tags">옥스포드 출판부 1965 + Bauhaus</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb"><span class="thumb-label">P 1</span><img src="_thumbs/C1_Risograph_Zine_p1-1.png" alt=""></div>
+        <div class="thumb"><span class="thumb-label">P 2</span><img src="_thumbs/C1_Risograph_Zine_p2-2.png" alt=""></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn primary" href="C1_Risograph_Zine.pdf" target="_blank">PDF 보기 <span class="arr">↗</span></a>
+        <a class="btn" href="C1_Risograph_Zine.html" target="_blank">HTML</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GROUP D — Modernist ============ -->
+<section class="group" id="group-D">
+  <div class="group-header">
+    <span class="group-letter">D.</span>
+    <h2 class="group-name">Modernist Swiss</h2>
+    <span class="group-meta">Bauhaus 도형 · Fraunces · Folio 학술지</span>
+  </div>
+  <div class="variants single">
+    <div class="card" id="D1">
+      <div class="card-head">
+        <div class="card-name"><span class="code">D1</span>Modernist Swiss</div>
+        <div class="card-tags">12-grid · 5색 컬러레일 · 학술지 헤더</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb"><span class="thumb-label">P 1</span><img src="_thumbs/D1_Modernist_Swiss_p1-1.png" alt=""></div>
+        <div class="thumb"><span class="thumb-label">P 2</span><img src="_thumbs/D1_Modernist_Swiss_p2-2.png" alt=""></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn primary" href="D1_Modernist_Swiss.pdf" target="_blank">PDF 보기 <span class="arr">↗</span></a>
+        <a class="btn" href="D1_Modernist_Swiss.html" target="_blank">HTML</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GROUP E — Apple Edu ============ -->
+<section class="group" id="group-E">
+  <div class="group-header">
+    <span class="group-letter">E.</span>
+    <h2 class="group-name">Apple Education</h2>
+    <span class="group-meta">Fraunces · 거대 화이트스페이스 · Pink/Coral 액센트</span>
+  </div>
+  <div class="variants">
+    <div class="card" id="E1">
+      <div class="card-head">
+        <div class="card-name"><span class="code">E1</span>Apple Edu Light</div>
+        <div class="card-tags">옥스포드 70% × K-Pop 30% · 흰 베이스</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb"><span class="thumb-label">P 1</span><img src="_thumbs/E1_AppleEdu_Light_p1-1.png" alt=""></div>
+        <div class="thumb"><span class="thumb-label">P 2</span><img src="_thumbs/E1_AppleEdu_Light_p2-2.png" alt=""></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn primary" href="E1_AppleEdu_Light.pdf" target="_blank">PDF 보기 <span class="arr">↗</span></a>
+        <a class="btn" href="E1_AppleEdu_Light.html" target="_blank">HTML</a>
+      </div>
+    </div>
+    <div class="card" id="E2">
+      <div class="card-head">
+        <div class="card-name"><span class="code">E2</span>Apple Edu × Oxford Mix</div>
+        <div class="card-tags">옥스포드 블루 50% · 빅타이포 옥스포드</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb"><span class="thumb-label">P 1</span><img src="_thumbs/E2_AppleEdu_OxfordMix_p1-1.png" alt=""></div>
+        <div class="thumb"><span class="thumb-label">P 2</span><img src="_thumbs/E2_AppleEdu_OxfordMix_p2-2.png" alt=""></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn primary" href="E2_AppleEdu_OxfordMix.pdf" target="_blank">PDF 보기 <span class="arr">↗</span></a>
+        <a class="btn" href="E2_AppleEdu_OxfordMix.html" target="_blank">HTML</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GROUP F — Oxford Bold ============ -->
+<section class="group" id="group-F">
+  <div class="group-header">
+    <span class="group-letter">F.</span>
+    <h2 class="group-name">Oxford Bold</h2>
+    <span class="group-meta">옥스포드 블루 풀 면 · 강렬 · 블랙 ✗</span>
+  </div>
+  <div class="variants single">
+    <div class="card" id="F1">
+      <div class="card-head">
+        <div class="card-name"><span class="code">F1</span>Oxford Bold</div>
+        <div class="card-tags">페이지 BG 자체가 옥스포드 · Apple 모던 위에 옥스포드 압도</div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb"><span class="thumb-label">P 1</span><img src="_thumbs/F1_Oxford_Bold_p1-1.png" alt=""></div>
+        <div class="thumb"><span class="thumb-label">P 2</span><img src="_thumbs/F1_Oxford_Bold_p2-2.png" alt=""></div>
+      </div>
+      <div class="card-foot">
+        <a class="btn primary" href="F1_Oxford_Bold.pdf" target="_blank">PDF 보기 <span class="arr">↗</span></a>
+        <a class="btn" href="F1_Oxford_Bold.html" target="_blank">HTML</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  KISAS · Humanitas · Anno <b>MMXXVI</b> · Day 02 · Identity Workshop · 9 Design Samples
+</footer>
+
+<script>
+// active link highlighting on scroll
+const links = document.querySelectorAll('.gnb-link');
+const groups = document.querySelectorAll('.group');
+const setActive = () => {
+  let current = '';
+  groups.forEach(g => {
+    const top = g.getBoundingClientRect().top;
+    if(top < 120) current = g.id;
+  });
+  links.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+};
+window.addEventListener('scroll', setActive);
+setActive();
+</script>
+
+</body>
+</html>
