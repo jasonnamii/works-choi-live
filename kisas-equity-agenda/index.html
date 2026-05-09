@@ -3587,9 +3587,218 @@ td{
 #toggleAllFab:hover{
   box-shadow:0 14px 32px rgba(255,31,111,0.30), 0 4px 10px rgba(0,0,0,0.14) !important;
 }
+/* ============================================================
+   TOP NAVIGATION — Slim Glass · Apple-grade
+   ============================================================ */
+.kn-nav{
+  position:fixed; top:0; left:0; right:0; z-index:9000;
+  height:52px;
+  background:rgba(255,255,255,0.78);
+  -webkit-backdrop-filter:saturate(180%) blur(22px);
+  backdrop-filter:saturate(180%) blur(22px);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  transition:transform .35s var(--ease), background .25s var(--ease);
+  will-change:transform;
+}
+.kn-nav.kn-hide{transform:translateY(-100%)}
+.kn-nav__inner{
+  max-width:1240px; margin:0 auto; height:100%;
+  padding:0 22px;
+  display:flex; align-items:center; gap:18px;
+}
+.kn-nav__brand{
+  font-family:"Pretendard Variable","Pretendard",-apple-system,sans-serif;
+  font-size:13px; font-weight:700; letter-spacing:-0.01em;
+  color:#1d1d1f; text-decoration:none;
+  white-space:nowrap;
+  display:flex; align-items:center; gap:8px;
+}
+.kn-nav__brand .kn-dot{
+  width:6px; height:6px; border-radius:50%;
+  background:var(--ai-gradient);
+  box-shadow:0 0 0 3px rgba(255,31,111,0.12);
+}
+.kn-nav__brand em{
+  font-style:normal; font-weight:500; color:#86868b; letter-spacing:-0.005em;
+}
+.kn-nav__list{
+  list-style:none; margin:0; padding:0;
+  display:flex; align-items:center; gap:2px;
+  flex:1; justify-content:flex-end;
+}
+.kn-nav__item a{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:7px 11px;
+  font-size:12.5px; font-weight:500; letter-spacing:-0.005em;
+  color:#424245; text-decoration:none;
+  border-radius:8px;
+  transition:background .18s var(--ease), color .18s var(--ease);
+  white-space:nowrap;
+}
+.kn-nav__item a:hover{ background:rgba(0,0,0,0.05); color:#1d1d1f }
+.kn-nav__item a .kn-tag{
+  display:inline-block; min-width:22px; text-align:center;
+  font-size:10.5px; font-weight:700; letter-spacing:0.02em;
+  padding:2px 6px; border-radius:5px;
+  background:#f0f0f2; color:#6e6e73;
+  transition:background .18s var(--ease), color .18s var(--ease);
+}
+.kn-nav__item.is-active a{ color:#1d1d1f; background:rgba(0,0,0,0.04) }
+.kn-nav__item.is-active a .kn-tag{
+  background:var(--ai-gradient); color:#fff;
+}
+.kn-progress{
+  position:absolute; left:0; bottom:-1px; height:2px; width:0%;
+  background:var(--ai-gradient);
+  transition:width .12s linear;
+}
+
+/* Hamburger */
+.kn-burger{
+  display:none;
+  margin-left:auto;
+  width:38px; height:38px;
+  background:transparent; border:none; cursor:pointer; padding:0;
+  border-radius:9px;
+  align-items:center; justify-content:center;
+  transition:background .18s var(--ease);
+}
+.kn-burger:hover{ background:rgba(0,0,0,0.05) }
+.kn-burger span{
+  display:block; width:18px; height:1.5px; background:#1d1d1f;
+  position:relative;
+  transition:transform .3s var(--ease), opacity .2s var(--ease);
+}
+.kn-burger span::before, .kn-burger span::after{
+  content:""; position:absolute; left:0; width:18px; height:1.5px; background:#1d1d1f;
+  transition:transform .3s var(--ease), top .3s var(--ease);
+}
+.kn-burger span::before{ top:-6px }
+.kn-burger span::after{ top:6px }
+.kn-burger.is-open span{ background:transparent }
+.kn-burger.is-open span::before{ top:0; transform:rotate(45deg) }
+.kn-burger.is-open span::after{ top:0; transform:rotate(-45deg) }
+
+/* Mobile Drawer */
+.kn-drawer{
+  position:fixed; top:0; right:0; bottom:0;
+  width:min(78vw, 340px);
+  background:rgba(255,255,255,0.96);
+  -webkit-backdrop-filter:saturate(180%) blur(24px);
+  backdrop-filter:saturate(180%) blur(24px);
+  border-left:1px solid rgba(0,0,0,0.08);
+  box-shadow:-20px 0 60px rgba(0,0,0,0.12);
+  z-index:8990;
+  transform:translateX(100%);
+  transition:transform .42s var(--ease);
+  padding:78px 22px 32px;
+  overflow-y:auto;
+}
+.kn-drawer.is-open{ transform:translateX(0) }
+.kn-drawer__title{
+  font-size:11px; font-weight:700; letter-spacing:0.14em;
+  color:#86868b; text-transform:uppercase;
+  margin:0 0 14px 4px;
+}
+.kn-drawer ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px }
+.kn-drawer a{
+  display:flex; align-items:center; gap:12px;
+  padding:13px 14px;
+  font-size:15px; font-weight:500; letter-spacing:-0.01em;
+  color:#1d1d1f; text-decoration:none;
+  border-radius:11px;
+  transition:background .18s var(--ease);
+}
+.kn-drawer a:hover{ background:rgba(0,0,0,0.05) }
+.kn-drawer .kn-tag{
+  min-width:28px; text-align:center;
+  font-size:11px; font-weight:700;
+  padding:3px 7px; border-radius:6px;
+  background:#f0f0f2; color:#6e6e73;
+}
+.kn-drawer li.is-active a{ background:rgba(0,0,0,0.05) }
+.kn-drawer li.is-active .kn-tag{ background:var(--ai-gradient); color:#fff }
+.kn-scrim{
+  position:fixed; inset:0; background:rgba(0,0,0,0.32);
+  opacity:0; pointer-events:none;
+  transition:opacity .3s var(--ease);
+  z-index:8980;
+}
+.kn-scrim.is-open{ opacity:1; pointer-events:auto }
+
+/* Body offset */
+body{ padding-top:52px }
+
+/* Anchor offset for sticky nav (헤더에 가려지지 않도록) */
+[id="group-map"], [id="q1"], [id="q2"], [id="q3"], [id="q4"], [id="q5"], [id="q6"], [id="q7"], [id="q8"], [id="org"], [id="lee-seungkyu"]{
+  scroll-margin-top:64px;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .kn-nav__item a{ padding:7px 9px; font-size:12px }
+  .kn-nav__brand em{ display:none }
+}
+@media (max-width: 900px){
+  .kn-nav__list{ display:none }
+  .kn-burger{ display:flex }
+}
+@media (min-width: 901px){
+  .kn-drawer, .kn-scrim{ display:none !important }
+}
+@media print{
+  .kn-nav, .kn-drawer, .kn-scrim{ display:none !important }
+  body{ padding-top:0 }
+}
 </style>
 </head>
 <body>
+
+<!-- =================== TOP NAVIGATION =================== -->
+<nav class="kn-nav" id="knNav" aria-label="주요 섹션">
+  <div class="kn-nav__inner">
+    <a class="kn-nav__brand" href="#top" aria-label="문서 처음으로">
+      <span class="kn-dot" aria-hidden="true"></span>
+      <span>KISAS <em>· 8 Agendas</em></span>
+    </a>
+    <ul class="kn-nav__list" role="list">
+      <li class="kn-nav__item" data-target="group-map"><a href="#group-map"><span class="kn-tag">맵</span>그룹 구조</a></li>
+      <li class="kn-nav__item" data-target="q1"><a href="#q1"><span class="kn-tag">Q1</span>법인</a></li>
+      <li class="kn-nav__item" data-target="q2"><a href="#q2"><span class="kn-tag">Q2</span>IP</a></li>
+      <li class="kn-nav__item" data-target="q3"><a href="#q3"><span class="kn-tag">Q3</span>희석</a></li>
+      <li class="kn-nav__item" data-target="org"><a href="#org"><span class="kn-tag">대표</span>포지션</a></li>
+      <li class="kn-nav__item" data-target="q4"><a href="#q4"><span class="kn-tag">Q4</span>신기욱</a></li>
+      <li class="kn-nav__item" data-target="q5"><a href="#q5"><span class="kn-tag">Q5</span>김선</a></li>
+      <li class="kn-nav__item" data-target="q6"><a href="#q6"><span class="kn-tag">Q6</span>이작가</a></li>
+      <li class="kn-nav__item" data-target="q7"><a href="#q7"><span class="kn-tag">Q7</span>최남희</a></li>
+      <li class="kn-nav__item" data-target="q8"><a href="#q8"><span class="kn-tag">Q8</span>홀딩스</a></li>
+      <li class="kn-nav__item" data-target="lee-seungkyu"><a href="#lee-seungkyu"><span class="kn-tag">+</span>이승규</a></li>
+    </ul>
+    <button class="kn-burger" id="knBurger" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="knDrawer">
+      <span></span>
+    </button>
+    <div class="kn-progress" id="knProgress" aria-hidden="true"></div>
+  </div>
+</nav>
+<aside class="kn-drawer" id="knDrawer" aria-hidden="true">
+  <p class="kn-drawer__title">8 Agendas</p>
+  <ul role="list">
+    <li data-target="group-map"><a href="#group-map"><span class="kn-tag">맵</span>그룹 구조 한눈에</a></li>
+    <li data-target="q1"><a href="#q1"><span class="kn-tag">Q1</span>단일 법인 vs 자회사·홀딩스</a></li>
+    <li data-target="q2"><a href="#q2"><span class="kn-tag">Q2</span>핵심 IP 귀속</a></li>
+    <li data-target="q3"><a href="#q3"><span class="kn-tag">Q3</span>희석·경영권 보호 장치</a></li>
+    <li data-target="org"><a href="#org"><span class="kn-tag">대표</span>각 법인 대표·이사 구성</a></li>
+    <li data-target="q4"><a href="#q4"><span class="kn-tag">Q4</span>신기욱 지분 재검토</a></li>
+    <li data-target="q5"><a href="#q5"><span class="kn-tag">Q5</span>김선 계약 보완</a></li>
+    <li data-target="q6"><a href="#q6"><span class="kn-tag">Q6</span>이작가 보상</a></li>
+    <li data-target="q7"><a href="#q7"><span class="kn-tag">Q7</span>최남희 CEO 지분</a></li>
+    <li data-target="q8"><a href="#q8"><span class="kn-tag">Q8</span>홀딩스 설립 시점</a></li>
+    <li data-target="lee-seungkyu"><a href="#lee-seungkyu"><span class="kn-tag">+</span>이승규 포지션</a></li>
+  </ul>
+</aside>
+<div class="kn-scrim" id="knScrim" aria-hidden="true"></div>
+
+<a id="top"></a>
 
 <!-- =================== HERO — PT-Monolith (Axis 2 §3) =================== -->
 <section class="sec sec-airy sec-light">
@@ -3661,7 +3870,7 @@ td{
       <div class="bento-cell bento-extra">
         <span class="bento-cell-num"><span class="ag">+ Org Structure</span></span>
         <span class="bento-cell-title">법인별 대표 3축</span>
-        <span class="bento-cell-conclusion">김형석=Holdings · <strong>최남희=Plus·Platform CEO</strong> · 이승규=Global IP &amp; Growth Partner.</span>
+        <span class="bento-cell-conclusion"><strong>김형석=Holdings</strong> · <strong>최남희=Plus·Platform CEO</strong> · <strong>이승규=Global IP &amp; Growth Partner</strong>.</span>
       </div>
       <div class="bento-cell bento-addendum">
         <span class="bento-cell-num"><span class="ag">+ Addendum</span></span>
@@ -3807,7 +4016,7 @@ td{
           <p>김형석은 Holdings에서 원천 IP(브랜드·교육 철학·창작 방법론)를 보호합니다. 최남희는 Plus·Platform CEO로 실제 매출·조직·제품 실행을 책임집니다.</p>
         </div>
         <div class="decision-cell">
-          <span class="decision-label">최남희</span>
+          <span class="decision-label">운영</span>
           <p>최남희는 Holdings 사내이사이자 KISAS Plus·Platform CEO입니다. 그룹 전략과 실행 조직을 동시에 연결하는 운영 책임자이며, 플랫폼 원형·오프라인 교육·투자자 커뮤니케이션을 맡습니다.</p>
         </div>
         <div class="decision-cell">
@@ -4874,7 +5083,7 @@ td{
           <p>IP·비전·교육철학·창작 방향을 책임지는 Holdings 대표이자 Founder &amp; Chairman입니다.</p>
         </div>
         <div class="decision-cell">
-          <span class="decision-label">최남희</span>
+          <span class="decision-label">운영</span>
           <p>KISAS Holdings 사내이사이자 KISAS Plus·Platform CEO입니다. 사업 구조, 플랫폼 원형, 오프라인 교육 운영, 플랫폼 성장, 투자자 커뮤니케이션을 실행 책임자로 관리합니다.</p>
         </div>
         <div class="decision-cell">
@@ -6565,6 +6774,101 @@ td{
   }, true);
 
   syncState();
+})();
+</script>
+
+<script>
+/* ==========================================================
+   TOP NAV — scroll progress · active section · mobile drawer
+   ========================================================== */
+(function(){
+  var nav      = document.getElementById('knNav');
+  var progress = document.getElementById('knProgress');
+  var burger   = document.getElementById('knBurger');
+  var drawer   = document.getElementById('knDrawer');
+  var scrim    = document.getElementById('knScrim');
+  if(!nav) return;
+
+  var ids = ['group-map','q1','q2','q3','org','q4','q5','q6','q7','q8','lee-seungkyu'];
+  var sections = ids
+    .map(function(id){ return document.getElementById(id); })
+    .filter(Boolean);
+
+  // ---- Scroll progress + auto-hide on scroll-down ----
+  var lastY = 0;
+  function onScroll(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    var h = (document.documentElement.scrollHeight - window.innerHeight) || 1;
+    var pct = Math.max(0, Math.min(100, (y / h) * 100));
+    if(progress) progress.style.width = pct + '%';
+
+    // hide on fast scroll-down past 200px, reveal on scroll-up
+    if(y > 200 && y - lastY > 6){ nav.classList.add('kn-hide'); }
+    else if(lastY - y > 4 || y < 80){ nav.classList.remove('kn-hide'); }
+    lastY = y;
+
+    updateActive(y);
+  }
+
+  // ---- Active section highlight ----
+  function setActive(id){
+    document.querySelectorAll('.kn-nav__item, .kn-drawer li').forEach(function(li){
+      li.classList.toggle('is-active', li.getAttribute('data-target') === id);
+    });
+  }
+  function updateActive(y){
+    var probe = y + 80; // 네비 높이만큼 보정
+    var current = null;
+    for(var i=0; i<sections.length; i++){
+      var s = sections[i];
+      if(s.offsetTop <= probe) current = s.id;
+    }
+    if(current) setActive(current);
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', function(){ onScroll(); });
+  onScroll();
+
+  // ---- Drawer open/close ----
+  function setDrawer(open){
+    drawer.classList.toggle('is-open', open);
+    scrim.classList.toggle('is-open', open);
+    burger.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  if(burger){
+    burger.addEventListener('click', function(){
+      setDrawer(!drawer.classList.contains('is-open'));
+    });
+  }
+  if(scrim){ scrim.addEventListener('click', function(){ setDrawer(false); }); }
+
+  // 드로어 항목 클릭 시 닫기
+  drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setDrawer(false); });
+  });
+
+  // ESC로 닫기
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && drawer.classList.contains('is-open')) setDrawer(false);
+  });
+
+  // 부드러운 스크롤
+  document.querySelectorAll('.kn-nav a[href^="#"], .kn-drawer a[href^="#"], .kn-nav__brand[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var hash = a.getAttribute('href');
+      if(!hash || hash.length < 2) return;
+      var t = document.querySelector(hash);
+      if(!t) return;
+      e.preventDefault();
+      var top = t.getBoundingClientRect().top + window.scrollY - 60;
+      window.scrollTo({top:top, behavior:'smooth'});
+      history.replaceState(null, '', hash);
+    });
+  });
 })();
 </script>
 
