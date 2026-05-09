@@ -76,7 +76,7 @@
 }
 
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--fg)}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);overflow-x:hidden;max-width:100%}
 body{
   font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",system-ui,sans-serif;
   font-size:var(--t-body-large);
@@ -100,6 +100,9 @@ strong,b{font-weight:700;color:var(--headline)}
 .sec-soft{background:var(--soft);color:#1d1d1f}
 .sec-inner{max-width:840px;margin:0 auto;padding:0 32px}
 .sec-narrow{max-width:840px;margin:0 auto;padding:0 32px}
+@media(max-width:680px){
+  .sec-inner,.sec-narrow{padding:0 20px}
+}
 
 .sec-tone{
   --line:var(--line-tone);
@@ -158,8 +161,19 @@ strong,b{font-weight:700;color:var(--headline)}
   .pt-monolith{
     font-size:clamp(44px,10vw,80px);
     letter-spacing:-0.035em;
+    word-break:keep-all;
+    overflow-wrap:break-word;
   }
-  .pt-monolith > span{white-space:normal}
+  .pt-monolith > span{white-space:normal;word-break:keep-all;overflow-wrap:break-word}
+  /* hero lead 텍스트도 모바일에서 안전하게 줄바꿈 */
+  .lead, p.lead{
+    max-width:100% !important;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+  }
+  .lead[style*="font-size:clamp(36px"]{
+    font-size:clamp(26px,6vw,36px) !important;
+  }
 }
 
 /* Big Number (Axis 2 §4) — 핵심 수치 강조 */
