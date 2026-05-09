@@ -829,7 +829,8 @@ th{
 .org-tree{
   margin:32px 0 0;padding:32px 28px;
   background:var(--soft);border:1px solid var(--line);border-radius:24px;
-  display:flex;flex-direction:column;gap:20px;
+  display:flex;flex-direction:column;gap:20px;align-items:stretch;
+  box-sizing:border-box;
 }
 .sec-tone .org-tree{background:#fff;border-color:var(--line-tone)}
 .org-holdco{
@@ -879,9 +880,9 @@ th{
 }
 .org-person{
   display:grid;
-  grid-template-columns:80px auto 1fr;
+  grid-template-columns:80px 1fr;
   align-items:baseline;
-  gap:12px;
+  gap:14px;
   font-size:14px;line-height:1.6;
   padding:6px 0;
 }
@@ -893,13 +894,12 @@ th{
 .org-person-name{
   font-weight:700;color:var(--headline);
   font-size:15px;
-  white-space:nowrap;
 }
 .org-person-sub{
   font-size:13px;color:var(--muted);font-weight:500;
 }
 .org-person > span:last-child{
-  display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;
+  display:inline;line-height:1.5;
 }
 
 /* 화살표 라인 — 단순 가운데 분기 */
@@ -934,14 +934,17 @@ th{
 /* OpCo 카드 */
 .org-opcos{
   display:grid;grid-template-columns:1fr 1fr;gap:20px;
-  max-width:720px;margin:0 auto;
+  width:100%;
+  box-sizing:border-box;
 }
 @media(max-width:680px){
   .org-opcos{grid-template-columns:1fr;gap:14px}
   .org-arrows{display:none}
-  .org-tree{padding:28px 20px}
-  .org-holdco{padding:24px 22px;max-width:none}
+  .org-tree{padding:24px 18px}
+  .org-holdco{padding:24px 22px}
+  .org-opco{padding:24px 22px}
   .org-name{font-size:20px}
+  .org-person{grid-template-columns:72px 1fr;gap:10px}
 }
 .org-opco{
   padding:28px 32px;background:#fff;
