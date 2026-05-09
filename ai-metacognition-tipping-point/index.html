@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Metacognition Tipping Point · 메타인지가 분기점이다</title>
+<meta name="description" content="How AI Rewrites the Rules of Learning, Work, and Family — AI가 학습·노동·가족의 규칙을 바꾸는 방식. 1차 출처 24개 통합 리포트.">
+<meta property="og:title" content="The AI Metacognition Tipping Point">
+<meta property="og:description" content="How AI Rewrites the Rules of Learning, Work, and Family">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The AI Metacognition Tipping Point">
+<meta name="twitter:description" content="How AI Rewrites the Rules of Learning, Work, and Family">
+<meta name="author" content="2026 공유용 통합 리포트">
+<meta name="theme-color" content="#000000">
+<style>
+:root {
+  --bg: #000000;
+  --bg-card: #0a0a0f;
+  --bg-elev: #14141c;
+  --text: rgba(255, 255, 255, 0.92);
+  --text-2: rgba(255, 255, 255, 0.62);
+  --text-3: rgba(255, 255, 255, 0.38);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.16);
+  --c-orange: #FF6B35;
+  --c-yellow: #FFD23F;
+  --c-green:  #00E676;
+  --c-blue:   #0092FF;
+  --c-purple: #C65CFF;
+  --c-red:    #FF3355;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --rainbow: linear-gradient(90deg, #FF6B35 0%, #FFD23F 25%, #00E676 50%, #0092FF 75%, #C65CFF 100%);
+  --t-1: 11px;  --t-2: 13px;  --t-3: 15px;  --t-4: 17px;
+  --t-5: 21px;  --t-6: 28px;  --t-7: 36px;  --t-8: 48px;
+  --t-9: 64px;  --t-10: 80px; --t-11: 104px; --t-12: 128px;
+  --t-13: 160px;--t-14: 200px;--t-15: 240px;--t-16: 280px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Pretendard", "Apple SD Gothic Neo", system-ui, sans-serif;
+  font-size: var(--t-4);
+  line-height: 1.65;
+  font-feature-settings: "ss01", "ss02";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.01em;
+}
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.wrap-wide { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(0,0,0,0.72);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.nav-mark {
+  font-size: var(--t-3); font-weight: 600;
+  background: var(--rainbow);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+.nav-meta { font-size: var(--t-2); color: var(--text-3); letter-spacing: 0.02em; }
+.hero {
+  min-height: 100vh; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 120px 24px 80px; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255,107,53,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 70%, rgba(0,146,255,0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(198,92,255,0.10) 0%, transparent 60%);
+  z-index: 0;
+}
+.hero-inner { position: relative; z-index: 1; text-align: center; max-width: 1080px; }
+.eyebrow {
+  display: inline-block; font-size: var(--t-2); font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 8px 18px; border: 1px solid var(--line-2); border-radius: 100px;
+  background: rgba(255,255,255,0.04); color: var(--text-2); margin-bottom: 36px;
+}
+.hero-title {
+  font-size: clamp(56px, 11vw, var(--t-14));
+  font-weight: 800; letter-spacing: -0.045em; line-height: 0.96; margin-bottom: 28px;
+}
+.hero-title .pin {
+  background: var(--rainbow); background-size: 200% 200%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 8s var(--ease) infinite;
+}
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.hero-sub {
+  font-size: clamp(20px, 2.4vw, var(--t-7)); font-weight: 500;
+  color: var(--text); letter-spacing: -0.02em; line-height: 1.3;
+  margin-bottom: 56px; max-width: 920px; margin-left: auto; margin-right: auto;
+}
+.hero-meta {
+  display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+  font-size: var(--t-2); color: var(--text-3); letter-spacing: 0.04em;
+}
+.hero-meta span { display: flex; align-items: center; gap: 8px; }
+.hero-meta .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--c-orange); }
+.statement {
+  padding: clamp(120px, 14vw, 200px) 24px;
+  background: linear-gradient(180deg, var(--bg) 0%, #050508 50%, var(--bg) 100%);
+}
+.statement-inner { max-width: 1400px; margin: 0 auto; text-align: center; }
+.statement-label {
+  font-size: clamp(13px, 1vw, 15px); letter-spacing: 0.36em; text-transform: uppercase;
+  color: var(--c-orange); font-weight: 800; margin-bottom: 56px;
+}
+.statement-quote {
+  font-weight: 700;
+  word-break: keep-all;
+  letter-spacing: -0.03em;
+  line-height: 1.32;
+}
+.statement-quote .l1,
+.statement-quote .l2,
+.statement-quote .l3,
+.statement-quote .l4 {
+  display: block;
+  font-size: clamp(32px, 5vw, 72px);
+  font-weight: 800;
+}
+.statement-quote .l3 { margin-bottom: 1em; }
+.statement-quote .nb { white-space: nowrap; }
+.statement-quote .hl { position: relative; }
+.statement-quote .hl::before {
+  content: ""; position: absolute; left: -4px; right: -4px;
+  bottom: 0.08em; height: 0.36em;
+  background: rgba(255,107,53,0.42);
+  z-index: -1; border-radius: 2px;
+}
+.statement-quote em {
+  font-style: normal;
+  background: var(--rainbow);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+@media (max-width: 768px) {
+  .statement-quote .nb { white-space: normal; }
+}
+.statement-quote .hl { position: relative; white-space: nowrap; }
+.statement-quote .hl::before {
+  content: ""; position: absolute; left: -4px; right: -4px;
+  bottom: 0.08em; height: 0.42em;
+  background: rgba(255,107,53,0.42);
+  z-index: -1; border-radius: 2px;
+}
+.statement-quote em {
+  font-style: normal;
+  background: var(--rainbow);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+.section { padding: clamp(80px, 10vw, 140px) 24px; position: relative; }
+.section-num {
+  font-size: clamp(12px, 1vw, 14px); letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--c-orange); font-weight: 800; margin-bottom: 28px; display: block;
+}
+.section-title {
+  font-size: clamp(58px, 7.4vw, 102px);
+  font-weight: 800; letter-spacing: -0.04em; line-height: 1.08;
+  margin-bottom: 36px;
+  word-break: keep-all;
+  max-width: 18ch;
+}
+.section-lead {
+  font-size: clamp(18px, 1.6vw, 22px); font-weight: 500;
+  color: var(--text-2); letter-spacing: -0.015em; line-height: 1.55;
+  margin-bottom: 56px;
+  word-break: keep-all;
+  max-width: 38ch;
+}
+/* prose: wrap과 동일한 좌측 시작점·가독폭 760 */
+.prose {
+  max-width: 1100px;
+  margin: 48px auto 0;
+  padding: 0 24px;
+  width: 100%;
+}
+.prose > * { max-width: 760px; }
+.prose p {
+  font-size: clamp(17px, 1.3vw, 19px); line-height: 1.8;
+  color: var(--text); margin-bottom: 26px; letter-spacing: -0.005em;
+  word-break: keep-all;
+}
+.hl-orange { background: linear-gradient(180deg, transparent 56%, rgba(255,107,53,0.45) 56%); padding: 0 2px; }
+.hl-yellow { background: linear-gradient(180deg, transparent 56%, rgba(255,210,63,0.45) 56%); padding: 0 2px; }
+.hl-green  { background: linear-gradient(180deg, transparent 56%, rgba(0,230,118,0.36) 56%); padding: 0 2px; }
+.hl-blue   { background: linear-gradient(180deg, transparent 56%, rgba(0,146,255,0.40) 56%); padding: 0 2px; }
+.hl-purple { background: linear-gradient(180deg, transparent 56%, rgba(198,92,255,0.40) 56%); padding: 0 2px; }
+.hl-red    { background: linear-gradient(180deg, transparent 56%, rgba(255,51,85,0.36) 56%); padding: 0 2px; }
+.pullquote {
+  margin: 56px 0; padding: 40px 32px 40px 48px;
+  border-left: 3px solid var(--c-orange);
+  background: linear-gradient(90deg, rgba(255,107,53,0.06) 0%, transparent 100%);
+  font-size: clamp(22px, 2.4vw, var(--t-7)); font-weight: 600; line-height: 1.4; letter-spacing: -0.02em;
+  max-width: 760px;
+}
+.inline-note {
+  display: inline-block; font-size: var(--t-2);
+  color: var(--c-orange); font-weight: 600;
+  text-decoration: none; vertical-align: super; margin-left: 2px;
+}
+.bento-curves {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  margin: 56px auto; max-width: 1280px; padding: 0 24px;
+}
+.curve-card {
+  padding: 32px; background: var(--bg-card);
+  border: 1px solid var(--line); border-radius: 24px;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.curve-card:hover { transform: translateY(-4px); border-color: var(--line-2); }
+.curve-card .label {
+  font-size: var(--t-2); letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 700; margin-bottom: 12px;
+}
+.curve-card.c-cap .label { color: var(--c-orange); }
+.curve-card.c-cost .label { color: var(--c-green); }
+.curve-card.c-spread .label { color: var(--c-blue); }
+.curve-card.c-policy .label { color: var(--c-yellow); }
+.curve-card .name {
+  font-size: var(--t-7); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px;
+}
+.curve-card .desc {
+  font-size: var(--t-4); color: var(--text-2); line-height: 1.55; margin-bottom: 24px;
+}
+.curve-svg { width: 100%; height: 80px; }
+.doomloop {
+  margin: 64px auto; max-width: 700px; padding: 48px 32px;
+  background: linear-gradient(180deg, rgba(255,51,85,0.06), rgba(255,51,85,0.02));
+  border: 1px solid rgba(255,51,85,0.16); border-radius: 24px;
+}
+.doomloop-title {
+  font-size: var(--t-2); letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--c-red); font-weight: 700; text-align: center; margin-bottom: 32px;
+}
+.compare { margin: 56px auto; max-width: 1100px; border-top: 1px solid var(--line-2); }
+.compare-row {
+  display: grid; grid-template-columns: 1.2fr 1.4fr 1.4fr;
+  padding: 24px 0; border-bottom: 1px solid var(--line);
+  align-items: center; gap: 32px;
+}
+.compare-row.head {
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 700; color: var(--text-3); padding: 14px 0;
+}
+.compare-row.head > div:first-child { color: var(--text-3); }
+.compare-row.head .h2 { color: var(--c-red); }
+.compare-row.head .h3 { color: var(--c-green); }
+.compare-row .item { font-size: var(--t-4); line-height: 1.5; }
+.compare-row .name { font-weight: 600; font-size: var(--t-5); }
+.compare-row .down { color: var(--text-2); }
+.compare-row .up { color: var(--text); font-weight: 500; }
+.bignum {
+  margin: 64px auto 80px; max-width: 1100px;
+  padding: 56px 48px;
+  background: linear-gradient(180deg, rgba(255,107,53,0.08), rgba(255,107,53,0.02));
+  border: 1px solid rgba(255,107,53,0.2); border-radius: 32px;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 56px; align-items: center;
+}
+.bignum-num {
+  font-size: clamp(96px, 14vw, 200px);
+  font-weight: 800; letter-spacing: -0.06em; line-height: 0.85;
+  background: var(--rainbow);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bignum-cap { font-size: clamp(17px, 1.4vw, 20px); color: var(--text-2); line-height: 1.6; max-width: 480px; }
+.bignum-cap strong { color: var(--text); font-weight: 700; }
+@media (max-width: 768px) {
+  .bignum { padding: 40px 24px; gap: 24px; grid-template-columns: 1fr; text-align: center; }
+  .bignum-cap { max-width: none; margin: 0 auto; }
+}
+.laws {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+  margin: 64px auto; max-width: 1280px; padding: 0 24px;
+}
+.law { padding: 36px 26px; }
+.law-title { font-size: clamp(20px, 1.7vw, 26px); }
+.law-body { font-size: clamp(14px, 1.05vw, 15px); }
+.law {
+  padding: 32px 24px; background: var(--bg-card);
+  border-radius: 20px; border-top: 3px solid;
+  transition: transform 0.4s var(--ease);
+}
+.law:hover { transform: translateY(-6px); }
+.law.l1 { border-color: var(--c-orange); }
+.law.l2 { border-color: var(--c-yellow); }
+.law.l3 { border-color: var(--c-green); }
+.law.l4 { border-color: var(--c-blue); }
+.law.l5 { border-color: var(--c-purple); }
+.law-num { font-size: var(--t-2); letter-spacing: 0.18em; font-weight: 700; margin-bottom: 12px; }
+.law.l1 .law-num { color: var(--c-orange); }
+.law.l2 .law-num { color: var(--c-yellow); }
+.law.l3 .law-num { color: var(--c-green); }
+.law.l4 .law-num { color: var(--c-blue); }
+.law.l5 .law-num { color: var(--c-purple); }
+.law-title {
+  font-size: var(--t-6); font-weight: 700; letter-spacing: -0.02em;
+  line-height: 1.18; margin-bottom: 16px;
+}
+.law-body { font-size: var(--t-3); color: var(--text-2); line-height: 1.55; }
+.metaloop {
+  margin: 64px auto; max-width: 720px; padding: 48px 32px;
+  background: linear-gradient(180deg, rgba(255,107,53,0.08), rgba(255,107,53,0.02));
+  border: 1px solid rgba(255,107,53,0.20); border-radius: 24px;
+}
+.metaloop-title {
+  font-size: var(--t-2); letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--c-orange); font-weight: 700; text-align: center; margin-bottom: 32px;
+}
+.metaloop-step { display: flex; align-items: flex-start; gap: 20px; padding: 16px 0; }
+.metaloop-step .n {
+  flex: none; width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--t-5); font-weight: 800;
+  background: var(--bg-elev); border: 2px solid var(--line-2); color: var(--text-2);
+}
+.metaloop-step.warning .n {
+  background: var(--c-orange); border-color: var(--c-orange);
+  color: #000; box-shadow: 0 0 24px rgba(255,107,53,0.5);
+}
+.metaloop-step .txt { font-size: var(--t-5); font-weight: 500; padding-top: 6px; }
+.metaloop-step.warning .txt { color: var(--c-orange); font-weight: 700; }
+.metaloop-step .warn-tag {
+  display: inline-block; font-size: var(--t-1);
+  background: rgba(255,107,53,0.18); color: var(--c-orange);
+  padding: 3px 10px; border-radius: 100px; margin-left: 12px;
+  letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; vertical-align: middle;
+}
+.formula {
+  margin: 56px auto; max-width: 700px; padding: 48px 24px;
+  background: var(--bg-card); border-radius: 24px; text-align: center;
+}
+.formula-line { font-size: var(--t-7); font-weight: 700; letter-spacing: -0.02em; line-height: 1.4; }
+.formula-line .x { color: var(--c-orange); margin: 0 12px; }
+.formula-eq {
+  font-size: var(--t-9); font-weight: 800; letter-spacing: -0.03em; margin-top: 24px;
+  background: var(--rainbow);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.cards-3 {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin: 56px 0;
+}
+.card-sys {
+  padding: 32px; background: var(--bg-card);
+  border: 1px solid var(--line); border-radius: 20px; border-top: 3px solid;
+}
+.card-sys.s1 { border-top-color: var(--c-orange); }
+.card-sys.s2 { border-top-color: var(--c-green); }
+.card-sys.s3 { border-top-color: var(--c-blue); }
+.card-sys h4 {
+  font-size: var(--t-2); letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 700; margin-bottom: 8px;
+}
+.card-sys.s1 h4 { color: var(--c-orange); }
+.card-sys.s2 h4 { color: var(--c-green); }
+.card-sys.s3 h4 { color: var(--c-blue); }
+.card-sys h3 {
+  font-size: var(--t-6); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px;
+}
+.card-sys ul { list-style: none; padding: 0; }
+.card-sys li {
+  font-size: var(--t-3); color: var(--text-2);
+  padding: 10px 0 10px 20px; position: relative;
+  border-bottom: 1px solid var(--line); line-height: 1.5;
+}
+.card-sys li:last-child { border-bottom: none; }
+.card-sys li::before {
+  content: ""; position: absolute; left: 0; top: 18px;
+  width: 8px; height: 1px; background: currentColor; opacity: 0.4;
+}
+.tier { margin: 56px auto; max-width: 880px; }
+.tier-row {
+  display: grid; grid-template-columns: 80px 1.3fr 1fr;
+  align-items: center; gap: 32px;
+  padding: 32px 0; border-bottom: 1px solid var(--line);
+}
+@media (max-width: 768px) {
+  .tier-row { grid-template-columns: 60px 1fr; gap: 16px; padding: 24px 0; }
+  .tier-row .tier-how { grid-column: 2 / -1; padding-top: 4px; color: var(--text-3); }
+}
+.tier-row:last-child { border-bottom: none; }
+.tier-num {
+  font-size: var(--t-9); font-weight: 800; letter-spacing: -0.04em; line-height: 1;
+}
+.tier-row.t1 .tier-num { color: var(--text-3); }
+.tier-row.t2 .tier-num { color: var(--c-yellow); }
+.tier-row.t3 .tier-num {
+  background: var(--rainbow);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.tier-name { font-size: var(--t-5); font-weight: 700; letter-spacing: -0.015em; }
+.tier-name span { display: block; font-size: var(--t-3); color: var(--text-3); font-weight: 400; margin-top: 4px; letter-spacing: 0; }
+.tier-how { font-size: var(--t-4); color: var(--text-2); line-height: 1.5; }
+.stages { margin: 64px 0; position: relative; }
+.stage {
+  display: grid; grid-template-columns: 80px 1fr; gap: 24px;
+  padding: 32px 0; border-bottom: 1px solid var(--line); align-items: flex-start;
+}
+.stage-num {
+  font-size: var(--t-9); font-weight: 800; letter-spacing: -0.04em; line-height: 0.9;
+  background: var(--rainbow); background-size: 200% 200%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-position: var(--bp, 0% 50%);
+}
+.stage-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.stage-body > div { font-size: var(--t-3); }
+.stage-body .lbl { font-size: var(--t-1); letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; font-weight: 700; }
+.stage-body .val { color: var(--text); line-height: 1.5; }
+.echo {
+  padding: 200px 24px 160px; text-align: center;
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, var(--bg) 0%, #0a0510 60%, var(--bg) 100%);
+}
+.echo-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255,107,53,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 80%, rgba(198,92,255,0.10) 0%, transparent 60%);
+  z-index: 0;
+}
+.echo-inner { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; }
+.echo-eyebrow {
+  font-size: var(--t-2); letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--c-orange); font-weight: 700; margin-bottom: 40px;
+}
+.echo-title {
+  font-size: clamp(48px, 9vw, var(--t-13));
+  font-weight: 800; letter-spacing: -0.045em; line-height: 0.96; margin-bottom: 48px;
+}
+.echo-title .pin {
+  background: var(--rainbow); background-size: 200% 200%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 8s var(--ease) infinite;
+}
+.appendix { padding: 80px 24px 120px; background: #050508; border-top: 1px solid var(--line); }
+.appendix .section-title { font-size: clamp(36px, 4vw, 56px); }
+section[class="section"] .section-title.compact, .section-title.compact { font-size: clamp(36px, 4vw, 56px); margin-bottom: 24px; }
+.boc { margin: 16px 0; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-card); overflow: hidden; }
+.boc-summary {
+  padding: 24px 28px; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: var(--t-5); font-weight: 600; letter-spacing: -0.015em;
+  list-style: none; user-select: none;
+}
+.boc-summary::-webkit-details-marker { display: none; }
+.boc-summary:hover { background: var(--bg-elev); }
+.boc-summary::after {
+  content: "+"; font-size: var(--t-7); font-weight: 300;
+  color: var(--text-3); transition: transform 0.3s var(--ease); line-height: 0.7;
+}
+.boc[open] .boc-summary::after { content: "−"; }
+.boc-content { padding: 8px 28px 32px; border-top: 1px solid var(--line); }
+.refs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; font-size: var(--t-3); }
+.refs .r { padding: 12px 0; border-bottom: 1px solid var(--line); line-height: 1.5; }
+.refs .r-id {
+  display: inline-block; color: var(--c-orange); font-weight: 700;
+  font-size: var(--t-2); letter-spacing: 0.04em; margin-right: 8px;
+}
+.refs .r a { color: var(--text-2); text-decoration: none; word-break: break-all; }
+.refs .r a:hover { color: var(--c-orange); }
+.foot {
+  padding: 64px 24px; text-align: center; border-top: 1px solid var(--line);
+  font-size: var(--t-2); color: var(--text-3); letter-spacing: 0.04em; line-height: 1.8;
+}
+.foot .rainbow {
+  background: var(--rainbow);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; font-weight: 700;
+}
+/* 태블릿 */
+@media (max-width: 1024px) {
+  .laws { grid-template-columns: 1fr 1fr 1fr; }
+  .stage-body { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stage-body > div:last-child { grid-column: 1 / -1; }
+}
+/* 작은 태블릿·큰 모바일 */
+@media (max-width: 768px) {
+  .section { padding: 64px 20px; }
+  .section-title { max-width: 100%; }
+  .section-lead { max-width: 100%; }
+  .bento-curves { grid-template-columns: 1fr; }
+  .laws { grid-template-columns: 1fr 1fr; }
+  .compare-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
+  .compare-row.head { display: none; }
+  .compare-row .item::before {
+    content: attr(data-lbl) " · "; color: var(--text-3);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700;
+  }
+  .bignum { grid-template-columns: 1fr; gap: 24px; }
+  .bignum-num { text-align: center; }
+  .cards-3 { grid-template-columns: 1fr; }
+  .stage { grid-template-columns: 56px 1fr; gap: 16px; padding: 24px 0; }
+  .stage-body { grid-template-columns: 1fr; gap: 8px; }
+  .refs { grid-template-columns: 1fr; }
+  .prose { padding: 0 4px; }
+  .pullquote { padding: 24px 20px 24px 24px; font-size: 19px; margin: 36px 0; }
+  .formula-line { font-size: 22px; }
+  .formula-eq { font-size: 32px; }
+  .doomloop { padding: 28px 16px; }
+  .metaloop { padding: 32px 20px; }
+  .metaloop-step .txt { font-size: 17px; }
+  .nav-meta { display: none; }
+  /* 4시·8시 카드 그리드 (3개씩 행) → 2개씩 */
+  div[style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  div[style*="grid-template-columns:repeat(5,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+/* 모바일 */
+@media (max-width: 480px) {
+  .section { padding: 56px 16px; }
+  .laws { grid-template-columns: 1fr; }
+  .nav-inner { padding: 0; }
+  .nav-mark { font-size: 13px; }
+  .hero { padding: 100px 20px 60px; }
+  .hero-meta { gap: 16px; font-size: 11px; }
+  .statement { padding: 80px 20px; }
+  .statement-quote { font-size: 22px; line-height: 1.4; }
+  .echo { padding: 120px 20px 100px; }
+  div[style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  div[style*="grid-template-columns:repeat(5,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <div class="nav-mark">메타인지가 분기점이다</div>
+    <div class="nav-meta">2026.05.09 · 공유용 통합 리포트</div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">AI · 학습 · 노동 · 가족</div>
+    <h1 class="hero-title"><span class="pin">메타인지</span>가<br>분기점이다</h1>
+    <p class="hero-sub">AI가 학습·노동·가족의 규칙을 바꾸는 방식</p>
+    <div class="hero-meta">
+      <span><span class="dot"></span>20 섹션 · 5 부록</span>
+      <span><span class="dot"></span>1차 출처 24+</span>
+      <span><span class="dot"></span>2026 봄</span>
+    </div>
+  </div>
+</section>
+
+<section class="statement">
+  <div class="statement-inner">
+    <div class="statement-label">한 문장 결론</div>
+    <p class="statement-quote">
+      <span class="l1"><span class="nb">AI 시대의 승부는</span> <span class="hl"><span class="nb">"AI를 쓰느냐"</span>가 아니라,</span></span>
+      <span class="l2"><span class="nb">AI를 쓰는 순간에도</span></span>
+      <span class="l3"><span class="hl"><span class="nb">자기 사고를 잃지 않는가</span></span><span class="nb">에서 갈립니다.</span></span>
+      <span class="l4"><span class="nb">그 능력의 이름이</span> <em>메타인지</em><span class="nb">입니다.</span></span>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">0 · 이 리포트가 다루는 질문</span>
+    <h2 class="section-title">두 진영의 논쟁,<br>그러나 두 진영 모두 핵심을 놓치고 있다.</h2>
+  </div>
+  <div class="prose">
+    <p>지금 AI를 둘러싼 논쟁은 대체로 두 방향으로 흐릅니다.</p>
+    <p>하나는 낙관론입니다. AI가 개인을 더 생산적으로 만들고, 교육을 개인화하며, 누구나 전문가 수준의 도구를 쓰게 된다는 주장입니다. 다른 하나는 비관론입니다. AI가 학생의 사고를 약화시키고, 진입직 일자리를 줄이며, 사회를 더 불평등하게 만든다는 주장입니다.</p>
+    <p>둘 다 맞는 말을 하고 있지만, 둘 다 핵심을 놓칠 수 있습니다. AI는 단순히 "좋은 도구"도 아니고 "위험한 도구"도 아닙니다. <span class="hl-orange">AI는 인간이 지식과 숙련을 획득하던 순서를 바꾸는 기술</span>입니다. 예전에는 사람이 먼저 읽고, 생각하고, 쓰고, 고치며 실력을 만들었습니다. 이제는 결과물이 먼저 나오고, 사람은 그 결과물을 검토하거나 조정합니다.</p>
+    <p>그래서 핵심 질문은 바뀝니다.</p>
+    <div class="pullquote">"AI를 사용해도 되는가?"가 아니라,<br><span style="color: var(--c-orange);">"AI를 사용한 뒤에도 학습이 남는가?"</span>입니다.</div>
+    <p>이 리포트의 결론은 분명합니다. <span class="hl-orange">학습이 남게 만드는 단일한 조건은 메타인지입니다.</span> 메타인지는 자기 사고를 자기가 관찰하고, 의심하고, 수정하는 능력입니다. AI가 강해질수록 단순 지식·단순 작성·단순 요약의 가치는 내려갑니다. 반대로 문제를 정의하고, 기준을 세우고, 답을 검증하고, 책임질 줄 아는 사람의 가치는 올라갑니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">1 · 큰 숲</span>
+    <h2 class="section-title">시대는 네 개의 곡선이<br>동시에 움직입니다.</h2>
+    <p class="section-lead">AI 전환은 하나의 사건이 아니라 네 개의 곡선이 겹친 구조입니다.</p>
+  </div>
+  <div class="bento-curves">
+    <div class="curve-card c-cap">
+      <div class="label">곡선 1 · 능력</div>
+      <div class="name">모델·에이전트가<br>더 긴 작업을 수행합니다</div>
+      <div class="desc">"짧은 답변 도구"에서 "업무 단위 실행자"로 이동합니다. METR은 50% 신뢰도 작업의 시간 지평이 7개월마다 두 배로 늘었다고 분석했습니다.</div>
+      <svg class="curve-svg" viewBox="0 0 300 80" fill="none">
+        <path d="M0,75 Q60,72 100,60 T180,30 T280,8" stroke="#FF6B35" stroke-width="2.5" fill="none"/>
+        <circle cx="280" cy="8" r="4" fill="#FF6B35"/>
+      </svg>
+    </div>
+    <div class="curve-card c-cost">
+      <div class="label">곡선 2 · 비용</div>
+      <div class="name">추론 비용은 빠르게<br>낮아지고, 사용은 폭증합니다</div>
+      <div class="desc">더 많은 사람이 더 자주 AI를 쓰게 됩니다. 가격이 임계점을 넘으면 단순 사용은 의사결정의 변수가 아니게 됩니다.</div>
+      <svg class="curve-svg" viewBox="0 0 300 80" fill="none">
+        <path d="M0,15 Q50,18 100,35 T200,60 T300,72" stroke="#00E676" stroke-width="2.5" fill="none"/>
+        <circle cx="300" cy="72" r="4" fill="#00E676"/>
+      </svg>
+    </div>
+    <div class="curve-card c-spread">
+      <div class="label">곡선 3 · 확산</div>
+      <div class="name">학생·직장인·기업 채택이<br>빠르게 늘어납니다</div>
+      <div class="desc">사용하지 않는 쪽이 예외가 됩니다. Stanford HAI는 3년 만에 인구 53% 채택, 미국 고등·대학생 80%+ 사용을 보고합니다.</div>
+      <svg class="curve-svg" viewBox="0 0 300 80" fill="none">
+        <path d="M0,72 Q80,68 130,55 Q180,20 220,12 T300,8" stroke="#0092FF" stroke-width="2.5" fill="none"/>
+        <circle cx="300" cy="8" r="4" fill="#0092FF"/>
+      </svg>
+    </div>
+    <div class="curve-card c-policy">
+      <div class="label">곡선 4 · 제도</div>
+      <div class="name">학교·정책·가정 규칙은<br>뒤처집니다</div>
+      <div class="desc">가장 중요한 보호 장치는 개인과 가족의 사용 원칙이 됩니다. 학교 정책 보유 50%, 명확하다고 답한 교사 6%.</div>
+      <svg class="curve-svg" viewBox="0 0 300 80" fill="none">
+        <path d="M0,55 Q80,53 150,50 Q220,48 300,46" stroke="#FFD23F" stroke-width="2.5" fill="none"/>
+        <circle cx="300" cy="46" r="4" fill="#FFD23F"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="prose">
+    <p>스탠퍼드 HAI의 2026 AI Index는 생성형 AI가 3년 만에 인구 기준 53% 채택에 도달했고, 미국 고등학생·대학생의 80% 이상이 학교 과제에 AI를 사용한다고 정리합니다.<a href="#ref-stanford-2026-overview" class="inline-note">[1]</a><a href="#ref-stanford-2026-edu" class="inline-note">[2]</a> 미국 연방준비제도는 2025년 말 기준 근로자의 업무 관련 생성형 AI 사용률을 약 41%로 보았고, 고용 가중 기준으로는 노동자의 78%가 AI를 도입한 기업에서 일한다고 추정했습니다.<a href="#ref-fed-adoption" class="inline-note">[8]</a></p>
+    <p>이 흐름의 핵심은 속도입니다. METR은 AI 에이전트가 50% 신뢰도로 완수할 수 있는 작업의 시간 지평이 약 <span class="hl-orange">7개월마다 두 배</span>로 늘었다고 분석했습니다.<a href="#ref-metr" class="inline-note">[7]</a> 7개월은 교육 제도나 조직 문화가 바뀌기에는 너무 짧고, 제품과 업무 방식이 바뀌기에는 충분히 긴 시간입니다. 즉 기술은 분기 단위로 움직이고, 제도는 연 단위로 움직이며, 인간의 습관은 더 느리게 움직입니다.</p>
+    <p>그래서 2026년의 문제는 "AI가 얼마나 똑똑한가"가 아닙니다. <span class="hl-orange">사람과 조직과 가정이 이 속도를 감당할 운영체제를 갖고 있는가</span>입니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">2 · 첫 번째 힘</span>
+    <h2 class="section-title">결과물의 가격이<br>떨어집니다.</h2>
+  </div>
+  <div class="prose">
+    <p>AI 이전의 학습과 업무에서는 결과물이 실력의 신호였습니다. 학생이 제출한 글은 학생이 읽고 생각하고 쓴 흔적으로 간주되었습니다. 신입 직원의 리서치 문서, 개발자의 코드, 마케터의 카피, 컨설턴트의 슬라이드는 그 사람의 숙련도를 보여주는 증거였습니다.</p>
+    <p>이제 그 전제가 흔들립니다. 문서·요약·코드·이미지·분석 초안은 점점 더 싸고 빠르게 생성됩니다. <span class="hl-yellow">결과물의 생산 비용이 낮아지면 결과물 자체의 신호 가치는 떨어집니다.</span></p>
+    <p>이 변화는 교육에서 가장 먼저 드러납니다. 퓨리서치센터는 미국 10대의 64%가 챗봇을 사용하고, 54%가 학교 과제 도움을 위해 챗봇을 사용한다고 조사했습니다.<a href="#ref-pew-teens" class="inline-note">[3]</a> 랜드 연구소는 2025년 5월부터 12월 사이 AI 숙제 사용률이 48%에서 62%로 증가했고, "AI 사용이 비판적 사고를 해친다"는 데 동의한 학생이 67%였다고 보고했습니다.<a href="#ref-rand" class="inline-note">[5]</a></p>
+    <p>여기서 중요한 것은 학생들이 무지해서 AI를 쓰는 것이 아니라는 점입니다. 상당수 학생은 AI가 사고력을 해칠 수 있다고 느끼면서도 사용합니다. 왜냐하면 제도는 여전히 결과물을 요구하고, AI는 결과물을 가장 빠르게 만들어주기 때문입니다.</p>
+    <p>결과물 중심 제도와 AI 도구가 만나면 이런 일이 벌어집니다.</p>
+  </div>
+</section>
+
+<section style="padding: 0 24px 80px;">
+  <div class="doomloop">
+    <div class="doomloop-title">둠 루프 · Doom Loop</div>
+    <svg viewBox="0 0 720 720" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;max-width:680px;margin:0 auto;">
+      <defs>
+        <marker id="arr2" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,1 L11,6 L0,11 z" fill="#FF3355"/>
+        </marker>
+        <radialGradient id="centerGlow2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FF3355" stop-opacity="0.20"/>
+          <stop offset="55%" stop-color="#FF3355" stop-opacity="0.05"/>
+          <stop offset="100%" stop-color="#FF3355" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="nodeGlow2" x="-30%" y="-60%" width="160%" height="220%">
+          <feGaussianBlur stdDeviation="4" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- 중심 글로우 -->
+      <circle cx="360" cy="360" r="240" fill="url(#centerGlow2)"/>
+
+      <!-- 점선 가이드 원 (배경 시각 가이드) -->
+      <circle cx="360" cy="360" r="240" fill="none" stroke="#FF3355" stroke-width="1" stroke-dasharray="2 6" opacity="0.18"/>
+
+      <!-- 6개 호 화살표 (반지름 240, 각도 -90, -30, 30, 90, 150, 210도 위 노드, 호 사이 갭) -->
+      <!-- 노드 좌표 (cx,cy)=(360,360), r=240
+           1: -90° (12시) → (360, 120)
+           2: -30° (2시) → (568, 240)
+           3:  30° (4시) → (568, 480)
+           4:  90° (6시) → (360, 600)
+           5: 150° (8시) → (152, 480)
+           6: 210° (10시)→ (152, 240) -->
+      <g fill="none" stroke="#FF3355" stroke-width="2.4" opacity="0.95" marker-end="url(#arr2)">
+        <!-- 1 (12시) → 2 (2시) -->
+        <path d="M 462,150 A 230,230 0 0 1 566,260"/>
+        <!-- 2 (2시) → 3 (4시) -->
+        <path d="M 596,290 A 230,230 0 0 1 596,430"/>
+        <!-- 3 (4시) → 4 (6시) -->
+        <path d="M 566,460 A 230,230 0 0 1 462,570"/>
+        <!-- 4 (6시) → 5 (8시) -->
+        <path d="M 258,570 A 230,230 0 0 1 154,460"/>
+        <!-- 5 (8시) → 6 (10시) -->
+        <path d="M 124,430 A 230,230 0 0 1 124,290"/>
+        <!-- 6 (10시) → 1 (12시) -->
+        <path d="M 154,260 A 230,230 0 0 1 258,150"/>
+      </g>
+
+      <!-- 6개 노드 (모두 동일 너비 200·높이 56) -->
+      <g font-family="-apple-system,SF Pro Text,Pretendard,sans-serif" font-size="16" font-weight="600" fill="rgba(255,255,255,0.96)" text-anchor="middle" filter="url(#nodeGlow2)">
+        <!-- 12시 -->
+        <rect x="260" y="92" width="200" height="56" rx="28" fill="#1a0a10" stroke="#FF3355" stroke-width="1.8"/>
+        <text x="360" y="127">과제 제출 압박 ↑</text>
+        <!-- 2시 -->
+        <rect x="468" y="212" width="200" height="56" rx="28" fill="#1a0a10" stroke="#FF3355" stroke-width="1.8"/>
+        <text x="568" y="247">AI로 결과물 생성 ↑</text>
+        <!-- 4시 -->
+        <rect x="468" y="452" width="200" height="56" rx="28" fill="#1a0a10" stroke="#FF3355" stroke-width="1.8"/>
+        <text x="568" y="487">사고 과정 생략 ↑</text>
+        <!-- 6시 (강조) -->
+        <rect x="240" y="572" width="240" height="56" rx="28" fill="#2a0810" stroke="#FF3355" stroke-width="2.2"/>
+        <text x="360" y="607" font-weight="700">실력 ✗ · 점수·속도 유지</text>
+        <!-- 8시 -->
+        <rect x="52" y="452" width="200" height="56" rx="28" fill="#1a0a10" stroke="#FF3355" stroke-width="1.8"/>
+        <text x="152" y="487">다음 과제 의존 ↑</text>
+        <!-- 10시 -->
+        <rect x="52" y="212" width="200" height="56" rx="28" fill="#1a0a10" stroke="#FF3355" stroke-width="1.8"/>
+        <text x="152" y="247">결과물 압박 가속</text>
+      </g>
+
+      <!-- 중앙 라벨 -->
+      <g text-anchor="middle" font-family="-apple-system,SF Pro Text,Pretendard,sans-serif">
+        <text x="360" y="345" font-size="12" font-weight="700" letter-spacing="4" fill="#FF3355" opacity="0.85">CYCLE</text>
+        <text x="360" y="380" font-size="26" font-weight="800" fill="rgba(255,51,85,0.6)" letter-spacing="-0.02em">생각 없이</text>
+        <text x="360" y="412" font-size="26" font-weight="800" fill="rgba(255,51,85,0.6)" letter-spacing="-0.02em">결과물만 늘어남</text>
+      </g>
+    </svg>
+  </div>
+  <div class="prose">
+    <p>이것이 원문에서 말한 "둠 루프"의 구조입니다. 문제는 AI 사용 그 자체가 아닙니다. <span class="hl-red">생각 없이도 결과물을 만들 수 있는 환경</span>이 문제입니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">3 · 두 번째 힘</span>
+    <h2 class="section-title">학습의 병목이<br><span style="color: var(--c-blue);">정보 접근</span>에서<br><span style="color: var(--c-orange);">사고 검증</span>으로 이동합니다.</h2>
+  </div>
+  <div class="prose">
+    <p>인터넷 시대의 핵심 역량은 검색이었습니다. 정보를 찾을 수 있는 사람이 유리했습니다. AI 시대에는 정보 접근의 병목이 더 약해집니다. 대신 새로운 병목이 생깁니다.</p>
+    <p style="font-size: var(--t-7); font-weight: 700; letter-spacing: -0.025em; color: var(--c-orange); margin: 40px 0;">그 병목은 검증입니다.</p>
+    <p>AI는 그럴듯한 답을 빠르게 줍니다. 하지만 그 답이 맞는지, 맥락에 맞는지, 어떤 전제가 숨어 있는지, 어떤 이해관계가 반영되어 있는지 판단하는 일은 여전히 사람의 몫입니다. <span class="hl-yellow">오히려 AI 답변이 유려해질수록 검증은 더 어려워집니다.</span> 틀린 답도 덜 틀려 보이기 때문입니다.</p>
+    <p>MIT 미디어랩 연구진이 공개한 "Your Brain on ChatGPT" 예비연구는 이 문제를 신경·행동 차원에서 관찰하려 했습니다. 연구진은 54명의 참가자를 LLM 사용 그룹, 검색엔진 사용 그룹, 도구 없이 쓰는 그룹으로 나누어 에세이 작성 과제를 수행하게 했고, LLM 지원 그룹이 가장 약한 뇌 연결성 및 낮은 글 소유감을 보였다고 보고했습니다.<a href="#ref-mit-brain" class="inline-note">[6]</a> 다만 이 연구는 2025년 6월 공개 당시 동료심사를 거치지 않은 예비연구이며, 표본과 과제 맥락의 한계가 있으므로 확정적 결론으로 쓰면 안 됩니다. 공유용 문서에서는 이 점을 분명히 해야 합니다.</p>
+    <p>그러나 이 연구가 던지는 질문은 중요합니다.</p>
+    <div class="pullquote">사람이 글을 냈는데, 그 글의 핵심을 스스로 설명하지 못한다면 그것은 학습인가?</div>
+    <p>이 질문은 학교만의 문제가 아닙니다. 회사에서도 똑같이 발생합니다. 보고서를 냈지만 논리를 설명하지 못하는 직원, 코드를 제출했지만 오류를 고치지 못하는 개발자, 전략안을 만들었지만 가정을 방어하지 못하는 기획자가 늘어날 수 있습니다.</p>
+    <p>AI 시대의 핵심 평가는 결과물이 아니라 다음 네 가지가 됩니다. <span class="hl-orange">문제 정의</span>, <span class="hl-orange">전제 인식</span>, <span class="hl-orange">검증 능력</span>, <span class="hl-orange">전이 능력</span>. 이 네 가지가 메타인지입니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">4 · 세 번째 힘</span>
+    <h2 class="section-title">노동시장은 <span style="color: var(--c-orange);">직업</span>이 아니라<br><span style="color: var(--c-blue);">업무 단위</span>로 재편됩니다.</h2>
+  </div>
+  <div class="prose">
+    <p>AI가 일자리를 모두 없앨 것이라는 주장은 과장일 수 있습니다. 반대로 아무 일도 없을 것이라는 주장도 순진합니다. 현재 데이터가 보여주는 것은 더 복잡합니다.</p>
+    <p>예일 Budget Lab은 2026년 4월 기준 거시 노동시장 전체에서 AI 노출도와 고용 사이의 뚜렷한 충격은 아직 보이지 않는다고 분석했습니다.<a href="#ref-yale-budget" class="inline-note">[20]</a> 반면 스탠퍼드 디지털경제연구소 연구는 AI 노출도가 높은 직군에서 초기 경력자 고용 감소가 관찰된다고 보고했습니다.<a href="#ref-stanford-canaries" class="inline-note">[21]</a> 즉 전체 고용은 아직 안정적으로 보일 수 있지만, <span class="hl-yellow">특정 진입 경로는 이미 압박을 받을 수 있습니다.</span></p>
+    <p>이 차이가 중요합니다. AI는 직업을 한 번에 없애기보다 직업 안의 업무를 분해합니다.</p>
+  </div>
+  <div class="wrap">
+    <div class="compare">
+      <div class="compare-row head">
+        <div>업무</div><div class="h2">AI 영향</div><div class="h3">사람에게 남는 가치</div>
+      </div>
+      <div class="compare-row"><div class="item name" data-lbl="업무">자료 조사</div><div class="item down" data-lbl="AI">빠르게 대체·보조</div><div class="item up" data-lbl="사람">좋은 질문, 출처 선별</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="업무">초안 작성</div><div class="item down" data-lbl="AI">빠르게 대체·보조</div><div class="item up" data-lbl="사람">구조 설계, 논리 품질</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="업무">코드 초안</div><div class="item down" data-lbl="AI">빠르게 대체·보조</div><div class="item up" data-lbl="사람">요구사항 정의, 디버깅, 아키텍처</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="업무">고객 응대 초안</div><div class="item down" data-lbl="AI">빠르게 대체·보조</div><div class="item up" data-lbl="사람">예외 처리, 관계 회복</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="업무">분석 리포트</div><div class="item down" data-lbl="AI">빠르게 대체·보조</div><div class="item up" data-lbl="사람">가정 검증, 의사결정 연결</div></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>문제는 많은 진입직이 바로 이 "초안·조사·정리·반복" 업무를 통해 숙련을 쌓아왔다는 점입니다. AI가 이 업무를 대신하면 조직은 당장 생산성을 얻을 수 있습니다. 하지만 <span class="hl-red">장기적으로는 숙련이 형성되는 사다리가 약해집니다.</span></p>
+    <p>이것이 노동시장의 가장 중요한 균열입니다.</p>
+    <div class="pullquote">AI는 숙련자를 더 강하게 만들 수 있지만,<br>미숙련자가 숙련자로 올라가는 경로를 좁힐 수 있습니다.</div>
+    <p>이때 신입과 학생에게 필요한 것은 "AI 금지"가 아닙니다. AI를 쓰되, 자기 사고의 루프가 남도록 쓰는 방식입니다. 즉 실무에서도 교육에서도 답은 같습니다. <span class="hl-orange">본인 시도 → AI 피드백 → 자기 검증 → 수정</span>의 순서를 지켜야 합니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">5 · 네 번째 힘</span>
+    <h2 class="section-title">시장은 이미 메타인지에<br>가격을 붙이기 시작했습니다.</h2>
+  </div>
+  <div class="bignum">
+    <div><div class="bignum-num">+56%</div></div>
+    <div class="bignum-cap">
+      <strong>AI 스킬 임금 프리미엄.</strong> PwC 2025 Global AI Jobs Barometer는 AI 스킬을 가진 노동자가 평균 56%의 임금 프리미엄을 받는다고 분석했습니다. 이 수치는 전년 25%에서 크게 상승한 것입니다.<a href="#ref-pwc" class="inline-note">[10]</a>
+    </div>
+  </div>
+  <div class="prose">
+    <p>세계경제포럼은 2025~2030년 사이 가장 빠르게 성장할 스킬로 AI·빅데이터, 네트워크·사이버보안, 기술 리터러시를 꼽았지만, 동시에 분석적 사고·창의적 사고·회복탄력성·호기심·평생학습도 중요해진다고 봤습니다.<a href="#ref-wef" class="inline-note">[11]</a></p>
+    <p>이 조합이 핵심입니다. 시장은 단순히 "AI를 아는 사람"을 원하는 것이 아닙니다. <span class="hl-orange">AI를 써서 더 나은 판단을 내리는 사람</span>을 원합니다.</p>
+    <p>AI를 잘 쓰는 사람의 특징은 도구 사용법보다 사고 습관에 가깝습니다.</p>
+  </div>
+  <div class="wrap">
+    <div class="compare">
+      <div class="compare-row head"><div>요청</div><div class="h2">낮은 수준</div><div class="h3">높은 수준</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="요청">대체 작성</div><div class="item down" data-lbl="낮은">"이거 대신 써줘"</div><div class="item up" data-lbl="높은">"내 가정을 반박해줘"</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="요청">요약</div><div class="item down" data-lbl="낮은">"요약해줘"</div><div class="item up" data-lbl="높은">"핵심 논점과 누락된 쟁점을 분리해줘"</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="요청">정답</div><div class="item down" data-lbl="낮은">"답 알려줘"</div><div class="item up" data-lbl="높은">"내 풀이의 오류를 질문으로 찾아줘"</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="요청">자료</div><div class="item down" data-lbl="낮은">"자료 만들어줘"</div><div class="item up" data-lbl="높은">"의사결정 기준별 장단점을 비교해줘"</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="요청">검증</div><div class="item down" data-lbl="낮은">"그럴듯하게 써줘"</div><div class="item up" data-lbl="높은">"검증 가능한 주장과 추측을 분리해줘"</div></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>이 차이는 프롬프트 기술의 차이가 아니라 자기 사고의 차이입니다. 좋은 사용자는 AI에게 일을 떠넘기지 않습니다. <span class="hl-orange">자기 사고를 더 날카롭게 만들기 위해 AI를 씁니다.</span></p>
+    <p>그래서 메타인지는 AI 시대의 교양이 아니라 생산성의 핵심입니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">6 · 나무를 보자 — 교육</span>
+    <h2 class="section-title">실제로 무너지는 것은<br><span style="color: var(--c-yellow);">'숙제'</span>가 아니라 <span style="color: var(--c-orange);">'연습'</span>입니다.</h2>
+  </div>
+  <div class="prose">
+    <p>숙제는 원래 결과물이 아니라 연습이었습니다. 수학 문제를 푸는 목적은 정답지를 만드는 것이 아니라 풀이 과정을 통해 사고 근육을 만드는 것이었습니다. 글쓰기 과제의 목적도 문장을 제출하는 것이 아니라 생각을 구조화하는 훈련이었습니다.</p>
+    <p>AI는 숙제를 없애지 않습니다. 더 위험하게, <span class="hl-red">숙제를 연습이 아닌 제출물로 바꿉니다.</span></p>
+    <p>이 차이를 구분해야 합니다.</p>
+  </div>
+  <div class="wrap">
+    <div class="compare">
+      <div class="compare-row head"><div>구분</div><div class="h2">제출물 중심</div><div class="h3">연습 중심</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="구분">목표</div><div class="item down" data-lbl="제출">빨리 완성하기</div><div class="item up" data-lbl="연습">사고력 만들기</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="구분">AI 역할</div><div class="item down" data-lbl="제출">대신 생성</div><div class="item up" data-lbl="연습">질문·피드백·반례 제공</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="구분">학생 역할</div><div class="item down" data-lbl="제출">결과물 편집자</div><div class="item up" data-lbl="연습">문제 해결자</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="구분">부모 역할</div><div class="item down" data-lbl="제출">사용 여부 감시</div><div class="item up" data-lbl="연습">사고 과정 보호</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="구분">평가 기준</div><div class="item down" data-lbl="제출">완성도</div><div class="item up" data-lbl="연습">과정·검증·설명력</div></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>학교가 이 전환을 따라잡고 있지 못한 것도 문제입니다. 스탠퍼드 AI Index는 미국 중·고등학교의 절반만 AI 정책을 갖고 있고, 교사 중 6%만 정책이 명확하다고 답했다고 정리했습니다.<a href="#ref-stanford-2026-edu" class="inline-note">[2]</a> 제도가 늦으면 가정의 규칙이 먼저 필요합니다.</p>
+    <p>가정에서 가장 중요한 원칙은 하나입니다.</p>
+    <div class="pullquote" style="border-left-color: var(--c-orange);">AI 사용 전,<br>자기 시도가 먼저 있어야 합니다.</div>
+    <p>이 원칙이 없으면 AI는 튜터가 아니라 대필자가 됩니다. 이 원칙이 있으면 AI는 사고를 줄이는 도구가 아니라 사고를 확장하는 도구가 됩니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">7 · 나무를 보자 — 정서</span>
+    <h2 class="section-title">AI를 <span style="color: var(--c-red);">'친구'</span>로 쓰게 두면<br>안 됩니다.</h2>
+  </div>
+  <div class="prose">
+    <p>학습 도구로서의 AI와 정서적 동반자로서의 AI는 구분해야 합니다. 전자는 관리 가능한 도구입니다. 후자는 훨씬 민감한 문제입니다.</p>
+    <p>퓨리서치센터는 미국 10대 중 12%가 정서적 지지나 조언을 얻기 위해 챗봇을 사용했다고 조사했습니다.<a href="#ref-pew-teens" class="inline-note">[3]</a> Common Sense Media는 2025년 조사에서 미국 10대의 72%가 AI 컴패니언을 사용해본 적이 있고, 절반 이상이 정기적으로 사용한다고 발표했습니다. <span class="hl-red">또한 약 3분의 1의 사용자들이 중요한 문제를 실제 사람 대신 AI와 상의한 경험이 있다고 보고했습니다.</span><a href="#ref-common-sense" class="inline-note">[17]</a></p>
+    <p>이 지점에서 원칙은 강해야 합니다.</p>
+  </div>
+  <div class="wrap">
+    <div class="compare">
+      <div class="compare-row head"><div>영역</div><div class="h2" style="color: var(--c-yellow);">조건</div><div class="h3">허용 원칙</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="영역">정보 검색</div><div class="item down" data-lbl="조건">가능</div><div class="item up" data-lbl="원칙">출처 확인 필수</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="영역">글쓰기 피드백</div><div class="item down" data-lbl="조건">가능</div><div class="item up" data-lbl="원칙">본인 초안 이후</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="영역">개념 설명</div><div class="item down" data-lbl="조건">가능</div><div class="item up" data-lbl="원칙">답안 대체 금지</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="영역">진로 탐색</div><div class="item down" data-lbl="조건">가능</div><div class="item up" data-lbl="원칙">부모·교사·전문가와 대화 병행</div></div>
+      <div class="compare-row" style="background: rgba(255,51,85,0.06);"><div class="item name" data-lbl="영역" style="color: var(--c-red);">정서 지지</div><div class="item down" data-lbl="조건" style="color: var(--c-red); font-weight:700;">금지</div><div class="item up" data-lbl="원칙" style="color: var(--c-red);">AI 단독 사용 금지</div></div>
+      <div class="compare-row" style="background: rgba(255,51,85,0.06);"><div class="item name" data-lbl="영역" style="color: var(--c-red);">고민 상담</div><div class="item down" data-lbl="조건" style="color: var(--c-red); font-weight:700;">조건부</div><div class="item up" data-lbl="원칙" style="color: var(--c-red);">사람과 연결하는 보조 수단으로만</div></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>아이에게 "AI를 쓰지 마라"고 말하는 것은 현실성이 낮습니다. 그러나 <span class="hl-red">"외로울 때 AI와만 이야기하지 마라"는 규칙은 반드시 필요합니다.</span> 학습에서 AI는 도구일 수 있지만, 정서에서 AI는 관계의 대체물이 되어서는 안 됩니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">8 · 나무를 보자 — 진로</span>
+    <h2 class="section-title">진로는 <span style="color: var(--c-yellow);">'전공'</span>보다<br><span style="color: var(--c-orange);">'조합'</span>의 문제가 됩니다.</h2>
+  </div>
+  <div class="prose">
+    <p>AI 시대의 진로 질문은 "어떤 직업이 살아남는가?"가 아닙니다. 더 정확한 질문은 다음과 같습니다.</p>
+    <div class="pullquote">어떤 능력 조합이<br>AI와 함께 가치가 커지는가?</div>
+    <p>미국 BLS의 2024~2034년 전망을 보면 데이터 사이언티스트는 34%, 정보보안 분석가는 29%, 간호사는 아니지만 nurse practitioners는 40%, 의료·보건 서비스 관리자는 23% 성장할 것으로 제시됩니다.<a href="#ref-bls-growing" class="inline-note">[12]</a><a href="#ref-bls-data" class="inline-note">[14]</a> 반면 워드프로세서·타이피스트는 -36.1%, 데이터 입력 담당자는 -25.9% 감소 전망입니다.<a href="#ref-bls-declining" class="inline-note">[13]</a></p>
+    <p>여기서 읽어야 할 신호는 단순히 "문과는 위험하고 이과는 안전하다"가 아닙니다. 더 정확한 신호는 이렇습니다.</p>
+  </div>
+  <div class="wrap">
+    <div class="compare">
+      <div class="compare-row head"><div></div><div class="h2">약해지는 조합</div><div class="h3">강해지는 조합</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="기준">사무·판단</div><div class="item down" data-lbl="약">반복 사무 + 낮은 판단</div><div class="item up" data-lbl="강">도메인 지식 + AI 활용 + 검증 능력</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="기준">글쓰기</div><div class="item down" data-lbl="약">단순 글쓰기 + 출처 없음</div><div class="item up" data-lbl="강">문제 정의 + 논리 구성 + 책임 있는 커뮤니케이션</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="기준">코드</div><div class="item down" data-lbl="약">코드 초안 작성만 가능</div><div class="item up" data-lbl="강">요구사항 이해 + 시스템 설계 + 디버깅</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="기준">지식</div><div class="item down" data-lbl="약">지식 암기만 강함</div><div class="item up" data-lbl="강">개념 이해 + 적용 + 설명</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="기준">맥락</div><div class="item down" data-lbl="약">혼자 도구만 잘 씀</div><div class="item up" data-lbl="강">사람·조직·고객 맥락을 이해함</div></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>AI 시대의 전공 전략은 단일 전공의 우열이 아니라 "깊이 × 도구 × 인간 이해"입니다.</p>
+  </div>
+  <div class="formula">
+    <div class="formula-line">도메인 깊이<span class="x">×</span>AI 활용 능력</div>
+    <div class="formula-line" style="margin-top:8px;">언어·논리·관계 능력<span class="x">×</span>검증 습관</div>
+    <div class="formula-eq">= AI 시대의 경쟁력</div>
+  </div>
+  <div class="prose">
+    <p>따라서 STEM만이 답도 아니고 인문학만이 답도 아닙니다. 강한 조합은 다음과 같습니다.</p>
+    <p><span class="hl-orange">데이터·AI + 의료·바이오·교육·금융·제조 같은 도메인.</span> <span class="hl-blue">엔지니어링 + 커뮤니케이션·윤리·정책.</span> <span class="hl-purple">디자인·콘텐츠 + 고객 이해·브랜드 전략·AI 제작 시스템.</span> <span class="hl-green">인문학적 독해력 + AI 도구 활용 + 비즈니스 문제 해결.</span></p>
+    <p>중요한 것은 "무엇을 전공했는가"가 아니라, <span class="hl-orange">AI가 만든 결과를 판단할 수 있는 자기 기준이 있는가</span>입니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">9 · 나무를 보자 — 조직</span>
+    <h2 class="section-title">'AI 도입'이 아니라<br>'업무 운영체제 재설계'.</h2>
+  </div>
+  <div class="prose">
+    <p>기업에서 AI 도입은 대개 도구 구매로 시작됩니다. 그러나 성과는 도구 구매에서 나오지 않습니다. 성과는 업무 흐름이 바뀔 때 나옵니다.</p>
+    <p>연방준비제도는 AI 도입률이 산업·기업 규모에 따라 크게 다르고, 전문서비스·금융 부문에서 특히 높다고 분석했습니다.<a href="#ref-fed-adoption" class="inline-note">[8]</a> 뉴욕연은은 AI 사용이 고소득·고학력·풀타임 근로자에게 더 집중되어 있다고 보고하면서, <span class="hl-yellow">AI가 기존 노동시장 격차를 좁히기보다 넓힐 가능성</span>도 제기했습니다.<a href="#ref-nyfed-training" class="inline-note">[9]</a></p>
+    <p>조직 관점에서 이것은 중요한 경고입니다. AI는 자동으로 평등한 생산성을 만들지 않습니다. <span class="hl-red">오히려 잘 쓰는 사람과 못 쓰는 사람의 격차를 키울 수 있습니다.</span></p>
+    <p>조직은 다음 다섯 단계를 구분해야 합니다.</p>
+  </div>
+  <div class="wrap">
+    <div class="stages">
+      <div class="stage" style="--bp: 0% 50%;"><div class="stage-num">0</div><div class="stage-body"><div><div class="lbl">상태</div><div class="val">개인이 몰래 씀</div></div><div><div class="lbl">리스크</div><div class="val">보안·품질·중복</div></div><div><div class="lbl">다음 과제</div><div class="val">사용 실태 파악</div></div></div></div>
+      <div class="stage" style="--bp: 20% 50%;"><div class="stage-num">1</div><div class="stage-body"><div><div class="lbl">상태</div><div class="val">툴을 공식 도입</div></div><div><div class="lbl">리스크</div><div class="val">생산성 착시</div></div><div><div class="lbl">다음 과제</div><div class="val">사용 기준 수립</div></div></div></div>
+      <div class="stage" style="--bp: 40% 50%;"><div class="stage-num">2</div><div class="stage-body"><div><div class="lbl">상태</div><div class="val">반복 업무 자동화</div></div><div><div class="lbl">리스크</div><div class="val">검증 누락</div></div><div><div class="lbl">다음 과제</div><div class="val">리뷰 체계 설계</div></div></div></div>
+      <div class="stage" style="--bp: 60% 50%;"><div class="stage-num">3</div><div class="stage-body"><div><div class="lbl">상태</div><div class="val">워크플로우 재설계</div></div><div><div class="lbl">리스크</div><div class="val">책임 소재 모호</div></div><div><div class="lbl">다음 과제</div><div class="val">사람·AI 역할 분리</div></div></div></div>
+      <div class="stage" style="--bp: 80% 50%;"><div class="stage-num">4</div><div class="stage-body"><div><div class="lbl">상태</div><div class="val">에이전트·데이터 통합</div></div><div><div class="lbl">리스크</div><div class="val">시스템 리스크</div></div><div><div class="lbl">다음 과제</div><div class="val">권한·감사·로그 관리</div></div></div></div>
+      <div class="stage" style="--bp: 100% 50%;"><div class="stage-num">5</div><div class="stage-body"><div><div class="lbl">상태</div><div class="val">AI-native 조직</div></div><div><div class="lbl">리스크</div><div class="val">역량 양극화</div></div><div><div class="lbl">다음 과제</div><div class="val">학습 시스템 내재화</div></div></div></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>조직에서 가장 위험한 문장은 "AI로 효율화하자"입니다. 너무 추상적입니다. 더 정확한 질문은 다음이어야 합니다.</p>
+    <p><span class="hl-orange">어떤 업무를 AI가 초안화하는가?</span> 어떤 판단은 반드시 사람이 하는가? AI 결과물의 오류를 누가, 어떤 기준으로 검증하는가? 신입은 어떤 업무를 통해 숙련을 쌓는가? AI 사용 로그와 책임 소재는 어떻게 남기는가?</p>
+    <p>이 질문 없이 AI를 도입하면 단기 생산성은 오를 수 있지만 조직 학습은 약해집니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">10 · 나무를 보자 — 마케팅·콘텐츠</span>
+    <h2 class="section-title">'제작력'보다<br>'신뢰 설계'가 중요해집니다.</h2>
+  </div>
+  <div class="prose">
+    <p>AI는 콘텐츠 제작의 한계비용을 거의 0에 가깝게 낮춥니다. 그러면 역설적으로 콘텐츠 자체의 가치는 내려갑니다. <span class="hl-yellow">누구나 글을 쓰고, 이미지를 만들고, 영상을 만들 수 있다면 시장에서 희소한 것은 제작물이 아니라 믿을 만한 관점입니다.</span></p>
+    <p>앞으로 콘텐츠 시장은 세 층으로 갈라질 가능성이 큽니다.</p>
+  </div>
+  <div class="wrap">
+    <div class="tier">
+      <div class="tier-row t1"><div class="tier-num">01</div><div class="tier-name">대량 생성 콘텐츠<span>빠르고 많지만 차별성 약함</span></div><div class="tier-how">가격 경쟁으로 이동</div></div>
+      <div class="tier-row t2"><div class="tier-num">02</div><div class="tier-name">AI 보조 전문 콘텐츠<span>빠르면서도 도메인 검증 포함</span></div><div class="tier-how">전문가 검수와 데이터 기반</div></div>
+      <div class="tier-row t3"><div class="tier-num">03</div><div class="tier-name">신뢰 기반 오리지널 관점<span>사람·브랜드·경험의 책임이 붙음</span></div><div class="tier-how">해석력, 명성, 커뮤니티</div></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>마케팅·브랜드·플랫폼 관점에서 핵심은 "더 많이 만드는 것"이 아닙니다. AI 때문에 모두가 더 많이 만들 수 있기 때문입니다. 핵심은 다음 세 가지입니다.</p>
+    <p><span class="hl-orange">출처가 분명한가</span> — 어떤 데이터와 경험에 근거했는가? <span class="hl-orange">관점이 있는가</span> — 단순 요약이 아니라 무엇을 다르게 보게 만드는가? <span class="hl-orange">책임이 있는가</span> — 틀렸을 때 수정하고 설명할 주체가 있는가?</p>
+    <p>AI가 콘텐츠 공급을 폭증시키는 시대에는 브랜드가 곧 필터가 됩니다. 사람들은 모든 콘텐츠를 읽지 않습니다. <span class="hl-orange">믿을 수 있는 사람과 조직의 해석을 구독합니다.</span></p>
+    <p>따라서 기업과 창작자의 전략은 "AI로 콘텐츠를 많이 만든다"가 아니라, <span class="hl-orange">AI를 이용해 더 빠르게 만들되 인간의 관점과 검증으로 신뢰를 축적한다</span>가 되어야 합니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">11 · 물리적 병목</span>
+    <h2 class="section-title">AI는 디지털 기술이지만<br>현실의 전기와 칩 위에서 움직입니다.</h2>
+  </div>
+  <div class="prose">
+    <p>AI는 무형의 지능처럼 보이지만 실제로는 전력, 데이터센터, 반도체, 냉각, 자본, 인력 위에서 작동합니다. 국제에너지기구는 데이터센터 전력 수요가 2025년에 17% 증가했고, AI 중심 데이터센터의 전력 소비는 50% 증가했다고 보고했습니다.<a href="#ref-iea-2026" class="inline-note">[15]</a> 또한 2030년까지 데이터센터 전력 소비가 약 945TWh로 두 배 수준에 이를 수 있다고 전망했습니다.<a href="#ref-iea-energy" class="inline-note">[16]</a></p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1080px;margin:64px auto;padding:0 24px;">
+    <div style="padding:32px;background:var(--bg-card);border:1px solid var(--line);border-radius:20px;text-align:center;">
+      <div style="font-size:var(--t-12);font-weight:800;letter-spacing:-0.04em;color:var(--c-orange);line-height:0.9;">17%</div>
+      <div style="font-size:var(--t-3);color:var(--text-2);margin-top:16px;line-height:1.4;">2025년 데이터센터<br>전력 수요 증가</div>
+    </div>
+    <div style="padding:32px;background:var(--bg-card);border:1px solid var(--line);border-radius:20px;text-align:center;">
+      <div style="font-size:var(--t-12);font-weight:800;letter-spacing:-0.04em;color:var(--c-yellow);line-height:0.9;">50%</div>
+      <div style="font-size:var(--t-3);color:var(--text-2);margin-top:16px;line-height:1.4;">AI 중심 데이터센터<br>전력 소비 증가</div>
+    </div>
+    <div style="padding:32px;background:var(--bg-card);border:1px solid var(--line);border-radius:20px;text-align:center;">
+      <div style="font-size:var(--t-12);font-weight:800;letter-spacing:-0.04em;color:var(--c-blue);line-height:0.9;">945</div>
+      <div style="font-size:var(--t-3);color:var(--text-2);margin-top:16px;line-height:1.4;">2030년 예상 전력 소비<br><span style="color:var(--text-3);">TWh, 두 배 수준</span></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>이 물리적 병목은 두 가지를 의미합니다.</p>
+    <p>첫째, AI는 계속 싸지고 쉬워질 가능성이 크지만, 동시에 특정 지역과 산업에서는 <span class="hl-yellow">전력·인프라·칩 병목</span>이 비용과 규제 이슈로 떠오릅니다.</p>
+    <p>둘째, 디지털 직무가 압박받는 동안에도 물리 세계의 인프라 직무, 에너지, 전기, 냉각, 데이터센터, 로봇 운영, 현장 유지보수의 가치는 커질 수 있습니다. AI 시대는 완전한 비물질화가 아니라, <span class="hl-orange">디지털 지능과 물리 인프라가 동시에 커지는 시대</span>입니다.</p>
+    <p>이 관점은 진로와 산업 전략에도 중요합니다. "컴퓨터 안의 일"만 보는 사람은 절반만 봅니다. 앞으로의 기회는 AI 모델 자체뿐 아니라, AI가 현실 세계에서 돌아가게 만드는 인프라와 운영 체계에도 있습니다.</p>
+  </div>
+</section>
+
+<section class="section" style="background: linear-gradient(180deg, #050508 0%, var(--bg) 100%);">
+  <div class="wrap">
+    <span class="section-num" style="background: var(--rainbow); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">12 · 시대를 설명하는 다섯 가지 법칙</span>
+    <h2 class="section-title">다섯 개의 법칙으로<br>이 시대가 설명됩니다.</h2>
+  </div>
+  <div class="laws">
+    <div class="law l1">
+      <div class="law-num">법칙 01</div>
+      <div class="law-title">결과물<br>인플레이션</div>
+      <div class="law-body">AI가 결과물을 빠르게 만들수록 결과물 자체의 신호 가치는 떨어집니다. 글, 코드, 요약, 이미지, 기획안은 더 이상 실력의 충분한 증거가 아닙니다. <strong style="color:var(--text);">결과물보다 과정 설명력이 중요해집니다.</strong></div>
+    </div>
+    <div class="law l2">
+      <div class="law-num">법칙 02</div>
+      <div class="law-title">인지 외주화의<br>역설</div>
+      <div class="law-body">AI는 어려운 일을 쉽게 만들어줍니다. 하지만 학습은 원래 어려운 일을 통과하며 생깁니다. 편해질수록 더 똑똑해지는 사람이 있고, 편해질수록 생각하지 않게 되는 사람이 있습니다. <strong style="color:var(--text);">이 차이를 만드는 것이 메타인지입니다.</strong></div>
+    </div>
+    <div class="law l3">
+      <div class="law-num">법칙 03</div>
+      <div class="law-title">숙련 사다리의<br>압축</div>
+      <div class="law-body">AI는 숙련자의 생산성을 높입니다. 동시에 초보자가 숙련자로 올라가던 반복 업무를 줄입니다. <strong style="color:var(--text);">기업은 단기 효율과 장기 인재 양성 사이의 균형을 다시 설계해야 합니다.</strong></div>
+    </div>
+    <div class="law l4">
+      <div class="law-num">법칙 04</div>
+      <div class="law-title">판단<br>프리미엄</div>
+      <div class="law-body">정보와 초안이 흔해질수록 판단의 가치는 올라갑니다. <strong style="color:var(--text);">무엇이 맞는지, 무엇이 중요한지, 무엇을 해야 하는지 결정하는 능력이 프리미엄을 받습니다.</strong></div>
+    </div>
+    <div class="law l5">
+      <div class="law-num">법칙 05</div>
+      <div class="law-title">신뢰의<br>희소화</div>
+      <div class="law-body">콘텐츠와 답변이 넘쳐날수록 사람들은 더 적게 믿습니다. <strong style="color:var(--text);">결국 신뢰받는 사람, 신뢰받는 브랜드, 신뢰받는 기관의 가치가 커집니다.</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">13 · 메타인지란 무엇인가</span>
+    <h2 class="section-title">메타인지는 <span style="color: var(--c-orange);">다섯 단계의 루프</span>입니다.</h2>
+  </div>
+  <div class="prose">
+    <p>메타인지는 단순히 "생각을 잘하는 능력"이 아닙니다. 더 정확히는 다음 다섯 단계의 루프입니다.</p>
+  </div>
+  <div class="metaloop">
+    <div class="metaloop-title">메타인지 5단계 루프</div>
+    <div class="metaloop-step"><div class="n">1</div><div class="txt">내가 무엇을 모르는지 안다</div></div>
+    <div class="metaloop-step"><div class="n">2</div><div class="txt">문제를 어떻게 풀지 계획한다</div></div>
+    <div class="metaloop-step warning"><div class="n">3</div><div class="txt">답을 만들거나 시도한다<span class="warn-tag">AI가 대신함</span></div></div>
+    <div class="metaloop-step"><div class="n">4</div><div class="txt">내 답의 약점을 검증한다</div></div>
+    <div class="metaloop-step"><div class="n">5</div><div class="txt">피드백을 반영해 수정한다</div></div>
+  </div>
+  <div class="prose">
+    <p>AI 시대에 이 루프가 중요한 이유는 명확합니다. <span class="hl-orange">AI가 3번을 너무 쉽게 해주기 때문입니다.</span> 답을 만들거나 초안을 생성하는 단계가 쉬워지면, 사람은 1번·2번·4번·5번을 생략하기 쉽습니다. 그러나 실제 실력은 바로 그 단계에서 만들어집니다.</p>
+    <p>그래서 AI 시대의 학습 원칙은 다음과 같습니다.</p>
+    <div class="pullquote">AI는 3번을 대신하게 하는 도구가 아니라,<br>1·2·4·5번을 강화하는 도구로 써야 합니다.</div>
+    <p>이것이 메타인지형 AI 사용법입니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">14 · 학생을 위한 AI 사용 원칙</span>
+    <h2 class="section-title">정답보다<br>사고 루프를 남겨야 합니다.</h2>
+  </div>
+  <div class="prose">
+    <p>학생에게 필요한 것은 복잡한 규정이 아니라 반복 가능한 절차입니다.</p>
+    <p style="font-size: var(--t-6); font-weight: 700; letter-spacing: -0.02em; margin-top: 48px;">14.1 AI 사용 전 3문장</p>
+    <p>AI를 켜기 전에 반드시 세 문장을 적게 해야 합니다.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1080px;margin:48px auto;padding:0 24px;">
+    <div style="padding:28px;background:var(--bg-card);border:1px solid var(--line);border-radius:20px;border-top:3px solid var(--c-orange);"><div style="font-size:var(--t-9);font-weight:800;color:var(--c-orange);line-height:0.9;letter-spacing:-0.04em;">1</div><div style="font-size:var(--t-5);font-weight:600;margin-top:12px;letter-spacing:-0.015em;">내가 이해한 문제는 무엇인가?</div></div>
+    <div style="padding:28px;background:var(--bg-card);border:1px solid var(--line);border-radius:20px;border-top:3px solid var(--c-orange);"><div style="font-size:var(--t-9);font-weight:800;color:var(--c-orange);line-height:0.9;letter-spacing:-0.04em;">2</div><div style="font-size:var(--t-5);font-weight:600;margin-top:12px;letter-spacing:-0.015em;">내가 먼저 생각한 답은 무엇인가?</div></div>
+    <div style="padding:28px;background:var(--bg-card);border:1px solid var(--line);border-radius:20px;border-top:3px solid var(--c-orange);"><div style="font-size:var(--t-9);font-weight:800;color:var(--c-orange);line-height:0.9;letter-spacing:-0.04em;">3</div><div style="font-size:var(--t-5);font-weight:600;margin-top:12px;letter-spacing:-0.015em;">내가 막힌 지점은 어디인가?</div></div>
+  </div>
+</section>
+
+<section style="padding: 0 24px 80px;">
+  <div class="prose">
+    <p>이 세 문장이 없으면 AI 사용은 대체로 외주화가 됩니다. 이 세 문장이 있으면 AI 사용은 피드백이 됩니다.</p>
+    <p style="font-size: var(--t-6); font-weight: 700; letter-spacing: -0.02em; margin-top: 64px;">14.2 AI에게 시킬 일과 시키지 말아야 할 일</p>
+  </div>
+  <div class="wrap">
+    <div class="compare">
+      <div class="compare-row head"><div></div><div class="h3">시킬 일</div><div class="h2">시키지 말아야 할 일</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="범주">풀이</div><div class="item up" data-lbl="시킬">내 풀이의 약점 질문하기</div><div class="item down" data-lbl="금지">숙제 답 완성하기</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="범주">개념</div><div class="item up" data-lbl="시킬">개념을 다른 예시로 설명받기</div><div class="item down" data-lbl="금지">글 전체 대필시키기</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="범주">반례</div><div class="item up" data-lbl="시킬">반례 찾기</div><div class="item down" data-lbl="금지">출처 없는 주장 만들기</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="범주">관점</div><div class="item up" data-lbl="시킬">내가 놓친 관점 묻기</div><div class="item down" data-lbl="금지">시험·평가를 대신 풀게 하기</div></div>
+      <div class="compare-row"><div class="item name" data-lbl="범주">초안</div><div class="item up" data-lbl="시킬">초안에 대한 피드백 받기</div><div class="item down" data-lbl="금지">정서적 고민을 단독 상담하기</div></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p style="font-size: var(--t-6); font-weight: 700; letter-spacing: -0.02em; margin-top: 64px;">14.3 최종 제출물에는 과정 로그를 남깁니다</p>
+    <p>AI를 사용했다면 결과물만 제출하게 해서는 안 됩니다. 다음 네 가지를 함께 남기게 해야 합니다.</p>
+    <p><span class="hl-orange">처음 본인 생각.</span> <span class="hl-blue">AI에게 물은 질문.</span> <span class="hl-green">AI 답변 중 채택한 부분과 버린 부분.</span> <span class="hl-purple">최종 판단의 이유.</span></p>
+    <p>이렇게 하면 AI 사용은 숨길 일이 아니라 학습 과정의 일부가 됩니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">15 · 부모를 위한 가정 규칙</span>
+    <h2 class="section-title">시간 제한보다<br>대체 여부를 봐야 합니다.</h2>
+  </div>
+  <div class="prose">
+    <p>AI 시대의 가정 규칙은 "몇 시간 썼는가"보다 "무엇을 대체했는가"를 봐야 합니다.</p>
+  </div>
+  <div class="wrap">
+    <div class="compare">
+      <div class="compare-row head"><div>질문</div><div class="h2" style="color: var(--c-red);">위험 신호</div><div></div></div>
+      <div class="compare-row"><div class="item name" data-lbl="질문">AI가 아이의 생각을 대체했는가?</div><div class="item down" data-lbl="신호" style="color: var(--c-red);">본인 초안 없이 바로 AI 사용</div><div></div></div>
+      <div class="compare-row"><div class="item name" data-lbl="질문">AI가 사람과의 대화를 대체했는가?</div><div class="item down" data-lbl="신호" style="color: var(--c-red);">고민을 부모·친구보다 챗봇에 먼저 말함</div><div></div></div>
+      <div class="compare-row"><div class="item name" data-lbl="질문">AI가 잠·운동·대면 관계를 대체했는가?</div><div class="item down" data-lbl="신호" style="color: var(--c-red);">생활 리듬 붕괴</div><div></div></div>
+      <div class="compare-row"><div class="item name" data-lbl="질문">AI가 실패 경험을 제거했는가?</div><div class="item down" data-lbl="신호" style="color: var(--c-red);">어려운 문제를 버티지 못함</div><div></div></div>
+      <div class="compare-row"><div class="item name" data-lbl="질문">AI가 설명력을 약화시켰는가?</div><div class="item down" data-lbl="신호" style="color: var(--c-red);">제출물은 좋은데 설명을 못함</div><div></div></div>
+    </div>
+  </div>
+  <div class="prose"><p>가정에서 바로 적용할 수 있는 규칙은 다음 다섯 가지입니다.</p></div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1280px;margin:48px auto;padding:0 24px;">
+    <div style="padding:24px;background:var(--bg-card);border-radius:18px;border-top:3px solid var(--c-orange);"><div style="font-size:var(--t-2);letter-spacing:0.18em;font-weight:700;color:var(--c-orange);">규칙 1</div><div style="font-size:var(--t-5);font-weight:700;margin-top:8px;letter-spacing:-0.02em;line-height:1.2;">30분<br>선시도 원칙</div><div style="font-size:var(--t-3);color:var(--text-2);margin-top:14px;line-height:1.55;">어려운 과제는 최소 30분 본인이 먼저 시도합니다.</div></div>
+    <div style="padding:24px;background:var(--bg-card);border-radius:18px;border-top:3px solid var(--c-yellow);"><div style="font-size:var(--t-2);letter-spacing:0.18em;font-weight:700;color:var(--c-yellow);">규칙 2</div><div style="font-size:var(--t-5);font-weight:700;margin-top:8px;letter-spacing:-0.02em;line-height:1.2;">정답 금지<br>프롬프트</div><div style="font-size:var(--t-3);color:var(--text-2);margin-top:14px;line-height:1.55;">"정답 말하지 말고, 내가 생각할 질문을 줘"라고 묻습니다.</div></div>
+    <div style="padding:24px;background:var(--bg-card);border-radius:18px;border-top:3px solid var(--c-green);"><div style="font-size:var(--t-2);letter-spacing:0.18em;font-weight:700;color:var(--c-green);">규칙 3</div><div style="font-size:var(--t-5);font-weight:700;margin-top:8px;letter-spacing:-0.02em;line-height:1.2;">과정 로그<br>원칙</div><div style="font-size:var(--t-3);color:var(--text-2);margin-top:14px;line-height:1.55;">AI 사용 시 질문·답변·수정 이유를 남깁니다.</div></div>
+    <div style="padding:24px;background:var(--bg-card);border-radius:18px;border-top:3px solid var(--c-blue);"><div style="font-size:var(--t-2);letter-spacing:0.18em;font-weight:700;color:var(--c-blue);">규칙 4</div><div style="font-size:var(--t-5);font-weight:700;margin-top:8px;letter-spacing:-0.02em;line-height:1.2;">정서 대체<br>금지</div><div style="font-size:var(--t-3);color:var(--text-2);margin-top:14px;line-height:1.55;">외로움·불안·관계 고민은 사람과 먼저 대화합니다.</div></div>
+    <div style="padding:24px;background:var(--bg-card);border-radius:18px;border-top:3px solid var(--c-purple);"><div style="font-size:var(--t-2);letter-spacing:0.18em;font-weight:700;color:var(--c-purple);">규칙 5</div><div style="font-size:var(--t-5);font-weight:700;margin-top:8px;letter-spacing:-0.02em;line-height:1.2;">설명<br>테스트</div><div style="font-size:var(--t-3);color:var(--text-2);margin-top:14px;line-height:1.55;">제출 전 부모나 친구에게 자기 말로 설명합니다.</div></div>
+  </div>
+  <div class="prose">
+    <p>이 규칙의 목적은 통제가 아닙니다. 목적은 <span class="hl-orange">아이가 도구를 쓰면서도 자기 사고의 주도권을 잃지 않게 하는 것</span>입니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">16 · 직장인을 위한 원칙</span>
+    <h2 class="section-title">AI 슈퍼유저는<br><span style="color: var(--c-yellow);">도구를 많이 쓰는 사람</span>이 아니라<br><span style="color: var(--c-orange);">검증 루프를 가진 사람</span>입니다.</h2>
+  </div>
+  <div class="prose">
+    <p>직장인에게 AI는 선택이 아니라 기본 역량이 되어갑니다. 그러나 AI를 많이 쓴다고 해서 반드시 강해지는 것은 아닙니다. AI 사용의 수준은 다음 세 단계로 갈립니다.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1080px;margin:56px auto;padding:0 24px;">
+    <div style="padding:36px 28px;background:var(--bg-card);border:1px solid var(--line);border-radius:20px;"><div style="font-size:var(--t-2);letter-spacing:0.24em;text-transform:uppercase;color:var(--text-3);font-weight:700;">1단계</div><div style="font-size:var(--t-6);font-weight:700;margin-top:12px;letter-spacing:-0.02em;">반복 업무를<br>빠르게 처리</div><div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--line);font-size:var(--t-3);color:var(--text-2);">결과 → <strong style="color:var(--text);">시간 절약</strong></div></div>
+    <div style="padding:36px 28px;background:var(--bg-card);border:1px solid var(--line-2);border-radius:20px;"><div style="font-size:var(--t-2);letter-spacing:0.24em;text-transform:uppercase;color:var(--c-yellow);font-weight:700;">2단계</div><div style="font-size:var(--t-6);font-weight:700;margin-top:12px;letter-spacing:-0.02em;">초안·분석·코드<br>품질 향상</div><div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--line);font-size:var(--t-3);color:var(--text-2);">결과 → <strong style="color:var(--text);">생산성 향상</strong></div></div>
+    <div style="padding:36px 28px;background:linear-gradient(180deg,rgba(255,107,53,0.08),rgba(255,107,53,0.02));border:1px solid rgba(255,107,53,0.3);border-radius:20px;"><div style="font-size:var(--t-2);letter-spacing:0.24em;text-transform:uppercase;color:var(--c-orange);font-weight:700;">3단계</div><div style="font-size:var(--t-6);font-weight:700;margin-top:12px;letter-spacing:-0.02em;">문제 정의·의사결정<br>체계 개선</div><div style="margin-top:24px;padding-top:24px;border-top:1px solid var(--line-2);font-size:var(--t-3);color:var(--text-2);">결과 → <strong style="color:var(--c-orange);">역량 확장</strong></div></div>
+  </div>
+  <div class="prose">
+    <p>대부분의 사람은 1단계에서 멈춥니다. <span class="hl-orange">경쟁력은 2단계와 3단계에서 생깁니다.</span></p>
+    <p>직장인이 매주 훈련해야 할 AI 루틴은 다음과 같습니다.</p>
+    <p>이번 주 업무 중 반복되는 작업 1개를 AI로 줄입니다. 중요한 문서 1개는 AI에게 반박을 시킵니다. 의사결정 1개는 AI에게 기준표를 만들게 한 뒤 사람이 최종 판단합니다. AI 답변 중 사실 주장 3개는 직접 출처를 확인합니다. 내가 AI에 맡긴 일과 직접 판단한 일을 구분해 기록합니다.</p>
+    <p>AI 시대의 직장인은 <span class="hl-orange">"더 빨리 만드는 사람"에서 "더 좋은 판단 시스템을 가진 사람"으로 이동</span>해야 합니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">17 · 조직 리더를 위한 원칙</span>
+    <h2 class="section-title">자동화보다<br>학습 시스템이 먼저입니다.</h2>
+  </div>
+  <div class="prose">
+    <p>리더가 AI를 도입할 때 가장 먼저 해야 할 일은 비용 절감 목록을 만드는 것이 아닙니다. <span class="hl-orange">조직 내 학습이 어디서 일어나는지 파악하는 것</span>입니다.</p>
+    <p>특히 다음 업무는 단순히 없애면 안 됩니다.</p>
+  </div>
+  <div class="wrap">
+    <div class="compare">
+      <div class="compare-row head"><div>업무</div><div class="h3">왜 중요한가</div><div></div></div>
+      <div class="compare-row"><div class="item name" data-lbl="업무">자료 조사</div><div class="item up" data-lbl="이유">산업과 고객을 이해하는 입구입니다</div><div></div></div>
+      <div class="compare-row"><div class="item name" data-lbl="업무">초안 작성</div><div class="item up" data-lbl="이유">사고 구조를 훈련하는 과정입니다</div><div></div></div>
+      <div class="compare-row"><div class="item name" data-lbl="업무">코드 리뷰</div><div class="item up" data-lbl="이유">품질 기준을 배우는 장면입니다</div><div></div></div>
+      <div class="compare-row"><div class="item name" data-lbl="업무">고객 응대</div><div class="item up" data-lbl="이유">예외 상황과 감정 맥락을 배우는 훈련입니다</div><div></div></div>
+      <div class="compare-row"><div class="item name" data-lbl="업무">보고서 작성</div><div class="item up" data-lbl="이유">문제 정의와 의사결정을 연결하는 연습입니다</div><div></div></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>AI가 이 업무를 보조할 수는 있습니다. 그러나 사람이 완전히 건너뛰면 조직은 조용히 약해집니다. <span class="hl-red">특히 신입과 주니어에게는 더 그렇습니다.</span></p>
+    <p>리더의 질문은 다음이어야 합니다.</p>
+    <div class="pullquote">"이 일을 AI가 대신할 수 있는가?"가 아니라,<br><span style="color:var(--c-orange);">"이 일을 AI가 보조할 때 사람의 숙련은 어떻게 남길 것인가?"</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">18 · 결정 구간</span>
+    <h2 class="section-title"><span style="color: var(--c-orange);">2026~2028년</span>은<br>AI가 "신기한 도구"에서<br>"기본 인프라"로 바뀌는 구간입니다.</h2>
+  </div>
+  <div class="prose">
+    <p>이 기간에 세 가지 변화가 동시에 진행될 가능성이 큽니다.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1080px;margin:56px auto;padding:0 24px;">
+    <div style="padding:32px 28px;background:var(--bg-card);border-radius:20px;border-top:3px solid var(--c-orange);"><div style="font-size:var(--t-2);letter-spacing:0.18em;color:var(--c-orange);font-weight:700;">변화 1</div><div style="font-size:var(--t-6);font-weight:700;margin-top:12px;letter-spacing:-0.02em;line-height:1.2;">AI 사용의<br>보편화</div><div style="font-size:var(--t-3);color:var(--text-2);margin-top:18px;line-height:1.55;">학생과 직장인 모두 AI 사용이 예외가 아니라 기본값이 됩니다.</div></div>
+    <div style="padding:32px 28px;background:var(--bg-card);border-radius:20px;border-top:3px solid var(--c-yellow);"><div style="font-size:var(--t-2);letter-spacing:0.18em;color:var(--c-yellow);font-weight:700;">변화 2</div><div style="font-size:var(--t-6);font-weight:700;margin-top:12px;letter-spacing:-0.02em;line-height:1.2;">평가 방식의<br>전환</div><div style="font-size:var(--t-3);color:var(--text-2);margin-top:18px;line-height:1.55;">결과물만으로 실력을 판단하기 어려워집니다.</div></div>
+    <div style="padding:32px 28px;background:var(--bg-card);border-radius:20px;border-top:3px solid var(--c-red);"><div style="font-size:var(--t-2);letter-spacing:0.18em;color:var(--c-red);font-weight:700;">변화 3</div><div style="font-size:var(--t-6);font-weight:700;margin-top:12px;letter-spacing:-0.02em;line-height:1.2;">격차의<br>확대</div><div style="font-size:var(--t-3);color:var(--text-2);margin-top:18px;line-height:1.55;">메타인지가 있는 사람은 AI로 더 강해지고, 없는 사람은 AI 의존으로 약해집니다.</div></div>
+  </div>
+  <div class="prose">
+    <p>이 구간에서 필요한 결정은 AI 금지가 아닙니다. AI 전면 허용도 아닙니다. 필요한 것은 <span class="hl-orange">사용 원칙의 제도화</span>입니다.</p>
+    <p>가정은 가정용 AI 규칙을 가져야 합니다. 학교는 과제와 평가를 과정 중심으로 바꿔야 합니다. 기업은 AI 사용 로그, 검증 기준, 책임 소재를 정해야 합니다. 개인은 매일 자신의 사고 과정을 점검해야 합니다.</p>
+  </div>
+</section>
+
+<section class="section" style="background: linear-gradient(180deg, var(--bg) 0%, #050508 50%, var(--bg) 100%);">
+  <div class="wrap">
+    <span class="section-num">19 · 최종 처방</span>
+    <h2 class="section-title">세 가지 시스템을<br>만들어야 합니다.</h2>
+  </div>
+  <div class="wrap">
+    <div class="cards-3">
+      <div class="card-sys s1">
+        <h4>19.1</h4>
+        <h3>개인 시스템</h3>
+        <ul>
+          <li>매일 중요한 판단 1개를 기록합니다.</li>
+          <li>그 판단의 전제와 반례를 적습니다.</li>
+          <li>AI에게 반박을 요청합니다.</li>
+          <li>최종 판단은 사람이 내립니다.</li>
+          <li>틀렸을 때 무엇을 잘못 보았는지 복기합니다.</li>
+        </ul>
+      </div>
+      <div class="card-sys s2">
+        <h4>19.2</h4>
+        <h3>가정 시스템</h3>
+        <ul>
+          <li>AI 사용 전 본인 시도 기록을 남깁니다.</li>
+          <li>AI는 정답 제공자가 아니라 질문 제공자로 씁니다.</li>
+          <li>정서적 고민은 사람과 먼저 나눕니다.</li>
+          <li>잠·운동·대면 관계를 침범하면 사용을 줄입니다.</li>
+          <li>결과물보다 설명력을 칭찬합니다.</li>
+        </ul>
+      </div>
+      <div class="card-sys s3">
+        <h4>19.3</h4>
+        <h3>조직 시스템</h3>
+        <ul>
+          <li>AI 사용 가능 업무와 금지 업무를 구분합니다.</li>
+          <li>모든 AI 산출물에는 검증 책임자를 둡니다.</li>
+          <li>신입의 학습 업무를 자동화로 완전히 없애지 않습니다.</li>
+          <li>AI 교육은 툴 교육이 아니라 판단·검증 교육으로 설계합니다.</li>
+          <li>성과 지표에 속도뿐 아니라 품질·오류율·학습 효과를 넣습니다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">20 · 결론</span>
+    <h2 class="section-title">도구의 시대가 아니라<br><span style="color: var(--c-orange);">자기 점검의 시대</span>입니다.</h2>
+  </div>
+  <div class="prose">
+    <p>AI는 인간의 지적 작업을 없애는 것이 아니라 재배치합니다. 단순 작성, 단순 요약, 단순 검색, 단순 초안은 점점 더 자동화됩니다. 그러나 문제 정의, 가치 판단, 맥락 이해, 관계 조정, 책임 있는 의사결정은 더 중요해집니다.</p>
+    <p>그래서 AI 시대의 핵심 역량은 역설적으로 가장 인간적인 능력입니다.</p>
+    <p><span class="hl-orange">내가 무엇을 모르는지 아는 능력.</span> <span class="hl-yellow">그럴듯한 답을 의심하는 능력.</span> <span class="hl-green">내 생각의 약점을 보는 능력.</span> <span class="hl-blue">다른 사람에게 설명하는 능력.</span> <span class="hl-purple">틀렸을 때 수정하는 능력.</span></p>
+    <p>이것이 메타인지입니다.</p>
+    <p>AI를 쓰는 사람과 AI에 쓰이는 사람의 차이는 여기서 갈립니다. <span class="hl-orange">AI를 쓰는 사람은 도구를 통해 자기 사고를 확장합니다.</span> AI에 쓰이는 사람은 도구가 만든 결과를 자기 생각으로 착각합니다.</p>
+    <div class="pullquote">따라서 지금 필요한 교육은 AI 금지가 아닙니다.<br>AI 사용법 교육도 충분하지 않습니다.<br><span style="color:var(--c-orange);">필요한 것은 메타인지 훈련입니다.</span></div>
+    <p>아이에게 줄 수 있는 가장 큰 선물은 최신 도구가 아닙니다. 도구보다 먼저 생각하는 습관, 도구가 준 답을 의심하는 습관, 자기 말로 설명하는 습관입니다.</p>
+    <p>조직이 구성원에게 줄 수 있는 가장 큰 자산도 최신 소프트웨어가 아닙니다. 사람이 판단하고 AI가 보조하며, 다시 사람이 검증하는 운영체제입니다.</p>
+    <p>시대는 AI가 더 강해지는 방향으로 흐릅니다. 그 흐름을 막을 수는 없습니다. 그러나 그 흐름 속에서 사람이 약해질지 강해질지는 아직 결정되지 않았습니다.</p>
+  </div>
+</section>
+
+<section class="echo">
+  <div class="echo-bg"></div>
+  <div class="echo-inner">
+    <div class="echo-eyebrow">분기점</div>
+    <h2 class="echo-title">그 분기점이<br><span class="pin">메타인지</span>입니다.</h2>
+  </div>
+</section>
+
+<section class="section" style="background: #050508;">
+  <div class="wrap">
+    <span class="section-num">부록 A · 공유용 핵심 요약</span>
+    <h2 class="section-title compact">1분 요약 · 핵심 5문장</h2>
+  </div>
+  <div class="prose">
+    <p style="font-size: var(--t-5); line-height: 1.7; padding: 32px; background: var(--bg-card); border-radius: 20px; border-left: 3px solid var(--c-orange);">AI 시대의 핵심 문제는 AI 사용 여부가 아닙니다. AI를 쓰면서도 사고가 남는가입니다. 결과물 생산 비용이 낮아지면서 글·코드·요약·기획안의 신호 가치는 떨어지고, 문제 정의·검증·설명·책임의 가치는 올라갑니다. 학생에게는 본인 시도 없는 AI 사용이 학습을 약화시킬 수 있고, 직장인에게는 AI를 쓰는 능력보다 AI 결과를 검증하는 능력이 중요해집니다. 가정과 조직은 AI 금지가 아니라 "본인 시도 → AI 피드백 → 검증 → 수정"의 루프를 제도화해야 합니다. 이 루프를 가능하게 하는 능력이 메타인지입니다.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1280px;margin:56px auto;padding:0 24px;">
+    <div style="padding:24px;background:var(--bg-card);border-radius:18px;border-top:3px solid var(--c-orange);"><div style="font-size:var(--t-9);font-weight:800;color:var(--c-orange);line-height:0.85;letter-spacing:-0.04em;">01</div><div style="font-size:var(--t-3);font-weight:500;margin-top:14px;line-height:1.4;letter-spacing:-0.01em;">AI는 결과물을 싸게 만들지만, 사고 과정까지 자동으로 남겨주지는 않습니다.</div></div>
+    <div style="padding:24px;background:var(--bg-card);border-radius:18px;border-top:3px solid var(--c-yellow);"><div style="font-size:var(--t-9);font-weight:800;color:var(--c-yellow);line-height:0.85;letter-spacing:-0.04em;">02</div><div style="font-size:var(--t-3);font-weight:500;margin-top:14px;line-height:1.4;letter-spacing:-0.01em;">AI 시대의 학습 격차는 도구 접근 격차보다 메타인지 격차에서 커질 가능성이 큽니다.</div></div>
+    <div style="padding:24px;background:var(--bg-card);border-radius:18px;border-top:3px solid var(--c-green);"><div style="font-size:var(--t-9);font-weight:800;color:var(--c-green);line-height:0.85;letter-spacing:-0.04em;">03</div><div style="font-size:var(--t-3);font-weight:500;margin-top:14px;line-height:1.4;letter-spacing:-0.01em;">숙련자는 AI로 더 강해질 수 있지만, 초보자는 AI 때문에 숙련의 사다리를 건너뛸 수 있습니다.</div></div>
+    <div style="padding:24px;background:var(--bg-card);border-radius:18px;border-top:3px solid var(--c-blue);"><div style="font-size:var(--t-9);font-weight:800;color:var(--c-blue);line-height:0.85;letter-spacing:-0.04em;">04</div><div style="font-size:var(--t-3);font-weight:500;margin-top:14px;line-height:1.4;letter-spacing:-0.01em;">콘텐츠가 넘칠수록 희소해지는 것은 글이 아니라 신뢰입니다.</div></div>
+    <div style="padding:24px;background:var(--bg-card);border-radius:18px;border-top:3px solid var(--c-purple);"><div style="font-size:var(--t-9);font-weight:800;color:var(--c-purple);line-height:0.85;letter-spacing:-0.04em;">05</div><div style="font-size:var(--t-3);font-weight:500;margin-top:14px;line-height:1.4;letter-spacing:-0.01em;">AI를 쓰는 사람과 AI에 쓰이는 사람의 차이는 자기 사고를 점검하는 능력입니다.</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <span class="section-num">부록 B · 가정용 AI 사용 헌장 초안</span>
+    <h2 class="section-title compact">7개 조항</h2>
+  </div>
+  <div style="max-width:760px;margin:56px auto;padding:0 24px;">
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-orange);letter-spacing:-0.04em;line-height:1;">01</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">우리는 AI를 금지하지 않는다. 그러나 AI가 생각을 대신하게 두지 않는다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-orange);letter-spacing:-0.04em;line-height:1;">02</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">어려운 과제는 AI 사용 전 최소 30분 스스로 시도한다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-orange);letter-spacing:-0.04em;line-height:1;">03</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">AI에게 정답을 요구하기보다 질문, 반례, 피드백을 요구한다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-orange);letter-spacing:-0.04em;line-height:1;">04</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">AI를 사용한 결과물에는 사용 과정과 수정 이유를 남긴다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-orange);letter-spacing:-0.04em;line-height:1;">05</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">외로움, 불안, 관계 고민은 AI보다 사람과 먼저 나눈다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-orange);letter-spacing:-0.04em;line-height:1;">06</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">AI가 잠, 운동, 독서, 대면 관계를 침범하면 사용을 줄인다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-orange);letter-spacing:-0.04em;line-height:1;">07</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">최종 판단과 책임은 사람에게 있다.</div></div>
+  </div>
+</section>
+
+<section class="section" style="background: #050508;">
+  <div class="wrap">
+    <span class="section-num">부록 C · 조직용 AI 운영 원칙 초안</span>
+    <h2 class="section-title compact">7개 조항</h2>
+  </div>
+  <div style="max-width:760px;margin:56px auto;padding:0 24px;">
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-blue);letter-spacing:-0.04em;line-height:1;">01</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">AI 사용 가능 업무와 금지 업무를 명시한다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-blue);letter-spacing:-0.04em;line-height:1;">02</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">AI 산출물은 초안이며, 최종 책임자는 사람이다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-blue);letter-spacing:-0.04em;line-height:1;">03</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">중요한 의사결정에는 출처 확인과 반대 논리 검토를 의무화한다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-blue);letter-spacing:-0.04em;line-height:1;">04</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">신입과 주니어의 학습 기회를 자동화로 완전히 제거하지 않는다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-blue);letter-spacing:-0.04em;line-height:1;">05</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">AI 교육은 툴 사용법보다 문제 정의, 검증, 보안, 책임 소재를 중심으로 한다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-blue);letter-spacing:-0.04em;line-height:1;">06</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">AI 사용 로그와 버전 기록을 남긴다.</div></div>
+    <div style="display:flex;gap:24px;padding:24px 0;"><div style="flex:none;width:48px;font-size:var(--t-7);font-weight:800;color:var(--c-blue);letter-spacing:-0.04em;line-height:1;">07</div><div style="font-size:var(--t-5);line-height:1.55;letter-spacing:-0.01em;">속도 개선뿐 아니라 오류율, 품질, 학습 효과를 함께 측정한다.</div></div>
+  </div>
+</section>
+
+<section class="appendix">
+  <div class="wrap">
+    <span class="section-num">부록 D · 출처 및 참고 자료</span>
+    <h2 class="section-title" style="margin-bottom: 48px;">1차 출처 24개</h2>
+    <details class="boc">
+      <summary class="boc-summary">전체 출처 펼치기 · 24 references</summary>
+      <div class="boc-content">
+        <div class="refs">
+          <div class="r" id="ref-stanford-2026-overview"><span class="r-id">[1]</span> Stanford HAI, <em>The 2026 AI Index Report</em>. <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank">hai.stanford.edu/ai-index/2026-ai-index-report</a></div>
+          <div class="r" id="ref-stanford-2026-edu"><span class="r-id">[2]</span> Stanford HAI, <em>2026 AI Index — Education</em>. <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/education" target="_blank">hai.stanford.edu/ai-index/2026-ai-index-report/education</a></div>
+          <div class="r" id="ref-pew-teens"><span class="r-id">[3]</span> Pew Research Center, <em>How Teens Use and View AI</em>, 2026-02-24. <a href="https://www.pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai/" target="_blank">pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai</a></div>
+          <div class="r" id="ref-pew-parents"><span class="r-id">[4]</span> Pew Research Center, <em>What parents say about their teen's AI use</em>, 2026-02-24. <a href="https://www.pewresearch.org/internet/2026/02/24/what-parents-say-about-their-teens-ai-use/" target="_blank">pewresearch.org/internet/2026/02/24/what-parents-say-about-their-teens-ai-use</a></div>
+          <div class="r" id="ref-rand"><span class="r-id">[5]</span> RAND Corporation, <em>More Students Use AI for Homework</em>, 2026-03-17. <a href="https://www.rand.org/pubs/research_reports/RRA4742-1.html" target="_blank">rand.org/pubs/research_reports/RRA4742-1</a></div>
+          <div class="r" id="ref-mit-brain"><span class="r-id">[6]</span> Kosmyna et al., <em>Your Brain on ChatGPT</em>, 2025 preprint. <a href="https://www.brainonllm.com/" target="_blank">brainonllm.com</a></div>
+          <div class="r" id="ref-metr"><span class="r-id">[7]</span> METR, <em>Measuring AI Ability to Complete Long Tasks</em>, 2025-03-19. <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" target="_blank">metr.org</a></div>
+          <div class="r" id="ref-fed-adoption"><span class="r-id">[8]</span> Federal Reserve Board, <em>Monitoring AI Adoption in the US Economy</em>, 2026-04-03. <a href="https://www.federalreserve.gov/econres/notes/feds-notes/monitoring-ai-adoption-in-the-u-s-economy-20260403.html" target="_blank">federalreserve.gov</a></div>
+          <div class="r" id="ref-nyfed-training"><span class="r-id">[9]</span> NY Fed, <em>Use of Gen AI in the Workplace</em>, 2026-04-14. <a href="https://libertystreeteconomics.newyorkfed.org/2026/04/use-of-gen-ai-in-the-workplace-and-the-value-of-access-to-training/" target="_blank">libertystreeteconomics.newyorkfed.org</a></div>
+          <div class="r" id="ref-pwc"><span class="r-id">[10]</span> PwC, <em>2025 Global AI Jobs Barometer</em>, 2025-06-03. <a href="https://www.pwc.com/gx/en/services/ai/ai-jobs-barometer.html" target="_blank">pwc.com/gx/en/services/ai/ai-jobs-barometer</a></div>
+          <div class="r" id="ref-wef"><span class="r-id">[11]</span> WEF, <em>The Future of Jobs Report 2025</em>. <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank">weforum.org/publications/the-future-of-jobs-report-2025</a></div>
+          <div class="r" id="ref-bls-growing"><span class="r-id">[12]</span> U.S. BLS, <em>Fastest Growing Occupations, 2024–34</em>. <a href="https://www.bls.gov/ooh/fastest-growing.htm" target="_blank">bls.gov/ooh/fastest-growing.htm</a></div>
+          <div class="r" id="ref-bls-declining"><span class="r-id">[13]</span> U.S. BLS, <em>Fastest Declining Occupations, 2024–34</em>. <a href="https://www.bls.gov/emp/tables/fastest-declining-occupations.htm" target="_blank">bls.gov/emp/tables/fastest-declining-occupations.htm</a></div>
+          <div class="r" id="ref-bls-data"><span class="r-id">[14]</span> U.S. BLS, <em>Data Scientists OOH</em>. <a href="https://www.bls.gov/ooh/math/data-scientists.htm" target="_blank">bls.gov/ooh/math/data-scientists.htm</a></div>
+          <div class="r" id="ref-iea-2026"><span class="r-id">[15]</span> IEA, <em>Key Questions on Energy and AI</em>, 2026. <a href="https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary" target="_blank">iea.org/reports/key-questions-on-energy-and-ai</a></div>
+          <div class="r" id="ref-iea-energy"><span class="r-id">[16]</span> IEA, <em>Energy demand from AI</em>. <a href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai" target="_blank">iea.org/reports/energy-and-ai/energy-demand-from-ai</a></div>
+          <div class="r" id="ref-common-sense"><span class="r-id">[17]</span> Common Sense Media, <em>Talk, Trust, and Trade-Offs</em>, 2025-07-16. <a href="https://www.commonsensemedia.org/research/talk-trust-and-trade-offs-how-and-why-teens-use-ai-companions" target="_blank">commonsensemedia.org</a></div>
+          <div class="r" id="ref-unesco-students"><span class="r-id">[18]</span> UNESCO, <em>AI competency framework for students</em>, 2026-01-16. <a href="https://www.unesco.org/en/articles/ai-competency-framework-students" target="_blank">unesco.org/en/articles/ai-competency-framework-students</a></div>
+          <div class="r" id="ref-unesco-teachers"><span class="r-id">[19]</span> UNESCO, <em>AI competency framework for teachers</em>, 2026-01-16. <a href="https://www.unesco.org/en/articles/ai-competency-framework-teachers" target="_blank">unesco.org/en/articles/ai-competency-framework-teachers</a></div>
+          <div class="r" id="ref-yale-budget"><span class="r-id">[20]</span> Yale Budget Lab, <em>Tracking AI Impact on Labor Market</em>, 2026-04-16. <a href="https://budgetlab.yale.edu/research/tracking-impact-ai-labor-market" target="_blank">budgetlab.yale.edu</a></div>
+          <div class="r" id="ref-stanford-canaries"><span class="r-id">[21]</span> Brynjolfsson, Chandar, Chen, <em>Canaries in the Coal Mine?</em>, Stanford 2025. <a href="https://digitaleconomy.stanford.edu/app/uploads/2025/11/CanariesintheCoalMine_Nov25.pdf" target="_blank">digitaleconomy.stanford.edu</a></div>
+        </div>
+      </div>
+    </details>
+    <details class="boc">
+      <summary class="boc-summary">부록 E · 작성·검증 메모</summary>
+      <div class="boc-content">
+        <div class="prose" style="max-width:none;">
+          <p style="font-size:var(--t-3);color:var(--text-2);line-height:1.7;">원문의 핵심 결론인 "메타인지가 분기점이다"는 유지했습니다. 공유용 문서로 전환하기 위해 개인 호칭과 내부 맥락은 제거했습니다. 일부 강한 수치는 최신 공개 출처 기준으로 재확인 가능한 표현으로 조정했습니다. MIT "Your Brain on ChatGPT" 연구는 예비연구로 표기했습니다. 이는 글의 신뢰도를 높이기 위한 조치입니다. 노동시장 부분은 단정 대신 균형 있게 정리했습니다. 현재 거시 고용 충격은 명확하지 않지만, 초기 경력자와 특정 업무 단위에서는 압박 신호가 있다는 구조로 썼습니다.</p>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p style="margin-bottom:8px;"><span class="rainbow">메타인지가 분기점이다</span></p>
+    <p>AI가 학습·노동·가족의 규칙을 바꾸는 방식 · 공유용 통합 리포트</p>
+    <p style="margin-top:12px;color:var(--text-3);">2026.05.09 · 1차 출처 24개 · Apple Canvas v3.0</p>
+  </div>
+</footer>
+
+</body>
+</html>
