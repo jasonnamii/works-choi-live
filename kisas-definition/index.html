@@ -872,24 +872,27 @@ body[data-lang="ko"] .echo-text{
   .timeline-node::before{display:none}
 }
 
-/* F. Layered Cards — stacked roadmap */
+/* F. Layered Cards — checklist (clear separation, no overlap) */
 .stack{
-  margin:60px 0;display:grid;gap:0;
+  margin:60px 0;display:grid;gap:14px;
 }
 .stack .stack-card{
-  padding:32px 36px;background:var(--bg-card);
+  padding:28px 32px;background:var(--bg-card);
   border:1px solid var(--border);border-radius:18px;
-  margin-bottom:-10px;position:relative;
+  position:relative;
+  display:grid;grid-template-columns:140px 1fr;gap:32px;align-items:center;
   transition:all .3s var(--apple-ease);
 }
-.stack .stack-card:last-child{margin-bottom:0}
-.stack .stack-card:nth-child(1){z-index:5;transform:translateY(0)}
-.stack .stack-card:nth-child(2){z-index:4;background:linear-gradient(135deg,rgba(255,214,10,.04),var(--bg-card))}
-.stack .stack-card:nth-child(3){z-index:3;background:linear-gradient(135deg,rgba(255,36,105,.04),var(--bg-card))}
-.stack .stack-card:nth-child(4){z-index:2;background:linear-gradient(135deg,rgba(198,92,255,.04),var(--bg-card))}
-.stack .stack-card:nth-child(5){z-index:1;background:linear-gradient(135deg,rgba(0,146,255,.04),var(--bg-card))}
-.stack .stack-card:nth-child(6){z-index:0;background:linear-gradient(135deg,rgba(7,237,33,.04),var(--bg-card))}
-.stack .stack-card:hover{transform:translateY(-4px);z-index:10}
+@media(max-width:768px){
+  .stack .stack-card{grid-template-columns:1fr;gap:14px;padding:24px}
+}
+.stack .stack-card:nth-child(1){background:linear-gradient(135deg,rgba(255,151,0,.05),var(--bg-card));border-left:3px solid var(--c-orange)}
+.stack .stack-card:nth-child(2){background:linear-gradient(135deg,rgba(255,36,105,.05),var(--bg-card));border-left:3px solid var(--c-pink)}
+.stack .stack-card:nth-child(3){background:linear-gradient(135deg,rgba(233,30,99,.05),var(--bg-card));border-left:3px solid var(--c-magenta)}
+.stack .stack-card:nth-child(4){background:linear-gradient(135deg,rgba(198,92,255,.05),var(--bg-card));border-left:3px solid var(--c-purple)}
+.stack .stack-card:nth-child(5){background:linear-gradient(135deg,rgba(0,146,255,.05),var(--bg-card));border-left:3px solid var(--c-blue)}
+.stack .stack-card:nth-child(6){background:linear-gradient(135deg,rgba(7,237,33,.05),var(--bg-card));border-left:3px solid var(--c-green)}
+.stack .stack-card:hover{transform:translateX(4px)}
 .stack .stack-card .stack-tag{
   display:inline-block;font-family:'JetBrains Mono',monospace;
   font-size:11px;letter-spacing:.15em;text-transform:uppercase;
@@ -916,10 +919,11 @@ body[data-lang="ko"] .echo-text{
 @media(max-width:900px){.bento-asym{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.bento-asym{grid-template-columns:1fr}}
 .bento-asym .ba{
-  padding:28px;border-radius:20px;
+  padding:32px;border-radius:24px;
   background:var(--bg-card);border:1px solid var(--border);
   display:flex;flex-direction:column;justify-content:space-between;
-  transition:all .3s var(--apple-ease);position:relative;overflow:hidden;
+  transition:all .3s var(--apple-ease);position:relative;
+  overflow:hidden;isolation:isolate;
 }
 .bento-asym .ba:hover{transform:translateY(-4px);border-color:var(--c-pink)}
 .bento-asym .ba.large{grid-column:span 4;grid-row:span 2}
@@ -951,9 +955,11 @@ body[data-lang="ko"] .echo-text{
 }
 .bento-asym .ba.large .ba-body{font-size:17px}
 .bento-asym .ba .ba-glow{
-  position:absolute;top:-40%;right:-20%;width:60%;height:80%;
-  border-radius:50%;filter:blur(60px);opacity:.3;pointer-events:none;
+  position:absolute;top:-10%;right:-5%;width:55%;height:65%;
+  border-radius:50%;filter:blur(70px);opacity:.22;
+  pointer-events:none;z-index:0;
 }
+.bento-asym .ba > *:not(.ba-glow){position:relative;z-index:1}
 .bento-asym .ba:nth-child(1) .ba-glow{background:var(--c-yellow)}
 .bento-asym .ba:nth-child(2) .ba-glow{background:var(--c-pink)}
 .bento-asym .ba:nth-child(3) .ba-glow{background:var(--c-magenta)}
@@ -2344,34 +2350,46 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
 
       <div class="stack">
         <div class="stack-card">
-          <span class="stack-tag">Check 01</span>
-          <p class="stack-text" lang-ko>학생이 실제 결과물을 만들었는가?</p>
-          <p class="stack-text" lang-en>Did the student actually produce a real creation?</p>
+          <div><span class="stack-tag">Check 01</span></div>
+          <div>
+            <p class="stack-text" lang-ko>학생이 실제 결과물을 만들었는가?</p>
+            <p class="stack-text" lang-en>Did the student actually produce a real creation?</p>
+          </div>
         </div>
         <div class="stack-card">
-          <span class="stack-tag">Check 02</span>
-          <p class="stack-text" lang-ko>그 결과물이 피드백을 통해 좋아졌는가?</p>
-          <p class="stack-text" lang-en>Did that creation get better through feedback?</p>
+          <div><span class="stack-tag">Check 02</span></div>
+          <div>
+            <p class="stack-text" lang-ko>그 결과물이 피드백을 통해 좋아졌는가?</p>
+            <p class="stack-text" lang-en>Did that creation get better through feedback?</p>
+          </div>
         </div>
         <div class="stack-card">
-          <span class="stack-tag">Check 03</span>
-          <p class="stack-text" lang-ko>왜 그렇게 만들고 고쳤는지 자기 말로 설명할 수 있는가?</p>
-          <p class="stack-text" lang-en>Can the student explain, in their own words, why they made and changed it?</p>
+          <div><span class="stack-tag">Check 03</span></div>
+          <div>
+            <p class="stack-text" lang-ko>왜 그렇게 만들고 고쳤는지 자기 말로 설명할 수 있는가?</p>
+            <p class="stack-text" lang-en>Can the student explain, in their own words, why they made and changed it?</p>
+          </div>
         </div>
         <div class="stack-card">
-          <span class="stack-tag">Check 04</span>
-          <p class="stack-text" lang-ko>"나도 만들 수 있다"는 감각을 얻었는가?</p>
-          <p class="stack-text" lang-en>Did the student come away with the felt sense of "I can make"?</p>
+          <div><span class="stack-tag">Check 04</span></div>
+          <div>
+            <p class="stack-text" lang-ko>"나도 만들 수 있다"는 감각을 얻었는가?</p>
+            <p class="stack-text" lang-en>Did the student come away with the felt sense of "I can make"?</p>
+          </div>
         </div>
         <div class="stack-card">
-          <span class="stack-tag">Check 05</span>
-          <p class="stack-text" lang-ko>부모가 아이의 변화를 확인할 수 있는가?</p>
-          <p class="stack-text" lang-en>Can parents see the change in their child?</p>
+          <div><span class="stack-tag">Check 05</span></div>
+          <div>
+            <p class="stack-text" lang-ko>부모가 아이의 변화를 확인할 수 있는가?</p>
+            <p class="stack-text" lang-en>Can parents see the change in their child?</p>
+          </div>
         </div>
         <div class="stack-card">
-          <span class="stack-tag">Check 06</span>
-          <p class="stack-text" lang-ko>이 구조가 지역 교육과 온라인 교육으로 반복될 수 있는가?</p>
-          <p class="stack-text" lang-en>Can this structure be repeated in local programs and online education?</p>
+          <div><span class="stack-tag">Check 06</span></div>
+          <div>
+            <p class="stack-text" lang-ko>이 구조가 지역 교육과 온라인 교육으로 반복될 수 있는가?</p>
+            <p class="stack-text" lang-en>Can this structure be repeated in local programs and online education?</p>
+          </div>
         </div>
       </div>
 
