@@ -772,21 +772,26 @@ body[data-lang="ko"] .echo-text{
   font-weight:600;padding:24px 0;border-left:1px dashed var(--border);padding-left:16px;
   align-self:stretch;
 }
-.fb-pyramid .fp-axis span{display:block;line-height:1.3}
+.fb-pyramid .fp-axis span{line-height:1.3}
+body[data-lang="ko"] .fb-pyramid .fp-axis span[lang-ko]{display:block}
+body[data-lang="ko"] .fb-pyramid .fp-axis span[lang-en]{display:none}
+body[data-lang="en"] .fb-pyramid .fp-axis span[lang-en]{display:block}
+body[data-lang="en"] .fb-pyramid .fp-axis span[lang-ko]{display:none}
 .fb-pyramid .fp-axis .axis-top{color:var(--c-green)}
 .fb-pyramid .fp-axis .axis-bot{color:var(--c-yellow)}
 .fb-pyramid .fp-stack{display:flex;flex-direction:column;gap:6px;width:100%}
 .fb-pyramid .fp-tier{
-  display:grid;grid-template-columns:72px 1fr 180px;gap:20px;
-  padding:18px 22px;border-radius:14px;background:var(--bg-card);
+  display:grid;grid-template-columns:64px 1fr;gap:20px;
+  padding:18px 26px;border-radius:14px;background:var(--bg-card);
   border:1px solid var(--border);align-items:center;
   margin:0 auto;transition:all .3s var(--apple-ease);
-  position:relative;
+  position:relative;min-height:96px;
 }
-.fb-pyramid .fp-tier:hover{transform:translateX(4px)}
+.fb-pyramid .fp-tier:hover{transform:scale(1.015)}
+.fb-pyramid .fp-tier .fp-text{display:grid;gap:6px}
+.fb-pyramid .fp-tier .fp-access{display:none}
 @media(max-width:768px){
-  .fb-pyramid .fp-tier{grid-template-columns:60px 1fr;width:100% !important}
-  .fb-pyramid .fp-tier .fp-access{grid-column:1/-1;font-size:11px;color:var(--text-tertiary);margin-top:6px}
+  .fb-pyramid .fp-tier{padding:16px 20px;min-height:80px;width:100% !important}
 }
 /* Pyramid widths: L1 narrow on top (apex) → L6 wide on bottom (base) */
 .fb-pyramid .fp-tier[data-l="1"]{width:42%;background:linear-gradient(135deg,rgba(255,36,105,.14),rgba(233,30,99,.08));border-color:rgba(255,36,105,.45)}
@@ -806,17 +811,11 @@ body[data-lang="ko"] .echo-text{
 .fb-pyramid .fp-tier[data-l="5"] .fp-num{color:var(--c-green)}
 .fb-pyramid .fp-tier[data-l="6"] .fp-num{color:var(--c-purple)}
 .fb-pyramid .fp-who{
-  font-size:16px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
+  font-size:17px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
   word-break:keep-all;
 }
 .fb-pyramid .fp-role{
-  font-size:13px;color:var(--text-secondary);line-height:1.45;
-  margin-top:4px;word-break:keep-all;
-}
-.fb-pyramid .fp-access{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:.12em;text-transform:uppercase;text-align:right;
-  color:var(--text-tertiary);font-weight:600;line-height:1.4;
+  font-size:13.5px;color:var(--text-secondary);line-height:1.45;
   word-break:keep-all;
 }
 
@@ -2345,71 +2344,65 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
           <div class="fp-axis">
             <span class="axis-top" lang-ko>↑ L1 · 정점</span>
             <span class="axis-top" lang-en>↑ L1 · Apex</span>
-            <span lang-ko>희소·강도 ↑</span>
-            <span lang-en>Scarce ↑</span>
+            <span lang-ko>희소 · 강도 ↑</span>
+            <span lang-en>Scarce · intensity ↑</span>
             <span class="axis-bot" lang-ko>↓ L6 · 바닥</span>
             <span class="axis-bot" lang-en>↓ L6 · Base</span>
           </div>
           <div class="fp-stack">
             <div class="fp-tier" data-l="1">
               <div class="fp-num">L1</div>
-              <div>
+              <div class="fp-text">
                 <div class="fp-who" lang-ko>프리미엄 <strong>현장</strong> 피드백</div>
                 <div class="fp-who" lang-en>Premium <strong>on-site</strong> feedback</div>
                 <div class="fp-role" lang-ko>(정점) 캠프·아카데미·마스터클래스 고강도</div>
                 <div class="fp-role" lang-en>(Apex) Camp · Academy · Masterclass — high intensity</div>
               </div>
-              <div class="fp-access"></div>
             </div>
             <div class="fp-tier" data-l="2">
               <div class="fp-num">L2</div>
-              <div>
+              <div class="fp-text">
                 <div class="fp-who" lang-ko><strong>Master Bot AI</strong> 피드백</div>
                 <div class="fp-who" lang-en><strong>Master Bot AI</strong> feedback</div>
                 <div class="fp-role" lang-ko>김형석·박진영급 — 업계 최고이자 스타의 <strong>창작 철학·판단 기준·스타일·작업 방식·교육 언어</strong>를 반영한 AI 모델 (스타 DNA)</div>
                 <div class="fp-role" lang-en>Kim Hyung-suk · J.Y. Park class — an AI model reflecting the <strong>creative philosophy, judgment, style, working method, and pedagogical language</strong> of industry-top stars (Star DNA)</div>
               </div>
-              <div class="fp-access"></div>
             </div>
             <div class="fp-tier" data-l="3">
               <div class="fp-num">L3</div>
-              <div>
+              <div class="fp-text">
                 <div class="fp-who" lang-ko>전문가 피드백</div>
                 <div class="fp-who" lang-en>Expert feedback</div>
                 <div class="fp-role" lang-ko>(등록 전문가 → 전문가로 정식)</div>
                 <div class="fp-role" lang-en>(Registered expert → upgraded to Expert)</div>
               </div>
-              <div class="fp-access"></div>
             </div>
             <div class="fp-tier" data-l="4">
               <div class="fp-num">L4</div>
-              <div>
+              <div class="fp-text">
                 <div class="fp-who" lang-ko><strong>인증 강사</strong> 피드백</div>
                 <div class="fp-who" lang-en><strong>Certified instructor</strong> feedback</div>
                 <div class="fp-role" lang-ko>(강사 → 인증 강사)</div>
                 <div class="fp-role" lang-en>(Instructor → Certified instructor)</div>
               </div>
-              <div class="fp-access"></div>
             </div>
             <div class="fp-tier" data-l="5">
               <div class="fp-num">L5</div>
-              <div>
+              <div class="fp-text">
                 <div class="fp-who" lang-ko>등록 전문가</div>
                 <div class="fp-who" lang-en>Registered expert</div>
                 <div class="fp-role" lang-ko>분야별 외부</div>
                 <div class="fp-role" lang-en>External, by domain</div>
               </div>
-              <div class="fp-access"></div>
             </div>
             <div class="fp-tier" data-l="6">
               <div class="fp-num">L6</div>
-              <div>
+              <div class="fp-text">
                 <div class="fp-who" lang-ko>동료 피드백</div>
                 <div class="fp-who" lang-en>Peer feedback</div>
                 <div class="fp-role" lang-ko>또래</div>
                 <div class="fp-role" lang-en>Peers</div>
               </div>
-              <div class="fp-access"></div>
             </div>
           </div>
         </div>
