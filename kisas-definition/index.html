@@ -774,11 +774,12 @@ body[data-lang="ko"] .echo-text{
 .hubspoke .spoke-who{font-size:14px;font-weight:600;line-height:1.25;word-break:keep-all}
 .hubspoke .hub-center{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:180px;height:180px;border-radius:50%;
+  width:220px;height:220px;border-radius:50%;
   background:radial-gradient(circle at 30% 30%,
-    rgba(255,214,10,.4),rgba(255,36,105,.4) 40%,rgba(198,92,255,.4) 70%,rgba(0,146,255,.3));
+    rgba(255,214,10,.35),rgba(255,36,105,.32) 35%,rgba(198,92,255,.32) 65%,rgba(0,146,255,.25) 100%);
   display:grid;place-items:center;
-  box-shadow:0 0 80px rgba(255,36,105,.3);
+  box-shadow:0 0 100px rgba(255,36,105,.25),inset 0 0 60px rgba(255,255,255,.04);
+  z-index:2;
 }
 .hubspoke .hub-label{
   text-align:center;font-weight:800;font-size:clamp(18px,2vw,26px);
@@ -1648,57 +1649,68 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         <svg viewBox="0 0 760 760" aria-hidden="true">
           <defs>
             <linearGradient id="spoke-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#FFD60A" stop-opacity=".6"/>
-              <stop offset="50%" stop-color="#ff2469" stop-opacity=".5"/>
-              <stop offset="100%" stop-color="#07ED21" stop-opacity=".5"/>
+              <stop offset="0%" stop-color="#FFD60A" stop-opacity=".55"/>
+              <stop offset="50%" stop-color="#ff2469" stop-opacity=".45"/>
+              <stop offset="100%" stop-color="#07ED21" stop-opacity=".45"/>
             </linearGradient>
+            <radialGradient id="hub-mask" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#0a0a0f" stop-opacity="1"/>
+              <stop offset="70%" stop-color="#0a0a0f" stop-opacity="1"/>
+              <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+            </radialGradient>
           </defs>
-          <!-- 6 spokes from center (380,380) to nodes -->
-          <line x1="380" y1="380" x2="380" y2="100" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <line x1="380" y1="380" x2="622" y2="240" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <line x1="380" y1="380" x2="622" y2="520" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <line x1="380" y1="380" x2="380" y2="660" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <line x1="380" y1="380" x2="138" y2="520" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <line x1="380" y1="380" x2="138" y2="240" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <!-- Hub r=130, spoke ends at r=220 (just before card). Center=(380,380) -->
+          <!-- 12시 (270°): dx=0, dy=-1 -->
+          <line x1="380" y1="250" x2="380" y2="195" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <!-- 2시 (-30°): (0.866, -0.5) → start (492.6, 315), end (570.5, 270) -->
+          <line x1="493" y1="315" x2="570" y2="270" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <!-- 4시 (30°): (0.866, 0.5) → start (492.6, 445), end (570.5, 490) -->
+          <line x1="493" y1="445" x2="570" y2="490" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <!-- 6시 (90°) -->
+          <line x1="380" y1="510" x2="380" y2="565" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <!-- 8시 (150°): (-0.866, 0.5) → start (267.4, 445), end (189.5, 490) -->
+          <line x1="267" y1="445" x2="190" y2="490" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <!-- 10시 (-150°): (-0.866, -0.5) → start (267.4, 315), end (189.5, 270) -->
+          <line x1="267" y1="315" x2="190" y2="270" stroke="url(#spoke-grad)" stroke-width="1.5"/>
           <!-- Outer ring (faint) -->
-          <circle cx="380" cy="380" r="280" stroke="rgba(255,255,255,.06)" stroke-width="1" fill="none" stroke-dasharray="4 6"/>
+          <circle cx="380" cy="380" r="240" stroke="rgba(255,255,255,.06)" stroke-width="1" fill="none" stroke-dasharray="4 6"/>
         </svg>
         <div class="hub-center">
           <div class="hub-label" lang-ko>내 결과물을<br>다시 본다</div>
           <div class="hub-label" lang-en>See my creation<br>again</div>
         </div>
-        <!-- 12시(상단) -->
+        <!-- 12시(상단) — y=170/760 = 22% -->
         <div class="spoke-card" style="left:50%;top:13%">
           <div class="spoke-num" style="color:var(--c-yellow)">L1 · AI INSTANT</div>
           <div class="spoke-who" lang-ko>AI · 즉시 피드백</div>
           <div class="spoke-who" lang-en>AI · Instant</div>
         </div>
-        <!-- 2시 -->
-        <div class="spoke-card" style="left:82%;top:31%">
+        <!-- 2시 — (567,270)/760 = (75%,35%) -->
+        <div class="spoke-card" style="left:79%;top:30%">
           <div class="spoke-num" style="color:var(--c-orange)">L2 · STAR STANDARD</div>
           <div class="spoke-who" lang-ko>스타·전문가 AI</div>
           <div class="spoke-who" lang-en>Star/Expert AI</div>
         </div>
-        <!-- 4시 -->
-        <div class="spoke-card" style="left:82%;top:68%">
+        <!-- 4시 — (567,490)/760 = (75%,64%) -->
+        <div class="spoke-card" style="left:79%;top:70%">
           <div class="spoke-num" style="color:var(--c-pink)">L3 · INSTRUCTOR</div>
           <div class="spoke-who" lang-ko>KISAS 강사</div>
           <div class="spoke-who" lang-en>KISAS instructor</div>
         </div>
-        <!-- 6시 -->
+        <!-- 6시 — (380,590)/760 = (50%,78%) -->
         <div class="spoke-card" style="left:50%;top:87%">
           <div class="spoke-num" style="color:var(--c-purple)">L4 · PEERS</div>
           <div class="spoke-who" lang-ko>동료</div>
           <div class="spoke-who" lang-en>Peers</div>
         </div>
-        <!-- 8시 -->
-        <div class="spoke-card" style="left:18%;top:68%">
+        <!-- 8시 — (193,490)/760 = (25%,64%) -->
+        <div class="spoke-card" style="left:21%;top:70%">
           <div class="spoke-num" style="color:var(--c-blue)">L5 · EXPERTS</div>
           <div class="spoke-who" lang-ko>등록 전문가</div>
           <div class="spoke-who" lang-en>Registered experts</div>
         </div>
-        <!-- 10시 -->
-        <div class="spoke-card" style="left:18%;top:31%">
+        <!-- 10시 — (193,270)/760 = (25%,35%) -->
+        <div class="spoke-card" style="left:21%;top:30%">
           <div class="spoke-num" style="color:var(--c-green)">L6 · ON-SITE</div>
           <div class="spoke-who" lang-ko>프리미엄 현장</div>
           <div class="spoke-who" lang-en>Premium on-site</div>
