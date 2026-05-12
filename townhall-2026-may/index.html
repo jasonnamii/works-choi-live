@@ -1624,34 +1624,7 @@ body.restored .slide.active .monolith .meta-cap { animation: metaIn .5s var(--ea
       </div>
     </div>
 
-    <!-- 라텔 영역별 체감 -->
-    <div style="margin-top:32px; max-width:1300px;">
-      <div style="font-size:12px; color:var(--lime); letter-spacing:.1em; margin-bottom:14px;">RATEL · 영역별 1 : 1 일상화 시점</div>
-      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px;">
-        <div style="padding:12px 14px; border-left:2px solid var(--hot); background:rgba(255,255,255,.02);">
-          <div style="font-size:13px; color:#B8B8B8; margin-bottom:4px;">카피 · 문서</div>
-          <div style="font-size:14px; font-weight:700; color:var(--hot);">이미 진행 중</div>
-        </div>
-        <div style="padding:12px 14px; border-left:2px solid var(--r2); background:rgba(255,255,255,.02);">
-          <div style="font-size:13px; color:#B8B8B8; margin-bottom:4px;">마케팅 운영</div>
-          <div style="font-size:14px; font-weight:700; color:var(--r2);">2026</div>
-        </div>
-        <div style="padding:12px 14px; border-left:2px solid var(--r3); background:rgba(255,255,255,.02);">
-          <div style="font-size:13px; color:#B8B8B8; margin-bottom:4px;">디자인 초안</div>
-          <div style="font-size:14px; font-weight:700; color:var(--r3);">2026</div>
-        </div>
-        <div style="padding:12px 14px; border-left:2px solid var(--lime); background:rgba(255,255,255,.02);">
-          <div style="font-size:13px; color:#B8B8B8; margin-bottom:4px;">개발 · QA · 운영툴</div>
-          <div style="font-size:14px; font-weight:700; color:var(--lime);">2026 ~ 2027</div>
-        </div>
-        <div style="padding:12px 14px; border-left:2px solid var(--cyan); background:rgba(255,255,255,.02);">
-          <div style="font-size:13px; color:#B8B8B8; margin-bottom:4px;">전략 · PM · 조직</div>
-          <div style="font-size:14px; font-weight:700; color:var(--cyan);">2027 ~ 2028</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:24px; font-size:11px; color:var(--dim); letter-spacing:.05em;">
+    <div style="margin-top:32px; font-size:11px; color:var(--dim); letter-spacing:.05em;">
       SOURCE — Microsoft Work Trend Index 2025 · WEF Future of Jobs 2025 · McKinsey Org Health 2025
     </div>
   </div>
@@ -1663,7 +1636,7 @@ body.restored .slide.active .monolith .meta-cap { animation: metaIn .5s var(--ea
     <div class="eyebrow">2 · 4  글로벌 사례</div>
     <h2 class="head-l">
       이미 진행 중입니다.<br>
-      <span class="lime">8개 기업</span>이 1 : 1로 갔습니다.
+      <span class="lime">리딩 기업들</span>이 1 : 1로 갔습니다.
     </h2>
     <div class="body-l" style="margin-top:16px">
       개별 실험 ✗ &nbsp;·&nbsp; <strong>산업 패턴 ○</strong>
@@ -2497,30 +2470,103 @@ body.restored .slide.active .monolith .meta-cap { animation: metaIn .5s var(--ea
 </section>
 
 <!-- ============================= 6-2 슈퍼1인 카운터 ============================= -->
-<section class="slide" data-chapter="CHAPTER 06" id="slideCounter">
-  <div class="col-stack left">
-    <div class="eyebrow">6 · 2  슈퍼 1인 시대</div>
-    <div class="counter" id="counter">1</div>
-    <div class="kicker" style="margin-top:8px">人 — 한 사람</div>
-    <div class="body-l" style="margin-top:32px">
-      한 사람이 과거보다 훨씬 많은 일을 합니다.<br>
-      기획·디자인·개발·운영·마케팅 — <strong>AI는 모든 직무를 증폭합니다.</strong><br><br>
-      <span class="lime">→ NEXT 누르면 증폭됩니다.</span>
+<section class="slide" data-chapter="CHAPTER 06" id="slideCounter" style="padding:8vh 8vw; align-items:center;">
+  <div style="display:grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr); gap:5vw; width:100%; align-items:center;">
+
+    <!-- 좌: 카운터 + 핵심 메시지 -->
+    <div style="display:flex; flex-direction:column; gap:18px;">
+      <div class="eyebrow">6 · 2  슈퍼 1인 시대</div>
+      <div class="counter" id="counter" style="line-height:.85;">1</div>
+      <div class="kicker">人 — 한 사람의 산출량</div>
+      <div class="body-l" style="margin-top:8px; max-width:none;">
+        한 사람이 만들어내는 결과의 크기가 <strong>10배·100배</strong>로 갑니다.<br>
+        과장이 아닙니다. <span class="lime">이미 측정된 사실</span>입니다.
+      </div>
+    </div>
+
+    <!-- 우: 4가지 실증 -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+
+      <!-- Klarna -->
+      <div style="padding:18px 20px; border:1px solid #2a2a2a; border-radius:4px; background:rgba(255,255,255,.02);">
+        <div style="font-size:11px; color:var(--hot); letter-spacing:.15em; font-weight:700; margin-bottom:8px;">KLARNA · 2024</div>
+        <div style="font-size:clamp(28px,2.4vw,40px); font-weight:900; color:var(--hot); line-height:1; letter-spacing:-.02em;">×700</div>
+        <div style="font-size:13px; color:#E8E8E8; line-height:1.5; margin-top:10px;">
+          AI 챗봇이 <strong style="color:#fff;">700명 분량</strong>의 고객 상담을 한 달에 처리.
+        </div>
+        <div style="font-size:11px; color:var(--dim); margin-top:8px; letter-spacing:.02em;">Klarna 공식 보도자료 · OpenAI 케이스</div>
+      </div>
+
+      <!-- GitHub Copilot -->
+      <div style="padding:18px 20px; border:1px solid #2a2a2a; border-radius:4px; background:rgba(255,255,255,.02);">
+        <div style="font-size:11px; color:var(--r2); letter-spacing:.15em; font-weight:700; margin-bottom:8px;">GITHUB × MS · 2023</div>
+        <div style="font-size:clamp(28px,2.4vw,40px); font-weight:900; color:var(--r2); line-height:1; letter-spacing:-.02em;">−55.8<span style="font-size:.5em;">%</span></div>
+        <div style="font-size:13px; color:#E8E8E8; line-height:1.5; margin-top:10px;">
+          Copilot 쓴 개발자 — 같은 일을 <strong style="color:#fff;">55.8% 더 빨리</strong>.
+        </div>
+        <div style="font-size:11px; color:var(--dim); margin-top:8px; letter-spacing:.02em;">arXiv 2302.06590 · GitHub × MS Chief Economist</div>
+      </div>
+
+      <!-- Harvard × BCG -->
+      <div style="padding:18px 20px; border:1px solid #2a2a2a; border-radius:4px; background:rgba(255,255,255,.02);">
+        <div style="font-size:11px; color:var(--lime); letter-spacing:.15em; font-weight:700; margin-bottom:8px;">HARVARD × BCG · 2023</div>
+        <div style="font-size:clamp(28px,2.4vw,40px); font-weight:900; color:var(--lime); line-height:1; letter-spacing:-.02em;">+40<span style="font-size:.5em;">%</span></div>
+        <div style="font-size:13px; color:#E8E8E8; line-height:1.5; margin-top:10px;">
+          AI 쓴 컨설턴트 — 같은 시간에 <strong style="color:#fff;">품질 40%↑</strong>, 25% 빠르게.
+        </div>
+        <div style="font-size:11px; color:var(--dim); margin-top:8px; letter-spacing:.02em;">HBS Working Paper · "Jagged Frontier"</div>
+      </div>
+
+      <!-- McKinsey -->
+      <div style="padding:18px 20px; border:1px solid #2a2a2a; border-radius:4px; background:rgba(255,255,255,.02);">
+        <div style="font-size:11px; color:var(--cyan); letter-spacing:.15em; font-weight:700; margin-bottom:8px;">McKINSEY · 2023</div>
+        <div style="font-size:clamp(28px,2.4vw,40px); font-weight:900; color:var(--cyan); line-height:1; letter-spacing:-.02em;">60-70<span style="font-size:.5em;">%</span></div>
+        <div style="font-size:13px; color:#E8E8E8; line-height:1.5; margin-top:10px;">
+          지식노동 업무 시간의 <strong style="color:#fff;">60~70%를 AI가 흡수</strong> 가능.
+        </div>
+        <div style="font-size:11px; color:var(--dim); margin-top:8px; letter-spacing:.02em;">McKinsey Global Institute · GenAI Frontier</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 인용 -->
+  <div style="position:absolute; left:8vw; right:8vw; bottom:5vh; padding-top:18px; border-top:1px solid #2a2a2a; display:flex; justify-content:space-between; align-items:baseline; gap:24px; font-size:13px; color:#B8B8B8;">
+    <div style="line-height:1.5;">
+      <span style="color:var(--lime); font-weight:700;">"AI에 일자리를 뺏기는 게 아니라, AI를 쓰는 동료에게 뺏긴다."</span>
+      <span style="color:var(--dim); margin-left:8px;">— 젠슨 황, NVIDIA</span>
+    </div>
+    <div style="line-height:1.5; text-align:right; min-width:280px;">
+      <span style="color:#fff; font-weight:700;">"곧 직원 한 명도 없이 10억 달러 회사가 나옵니다."</span>
+      <span style="color:var(--dim); margin-left:8px;">— 샘 올트먼, OpenAI</span>
     </div>
   </div>
 </section>
 
 <!-- ============================= 6-3 슈퍼 연봉자 ============================= -->
-<section class="slide" data-chapter="CHAPTER 06">
-  <div class="col-stack left">
-    <div class="eyebrow">6 · 3  보상</div>
-    <h2 class="head-l">
-      슈퍼 연봉자가 나오는 것도,<br>
-      <span class="lime">자연스러운 흐름입니다.</span>
-    </h2>
-    <div class="body-l">
-      한 사람이 만드는 가치의 크기가 달라지기 때문입니다.<br>
-      <strong>강한 사람을 평균 안에 가두는 조직은 약해집니다. 강한 사람을 증폭시키는 조직이 강해집니다.</strong>
+<section class="slide" data-chapter="CHAPTER 06" style="padding: 8vh 8vw; align-items:center; justify-content:center;">
+  <div style="display:grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); gap:6vw; width:100%; align-items:center; justify-items:stretch;">
+    <!-- 좌: 본문 -->
+    <div style="display:flex; flex-direction:column; gap:28px;">
+      <div class="eyebrow">6 · 3  보상</div>
+      <h2 class="head-l" style="font-size:clamp(36px, 4.2vw, 72px); margin:0;">
+        슈퍼 연봉자가 나오는 것도,<br>
+        <span class="lime">자연스러운 흐름입니다.</span>
+      </h2>
+      <div class="body-l" style="max-width:none;">
+        한 사람이 만드는 가치의 크기가 달라지기 때문입니다.<br>
+        <strong>강한 사람을 평균 안에 가두는 조직은 약해집니다. 강한 사람을 증폭시키는 조직이 강해집니다.</strong>
+      </div>
+    </div>
+    <!-- 우: 메가 ×10 -->
+    <div aria-hidden="true" style="display:flex; flex-direction:column; align-items:flex-end; gap:18px; pointer-events:none;">
+      <div style="font-size:14px; letter-spacing:.2em; color:var(--lime); font-weight:700;">SALARY · 10×</div>
+      <div style="display:flex; align-items:flex-start; gap:4px; line-height:.85;">
+        <span style="font-size:clamp(60px, 8vw, 140px); font-weight:900; color:#fff; letter-spacing:-.04em;">×</span>
+        <span style="font-size:clamp(140px, 20vw, 360px); font-weight:900; color:var(--lime); letter-spacing:-.06em; text-shadow:0 0 60px rgba(200,255,0,.3);">10</span>
+      </div>
+      <div style="font-size:13px; color:var(--dim); letter-spacing:.05em; max-width:340px; text-align:right; line-height:1.5;">
+        한 명의 가치가 10배가 되는 시대 —<br>그 사람의 보상도 10배가 됩니다.
+      </div>
     </div>
   </div>
 </section>
@@ -2778,7 +2824,7 @@ document.querySelectorAll('.explode span').forEach(s => {
 /* ===== SLIDE-SPECIFIC EFFECTS ===== */
 // counter slide 6-2: count 1 → 1000 on each next-press within
 let counterStage = 0;
-const counterValues = [1, 10, 100, 1000, 10000];
+const counterValues = [1, 10, 100];
 function triggerSlideEffects(i) {
   // reset armed flag on all slides except current
   document.querySelectorAll('.slide.do-explode').forEach(s => {
