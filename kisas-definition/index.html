@@ -788,23 +788,23 @@ body[data-lang="ko"] .echo-text{
   .fb-pyramid .fp-tier{grid-template-columns:60px 1fr;width:100% !important}
   .fb-pyramid .fp-tier .fp-access{grid-column:1/-1;font-size:11px;color:var(--text-tertiary);margin-top:6px}
 }
-/* Pyramid widths: L6 narrow on top → L1 wide on bottom */
-.fb-pyramid .fp-tier[data-l="6"]{width:42%;background:linear-gradient(135deg,rgba(7,237,33,.12),rgba(0,212,255,.08));border-color:rgba(7,237,33,.4)}
-.fb-pyramid .fp-tier[data-l="5"]{width:55%;background:linear-gradient(135deg,rgba(0,146,255,.1),rgba(0,212,255,.06));border-color:rgba(0,146,255,.35)}
-.fb-pyramid .fp-tier[data-l="4"]{width:68%;background:linear-gradient(135deg,rgba(198,92,255,.1),rgba(91,109,255,.06));border-color:rgba(198,92,255,.35)}
-.fb-pyramid .fp-tier[data-l="3"]{width:80%;background:linear-gradient(135deg,rgba(255,36,105,.1),rgba(233,30,99,.06));border-color:rgba(255,36,105,.35)}
-.fb-pyramid .fp-tier[data-l="2"]{width:92%;background:linear-gradient(135deg,rgba(253,151,0,.1),rgba(255,68,0,.06));border-color:rgba(253,151,0,.35)}
-.fb-pyramid .fp-tier[data-l="1"]{width:100%;background:linear-gradient(135deg,rgba(255,214,10,.1),rgba(253,151,0,.05));border-color:rgba(255,214,10,.35)}
+/* Pyramid widths: L1 narrow on top (apex) → L6 wide on bottom (base) */
+.fb-pyramid .fp-tier[data-l="1"]{width:42%;background:linear-gradient(135deg,rgba(255,36,105,.14),rgba(233,30,99,.08));border-color:rgba(255,36,105,.45)}
+.fb-pyramid .fp-tier[data-l="2"]{width:55%;background:linear-gradient(135deg,rgba(253,151,0,.12),rgba(255,68,0,.08));border-color:rgba(253,151,0,.4)}
+.fb-pyramid .fp-tier[data-l="3"]{width:68%;background:linear-gradient(135deg,rgba(255,68,0,.1),rgba(233,30,99,.06));border-color:rgba(255,68,0,.35)}
+.fb-pyramid .fp-tier[data-l="4"]{width:80%;background:linear-gradient(135deg,rgba(0,146,255,.1),rgba(91,109,255,.06));border-color:rgba(0,146,255,.35)}
+.fb-pyramid .fp-tier[data-l="5"]{width:92%;background:linear-gradient(135deg,rgba(7,237,33,.08),rgba(0,212,255,.06));border-color:rgba(7,237,33,.3)}
+.fb-pyramid .fp-tier[data-l="6"]{width:100%;background:linear-gradient(135deg,rgba(198,92,255,.08),rgba(91,109,255,.05));border-color:rgba(198,92,255,.3)}
 .fb-pyramid .fp-num{
   font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:900;
   text-align:center;
 }
-.fb-pyramid .fp-tier[data-l="6"] .fp-num{color:var(--c-green)}
-.fb-pyramid .fp-tier[data-l="5"] .fp-num{color:var(--c-blue)}
-.fb-pyramid .fp-tier[data-l="4"] .fp-num{color:var(--c-purple)}
-.fb-pyramid .fp-tier[data-l="3"] .fp-num{color:var(--c-pink)}
+.fb-pyramid .fp-tier[data-l="1"] .fp-num{color:var(--c-pink)}
 .fb-pyramid .fp-tier[data-l="2"] .fp-num{color:var(--c-orange)}
-.fb-pyramid .fp-tier[data-l="1"] .fp-num{color:var(--c-yellow)}
+.fb-pyramid .fp-tier[data-l="3"] .fp-num{color:var(--c-red)}
+.fb-pyramid .fp-tier[data-l="4"] .fp-num{color:var(--c-blue)}
+.fb-pyramid .fp-tier[data-l="5"] .fp-num{color:var(--c-green)}
+.fb-pyramid .fp-tier[data-l="6"] .fp-num{color:var(--c-purple)}
 .fb-pyramid .fp-who{
   font-size:16px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
   word-break:keep-all;
@@ -2343,83 +2343,99 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
       <div class="fb-pyramid">
         <div class="fp-grid">
           <div class="fp-axis">
-            <span class="axis-top" lang-ko>↑ 프리미엄 · 최상위 강도<br>희소 · 신청형</span>
-            <span class="axis-top" lang-en>↑ Premium · top intensity<br>Scarce · invitation</span>
-            <span lang-ko>강도 ↑<br>접근성 ↓</span>
-            <span lang-en>Intensity ↑<br>Access ↓</span>
-            <span class="axis-bot" lang-ko>↓ 상시 · 무제한<br>모두에게 열려있음</span>
-            <span class="axis-bot" lang-en>↓ Always-on · unlimited<br>Open to everyone</span>
+            <span class="axis-top" lang-ko>↑ L1 · 정점<br>업계 최고 · 실제 만남</span>
+            <span class="axis-top" lang-en>↑ L1 · Apex<br>Industry top · in person</span>
+            <span lang-ko>희소·강도 ↑<br>접근성 ↓</span>
+            <span lang-en>Scarce / intensity ↑<br>Access ↓</span>
+            <span class="axis-bot" lang-ko>↓ L6 · 바닥<br>또래 · 상시 커뮤니티</span>
+            <span class="axis-bot" lang-en>↓ L6 · Base<br>Peers · always-on</span>
           </div>
           <div class="fp-stack">
-            <!-- L6 top -->
-            <div class="fp-tier" data-l="6">
-              <div class="fp-num">L6</div>
+            <!-- L1 top — Premium on-site -->
+            <div class="fp-tier" data-l="1">
+              <div class="fp-num">L1</div>
               <div>
                 <div class="fp-who" lang-ko>프리미엄 현장 피드백</div>
                 <div class="fp-who" lang-en>Premium on-site feedback</div>
-                <div class="fp-role" lang-ko>아카데미·캠프·마스터클래스 고강도 피드백</div>
-                <div class="fp-role" lang-en>High-intensity feedback at academy, camp, masterclass</div>
+                <div class="fp-role" lang-ko>캠프·아카데미·마스터클래스에서 그 사람을 <strong>실제로 만나는</strong> 고강도 피드백</div>
+                <div class="fp-role" lang-en>High-intensity feedback meeting them <strong>in person</strong> at camp, academy, masterclass</div>
               </div>
-              <div class="fp-access" lang-ko>프리미엄<br>최상위</div>
-              <div class="fp-access" lang-en>Premium<br>top-tier</div>
+              <div class="fp-access" lang-ko>사람 · 업계 최고</div>
+              <div class="fp-access" lang-en>Human · industry top</div>
             </div>
+            <!-- L2 — Master Bot AI -->
+            <div class="fp-tier" data-l="2">
+              <div class="fp-num">L2</div>
+              <div>
+                <div class="fp-who" lang-ko>Master Bot AI 피드백</div>
+                <div class="fp-who" lang-en>Master Bot AI feedback</div>
+                <div class="fp-role" lang-ko>김형석·박진영급 — <strong>업계 최고이자 스타의 창작 철학·판단 기준·스타일·작업 방식·교육 언어를 반영한 AI 모델</strong></div>
+                <div class="fp-role" lang-en><strong>AI carrying the creative philosophy, judgment, style, and working method of top stars</strong> like Kim Hyung-suk or J.Y. Park</div>
+              </div>
+              <div class="fp-access" lang-ko>AI · 스타 DNA</div>
+              <div class="fp-access" lang-en>AI · star DNA</div>
+            </div>
+            <!-- L3 — Expert -->
+            <div class="fp-tier" data-l="3">
+              <div class="fp-num">L3</div>
+              <div>
+                <div class="fp-who" lang-ko>전문가 피드백</div>
+                <div class="fp-who" lang-en>Expert feedback</div>
+                <div class="fp-role" lang-ko>업계 최고 수준 전문가가 결과물을 직접 본 정성 피드백</div>
+                <div class="fp-role" lang-en>Top-level industry experts directly reviewing the creation</div>
+              </div>
+              <div class="fp-access" lang-ko>사람 · 최고 수준</div>
+              <div class="fp-access" lang-en>Human · top tier</div>
+            </div>
+            <!-- L4 — KISAS Certified Instructor -->
+            <div class="fp-tier" data-l="4">
+              <div class="fp-num">L4</div>
+              <div>
+                <div class="fp-who" lang-ko>KISAS 인증 강사 피드백</div>
+                <div class="fp-who" lang-en>KISAS-certified instructor feedback</div>
+                <div class="fp-role" lang-ko>학생 수준에 맞춘 교육적 해석과 9단 루프 지도</div>
+                <div class="fp-role" lang-en>Pedagogical interpretation at the student's level, guiding the 9-step loop</div>
+              </div>
+              <div class="fp-access" lang-ko>사람 · KISAS 인증</div>
+              <div class="fp-access" lang-en>Human · KISAS certified</div>
+            </div>
+            <!-- L5 — Registered expert -->
             <div class="fp-tier" data-l="5">
               <div class="fp-num">L5</div>
               <div>
                 <div class="fp-who" lang-ko>등록 전문가 피드백</div>
                 <div class="fp-who" lang-en>Registered expert feedback</div>
                 <div class="fp-role" lang-ko>분야별 외부 전문가의 선택형 피드백</div>
-                <div class="fp-role" lang-en>Domain experts on request</div>
+                <div class="fp-role" lang-en>Domain experts available on request</div>
               </div>
-              <div class="fp-access" lang-ko>신청형</div>
-              <div class="fp-access" lang-en>On request</div>
+              <div class="fp-access" lang-ko>사람 · 등록·인증</div>
+              <div class="fp-access" lang-en>Human · registered</div>
             </div>
-            <div class="fp-tier" data-l="4">
-              <div class="fp-num">L4</div>
+            <!-- L6 — Peers -->
+            <div class="fp-tier" data-l="6">
+              <div class="fp-num">L6</div>
               <div>
                 <div class="fp-who" lang-ko>동료 피드백</div>
                 <div class="fp-who" lang-en>Peer feedback</div>
-                <div class="fp-role" lang-ko>또래 관점의 반응과 상호 자극</div>
-                <div class="fp-role" lang-en>Peer perspective and mutual stimulation</div>
+                <div class="fp-role" lang-ko>또래 관점의 반응과 상호 자극 — 상시 커뮤니티</div>
+                <div class="fp-role" lang-en>Peer reactions and mutual stimulation — always-on community</div>
               </div>
-              <div class="fp-access" lang-ko>상시<br>커뮤니티</div>
-              <div class="fp-access" lang-en>Always-on<br>community</div>
-            </div>
-            <div class="fp-tier" data-l="3">
-              <div class="fp-num">L3</div>
-              <div>
-                <div class="fp-who" lang-ko>강사 피드백</div>
-                <div class="fp-who" lang-en>Instructor feedback</div>
-                <div class="fp-role" lang-ko>학생 수준에 맞춘 교육적 해석과 지도</div>
-                <div class="fp-role" lang-en>Pedagogical interpretation at the student's level</div>
-              </div>
-              <div class="fp-access" lang-ko>정기</div>
-              <div class="fp-access" lang-en>Regular</div>
-            </div>
-            <div class="fp-tier" data-l="2">
-              <div class="fp-num">L2</div>
-              <div>
-                <div class="fp-who" lang-ko>전문가 AI 피드백</div>
-                <div class="fp-who" lang-en>Expert AI feedback</div>
-                <div class="fp-role" lang-ko>평소 만날 수 없는 기준·감각·창작 철학을 반영한 AI</div>
-                <div class="fp-role" lang-en>AI carrying standards and sensibilities the student rarely meets</div>
-              </div>
-              <div class="fp-access" lang-ko>상시<br>핵심 차별점</div>
-              <div class="fp-access" lang-en>Always-on<br>key differentiator</div>
-            </div>
-            <div class="fp-tier" data-l="1">
-              <div class="fp-num">L1</div>
-              <div>
-                <div class="fp-who" lang-ko>AI 즉시 피드백</div>
-                <div class="fp-who" lang-en>AI instant feedback</div>
-                <div class="fp-role" lang-ko>학생 결과물에 대한 즉각적 첫 반응</div>
-                <div class="fp-role" lang-en>Immediate first reaction on the student's creation</div>
-              </div>
-              <div class="fp-access" lang-ko>상시<br>무제한</div>
-              <div class="fp-access" lang-en>Always-on<br>unlimited</div>
+              <div class="fp-access" lang-ko>사람 · 또래</div>
+              <div class="fp-access" lang-en>Human · peers</div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="callout" style="margin-top:40px">
+        <p class="callout-title" lang-ko>L2 Master Bot AI — IP 가드</p>
+        <p class="callout-title" lang-en>L2 Master Bot AI — IP guard</p>
+        <p class="callout-body" lang-ko>
+          "실제 인물 복제"가 아니라 — <strong>"해당 전문가의 창작 철학·판단 기준·스타일·작업 방식·교육 언어를 반영한 AI 피드백 모델"</strong>로 정의한다. 교육적 가치와 브랜드·IP 리스크를 동시에 관리하는 표현 원칙.
+        </p>
+        <p class="callout-body" lang-en>
+          Not "actual person replication" — but <strong>"an AI feedback model reflecting the expert's creative philosophy, judgment, style, working method, and pedagogical language."</strong> The phrasing principle that manages educational value and brand/IP risk together.
+        </p>
       </div>
 
       <p class="lead" lang-ko>
