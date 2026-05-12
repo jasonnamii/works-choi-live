@@ -2264,23 +2264,29 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
               <text x="432" y="29" text-anchor="middle" fill="#07ED21">기록</text>
             </g>
 
-            <!-- 9 colored solid descent lines (all preserved) -->
+            <!-- 9 colored solid descent lines — vertical column drop into capsule -->
             <g fill="none" stroke-width="1.3">
-              <path d="M32,40 Q32,90 60,170" stroke="#FFD60A" opacity=".7"/>
-              <path d="M82,40 Q82,90 100,170" stroke="#fd9700" opacity=".7"/>
-              <path d="M132,40 Q132,90 140,170" stroke="#f40" opacity=".7"/>
-              <path d="M182,40 Q182,90 180,170" stroke="#ff2469" opacity=".7"/>
-              <path d="M232,40 L230,170" stroke="#e91e63" opacity=".8"/>
-              <path d="M282,40 Q282,90 280,170" stroke="#c65cff" opacity=".7"/>
-              <path d="M332,40 Q332,90 320,170" stroke="#5b6dff" opacity=".7"/>
-              <path d="M382,40 Q382,90 360,170" stroke="#0092ff" opacity=".7"/>
-              <path d="M432,40 Q432,90 400,170" stroke="#07ED21" opacity=".7"/>
+              <line x1="32" y1="40" x2="32" y2="185" stroke="#FFD60A" opacity=".7"/>
+              <line x1="82" y1="40" x2="82" y2="185" stroke="#fd9700" opacity=".7"/>
+              <line x1="132" y1="40" x2="132" y2="185" stroke="#f40" opacity=".7"/>
+              <line x1="182" y1="40" x2="182" y2="185" stroke="#ff2469" opacity=".7"/>
+              <line x1="232" y1="40" x2="232" y2="185" stroke="#e91e63" opacity=".85"/>
+              <line x1="282" y1="40" x2="282" y2="185" stroke="#c65cff" opacity=".7"/>
+              <line x1="332" y1="40" x2="332" y2="185" stroke="#5b6dff" opacity=".7"/>
+              <line x1="382" y1="40" x2="382" y2="185" stroke="#0092ff" opacity=".7"/>
+              <line x1="432" y1="40" x2="432" y2="185" stroke="#07ED21" opacity=".7"/>
             </g>
 
-            <!-- Hub: KISAS LOOP -->
-            <circle cx="230" cy="200" r="32" fill="rgba(255,36,105,.18)" stroke="url(#path-grad)" stroke-width="2"/>
-            <text x="230" y="200" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-size="11" font-weight="800">KISAS</text>
-            <text x="230" y="214" text-anchor="middle" fill="#a1a1a6" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing="2">LOOP</text>
+            <!-- Hub: KISAS LOOP — horizontal capsule (stadium) matching the flow direction -->
+            <rect x="20" y="185" width="420" height="40" rx="20"
+                  fill="rgba(255,36,105,.12)" stroke="url(#path-grad)" stroke-width="2"/>
+            <text x="230" y="202" text-anchor="middle" fill="#fff"
+                  font-family="Inter,sans-serif" font-size="12" font-weight="800" letter-spacing="0.5">KISAS</text>
+            <text x="230" y="217" text-anchor="middle" fill="#a1a1a6"
+                  font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="3" font-weight="700">9-STEP LOOP</text>
+            <!-- soft inner glow strip -->
+            <rect x="22" y="187" width="416" height="36" rx="18" fill="none"
+                  stroke="rgba(255,255,255,.08)" stroke-width="1"/>
 
             <!-- 9 output pills bottom — each preserved -->
             <g font-family="Pretendard,Inter,sans-serif" font-size="9" font-weight="700">
@@ -2304,17 +2310,17 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
               <text x="432" y="284" text-anchor="middle" fill="#07ED21">기록</text>
             </g>
 
-            <!-- Lines from hub fan-out to outputs -->
-            <g fill="none" stroke-width="1" opacity=".4">
-              <line x1="220" y1="230" x2="32" y2="266" stroke="#FFD60A"/>
-              <line x1="222" y1="230" x2="82" y2="266" stroke="#fd9700"/>
-              <line x1="224" y1="230" x2="132" y2="266" stroke="#f40"/>
-              <line x1="226" y1="230" x2="182" y2="266" stroke="#ff2469"/>
-              <line x1="230" y1="232" x2="232" y2="266" stroke="#e91e63"/>
-              <line x1="234" y1="230" x2="282" y2="266" stroke="#c65cff"/>
-              <line x1="236" y1="230" x2="332" y2="266" stroke="#5b6dff"/>
-              <line x1="238" y1="230" x2="382" y2="266" stroke="#0092ff"/>
-              <line x1="240" y1="230" x2="432" y2="266" stroke="#07ED21"/>
+            <!-- 9 colored exit lines — vertical column flowing from capsule to outputs -->
+            <g fill="none" stroke-width="1.3">
+              <line x1="32" y1="225" x2="32" y2="270" stroke="#FFD60A" opacity=".7"/>
+              <line x1="82" y1="225" x2="82" y2="270" stroke="#fd9700" opacity=".7"/>
+              <line x1="132" y1="225" x2="132" y2="270" stroke="#f40" opacity=".7"/>
+              <line x1="182" y1="225" x2="182" y2="270" stroke="#ff2469" opacity=".7"/>
+              <line x1="232" y1="225" x2="232" y2="270" stroke="#e91e63" opacity=".85"/>
+              <line x1="282" y1="225" x2="282" y2="270" stroke="#c65cff" opacity=".7"/>
+              <line x1="332" y1="225" x2="332" y2="270" stroke="#5b6dff" opacity=".7"/>
+              <line x1="382" y1="225" x2="382" y2="270" stroke="#0092ff" opacity=".7"/>
+              <line x1="432" y1="225" x2="432" y2="270" stroke="#07ED21" opacity=".7"/>
             </g>
 
             <text x="230" y="320" text-anchor="middle" fill="#07ED21" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="3" font-weight="700">전부 보존 · 9개 모두 증거로 남음</text>
