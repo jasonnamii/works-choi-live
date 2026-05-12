@@ -333,7 +333,6 @@ body[data-lang="ko"] .cover-hero{
   color:transparent !important;
   margin-bottom:32px;
   display:block;
-  text-shadow:0 0 80px rgba(255,36,105,.15);
   animation:rainbow-vertical 10s ease-in-out infinite;
 }
 @keyframes divider-flow{
@@ -1389,12 +1388,12 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
   opacity:1;transform:translateY(0) scale(1);
 }
 
-/* Mask Reveal — chapter giant numbers */
+/* Mask Reveal — chapter giant numbers (use opacity, no clip-path box artifact) */
 .gate-num{
-  clip-path:inset(100% 0 0 0);
-  transition:clip-path 1.4s cubic-bezier(.22,1,.36,1);
+  opacity:0;transform:translateY(40px);
+  transition:opacity 1.2s cubic-bezier(.22,1,.36,1),transform 1.2s cubic-bezier(.22,1,.36,1);
 }
-.gate-num.in{clip-path:inset(0 0 0 0)}
+.gate-num.in{opacity:1;transform:translateY(0)}
 
 /* SVG stroke draw — Hub-Spoke lines + Timeline track */
 .hubspoke svg line,.hubspoke svg circle{
