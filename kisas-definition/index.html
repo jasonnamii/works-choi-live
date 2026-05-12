@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KISAS — 내가 만든 결과물이 더 좋아지는 교육</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root{
+  --bg:#0a0a0f;
+  --bg-alt:#111118;
+  --bg-card:#16161f;
+  --text:#f5f5f7;
+  --text-secondary:#a1a1a6;
+  --text-tertiary:#6e6e73;
+  --border:#1f1f28;
+  --c-yellow:#FFD60A;
+  --c-orange:#fd9700;
+  --c-red:#f40;
+  --c-pink:#ff2469;
+  --c-magenta:#e91e63;
+  --c-purple:#c65cff;
+  --c-violet:#8b5cf6;
+  --c-indigo:#5b6dff;
+  --c-blue:#0092ff;
+  --c-cyan:#00d4ff;
+  --c-teal:#14e0c0;
+  --c-green:#07ED21;
+  --c-lime:#9eff3c;
+  --hl-pink:#FF7AB6;
+  --hl-yellow:#FFD60A;
+  --hl-mint:#5DE0C2;
+  --hl-blue:#7AB6FF;
+  --hl-violet:#C29CFF;
+  --shadow-card:0 30px 80px rgba(0,0,0,.45);
+  --apple-ease:cubic-bezier(0.4,0,0.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Pretendard','Inter','SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body[data-lang="en"]{
+  font-family:'Inter','SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+/* Language switch */
+.lang-switch{
+  position:fixed;top:24px;right:24px;z-index:120;
+  display:flex;gap:0;background:rgba(10,10,15,.8);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--border);border-radius:999px;
+  padding:4px;font-family:'JetBrains Mono',monospace;
+}
+.lang-switch button{
+  background:transparent;border:none;cursor:pointer;
+  padding:8px 18px;font-size:12px;font-weight:600;
+  letter-spacing:.1em;color:var(--text-tertiary);
+  border-radius:999px;transition:all .3s var(--apple-ease);
+  font-family:inherit;
+}
+.lang-switch button.active{
+  background:linear-gradient(90deg,var(--c-pink),var(--c-purple));
+  color:#fff;
+}
+.lang-switch button:hover:not(.active){color:var(--text)}
+@media(max-width:768px){
+  .lang-switch{top:16px;right:16px;padding:3px}
+  .lang-switch button{padding:6px 14px;font-size:11px}
+}
+
+/* Language toggle visibility — block-level only by default */
+[lang-ko],[lang-en]{display:none}
+/* Block-level elements get default display */
+body[data-lang="ko"] p[lang-ko],
+body[data-lang="ko"] h1[lang-ko],
+body[data-lang="ko"] h2[lang-ko],
+body[data-lang="ko"] div[lang-ko],
+body[data-lang="ko"] ul[lang-ko]{display:block}
+body[data-lang="en"] p[lang-en],
+body[data-lang="en"] h1[lang-en],
+body[data-lang="en"] h2[lang-en],
+body[data-lang="en"] div[lang-en],
+body[data-lang="en"] ul[lang-en]{display:block}
+/* Inline-level keeps inline */
+body[data-lang="ko"] span[lang-ko],
+body[data-lang="ko"] em[lang-ko],
+body[data-lang="ko"] strong[lang-ko],
+body[data-lang="ko"] br[lang-ko]{display:inline}
+body[data-lang="en"] span[lang-en],
+body[data-lang="en"] em[lang-en],
+body[data-lang="en"] strong[lang-en],
+body[data-lang="en"] br[lang-en]{display:inline}
+/* List items */
+body[data-lang="ko"] li[lang-ko]{display:list-item}
+body[data-lang="en"] li[lang-en]{display:list-item}
+/* Summary */
+body[data-lang="ko"] summary[lang-ko]{display:flex}
+body[data-lang="en"] summary[lang-en]{display:flex}
+
+/* Scroll progress */
+.scroll-progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,
+    var(--c-yellow),var(--c-orange),var(--c-pink),var(--c-purple),var(--c-blue),var(--c-cyan),var(--c-green));
+  z-index:100;transition:width .1s var(--apple-ease);
+}
+
+/* Side dot nav — desktop */
+.dotnav{
+  position:fixed;right:24px;top:50%;transform:translateY(-50%);
+  z-index:90;display:flex;flex-direction:column;gap:12px;
+}
+.dotnav a{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,.2);transition:all .3s var(--apple-ease);
+  display:block;position:relative;
+}
+.dotnav a:hover,.dotnav a.active{
+  background:var(--c-pink);transform:scale(1.4);
+}
+.dotnav a::after{
+  content:attr(data-label);position:absolute;right:20px;top:50%;
+  transform:translateY(-50%);font-size:11px;color:var(--text-secondary);
+  white-space:nowrap;opacity:0;transition:opacity .3s;
+  font-family:'JetBrains Mono',monospace;letter-spacing:.05em;
+}
+.dotnav a:hover::after{opacity:1}
+@media(max-width:1100px){
+  .dotnav{
+    right:auto;left:0;top:auto;bottom:0;transform:none;
+    width:100%;flex-direction:row;justify-content:center;
+    padding:10px;background:rgba(10,10,15,.92);
+    backdrop-filter:blur(20px);gap:8px;
+    border-top:1px solid var(--border);
+  }
+  .dotnav a{width:8px;height:8px}
+  .dotnav a::after{display:none}
+}
+
+/* Container */
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.prose{max-width:760px}
+@media(max-width:768px){.wrap{padding:0 20px}}
+
+/* Typography roles */
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--text-tertiary);
+  font-weight:500;
+}
+/* Rainbow flow animation — Hero/Head only */
+@keyframes rainbow-flow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes rainbow-shimmer{
+  0%{background-position:0% 50%}
+  100%{background-position:200% 50%}
+}
+/* All gradient text — shared base (safe for line wrap, span inside heading) */
+.gradient-text,
+.gradient-text-2,
+.gradient-text-3{
+  display:inline;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  color:transparent !important;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+}
+/* Spectrum 1 — full rainbow (yellow→green) */
+.gradient-text{
+  background-image:linear-gradient(90deg,
+    var(--c-yellow),var(--c-orange),var(--c-pink),var(--c-purple),var(--c-indigo),var(--c-blue),var(--c-cyan),var(--c-teal),var(--c-green),
+    var(--c-teal),var(--c-cyan),var(--c-blue),var(--c-indigo),var(--c-purple),var(--c-pink),var(--c-orange),var(--c-yellow));
+  background-size:300% 100%;
+  background-position:0% 50%;
+  animation:rainbow-flow 8s ease-in-out infinite;
+}
+/* Spectrum 2 — cool track (purple→cyan) */
+.gradient-text-2{
+  background-image:linear-gradient(90deg,
+    var(--c-purple),var(--c-violet),var(--c-indigo),var(--c-blue),var(--c-cyan),var(--c-teal),
+    var(--c-cyan),var(--c-blue),var(--c-indigo),var(--c-violet),var(--c-purple));
+  background-size:300% 100%;
+  background-position:0% 50%;
+  animation:rainbow-flow 7s ease-in-out infinite;
+}
+/* Spectrum 3 — warm track (yellow→magenta) */
+.gradient-text-3{
+  background-image:linear-gradient(90deg,
+    var(--c-yellow),var(--c-orange),var(--c-red),var(--c-pink),var(--c-magenta),
+    var(--c-pink),var(--c-red),var(--c-orange),var(--c-yellow));
+  background-size:300% 100%;
+  background-position:0% 50%;
+  animation:rainbow-flow 7s ease-in-out infinite;
+}
+
+/* Body/inline gradient = static (only hero/head animates) */
+.sec-body .gradient-text,
+.sec-body .gradient-text-2,
+.sec-body .gradient-text-3,
+.card-title .gradient-text,
+.card-title .gradient-text-2,
+.card-title .gradient-text-3,
+.bigquote .gradient-text,
+.callout-title .gradient-text,
+.callout-title .gradient-text-2,
+.callout-title .gradient-text-3{
+  animation:none;
+  background-size:100% 100%;
+}
+
+/* Hero & gate hero: shimmer animation (background remains text-clipped) */
+.cover-hero .gradient-text,
+.gate-hero .gradient-text,
+.sec-head .gradient-text,
+.echo-text .gradient-text{
+  background-size:200% 100%;
+  animation:rainbow-shimmer 9s linear infinite;
+}
+.gate-hero .gradient-text-2,
+.sec-head .gradient-text-2{
+  background-size:200% 100%;
+  animation:rainbow-shimmer 8s linear infinite;
+}
+.gate-hero .gradient-text-3,
+.sec-head .gradient-text-3{
+  background-size:200% 100%;
+  animation:rainbow-shimmer 8s linear infinite;
+}
+.hl{
+  padding:.05em .35em;border-radius:.3em;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone;
+  color:#0a0a0f;font-weight:700;
+}
+.hl-pink{background:var(--hl-pink)}
+.hl-yellow{background:var(--hl-yellow)}
+.hl-mint{background:var(--hl-mint)}
+.hl-blue{background:var(--hl-blue)}
+.hl-violet{background:var(--hl-violet)}
+
+/* COVER + CHAPTER GATES — Big Bold Hero */
+.monolith{
+  min-height:100vh;
+  display:grid;place-items:center;
+  position:relative;overflow:hidden;
+  padding:80px 32px;
+}
+.monolith .content{position:relative;z-index:2;width:100%;max-width:1400px}
+.monolith .ambient{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 15% 25%,rgba(253,151,0,.16),transparent 50%),
+    radial-gradient(ellipse at 85% 35%,rgba(0,212,255,.14),transparent 50%),
+    radial-gradient(ellipse at 75% 80%,rgba(198,92,255,.16),transparent 50%),
+    radial-gradient(ellipse at 25% 90%,rgba(20,224,192,.12),transparent 55%),
+    radial-gradient(ellipse at 50% 50%,rgba(255,36,105,.08),transparent 70%);
+}
+.cover-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:clamp(13px,1.5vw,18px);
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--text-secondary);margin-bottom:32px;
+  font-weight:500;
+}
+.cover-hero{
+  font-size:clamp(56px,12vw,200px);
+  line-height:.92;letter-spacing:-.045em;
+  font-weight:900;
+  word-break:keep-all;
+  margin-bottom:40px;
+}
+body[data-lang="ko"] .cover-hero{
+  font-size:clamp(52px,10.5vw,180px);
+  line-height:1.05;letter-spacing:-.035em;
+}
+.cover-sub{
+  font-size:clamp(18px,2vw,28px);
+  color:var(--text-secondary);line-height:1.5;
+  max-width:900px;font-weight:400;
+  word-break:keep-all;
+}
+.cover-meta{
+  display:flex;gap:40px;flex-wrap:wrap;
+  margin-top:60px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;color:var(--text-tertiary);
+  letter-spacing:.1em;
+}
+.cover-meta span strong{color:var(--text);font-weight:600}
+
+/* Chapter gate */
+.gate-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:clamp(13px,1.4vw,18px);
+  letter-spacing:.5em;color:var(--text-tertiary);
+  font-weight:500;text-transform:uppercase;
+  margin-bottom:8px;
+}
+@keyframes rainbow-vertical{
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
+}
+.gate-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:clamp(180px,32vw,520px);
+  line-height:.85;letter-spacing:-.08em;
+  font-weight:900;
+  background-image:linear-gradient(180deg,
+    var(--c-yellow) 0%,var(--c-orange) 14%,var(--c-pink) 28%,var(--c-magenta) 42%,
+    var(--c-purple) 56%,var(--c-indigo) 70%,var(--c-blue) 84%,var(--c-cyan) 100%,
+    var(--c-teal) 114%,var(--c-green) 128%,var(--c-yellow) 150%);
+  background-size:100% 250%;
+  background-position:50% 0%;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  color:transparent !important;
+  margin-bottom:32px;
+  display:block;
+  text-shadow:0 0 80px rgba(255,36,105,.15);
+  animation:rainbow-vertical 10s ease-in-out infinite;
+}
+@keyframes divider-flow{
+  0%{background-position:0% 50%}
+  100%{background-position:200% 50%}
+}
+.gate-divider{animation:divider-flow 4s linear infinite;background-size:200% 100% !important}
+.gate-divider{
+  width:120px;height:2px;
+  background:linear-gradient(90deg,
+    var(--c-yellow),var(--c-orange),var(--c-pink),var(--c-purple),var(--c-blue),var(--c-cyan),var(--c-green));
+  margin:0 0 40px;
+  border-radius:2px;
+}
+.gate-hero{
+  font-size:clamp(56px,11vw,180px);
+  line-height:.92;letter-spacing:-.045em;
+  font-weight:900;word-break:keep-all;
+  margin-bottom:32px;
+}
+body[data-lang="ko"] .gate-hero{
+  font-size:clamp(52px,10vw,170px);
+  line-height:1.05;letter-spacing:-.035em;
+}
+.gate-sub{
+  font-size:clamp(17px,1.9vw,26px);
+  color:var(--text-secondary);
+  max-width:820px;font-weight:400;line-height:1.5;
+  word-break:keep-all;
+}
+@media(max-width:768px){
+  .gate-num{font-size:clamp(140px,42vw,260px)}
+}
+
+/* Section */
+section.s{
+  padding:140px 0;
+  border-top:1px solid var(--border);
+  position:relative;
+}
+@media(max-width:768px){section.s{padding:90px 0}}
+
+.sec-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;letter-spacing:.2em;
+  color:var(--text-tertiary);text-transform:uppercase;
+  margin-bottom:32px;font-weight:500;
+}
+.sec-head{
+  font-size:clamp(38px,6.5vw,88px);
+  line-height:1.05;letter-spacing:-.035em;
+  font-weight:800;word-break:keep-all;
+  margin-bottom:40px;max-width:1100px;
+}
+body[data-lang="ko"] .sec-head{
+  font-size:clamp(34px,5.8vw,76px);
+  line-height:1.15;letter-spacing:-.025em;
+}
+.sec-sub{
+  font-size:clamp(18px,2.2vw,28px);
+  color:var(--text-secondary);
+  line-height:1.5;max-width:900px;font-weight:400;
+  margin-bottom:80px;word-break:keep-all;
+}
+.sec-body{
+  max-width:1100px;
+}
+.sec-body p{
+  font-size:clamp(16px,1.3vw,20px);
+  line-height:1.75;color:var(--text);
+  margin-bottom:24px;max-width:760px;
+  word-break:keep-all;
+}
+.sec-body p.lead{
+  font-size:clamp(19px,1.7vw,26px);
+  color:var(--text);font-weight:500;
+}
+
+/* Details (accordion) */
+details.deep{
+  margin-top:60px;border-top:1px solid var(--border);
+  padding-top:32px;
+}
+details.deep summary{
+  cursor:pointer;list-style:none;
+  display:flex;align-items:center;gap:16px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;letter-spacing:.15em;
+  color:var(--text-secondary);text-transform:uppercase;
+  padding:8px 0;font-weight:500;
+}
+details.deep summary::-webkit-details-marker{display:none}
+details.deep summary::before{
+  content:'+';display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border:1px solid var(--border);
+  border-radius:50%;font-size:18px;color:var(--text);
+  font-family:'Inter',sans-serif;font-weight:300;
+  transition:all .3s var(--apple-ease);
+}
+details.deep[open] summary::before{
+  content:'×';background:var(--c-pink);border-color:var(--c-pink);
+}
+details.deep summary:hover::before{
+  border-color:var(--c-pink);color:var(--c-pink);
+}
+details.deep .deep-body{
+  margin-top:40px;padding-top:0;
+}
+details.deep .deep-body p{
+  font-size:17px;line-height:1.75;color:var(--text-secondary);
+  margin-bottom:20px;max-width:760px;word-break:keep-all;
+}
+details.deep .deep-body p strong{color:var(--text)}
+
+/* Cards & visual blocks */
+.bento{display:grid;gap:20px;margin:60px 0}
+.bento.cols-2{grid-template-columns:1fr 1fr}
+.bento.cols-3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){
+  .bento.cols-2,.bento.cols-3{grid-template-columns:1fr !important}
+}
+.card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:24px;padding:40px;
+  transition:all .4s var(--apple-ease);
+  position:relative;overflow:hidden;
+}
+.card:hover{border-color:var(--c-pink);transform:translateY(-4px)}
+.card .card-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.15em;
+  color:var(--text-tertiary);text-transform:uppercase;
+  margin-bottom:16px;font-weight:500;
+}
+.card .card-title{
+  font-size:clamp(22px,2.2vw,32px);
+  font-weight:700;line-height:1.2;letter-spacing:-.02em;
+  margin-bottom:16px;word-break:keep-all;
+}
+.card .card-body{
+  font-size:16px;line-height:1.65;
+  color:var(--text-secondary);word-break:keep-all;
+}
+
+/* Frame sandwich — Before/After */
+.sandwich{
+  display:grid;grid-template-columns:1fr 1fr;gap:2px;
+  background:var(--border);
+  border-radius:24px;overflow:hidden;
+  margin:60px 0;
+}
+@media(max-width:900px){.sandwich{grid-template-columns:1fr}}
+.sandwich .side{background:var(--bg-card);padding:48px}
+.sandwich .side.weak{background:#0e0e14}
+.sandwich .side.strong{background:linear-gradient(135deg,#1a0d20,#0e0e14)}
+.sandwich .side .label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:32px;font-weight:500;
+}
+.sandwich .side.weak .label{color:var(--text-tertiary)}
+.sandwich .side.strong .label{color:var(--c-pink)}
+.sandwich ul{list-style:none}
+.sandwich ul li{
+  padding:18px 0;border-bottom:1px solid var(--border);
+  font-size:17px;line-height:1.5;word-break:keep-all;
+}
+.sandwich ul li:last-child{border-bottom:none}
+.sandwich .side.weak li{color:var(--text-secondary)}
+.sandwich .side.strong li{color:var(--text);font-weight:500}
+
+/* 6 layers stack */
+.layers{display:grid;gap:12px;margin:60px 0}
+.layer{
+  display:grid;grid-template-columns:60px 240px 1fr;gap:24px;
+  padding:28px 32px;background:var(--bg-card);
+  border:1px solid var(--border);border-radius:16px;
+  align-items:center;transition:all .3s var(--apple-ease);
+}
+.layer:hover{border-color:var(--c-pink);transform:translateX(4px)}
+.layer .num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:32px;font-weight:700;
+  background-image:linear-gradient(135deg,var(--c-cyan),var(--c-purple));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+}
+.layer:nth-child(1) .num{background-image:linear-gradient(135deg,var(--c-yellow),var(--c-orange))}
+.layer:nth-child(2) .num{background-image:linear-gradient(135deg,var(--c-orange),var(--c-pink))}
+.layer:nth-child(3) .num{background-image:linear-gradient(135deg,var(--c-pink),var(--c-purple))}
+.layer:nth-child(4) .num{background-image:linear-gradient(135deg,var(--c-purple),var(--c-blue))}
+.layer:nth-child(5) .num{background-image:linear-gradient(135deg,var(--c-blue),var(--c-cyan))}
+.layer:nth-child(6) .num{background-image:linear-gradient(135deg,var(--c-cyan),var(--c-green))}
+.layer .who{font-size:18px;font-weight:600;color:var(--text);word-break:keep-all}
+.layer .what{font-size:15px;color:var(--text-secondary);line-height:1.5;word-break:keep-all}
+@media(max-width:768px){
+  .layer{grid-template-columns:1fr;gap:8px;padding:24px}
+  .layer .num{font-size:24px}
+}
+
+/* 9-step flow */
+.flow{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  margin:60px 0;
+}
+@media(max-width:900px){.flow{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.flow{grid-template-columns:1fr}}
+.step{
+  padding:28px;background:var(--bg-card);
+  border:1px solid var(--border);border-radius:18px;
+  position:relative;transition:all .3s var(--apple-ease);
+}
+.step:hover{transform:translateY(-4px)}
+.step:nth-child(1){border-top:2px solid var(--c-yellow)}
+.step:nth-child(2){border-top:2px solid var(--c-orange)}
+.step:nth-child(3){border-top:2px solid var(--c-pink)}
+.step:nth-child(4){border-top:2px solid var(--c-magenta)}
+.step:nth-child(5){border-top:2px solid var(--c-purple)}
+.step:nth-child(6){border-top:2px solid var(--c-indigo)}
+.step:nth-child(7){border-top:2px solid var(--c-blue)}
+.step:nth-child(8){border-top:2px solid var(--c-cyan)}
+.step:nth-child(9){border-top:2px solid var(--c-green)}
+.step .step-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;letter-spacing:.1em;
+  font-weight:600;margin-bottom:12px;color:var(--text-secondary);
+}
+.step:nth-child(1) .step-num{color:var(--c-yellow)}
+.step:nth-child(2) .step-num{color:var(--c-orange)}
+.step:nth-child(3) .step-num{color:var(--c-pink)}
+.step:nth-child(4) .step-num{color:var(--c-magenta)}
+.step:nth-child(5) .step-num{color:var(--c-purple)}
+.step:nth-child(6) .step-num{color:#9a8aff}
+.step:nth-child(7) .step-num{color:var(--c-blue)}
+.step:nth-child(8) .step-num{color:var(--c-cyan)}
+.step:nth-child(9) .step-num{color:var(--c-green)}
+.step .step-title{
+  font-size:22px;font-weight:700;line-height:1.25;
+  margin-bottom:10px;letter-spacing:-.01em;word-break:keep-all;
+}
+.step .step-why{
+  font-size:14px;color:var(--text-secondary);line-height:1.55;word-break:keep-all;
+}
+
+/* Compare table — weak vs strong */
+.compare{
+  margin:60px 0;border-radius:24px;
+  border:1px solid var(--border);overflow:hidden;
+  background:var(--bg-card);
+}
+.compare .row{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--border);
+}
+.compare .row:last-child{border-bottom:none}
+.compare .row > div{padding:24px 28px;font-size:16px;line-height:1.55;word-break:keep-all}
+.compare .row .weak{color:var(--text-tertiary);border-right:1px solid var(--border)}
+.compare .row .strong{color:var(--text);font-weight:500}
+.compare .row.head{background:rgba(255,255,255,.02)}
+.compare .row.head > div{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-tertiary);font-weight:500;
+}
+.compare .row.head .strong{color:var(--c-pink)}
+@media(max-width:768px){
+  .compare .row{grid-template-columns:1fr}
+  .compare .row .weak{border-right:none;border-bottom:1px solid var(--border)}
+}
+
+/* Keep-out callout */
+.callout{
+  padding:48px;border-radius:24px;
+  background:linear-gradient(135deg,rgba(255,36,105,.08),rgba(198,92,255,.08));
+  border:1px solid rgba(255,36,105,.3);
+  margin:60px 0;
+}
+.callout .callout-title{
+  font-size:clamp(22px,2.8vw,36px);
+  font-weight:800;line-height:1.25;
+  letter-spacing:-.02em;margin-bottom:20px;
+  word-break:keep-all;
+}
+.callout .callout-body{
+  font-size:18px;line-height:1.65;color:var(--text-secondary);word-break:keep-all;
+}
+
+/* Authority block */
+.authority{
+  display:grid;grid-template-columns:200px 1fr;gap:48px;
+  padding:48px;border-radius:24px;
+  background:var(--bg-card);border:1px solid var(--border);
+  margin:60px 0;align-items:center;
+}
+@media(max-width:768px){.authority{grid-template-columns:1fr;padding:32px;gap:24px}}
+.authority .avatar{
+  width:160px;height:160px;border-radius:50%;
+  background:conic-gradient(from 180deg,
+    var(--c-yellow),var(--c-orange),var(--c-pink),var(--c-magenta),
+    var(--c-purple),var(--c-blue),var(--c-cyan),var(--c-green),var(--c-yellow));
+  display:grid;place-items:center;
+  font-family:'JetBrains Mono',monospace;font-size:48px;
+  font-weight:700;color:#0a0a0f;
+  box-shadow:0 0 60px rgba(198,92,255,.3);
+}
+.authority .who-name{
+  font-size:clamp(26px,2.8vw,40px);font-weight:800;
+  margin-bottom:8px;letter-spacing:-.02em;word-break:keep-all;
+}
+.authority .who-role{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;letter-spacing:.15em;
+  color:var(--text-tertiary);text-transform:uppercase;
+  margin-bottom:20px;font-weight:500;
+}
+.authority .who-quote{
+  font-size:18px;line-height:1.65;color:var(--text-secondary);word-break:keep-all;
+}
+
+/* PT Monolith — final echo */
+.echo{
+  min-height:100vh;display:grid;place-items:center;
+  padding:120px 32px;position:relative;overflow:hidden;
+}
+.echo .ambient{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 20% 30%,rgba(255,214,10,.14),transparent 55%),
+    radial-gradient(ellipse at 80% 30%,rgba(7,237,33,.12),transparent 55%),
+    radial-gradient(ellipse at 80% 75%,rgba(0,146,255,.16),transparent 55%),
+    radial-gradient(ellipse at 20% 75%,rgba(255,36,105,.14),transparent 55%);
+}
+.echo-text{
+  font-size:clamp(48px,10vw,160px);
+  line-height:1;letter-spacing:-.045em;
+  font-weight:900;text-align:center;
+  word-break:keep-all;position:relative;z-index:2;
+  max-width:1400px;
+}
+body[data-lang="ko"] .echo-text{
+  font-size:clamp(44px,9vw,140px);
+  line-height:1.1;letter-spacing:-.03em;
+}
+
+/* Focus visible */
+a:focus-visible,summary:focus-visible,button:focus-visible{
+  outline:2px solid var(--c-pink);outline-offset:4px;border-radius:4px;
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+  }
+  html{scroll-behavior:auto}
+}
+
+/* Plain list */
+.sec-body ul.plain{list-style:none;margin:32px 0}
+.sec-body ul.plain li{
+  padding:14px 0 14px 32px;position:relative;
+  font-size:17px;line-height:1.65;color:var(--text);
+  border-bottom:1px solid var(--border);word-break:keep-all;
+}
+.sec-body ul.plain li::before{
+  content:'';position:absolute;left:0;top:24px;
+  width:16px;height:1px;background:var(--c-pink);
+}
+.sec-body ul.plain li:last-child{border-bottom:none}
+
+/* Quote */
+.bigquote{
+  font-size:clamp(26px,3.6vw,48px);
+  line-height:1.2;letter-spacing:-.025em;
+  font-weight:700;word-break:keep-all;
+  margin:60px 0;max-width:1000px;
+}
+.bigquote .gradient-text{display:inline}
+
+</style>
+</head>
+<body data-lang="ko">
+
+<div class="scroll-progress" id="progress"></div>
+
+<div class="lang-switch" role="group" aria-label="언어 전환">
+  <button id="btn-ko" class="active" aria-pressed="true">KO</button>
+  <button id="btn-en" aria-pressed="false">EN</button>
+</div>
+
+<nav class="dotnav" aria-label="Section navigation">
+  <a href="#cover" data-label="COVER" class="active"></a>
+  <a href="#ch1" data-label="CH1. PROBLEM"></a>
+  <a href="#s1" data-label="01"></a>
+  <a href="#s2" data-label="02"></a>
+  <a href="#ch2" data-label="CH2. ANSWER"></a>
+  <a href="#s3" data-label="03"></a>
+  <a href="#s4" data-label="04"></a>
+  <a href="#ch3" data-label="CH3. STRUCTURE"></a>
+  <a href="#s5" data-label="05"></a>
+  <a href="#s6" data-label="06"></a>
+  <a href="#s7" data-label="07"></a>
+  <a href="#s8" data-label="08"></a>
+  <a href="#s9" data-label="09"></a>
+  <a href="#s10" data-label="10"></a>
+  <a href="#s11" data-label="11"></a>
+  <a href="#s12" data-label="12"></a>
+  <a href="#ch4" data-label="CH4. EXECUTION"></a>
+  <a href="#s13" data-label="13"></a>
+  <a href="#s14" data-label="14"></a>
+  <a href="#s15" data-label="15"></a>
+  <a href="#echo" data-label="ECHO"></a>
+</nav>
+
+<!-- ============ COVER ============ -->
+<section id="cover" class="monolith">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="content">
+    <p class="cover-eyebrow" lang-ko>KISAS 정의 세트 · v4.0</p>
+    <p class="cover-eyebrow" lang-en>KISAS Definition Set · v4.0</p>
+
+    <h1 class="cover-hero" lang-ko>
+      내가 만든 <span class="gradient-text">결과물</span>이<br>
+      더 좋아지는 교육
+    </h1>
+    <h1 class="cover-hero" lang-en>
+      The Education<br>
+      Where <span class="gradient-text">Your Creation</span><br>
+      Gets Better.
+    </h1>
+
+    <p class="cover-sub" lang-ko>
+      KISAS는 강의를 보는 교육이 아니다.<br>
+      학생이 자기 생각을 결과물로 만들고, 여러 층의 피드백을 통해 더 좋은 결과물로 성장시키는
+      창작 피드백 교육 OS다.
+    </p>
+    <p class="cover-sub" lang-en>
+      Not a lecture. Not a project class. Not an AI tool tutorial.<br>
+      KISAS is a feedback-based creative education OS where students turn their own thinking into real work,
+      refine it through multiple layers of feedback, and explain why they made it the way they did.
+    </p>
+
+    <div class="cover-meta">
+      <span><strong>Version</strong> · 4.0</span>
+      <span><strong>Series</strong> · KISAS Family</span>
+      <span lang-ko><strong>Mode</strong> · 매니페스토</span>
+      <span lang-en><strong>Mode</strong> · Manifesto</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CH1 GATE ============ -->
+<section id="ch1" class="monolith">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="content">
+    <p class="gate-label">Chapter</p>
+    <p class="gate-num">01</p>
+    <div class="gate-divider"></div>
+    <h2 class="gate-hero" lang-ko>
+      AI 시대,<br>
+      <span class="gradient-text-2">진짜 문제</span>는<br>
+      따로 있다.
+    </h2>
+    <h2 class="gate-hero" lang-en>
+      The <span class="gradient-text-2">Problem</span><br>
+      In the Age of AI.
+    </h2>
+    <p class="gate-sub" lang-ko>
+      AI는 결과물을 쉽게 만든다. 그런데 학생에게는 무엇이 남는가.<br>
+      부모와 교육기관의 진짜 불안은 AI 자체가 아니다.
+    </p>
+    <p class="gate-sub" lang-en>
+      AI makes outputs easy. But what's left in the student?<br>
+      The real anxiety of parents and educators isn't about AI itself.
+    </p>
+  </div>
+</section>
+
+<!-- §1 -->
+<section id="s1" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 01 · <span lang-ko>AI 시대</span><span lang-en>The Age of AI</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      AI는 <span class="gradient-text">결과물</span>을 쉽게 만들지만,<br>
+      학생은 사라진다.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      AI makes <span class="gradient-text">creations</span> easy —<br>
+      but the student disappears.
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      AI는 결과물을 만드는 비용을 낮췄다. 그러나 결과물이 쉬워질수록 그 안에 누구의 생각이 있는지 더 불분명해진다.
+    </p>
+    <p class="sec-sub" lang-en>
+      AI lowered the cost of producing outputs. Anyone can now write, draw, compose, and edit at speed.
+      But the easier the output, the harder it becomes to see whose thinking is inside it.
+    </p>
+
+    <div class="sec-body">
+      <p class="lead" lang-ko>
+        AI는 결과물을 만드는 비용을 낮췄다. 예전에는 글을 쓰고, 음악을 만들고, 영상을 편집하고, 이미지를 제작하는 데 많은 시간과 기술이 필요했다. 이제는 다르다.
+      </p>
+      <p class="lead" lang-en>
+        AI lowered the cost of making things. Writing, music, images, video, ideas — what once took years of training now takes minutes of prompting.
+      </p>
+
+      <p lang-ko>
+        AI 시대의 학생은 이전 세대보다 훨씬 쉽게 결과물을 만들 수 있다. 하지만 여기서 새로운 문제가 생긴다.
+        결과물이 쉬워질수록 <strong>그 결과물이 누구의 생각인지, 어떤 과정을 거쳤는지, 학생에게 무엇이 남았는지</strong>
+        오히려 더 불분명해진다.
+      </p>
+      <p lang-en>
+        Students in the AI era can make outputs far more easily than any generation before them.
+        But this ease creates a new problem. When creation becomes easy, it becomes harder to tell
+        <strong>whose thinking is inside the output</strong>, what process produced it, and what — if anything — actually remains with the student.
+      </p>
+
+      <div class="callout">
+        <p class="callout-title" lang-ko>
+          AI 시대 교육의 진짜 문제는 <span class="gradient-text-2">"AI를 쓰느냐, 안 쓰느냐"</span>가 아니다.
+        </p>
+        <p class="callout-title" lang-en>
+          The real question of AI-era education isn't <span class="gradient-text-2">"use AI or not."</span>
+        </p>
+        <p class="callout-body" lang-ko>
+          진짜 문제는 이것이다 — AI를 쓰는 시대에 학생이 자기 사고를 잃지 않고, 자기 결과물을 만들 수 있는가.
+        </p>
+        <p class="callout-body" lang-en>
+          The real question is this — in an era when AI does the making, can a student still keep their own thinking and still produce work that belongs to them?
+        </p>
+      </div>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — 창작 비용의 이동</summary>
+        <summary lang-en>Read deeper · the shift in creative cost</summary>
+        <div class="deep-body">
+          <p lang-ko>AI 이전, 창작의 병목은 기술이었다. 출판 가능한 글, 들을 만한 음악, 볼 만한 영상에는 수년의 훈련이 필요했다. 기술 자체가 관문이었다.</p>
+          <p lang-en>Before AI, the bottleneck of creation was skill. A student needed years to write a publishable essay, compose a listenable song, or edit a watchable film. Skill itself was the gate.</p>
+          <p lang-ko>AI 이후, 병목은 이동했다. 이제 관문은 <strong>의도·판단·수정</strong>이다. 무엇을 원하는지 명확히 하고, AI가 만든 것을 평가하고, 의도적으로 고치는 학생은 성장한다. AI 산출물을 그대로 받아들이는 학생은 자기 작품의 수동적 소비자가 된다.</p>
+          <p lang-en>After AI, the bottleneck moved. Skill is no longer the gate. The gate is now <strong>intent, judgment, and revision</strong>. The student who can articulate what they want, evaluate what the AI produced, and revise it intentionally — that student grows. The student who only accepts AI's output as-is becomes a passive consumer of their own work.</p>
+          <p lang-ko>KISAS는 이 이동을 위한 학교다. "AI 사용법"을 가르치는 곳이 아니라, <strong>AI가 루프 안에 있을 때 학생에게 무엇이 남는가</strong>를 묻는 학교다.</p>
+          <p lang-en>KISAS is built for this shift. It is not a school that teaches "how to use AI." It is a school that asks <strong>what remains in the student when AI is in the loop</strong>.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §2 -->
+<section id="s2" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 02 · <span lang-ko>진짜 불안</span><span lang-en>The Real Anxiety</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      부모의 진짜 불안 —<br>
+      <span class="gradient-text-3">AI 시대, 우리 아이에게</span><br><span class="gradient-text-3">무엇이 남는가.</span>
+    </h2>
+    <h2 class="sec-head" lang-en>
+      The parent's real fear —<br>
+      <span class="gradient-text-3">In the age of AI, what's left for my child?</span>
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      겉 질문은 "AI를 써도 되는가"다. 그 안쪽에는 학습의 실체가 사라질지 모른다는 진짜 불안이 있다.
+    </p>
+    <p class="sec-sub" lang-en>
+      On the surface, the question sounds like "should kids use AI." Underneath, the real question is whether the substance of learning is disappearing.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        겉으로 보이는 질문은 단순하다. 아이들이 AI를 써도 되는가? AI를 쓰면 공부를 안 하게 되는 것 아닌가? AI가 대신 만든 결과물을 어떻게 평가할 것인가?
+      </p>
+      <p lang-en>
+        The surface question is simple. Should kids use AI? Won't they stop studying if they do? How can we evaluate work the AI helped make?
+      </p>
+
+      <p lang-ko>
+        하지만 이 질문의 안쪽에는 더 깊은 불안이 있다. 부모와 교육기관이 진짜로 묻는 것은 이것이다 — <strong>AI를 쓰는 시대에 우리 아이에게 무엇이 남는가.</strong>
+      </p>
+      <p lang-en>
+        But under those questions is a deeper anxiety. What parents and educators are really asking is this — <strong>in the age of AI, what remains in our child?</strong>
+      </p>
+
+      <ul class="plain">
+        <li lang-ko>결과물은 나왔는데, 그 안에 아이의 생각이 있는가?</li>
+        <li lang-en>The output came out — but is the child's thinking inside it?</li>
+        <li lang-ko>좋아 보이는 콘텐츠를 만들었는데, 아이가 왜 그렇게 만들었는지 설명할 수 있는가?</li>
+        <li lang-en>The content looks good — but can the child explain why they made it that way?</li>
+        <li lang-ko>피드백을 받고, 다시 고치고, 이전보다 나아지는 경험을 해봤는가?</li>
+        <li lang-en>Did the child receive feedback, revise, and experience their work getting better?</li>
+      </ul>
+
+      <p class="lead" lang-ko>
+        AI 시대의 핵심 불안은 기술 사용 여부가 아니다. <span class="hl hl-yellow">학습의 실체가 사라지는 것이다.</span>
+      </p>
+      <p class="lead" lang-en>
+        The core anxiety of the AI era is not about technology. It is about <span class="hl hl-yellow">the disappearance of the substance of learning.</span>
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — "학습의 실체"란 무엇인가</summary>
+        <summary lang-en>Read deeper · what "substance of learning" means</summary>
+        <div class="deep-body">
+          <p lang-ko>"학습의 실체"란 <strong>결과물만으로는 대체될 수 없는</strong> 교육의 일부다. 사고의 흔적, 수정의 경험, 자기 선택을 설명할 수 있는 힘, "내가 만들었다"는 감각.</p>
+          <p lang-en>"Substance of learning" is the part of education that <strong>cannot be replaced by output alone</strong>. It is the trace of thinking, the experience of revision, the ability to explain choices, the felt sense of "I made this."</p>
+          <p lang-ko>AI로 잘 다듬은 결과물만 내놓는 아이는 생산적으로 보일 수 있다. 그러나 자기 선택을 설명할 수 없고, 피드백과 만나지 않았고, 작품이 좋아지는 것을 본 적이 없다면 — 산출물이 인상적이어도 실체는 사라진 것이다.</p>
+          <p lang-en>A child who only ships AI-polished outputs may look productive. But if they cannot explain their choices, did not engage with feedback, and did not see their work improve — the substance is gone, even if the artifact is impressive.</p>
+          <p lang-ko>KISAS는 그 실체를 다시 중심에 두기 위해 존재한다. AI 시대와 싸우지 않으면서, AI 시대에 맞는 형태로.</p>
+          <p lang-en>KISAS exists to put that substance back at the center, in a form that fits the AI era rather than fighting it.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CH2 GATE ============ -->
+<section id="ch2" class="monolith">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="content">
+    <p class="gate-label">Chapter</p>
+    <p class="gate-num">02</p>
+    <div class="gate-divider"></div>
+    <h2 class="gate-hero" lang-ko>
+      KISAS의<br>
+      <span class="gradient-text">답</span>은 단순하다.
+    </h2>
+    <h2 class="gate-hero" lang-en>
+      The <span class="gradient-text">Answer</span><br>
+      Is Simple.
+    </h2>
+    <p class="gate-sub" lang-ko>
+      KISAS는 내가 만든 결과물이 더 좋아지는 교육이다.<br>
+      강의를 보는 교육이 아니라, 결과물을 키우는 교육.
+    </p>
+    <p class="gate-sub" lang-en>
+      KISAS is the education where the student's own creation gets better.<br>
+      Not a lecture to watch. A creation to grow.
+    </p>
+  </div>
+</section>
+
+<!-- §3 -->
+<section id="s3" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 03 · <span lang-ko>정의</span><span lang-en>The Definition</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      KISAS는 <span class="gradient-text">내가 만든 결과물</span>이<br>
+      더 좋아지는 교육이다.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      KISAS is the education where<br>
+      <span class="gradient-text">the creation I made</span> gets better.
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      강의를 보는 것도, 따라 하는 것도, 과제를 내는 것도 아니다. 학생은 만들고, 피드백 받고, 고치고, 완성하고, 왜 그렇게 했는지 설명한다.
+    </p>
+    <p class="sec-sub" lang-en>
+      Not watching lectures. Not following along. Not turning in assignments and ending there. The student makes, receives feedback, revises, completes, and explains.
+    </p>
+
+    <div class="sec-body">
+      <p class="lead" lang-ko>
+        KISAS의 답은 단순하다. KISAS는 내가 만든 결과물이 더 좋아지는 교육이다.
+      </p>
+      <p class="lead" lang-en>
+        KISAS's answer is simple. KISAS is the education where the creation I made gets better.
+      </p>
+
+      <p lang-ko>
+        학생은 단순히 강의를 보지 않는다. 따라 하기만 하지 않는다. 과제를 제출하고 끝나지도 않는다.
+        학생은 <strong>자기 생각을 꺼내고, 그 생각을 실제 결과물로 만들고, 여러 층의 피드백을 받고, 다시 고치고, 완성하고, 왜 그렇게 만들고 고쳤는지 설명한다.</strong>
+      </p>
+      <p lang-en>
+        The student does not just watch lectures. The student does not just follow along. The student does not just submit and finish. The student <strong>brings out their own thinking, turns it into a real creation, receives feedback from multiple layers, revises it, completes it, and explains why they made and changed it the way they did.</strong>
+      </p>
+
+      <p lang-ko>
+        이 과정에서 학생은 결과물을 하나 만드는 것이 아니라 <strong>자기 안의 창작 능력을 확인한다.</strong>
+      </p>
+      <p lang-en>
+        In this process, the student is not making one output. The student is confirming a creative capacity inside themselves.
+      </p>
+
+      <div class="bento cols-2">
+        <div class="card">
+          <p class="card-eyebrow" lang-ko>학생이 느끼는 것</p>
+          <p class="card-eyebrow" lang-en>What the student feels</p>
+          <p class="card-title" lang-ko>"내가 만들었다."</p>
+          <p class="card-title" lang-en>"I made it."</p>
+          <p class="card-body" lang-ko>숙제 한 편이 아니라 — 내 생각을 실제로 꺼낸 증거.</p>
+          <p class="card-body" lang-en>A creation that is unambiguously theirs — not a homework artifact, but evidence of their own thinking made real.</p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow" lang-ko>학생이 느끼는 것</p>
+          <p class="card-eyebrow" lang-en>What the student feels</p>
+          <p class="card-title" lang-ko>"내가 고쳤다."</p>
+          <p class="card-title" lang-en>"I revised it."</p>
+          <p class="card-body" lang-ko>피드백을 받고, 생각하고, 반영했다. 첫 초안이 아니다 — 이력이 있다.</p>
+          <p class="card-body" lang-en>Feedback was received, considered, applied. The output is no longer the first draft — it has a history.</p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow" lang-ko>학생이 느끼는 것</p>
+          <p class="card-eyebrow" lang-en>What the student feels</p>
+          <p class="card-title" lang-ko>"내 결과물이 <span class="gradient-text-2">더 좋아졌다.</span>"</p>
+          <p class="card-title" lang-en>"My creation got <span class="gradient-text-2">better</span>."</p>
+          <p class="card-body" lang-ko>처음과 마지막의 차이가 보인다. 성장은 점수가 아니다 — 학생이 직접 본 차이다.</p>
+          <p class="card-body" lang-en>The before-after gap is visible. Growth is not a grade — it is a difference the student can see.</p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow" lang-ko>학생이 느끼는 것</p>
+          <p class="card-eyebrow" lang-en>What the student feels</p>
+          <p class="card-title" lang-ko>"나는 표현할 수 있다."</p>
+          <p class="card-title" lang-en>"I can express myself."</p>
+          <p class="card-body" lang-ko>창작 자기효능감. "창작을 배웠다"가 아니라 "나는 창작할 수 있는 사람이다."</p>
+          <p class="card-body" lang-en>Creative self-efficacy. Not "I learned about creation" but "I am someone who can create."</p>
+        </div>
+      </div>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — KISAS가 일반 AI 학교가 아닌 이유</summary>
+        <summary lang-en>Read deeper · why KISAS is not a typical AI school</summary>
+        <div class="deep-body">
+          <p lang-ko>KISAS는 단순한 AI 교육이 아니다. 콘텐츠 제작 수업도 아니다. 프로젝트형 캠프도 아니다. KISAS는 <strong>창작 피드백 교육 OS</strong>다 — 학생이 자기 생각을 실제 결과물로 만들고, 피드백을 통해 더 나은 결과물로 키우고, 그 과정을 설명하는 시스템.</p>
+          <p lang-en>KISAS is not a typical AI education. It is not a content production course. It is not a project-based camp. KISAS is <strong>a creative feedback education OS</strong> in which students turn their own thinking into real outputs, grow those outputs into better outputs through feedback, and learn to explain their own process.</p>
+          <p lang-ko>KISAS의 중심은 강의가 아니다. 중심은 루프다 — 만들고, 받고, 고치고, 완성하고, 설명한다. 나머지는 모두 이 루프를 위한 것이다.</p>
+          <p lang-en>The center of KISAS is not the lecture. The center is the loop — make, receive, revise, complete, explain. Everything else is in service of that loop.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §4 -->
+<section id="s4" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 04 · <span lang-ko>방법</span><span lang-en>The Method</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      강의를 보는 교육이 아니라,<br>
+      <span class="gradient-text">인문학</span>과 창작을<br>
+      <span class="gradient-text-2">융합</span>하는 교육이다.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      Not a lecture to watch —<br>
+      an <span class="gradient-text">integration</span> of<br>
+      <span class="gradient-text-2">humanities</span> and creation.
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      KISAS는 "사고"와 "만들기"를 분리하지 않는다. 질문·해석·표현이라는 인문학적 습관이 창작 과정에 융합되어, 작품이 학생 자신의 의미를 품게 한다.
+    </p>
+    <p class="sec-sub" lang-en>
+      KISAS does not separate "thinking" from "making." Humanities — questioning, interpreting, expressing — are fused with creative production so that the work carries the student's own meaning.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        대부분의 교육은 강의를 보고, 따라 하고, 과제를 내고, 평가를 받는 구조다. 학생은 무언가를 배운다. 하지만 한계가 있다 — <strong>학생이 무엇을 생각했는지, 왜 그렇게 만들었는지, 어떤 피드백을 받았는지, 무엇을 고쳤는지, 결과물이 어떻게 좋아졌는지</strong>는 충분히 남지 않는다.
+      </p>
+      <p lang-en>
+        Most education has a structure of watching lectures, following along, submitting work, and being graded. Students do learn from this structure. But it has limits. <strong>What the student thought, why they made it, what feedback they received, what they changed, and how the output got better</strong> — these traces do not remain.
+      </p>
+
+      <p lang-ko>
+        KISAS는 이 지점을 바꾼다. 결과물을 만드는 것에서 멈추지 않는다. <strong>학생이 만든 결과물이 어떤 피드백을 통해 어떻게 더 좋아졌는지를 교육의 중심에 둔다</strong> — 자기 의미를 묻고 설명하는 인문학적 습관과 함께.
+      </p>
+      <p lang-en>
+        KISAS changes this. KISAS does not stop at making outputs. KISAS puts at the center of education the question of <strong>how the student's output got better through feedback</strong> — fused with the humanities habit of questioning and explaining one's own meaning.
+      </p>
+
+      <div class="sandwich">
+        <div class="side weak">
+          <p class="label" lang-ko>기존 교육</p>
+          <p class="label" lang-en>Conventional Education</p>
+          <ul>
+            <li lang-ko>강의를 본다</li><li lang-en>Watches a lecture</li>
+            <li lang-ko>따라 한다</li><li lang-en>Follows along</li>
+            <li lang-ko>과제를 제출한다</li><li lang-en>Submits the assignment</li>
+            <li lang-ko>평가받고 끝난다</li><li lang-en>Gets graded and finishes</li>
+            <li lang-ko>결과물만 남는다</li><li lang-en>Only the output remains</li>
+            <li lang-ko>"잘했는가?"를 묻는다</li><li lang-en>Asks "did you do well?"</li>
+            <li lang-ko>수료가 끝이다</li><li lang-en>Completion is the end</li>
+          </ul>
+        </div>
+        <div class="side strong">
+          <p class="label">KISAS</p>
+          <ul>
+            <li lang-ko>결과물을 만든다</li><li lang-en>Makes a creation</li>
+            <li lang-ko>자기 생각을 표현한다</li><li lang-en>Expresses their own thinking</li>
+            <li lang-ko>피드백을 받는다</li><li lang-en>Receives feedback</li>
+            <li lang-ko>고치고 다시 완성한다</li><li lang-en>Revises and completes again</li>
+            <li lang-ko>생각·피드백·수정 과정이 함께 남는다</li><li lang-en>Thinking, feedback, and revision remain together</li>
+            <li lang-ko>"어떻게 더 좋아졌는가?"를 묻는다</li><li lang-en>Asks "how did it get better?"</li>
+            <li lang-ko>성장 기록이 남는다</li><li lang-en>A growth record remains</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="lead" lang-ko>
+        기존 교육의 마지막 질문은 "점수가 몇 점인가?"다.<br>
+        KISAS의 마지막 질문은 다르다 — <span class="hl hl-mint">학생은 무엇을 생각했고, 만들었고, 들었고, 고쳤고, 완성했는가?</span>
+      </p>
+      <p class="lead" lang-en>
+        The last question of conventional education is "what's the score?"<br>
+        The last question of KISAS is — <span class="hl hl-mint">what did you think, make, hear, change, and complete?</span>
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — AI 학교에서 인문학이 왜 중요한가</summary>
+        <summary lang-en>Read deeper · why humanities matter in an AI school</summary>
+        <div class="deep-body">
+          <p lang-ko>AI는 유창하다. 그럴듯한 글, 그럴듯한 이미지, 그럴듯한 기획안을 만든다. AI가 학생을 위해 못 하는 것은 <strong>무엇을 말할 가치가 있는지 결정하는 일</strong>이다. 그 결정이 인문학이다 — 질문하고, 해석하고, 입장을 정하고, 자기를 설명하는 것.</p>
+          <p lang-en>AI is fluent. AI can produce plausible writing, plausible images, plausible plans. What AI cannot do for the student is <strong>decide what is worth saying</strong>. That decision is the humanities — questioning, interpreting, taking a position, explaining oneself.</p>
+          <p lang-ko>창작이 인문학과 융합되지 않으면 학생은 AI 도구를 잘 쓰지만 할 말이 없는 기능공이 된다. 인문학이 창작과 융합되지 않으면 학생은 생각은 있지만 세상에 내보낼 방법이 없는 사상가가 된다.</p>
+          <p lang-en>If creative production is not fused with humanities, the student becomes a fast operator of AI tools with nothing of their own to say. If humanities are not fused with creative production, the student becomes a thinker with no way to ship their thinking into the world.</p>
+          <p lang-ko>KISAS는 둘을 융합한다. 인문학은 학생에게 할 말을 준다. 창작은 그것을 말할 방식을 준다. 피드백은 그 말을 더 좋게 만든다.</p>
+          <p lang-en>KISAS fuses both. Humanities give the student something to say. Creation gives the student a way to say it. Feedback makes the saying better.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CH3 GATE ============ -->
+<section id="ch3" class="monolith">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="content">
+    <p class="gate-label">Chapter</p>
+    <p class="gate-num">03</p>
+    <div class="gate-divider"></div>
+    <h2 class="gate-hero" lang-ko>
+      <span class="gradient-text-3">구조.</span>
+    </h2>
+    <h2 class="gate-hero" lang-en>
+      The <span class="gradient-text-3">Structure.</span>
+    </h2>
+    <p class="gate-sub" lang-ko>
+      피드백·메타인지·AI 파트너·인문학적 뿌리·9단계 창작 루프.<br>
+      KISAS를 떠받치는 구조의 핵심 부품들.
+    </p>
+    <p class="gate-sub" lang-en>
+      Feedback. Metacognition. AI as a partner. A humanities-rooted educator.<br>
+      A nine-step creative loop. These are the load-bearing parts of KISAS.
+    </p>
+  </div>
+</section>
+
+<!-- §5 -->
+<section id="s5" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 05 · <span lang-ko>핵심 가치</span><span lang-en>The Core Value</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      KISAS의 핵심 가치는<br>
+      <span class="gradient-text">피드백</span>이다.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      KISAS's core value is<br>
+      <span class="gradient-text">feedback.</span>
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      단순한 첨삭이 아니다. 점수 매기기도 아니다. 한 번 봐주는 수준도 아니다. 피드백은 학생의 결과물을 더 좋은 결과물로 성장시키는 구조적 장치다.
+    </p>
+    <p class="sec-sub" lang-en>
+      Not red-pen correction. Not a score. Not a single review by a teacher. Feedback is the structural device that grows the student's creation into a better creation.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        KISAS의 차별화된 소비자 가치는 피드백이다. 단순한 첨삭이 아니다. 점수 매기기도 아니다. 강사가 한 번 봐주는 수준도 아니다. <strong>KISAS의 피드백은 학생의 결과물을 더 좋은 결과물로 성장시키는 교육의 핵심 장치다.</strong>
+      </p>
+      <p lang-en>
+        KISAS's differentiated consumer value is feedback. Not simple correction. Not grading. Not a single look from one instructor. <strong>KISAS's feedback is the core educational device that grows the student's creation into a better creation.</strong>
+      </p>
+
+      <p lang-ko>
+        학생은 자신이 만든 결과물을 여러 층의 시선으로 다시 본다. AI의 즉각적 피드백, 평소 만나기 어려운 스타·셀럽·전문가의 창작 기준을 반영한 AI 피드백, KISAS 강사의 교육적 피드백, 동료의 반응, 등록 전문가의 전문 피드백, 프리미엄 캠프와 아카데미에서의 현장 피드백.
+      </p>
+      <p lang-en>
+        The student looks at their own work again — through many layers of perspective. AI's instant feedback. AI-modeled feedback drawing on the creative standards of stars, celebrities, and experts the student would rarely meet. The KISAS instructor's pedagogical feedback. Peer response. Registered expert feedback. On-site feedback at premium camps and academies.
+      </p>
+
+      <p lang-ko>
+        중요한 것은 학생이 평가받는다는 사실이 아니다. 중요한 것은 <strong>학생이 자기 결과물을 다시 보게 된다는 점이다.</strong>
+      </p>
+      <p lang-en>
+        What matters here is not that the student is being judged. What matters is that <strong>the student looks at their own creation again.</strong>
+      </p>
+
+      <div class="bigquote" lang-ko>
+        피드백은 평가가 아니다.<br>
+        피드백은 <span class="gradient-text">성장의 구조</span>다.
+      </div>
+      <div class="bigquote" lang-en>
+        Feedback is not evaluation.<br>
+        Feedback is the <span class="gradient-text">structure of growth.</span>
+      </div>
+
+      <ul class="plain">
+        <li lang-ko>이 결과물은 아직 끝이 아니다.</li><li lang-en>This creation is not finished yet.</li>
+        <li lang-ko>더 좋아질 수 있다.</li><li lang-en>It can get better.</li>
+        <li lang-ko>네 생각은 더 분명해질 수 있다.</li><li lang-en>Your thinking can be clearer.</li>
+        <li lang-ko>네 표현은 더 강해질 수 있다.</li><li lang-en>Your expression can be stronger.</li>
+        <li lang-ko>네가 만든 것은 고칠수록 성장한다.</li><li lang-en>What you made grows when you revise it.</li>
+      </ul>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — 코멘트가 아니라 아키텍처로서의 피드백</summary>
+        <summary lang-en>Read deeper · feedback as architecture, not commentary</summary>
+        <div class="deep-body">
+          <p lang-ko>대부분의 학교에서 피드백은 완성된 산출물에 대한 코멘트다. 학생이 제출하고, 교사가 반응하고, 사이클이 끝난다. 산출물은 변하지 않는다.</p>
+          <p lang-en>In most schools, feedback is commentary on a finished artifact. The student turns it in, the teacher reacts, and the cycle ends. The artifact does not change.</p>
+          <p lang-ko>KISAS에서 피드백은 <strong>아키텍처</strong>다 — 일정·플랫폼·수업에 내장되어 있다. 모든 작품에는 여러 번의 피드백 이벤트가 계획되어 있고, 각 이벤트는 수정을 촉발한다. 작품이 바뀐다. 학생이 그 변화를 본다. 변화를 보는 것이 수업이다.</p>
+          <p lang-en>In KISAS, feedback is <strong>architecture</strong> — built into the calendar, the platform, and the lesson. Every creation has multiple feedback events planned, and each event triggers a revision. The artifact changes. The student sees it change. The seeing-it-change is the lesson.</p>
+          <p lang-ko>KISAS의 핵심은 교육 콘텐츠의 양이 아니다. <strong>학생의 결과물을 성장시키는 피드백 레이어다.</strong></p>
+          <p lang-en>KISAS's core is not the volume of educational content. KISAS's core is <strong>the feedback layer that grows the student's creation.</strong></p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §6 -->
+<section id="s6" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 06 · <span lang-ko>6개의 층</span><span lang-en>The Six Layers</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      6개의 층이 내<br>
+      <span class="gradient-text-2">결과물</span>을 다시 본다.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      Six layers look at your<br>
+      <span class="gradient-text-2">creation</span> again.
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      한 명의 리뷰어로는 부족하다. 속도·기준·교육·또래 반응·전문가 깊이·현장 강도 — 층마다 하는 일이 다르다.
+    </p>
+    <p class="sec-sub" lang-en>
+      One reviewer is not enough. Speed, standard, pedagogy, peer reaction, expert depth, on-site intensity — different layers do different jobs.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        KISAS의 피드백은 하나가 아니다. 결과물이 좋아지려면 여러 종류의 시선이 필요하다 — 빠른 반응, 높은 기준, 교육적 해석, 또래의 반응, 전문가의 구체적 조언, 실제 현장에서 받는 강도 높은 피드백.
+      </p>
+      <p lang-en>
+        KISAS's feedback is not single. To make a creation better, many kinds of sight are needed. The student needs fast reaction, a high standard, an educational interpretation, peer response, concrete expert advice, and strong on-site feedback from the real world.
+      </p>
+
+      <div class="layers">
+        <div class="layer">
+          <div class="num">01</div>
+          <div class="who" lang-ko>AI · 즉시 피드백</div>
+          <div class="who" lang-en>AI · Instant feedback</div>
+          <div class="what" lang-ko>학생이 그 자리에서 고칠 수 있도록 빠른 반응을 준다.</div>
+          <div class="what" lang-en>Gives an immediate reaction so the student can revise on the spot.</div>
+        </div>
+        <div class="layer">
+          <div class="num">02</div>
+          <div class="who" lang-ko>AI · 스타·셀럽·전문가</div>
+          <div class="who" lang-en>AI · Stars · Celebrities · Experts</div>
+          <div class="what" lang-ko>평소 만나기 어려운 창작자의 기준과 감각을 전달한다.</div>
+          <div class="what" lang-en>Brings the standards and sensibilities of creators the student would rarely meet in person.</div>
+        </div>
+        <div class="layer">
+          <div class="num">03</div>
+          <div class="who" lang-ko>KISAS 강사</div>
+          <div class="who" lang-en>KISAS instructor</div>
+          <div class="what" lang-ko>학생 발달 수준에 맞춰 피드백을 해석하고 지도한다.</div>
+          <div class="what" lang-en>Interprets and guides feedback at the student's developmental level.</div>
+        </div>
+        <div class="layer">
+          <div class="num">04</div>
+          <div class="who" lang-ko>동료</div>
+          <div class="who" lang-en>Peers</div>
+          <div class="what" lang-ko>같은 학습자의 반응과 관점 — 학생에게 가장 가까운 관객.</div>
+          <div class="what" lang-en>Provides the reactions and viewpoints of fellow learners — the audience closest to the student.</div>
+        </div>
+        <div class="layer">
+          <div class="num">05</div>
+          <div class="who" lang-ko>등록 전문가</div>
+          <div class="who" lang-en>Registered experts</div>
+          <div class="what" lang-ko>분야별 전문 피드백을 선택적으로 받을 수 있게 한다.</div>
+          <div class="what" lang-en>Lets the student selectively receive specialist feedback by domain.</div>
+        </div>
+        <div class="layer">
+          <div class="num">06</div>
+          <div class="who" lang-ko>프리미엄 현장</div>
+          <div class="who" lang-en>Premium on-site</div>
+          <div class="what" lang-ko>캠프·아카데미·마스터클래스에서의 직접 피드백 — 가장 강도 높은 층.</div>
+          <div class="what" lang-en>Direct feedback at camps, academies, and masterclasses — the highest intensity layer.</div>
+        </div>
+      </div>
+
+      <p class="lead" lang-ko>
+        학생 입장에서 이것은 <span class="hl hl-violet">"내가 만든 것을 진짜 높은 기준으로 봐주는 경험"</span>이 된다.
+      </p>
+      <p class="lead" lang-en>
+        From the student's view, this becomes the experience of <span class="hl hl-violet">"someone looked at what I made with a real, high standard."</span>
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — 각 층이 존재하는 이유</summary>
+        <summary lang-en>Read deeper · why each layer exists</summary>
+        <div class="deep-body">
+          <p lang-ko>각 층은 다른 층이 할 수 없는 일을 한다. AI는 <strong>속도</strong>를 준다 — 한 시간에 열 번 반복 가능. 스타·전문가 AI 페르소나는 <strong>기준</strong>을 준다 — 더 높은 바의 중력. 강사는 <strong>교육</strong>을 준다 — 이 학생의 이 발달 시점에 맞는 피드백 스캐폴딩. 또래는 <strong>관객</strong>을 준다 — 실제 시청자가 어떻게 반응할지의 가장 가까운 거울. 등록 전문가는 선택한 분야의 <strong>깊이</strong>를 준다. 프리미엄 현장은 <strong>강도</strong>를 준다 — 성장을 빨리감기하는 고압 조우.</p>
+          <p lang-en>Each layer does a job no other layer can. AI gives speed — the student can iterate ten times in an hour. Star/expert AI personas give <strong>standard</strong> — the gravitational pull of a higher bar. The instructor gives <strong>pedagogy</strong> — knowing how to scaffold feedback for this specific student at this developmental moment. Peers give <strong>audience</strong> — the closest mirror of how real viewers will respond. Registered experts give <strong>depth</strong> in a chosen domain. On-site premium feedback gives <strong>intensity</strong> — the high-pressure encounter that fast-forwards growth.</p>
+          <p lang-ko>어느 층이든 빠지면 루프가 약해진다. AI 혼자는 너무 관대하다. 강사 혼자는 너무 느리다. 또래 혼자는 너무 부드럽다. 전문가 혼자는 너무 드물다. 다 쌓아 올리면 학생의 결과물이 숨을 곳이 없다.</p>
+          <p lang-en>Drop any layer and the loop weakens. AI alone is too forgiving. Instructor alone is too slow. Peers alone are too soft. Experts alone are too rare. Stack them, and the student's creation has nowhere to hide.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §7 -->
+<section id="s7" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 07 · <span lang-ko>내면의 힘</span><span lang-en>The Inner Skill</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      <span class="gradient-text">메타인지</span> —<br>
+      왜 만들었고, 왜 고쳤는지<br>
+      설명하는 힘.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      <span class="gradient-text">Metacognition</span> —<br>
+      the power to explain<br>
+      why you made and changed it.
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      KISAS에서 메타인지는 어려운 전문용어가 아니다. 학생이 무엇을 생각했는지, 왜 그렇게 만들었는지, 어떤 피드백을 받았는지, 왜 고쳤는지를 스스로 인식하고 설명하는 능력이다.
+    </p>
+    <p class="sec-sub" lang-en>
+      In KISAS, metacognition is not jargon. It is the student's ability to recognize and articulate what they thought, why they made it that way, what feedback they received, and why they revised.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        KISAS에서 피드백은 결과물을 고치기 위한 장치인 동시에 <strong>메타인지를 기르는 장치</strong>다.
+      </p>
+      <p lang-en>
+        In KISAS, feedback is a device for revising creations — and at the same time a device for cultivating metacognition.
+      </p>
+
+      <div class="callout">
+        <p class="callout-title" lang-ko>메타인지, 분명하게 정의하면 —</p>
+        <p class="callout-title" lang-en>Metacognition, defined plainly —</p>
+        <p class="callout-body" lang-ko>
+          내가 무엇을 생각했는지, 왜 그렇게 만들었는지, 어떤 피드백을 받았는지, 왜 그렇게 고쳤는지를 스스로 인식하고 자기 말로 설명하는 힘.
+        </p>
+        <p class="callout-body" lang-en>
+          The power to be aware of and explain, in your own words, what you thought, why you made it that way, what feedback you received, and why you revised it.
+        </p>
+      </div>
+
+      <p lang-ko>
+        AI 시대에는 결과물만으로 충분하지 않다. AI가 만든 결과물인지, 학생이 자기 생각을 담아 만든 결과물인지 — 겉모습만 보고는 판단하기 어렵다.
+      </p>
+      <p lang-en>
+        In the AI era, the output alone is not enough. Whether the output came from AI or from a student who put their own thinking into it — looking at the surface, it is hard to tell.
+      </p>
+
+      <p lang-ko>
+        그래서 KISAS는 결과물만 보지 않는다. <strong>KISAS는 과정도 본다.</strong> 처음 생각, AI 활용 방식, 받은 피드백, 수정한 부분, 그리고 왜 그렇게 바꿨는지 설명할 수 있는지.
+      </p>
+      <p lang-en>
+        So KISAS does not look only at the output. <strong>KISAS looks at the process.</strong> The first thought. How AI was used. What feedback was received. What was changed. Whether the student can explain why they changed it.
+      </p>
+
+      <p class="lead" lang-ko>
+        이 설명의 힘이 <em>곧</em> 메타인지다.
+      </p>
+      <p class="lead" lang-en>
+        This power to explain <em>is</em> metacognition.
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — 설명이 곧 시험이다</summary>
+        <summary lang-en>Read deeper · why explanation is the test</summary>
+        <div class="deep-body">
+          <p lang-ko>AI 시대의 결과물에는 많은 것을 숨길 수 있다. 단 하나, 설명할 수 없다는 사실은 숨기지 못한다. "왜 다른 선택이 아니라 이 선택을 했지?"라는 질문이 던져지는 순간, 학생 학습의 실체가 드러난다.</p>
+          <p lang-en>You can hide many things in an AI-era output. You cannot hide the inability to explain it. The moment a student is asked "why did you make this choice instead of that one?" — the substance of their learning becomes visible.</p>
+          <p lang-ko>AI 산출물만 소비한 학생은 말을 더듬는다. 실제로 루프를 통과한 학생은 — 생각하고, 만들고, 피드백 받고, 고친 학생은 — 유창하게 답한다. 자기가 한 선택을 기억하기 때문이다.</p>
+          <p lang-en>Students who only consumed AI output stutter. Students who actually went through the loop — thought, made, received feedback, revised — answer fluently, because they remember the choices they made.</p>
+          <p lang-ko>KISAS의 메타인지는 인지과학에서 빌려 온 장식어가 아니다. AI를 쓰면서도 학생 자신의 사고를 보존하게 만드는 <strong>핵심 교육 원리</strong>다. 결과물은 피드백으로 좋아지고, 학생은 과정을 설명하면서 성장한다.</p>
+          <p lang-en>Metacognition in KISAS is not a decorative term borrowed from cognitive science. It is the <strong>core educational principle</strong> that keeps the student's own thinking intact while they use AI. The output gets better through feedback. The student grows by explaining the process.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §8 -->
+<section id="s8" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 08 · <span lang-ko>AI의 역할</span><span lang-en>The Role of AI</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      <span class="gradient-text-2">AI</span>는 사고를 대체하지 않는다.<br>
+      AI는 <span class="gradient-text">창작을 증폭</span>한다.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      <span class="gradient-text-2">AI</span> doesn't replace thinking.<br>
+      AI <span class="gradient-text">amplifies creation.</span>
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      KISAS에서 AI는 두 가지 역할을 한다 — 학생의 생각을 결과물로 확장하는 창작 파트너, 그리고 학생이 자기 결과물을 다시 보게 하는 피드백 파트너.
+    </p>
+    <p class="sec-sub" lang-en>
+      In KISAS, AI plays two roles — a creative partner that extends the student's thinking, and a feedback partner that makes the student see their work again.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        KISAS는 "AI 툴 사용법" 수업이 아니다. AI 소프트웨어 다루는 법을 가르치는 곳이 아니다. KISAS에서 AI는 두 가지 역할을 한다.
+      </p>
+      <p lang-en>
+        KISAS is not "AI tool training." It is not a class on how to use AI software. In KISAS, AI plays two roles.
+      </p>
+
+      <div class="bento cols-2">
+        <div class="card">
+          <p class="card-eyebrow">Role 01</p>
+          <p class="card-title" lang-ko>학생의 생각을 결과물로 확장하는 <span class="gradient-text-3">창작 파트너.</span></p>
+          <p class="card-title" lang-en>A <span class="gradient-text-3">creative partner</span> that extends the student's thinking into a creation.</p>
+          <p class="card-body" lang-ko>AI는 학생의 사고를 대체하지 않는다. AI는 증폭기다 — 더 빨리 실험하고, 더 풍부하게 표현하고, 더 자주 고쳐볼 수 있게 한다.</p>
+          <p class="card-body" lang-en>AI is not a substitute for the student's mind. AI is an amplifier — a way to experiment faster, express more richly, revise more often.</p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow">Role 02</p>
+          <p class="card-title" lang-ko>학생이 자기 결과물을 다시 보게 하는 <span class="gradient-text-2">피드백 파트너.</span></p>
+          <p class="card-title" lang-en>A <span class="gradient-text-2">feedback partner</span> that makes the student see their work again.</p>
+          <p class="card-body" lang-ko>AI는 즉각 반응한다. AI는 스타 창작자의 기준을 품을 수 있다. AI는 학생이 자기 결과물을 — 다른 사람의 눈으로, 언제든, 반복해서 — 볼 수 있게 한다.</p>
+          <p class="card-body" lang-en>AI reacts instantly. AI carries the standards of star creators. AI lets the student look at their own output through someone else's eyes — anytime, repeatedly.</p>
+        </div>
+      </div>
+
+      <p lang-ko>
+        중요한 것은 AI가 학생을 위해 무엇을 만들어줬는가가 아니다. 중요한 것은 학생의 선택 사슬이다 — <strong>무엇을 생각했고, AI를 어떻게 활용했고, 어떤 피드백을 받았고, 무엇을 고쳤고, 왜 그렇게 바꿨는가.</strong>
+      </p>
+      <p lang-en>
+        What matters is not what AI made for the student. What matters is the student's chain of choices — <strong>what did you think, how did you use AI, what feedback did you take, what did you change, why did you change it that way.</strong>
+      </p>
+
+      <p class="lead" lang-ko>
+        KISAS는 학생에게 묻는다 — <span class="hl hl-yellow">"AI가 너를 위해 뭘 만들어줬어?"</span>가 아니라, "너는 무엇을 생각했고, AI와 함께 어떻게 키웠는가?"
+      </p>
+      <p class="lead" lang-en>
+        KISAS asks the student — <span class="hl hl-yellow">not "what did AI make for you?"</span> but "what did you think, and how did you grow it with AI?"
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — AI 파트너십 규칙</summary>
+        <summary lang-en>Read deeper · the AI partnership rule</summary>
+        <div class="deep-body">
+          <p lang-ko>KISAS의 암묵적 규칙은 — <strong>학생의 사고가 먼저, AI가 둘째, 학생의 수정이 셋째.</strong></p>
+          <p lang-en>The unspoken rule of KISAS is — <strong>the student's thinking comes first, AI comes second, the student's revision comes third.</strong></p>
+          <p lang-ko>AI가 먼저 오면 학생은 AI 산출물의 리뷰어가 된다. 창작자가 아니다. 학생의 수정 단계가 생략되면 작품은 AI의 것이지 학생의 것이 아니다. KISAS는 루프 순서를 정렬해서, 학생의 사고가 모든 작품의 시작점이자 도착점이 되게 한다 — AI는 중간의 증폭기일 뿐이며, 결코 저자가 아니다.</p>
+          <p lang-en>If AI comes first, the student becomes a reviewer of AI output, not a creator. If the student's revision is skipped, the work is AI's, not the student's. KISAS sequences the loop so the student's mind stays the origin and the destination of every creation, with AI in the middle as an amplifier — never as the author.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §9 -->
+<section id="s9" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 09 · <span lang-ko>교육학적 뿌리</span><span lang-en>The Pedagogical Root</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      김선 박사 —<br>
+      KISAS의 <span class="gradient-text">인문학적·교육학적</span><br>
+      뿌리.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      Dr. Sun Kim —<br>
+      KISAS's <span class="gradient-text">humanities</span> and<br>
+      pedagogical root.
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      모든 강한 교육 시스템에는 철학과 방법론을 정리하는 사람이 있다. KISAS에는 김선 박사가 있다.
+    </p>
+    <p class="sec-sub" lang-en>
+      Every strong educational system has a person who organizes its philosophy and method. For KISAS, that person is Dr. Sun Kim.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        모든 강한 교육 시스템에는 철학과 방법론을 정리하는 학술적 뿌리가 있다. 몬테소리에는 마리아 몬테소리가 있었다. 발도르프에는 루돌프 슈타이너가 있었다. 레지오 에밀리아에는 로리스 말라구치가 있었다. <strong>KISAS에는 김선 박사가 있다.</strong>
+      </p>
+      <p lang-en>
+        Every strong educational system has a scholarly root that organizes its philosophy and method. Montessori had Maria Montessori. Waldorf had Rudolf Steiner. Reggio Emilia had Loris Malaguzzi. <strong>KISAS has Dr. Sun Kim.</strong>
+      </p>
+
+      <div class="authority">
+        <div class="avatar">SK</div>
+        <div>
+          <p class="who-name" lang-ko>김선 박사</p>
+          <p class="who-name" lang-en>Dr. Sun Kim</p>
+          <p class="who-role" lang-ko>교육학적 설계자 · KISAS</p>
+          <p class="who-role" lang-en>Pedagogical Architect · KISAS</p>
+          <p class="who-quote" lang-ko>
+            "KISAS의 일은 AI 시대에 학생 자신의 사고가 사라지지 않게 만드는 것이다. 피드백은 구조다. 메타인지는 시험이다. 창작은 증거다."
+          </p>
+          <p class="who-quote" lang-en>
+            "KISAS's job is to make sure the student's own thinking does not disappear in the age of AI. Feedback is the structure. Metacognition is the test. Creation is the evidence."
+          </p>
+        </div>
+      </div>
+
+      <p lang-ko>
+        김선 박사는 KISAS가 "그냥 좋은 캠프"나 "콘텐츠 제작 프로그램"으로 끝나지 않게 만드는 핵심 인물이다. KISAS의 중심에는 질문·토론·글쓰기·표현·과정중심 평가·메타인지·피드백 기반 성장이라는 원리들이 있다.
+      </p>
+      <p lang-en>
+        Dr. Kim is the core person who keeps KISAS from ending as "just a good camp" or "a content-making program." KISAS's center holds the principles of question, discussion, writing, expression, process-based assessment, metacognition, and feedback-based growth.
+      </p>
+
+      <p lang-ko>
+        김선 박사의 역할은 이 원리들을 KISAS의 교육 언어로 정리하고, 학생이 만든 결과물이 어떻게 <strong>사고의 증거, 피드백의 대상, 성장의 기록</strong>이 되는지를 교육학적으로 구조화하는 일이다.
+      </p>
+      <p lang-en>
+        Dr. Kim's role is to organize these principles into KISAS's educational language, and to structure — pedagogically — how a student's creation becomes <strong>evidence of thinking, an object of feedback, and a record of growth.</strong>
+      </p>
+
+      <p class="lead" lang-ko>
+        김선 박사는 권위 장식이 아니다. KISAS를 "콘텐츠 만드는 교육"에서 <span class="hl hl-mint">"메타인지 기반 창작 피드백 교육 시스템"</span>으로 끌어올리는 교육학적 주인공이다.
+      </p>
+      <p class="lead" lang-en>
+        Dr. Kim is not authority decoration. Dr. Kim is the pedagogical protagonist who pulls KISAS from "content-making education" up into a <span class="hl hl-mint">metacognition-based creative feedback education system.</span>
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — 이름 있는 교육학적 뿌리가 왜 필요한가</summary>
+        <summary lang-en>Read deeper · why a named pedagogical root matters</summary>
+        <div class="deep-body">
+          <p lang-ko>이름 있는 교육학적 뿌리가 없는 학교는 표류한다. 커리큘럼은 활동 리스트가 되고, 피드백은 의견이 되며, 성과는 일화가 된다. 부모는 그 학교에 방법이 있는지 분위기만 있는지 분간하지 못한다.</p>
+          <p lang-en>A school without a named pedagogical root drifts. Curriculum becomes a list of activities. Feedback becomes opinion. Outcomes become anecdotes. Parents cannot tell whether the school has a method or merely a vibe.</p>
+          <p lang-ko>이름 있는 뿌리가 있는 학교는 <strong>입장</strong>을 가진다. 검토할 수 있고, 논박할 수 있고, 다듬을 수 있다. 그리고 — 마케팅 카피로 무너지지 않고 — 부모·강사·파트너에게 전달할 수 있다.</p>
+          <p lang-en>A school with a named root has <strong>a position</strong>. It can be examined, challenged, refined. It can also be communicated — to parents, to instructors, to partners — without collapsing into marketing copy.</p>
+          <p lang-ko>KISAS는 김선 박사의 프레임워크가 자기 방법론의 공개판이 되도록 설계되어 있다. KISAS가 학습에 대해 실제로 무엇을 믿는지 알고 싶은 사람은 그 프레임워크를 읽고 판단할 수 있다.</p>
+          <p lang-en>KISAS is built so that Dr. Sun Kim's framework is the public version of its method. Anyone who wants to know what KISAS actually believes about learning can read the framework and decide.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §10 -->
+<section id="s10" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 10 · <span lang-ko>창작 루프</span><span lang-en>The Loop</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      생각 → 창작 → 피드백 → 수정 → 설명.<br>
+      KISAS의 <span class="gradient-text">9단계 루프.</span>
+    </h2>
+    <h2 class="sec-head" lang-en>
+      Think → Make → Feedback → Revise → Explain.<br>
+      The KISAS <span class="gradient-text">9-step loop.</span>
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      KISAS의 교육은 복잡해 보여도 흐름은 단순하다. 9단계, 반복. 중심은 피드백. 시그니처는 "설명" 단계.
+    </p>
+    <p class="sec-sub" lang-en>
+      KISAS's education looks complex but its flow is simple. Nine steps, repeated. The center is feedback. The signature is the explanation step.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        KISAS의 교육은 복잡해 보이지만 흐름은 단순하다. 생각한다. 만든다. 피드백 받는다. 고친다. 설명한다. 완성한다. 기록한다. 9단계로 구조화하면 —
+      </p>
+      <p lang-en>
+        KISAS's education looks complex, but the flow is simple. Think. Make. Receive feedback. Revise. Explain. Complete. Record. Structured into nine steps —
+      </p>
+
+      <div class="flow">
+        <div class="step">
+          <p class="step-num">STEP 01</p>
+          <p class="step-title" lang-ko>질문</p><p class="step-title" lang-en>Question</p>
+          <p class="step-why" lang-ko>내가 무엇을 말하고 싶은지 정한다. 사고의 출발점.</p>
+          <p class="step-why" lang-en>Decide what you want to say. The starting point of thinking.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">STEP 02</p>
+          <p class="step-title" lang-ko>자기 생각</p><p class="step-title" lang-en>Own thinking</p>
+          <p class="step-why" lang-ko>AI를 쓰기 전, 내 생각을 먼저 기록한다. 자기 사고를 먼저 확보.</p>
+          <p class="step-why" lang-en>Before using AI, record your own thinking first. Secure your own thought.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">STEP 03</p>
+          <p class="step-title" lang-ko>AI 활용</p><p class="step-title" lang-en>Use AI</p>
+          <p class="step-why" lang-ko>AI로 확장·초안·변주를 시도한다. 창작 증폭.</p>
+          <p class="step-why" lang-en>Try expansion, drafts, and variations with AI. Creative amplification.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">STEP 04</p>
+          <p class="step-title" lang-ko>창작</p><p class="step-title" lang-en>Create</p>
+          <p class="step-why" lang-ko>글·음악·영상·퍼포먼스·웹툰 — 실제 결과물로.</p>
+          <p class="step-why" lang-en>Turn it into writing, music, video, performance, webtoon — an actual creation.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">STEP 05</p>
+          <p class="step-title" lang-ko>피드백</p><p class="step-title" lang-en>Feedback</p>
+          <p class="step-why" lang-ko>AI·전문가·강사·동료의 피드백을 받는다. 외부 기준과 만남.</p>
+          <p class="step-why" lang-en>Receive feedback from AI, experts, instructor, peers. Meet external standards.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">STEP 06</p>
+          <p class="step-title" lang-ko>수정</p><p class="step-title" lang-en>Revise</p>
+          <p class="step-why" lang-ko>피드백을 반영해 다시 고친다. 반복 개선.</p>
+          <p class="step-why" lang-en>Reflect the feedback and rework. Iterative improvement.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">STEP 07</p>
+          <p class="step-title" lang-ko>설명</p><p class="step-title" lang-en>Explain</p>
+          <p class="step-why" lang-ko>왜 그렇게 만들고 고쳤는지 자기 말로 설명한다. 메타인지 형성.</p>
+          <p class="step-why" lang-en>In your own words, say why you made and changed it that way. Metacognition forms here.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">STEP 08</p>
+          <p class="step-title" lang-ko>완성</p><p class="step-title" lang-en>Complete</p>
+          <p class="step-why" lang-ko>최종 형태로 정리한다. 완성의 경험.</p>
+          <p class="step-why" lang-en>Bring it to a final form. The experience of finishing.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">STEP 09</p>
+          <p class="step-title" lang-ko>기록</p><p class="step-title" lang-en>Record</p>
+          <p class="step-why" lang-ko>처음 생각과 최종 결과의 차이를 남긴다. 성장의 증거.</p>
+          <p class="step-why" lang-en>Capture the gap between the first thought and the final creation. Evidence of growth.</p>
+        </div>
+      </div>
+
+      <p class="lead" lang-ko>
+        AI 시대에는 결과물이 많아진다. <span class="hl hl-pink">자기 말로 설명할 수 있는 결과물은 희귀해진다.</span> KISAS는 학생이 그 희귀한 결과물을 갖게 하는 교육이다.
+      </p>
+      <p class="lead" lang-en>
+        In the AI era, outputs multiply. <span class="hl hl-pink">Outputs you can explain in your own words become rare.</span> KISAS is the education that gives the student that rare kind of output.
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — "설명"이 시그니처 단계인 이유</summary>
+        <summary lang-en>Read deeper · why "Explain" is the signature step</summary>
+        <div class="deep-body">
+          <p lang-ko>대부분의 교육 루프는 수정 → 완성에서 멈춘다. KISAS는 의도적으로 그 사이에 <strong>설명</strong>을 넣는다. 메타인지가 단조되는 자리이기 때문이다.</p>
+          <p lang-en>Most loops in education stop at Revise → Complete. KISAS deliberately inserts <strong>Explain</strong> between Revise and Complete, because that is where metacognition is forged.</p>
+          <p lang-ko>설명 단계가 없으면 학생은 좋은 결과물을 만들고 피드백으로 개선했을지 모르지만, 자기가 무엇을 했는지 <em>알지</em> 못한다. 일반화하지 못한다. 다음 창작에 적용하지 못한다. 성장이 학생 자신에게 보이지 않는다.</p>
+          <p lang-en>Without the Explain step, the student may have made a good output and improved it through feedback — but they will not necessarily <em>know</em> what they did. They cannot generalize it. They cannot apply it to the next creation. The growth is invisible to them.</p>
+          <p lang-ko>설명 단계가 있으면 학생은 자기 자신의 교사가 된다. 배운 것을 다음 루프로, 그리고 KISAS 너머의 삶으로 가져갈 수 있다.</p>
+          <p lang-en>With the Explain step, the student becomes their own teacher. They can carry what they learned into the next loop, and into life beyond KISAS.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §11 -->
+<section id="s11" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 11 · <span lang-ko>결과물의 의미</span><span lang-en>The Meaning of the Creation</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      <span class="gradient-text">결과물</span>은 작품이 아니라<br>
+      <span class="gradient-text-2">성장의 증거</span>다.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      The <span class="gradient-text">creation</span> is not a work —<br>
+      it is evidence of <span class="gradient-text-2">growth.</span>
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      KISAS에서 결과물은 완성도로 먼저 평가되지 않는다. 결과물이 품고 있는 흔적 — 생각·피드백·수정·설명 — 으로 평가된다.
+    </p>
+    <p class="sec-sub" lang-en>
+      In KISAS, the output isn't measured first by polish. It is measured by the trace it carries — thinking, feedback, revision, explanation.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        KISAS에서 결과물은 단순 산출물이 아니다. <strong>결과물은 학생이 자기 생각을 실제 세계에 꺼내놓은 증거다.</strong>
+      </p>
+      <p lang-en>
+        In KISAS, the creation is not a simple deliverable. <strong>The creation is the evidence that the student put their own thinking out into the world.</strong>
+      </p>
+
+      <p lang-ko>
+        학생은 노래를 만들 수 있다. 가사를 쓸 수 있다. 영상을 만들 수 있다. 퍼포먼스를 구성할 수 있다. 웹툰을 만들 수 있다. 글을 쓸 수 있다. AI 콘텐츠를 제작할 수 있다. 팀과 함께 하나의 창작물을 완성할 수 있다. 하지만 KISAS에서 중요한 것은 작품의 완성도만이 아니다. 더 중요한 것은 <strong>그 결과물이 좋아지는 과정이다.</strong>
+      </p>
+      <p lang-en>
+        A student can make a song. Write lyrics. Make a video. Compose a performance. Make a webtoon. Write prose. Produce AI-assisted content. Complete a team creation together. But what matters in KISAS is not the polish of the artifact alone. What matters more is <strong>the process by which the creation got better.</strong>
+      </p>
+
+      <ul class="plain">
+        <li lang-ko>처음에는 미숙해도 된다.</li><li lang-en>It is okay to be unpolished at first.</li>
+        <li lang-ko>중요한 것은 다시 보는 것이다.</li><li lang-en>What matters is looking at it again.</li>
+        <li lang-ko>피드백을 받는 것이다.</li><li lang-en>Receiving feedback.</li>
+        <li lang-ko>고치는 것이다.</li><li lang-en>Revising.</li>
+        <li lang-ko>이전보다 나아졌음을 확인하는 것이다.</li><li lang-en>Confirming it improved.</li>
+        <li lang-ko>왜 그렇게 바꿨는지 자기 말로 설명하는 것이다.</li><li lang-en>And explaining, in your own words, why you changed it that way.</li>
+      </ul>
+
+      <p class="lead" lang-ko>
+        KISAS의 결과물은 "잘 만든 작품"이기 전에 — <span class="hl hl-blue">학생이 창작자로 성장한 흔적</span>이다.
+      </p>
+      <p class="lead" lang-en>
+        A KISAS creation is, before it is "a well-made work," <span class="hl hl-blue">a trace of a student becoming a creator.</span>
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — 부모 기대의 재정의</summary>
+        <summary lang-en>Read deeper · why this reframes parental expectation</summary>
+        <div class="deep-body">
+          <p lang-ko>부모는 기존 교육에서 "결과물이 좋은가?"를 묻도록 훈련받았다. KISAS에서 그것은 잘못된 첫 질문이다.</p>
+          <p lang-en>Parents are trained by conventional education to ask "is the output good?" In KISAS, that is the wrong first question.</p>
+          <p lang-ko>첫 질문은 — <strong>이 결과물에 이력이 있는가?</strong> 초안이 있었는가? 피드백을 받았는가? 수정되었는가? 그 수정을 학생이 설명할 수 있는가? 그렇다면 그것은 KISAS의 결과물이다. 완성도와 무관하게. 그렇지 않다면 그것은 단지 산출물이다. 인상적일 수는 있어도 아직 성장의 증거는 아니다.</p>
+          <p lang-en>The first question is — <strong>does the output have a history?</strong> Was there a first version? Was feedback received? Was it revised? Can the student explain the revision? If yes, the creation is a KISAS creation, regardless of polish. If no, the creation is just an artifact — possibly impressive, but not yet evidence of growth.</p>
+          <p lang-ko>KISAS는 학생만큼이나 부모에게도 이 구분을 가르친다.</p>
+          <p lang-en>KISAS teaches parents this distinction as much as it teaches students.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §12 -->
+<section id="s12" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 12 · <span lang-ko>학생에게 남는 것</span><span lang-en>What Stays With the Student</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      학생에게 남는 것 —<br>
+      <span class="gradient-text-3">"나는 만들 수 있다."</span>
+    </h2>
+    <h2 class="sec-head" lang-en>
+      What stays —<br>
+      <span class="gradient-text-3">"I can make."</span>
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      KISAS는 수료증으로 측정되지 않는다. 남는 것은 — 만들고, 고치고, 설명할 수 있는 사람이라는 감각.
+    </p>
+    <p class="sec-sub" lang-en>
+      KISAS is not measured by a certificate. What stays is the felt sense of being someone who can create, revise, and explain.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        KISAS가 학생에게 남겨야 하는 것은 수료증 하나가 아니다. 남아야 하는 것은 —
+      </p>
+      <p lang-en>
+        What should remain with the student after KISAS is not one certificate. What should remain is —
+      </p>
+
+      <div class="bento cols-3">
+        <div class="card">
+          <p class="card-eyebrow">01</p>
+          <p class="card-title" lang-ko>내가 만든 결과물</p>
+          <p class="card-title" lang-en>My creation</p>
+          <p class="card-body" lang-ko>실제로 완성한 창작물.</p>
+          <p class="card-body" lang-en>A real, completed work.</p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow">02</p>
+          <p class="card-title" lang-ko>피드백 경험</p>
+          <p class="card-title" lang-en>A feedback experience</p>
+          <p class="card-body" lang-ko>누군가가 내 작품을 진지하게 봐주고 반응을 돌려준 경험.</p>
+          <p class="card-body" lang-en>Someone took my work seriously and reflected back to me.</p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow">03</p>
+          <p class="card-title" lang-ko>수정 경험</p>
+          <p class="card-title" lang-en>A revision experience</p>
+          <p class="card-body" lang-ko>부족한 것을 고쳐본 경험.</p>
+          <p class="card-body" lang-en>I fixed what was missing.</p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow">04</p>
+          <p class="card-title" lang-ko>설명 경험</p>
+          <p class="card-title" lang-en>An explanation experience</p>
+          <p class="card-body" lang-ko>내 생각과 선택을 말로 정리한 경험.</p>
+          <p class="card-body" lang-en>I put my own thinking and choices into words.</p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow">05</p>
+          <p class="card-title" lang-ko>성장 기록</p>
+          <p class="card-title" lang-en>A growth record</p>
+          <p class="card-body" lang-ko>출발점보다 더 나아졌다는 증거.</p>
+          <p class="card-body" lang-en>Proof that it is better than where it started.</p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow">06</p>
+          <p class="card-title" lang-ko>창작 자기효능감</p>
+          <p class="card-title" lang-en>Creative self-efficacy</p>
+          <p class="card-body" lang-ko>"나는 만들 수 있다"는 감각.</p>
+          <p class="card-body" lang-en>The felt sense of "I can make."</p>
+        </div>
+      </div>
+
+      <div class="bigquote" lang-ko>
+        내가 만들었다.<br>
+        내가 고쳤다.<br>
+        내 결과물이 <span class="gradient-text">더 좋아졌다.</span><br>
+        설명할 수 있다. 표현할 수 있다. 다시 만들 수 있다.
+      </div>
+      <div class="bigquote" lang-en>
+        I made it.<br>
+        I revised it.<br>
+        My creation got <span class="gradient-text">better.</span><br>
+        I can explain. I can express. I can make again.
+      </div>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — 기술이 아니라 정체성</summary>
+        <summary lang-en>Read deeper · creative identity, not creative skill</summary>
+        <div class="deep-body">
+          <p lang-ko>KISAS의 가장 깊은 산출물은 기술이 아니다. <strong>정체성</strong>이다. 학생은 "기술을 배웠다"가 아니라 "나는 창작하는 사람이다"라는 생각으로 떠난다.</p>
+          <p lang-en>KISAS's deepest deliverable is not skill. It is <strong>identity</strong>. The student does not leave thinking "I learned a technique." The student leaves thinking "I am someone who creates."</p>
+          <p lang-ko>정체성은 기술을 능가한다. 기술은 낡는다. 정체성은 다음 10년이 어떤 매체를 요구하든 학생을 그곳까지 데려간다. 자기가 만드는 사람임을 아는 학생은 다음 도구를 집어 든다. 도구만 배운 학생은 도구가 바뀌면 길을 잃는다.</p>
+          <p lang-en>Identity outlasts skill. Skills get obsolete; identity carries the student into whatever medium the next decade demands. A student who knows they are a maker will pick up the next tool. A student who only learned a tool will be stranded when the tool changes.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CH4 GATE ============ -->
+<section id="ch4" class="monolith">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="content">
+    <p class="gate-label">Chapter</p>
+    <p class="gate-num">04</p>
+    <div class="gate-divider"></div>
+    <h2 class="gate-hero" lang-ko>
+      <span class="gradient-text">실행.</span>
+    </h2>
+    <h2 class="gate-hero" lang-en>
+      The <span class="gradient-text">Execution.</span>
+    </h2>
+    <p class="gate-sub" lang-ko>
+      KISAS Camp는 구조를 검증한다. KISAS Platform은 그것을 확장한다.<br>
+      그리고 마지막 기준 — KISAS가 진짜로 특별해지는 자리.
+    </p>
+    <p class="gate-sub" lang-en>
+      KISAS Camp validates the structure. KISAS Platform scales it.<br>
+      And the closing standard — what makes KISAS truly different.
+    </p>
+  </div>
+</section>
+
+<!-- §13 -->
+<section id="s13" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 13 · KISAS Camp</p>
+
+    <h2 class="sec-head" lang-ko>
+      KISAS Camp —<br>
+      <span class="gradient-text-2">창작 피드백 구조</span>를<br>
+      검증하는 첫 실행 환경.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      KISAS Camp — the first<br>
+      environment to validate<br>
+      the <span class="gradient-text-2">creative feedback structure.</span>
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      캠프 상품이 아니다. 테스트베드다. 캠프가 증명해야 하는 것은 만족도 점수가 아니라 — 루프가 실제로 학생의 결과물을 키우는가.
+    </p>
+    <p class="sec-sub" lang-en>
+      Not a camp product. A testbed. What the camp proves is not satisfaction scores — it is whether the loop actually grows a student's creation.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        KISAS는 처음부터 거대한 플랫폼으로 시작하지 않는다. 첫 실행 환경은 KISAS Camp다. 하지만 KISAS Camp는 단순 캠프 상품이 아니다. <strong>캠프는 KISAS의 교육 구조를 검증하는 테스트베드다.</strong>
+      </p>
+      <p lang-en>
+        KISAS does not begin as a giant platform. The first execution environment is KISAS Camp. But KISAS Camp is not a simple camp product. <strong>The camp is the testbed that validates KISAS's educational structure.</strong>
+      </p>
+
+      <p lang-ko>
+        캠프가 검증해야 할 것은 수업 만족도만이 아니다. 진짜 검증 항목은 —
+      </p>
+      <p lang-en>
+        What the camp must validate is not just lesson satisfaction. What it must validate is —
+      </p>
+
+      <ul class="plain">
+        <li lang-ko>학생이 실제 결과물을 만들었는가?</li><li lang-en>Did the student actually produce a real creation?</li>
+        <li lang-ko>그 결과물이 피드백을 통해 좋아졌는가?</li><li lang-en>Did that creation get better through feedback?</li>
+        <li lang-ko>학생이 왜 그렇게 만들고 고쳤는지 자기 말로 설명할 수 있는가?</li><li lang-en>Can the student explain, in their own words, why they made and changed it?</li>
+        <li lang-ko>"나도 만들 수 있다"는 감각을 얻었는가?</li><li lang-en>Did the student come away with the felt sense of "I can make"?</li>
+        <li lang-ko>부모가 아이의 변화를 확인할 수 있는가?</li><li lang-en>Can parents see the change in their child?</li>
+        <li lang-ko>이 구조가 지역 교육과 온라인 교육으로 반복될 수 있는가?</li><li lang-en>Can this structure be repeated in local programs and online education?</li>
+      </ul>
+
+      <p class="lead" lang-ko>
+        캠프는 끝이 아니다. 캠프는 KISAS 교육 OS의 첫 번째 실행 환경이다.
+      </p>
+      <p class="lead" lang-en>
+        The camp is not the end. The camp is the first execution environment of the KISAS education OS.
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — 플랫폼 이전에 테스트베드</summary>
+        <summary lang-en>Read deeper · why a testbed before a platform</summary>
+        <div class="deep-body">
+          <p lang-ko>많은 교육 스타트업이 플랫폼을 먼저 만들고 그 밑의 교육학이 비어 있음을 나중에 발견한다. KISAS는 의도적으로 순서를 뒤집는다. 캠프가 먼저 오는 이유는, 캠프가 <strong>물리적 현실 속에서 — 실제 학생과 실제 부모가 지켜보는 가운데 — 루프가 작동하는지 아닌지가 결정되는 자리</strong>이기 때문이다.</p>
+          <p lang-en>Many education startups build the platform first and discover later that the pedagogy underneath is hollow. KISAS deliberately inverts the order. The camp comes first because the camp is <strong>where the loop either works or doesn't</strong>, in physical reality, with real students and real parents watching.</p>
+          <p lang-ko>캠프가 루프를 검증한 이후에야 플랫폼을 짓는다 — 플랫폼은 그제야 이미 작동한 것을 <em>확장하고 기억하는</em> 방식이 된다. 그것이 작동하는지를 발견하는 자리가 아니라.</p>
+          <p lang-en>Only after the camp validates the loop is the platform built — and the platform is then a way to <em>scale and remember</em> what already worked, not a place to discover whether it works at all.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §14 -->
+<section id="s14" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 14 · KISAS Platform</p>
+
+    <h2 class="sec-head" lang-ko>
+      KISAS Platform —<br>
+      <span class="gradient-text">결과물</span>·<span class="gradient-text-2">피드백</span>·<br>
+      <span class="gradient-text-3">메타인지</span>가 쌓이는 OS.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      KISAS Platform — the OS<br>
+      where <span class="gradient-text">creations</span>, <span class="gradient-text-2">feedback</span>,<br>
+      and <span class="gradient-text-3">metacognition</span> accumulate.
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      강의 판매 플랫폼이 아니다. 모든 학생의 결과물·피드백·수정·설명·성장 기록을 저장하는 창작 피드백 운영체제다.
+    </p>
+    <p class="sec-sub" lang-en>
+      Not a lecture marketplace. A creative-feedback operating system that stores every student's outputs, feedback, revisions, explanations, and growth records.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        KISAS 플랫폼은 강의 판매 플랫폼이 아니다. <strong>KISAS 플랫폼은 학생의 결과물·피드백·수정 이력·설명·성장 기록을 관리하는 창작 피드백 시스템이다.</strong>
+      </p>
+      <p lang-en>
+        The KISAS platform is not a lecture-sales platform. <strong>The KISAS platform is a creative feedback system that manages each student's creations, feedback, revision history, explanations, and growth records.</strong>
+      </p>
+
+      <div class="bento cols-2">
+        <div class="card">
+          <p class="card-eyebrow" lang-ko>Phase 01 · 초기</p>
+          <p class="card-eyebrow" lang-en>Phase 01 · Initial</p>
+          <p class="card-title" lang-ko>캠프 운영 지원</p>
+          <p class="card-title" lang-en>Camp operations support</p>
+          <p class="card-body" lang-ko>
+            캠프 미션 제공, 결과물 업로드, AI 피드백, 강사 피드백 기록, 학생별 수정 이력, 포스트 캠프 멤버십, 창작 아카이브.
+          </p>
+          <p class="card-body" lang-en>
+            Camp missions, creation upload, AI feedback, instructor feedback log, per-student revision history, post-camp membership, creation archive.
+          </p>
+        </div>
+        <div class="card">
+          <p class="card-eyebrow" lang-ko>Phase 02 · 중기</p>
+          <p class="card-eyebrow" lang-en>Phase 02 · Mid-term</p>
+          <p class="card-title" lang-ko>형식 확장</p>
+          <p class="card-title" lang-en>Scale-out across formats</p>
+          <p class="card-body" lang-ko>
+            지역 교육 운영 지원, 온라인 창작 미션, 전문가 피드백 신청, 동료 피드백 커뮤니티, 부모용 성장 리포트, 학생별 창작 포트폴리오, 메타인지 기반 리플렉션 기록.
+          </p>
+          <p class="card-body" lang-en>
+            Local program operations, online creation missions, expert feedback requests, peer feedback community, parent growth reports, per-student creative portfolio, metacognition-based reflection logs.
+          </p>
+        </div>
+      </div>
+
+      <p lang-ko>
+        장기적으로 KISAS는 교육 IP와 운영 모델을 표준화하여 — <strong>지역 교육, 방과후, 온라인 교육, 캠프, 아카데미, 글로벌 교육 모델</strong>로 확장한다.
+      </p>
+      <p lang-en>
+        Long-term, KISAS standardizes its educational IP and operations model and extends it into <strong>local programs, after-school, online education, camps, academies, and global education models.</strong>
+      </p>
+
+      <p class="lead" lang-ko>
+        플랫폼의 본질은 하나다 — <span class="hl hl-mint">학생의 결과물이 더 좋아지는 과정을 지속적으로 운영하고 기록하는 것.</span>
+      </p>
+      <p class="lead" lang-en>
+        The essence of the platform is one thing — <span class="hl hl-mint">to continuously run and record the process by which the student's creation gets better.</span>
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — 스토어가 아니라 기억으로서의 플랫폼</summary>
+        <summary lang-en>Read deeper · platform as memory, not store</summary>
+        <div class="deep-body">
+          <p lang-ko>강의 플랫폼은 접근권을 판다. KISAS 플랫폼은 <strong>성장을 기억한다</strong>. 학생이 만든 모든 작품, 받은 모든 피드백, 적용한 모든 수정, 작성한 모든 설명이 종단적 기록의 일부로 저장된다.</p>
+          <p lang-en>A lecture platform sells access. A KISAS platform <strong>remembers growth</strong>. Every creation a student makes, every feedback received, every revision applied, every explanation written is stored as part of a longitudinal record.</p>
+          <p lang-ko>이 기록이 플랫폼의 진짜 해자다. 경쟁자는 커리큘럼은 베낄 수 있다. 가족이 함께한 한 학생의 누적된 수년의 창작 이력은 베낄 수 없다.</p>
+          <p lang-en>This record is the platform's real moat. A competitor can copy a curriculum. A competitor cannot copy years of a student's accumulated creative history with their family inside it.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- §15 -->
+<section id="s15" class="s">
+  <div class="wrap">
+    <p class="sec-eyebrow">§ 15 · <span lang-ko>기준</span><span lang-en>The Standard</span></p>
+
+    <h2 class="sec-head" lang-ko>
+      약한 표현 vs <span class="gradient-text">강한 표현</span> —<br>
+      KISAS가 진짜로 특별해지는 기준.
+    </h2>
+    <h2 class="sec-head" lang-en>
+      Weak phrasing vs. <span class="gradient-text">strong phrasing</span> —<br>
+      how KISAS becomes truly different.
+    </h2>
+
+    <p class="sec-sub" lang-ko>
+      KISAS가 특별해지려면 "AI 교육 합니다"는 너무 흔하다. 강한 버전은 항상 루프를 가리킨다 — 만들고, 피드백 받고, 고치고, 설명하라.
+    </p>
+    <p class="sec-sub" lang-en>
+      For KISAS to be special, "we do AI education" is too generic. The strong version always points to the loop — make, feedback, revise, explain.
+    </p>
+
+    <div class="sec-body">
+      <p lang-ko>
+        KISAS가 진짜로 특별해지려면 "AI 교육 합니다"라고 말하면 안 된다. 그건 너무 흔하다. "콘텐츠 만듭니다"도 약하다. 이미 많다. "프로젝트 수업입니다"도 약하다. 시장에 가득하다.
+      </p>
+      <p lang-en>
+        For KISAS to be truly special, saying "we do AI education" is not enough. That is too common. "We make content" is too weak. There are already many such programs. "We do project-based learning" is also weak. The market is full of them.
+      </p>
+
+      <p lang-ko>
+        <strong>KISAS가 특별해지는 기준은 학생의 결과물이 피드백을 통해 성장하는 경험이다.</strong>
+      </p>
+      <p lang-en>
+        <strong>The standard by which KISAS becomes special is the experience of a student's creation growing through feedback.</strong>
+      </p>
+
+      <div class="compare">
+        <div class="row head">
+          <div class="weak" lang-ko>약한 표현</div><div class="weak" lang-en>Weak phrasing</div>
+          <div class="strong" lang-ko>강한 표현</div><div class="strong" lang-en>Strong phrasing</div>
+        </div>
+        <div class="row">
+          <div class="weak" lang-ko>AI 교육입니다.</div><div class="weak" lang-en>We do AI education.</div>
+          <div class="strong" lang-ko>AI를 쓰면서도 자기 생각을 잃지 않게 합니다.</div><div class="strong" lang-en>We make sure students don't lose their own thinking even while using AI.</div>
+        </div>
+        <div class="row">
+          <div class="weak" lang-ko>콘텐츠 제작 교육입니다.</div><div class="weak" lang-en>We do content production.</div>
+          <div class="strong" lang-ko>학생의 결과물이 피드백을 통해 좋아집니다.</div><div class="strong" lang-en>A student's creation gets better through feedback.</div>
+        </div>
+        <div class="row">
+          <div class="weak" lang-ko>프로젝트 수업입니다.</div><div class="weak" lang-en>We do project-based learning.</div>
+          <div class="strong" lang-ko>학생이 만들고, 고치고, 설명하고, 완성합니다.</div><div class="strong" lang-en>The student makes, revises, explains, and completes.</div>
+        </div>
+        <div class="row">
+          <div class="weak" lang-ko>캠프입니다.</div><div class="weak" lang-en>It's a camp.</div>
+          <div class="strong" lang-ko>창작 피드백 구조를 검증하는 실행 환경입니다.</div><div class="strong" lang-en>It's an execution environment that validates a creative feedback structure.</div>
+        </div>
+        <div class="row">
+          <div class="weak" lang-ko>온라인 교육입니다.</div><div class="weak" lang-en>It's online education.</div>
+          <div class="strong" lang-ko>학생의 결과물과 성장 기록이 쌓이는 플랫폼입니다.</div><div class="strong" lang-en>It's a platform where the student's creations and growth records accumulate.</div>
+        </div>
+        <div class="row">
+          <div class="weak" lang-ko>전문가가 참여합니다.</div><div class="weak" lang-en>Experts participate.</div>
+          <div class="strong" lang-ko>평소 만나기 어려운 기준으로 내 결과물을 다시 봅니다.</div><div class="strong" lang-en>My creation gets seen, again, by standards I would rarely otherwise meet.</div>
+        </div>
+        <div class="row">
+          <div class="weak" lang-ko>수료증을 줍니다.</div><div class="weak" lang-en>We hand out certificates.</div>
+          <div class="strong" lang-ko>내가 만든 것과 성장 과정이 남습니다.</div><div class="strong" lang-en>What I made and how I grew is what remains.</div>
+        </div>
+      </div>
+
+      <p class="lead" lang-ko>
+        KISAS의 경쟁력은 무엇을 가르치느냐가 아니라 — <span class="hl hl-yellow">학생의 결과물이 어떻게 좋아지느냐</span>에서 나온다.
+      </p>
+      <p class="lead" lang-en>
+        KISAS's competitive edge does not come from what is taught.<br>
+        It comes from <span class="hl hl-yellow">how the student's creation gets better.</span>
+      </p>
+
+      <details class="deep">
+        <summary lang-ko>더 깊이 — 네 개의 닻</summary>
+        <summary lang-en>Read deeper · the four anchors</summary>
+        <div class="deep-body">
+          <p lang-ko>네 개의 닻이 KISAS를 구체적으로 붙잡아 둔다 —</p>
+          <p lang-en>Four anchors keep KISAS specific —</p>
+          <p lang-ko><strong>① 피드백 구조</strong> — 단일 리뷰가 아니라, 결과물을 키우는 다층 아키텍처.</p>
+          <p lang-en><strong>① Feedback structure</strong> — not a single review, but the multi-layer architecture that grows the creation.</p>
+          <p lang-ko><strong>② 메타인지</strong> — 피드백만이 아니라, 피드백과 수정에 대한 학생 자신의 설명.</p>
+          <p lang-en><strong>② Metacognition</strong> — not just feedback, but the student's explanation of the feedback and their revision.</p>
+          <p lang-ko><strong>③ 교육학적 권위</strong> — 익명의 교수가 아니라, 김선 박사 프레임워크라는 이름 있는 뿌리.</p>
+          <p lang-en><strong>③ Pedagogical authority</strong> — not anonymous teaching, but a named root in Dr. Sun Kim's framework.</p>
+          <p lang-ko><strong>④ 인문학-창작 융합</strong> — 기술 훈련이 아니라, 작품이 학생의 의미를 품도록 사고와 만들기를 통합.</p>
+          <p lang-en><strong>④ Humanities-creation fusion</strong> — not skills training, but thinking and making integrated so the work carries the student's meaning.</p>
+          <p lang-ko>약한 표현을 쓴 KISAS 커뮤니케이션은 — 네 개 중 하나의 닻에 닿을 때까지 다시 쓰여야 한다.</p>
+          <p lang-en>Any KISAS communication that uses weak phrasing should be rewritten until it lands on one of these four anchors.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ECHO ============ -->
+<section id="echo" class="echo">
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="echo-text" lang-ko>
+    KISAS —<br>
+    내가 만든 <span class="gradient-text">결과물</span>이<br>
+    더 좋아지는 교육.
+  </div>
+  <div class="echo-text" lang-en>
+    KISAS —<br>
+    the education where<br>
+    <span class="gradient-text">your creation</span><br>
+    gets better.
+  </div>
+</section>
+
+<script>
+// Language toggle
+const btnKo = document.getElementById('btn-ko');
+const btnEn = document.getElementById('btn-en');
+
+// Stash inactive summaries out of <details> so browser uses the right one
+function rewireSummaries(lang){
+  document.querySelectorAll('details.deep').forEach(d => {
+    // restore any previously stashed summaries
+    const stash = d._stash || [];
+    stash.forEach(s => d.insertBefore(s, d.firstChild));
+    d._stash = [];
+    // find both summaries (by lang attr)
+    const all = Array.from(d.querySelectorAll(':scope > summary'));
+    all.forEach(s => {
+      const sLang = s.hasAttribute('lang-ko') ? 'ko' : (s.hasAttribute('lang-en') ? 'en' : null);
+      if (sLang && sLang !== lang){
+        // detach inactive summary into stash (kept in memory, not in DOM)
+        d._stash = d._stash || [];
+        d._stash.push(s);
+        s.parentNode.removeChild(s);
+      }
+    });
+  });
+}
+
+function setLang(lang){
+  document.body.dataset.lang = lang;
+  document.documentElement.lang = lang;
+  btnKo.classList.toggle('active', lang === 'ko');
+  btnEn.classList.toggle('active', lang === 'en');
+  btnKo.setAttribute('aria-pressed', lang === 'ko');
+  btnEn.setAttribute('aria-pressed', lang === 'en');
+  rewireSummaries(lang);
+  try { localStorage.setItem('kisas-lang', lang); } catch(e){}
+}
+btnKo.addEventListener('click', () => setLang('ko'));
+btnEn.addEventListener('click', () => setLang('en'));
+// Restore language preference (default: ko) + always rewire on load
+let initLang = 'ko';
+try {
+  const saved = localStorage.getItem('kisas-lang');
+  if (saved === 'en' || saved === 'ko') initLang = saved;
+} catch(e){}
+setLang(initLang);
+
+// Scroll progress
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  progress.style.width = scrolled + '%';
+}, {passive:true});
+
+// Dot nav active
+const sections = document.querySelectorAll('section[id]');
+const dots = document.querySelectorAll('.dotnav a');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      dots.forEach(d => d.classList.toggle('active', d.getAttribute('href') === '#' + id));
+    }
+  });
+}, {rootMargin:'-40% 0px -40% 0px'});
+sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
