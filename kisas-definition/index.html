@@ -1063,20 +1063,13 @@ body[data-lang="en"] .fb-pyramid .fp-axis span[lang-ko]{display:none}
 
 /* IG-1: Iceberg — visible above / hidden below */
 .ig-iceberg{
-  margin:60px auto;max-width:900px;position:relative;
-  padding:40px 0;
+  margin:60px auto;max-width:1100px;position:relative;
+  width:100%;
 }
-.ig-iceberg svg{width:100%;height:auto;display:block}
-.ig-iceberg .ice-label{
-  position:absolute;font-family:'JetBrains Mono',monospace;
-  font-size:13px;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--text-secondary);font-weight:600;
+.ig-iceberg svg{
+  width:100%;height:auto;display:block;
+  aspect-ratio:1000/700;
 }
-.ig-iceberg .ice-list{
-  position:absolute;font-size:14px;color:var(--text-tertiary);
-  line-height:1.7;font-weight:500;
-}
-.ig-iceberg .ice-list strong{color:var(--text);font-weight:600;font-size:15px}
 
 /* IG-2: Equation — element + element = result */
 .ig-equation{
@@ -1148,21 +1141,41 @@ body[data-lang="en"] .fb-pyramid .fp-axis span[lang-ko]{display:none}
 .ig-funnel-pair{
   margin:60px 0;display:grid;grid-template-columns:1fr 1fr;gap:24px;
 }
-@media(max-width:768px){.ig-funnel-pair{grid-template-columns:1fr}}
+@media(max-width:900px){.ig-funnel-pair{grid-template-columns:1fr}}
 .ig-funnel{
-  padding:36px;border-radius:24px;
+  padding:32px;border-radius:24px;
   background:var(--bg-card);border:1px solid var(--border);
+  display:flex;flex-direction:column;
 }
-.ig-funnel.weak{background:linear-gradient(160deg,#0e0e14,#15151c)}
-.ig-funnel.strong{background:linear-gradient(160deg,rgba(198,92,255,.06),rgba(0,212,255,.04),#15151c)}
+.ig-funnel.weak{background:linear-gradient(160deg,#0e0e14 0%,#15151c 100%)}
+.ig-funnel.strong{background:linear-gradient(160deg,rgba(255,36,105,.05),rgba(198,92,255,.04),rgba(0,212,255,.04) 70%,#15151c)}
+.ig-funnel .fn-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
 .ig-funnel .fn-label{
   font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:.2em;text-transform:uppercase;font-weight:600;
-  margin-bottom:24px;
+  letter-spacing:.22em;text-transform:uppercase;font-weight:600;
 }
 .ig-funnel.weak .fn-label{color:var(--text-tertiary)}
 .ig-funnel.strong .fn-label{color:var(--c-pink)}
-.ig-funnel svg{width:100%;height:auto;display:block}
+.ig-funnel .fn-verdict{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.15em;font-weight:700;
+}
+.ig-funnel.weak .fn-verdict{color:#6e6e73}
+.ig-funnel.strong .fn-verdict{color:var(--c-green)}
+.ig-funnel .fn-title{
+  font-size:18px;font-weight:700;letter-spacing:-.01em;
+  margin-bottom:20px;word-break:keep-all;line-height:1.3;
+}
+.ig-funnel.weak .fn-title{color:var(--text-secondary)}
+.ig-funnel.strong .fn-title{color:var(--text)}
+.ig-funnel svg{width:100%;height:auto;display:block;flex:1}
+.ig-funnel .fn-foot{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  margin-top:18px;padding-top:18px;border-top:1px solid var(--border);
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.1em;color:var(--text-tertiary);
+}
+.ig-funnel .fn-foot strong{display:block;color:var(--text);font-size:14px;margin-top:4px;font-family:'Pretendard','Inter',sans-serif}
 
 /* IG-4: Stacked tower — multiplier */
 .ig-tower{
@@ -1737,103 +1750,98 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         <strong>whose thinking is inside the output</strong>, what process produced it, and what — if anything — actually remains with the student.
       </p>
 
-      <div class="ig-iceberg">
-        <svg viewBox="0 0 1000 640" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+      <div class="ig-iceberg" lang-ko>
+        <svg viewBox="0 0 1000 700" aria-hidden="true">
           <defs>
-            <linearGradient id="ice-tip" x1="0" x2="0" y1="0" y2="1">
+            <linearGradient id="ice-tip-ko" x1="0" x2="0" y1="0" y2="1">
               <stop offset="0%" stop-color="#FFD60A"/>
-              <stop offset="60%" stop-color="#fd9700"/>
-              <stop offset="100%" stop-color="#f40"/>
+              <stop offset="100%" stop-color="#fd9700"/>
             </linearGradient>
-            <linearGradient id="ice-mass" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#0092ff" stop-opacity=".55"/>
-              <stop offset="40%" stop-color="#5b6dff" stop-opacity=".35"/>
-              <stop offset="80%" stop-color="#c65cff" stop-opacity=".18"/>
+            <linearGradient id="ice-mass-ko" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#0092ff" stop-opacity=".5"/>
+              <stop offset="60%" stop-color="#5b6dff" stop-opacity=".25"/>
               <stop offset="100%" stop-color="#0a0a0f" stop-opacity=".05"/>
-            </linearGradient>
-            <linearGradient id="water-grad" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#00d4ff" stop-opacity=".15"/>
-              <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
             </linearGradient>
           </defs>
 
-          <!-- Sky tone (faint) -->
-          <rect x="0" y="0" width="1000" height="195" fill="rgba(255,214,10,.02)"/>
-          <!-- Sea tone -->
-          <rect x="0" y="200" width="1000" height="440" fill="url(#water-grad)"/>
+          <!-- WATER LINE (y=180 — tip 12%) -->
+          <line x1="20" y1="180" x2="980" y2="180" stroke="#00d4ff" stroke-opacity=".7" stroke-width="1.5"/>
+          <path d="M20 188 Q200 192 380 188 T740 188 T980 188" stroke="#00d4ff" stroke-opacity=".2" stroke-width="1" fill="none"/>
 
-          <!-- ABOVE WATER — small tip (only ~12% of iceberg) -->
-          <polygon points="455,110 510,110 535,200 430,200"
-                   fill="url(#ice-tip)" stroke="rgba(255,214,10,.5)" stroke-width="1.2"/>
-          <!-- tip highlight -->
-          <polygon points="455,110 510,110 502,135 463,135" fill="#fff" opacity=".18"/>
+          <!-- TIP (12% — small) -->
+          <polygon points="465,100 510,100 525,180 450,180" fill="url(#ice-tip-ko)" stroke="rgba(255,214,10,.5)" stroke-width="1"/>
+          <polygon points="465,100 510,100 504,118 471,118" fill="#fff" opacity=".2"/>
 
-          <!-- WATER LINE — strong horizontal -->
-          <line x1="40" y1="200" x2="960" y2="200" stroke="#00d4ff" stroke-opacity=".7" stroke-width="2"/>
-          <!-- water ripples -->
-          <path d="M40 207 Q120 212 200 207 T360 207 T520 207 T680 207 T840 207 T960 207"
-                stroke="#00d4ff" stroke-opacity=".25" stroke-width="1" fill="none"/>
-          <path d="M60 215 Q180 220 300 215 T540 215 T780 215 T940 215"
-                stroke="#00d4ff" stroke-opacity=".15" stroke-width="1" fill="none"/>
+          <!-- MASS (below — 88%) -->
+          <polygon points="450,180 525,180 600,300 680,500 580,640 400,640 290,490 380,290"
+                   fill="url(#ice-mass-ko)" stroke="rgba(0,146,255,.35)" stroke-width="1"/>
+          <line x1="450" y1="180" x2="400" y2="640" stroke="rgba(255,255,255,.05)"/>
+          <line x1="525" y1="180" x2="580" y2="640" stroke="rgba(255,255,255,.05)"/>
+          <line x1="380" y1="290" x2="600" y2="300" stroke="rgba(255,255,255,.04)"/>
 
-          <!-- BELOW WATER — massive hidden mass -->
-          <polygon points="430,200 535,200 720,360 815,540 645,615 380,615 175,520 245,335"
-                   fill="url(#ice-mass)" stroke="rgba(0,146,255,.35)" stroke-width="1.2"/>
-          <!-- Inner facets (gives 3D ice feel) -->
-          <line x1="430" y1="200" x2="380" y2="615" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-          <line x1="535" y1="200" x2="645" y2="615" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-          <line x1="480" y1="200" x2="500" y2="615" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-          <line x1="245" y1="335" x2="720" y2="360" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-          <line x1="175" y1="520" x2="815" y2="540" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+          <!-- TIP label -->
+          <text x="240" y="120" fill="#FFD60A" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="3" font-weight="700">L1 · 보이는 일각</text>
+          <text x="240" y="145" fill="#fff" font-family="Pretendard,Inter,sans-serif" font-size="18" font-weight="700">AI 결과물</text>
+          <text x="240" y="165" fill="#a1a1a6" font-family="Pretendard,Inter,sans-serif" font-size="13">빠르게 나온 산출물</text>
+          <line x1="345" y1="140" x2="446" y2="140" stroke="rgba(255,214,10,.5)" stroke-width="1"/>
+          <circle cx="448" cy="140" r="3" fill="#FFD60A"/>
 
-          <!-- Surface reflection on tip -->
-          <polygon points="430,200 535,200 520,215 445,215" fill="#00d4ff" opacity=".25"/>
+          <!-- MASS label -->
+          <text x="700" y="290" fill="#00d4ff" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="3" font-weight="700">L2 · 물 아래</text>
+          <text x="700" y="312" fill="#fff" font-family="Pretendard,Inter,sans-serif" font-size="18" font-weight="700">학생에게서 사라진 것</text>
+          <line x1="600" y1="380" x2="698" y2="380" stroke="rgba(0,212,255,.5)" stroke-width="1"/>
+          <circle cx="598" cy="380" r="3" fill="#00d4ff"/>
 
-          <!-- Labels (inside SVG so they scale) -->
-          <text x="495" y="92" text-anchor="middle" fill="#FFD60A"
-                font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3" font-weight="700">VISIBLE</text>
-          <text x="495" y="660" text-anchor="middle" fill="#00d4ff"
-                font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3" font-weight="700" opacity=".7">HIDDEN</text>
-
-          <!-- Pointer line from tip to label -->
-          <line x1="540" y1="155" x2="650" y2="155" stroke="rgba(255,214,10,.4)" stroke-width="1"/>
-          <circle cx="540" cy="155" r="2.5" fill="#FFD60A"/>
-
-          <!-- Pointer line from underwater to label -->
-          <line x1="725" y1="400" x2="830" y2="400" stroke="rgba(0,212,255,.4)" stroke-width="1"/>
-          <circle cx="725" cy="400" r="2.5" fill="#00d4ff"/>
+          <text x="700" y="350" fill="#fff" font-family="Pretendard,Inter,sans-serif" font-size="14" font-weight="700">처음 생각 <tspan fill="#a1a1a6" font-weight="400">· 누구의 의도였나</tspan></text>
+          <text x="700" y="378" fill="#fff" font-family="Pretendard,Inter,sans-serif" font-size="14" font-weight="700">과정 <tspan fill="#a1a1a6" font-weight="400">· 어떻게 거기 닿았나</tspan></text>
+          <text x="700" y="406" fill="#fff" font-family="Pretendard,Inter,sans-serif" font-size="14" font-weight="700">피드백 <tspan fill="#a1a1a6" font-weight="400">· 누가 봐줬나</tspan></text>
+          <text x="700" y="434" fill="#fff" font-family="Pretendard,Inter,sans-serif" font-size="14" font-weight="700">수정 <tspan fill="#a1a1a6" font-weight="400">· 무엇을 고쳤나</tspan></text>
+          <text x="700" y="462" fill="#fff" font-family="Pretendard,Inter,sans-serif" font-size="14" font-weight="700">설명 <tspan fill="#a1a1a6" font-weight="400">· 왜 그렇게 했나</tspan></text>
+          <text x="700" y="490" fill="#fff" font-family="Pretendard,Inter,sans-serif" font-size="14" font-weight="700">성장 <tspan fill="#a1a1a6" font-weight="400">· 처음보다 나아졌나</tspan></text>
         </svg>
+      </div>
 
-        <!-- HTML labels (positioned percentage-based, scale with svg) -->
-        <div class="ice-label" style="left:67%;top:21%;color:var(--c-yellow)" lang-ko>보이는 일각</div>
-        <div class="ice-label" style="left:67%;top:21%;color:var(--c-yellow)" lang-en>Visible tip</div>
-        <div class="ice-list" style="left:67%;top:27%" lang-ko>
-          <strong>AI 결과물</strong><br>
-          빠르게 나온 산출물
-        </div>
-        <div class="ice-list" style="left:67%;top:27%" lang-en>
-          <strong>AI output</strong><br>
-          The quick artifact
-        </div>
+      <div class="ig-iceberg" lang-en>
+        <svg viewBox="0 0 1000 700" aria-hidden="true">
+          <defs>
+            <linearGradient id="ice-tip-en" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#FFD60A"/>
+              <stop offset="100%" stop-color="#fd9700"/>
+            </linearGradient>
+            <linearGradient id="ice-mass-en" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#0092ff" stop-opacity=".5"/>
+              <stop offset="60%" stop-color="#5b6dff" stop-opacity=".25"/>
+              <stop offset="100%" stop-color="#0a0a0f" stop-opacity=".05"/>
+            </linearGradient>
+          </defs>
+          <line x1="20" y1="180" x2="980" y2="180" stroke="#00d4ff" stroke-opacity=".7" stroke-width="1.5"/>
+          <path d="M20 188 Q200 192 380 188 T740 188 T980 188" stroke="#00d4ff" stroke-opacity=".2" stroke-width="1" fill="none"/>
+          <polygon points="465,100 510,100 525,180 450,180" fill="url(#ice-tip-en)" stroke="rgba(255,214,10,.5)" stroke-width="1"/>
+          <polygon points="465,100 510,100 504,118 471,118" fill="#fff" opacity=".2"/>
+          <polygon points="450,180 525,180 600,300 680,500 580,640 400,640 290,490 380,290"
+                   fill="url(#ice-mass-en)" stroke="rgba(0,146,255,.35)" stroke-width="1"/>
+          <line x1="450" y1="180" x2="400" y2="640" stroke="rgba(255,255,255,.05)"/>
+          <line x1="525" y1="180" x2="580" y2="640" stroke="rgba(255,255,255,.05)"/>
+          <line x1="380" y1="290" x2="600" y2="300" stroke="rgba(255,255,255,.04)"/>
 
-        <div class="ice-label" style="left:84%;top:58%;color:var(--c-cyan)" lang-ko>물 아래 —<br>학생에게서 사라진 것</div>
-        <div class="ice-label" style="left:84%;top:58%;color:var(--c-cyan)" lang-en>Underwater —<br>gone from the student</div>
-        <div class="ice-list" style="left:84%;top:68%" lang-ko>
-          <strong>처음 생각</strong> · 누구의 의도였나<br>
-          <strong>과정</strong> · 어떻게 거기 닿았나<br>
-          <strong>피드백</strong> · 누가 봐줬나<br>
-          <strong>수정</strong> · 무엇을 고쳤나<br>
-          <strong>설명</strong> · 왜 그렇게 했나<br>
-          <strong>성장</strong> · 처음보다 나아졌나
-        </div>
-        <div class="ice-list" style="left:84%;top:68%" lang-en>
-          <strong>First thought</strong> · whose intent<br>
-          <strong>Process</strong> · how it got there<br>
-          <strong>Feedback</strong> · who saw it<br>
-          <strong>Revision</strong> · what changed<br>
-          <strong>Explanation</strong> · why it changed<br>
-          <strong>Growth</strong> · better than before
-        </div>
+          <text x="240" y="120" fill="#FFD60A" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="3" font-weight="700">L1 · VISIBLE TIP</text>
+          <text x="240" y="145" fill="#fff" font-family="Inter,sans-serif" font-size="18" font-weight="700">AI output</text>
+          <text x="240" y="165" fill="#a1a1a6" font-family="Inter,sans-serif" font-size="13">The quick artifact</text>
+          <line x1="345" y1="140" x2="446" y2="140" stroke="rgba(255,214,10,.5)" stroke-width="1"/>
+          <circle cx="448" cy="140" r="3" fill="#FFD60A"/>
+
+          <text x="700" y="290" fill="#00d4ff" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="3" font-weight="700">L2 · UNDERWATER</text>
+          <text x="700" y="312" fill="#fff" font-family="Inter,sans-serif" font-size="18" font-weight="700">Gone from the student</text>
+          <line x1="600" y1="380" x2="698" y2="380" stroke="rgba(0,212,255,.5)" stroke-width="1"/>
+          <circle cx="598" cy="380" r="3" fill="#00d4ff"/>
+
+          <text x="700" y="350" fill="#fff" font-family="Inter,sans-serif" font-size="14" font-weight="700">First thought <tspan fill="#a1a1a6" font-weight="400">· whose intent</tspan></text>
+          <text x="700" y="378" fill="#fff" font-family="Inter,sans-serif" font-size="14" font-weight="700">Process <tspan fill="#a1a1a6" font-weight="400">· how it got there</tspan></text>
+          <text x="700" y="406" fill="#fff" font-family="Inter,sans-serif" font-size="14" font-weight="700">Feedback <tspan fill="#a1a1a6" font-weight="400">· who saw it</tspan></text>
+          <text x="700" y="434" fill="#fff" font-family="Inter,sans-serif" font-size="14" font-weight="700">Revision <tspan fill="#a1a1a6" font-weight="400">· what changed</tspan></text>
+          <text x="700" y="462" fill="#fff" font-family="Inter,sans-serif" font-size="14" font-weight="700">Explanation <tspan fill="#a1a1a6" font-weight="400">· why it changed</tspan></text>
+          <text x="700" y="490" fill="#fff" font-family="Inter,sans-serif" font-size="14" font-weight="700">Growth <tspan fill="#a1a1a6" font-weight="400">· better than before</tspan></text>
+        </svg>
       </div>
 
       <details class="deep">
@@ -2118,91 +2126,206 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
       </p>
 
       <div class="ig-funnel-pair">
+        <!-- LEFT: Funnel — 9 steps go in, only 1 result remains -->
         <div class="ig-funnel weak">
-          <div class="fn-label" lang-ko>기존 교육 · 깔때기</div>
-          <div class="fn-label" lang-en>Conventional · Funnel</div>
-          <svg viewBox="0 0 400 320" aria-hidden="true">
-            <!-- 5 inputs at top -->
-            <g fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.2)">
-              <rect x="20" y="10" width="60" height="22" rx="4"/>
-              <rect x="105" y="10" width="60" height="22" rx="4"/>
-              <rect x="190" y="10" width="60" height="22" rx="4"/>
-              <rect x="275" y="10" width="60" height="22" rx="4"/>
-              <rect x="340" y="10" width="50" height="22" rx="4"/>
+          <div class="fn-head">
+            <span class="fn-label" lang-ko>기존 교육 · 깔때기</span>
+            <span class="fn-label" lang-en>Conventional · Funnel</span>
+            <span class="fn-verdict" lang-ko>잃은 것 8</span>
+            <span class="fn-verdict" lang-en>Lost: 8</span>
+          </div>
+          <p class="fn-title" lang-ko>9단계가 들어가고 — <strong>결과물 1개만 남는다</strong></p>
+          <p class="fn-title" lang-en>9 steps go in — <strong>only 1 artifact remains</strong></p>
+
+          <svg viewBox="0 0 460 340" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+            <!-- 9 step pills at top — all grey, all fading -->
+            <g font-family="Pretendard,Inter,sans-serif" font-size="10" font-weight="700">
+              <g opacity=".25">
+                <rect x="10" y="14" width="44" height="22" rx="11" fill="none" stroke="#6e6e73"/>
+                <text x="32" y="29" text-anchor="middle" fill="#6e6e73">질문</text>
+              </g>
+              <g opacity=".25">
+                <rect x="60" y="14" width="44" height="22" rx="11" fill="none" stroke="#6e6e73"/>
+                <text x="82" y="29" text-anchor="middle" fill="#6e6e73">생각</text>
+              </g>
+              <g opacity=".25">
+                <rect x="110" y="14" width="44" height="22" rx="11" fill="none" stroke="#6e6e73"/>
+                <text x="132" y="29" text-anchor="middle" fill="#6e6e73">AI</text>
+              </g>
+              <g opacity=".25">
+                <rect x="160" y="14" width="44" height="22" rx="11" fill="none" stroke="#6e6e73"/>
+                <text x="182" y="29" text-anchor="middle" fill="#6e6e73">창작</text>
+              </g>
+              <g opacity=".4">
+                <rect x="210" y="14" width="44" height="22" rx="11" fill="none" stroke="#a1a1a6"/>
+                <text x="232" y="29" text-anchor="middle" fill="#a1a1a6">피드백</text>
+              </g>
+              <g opacity=".25">
+                <rect x="260" y="14" width="44" height="22" rx="11" fill="none" stroke="#6e6e73"/>
+                <text x="282" y="29" text-anchor="middle" fill="#6e6e73">수정</text>
+              </g>
+              <g opacity=".25">
+                <rect x="310" y="14" width="44" height="22" rx="11" fill="none" stroke="#6e6e73"/>
+                <text x="332" y="29" text-anchor="middle" fill="#6e6e73">설명</text>
+              </g>
+              <g opacity=".25">
+                <rect x="360" y="14" width="44" height="22" rx="11" fill="none" stroke="#6e6e73"/>
+                <text x="382" y="29" text-anchor="middle" fill="#6e6e73">완성</text>
+              </g>
+              <g opacity=".25">
+                <rect x="410" y="14" width="44" height="22" rx="11" fill="none" stroke="#6e6e73"/>
+                <text x="432" y="29" text-anchor="middle" fill="#6e6e73">기록</text>
+              </g>
             </g>
-            <text x="50" y="25" text-anchor="middle" fill="#888" font-family="JetBrains Mono" font-size="9">생각</text>
-            <text x="135" y="25" text-anchor="middle" fill="#888" font-family="JetBrains Mono" font-size="9">과정</text>
-            <text x="220" y="25" text-anchor="middle" fill="#888" font-family="JetBrains Mono" font-size="9">피드백</text>
-            <text x="305" y="25" text-anchor="middle" fill="#888" font-family="JetBrains Mono" font-size="9">수정</text>
-            <text x="365" y="25" text-anchor="middle" fill="#888" font-family="JetBrains Mono" font-size="9">설명</text>
-            <!-- Funnel narrowing -->
-            <polygon points="20,50 380,50 250,210 150,210" fill="rgba(110,110,115,.12)" stroke="rgba(110,110,115,.3)"/>
-            <!-- Drips (lost) -->
-            <circle cx="80" cy="240" r="3" fill="#6e6e73" opacity=".5"/>
-            <circle cx="120" cy="260" r="2" fill="#6e6e73" opacity=".4"/>
-            <circle cx="280" cy="245" r="3" fill="#6e6e73" opacity=".5"/>
-            <circle cx="320" cy="270" r="2" fill="#6e6e73" opacity=".3"/>
-            <text x="200" y="295" text-anchor="middle" fill="#6e6e73" font-family="JetBrains Mono" font-size="10" letter-spacing="2">대부분 사라짐</text>
-            <!-- Output: only result -->
-            <rect x="170" y="210" width="60" height="32" rx="6" fill="rgba(110,110,115,.25)" stroke="rgba(110,110,115,.4)"/>
-            <text x="200" y="231" text-anchor="middle" fill="#a1a1a6" font-family="Inter" font-size="11" font-weight="700">결과물만</text>
+
+            <!-- Dotted descent lines (process erased) -->
+            <g stroke="#6e6e73" stroke-opacity=".3" stroke-dasharray="2 4" fill="none">
+              <line x1="32" y1="40" x2="170" y2="170"/>
+              <line x1="82" y1="40" x2="190" y2="170"/>
+              <line x1="132" y1="40" x2="210" y2="170"/>
+              <line x1="182" y1="40" x2="220" y2="170"/>
+              <line x1="232" y1="40" x2="230" y2="170"/>
+              <line x1="282" y1="40" x2="240" y2="170"/>
+              <line x1="332" y1="40" x2="250" y2="170"/>
+              <line x1="382" y1="40" x2="270" y2="170"/>
+              <line x1="432" y1="40" x2="290" y2="170"/>
+            </g>
+
+            <!-- Funnel shape -->
+            <polygon points="20,55 440,55 270,180 190,180"
+                     fill="rgba(110,110,115,.06)" stroke="rgba(110,110,115,.35)" stroke-width="1.2"/>
+
+            <!-- Smoke particles (evaporating) -->
+            <g fill="#6e6e73">
+              <circle cx="100" cy="210" r="2" opacity=".4"/>
+              <circle cx="140" cy="230" r="1.5" opacity=".3"/>
+              <circle cx="60" cy="245" r="1.8" opacity=".35"/>
+              <circle cx="380" cy="215" r="2" opacity=".4"/>
+              <circle cx="340" cy="240" r="1.5" opacity=".3"/>
+              <circle cx="400" cy="255" r="1.8" opacity=".35"/>
+              <circle cx="200" cy="265" r="1.5" opacity=".25"/>
+            </g>
+
+            <!-- Single output -->
+            <rect x="200" y="195" width="60" height="36" rx="8" fill="rgba(110,110,115,.18)" stroke="rgba(161,161,166,.5)" stroke-width="1.2"/>
+            <text x="230" y="217" text-anchor="middle" fill="#a1a1a6" font-family="Pretendard,Inter,sans-serif" font-size="12" font-weight="700">결과물</text>
+
+            <!-- Footer label -->
+            <text x="230" y="295" text-anchor="middle" fill="#6e6e73" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="3" font-weight="700">생각·과정·피드백·수정·설명 사라짐</text>
           </svg>
+
+          <div class="fn-foot">
+            <div lang-ko>남는 것 <strong>1</strong></div>
+            <div lang-ko>사라지는 것 <strong>8</strong></div>
+            <div lang-en>What remains <strong>1</strong></div>
+            <div lang-en>What vanishes <strong>8</strong></div>
+          </div>
         </div>
+
+        <!-- RIGHT: KISAS — 9 steps preserved, all stacked as evidence -->
         <div class="ig-funnel strong">
-          <div class="fn-label" lang-ko>KISAS · 보존 루프</div>
-          <div class="fn-label" lang-en>KISAS · Preservation loop</div>
-          <svg viewBox="0 0 400 320" aria-hidden="true">
+          <div class="fn-head">
+            <span class="fn-label" lang-ko>KISAS · 9단 루프</span>
+            <span class="fn-label" lang-en>KISAS · 9-step loop</span>
+            <span class="fn-verdict" lang-ko>전부 보존 9</span>
+            <span class="fn-verdict" lang-en>All preserved: 9</span>
+          </div>
+          <p class="fn-title" lang-ko>9단계가 들어가고 — <strong>9개 모두 결과물로 남는다</strong></p>
+          <p class="fn-title" lang-en>9 steps go in — <strong>all 9 remain as evidence</strong></p>
+
+          <svg viewBox="0 0 460 340" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
             <defs>
-              <linearGradient id="loop-stroke" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0%" stop-color="#FFD60A"/>
-                <stop offset="50%" stop-color="#ff2469"/>
-                <stop offset="100%" stop-color="#07ED21"/>
+              <linearGradient id="path-grad" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#FFD60A" stop-opacity=".8"/>
+                <stop offset="50%" stop-color="#ff2469" stop-opacity=".7"/>
+                <stop offset="100%" stop-color="#07ED21" stop-opacity=".8"/>
               </linearGradient>
             </defs>
-            <!-- 5 input nodes top -->
-            <g>
-              <circle cx="50" cy="30" r="14" fill="rgba(255,214,10,.2)" stroke="#FFD60A" stroke-width="1.5"/>
-              <text x="50" y="34" text-anchor="middle" fill="#FFD60A" font-family="JetBrains Mono" font-size="9" font-weight="700">생각</text>
-              <circle cx="135" cy="30" r="14" fill="rgba(253,151,0,.2)" stroke="#fd9700" stroke-width="1.5"/>
-              <text x="135" y="34" text-anchor="middle" fill="#fd9700" font-family="JetBrains Mono" font-size="9" font-weight="700">과정</text>
-              <circle cx="220" cy="30" r="14" fill="rgba(255,36,105,.2)" stroke="#ff2469" stroke-width="1.5"/>
-              <text x="220" y="34" text-anchor="middle" fill="#ff2469" font-family="JetBrains Mono" font-size="8" font-weight="700">피드백</text>
-              <circle cx="305" cy="30" r="14" fill="rgba(198,92,255,.2)" stroke="#c65cff" stroke-width="1.5"/>
-              <text x="305" y="34" text-anchor="middle" fill="#c65cff" font-family="JetBrains Mono" font-size="9" font-weight="700">수정</text>
-              <circle cx="370" cy="30" r="14" fill="rgba(0,146,255,.2)" stroke="#0092ff" stroke-width="1.5"/>
-              <text x="370" y="34" text-anchor="middle" fill="#0092ff" font-family="JetBrains Mono" font-size="9" font-weight="700">설명</text>
+
+            <!-- 9 step pills at top, fully colored -->
+            <g font-family="Pretendard,Inter,sans-serif" font-size="10" font-weight="700">
+              <rect x="10" y="14" width="44" height="22" rx="11" fill="rgba(255,214,10,.18)" stroke="#FFD60A"/>
+              <text x="32" y="29" text-anchor="middle" fill="#FFD60A">질문</text>
+              <rect x="60" y="14" width="44" height="22" rx="11" fill="rgba(253,151,0,.18)" stroke="#fd9700"/>
+              <text x="82" y="29" text-anchor="middle" fill="#fd9700">생각</text>
+              <rect x="110" y="14" width="44" height="22" rx="11" fill="rgba(255,68,0,.18)" stroke="#f40"/>
+              <text x="132" y="29" text-anchor="middle" fill="#f40">AI</text>
+              <rect x="160" y="14" width="44" height="22" rx="11" fill="rgba(255,36,105,.18)" stroke="#ff2469"/>
+              <text x="182" y="29" text-anchor="middle" fill="#ff2469">창작</text>
+              <rect x="210" y="14" width="44" height="22" rx="11" fill="rgba(233,30,99,.18)" stroke="#e91e63"/>
+              <text x="232" y="29" text-anchor="middle" fill="#e91e63">피드백</text>
+              <rect x="260" y="14" width="44" height="22" rx="11" fill="rgba(198,92,255,.18)" stroke="#c65cff"/>
+              <text x="282" y="29" text-anchor="middle" fill="#c65cff">수정</text>
+              <rect x="310" y="14" width="44" height="22" rx="11" fill="rgba(91,109,255,.18)" stroke="#5b6dff"/>
+              <text x="332" y="29" text-anchor="middle" fill="#5b6dff">설명</text>
+              <rect x="360" y="14" width="44" height="22" rx="11" fill="rgba(0,146,255,.18)" stroke="#0092ff"/>
+              <text x="382" y="29" text-anchor="middle" fill="#0092ff">완성</text>
+              <rect x="410" y="14" width="44" height="22" rx="11" fill="rgba(7,237,33,.18)" stroke="#07ED21"/>
+              <text x="432" y="29" text-anchor="middle" fill="#07ED21">기록</text>
             </g>
-            <!-- Curved paths gathered -->
-            <path d="M50,44 Q200,90 200,150" stroke="url(#loop-stroke)" stroke-width="1.5" fill="none" opacity=".6"/>
-            <path d="M135,44 Q200,100 200,150" stroke="url(#loop-stroke)" stroke-width="1.5" fill="none" opacity=".6"/>
-            <path d="M220,44 L200,150" stroke="url(#loop-stroke)" stroke-width="1.5" fill="none" opacity=".6"/>
-            <path d="M305,44 Q200,100 200,150" stroke="url(#loop-stroke)" stroke-width="1.5" fill="none" opacity=".6"/>
-            <path d="M370,44 Q200,90 200,150" stroke="url(#loop-stroke)" stroke-width="1.5" fill="none" opacity=".6"/>
-            <!-- Central hub -->
-            <circle cx="200" cy="160" r="36" fill="rgba(255,36,105,.15)" stroke="url(#loop-stroke)" stroke-width="2"/>
-            <text x="200" y="158" text-anchor="middle" fill="#fff" font-family="Inter" font-size="10" font-weight="700">KISAS</text>
-            <text x="200" y="172" text-anchor="middle" fill="#a1a1a6" font-family="JetBrains Mono" font-size="8">LOOP</text>
-            <!-- Output: 5 traces preserved + result -->
-            <g transform="translate(50,240)">
-              <rect width="60" height="22" rx="4" fill="rgba(255,214,10,.15)" stroke="#FFD60A"/>
-              <text x="30" y="15" text-anchor="middle" fill="#FFD60A" font-family="JetBrains Mono" font-size="9" font-weight="700">기록</text>
+
+            <!-- 9 colored solid descent lines (all preserved) -->
+            <g fill="none" stroke-width="1.3">
+              <path d="M32,40 Q32,90 60,170" stroke="#FFD60A" opacity=".7"/>
+              <path d="M82,40 Q82,90 100,170" stroke="#fd9700" opacity=".7"/>
+              <path d="M132,40 Q132,90 140,170" stroke="#f40" opacity=".7"/>
+              <path d="M182,40 Q182,90 180,170" stroke="#ff2469" opacity=".7"/>
+              <path d="M232,40 L230,170" stroke="#e91e63" opacity=".8"/>
+              <path d="M282,40 Q282,90 280,170" stroke="#c65cff" opacity=".7"/>
+              <path d="M332,40 Q332,90 320,170" stroke="#5b6dff" opacity=".7"/>
+              <path d="M382,40 Q382,90 360,170" stroke="#0092ff" opacity=".7"/>
+              <path d="M432,40 Q432,90 400,170" stroke="#07ED21" opacity=".7"/>
             </g>
-            <g transform="translate(135,240)">
-              <rect width="60" height="22" rx="4" fill="rgba(255,36,105,.15)" stroke="#ff2469"/>
-              <text x="30" y="15" text-anchor="middle" fill="#ff2469" font-family="JetBrains Mono" font-size="9" font-weight="700">이력</text>
+
+            <!-- Hub: KISAS LOOP -->
+            <circle cx="230" cy="200" r="32" fill="rgba(255,36,105,.18)" stroke="url(#path-grad)" stroke-width="2"/>
+            <text x="230" y="200" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-size="11" font-weight="800">KISAS</text>
+            <text x="230" y="214" text-anchor="middle" fill="#a1a1a6" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing="2">LOOP</text>
+
+            <!-- 9 output pills bottom — each preserved -->
+            <g font-family="Pretendard,Inter,sans-serif" font-size="9" font-weight="700">
+              <rect x="10" y="270" width="44" height="20" rx="10" fill="rgba(255,214,10,.15)" stroke="#FFD60A"/>
+              <text x="32" y="284" text-anchor="middle" fill="#FFD60A">질문</text>
+              <rect x="60" y="270" width="44" height="20" rx="10" fill="rgba(253,151,0,.15)" stroke="#fd9700"/>
+              <text x="82" y="284" text-anchor="middle" fill="#fd9700">생각</text>
+              <rect x="110" y="270" width="44" height="20" rx="10" fill="rgba(255,68,0,.15)" stroke="#f40"/>
+              <text x="132" y="284" text-anchor="middle" fill="#f40">AI</text>
+              <rect x="160" y="270" width="44" height="20" rx="10" fill="rgba(255,36,105,.15)" stroke="#ff2469"/>
+              <text x="182" y="284" text-anchor="middle" fill="#ff2469">창작</text>
+              <rect x="210" y="270" width="44" height="20" rx="10" fill="rgba(233,30,99,.15)" stroke="#e91e63"/>
+              <text x="232" y="284" text-anchor="middle" fill="#e91e63">피드백</text>
+              <rect x="260" y="270" width="44" height="20" rx="10" fill="rgba(198,92,255,.15)" stroke="#c65cff"/>
+              <text x="282" y="284" text-anchor="middle" fill="#c65cff">수정</text>
+              <rect x="310" y="270" width="44" height="20" rx="10" fill="rgba(91,109,255,.15)" stroke="#5b6dff"/>
+              <text x="332" y="284" text-anchor="middle" fill="#5b6dff">설명</text>
+              <rect x="360" y="270" width="44" height="20" rx="10" fill="rgba(0,146,255,.15)" stroke="#0092ff"/>
+              <text x="382" y="284" text-anchor="middle" fill="#0092ff">완성</text>
+              <rect x="410" y="270" width="44" height="20" rx="10" fill="rgba(7,237,33,.15)" stroke="#07ED21"/>
+              <text x="432" y="284" text-anchor="middle" fill="#07ED21">기록</text>
             </g>
-            <g transform="translate(220,240)">
-              <rect width="60" height="22" rx="4" fill="rgba(198,92,255,.15)" stroke="#c65cff"/>
-              <text x="30" y="15" text-anchor="middle" fill="#c65cff" font-family="JetBrains Mono" font-size="9" font-weight="700">설명</text>
+
+            <!-- Lines from hub fan-out to outputs -->
+            <g fill="none" stroke-width="1" opacity=".4">
+              <line x1="220" y1="230" x2="32" y2="266" stroke="#FFD60A"/>
+              <line x1="222" y1="230" x2="82" y2="266" stroke="#fd9700"/>
+              <line x1="224" y1="230" x2="132" y2="266" stroke="#f40"/>
+              <line x1="226" y1="230" x2="182" y2="266" stroke="#ff2469"/>
+              <line x1="230" y1="232" x2="232" y2="266" stroke="#e91e63"/>
+              <line x1="234" y1="230" x2="282" y2="266" stroke="#c65cff"/>
+              <line x1="236" y1="230" x2="332" y2="266" stroke="#5b6dff"/>
+              <line x1="238" y1="230" x2="382" y2="266" stroke="#0092ff"/>
+              <line x1="240" y1="230" x2="432" y2="266" stroke="#07ED21"/>
             </g>
-            <g transform="translate(305,240)">
-              <rect width="60" height="22" rx="4" fill="rgba(7,237,33,.15)" stroke="#07ED21"/>
-              <text x="30" y="15" text-anchor="middle" fill="#07ED21" font-family="JetBrains Mono" font-size="9" font-weight="700">성장</text>
-            </g>
-            <text x="200" y="290" text-anchor="middle" fill="#07ED21" font-family="JetBrains Mono" font-size="10" letter-spacing="2" font-weight="700">전부 보존</text>
-            <!-- arrows down -->
-            <line x1="200" y1="196" x2="200" y2="232" stroke="url(#loop-stroke)" stroke-width="1.5" opacity=".6"/>
+
+            <text x="230" y="320" text-anchor="middle" fill="#07ED21" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="3" font-weight="700">전부 보존 · 9개 모두 증거로 남음</text>
           </svg>
+
+          <div class="fn-foot">
+            <div lang-ko>남는 것 <strong>9</strong></div>
+            <div lang-ko>사라지는 것 <strong>0</strong></div>
+            <div lang-en>What remains <strong>9</strong></div>
+            <div lang-en>What vanishes <strong>0</strong></div>
+          </div>
         </div>
       </div>
 
