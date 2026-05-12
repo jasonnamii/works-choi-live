@@ -625,22 +625,19 @@ details.deep .deep-body p strong{color:var(--text)}
 
 /* Authority block */
 .authority{
-  display:grid;grid-template-columns:200px 1fr;gap:48px;
   padding:48px;border-radius:24px;
   background:var(--bg-card);border:1px solid var(--border);
-  margin:60px 0;align-items:center;
+  margin:60px 0;
+  position:relative;
 }
-@media(max-width:768px){.authority{grid-template-columns:1fr;padding:32px;gap:24px}}
-.authority .avatar{
-  width:160px;height:160px;border-radius:50%;
-  background:conic-gradient(from 180deg,
+.authority::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  border-radius:24px 0 0 24px;
+  background:linear-gradient(180deg,
     var(--c-yellow),var(--c-orange),var(--c-pink),var(--c-magenta),
-    var(--c-purple),var(--c-blue),var(--c-cyan),var(--c-green),var(--c-yellow));
-  display:grid;place-items:center;
-  font-family:'JetBrains Mono',monospace;font-size:48px;
-  font-weight:700;color:#0a0a0f;
-  box-shadow:0 0 60px rgba(198,92,255,.3);
+    var(--c-purple),var(--c-blue),var(--c-cyan),var(--c-green));
 }
+@media(max-width:768px){.authority{padding:32px}}
 .authority .who-name{
   font-size:clamp(26px,2.8vw,40px);font-weight:800;
   margin-bottom:8px;letter-spacing:-.02em;word-break:keep-all;
@@ -1545,7 +1542,6 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
       </p>
 
       <div class="authority">
-        <div class="avatar">SK</div>
         <div>
           <p class="who-name" lang-ko>김선 박사</p>
           <p class="who-name" lang-en>Dr. Sun Kim</p>
