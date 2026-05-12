@@ -677,6 +677,355 @@ body[data-lang="ko"] .echo-text{
   line-height:1.1;letter-spacing:-.03em;
 }
 
+/* =============== NEW: Layout Catalog Components =============== */
+
+/* A. Split Frame — strong dual-panel contrast */
+.splitframe{
+  display:grid;grid-template-columns:1fr 1fr;
+  margin:60px 0;border-radius:24px;overflow:hidden;
+  border:1px solid var(--border);min-height:280px;
+}
+@media(max-width:900px){.splitframe{grid-template-columns:1fr}}
+.splitframe > div{padding:48px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.splitframe .panel-a{
+  background:linear-gradient(135deg,#15151c,#0e0e14);
+  border-right:1px solid var(--border);
+}
+.splitframe .panel-b{
+  background:linear-gradient(135deg,
+    rgba(255,214,10,.05),rgba(255,36,105,.08),rgba(198,92,255,.08),rgba(0,146,255,.05));
+}
+@media(max-width:900px){
+  .splitframe .panel-a{border-right:none;border-bottom:1px solid var(--border)}
+}
+.splitframe .ghost{
+  position:absolute;font-family:'JetBrains Mono',monospace;
+  font-size:clamp(80px,14vw,180px);font-weight:900;
+  color:rgba(255,255,255,.03);
+  bottom:-30px;right:-20px;line-height:1;letter-spacing:-.05em;
+  pointer-events:none;
+}
+.splitframe .ghost.b{
+  background:linear-gradient(135deg,
+    rgba(255,214,10,.08),rgba(255,36,105,.12),rgba(198,92,255,.12));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.splitframe .panel-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-tertiary);margin-bottom:24px;font-weight:500;
+  position:relative;z-index:2;
+}
+.splitframe .panel-b .panel-label{color:var(--c-pink)}
+.splitframe .panel-statement{
+  font-size:clamp(22px,2.6vw,36px);
+  line-height:1.25;letter-spacing:-.02em;font-weight:700;
+  word-break:keep-all;position:relative;z-index:2;
+}
+.splitframe .panel-a .panel-statement{color:var(--text-secondary)}
+.splitframe .panel-b .panel-statement{color:var(--text)}
+
+/* B. Pyramid Layout — conclusion-first */
+.pyramid{
+  margin:60px 0;display:grid;gap:14px;
+}
+.pyramid .tier{
+  padding:32px 40px;border-radius:18px;
+  border:1px solid var(--border);background:var(--bg-card);
+  display:grid;grid-template-columns:140px 1fr;gap:32px;align-items:center;
+}
+@media(max-width:768px){.pyramid .tier{grid-template-columns:1fr;gap:12px;padding:24px}}
+.pyramid .tier .tier-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-tertiary);font-weight:500;
+}
+.pyramid .tier-1{
+  background:linear-gradient(135deg,rgba(255,36,105,.12),rgba(198,92,255,.08));
+  border-color:rgba(255,36,105,.3);
+  font-size:clamp(22px,2.4vw,32px);font-weight:800;
+}
+.pyramid .tier-1 .tier-label{color:var(--c-pink)}
+.pyramid .tier-1 .tier-body{
+  font-size:clamp(20px,2vw,28px);font-weight:700;line-height:1.3;
+  letter-spacing:-.02em;color:var(--text);word-break:keep-all;
+}
+.pyramid .tier-2 .tier-body{font-size:18px;color:var(--text);line-height:1.6;font-weight:500}
+.pyramid .tier-3 .tier-body{font-size:15px;color:var(--text-secondary);line-height:1.6}
+
+/* C. Hub-and-Spoke — 6 layers radial */
+.hubspoke{
+  margin:60px auto;position:relative;
+  width:100%;max-width:760px;aspect-ratio:1/1;
+}
+.hubspoke svg{width:100%;height:100%;display:block}
+.hubspoke .spoke-card{
+  position:absolute;width:170px;padding:14px 16px;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:14px;transform:translate(-50%,-50%);
+  transition:all .3s var(--apple-ease);
+}
+.hubspoke .spoke-card:hover{transform:translate(-50%,-50%) scale(1.04)}
+.hubspoke .spoke-num{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.1em;font-weight:700;margin-bottom:4px;
+}
+.hubspoke .spoke-who{font-size:14px;font-weight:600;line-height:1.25;word-break:keep-all}
+.hubspoke .hub-center{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,
+    rgba(255,214,10,.4),rgba(255,36,105,.4) 40%,rgba(198,92,255,.4) 70%,rgba(0,146,255,.3));
+  display:grid;place-items:center;
+  box-shadow:0 0 80px rgba(255,36,105,.3);
+}
+.hubspoke .hub-label{
+  text-align:center;font-weight:800;font-size:clamp(18px,2vw,26px);
+  letter-spacing:-.02em;color:var(--text);line-height:1.15;
+  word-break:keep-all;padding:8px 16px;
+}
+@media(max-width:600px){
+  .hubspoke{max-width:380px}
+  .hubspoke .spoke-card{width:120px;padding:10px 12px}
+  .hubspoke .spoke-who{font-size:12px}
+  .hubspoke .hub-center{width:130px;height:130px}
+}
+
+/* D. Decision Box — boxed callout for resolution */
+.decision-box{
+  margin:60px 0;padding:48px;border-radius:24px;
+  background:linear-gradient(135deg,
+    rgba(255,214,10,.06),rgba(7,237,33,.04),rgba(0,212,255,.06));
+  border:1px solid rgba(7,237,33,.25);
+  position:relative;
+}
+.decision-box::before{
+  content:'';position:absolute;top:24px;right:24px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--c-green);
+  box-shadow:0 0 24px var(--c-green);
+}
+.decision-box .decision-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--c-green);font-weight:600;margin-bottom:20px;
+}
+.decision-box .decision-title{
+  font-size:clamp(24px,3vw,40px);font-weight:800;line-height:1.2;
+  letter-spacing:-.025em;word-break:keep-all;margin-bottom:20px;
+}
+.decision-box .decision-body{
+  font-size:17px;line-height:1.7;color:var(--text-secondary);
+  word-break:keep-all;
+}
+
+/* E. Timeline / Step Flow — horizontal progress */
+.timeline{
+  margin:60px 0;position:relative;padding:24px 0;
+}
+.timeline-track{
+  position:relative;display:grid;
+  grid-template-columns:repeat(9,1fr);gap:0;
+  border-top:2px solid var(--border);padding-top:40px;
+}
+.timeline-track::before{
+  content:'';position:absolute;top:-2px;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,
+    var(--c-yellow),var(--c-orange),var(--c-pink),var(--c-magenta),
+    var(--c-purple),var(--c-indigo),var(--c-blue),var(--c-cyan),var(--c-green));
+}
+.timeline-node{
+  position:relative;padding:0 12px;
+}
+.timeline-node::before{
+  content:'';position:absolute;top:-48px;left:50%;transform:translateX(-50%);
+  width:14px;height:14px;border-radius:50%;background:var(--bg);
+  border:2px solid currentColor;
+}
+.timeline-node:nth-child(1){color:var(--c-yellow)}
+.timeline-node:nth-child(2){color:var(--c-orange)}
+.timeline-node:nth-child(3){color:var(--c-pink)}
+.timeline-node:nth-child(4){color:var(--c-magenta)}
+.timeline-node:nth-child(5){color:var(--c-purple)}
+.timeline-node:nth-child(6){color:#9a8aff}
+.timeline-node:nth-child(7){color:var(--c-blue)}
+.timeline-node:nth-child(8){color:var(--c-cyan)}
+.timeline-node:nth-child(9){color:var(--c-green)}
+.timeline-node .tl-num{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.15em;font-weight:700;color:currentColor;
+}
+.timeline-node .tl-title{
+  font-size:14px;font-weight:700;color:var(--text);
+  margin-top:6px;line-height:1.25;word-break:keep-all;
+}
+.timeline-node .tl-why{
+  font-size:11px;color:var(--text-tertiary);margin-top:6px;line-height:1.4;
+  word-break:keep-all;
+}
+@media(max-width:900px){
+  .timeline-track{grid-template-columns:1fr;gap:24px;padding-top:0;border-top:none}
+  .timeline-track::before{display:none}
+  .timeline-node{padding:18px 18px 18px 36px;border-left:2px solid currentColor;border-radius:0}
+  .timeline-node::before{display:none}
+}
+
+/* F. Layered Cards — stacked roadmap */
+.stack{
+  margin:60px 0;display:grid;gap:0;
+}
+.stack .stack-card{
+  padding:32px 36px;background:var(--bg-card);
+  border:1px solid var(--border);border-radius:18px;
+  margin-bottom:-10px;position:relative;
+  transition:all .3s var(--apple-ease);
+}
+.stack .stack-card:last-child{margin-bottom:0}
+.stack .stack-card:nth-child(1){z-index:5;transform:translateY(0)}
+.stack .stack-card:nth-child(2){z-index:4;background:linear-gradient(135deg,rgba(255,214,10,.04),var(--bg-card))}
+.stack .stack-card:nth-child(3){z-index:3;background:linear-gradient(135deg,rgba(255,36,105,.04),var(--bg-card))}
+.stack .stack-card:nth-child(4){z-index:2;background:linear-gradient(135deg,rgba(198,92,255,.04),var(--bg-card))}
+.stack .stack-card:nth-child(5){z-index:1;background:linear-gradient(135deg,rgba(0,146,255,.04),var(--bg-card))}
+.stack .stack-card:nth-child(6){z-index:0;background:linear-gradient(135deg,rgba(7,237,33,.04),var(--bg-card))}
+.stack .stack-card:hover{transform:translateY(-4px);z-index:10}
+.stack .stack-card .stack-tag{
+  display:inline-block;font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;
+  border:1px solid currentColor;margin-bottom:14px;font-weight:600;
+}
+.stack .stack-card:nth-child(1) .stack-tag{color:var(--c-orange)}
+.stack .stack-card:nth-child(2) .stack-tag{color:var(--c-pink)}
+.stack .stack-card:nth-child(3) .stack-tag{color:var(--c-magenta)}
+.stack .stack-card:nth-child(4) .stack-tag{color:var(--c-purple)}
+.stack .stack-card:nth-child(5) .stack-tag{color:var(--c-blue)}
+.stack .stack-card:nth-child(6) .stack-tag{color:var(--c-green)}
+.stack .stack-text{
+  font-size:18px;line-height:1.55;font-weight:500;color:var(--text);
+  word-break:keep-all;
+}
+
+/* G. Asymmetric Bento — varied card sizes */
+.bento-asym{
+  margin:60px 0;display:grid;gap:16px;
+  grid-template-columns:repeat(6,1fr);
+  grid-auto-rows:minmax(160px,auto);
+}
+@media(max-width:900px){.bento-asym{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.bento-asym{grid-template-columns:1fr}}
+.bento-asym .ba{
+  padding:28px;border-radius:20px;
+  background:var(--bg-card);border:1px solid var(--border);
+  display:flex;flex-direction:column;justify-content:space-between;
+  transition:all .3s var(--apple-ease);position:relative;overflow:hidden;
+}
+.bento-asym .ba:hover{transform:translateY(-4px);border-color:var(--c-pink)}
+.bento-asym .ba.large{grid-column:span 4;grid-row:span 2}
+.bento-asym .ba.tall{grid-column:span 2;grid-row:span 2}
+.bento-asym .ba.wide{grid-column:span 4}
+.bento-asym .ba.small{grid-column:span 2}
+@media(max-width:900px){
+  .bento-asym .ba.large,.bento-asym .ba.tall,
+  .bento-asym .ba.wide,.bento-asym .ba.small{grid-column:span 2;grid-row:span 1}
+}
+@media(max-width:560px){
+  .bento-asym .ba.large,.bento-asym .ba.tall,
+  .bento-asym .ba.wide,.bento-asym .ba.small{grid-column:span 1}
+}
+.bento-asym .ba-tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:.15em;
+  color:var(--text-tertiary);text-transform:uppercase;font-weight:500;
+}
+.bento-asym .ba-title{
+  font-size:clamp(20px,1.8vw,28px);font-weight:700;
+  letter-spacing:-.02em;line-height:1.2;
+  margin:14px 0 10px;word-break:keep-all;
+}
+.bento-asym .ba.large .ba-title{font-size:clamp(28px,2.6vw,42px)}
+.bento-asym .ba-body{
+  font-size:15px;color:var(--text-secondary);
+  line-height:1.55;word-break:keep-all;
+}
+.bento-asym .ba.large .ba-body{font-size:17px}
+.bento-asym .ba .ba-glow{
+  position:absolute;top:-40%;right:-20%;width:60%;height:80%;
+  border-radius:50%;filter:blur(60px);opacity:.3;pointer-events:none;
+}
+.bento-asym .ba:nth-child(1) .ba-glow{background:var(--c-yellow)}
+.bento-asym .ba:nth-child(2) .ba-glow{background:var(--c-pink)}
+.bento-asym .ba:nth-child(3) .ba-glow{background:var(--c-magenta)}
+.bento-asym .ba:nth-child(4) .ba-glow{background:var(--c-purple)}
+.bento-asym .ba:nth-child(5) .ba-glow{background:var(--c-blue)}
+.bento-asym .ba:nth-child(6) .ba-glow{background:var(--c-green)}
+
+/* H. Layered Architecture — platform stack */
+.archi{
+  margin:60px 0;display:grid;gap:8px;
+}
+.archi .archi-layer{
+  padding:24px 32px;border-radius:14px;
+  display:grid;grid-template-columns:160px 1fr;gap:32px;align-items:center;
+  border:1px solid var(--border);position:relative;
+  transition:all .3s var(--apple-ease);
+}
+@media(max-width:768px){
+  .archi .archi-layer{grid-template-columns:1fr;gap:8px;padding:20px 24px}
+}
+.archi .archi-layer:hover{transform:translateX(6px)}
+.archi .archi-layer:nth-child(1){background:linear-gradient(90deg,rgba(255,214,10,.08),transparent 60%);border-left:3px solid var(--c-yellow)}
+.archi .archi-layer:nth-child(2){background:linear-gradient(90deg,rgba(255,36,105,.08),transparent 60%);border-left:3px solid var(--c-pink)}
+.archi .archi-layer:nth-child(3){background:linear-gradient(90deg,rgba(198,92,255,.08),transparent 60%);border-left:3px solid var(--c-purple)}
+.archi .archi-layer:nth-child(4){background:linear-gradient(90deg,rgba(0,146,255,.08),transparent 60%);border-left:3px solid var(--c-blue)}
+.archi .archi-layer:nth-child(5){background:linear-gradient(90deg,rgba(7,237,33,.08),transparent 60%);border-left:3px solid var(--c-green)}
+.archi .archi-tier{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+}
+.archi .archi-layer:nth-child(1) .archi-tier{color:var(--c-yellow)}
+.archi .archi-layer:nth-child(2) .archi-tier{color:var(--c-pink)}
+.archi .archi-layer:nth-child(3) .archi-tier{color:var(--c-purple)}
+.archi .archi-layer:nth-child(4) .archi-tier{color:var(--c-blue)}
+.archi .archi-layer:nth-child(5) .archi-tier{color:var(--c-green)}
+.archi .archi-title{
+  font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px;
+  word-break:keep-all;
+}
+.archi .archi-body{font-size:14px;color:var(--text-secondary);line-height:1.55;word-break:keep-all}
+
+/* I. Annotated Document — quote with metadata */
+.annot{
+  margin:60px 0;display:grid;grid-template-columns:200px 1fr;gap:48px;
+  padding:48px;border-radius:24px;
+  background:var(--bg-card);border:1px solid var(--border);
+  position:relative;
+}
+@media(max-width:768px){.annot{grid-template-columns:1fr;padding:32px;gap:24px}}
+.annot::before{
+  content:'';position:absolute;left:0;top:24px;bottom:24px;width:3px;
+  background:linear-gradient(180deg,
+    var(--c-yellow),var(--c-orange),var(--c-pink),var(--c-magenta),
+    var(--c-purple),var(--c-blue),var(--c-cyan),var(--c-green));
+  border-radius:2px;
+}
+.annot .annot-meta{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-tertiary);line-height:1.8;font-weight:500;
+}
+.annot .annot-meta strong{color:var(--text);font-weight:700}
+.annot .annot-quote{
+  font-size:clamp(20px,2vw,28px);font-weight:600;line-height:1.45;
+  letter-spacing:-.015em;color:var(--text);word-break:keep-all;
+  font-style:italic;
+}
+.annot .annot-byline{
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  letter-spacing:.15em;color:var(--text-tertiary);
+  margin-top:24px;text-transform:uppercase;font-weight:500;
+}
+
 /* Focus visible */
 a:focus-visible,summary:focus-visible,button:focus-visible{
   outline:2px solid var(--c-pink);outline-offset:4px;border-radius:4px;
@@ -1229,22 +1578,26 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         What matters here is not that the student is being judged. What matters is that <strong>the student looks at their own creation again.</strong>
       </p>
 
-      <div class="bigquote" lang-ko>
-        피드백은 평가가 아니다.<br>
-        피드백은 <span class="gradient-text">성장의 구조</span>다.
+      <div class="pyramid">
+        <div class="tier tier-1">
+          <div class="tier-label" lang-ko>본질</div>
+          <div class="tier-label" lang-en>Essence</div>
+          <div class="tier-body" lang-ko>피드백은 평가가 아니다. <span class="gradient-text">성장의 구조</span>다.</div>
+          <div class="tier-body" lang-en>Feedback is not evaluation. It is the <span class="gradient-text">structure of growth.</span></div>
+        </div>
+        <div class="tier tier-2">
+          <div class="tier-label" lang-ko>작동</div>
+          <div class="tier-label" lang-en>How it works</div>
+          <div class="tier-body" lang-ko>학생은 자기 결과물을 여러 층의 시선으로 다시 본다. AI·전문가·강사·동료·현장이 한 작품을 함께 키운다.</div>
+          <div class="tier-body" lang-en>The student looks at their own work again through many layers — AI, experts, instructor, peers, and on-site critique grow one creation together.</div>
+        </div>
+        <div class="tier tier-3">
+          <div class="tier-label" lang-ko>학생이 듣는 말</div>
+          <div class="tier-label" lang-en>What the student hears</div>
+          <div class="tier-body" lang-ko>"이 결과물은 아직 끝이 아니다. 네 생각은 더 분명해질 수 있다. 네 표현은 더 강해질 수 있다. 네가 만든 것은 고칠수록 성장한다."</div>
+          <div class="tier-body" lang-en>"This creation is not finished yet. Your thinking can be clearer. Your expression can be stronger. What you made grows when you revise it."</div>
+        </div>
       </div>
-      <div class="bigquote" lang-en>
-        Feedback is not evaluation.<br>
-        Feedback is the <span class="gradient-text">structure of growth.</span>
-      </div>
-
-      <ul class="plain">
-        <li lang-ko>이 결과물은 아직 끝이 아니다.</li><li lang-en>This creation is not finished yet.</li>
-        <li lang-ko>더 좋아질 수 있다.</li><li lang-en>It can get better.</li>
-        <li lang-ko>네 생각은 더 분명해질 수 있다.</li><li lang-en>Your thinking can be clearer.</li>
-        <li lang-ko>네 표현은 더 강해질 수 있다.</li><li lang-en>Your expression can be stronger.</li>
-        <li lang-ko>네가 만든 것은 고칠수록 성장한다.</li><li lang-en>What you made grows when you revise it.</li>
-      </ul>
 
       <details class="deep">
         <summary lang-ko>더 깊이 — 코멘트가 아니라 아키텍처로서의 피드백</summary>
@@ -1291,48 +1644,64 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         KISAS's feedback is not single. To make a creation better, many kinds of sight are needed. The student needs fast reaction, a high standard, an educational interpretation, peer response, concrete expert advice, and strong on-site feedback from the real world.
       </p>
 
-      <div class="layers">
-        <div class="layer">
-          <div class="num">01</div>
-          <div class="who" lang-ko>AI · 즉시 피드백</div>
-          <div class="who" lang-en>AI · Instant feedback</div>
-          <div class="what" lang-ko>학생이 그 자리에서 고칠 수 있도록 빠른 반응을 준다.</div>
-          <div class="what" lang-en>Gives an immediate reaction so the student can revise on the spot.</div>
+      <div class="hubspoke" aria-hidden="false">
+        <svg viewBox="0 0 760 760" aria-hidden="true">
+          <defs>
+            <linearGradient id="spoke-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFD60A" stop-opacity=".6"/>
+              <stop offset="50%" stop-color="#ff2469" stop-opacity=".5"/>
+              <stop offset="100%" stop-color="#07ED21" stop-opacity=".5"/>
+            </linearGradient>
+          </defs>
+          <!-- 6 spokes from center (380,380) to nodes -->
+          <line x1="380" y1="380" x2="380" y2="100" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <line x1="380" y1="380" x2="622" y2="240" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <line x1="380" y1="380" x2="622" y2="520" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <line x1="380" y1="380" x2="380" y2="660" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <line x1="380" y1="380" x2="138" y2="520" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <line x1="380" y1="380" x2="138" y2="240" stroke="url(#spoke-grad)" stroke-width="1.5"/>
+          <!-- Outer ring (faint) -->
+          <circle cx="380" cy="380" r="280" stroke="rgba(255,255,255,.06)" stroke-width="1" fill="none" stroke-dasharray="4 6"/>
+        </svg>
+        <div class="hub-center">
+          <div class="hub-label" lang-ko>내 결과물을<br>다시 본다</div>
+          <div class="hub-label" lang-en>See my creation<br>again</div>
         </div>
-        <div class="layer">
-          <div class="num">02</div>
-          <div class="who" lang-ko>AI · 스타·셀럽·전문가</div>
-          <div class="who" lang-en>AI · Stars · Celebrities · Experts</div>
-          <div class="what" lang-ko>평소 만나기 어려운 창작자의 기준과 감각을 전달한다.</div>
-          <div class="what" lang-en>Brings the standards and sensibilities of creators the student would rarely meet in person.</div>
+        <!-- 12시(상단) -->
+        <div class="spoke-card" style="left:50%;top:13%">
+          <div class="spoke-num" style="color:var(--c-yellow)">L1 · AI INSTANT</div>
+          <div class="spoke-who" lang-ko>AI · 즉시 피드백</div>
+          <div class="spoke-who" lang-en>AI · Instant</div>
         </div>
-        <div class="layer">
-          <div class="num">03</div>
-          <div class="who" lang-ko>KISAS 강사</div>
-          <div class="who" lang-en>KISAS instructor</div>
-          <div class="what" lang-ko>학생 발달 수준에 맞춰 피드백을 해석하고 지도한다.</div>
-          <div class="what" lang-en>Interprets and guides feedback at the student's developmental level.</div>
+        <!-- 2시 -->
+        <div class="spoke-card" style="left:82%;top:31%">
+          <div class="spoke-num" style="color:var(--c-orange)">L2 · STAR STANDARD</div>
+          <div class="spoke-who" lang-ko>스타·전문가 AI</div>
+          <div class="spoke-who" lang-en>Star/Expert AI</div>
         </div>
-        <div class="layer">
-          <div class="num">04</div>
-          <div class="who" lang-ko>동료</div>
-          <div class="who" lang-en>Peers</div>
-          <div class="what" lang-ko>같은 학습자의 반응과 관점 — 학생에게 가장 가까운 관객.</div>
-          <div class="what" lang-en>Provides the reactions and viewpoints of fellow learners — the audience closest to the student.</div>
+        <!-- 4시 -->
+        <div class="spoke-card" style="left:82%;top:68%">
+          <div class="spoke-num" style="color:var(--c-pink)">L3 · INSTRUCTOR</div>
+          <div class="spoke-who" lang-ko>KISAS 강사</div>
+          <div class="spoke-who" lang-en>KISAS instructor</div>
         </div>
-        <div class="layer">
-          <div class="num">05</div>
-          <div class="who" lang-ko>등록 전문가</div>
-          <div class="who" lang-en>Registered experts</div>
-          <div class="what" lang-ko>분야별 전문 피드백을 선택적으로 받을 수 있게 한다.</div>
-          <div class="what" lang-en>Lets the student selectively receive specialist feedback by domain.</div>
+        <!-- 6시 -->
+        <div class="spoke-card" style="left:50%;top:87%">
+          <div class="spoke-num" style="color:var(--c-purple)">L4 · PEERS</div>
+          <div class="spoke-who" lang-ko>동료</div>
+          <div class="spoke-who" lang-en>Peers</div>
         </div>
-        <div class="layer">
-          <div class="num">06</div>
-          <div class="who" lang-ko>프리미엄 현장</div>
-          <div class="who" lang-en>Premium on-site</div>
-          <div class="what" lang-ko>캠프·아카데미·마스터클래스에서의 직접 피드백 — 가장 강도 높은 층.</div>
-          <div class="what" lang-en>Direct feedback at camps, academies, and masterclasses — the highest intensity layer.</div>
+        <!-- 8시 -->
+        <div class="spoke-card" style="left:18%;top:68%">
+          <div class="spoke-num" style="color:var(--c-blue)">L5 · EXPERTS</div>
+          <div class="spoke-who" lang-ko>등록 전문가</div>
+          <div class="spoke-who" lang-en>Registered experts</div>
+        </div>
+        <!-- 10시 -->
+        <div class="spoke-card" style="left:18%;top:31%">
+          <div class="spoke-num" style="color:var(--c-green)">L6 · ON-SITE</div>
+          <div class="spoke-who" lang-ko>프리미엄 현장</div>
+          <div class="spoke-who" lang-en>Premium on-site</div>
         </div>
       </div>
 
@@ -1388,14 +1757,22 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         In KISAS, feedback is a device for revising creations — and at the same time a device for cultivating metacognition.
       </p>
 
-      <div class="callout">
-        <p class="callout-title" lang-ko>메타인지, 분명하게 정의하면 —</p>
-        <p class="callout-title" lang-en>Metacognition, defined plainly —</p>
-        <p class="callout-body" lang-ko>
-          내가 무엇을 생각했는지, 왜 그렇게 만들었는지, 어떤 피드백을 받았는지, 왜 그렇게 고쳤는지를 스스로 인식하고 자기 말로 설명하는 힘.
+      <div class="decision-box">
+        <p class="decision-label" lang-ko>KISAS 정의 · 메타인지</p>
+        <p class="decision-label" lang-en>KISAS Definition · Metacognition</p>
+        <p class="decision-title" lang-ko>
+          내가 무엇을 생각했는지,<br>
+          왜 그렇게 만들었는지,<br>
+          어떤 피드백을 받았는지,<br>
+          왜 그렇게 고쳤는지를<br>
+          <span class="gradient-text">스스로 설명하는 힘.</span>
         </p>
-        <p class="callout-body" lang-en>
-          The power to be aware of and explain, in your own words, what you thought, why you made it that way, what feedback you received, and why you revised it.
+        <p class="decision-title" lang-en>
+          The power to be aware of<br>
+          and explain, in your own words,<br>
+          what you thought, why you made it,<br>
+          what feedback you received,<br>
+          and <span class="gradient-text">why you revised it.</span>
         </p>
       </div>
 
@@ -1541,18 +1918,34 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         Every strong educational system has a scholarly root that organizes its philosophy and method. Montessori had Maria Montessori. Waldorf had Rudolf Steiner. Reggio Emilia had Loris Malaguzzi. <strong>KISAS has Dr. Sun Kim.</strong>
       </p>
 
-      <div class="authority">
+      <div class="annot">
+        <div class="annot-meta" lang-ko>
+          <strong>김선 박사</strong><br>
+          교육학적 설계자<br>
+          KISAS · 2026<br><br>
+          연구 영역<br>
+          질문 · 토론 · 글쓰기<br>
+          과정중심 평가<br>
+          메타인지 · 피드백 성장
+        </div>
+        <div class="annot-meta" lang-en>
+          <strong>Dr. Sun Kim</strong><br>
+          Pedagogical Architect<br>
+          KISAS · 2026<br><br>
+          Research areas<br>
+          Question · discussion · writing<br>
+          Process-based assessment<br>
+          Metacognition · feedback growth
+        </div>
         <div>
-          <p class="who-name" lang-ko>김선 박사</p>
-          <p class="who-name" lang-en>Dr. Sun Kim</p>
-          <p class="who-role" lang-ko>교육학적 설계자 · KISAS</p>
-          <p class="who-role" lang-en>Pedagogical Architect · KISAS</p>
-          <p class="who-quote" lang-ko>
+          <p class="annot-quote" lang-ko>
             "KISAS의 일은 AI 시대에 학생 자신의 사고가 사라지지 않게 만드는 것이다. 피드백은 구조다. 메타인지는 시험이다. 창작은 증거다."
           </p>
-          <p class="who-quote" lang-en>
+          <p class="annot-quote" lang-en>
             "KISAS's job is to make sure the student's own thinking does not disappear in the age of AI. Feedback is the structure. Metacognition is the test. Creation is the evidence."
           </p>
+          <p class="annot-byline" lang-ko>— KISAS 교육 프레임워크 v1</p>
+          <p class="annot-byline" lang-en>— KISAS Pedagogical Framework v1</p>
         </div>
       </div>
 
@@ -1622,60 +2015,62 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         KISAS's education looks complex, but the flow is simple. Think. Make. Receive feedback. Revise. Explain. Complete. Record. Structured into nine steps —
       </p>
 
-      <div class="flow">
-        <div class="step">
-          <p class="step-num">STEP 01</p>
-          <p class="step-title" lang-ko>질문</p><p class="step-title" lang-en>Question</p>
-          <p class="step-why" lang-ko>내가 무엇을 말하고 싶은지 정한다. 사고의 출발점.</p>
-          <p class="step-why" lang-en>Decide what you want to say. The starting point of thinking.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">STEP 02</p>
-          <p class="step-title" lang-ko>자기 생각</p><p class="step-title" lang-en>Own thinking</p>
-          <p class="step-why" lang-ko>AI를 쓰기 전, 내 생각을 먼저 기록한다. 자기 사고를 먼저 확보.</p>
-          <p class="step-why" lang-en>Before using AI, record your own thinking first. Secure your own thought.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">STEP 03</p>
-          <p class="step-title" lang-ko>AI 활용</p><p class="step-title" lang-en>Use AI</p>
-          <p class="step-why" lang-ko>AI로 확장·초안·변주를 시도한다. 창작 증폭.</p>
-          <p class="step-why" lang-en>Try expansion, drafts, and variations with AI. Creative amplification.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">STEP 04</p>
-          <p class="step-title" lang-ko>창작</p><p class="step-title" lang-en>Create</p>
-          <p class="step-why" lang-ko>글·음악·영상·퍼포먼스·웹툰 — 실제 결과물로.</p>
-          <p class="step-why" lang-en>Turn it into writing, music, video, performance, webtoon — an actual creation.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">STEP 05</p>
-          <p class="step-title" lang-ko>피드백</p><p class="step-title" lang-en>Feedback</p>
-          <p class="step-why" lang-ko>AI·전문가·강사·동료의 피드백을 받는다. 외부 기준과 만남.</p>
-          <p class="step-why" lang-en>Receive feedback from AI, experts, instructor, peers. Meet external standards.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">STEP 06</p>
-          <p class="step-title" lang-ko>수정</p><p class="step-title" lang-en>Revise</p>
-          <p class="step-why" lang-ko>피드백을 반영해 다시 고친다. 반복 개선.</p>
-          <p class="step-why" lang-en>Reflect the feedback and rework. Iterative improvement.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">STEP 07</p>
-          <p class="step-title" lang-ko>설명</p><p class="step-title" lang-en>Explain</p>
-          <p class="step-why" lang-ko>왜 그렇게 만들고 고쳤는지 자기 말로 설명한다. 메타인지 형성.</p>
-          <p class="step-why" lang-en>In your own words, say why you made and changed it that way. Metacognition forms here.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">STEP 08</p>
-          <p class="step-title" lang-ko>완성</p><p class="step-title" lang-en>Complete</p>
-          <p class="step-why" lang-ko>최종 형태로 정리한다. 완성의 경험.</p>
-          <p class="step-why" lang-en>Bring it to a final form. The experience of finishing.</p>
-        </div>
-        <div class="step">
-          <p class="step-num">STEP 09</p>
-          <p class="step-title" lang-ko>기록</p><p class="step-title" lang-en>Record</p>
-          <p class="step-why" lang-ko>처음 생각과 최종 결과의 차이를 남긴다. 성장의 증거.</p>
-          <p class="step-why" lang-en>Capture the gap between the first thought and the final creation. Evidence of growth.</p>
+      <div class="timeline">
+        <div class="timeline-track">
+          <div class="timeline-node">
+            <div class="tl-num">01</div>
+            <div class="tl-title" lang-ko>질문</div><div class="tl-title" lang-en>Question</div>
+            <div class="tl-why" lang-ko>무엇을 말할지 정한다</div>
+            <div class="tl-why" lang-en>Decide what to say</div>
+          </div>
+          <div class="timeline-node">
+            <div class="tl-num">02</div>
+            <div class="tl-title" lang-ko>자기 생각</div><div class="tl-title" lang-en>Own thought</div>
+            <div class="tl-why" lang-ko>AI 전에 내 생각 먼저</div>
+            <div class="tl-why" lang-en>My thought before AI</div>
+          </div>
+          <div class="timeline-node">
+            <div class="tl-num">03</div>
+            <div class="tl-title" lang-ko>AI 활용</div><div class="tl-title" lang-en>Use AI</div>
+            <div class="tl-why" lang-ko>창작을 증폭한다</div>
+            <div class="tl-why" lang-en>Amplify creation</div>
+          </div>
+          <div class="timeline-node">
+            <div class="tl-num">04</div>
+            <div class="tl-title" lang-ko>창작</div><div class="tl-title" lang-en>Create</div>
+            <div class="tl-why" lang-ko>실제 결과물로</div>
+            <div class="tl-why" lang-en>Make it real</div>
+          </div>
+          <div class="timeline-node">
+            <div class="tl-num">05</div>
+            <div class="tl-title" lang-ko>피드백</div><div class="tl-title" lang-en>Feedback</div>
+            <div class="tl-why" lang-ko>외부 기준과 만남</div>
+            <div class="tl-why" lang-en>Meet outside standards</div>
+          </div>
+          <div class="timeline-node">
+            <div class="tl-num">06</div>
+            <div class="tl-title" lang-ko>수정</div><div class="tl-title" lang-en>Revise</div>
+            <div class="tl-why" lang-ko>반영해 다시 고친다</div>
+            <div class="tl-why" lang-en>Apply &amp; rework</div>
+          </div>
+          <div class="timeline-node">
+            <div class="tl-num">07</div>
+            <div class="tl-title" lang-ko>설명</div><div class="tl-title" lang-en>Explain</div>
+            <div class="tl-why" lang-ko>자기 말로 정리</div>
+            <div class="tl-why" lang-en>In my own words</div>
+          </div>
+          <div class="timeline-node">
+            <div class="tl-num">08</div>
+            <div class="tl-title" lang-ko>완성</div><div class="tl-title" lang-en>Complete</div>
+            <div class="tl-why" lang-ko>최종으로 정리</div>
+            <div class="tl-why" lang-en>Bring to final</div>
+          </div>
+          <div class="timeline-node">
+            <div class="tl-num">09</div>
+            <div class="tl-title" lang-ko>기록</div><div class="tl-title" lang-en>Record</div>
+            <div class="tl-why" lang-ko>처음과 끝의 차이</div>
+            <div class="tl-why" lang-en>Gap from first to last</div>
+          </div>
         </div>
       </div>
 
@@ -1799,48 +2194,50 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         What should remain with the student after KISAS is not one certificate. What should remain is —
       </p>
 
-      <div class="bento cols-3">
-        <div class="card">
-          <p class="card-eyebrow">01</p>
-          <p class="card-title" lang-ko>내가 만든 결과물</p>
-          <p class="card-title" lang-en>My creation</p>
-          <p class="card-body" lang-ko>실제로 완성한 창작물.</p>
-          <p class="card-body" lang-en>A real, completed work.</p>
+      <div class="bento-asym">
+        <div class="ba large">
+          <div class="ba-glow"></div>
+          <div class="ba-tag">06 · Identity</div>
+          <p class="ba-title" lang-ko>"나는 <span class="gradient-text">만들 수 있다.</span>"</p>
+          <p class="ba-title" lang-en>"I <span class="gradient-text">can make.</span>"</p>
+          <p class="ba-body" lang-ko>창작 자기효능감. 기술이 아니라 정체성. 도구가 바뀌어도 "나는 만드는 사람"이라는 감각이 남는다.</p>
+          <p class="ba-body" lang-en>Creative self-efficacy — not a skill but an identity. Even when tools change, the felt sense of "I am a maker" remains.</p>
         </div>
-        <div class="card">
-          <p class="card-eyebrow">02</p>
-          <p class="card-title" lang-ko>피드백 경험</p>
-          <p class="card-title" lang-en>A feedback experience</p>
-          <p class="card-body" lang-ko>누군가가 내 작품을 진지하게 봐주고 반응을 돌려준 경험.</p>
-          <p class="card-body" lang-en>Someone took my work seriously and reflected back to me.</p>
+        <div class="ba tall">
+          <div class="ba-glow"></div>
+          <div class="ba-tag">01 · Artifact</div>
+          <p class="ba-title" lang-ko>내가 만든 결과물</p>
+          <p class="ba-title" lang-en>My creation</p>
+          <p class="ba-body" lang-ko>실제로 완성한 창작물.</p>
+          <p class="ba-body" lang-en>A real, completed work.</p>
         </div>
-        <div class="card">
-          <p class="card-eyebrow">03</p>
-          <p class="card-title" lang-ko>수정 경험</p>
-          <p class="card-title" lang-en>A revision experience</p>
-          <p class="card-body" lang-ko>부족한 것을 고쳐본 경험.</p>
-          <p class="card-body" lang-en>I fixed what was missing.</p>
+        <div class="ba wide">
+          <div class="ba-glow"></div>
+          <div class="ba-tag">02 · Reception</div>
+          <p class="ba-title" lang-ko>피드백 경험</p>
+          <p class="ba-title" lang-en>Feedback experience</p>
+          <p class="ba-body" lang-ko>누군가가 내 작품을 진지하게 봐주고 반응을 돌려준 경험.</p>
+          <p class="ba-body" lang-en>Someone took my work seriously and reflected back.</p>
         </div>
-        <div class="card">
-          <p class="card-eyebrow">04</p>
-          <p class="card-title" lang-ko>설명 경험</p>
-          <p class="card-title" lang-en>An explanation experience</p>
-          <p class="card-body" lang-ko>내 생각과 선택을 말로 정리한 경험.</p>
-          <p class="card-body" lang-en>I put my own thinking and choices into words.</p>
+        <div class="ba small">
+          <div class="ba-glow"></div>
+          <div class="ba-tag">03 · Revision</div>
+          <p class="ba-title" lang-ko>수정 경험</p>
+          <p class="ba-title" lang-en>Revision</p>
         </div>
-        <div class="card">
-          <p class="card-eyebrow">05</p>
-          <p class="card-title" lang-ko>성장 기록</p>
-          <p class="card-title" lang-en>A growth record</p>
-          <p class="card-body" lang-ko>출발점보다 더 나아졌다는 증거.</p>
-          <p class="card-body" lang-en>Proof that it is better than where it started.</p>
+        <div class="ba small">
+          <div class="ba-glow"></div>
+          <div class="ba-tag">04 · Voice</div>
+          <p class="ba-title" lang-ko>설명 경험</p>
+          <p class="ba-title" lang-en>Explanation</p>
         </div>
-        <div class="card">
-          <p class="card-eyebrow">06</p>
-          <p class="card-title" lang-ko>창작 자기효능감</p>
-          <p class="card-title" lang-en>Creative self-efficacy</p>
-          <p class="card-body" lang-ko>"나는 만들 수 있다"는 감각.</p>
-          <p class="card-body" lang-en>The felt sense of "I can make."</p>
+        <div class="ba wide">
+          <div class="ba-glow"></div>
+          <div class="ba-tag">05 · Evidence</div>
+          <p class="ba-title" lang-ko>성장 기록</p>
+          <p class="ba-title" lang-en>Growth record</p>
+          <p class="ba-body" lang-ko>출발점보다 더 나아졌다는 증거 — 누적된 이력.</p>
+          <p class="ba-body" lang-en>Proof that it is better than where it started — a cumulative trace.</p>
         </div>
       </div>
 
@@ -1933,14 +2330,38 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         What the camp must validate is not just lesson satisfaction. What it must validate is —
       </p>
 
-      <ul class="plain">
-        <li lang-ko>학생이 실제 결과물을 만들었는가?</li><li lang-en>Did the student actually produce a real creation?</li>
-        <li lang-ko>그 결과물이 피드백을 통해 좋아졌는가?</li><li lang-en>Did that creation get better through feedback?</li>
-        <li lang-ko>학생이 왜 그렇게 만들고 고쳤는지 자기 말로 설명할 수 있는가?</li><li lang-en>Can the student explain, in their own words, why they made and changed it?</li>
-        <li lang-ko>"나도 만들 수 있다"는 감각을 얻었는가?</li><li lang-en>Did the student come away with the felt sense of "I can make"?</li>
-        <li lang-ko>부모가 아이의 변화를 확인할 수 있는가?</li><li lang-en>Can parents see the change in their child?</li>
-        <li lang-ko>이 구조가 지역 교육과 온라인 교육으로 반복될 수 있는가?</li><li lang-en>Can this structure be repeated in local programs and online education?</li>
-      </ul>
+      <div class="stack">
+        <div class="stack-card">
+          <span class="stack-tag">Check 01</span>
+          <p class="stack-text" lang-ko>학생이 실제 결과물을 만들었는가?</p>
+          <p class="stack-text" lang-en>Did the student actually produce a real creation?</p>
+        </div>
+        <div class="stack-card">
+          <span class="stack-tag">Check 02</span>
+          <p class="stack-text" lang-ko>그 결과물이 피드백을 통해 좋아졌는가?</p>
+          <p class="stack-text" lang-en>Did that creation get better through feedback?</p>
+        </div>
+        <div class="stack-card">
+          <span class="stack-tag">Check 03</span>
+          <p class="stack-text" lang-ko>왜 그렇게 만들고 고쳤는지 자기 말로 설명할 수 있는가?</p>
+          <p class="stack-text" lang-en>Can the student explain, in their own words, why they made and changed it?</p>
+        </div>
+        <div class="stack-card">
+          <span class="stack-tag">Check 04</span>
+          <p class="stack-text" lang-ko>"나도 만들 수 있다"는 감각을 얻었는가?</p>
+          <p class="stack-text" lang-en>Did the student come away with the felt sense of "I can make"?</p>
+        </div>
+        <div class="stack-card">
+          <span class="stack-tag">Check 05</span>
+          <p class="stack-text" lang-ko>부모가 아이의 변화를 확인할 수 있는가?</p>
+          <p class="stack-text" lang-en>Can parents see the change in their child?</p>
+        </div>
+        <div class="stack-card">
+          <span class="stack-tag">Check 06</span>
+          <p class="stack-text" lang-ko>이 구조가 지역 교육과 온라인 교육으로 반복될 수 있는가?</p>
+          <p class="stack-text" lang-en>Can this structure be repeated in local programs and online education?</p>
+        </div>
+      </div>
 
       <p class="lead" lang-ko>
         캠프는 끝이 아니다. 캠프는 KISAS 교육 OS의 첫 번째 실행 환경이다.
@@ -1994,30 +2415,61 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         The KISAS platform is not a lecture-sales platform. <strong>The KISAS platform is a creative feedback system that manages each student's creations, feedback, revision history, explanations, and growth records.</strong>
       </p>
 
-      <div class="bento cols-2">
-        <div class="card">
-          <p class="card-eyebrow" lang-ko>Phase 01 · 초기</p>
-          <p class="card-eyebrow" lang-en>Phase 01 · Initial</p>
-          <p class="card-title" lang-ko>캠프 운영 지원</p>
-          <p class="card-title" lang-en>Camp operations support</p>
-          <p class="card-body" lang-ko>
-            캠프 미션 제공, 결과물 업로드, AI 피드백, 강사 피드백 기록, 학생별 수정 이력, 포스트 캠프 멤버십, 창작 아카이브.
-          </p>
-          <p class="card-body" lang-en>
-            Camp missions, creation upload, AI feedback, instructor feedback log, per-student revision history, post-camp membership, creation archive.
-          </p>
+      <div class="archi">
+        <div class="archi-layer">
+          <div>
+            <div class="archi-tier">Layer 05 · Interface</div>
+          </div>
+          <div>
+            <div class="archi-title" lang-ko>학생 · 부모 · 강사 UI</div>
+            <div class="archi-title" lang-en>Student · Parent · Instructor UI</div>
+            <div class="archi-body" lang-ko>창작 업로드, 수정 이력 열람, 부모용 성장 리포트, 강사 피드백 입력.</div>
+            <div class="archi-body" lang-en>Creation upload, revision history, parent growth report, instructor feedback entry.</div>
+          </div>
         </div>
-        <div class="card">
-          <p class="card-eyebrow" lang-ko>Phase 02 · 중기</p>
-          <p class="card-eyebrow" lang-en>Phase 02 · Mid-term</p>
-          <p class="card-title" lang-ko>형식 확장</p>
-          <p class="card-title" lang-en>Scale-out across formats</p>
-          <p class="card-body" lang-ko>
-            지역 교육 운영 지원, 온라인 창작 미션, 전문가 피드백 신청, 동료 피드백 커뮤니티, 부모용 성장 리포트, 학생별 창작 포트폴리오, 메타인지 기반 리플렉션 기록.
-          </p>
-          <p class="card-body" lang-en>
-            Local program operations, online creation missions, expert feedback requests, peer feedback community, parent growth reports, per-student creative portfolio, metacognition-based reflection logs.
-          </p>
+        <div class="archi-layer">
+          <div>
+            <div class="archi-tier">Layer 04 · Feedback</div>
+          </div>
+          <div>
+            <div class="archi-title" lang-ko>6레이어 피드백 운영</div>
+            <div class="archi-title" lang-en>6-layer feedback operations</div>
+            <div class="archi-body" lang-ko>AI 즉시·스타 기준 AI·강사·동료·전문가·현장 피드백을 한 루프 안에 운영.</div>
+            <div class="archi-body" lang-en>AI instant, star-standard AI, instructor, peer, expert, on-site — all in one loop.</div>
+          </div>
+        </div>
+        <div class="archi-layer">
+          <div>
+            <div class="archi-tier">Layer 03 · Metacognition</div>
+          </div>
+          <div>
+            <div class="archi-title" lang-ko>설명·리플렉션 저장소</div>
+            <div class="archi-title" lang-en>Explanation &amp; reflection store</div>
+            <div class="archi-body" lang-ko>학생이 자기 말로 작성한 "왜 만들고 왜 고쳤는가"의 종단 기록.</div>
+            <div class="archi-body" lang-en>Longitudinal record of the student's own "why I made and why I revised."</div>
+          </div>
+        </div>
+        <div class="archi-layer">
+          <div>
+            <div class="archi-tier">Layer 02 · Portfolio</div>
+          </div>
+          <div>
+            <div class="archi-title" lang-ko>창작 포트폴리오 · 수정 이력</div>
+            <div class="archi-title" lang-en>Creative portfolio · revision history</div>
+            <div class="archi-body" lang-ko>모든 작품의 버전·피드백·수정 이력이 학생별로 누적되는 종단 아카이브.</div>
+            <div class="archi-body" lang-en>Per-student longitudinal archive of versions, feedback, and revisions.</div>
+          </div>
+        </div>
+        <div class="archi-layer">
+          <div>
+            <div class="archi-tier">Layer 01 · Operations</div>
+          </div>
+          <div>
+            <div class="archi-title" lang-ko>캠프 · 지역 · 온라인 운영 OS</div>
+            <div class="archi-title" lang-en>Camp · local · online ops OS</div>
+            <div class="archi-body" lang-ko>미션 배포, 일정, 강사 매칭, 결제, 운영 모델 표준화 — 한 OS로 묶인 실행 환경.</div>
+            <div class="archi-body" lang-en>Mission delivery, schedule, instructor matching, payment — one OS for every execution environment.</div>
+          </div>
         </div>
       </div>
 
