@@ -754,43 +754,70 @@ body[data-lang="ko"] .echo-text{
 .pyramid .tier-2 .tier-body{font-size:18px;color:var(--text);line-height:1.6;font-weight:500}
 .pyramid .tier-3 .tier-body{font-size:15px;color:var(--text-secondary);line-height:1.6}
 
-/* C. Hub-and-Spoke — 6 layers radial */
-.hubspoke{
-  margin:60px auto;position:relative;
-  width:100%;max-width:760px;aspect-ratio:1/1;
+/* C. Feedback Pyramid — 6 tiers (L6 top = premium scarce, L1 bottom = always-on) */
+.fb-pyramid{
+  margin:60px 0;padding:48px;border-radius:24px;
+  background:linear-gradient(180deg,
+    rgba(7,237,33,.06),rgba(0,146,255,.04),rgba(198,92,255,.04),rgba(255,214,10,.04));
+  border:1px solid var(--border);position:relative;
 }
-.hubspoke svg{width:100%;height:100%;display:block}
-.hubspoke .spoke-card{
-  position:absolute;width:170px;padding:14px 16px;
-  background:var(--bg-card);border:1px solid var(--border);
-  border-radius:14px;transform:translate(-50%,-50%);
-  transition:all .3s var(--apple-ease);
+.fb-pyramid .fp-grid{
+  display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:center;
 }
-.hubspoke .spoke-card:hover{transform:translate(-50%,-50%) scale(1.04)}
-.hubspoke .spoke-num{
+@media(max-width:900px){.fb-pyramid .fp-grid{grid-template-columns:1fr;gap:24px}}
+.fb-pyramid .fp-axis{
+  display:flex;flex-direction:column;justify-content:space-between;
   font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:.1em;font-weight:700;margin-bottom:4px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--text-tertiary);
+  font-weight:600;padding:24px 0;border-left:1px dashed var(--border);padding-left:16px;
+  align-self:stretch;
 }
-.hubspoke .spoke-who{font-size:14px;font-weight:600;line-height:1.25;word-break:keep-all}
-.hubspoke .hub-center{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:220px;height:220px;border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,
-    rgba(255,214,10,.35),rgba(255,36,105,.32) 35%,rgba(198,92,255,.32) 65%,rgba(0,146,255,.25) 100%);
-  display:grid;place-items:center;
-  box-shadow:0 0 100px rgba(255,36,105,.25),inset 0 0 60px rgba(255,255,255,.04);
-  z-index:2;
+.fb-pyramid .fp-axis span{display:block;line-height:1.3}
+.fb-pyramid .fp-axis .axis-top{color:var(--c-green)}
+.fb-pyramid .fp-axis .axis-bot{color:var(--c-yellow)}
+.fb-pyramid .fp-stack{display:flex;flex-direction:column;gap:6px;width:100%}
+.fb-pyramid .fp-tier{
+  display:grid;grid-template-columns:72px 1fr 180px;gap:20px;
+  padding:18px 22px;border-radius:14px;background:var(--bg-card);
+  border:1px solid var(--border);align-items:center;
+  margin:0 auto;transition:all .3s var(--apple-ease);
+  position:relative;
 }
-.hubspoke .hub-label{
-  text-align:center;font-weight:800;font-size:clamp(18px,2vw,26px);
-  letter-spacing:-.02em;color:var(--text);line-height:1.15;
-  word-break:keep-all;padding:8px 16px;
+.fb-pyramid .fp-tier:hover{transform:translateX(4px)}
+@media(max-width:768px){
+  .fb-pyramid .fp-tier{grid-template-columns:60px 1fr;width:100% !important}
+  .fb-pyramid .fp-tier .fp-access{grid-column:1/-1;font-size:11px;color:var(--text-tertiary);margin-top:6px}
 }
-@media(max-width:600px){
-  .hubspoke{max-width:380px}
-  .hubspoke .spoke-card{width:120px;padding:10px 12px}
-  .hubspoke .spoke-who{font-size:12px}
-  .hubspoke .hub-center{width:130px;height:130px}
+/* Pyramid widths: L6 narrow on top → L1 wide on bottom */
+.fb-pyramid .fp-tier[data-l="6"]{width:42%;background:linear-gradient(135deg,rgba(7,237,33,.12),rgba(0,212,255,.08));border-color:rgba(7,237,33,.4)}
+.fb-pyramid .fp-tier[data-l="5"]{width:55%;background:linear-gradient(135deg,rgba(0,146,255,.1),rgba(0,212,255,.06));border-color:rgba(0,146,255,.35)}
+.fb-pyramid .fp-tier[data-l="4"]{width:68%;background:linear-gradient(135deg,rgba(198,92,255,.1),rgba(91,109,255,.06));border-color:rgba(198,92,255,.35)}
+.fb-pyramid .fp-tier[data-l="3"]{width:80%;background:linear-gradient(135deg,rgba(255,36,105,.1),rgba(233,30,99,.06));border-color:rgba(255,36,105,.35)}
+.fb-pyramid .fp-tier[data-l="2"]{width:92%;background:linear-gradient(135deg,rgba(253,151,0,.1),rgba(255,68,0,.06));border-color:rgba(253,151,0,.35)}
+.fb-pyramid .fp-tier[data-l="1"]{width:100%;background:linear-gradient(135deg,rgba(255,214,10,.1),rgba(253,151,0,.05));border-color:rgba(255,214,10,.35)}
+.fb-pyramid .fp-num{
+  font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:900;
+  text-align:center;
+}
+.fb-pyramid .fp-tier[data-l="6"] .fp-num{color:var(--c-green)}
+.fb-pyramid .fp-tier[data-l="5"] .fp-num{color:var(--c-blue)}
+.fb-pyramid .fp-tier[data-l="4"] .fp-num{color:var(--c-purple)}
+.fb-pyramid .fp-tier[data-l="3"] .fp-num{color:var(--c-pink)}
+.fb-pyramid .fp-tier[data-l="2"] .fp-num{color:var(--c-orange)}
+.fb-pyramid .fp-tier[data-l="1"] .fp-num{color:var(--c-yellow)}
+.fb-pyramid .fp-who{
+  font-size:16px;font-weight:700;line-height:1.25;letter-spacing:-.01em;
+  word-break:keep-all;
+}
+.fb-pyramid .fp-role{
+  font-size:13px;color:var(--text-secondary);line-height:1.45;
+  margin-top:4px;word-break:keep-all;
+}
+.fb-pyramid .fp-access{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;text-align:right;
+  color:var(--text-tertiary);font-weight:600;line-height:1.4;
+  word-break:keep-all;
 }
 
 /* D. Decision Box — boxed callout for resolution */
@@ -1032,6 +1059,273 @@ body[data-lang="ko"] .echo-text{
   letter-spacing:.15em;color:var(--text-tertiary);
   margin-top:24px;text-transform:uppercase;font-weight:500;
 }
+
+/* =============== INFOGRAPHIC COMPONENTS =============== */
+
+/* IG-1: Iceberg — visible above / hidden below */
+.ig-iceberg{
+  margin:60px auto;max-width:900px;position:relative;
+  padding:40px 0;
+}
+.ig-iceberg svg{width:100%;height:auto;display:block}
+.ig-iceberg .ice-label{
+  position:absolute;font-family:'JetBrains Mono',monospace;
+  font-size:13px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--text-secondary);font-weight:600;
+}
+.ig-iceberg .ice-list{
+  position:absolute;font-size:14px;color:var(--text-tertiary);
+  line-height:1.7;font-weight:500;
+}
+.ig-iceberg .ice-list strong{color:var(--text);font-weight:600;font-size:15px}
+
+/* IG-2: Equation — element + element = result */
+.ig-equation{
+  margin:60px 0;display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:center;gap:12px;padding:32px;
+  background:linear-gradient(135deg,rgba(255,214,10,.04),rgba(7,237,33,.04));
+  border:1px solid var(--border);border-radius:24px;
+}
+.ig-equation .eq-chip{
+  padding:14px 22px;border-radius:14px;
+  background:var(--bg-card);border:1px solid var(--border);
+  text-align:center;min-width:120px;
+}
+.ig-equation .eq-chip .eq-num{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.15em;color:var(--text-tertiary);
+  font-weight:600;margin-bottom:6px;
+}
+.ig-equation .eq-chip .eq-label{
+  font-size:15px;font-weight:700;line-height:1.2;
+  word-break:keep-all;
+}
+.ig-equation .eq-op{
+  font-family:'JetBrains Mono',monospace;
+  font-size:28px;font-weight:300;color:var(--text-tertiary);
+}
+.ig-equation .eq-chip.c1{border-color:var(--c-yellow)}
+.ig-equation .eq-chip.c1 .eq-num{color:var(--c-yellow)}
+.ig-equation .eq-chip.c2{border-color:var(--c-orange)}
+.ig-equation .eq-chip.c2 .eq-num{color:var(--c-orange)}
+.ig-equation .eq-chip.c3{border-color:var(--c-pink)}
+.ig-equation .eq-chip.c3 .eq-num{color:var(--c-pink)}
+.ig-equation .eq-chip.c4{border-color:var(--c-purple)}
+.ig-equation .eq-chip.c4 .eq-num{color:var(--c-purple)}
+.ig-equation .eq-chip.c5{border-color:var(--c-blue)}
+.ig-equation .eq-chip.c5 .eq-num{color:var(--c-blue)}
+.ig-equation .eq-result{
+  padding:18px 28px;border-radius:14px;
+  background:linear-gradient(135deg,
+    rgba(255,214,10,.15),rgba(255,36,105,.15),rgba(198,92,255,.15),rgba(0,212,255,.15));
+  border:1px solid rgba(255,255,255,.15);
+  text-align:center;
+}
+.ig-equation .eq-result .eq-num{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.2em;color:var(--text);
+  font-weight:700;margin-bottom:6px;
+}
+.ig-equation .eq-result .eq-label{
+  font-size:17px;font-weight:800;letter-spacing:-.01em;
+  background:linear-gradient(90deg,var(--c-yellow),var(--c-pink),var(--c-purple),var(--c-blue),var(--c-green));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* IG-3: Funnel comparison */
+.ig-funnel-pair{
+  margin:60px 0;display:grid;grid-template-columns:1fr 1fr;gap:24px;
+}
+@media(max-width:768px){.ig-funnel-pair{grid-template-columns:1fr}}
+.ig-funnel{
+  padding:36px;border-radius:24px;
+  background:var(--bg-card);border:1px solid var(--border);
+}
+.ig-funnel.weak{background:linear-gradient(160deg,#0e0e14,#15151c)}
+.ig-funnel.strong{background:linear-gradient(160deg,rgba(198,92,255,.06),rgba(0,212,255,.04),#15151c)}
+.ig-funnel .fn-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+  margin-bottom:24px;
+}
+.ig-funnel.weak .fn-label{color:var(--text-tertiary)}
+.ig-funnel.strong .fn-label{color:var(--c-pink)}
+.ig-funnel svg{width:100%;height:auto;display:block}
+
+/* IG-4: Stacked tower — multiplier */
+.ig-tower{
+  margin:60px 0;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+  padding:48px;border-radius:24px;
+  background:var(--bg-card);border:1px solid var(--border);
+}
+@media(max-width:900px){.ig-tower{grid-template-columns:1fr;gap:32px;padding:32px}}
+.ig-tower-vis{
+  display:flex;flex-direction:column-reverse;gap:6px;
+  align-items:stretch;justify-content:flex-end;
+}
+.ig-tower-vis .tower-bar{
+  height:38px;border-radius:8px;display:flex;align-items:center;
+  padding:0 16px;font-size:12px;font-weight:700;
+  font-family:'JetBrains Mono',monospace;letter-spacing:.1em;
+  text-transform:uppercase;color:#0a0a0f;position:relative;
+}
+.ig-tower-vis .tower-bar:nth-child(1){background:var(--c-yellow);width:30%}
+.ig-tower-vis .tower-bar:nth-child(2){background:var(--c-orange);width:45%}
+.ig-tower-vis .tower-bar:nth-child(3){background:var(--c-pink);width:60%}
+.ig-tower-vis .tower-bar:nth-child(4){background:var(--c-purple);width:75%}
+.ig-tower-vis .tower-bar:nth-child(5){background:var(--c-blue);width:88%}
+.ig-tower-vis .tower-bar:nth-child(6){background:var(--c-green);width:100%}
+.ig-tower-vis .tower-bar .tb-arrow{
+  position:absolute;right:-32px;top:50%;transform:translateY(-50%);
+  font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text-secondary);
+  font-weight:700;
+}
+.ig-tower-explain{
+  font-size:17px;line-height:1.7;color:var(--text-secondary);word-break:keep-all;
+}
+.ig-tower-explain strong{color:var(--text);font-weight:700}
+
+/* IG-5: Amplifier diagram */
+.ig-amp{
+  margin:60px 0;padding:48px;border-radius:24px;
+  background:var(--bg-card);border:1px solid var(--border);
+  display:grid;grid-template-columns:1fr auto 1.2fr auto 1.6fr;
+  gap:24px;align-items:center;
+}
+@media(max-width:900px){
+  .ig-amp{grid-template-columns:1fr;text-align:center;gap:16px}
+  .ig-amp .amp-arrow{transform:rotate(90deg)}
+}
+.ig-amp .amp-node{
+  padding:20px;border-radius:16px;
+  background:linear-gradient(135deg,#0e0e14,var(--bg-card));
+  border:1px solid var(--border);text-align:center;
+}
+.ig-amp .amp-node.input{border-color:rgba(255,214,10,.3)}
+.ig-amp .amp-node.engine{
+  background:radial-gradient(circle at 30% 30%,rgba(255,36,105,.25),rgba(198,92,255,.2) 60%,rgba(0,146,255,.15));
+  border:1px solid rgba(255,36,105,.3);box-shadow:0 0 40px rgba(255,36,105,.15);
+}
+.ig-amp .amp-node.output{
+  background:linear-gradient(135deg,rgba(7,237,33,.08),rgba(0,212,255,.06));
+  border-color:rgba(7,237,33,.3);
+}
+.ig-amp .amp-tag{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  margin-bottom:10px;
+}
+.ig-amp .amp-node.input .amp-tag{color:var(--c-yellow)}
+.ig-amp .amp-node.engine .amp-tag{color:var(--c-pink)}
+.ig-amp .amp-node.output .amp-tag{color:var(--c-green)}
+.ig-amp .amp-title{
+  font-size:18px;font-weight:700;line-height:1.3;word-break:keep-all;
+  letter-spacing:-.01em;
+}
+.ig-amp .amp-node.output .amp-title{font-size:22px}
+.ig-amp .amp-arrow{
+  font-family:'JetBrains Mono',monospace;font-size:24px;
+  color:var(--text-tertiary);font-weight:300;text-align:center;
+}
+
+/* IG-6: Spiral loop — 9 step circular with inward growth */
+.ig-spiral{
+  margin:60px auto;width:100%;max-width:620px;aspect-ratio:1/1;
+  position:relative;
+}
+.ig-spiral svg{width:100%;height:100%;display:block}
+.ig-spiral .sp-label{
+  position:absolute;font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:.1em;font-weight:700;
+  transform:translate(-50%,-50%);
+  padding:6px 10px;background:var(--bg);border-radius:6px;
+  white-space:nowrap;
+}
+.ig-spiral .sp-center{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:140px;height:140px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(255,214,10,.3),rgba(255,36,105,.3) 50%,rgba(0,146,255,.25));
+  display:grid;place-items:center;text-align:center;padding:12px;
+  box-shadow:0 0 60px rgba(255,36,105,.2);
+}
+.ig-spiral .sp-center-text{
+  font-size:14px;font-weight:800;letter-spacing:-.01em;
+  line-height:1.2;word-break:keep-all;
+}
+@media(max-width:600px){.ig-spiral{max-width:380px}.ig-spiral .sp-center{width:100px;height:100px}}
+
+/* IG-7: Before/After bar */
+.ig-ba-bar{
+  margin:60px 0;padding:40px;border-radius:24px;
+  background:var(--bg-card);border:1px solid var(--border);
+}
+.ig-ba-bar .ba-row{
+  display:grid;grid-template-columns:120px 1fr 100px;gap:24px;align-items:center;
+  padding:14px 0;
+}
+@media(max-width:768px){.ig-ba-bar .ba-row{grid-template-columns:80px 1fr 60px;gap:12px}}
+.ig-ba-bar .ba-stage{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.15em;color:var(--text-tertiary);font-weight:600;text-transform:uppercase;
+}
+.ig-ba-bar .ba-bar-track{
+  height:14px;background:var(--border);border-radius:10px;
+  overflow:hidden;position:relative;
+}
+.ig-ba-bar .ba-bar-fill{
+  height:100%;border-radius:10px;
+  background:linear-gradient(90deg,var(--c-yellow),var(--c-pink),var(--c-purple),var(--c-blue),var(--c-green));
+  background-size:200% 100%;
+  transition:width 1.2s cubic-bezier(.22,1,.36,1);
+}
+.ig-ba-bar.in .ba-row:nth-child(1) .ba-bar-fill{width:24%}
+.ig-ba-bar.in .ba-row:nth-child(2) .ba-bar-fill{width:42%;transition-delay:.15s}
+.ig-ba-bar.in .ba-row:nth-child(3) .ba-bar-fill{width:58%;transition-delay:.3s}
+.ig-ba-bar.in .ba-row:nth-child(4) .ba-bar-fill{width:75%;transition-delay:.45s}
+.ig-ba-bar.in .ba-row:nth-child(5) .ba-bar-fill{width:92%;transition-delay:.6s}
+.ig-ba-bar:not(.in) .ba-bar-fill{width:0}
+.ig-ba-bar .ba-pct{
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+  font-weight:700;color:var(--text);text-align:right;
+}
+
+/* IG-8: KPI Big Number trio */
+.ig-bignum{
+  margin:60px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+@media(max-width:768px){.ig-bignum{grid-template-columns:1fr}}
+.ig-bignum .bn{
+  padding:36px;border-radius:20px;
+  background:var(--bg-card);border:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.ig-bignum .bn:nth-child(1){border-left:3px solid var(--c-orange)}
+.ig-bignum .bn:nth-child(2){border-left:3px solid var(--c-pink)}
+.ig-bignum .bn:nth-child(3){border-left:3px solid var(--c-blue)}
+.ig-bignum .bn-tag{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-tertiary);font-weight:600;margin-bottom:16px;
+}
+.ig-bignum .bn-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:clamp(48px,7vw,96px);font-weight:900;
+  line-height:1;letter-spacing:-.04em;margin-bottom:12px;
+}
+.ig-bignum .bn:nth-child(1) .bn-num{
+  background:linear-gradient(135deg,var(--c-yellow),var(--c-orange));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.ig-bignum .bn:nth-child(2) .bn-num{
+  background:linear-gradient(135deg,var(--c-pink),var(--c-magenta),var(--c-purple));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.ig-bignum .bn:nth-child(3) .bn-num{
+  background:linear-gradient(135deg,var(--c-blue),var(--c-cyan),var(--c-green));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.ig-bignum .bn-cap{font-size:14px;color:var(--text-secondary);line-height:1.5;word-break:keep-all}
 
 /* Focus visible */
 a:focus-visible,summary:focus-visible,button:focus-visible{
@@ -1431,19 +1725,65 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         <strong>whose thinking is inside the output</strong>, what process produced it, and what — if anything — actually remains with the student.
       </p>
 
-      <div class="callout">
-        <p class="callout-title" lang-ko>
-          AI 시대 교육의 진짜 문제는 <span class="gradient-text-2">"AI를 쓰느냐, 안 쓰느냐"</span>가 아니다.
-        </p>
-        <p class="callout-title" lang-en>
-          The real question of AI-era education isn't <span class="gradient-text-2">"use AI or not."</span>
-        </p>
-        <p class="callout-body" lang-ko>
-          진짜 문제는 이것이다 — AI를 쓰는 시대에 학생이 자기 사고를 잃지 않고, 자기 결과물을 만들 수 있는가.
-        </p>
-        <p class="callout-body" lang-en>
-          The real question is this — in an era when AI does the making, can a student still keep their own thinking and still produce work that belongs to them?
-        </p>
+      <div class="ig-iceberg">
+        <svg viewBox="0 0 900 520" aria-hidden="true">
+          <defs>
+            <linearGradient id="ice-above" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#FFD60A" stop-opacity=".5"/>
+              <stop offset="100%" stop-color="#fd9700" stop-opacity=".75"/>
+            </linearGradient>
+            <linearGradient id="ice-below" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#0092ff" stop-opacity=".25"/>
+              <stop offset="50%" stop-color="#c65cff" stop-opacity=".18"/>
+              <stop offset="100%" stop-color="#0a0a0f" stop-opacity=".1"/>
+            </linearGradient>
+            <linearGradient id="waterline" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stop-color="#00d4ff" stop-opacity=".5"/>
+              <stop offset="50%" stop-color="#fff" stop-opacity=".8"/>
+              <stop offset="100%" stop-color="#00d4ff" stop-opacity=".5"/>
+            </linearGradient>
+          </defs>
+          <!-- Above water — small visible tip -->
+          <polygon points="380,40 520,40 560,180 340,180" fill="url(#ice-above)" stroke="rgba(255,214,10,.4)" stroke-width="1"/>
+          <!-- Waterline -->
+          <line x1="60" y1="180" x2="840" y2="180" stroke="url(#waterline)" stroke-width="1.5"/>
+          <!-- Water marks -->
+          <line x1="80" y1="200" x2="200" y2="200" stroke="#00d4ff" stroke-opacity=".18" stroke-width="1"/>
+          <line x1="700" y1="200" x2="820" y2="200" stroke="#00d4ff" stroke-opacity=".18" stroke-width="1"/>
+          <!-- Below water — massive hidden mass -->
+          <polygon points="340,180 560,180 720,480 180,480" fill="url(#ice-below)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
+          <!-- Inner detail lines -->
+          <line x1="340" y1="180" x2="450" y2="480" stroke="rgba(255,255,255,.05)"/>
+          <line x1="560" y1="180" x2="450" y2="480" stroke="rgba(255,255,255,.05)"/>
+        </svg>
+        <div class="ice-label" style="left:62%;top:8%" lang-ko>보이는 부분</div>
+        <div class="ice-label" style="left:62%;top:8%" lang-en>Visible</div>
+        <div class="ice-list" style="right:0;top:14%" lang-ko>
+          <strong>AI 결과물</strong><br>
+          빠르게 나온 산출물
+        </div>
+        <div class="ice-list" style="right:0;top:14%" lang-en>
+          <strong>AI output</strong><br>
+          The quick artifact
+        </div>
+        <div class="ice-label" style="left:62%;top:42%;color:var(--c-cyan)" lang-ko>물 아래 — 학생에게서 사라진 것</div>
+        <div class="ice-label" style="left:62%;top:42%;color:var(--c-cyan)" lang-en>Underwater — gone from the student</div>
+        <div class="ice-list" style="right:0;top:48%" lang-ko>
+          <strong>처음 생각</strong> · 누구의 의도였나<br>
+          <strong>과정</strong> · 어떻게 거기 닿았나<br>
+          <strong>피드백</strong> · 누가 봐줬나<br>
+          <strong>수정</strong> · 무엇을 고쳤나<br>
+          <strong>설명</strong> · 왜 그렇게 했나<br>
+          <strong>성장</strong> · 처음보다 나아졌나
+        </div>
+        <div class="ice-list" style="right:0;top:48%" lang-en>
+          <strong>First thought</strong> · whose intent<br>
+          <strong>Process</strong> · how it got there<br>
+          <strong>Feedback</strong> · who saw it<br>
+          <strong>Revision</strong> · what changed<br>
+          <strong>Explanation</strong> · why it changed<br>
+          <strong>Growth</strong> · better than before
+        </div>
       </div>
 
       <details class="deep">
@@ -1600,6 +1940,44 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         In this process, the student is not making one output. The student is confirming a creative capacity inside themselves.
       </p>
 
+      <div class="ig-equation">
+        <div class="eq-chip c1">
+          <div class="eq-num">01</div>
+          <div class="eq-label" lang-ko>자기 생각</div>
+          <div class="eq-label" lang-en>Own thought</div>
+        </div>
+        <div class="eq-op">+</div>
+        <div class="eq-chip c2">
+          <div class="eq-num">02</div>
+          <div class="eq-label" lang-ko>AI 증폭</div>
+          <div class="eq-label" lang-en>AI amplifier</div>
+        </div>
+        <div class="eq-op">+</div>
+        <div class="eq-chip c3">
+          <div class="eq-num">03</div>
+          <div class="eq-label" lang-ko>다층 피드백</div>
+          <div class="eq-label" lang-en>Multi-feedback</div>
+        </div>
+        <div class="eq-op">+</div>
+        <div class="eq-chip c4">
+          <div class="eq-num">04</div>
+          <div class="eq-label" lang-ko>수정</div>
+          <div class="eq-label" lang-en>Revision</div>
+        </div>
+        <div class="eq-op">+</div>
+        <div class="eq-chip c5">
+          <div class="eq-num">05</div>
+          <div class="eq-label" lang-ko>설명</div>
+          <div class="eq-label" lang-en>Explanation</div>
+        </div>
+        <div class="eq-op">=</div>
+        <div class="eq-result">
+          <div class="eq-num">KISAS</div>
+          <div class="eq-label" lang-ko>내가 만든 결과물이 더 좋아진다</div>
+          <div class="eq-label" lang-en>My creation gets better</div>
+        </div>
+      </div>
+
       <div class="bento cols-2">
         <div class="card">
           <p class="card-eyebrow" lang-ko>학생이 느끼는 것</p>
@@ -1686,6 +2064,95 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
       <p lang-en>
         KISAS changes this. KISAS does not stop at making outputs. KISAS puts at the center of education the question of <strong>how the student's output got better through feedback</strong> — fused with the humanities habit of questioning and explaining one's own meaning.
       </p>
+
+      <div class="ig-funnel-pair">
+        <div class="ig-funnel weak">
+          <div class="fn-label" lang-ko>기존 교육 · 깔때기</div>
+          <div class="fn-label" lang-en>Conventional · Funnel</div>
+          <svg viewBox="0 0 400 320" aria-hidden="true">
+            <!-- 5 inputs at top -->
+            <g fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.2)">
+              <rect x="20" y="10" width="60" height="22" rx="4"/>
+              <rect x="105" y="10" width="60" height="22" rx="4"/>
+              <rect x="190" y="10" width="60" height="22" rx="4"/>
+              <rect x="275" y="10" width="60" height="22" rx="4"/>
+              <rect x="340" y="10" width="50" height="22" rx="4"/>
+            </g>
+            <text x="50" y="25" text-anchor="middle" fill="#888" font-family="JetBrains Mono" font-size="9">생각</text>
+            <text x="135" y="25" text-anchor="middle" fill="#888" font-family="JetBrains Mono" font-size="9">과정</text>
+            <text x="220" y="25" text-anchor="middle" fill="#888" font-family="JetBrains Mono" font-size="9">피드백</text>
+            <text x="305" y="25" text-anchor="middle" fill="#888" font-family="JetBrains Mono" font-size="9">수정</text>
+            <text x="365" y="25" text-anchor="middle" fill="#888" font-family="JetBrains Mono" font-size="9">설명</text>
+            <!-- Funnel narrowing -->
+            <polygon points="20,50 380,50 250,210 150,210" fill="rgba(110,110,115,.12)" stroke="rgba(110,110,115,.3)"/>
+            <!-- Drips (lost) -->
+            <circle cx="80" cy="240" r="3" fill="#6e6e73" opacity=".5"/>
+            <circle cx="120" cy="260" r="2" fill="#6e6e73" opacity=".4"/>
+            <circle cx="280" cy="245" r="3" fill="#6e6e73" opacity=".5"/>
+            <circle cx="320" cy="270" r="2" fill="#6e6e73" opacity=".3"/>
+            <text x="200" y="295" text-anchor="middle" fill="#6e6e73" font-family="JetBrains Mono" font-size="10" letter-spacing="2">대부분 사라짐</text>
+            <!-- Output: only result -->
+            <rect x="170" y="210" width="60" height="32" rx="6" fill="rgba(110,110,115,.25)" stroke="rgba(110,110,115,.4)"/>
+            <text x="200" y="231" text-anchor="middle" fill="#a1a1a6" font-family="Inter" font-size="11" font-weight="700">결과물만</text>
+          </svg>
+        </div>
+        <div class="ig-funnel strong">
+          <div class="fn-label" lang-ko>KISAS · 보존 루프</div>
+          <div class="fn-label" lang-en>KISAS · Preservation loop</div>
+          <svg viewBox="0 0 400 320" aria-hidden="true">
+            <defs>
+              <linearGradient id="loop-stroke" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#FFD60A"/>
+                <stop offset="50%" stop-color="#ff2469"/>
+                <stop offset="100%" stop-color="#07ED21"/>
+              </linearGradient>
+            </defs>
+            <!-- 5 input nodes top -->
+            <g>
+              <circle cx="50" cy="30" r="14" fill="rgba(255,214,10,.2)" stroke="#FFD60A" stroke-width="1.5"/>
+              <text x="50" y="34" text-anchor="middle" fill="#FFD60A" font-family="JetBrains Mono" font-size="9" font-weight="700">생각</text>
+              <circle cx="135" cy="30" r="14" fill="rgba(253,151,0,.2)" stroke="#fd9700" stroke-width="1.5"/>
+              <text x="135" y="34" text-anchor="middle" fill="#fd9700" font-family="JetBrains Mono" font-size="9" font-weight="700">과정</text>
+              <circle cx="220" cy="30" r="14" fill="rgba(255,36,105,.2)" stroke="#ff2469" stroke-width="1.5"/>
+              <text x="220" y="34" text-anchor="middle" fill="#ff2469" font-family="JetBrains Mono" font-size="8" font-weight="700">피드백</text>
+              <circle cx="305" cy="30" r="14" fill="rgba(198,92,255,.2)" stroke="#c65cff" stroke-width="1.5"/>
+              <text x="305" y="34" text-anchor="middle" fill="#c65cff" font-family="JetBrains Mono" font-size="9" font-weight="700">수정</text>
+              <circle cx="370" cy="30" r="14" fill="rgba(0,146,255,.2)" stroke="#0092ff" stroke-width="1.5"/>
+              <text x="370" y="34" text-anchor="middle" fill="#0092ff" font-family="JetBrains Mono" font-size="9" font-weight="700">설명</text>
+            </g>
+            <!-- Curved paths gathered -->
+            <path d="M50,44 Q200,90 200,150" stroke="url(#loop-stroke)" stroke-width="1.5" fill="none" opacity=".6"/>
+            <path d="M135,44 Q200,100 200,150" stroke="url(#loop-stroke)" stroke-width="1.5" fill="none" opacity=".6"/>
+            <path d="M220,44 L200,150" stroke="url(#loop-stroke)" stroke-width="1.5" fill="none" opacity=".6"/>
+            <path d="M305,44 Q200,100 200,150" stroke="url(#loop-stroke)" stroke-width="1.5" fill="none" opacity=".6"/>
+            <path d="M370,44 Q200,90 200,150" stroke="url(#loop-stroke)" stroke-width="1.5" fill="none" opacity=".6"/>
+            <!-- Central hub -->
+            <circle cx="200" cy="160" r="36" fill="rgba(255,36,105,.15)" stroke="url(#loop-stroke)" stroke-width="2"/>
+            <text x="200" y="158" text-anchor="middle" fill="#fff" font-family="Inter" font-size="10" font-weight="700">KISAS</text>
+            <text x="200" y="172" text-anchor="middle" fill="#a1a1a6" font-family="JetBrains Mono" font-size="8">LOOP</text>
+            <!-- Output: 5 traces preserved + result -->
+            <g transform="translate(50,240)">
+              <rect width="60" height="22" rx="4" fill="rgba(255,214,10,.15)" stroke="#FFD60A"/>
+              <text x="30" y="15" text-anchor="middle" fill="#FFD60A" font-family="JetBrains Mono" font-size="9" font-weight="700">기록</text>
+            </g>
+            <g transform="translate(135,240)">
+              <rect width="60" height="22" rx="4" fill="rgba(255,36,105,.15)" stroke="#ff2469"/>
+              <text x="30" y="15" text-anchor="middle" fill="#ff2469" font-family="JetBrains Mono" font-size="9" font-weight="700">이력</text>
+            </g>
+            <g transform="translate(220,240)">
+              <rect width="60" height="22" rx="4" fill="rgba(198,92,255,.15)" stroke="#c65cff"/>
+              <text x="30" y="15" text-anchor="middle" fill="#c65cff" font-family="JetBrains Mono" font-size="9" font-weight="700">설명</text>
+            </g>
+            <g transform="translate(305,240)">
+              <rect width="60" height="22" rx="4" fill="rgba(7,237,33,.15)" stroke="#07ED21"/>
+              <text x="30" y="15" text-anchor="middle" fill="#07ED21" font-family="JetBrains Mono" font-size="9" font-weight="700">성장</text>
+            </g>
+            <text x="200" y="290" text-anchor="middle" fill="#07ED21" font-family="JetBrains Mono" font-size="10" letter-spacing="2" font-weight="700">전부 보존</text>
+            <!-- arrows down -->
+            <line x1="200" y1="196" x2="200" y2="232" stroke="url(#loop-stroke)" stroke-width="1.5" opacity=".6"/>
+          </svg>
+        </div>
+      </div>
 
       <div class="sandwich">
         <div class="side weak">
@@ -1873,75 +2340,85 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
         KISAS's feedback is not single. To make a creation better, many kinds of sight are needed. The student needs fast reaction, a high standard, an educational interpretation, peer response, concrete expert advice, and strong on-site feedback from the real world.
       </p>
 
-      <div class="hubspoke" aria-hidden="false">
-        <svg viewBox="0 0 760 760" aria-hidden="true">
-          <defs>
-            <linearGradient id="spoke-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#FFD60A" stop-opacity=".55"/>
-              <stop offset="50%" stop-color="#ff2469" stop-opacity=".45"/>
-              <stop offset="100%" stop-color="#07ED21" stop-opacity=".45"/>
-            </linearGradient>
-            <radialGradient id="hub-mask" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#0a0a0f" stop-opacity="1"/>
-              <stop offset="70%" stop-color="#0a0a0f" stop-opacity="1"/>
-              <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <!-- Hub r=130, spoke ends at r=220 (just before card). Center=(380,380) -->
-          <!-- 12시 (270°): dx=0, dy=-1 -->
-          <line x1="380" y1="250" x2="380" y2="195" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <!-- 2시 (-30°): (0.866, -0.5) → start (492.6, 315), end (570.5, 270) -->
-          <line x1="493" y1="315" x2="570" y2="270" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <!-- 4시 (30°): (0.866, 0.5) → start (492.6, 445), end (570.5, 490) -->
-          <line x1="493" y1="445" x2="570" y2="490" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <!-- 6시 (90°) -->
-          <line x1="380" y1="510" x2="380" y2="565" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <!-- 8시 (150°): (-0.866, 0.5) → start (267.4, 445), end (189.5, 490) -->
-          <line x1="267" y1="445" x2="190" y2="490" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <!-- 10시 (-150°): (-0.866, -0.5) → start (267.4, 315), end (189.5, 270) -->
-          <line x1="267" y1="315" x2="190" y2="270" stroke="url(#spoke-grad)" stroke-width="1.5"/>
-          <!-- Outer ring (faint) -->
-          <circle cx="380" cy="380" r="240" stroke="rgba(255,255,255,.06)" stroke-width="1" fill="none" stroke-dasharray="4 6"/>
-        </svg>
-        <div class="hub-center">
-          <div class="hub-label" lang-ko>내 결과물을<br>다시 본다</div>
-          <div class="hub-label" lang-en>See my creation<br>again</div>
-        </div>
-        <!-- 12시(상단) — y=170/760 = 22% -->
-        <div class="spoke-card" style="left:50%;top:13%">
-          <div class="spoke-num" style="color:var(--c-yellow)">L1 · AI INSTANT</div>
-          <div class="spoke-who" lang-ko>AI · 즉시 피드백</div>
-          <div class="spoke-who" lang-en>AI · Instant</div>
-        </div>
-        <!-- 2시 — (567,270)/760 = (75%,35%) -->
-        <div class="spoke-card" style="left:79%;top:30%">
-          <div class="spoke-num" style="color:var(--c-orange)">L2 · STAR STANDARD</div>
-          <div class="spoke-who" lang-ko>스타·전문가 AI</div>
-          <div class="spoke-who" lang-en>Star/Expert AI</div>
-        </div>
-        <!-- 4시 — (567,490)/760 = (75%,64%) -->
-        <div class="spoke-card" style="left:79%;top:70%">
-          <div class="spoke-num" style="color:var(--c-pink)">L3 · INSTRUCTOR</div>
-          <div class="spoke-who" lang-ko>KISAS 강사</div>
-          <div class="spoke-who" lang-en>KISAS instructor</div>
-        </div>
-        <!-- 6시 — (380,590)/760 = (50%,78%) -->
-        <div class="spoke-card" style="left:50%;top:87%">
-          <div class="spoke-num" style="color:var(--c-purple)">L4 · PEERS</div>
-          <div class="spoke-who" lang-ko>동료</div>
-          <div class="spoke-who" lang-en>Peers</div>
-        </div>
-        <!-- 8시 — (193,490)/760 = (25%,64%) -->
-        <div class="spoke-card" style="left:21%;top:70%">
-          <div class="spoke-num" style="color:var(--c-blue)">L5 · EXPERTS</div>
-          <div class="spoke-who" lang-ko>등록 전문가</div>
-          <div class="spoke-who" lang-en>Registered experts</div>
-        </div>
-        <!-- 10시 — (193,270)/760 = (25%,35%) -->
-        <div class="spoke-card" style="left:21%;top:30%">
-          <div class="spoke-num" style="color:var(--c-green)">L6 · ON-SITE</div>
-          <div class="spoke-who" lang-ko>프리미엄 현장</div>
-          <div class="spoke-who" lang-en>Premium on-site</div>
+      <div class="fb-pyramid">
+        <div class="fp-grid">
+          <div class="fp-axis">
+            <span class="axis-top" lang-ko>↑ 프리미엄 · 최상위 강도<br>희소 · 신청형</span>
+            <span class="axis-top" lang-en>↑ Premium · top intensity<br>Scarce · invitation</span>
+            <span lang-ko>강도 ↑<br>접근성 ↓</span>
+            <span lang-en>Intensity ↑<br>Access ↓</span>
+            <span class="axis-bot" lang-ko>↓ 상시 · 무제한<br>모두에게 열려있음</span>
+            <span class="axis-bot" lang-en>↓ Always-on · unlimited<br>Open to everyone</span>
+          </div>
+          <div class="fp-stack">
+            <!-- L6 top -->
+            <div class="fp-tier" data-l="6">
+              <div class="fp-num">L6</div>
+              <div>
+                <div class="fp-who" lang-ko>프리미엄 현장 피드백</div>
+                <div class="fp-who" lang-en>Premium on-site feedback</div>
+                <div class="fp-role" lang-ko>아카데미·캠프·마스터클래스 고강도 피드백</div>
+                <div class="fp-role" lang-en>High-intensity feedback at academy, camp, masterclass</div>
+              </div>
+              <div class="fp-access" lang-ko>프리미엄<br>최상위</div>
+              <div class="fp-access" lang-en>Premium<br>top-tier</div>
+            </div>
+            <div class="fp-tier" data-l="5">
+              <div class="fp-num">L5</div>
+              <div>
+                <div class="fp-who" lang-ko>등록 전문가 피드백</div>
+                <div class="fp-who" lang-en>Registered expert feedback</div>
+                <div class="fp-role" lang-ko>분야별 외부 전문가의 선택형 피드백</div>
+                <div class="fp-role" lang-en>Domain experts on request</div>
+              </div>
+              <div class="fp-access" lang-ko>신청형</div>
+              <div class="fp-access" lang-en>On request</div>
+            </div>
+            <div class="fp-tier" data-l="4">
+              <div class="fp-num">L4</div>
+              <div>
+                <div class="fp-who" lang-ko>동료 피드백</div>
+                <div class="fp-who" lang-en>Peer feedback</div>
+                <div class="fp-role" lang-ko>또래 관점의 반응과 상호 자극</div>
+                <div class="fp-role" lang-en>Peer perspective and mutual stimulation</div>
+              </div>
+              <div class="fp-access" lang-ko>상시<br>커뮤니티</div>
+              <div class="fp-access" lang-en>Always-on<br>community</div>
+            </div>
+            <div class="fp-tier" data-l="3">
+              <div class="fp-num">L3</div>
+              <div>
+                <div class="fp-who" lang-ko>강사 피드백</div>
+                <div class="fp-who" lang-en>Instructor feedback</div>
+                <div class="fp-role" lang-ko>학생 수준에 맞춘 교육적 해석과 지도</div>
+                <div class="fp-role" lang-en>Pedagogical interpretation at the student's level</div>
+              </div>
+              <div class="fp-access" lang-ko>정기</div>
+              <div class="fp-access" lang-en>Regular</div>
+            </div>
+            <div class="fp-tier" data-l="2">
+              <div class="fp-num">L2</div>
+              <div>
+                <div class="fp-who" lang-ko>전문가 AI 피드백</div>
+                <div class="fp-who" lang-en>Expert AI feedback</div>
+                <div class="fp-role" lang-ko>평소 만날 수 없는 기준·감각·창작 철학을 반영한 AI</div>
+                <div class="fp-role" lang-en>AI carrying standards and sensibilities the student rarely meets</div>
+              </div>
+              <div class="fp-access" lang-ko>상시<br>핵심 차별점</div>
+              <div class="fp-access" lang-en>Always-on<br>key differentiator</div>
+            </div>
+            <div class="fp-tier" data-l="1">
+              <div class="fp-num">L1</div>
+              <div>
+                <div class="fp-who" lang-ko>AI 즉시 피드백</div>
+                <div class="fp-who" lang-en>AI instant feedback</div>
+                <div class="fp-role" lang-ko>학생 결과물에 대한 즉각적 첫 반응</div>
+                <div class="fp-role" lang-en>Immediate first reaction on the student's creation</div>
+              </div>
+              <div class="fp-access" lang-ko>상시<br>무제한</div>
+              <div class="fp-access" lang-en>Always-on<br>unlimited</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -2945,7 +3422,8 @@ if (!prefersReduced){
   const revealTargets = document.querySelectorAll(
     '.reveal, .stagger, .sec-head, .gate-hero, .cover-hero, .echo-text, .gate-num, ' +
     '.bigquote, .timeline, .archi, .stack, .bento-asym, .pyramid, .sandwich, ' +
-    '.hubspoke, .compare'
+    '.fb-pyramid, .compare, .ig-iceberg, .ig-equation, .ig-funnel-pair, .ig-tower, ' +
+    '.ig-amp, .ig-spiral, .ig-ba-bar, .ig-bignum'
   );
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -3000,21 +3478,8 @@ if (!prefersReduced){
   }, {passive:true});
   applyParallax();
 
-  // 4. Magnetic hub-center — subtle attraction
-  const hubCenters = document.querySelectorAll('.hubspoke');
-  hubCenters.forEach(hub => {
-    const center = hub.querySelector('.hub-center');
-    if (!center) return;
-    hub.addEventListener('mousemove', (ev) => {
-      const rect = hub.getBoundingClientRect();
-      const x = (ev.clientX - rect.left - rect.width/2) / rect.width;
-      const y = (ev.clientY - rect.top - rect.height/2) / rect.height;
-      center.style.transform = `translate(calc(-50% + ${x * 14}px), calc(-50% + ${y * 14}px))`;
-    });
-    hub.addEventListener('mouseleave', () => {
-      center.style.transform = 'translate(-50%, -50%)';
-    });
-  });
+  // 4. Pyramid tier hover — subtle scale
+  // (handled by CSS — no JS needed)
 
   // 5. Echo text line-by-line reveal
   const echoText = document.querySelectorAll('.echo-text');
