@@ -1080,10 +1080,19 @@ body[data-lang="en"] .fb-pyramid .fp-axis span[lang-ko]{display:none}
 
 /* IG-2: Equation — element + element = result */
 .ig-equation{
-  margin:60px 0;display:flex;flex-wrap:wrap;align-items:center;
-  justify-content:center;gap:12px;padding:32px;
+  margin:60px 0;padding:40px 32px;
   background:linear-gradient(135deg,rgba(255,214,10,.04),rgba(7,237,33,.04));
   border:1px solid var(--border);border-radius:24px;
+  display:flex;flex-direction:column;align-items:center;gap:24px;
+}
+.ig-equation .eq-row{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;
+  width:100%;
+}
+.ig-equation .eq-arrow-down{
+  font-family:'JetBrains Mono',monospace;
+  font-size:24px;font-weight:300;color:var(--text-tertiary);
+  line-height:1;
 }
 .ig-equation .eq-chip{
   padding:14px 22px;border-radius:14px;
@@ -1114,22 +1123,25 @@ body[data-lang="en"] .fb-pyramid .fp-axis span[lang-ko]{display:none}
 .ig-equation .eq-chip.c5{border-color:var(--c-blue)}
 .ig-equation .eq-chip.c5 .eq-num{color:var(--c-blue)}
 .ig-equation .eq-result{
-  padding:18px 28px;border-radius:14px;
+  padding:28px 48px;border-radius:18px;min-width:340px;
   background:linear-gradient(135deg,
-    rgba(255,214,10,.15),rgba(255,36,105,.15),rgba(198,92,255,.15),rgba(0,212,255,.15));
-  border:1px solid rgba(255,255,255,.15);
+    rgba(255,214,10,.18),rgba(255,36,105,.2),rgba(198,92,255,.2),rgba(0,212,255,.15),rgba(7,237,33,.12));
+  border:1px solid rgba(255,255,255,.22);
   text-align:center;
+  box-shadow:0 0 80px rgba(255,36,105,.15);
 }
 .ig-equation .eq-result .eq-num{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:.2em;color:var(--text);
-  font-weight:700;margin-bottom:6px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  letter-spacing:.3em;color:var(--text);
+  font-weight:700;margin-bottom:10px;
 }
 .ig-equation .eq-result .eq-label{
-  font-size:17px;font-weight:800;letter-spacing:-.01em;
+  font-size:clamp(20px,2.2vw,28px);
+  font-weight:800;letter-spacing:-.02em;line-height:1.25;
   background:linear-gradient(90deg,var(--c-yellow),var(--c-pink),var(--c-purple),var(--c-blue),var(--c-green));
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;
+  word-break:keep-all;
 }
 
 /* IG-3: Funnel comparison */
@@ -1726,49 +1738,87 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
       </p>
 
       <div class="ig-iceberg">
-        <svg viewBox="0 0 900 520" aria-hidden="true">
+        <svg viewBox="0 0 1000 640" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
           <defs>
-            <linearGradient id="ice-above" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#FFD60A" stop-opacity=".5"/>
-              <stop offset="100%" stop-color="#fd9700" stop-opacity=".75"/>
+            <linearGradient id="ice-tip" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#FFD60A"/>
+              <stop offset="60%" stop-color="#fd9700"/>
+              <stop offset="100%" stop-color="#f40"/>
             </linearGradient>
-            <linearGradient id="ice-below" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#0092ff" stop-opacity=".25"/>
-              <stop offset="50%" stop-color="#c65cff" stop-opacity=".18"/>
-              <stop offset="100%" stop-color="#0a0a0f" stop-opacity=".1"/>
+            <linearGradient id="ice-mass" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#0092ff" stop-opacity=".55"/>
+              <stop offset="40%" stop-color="#5b6dff" stop-opacity=".35"/>
+              <stop offset="80%" stop-color="#c65cff" stop-opacity=".18"/>
+              <stop offset="100%" stop-color="#0a0a0f" stop-opacity=".05"/>
             </linearGradient>
-            <linearGradient id="waterline" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0%" stop-color="#00d4ff" stop-opacity=".5"/>
-              <stop offset="50%" stop-color="#fff" stop-opacity=".8"/>
-              <stop offset="100%" stop-color="#00d4ff" stop-opacity=".5"/>
+            <linearGradient id="water-grad" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#00d4ff" stop-opacity=".15"/>
+              <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <!-- Above water — small visible tip -->
-          <polygon points="380,40 520,40 560,180 340,180" fill="url(#ice-above)" stroke="rgba(255,214,10,.4)" stroke-width="1"/>
-          <!-- Waterline -->
-          <line x1="60" y1="180" x2="840" y2="180" stroke="url(#waterline)" stroke-width="1.5"/>
-          <!-- Water marks -->
-          <line x1="80" y1="200" x2="200" y2="200" stroke="#00d4ff" stroke-opacity=".18" stroke-width="1"/>
-          <line x1="700" y1="200" x2="820" y2="200" stroke="#00d4ff" stroke-opacity=".18" stroke-width="1"/>
-          <!-- Below water — massive hidden mass -->
-          <polygon points="340,180 560,180 720,480 180,480" fill="url(#ice-below)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
-          <!-- Inner detail lines -->
-          <line x1="340" y1="180" x2="450" y2="480" stroke="rgba(255,255,255,.05)"/>
-          <line x1="560" y1="180" x2="450" y2="480" stroke="rgba(255,255,255,.05)"/>
+
+          <!-- Sky tone (faint) -->
+          <rect x="0" y="0" width="1000" height="195" fill="rgba(255,214,10,.02)"/>
+          <!-- Sea tone -->
+          <rect x="0" y="200" width="1000" height="440" fill="url(#water-grad)"/>
+
+          <!-- ABOVE WATER — small tip (only ~12% of iceberg) -->
+          <polygon points="455,110 510,110 535,200 430,200"
+                   fill="url(#ice-tip)" stroke="rgba(255,214,10,.5)" stroke-width="1.2"/>
+          <!-- tip highlight -->
+          <polygon points="455,110 510,110 502,135 463,135" fill="#fff" opacity=".18"/>
+
+          <!-- WATER LINE — strong horizontal -->
+          <line x1="40" y1="200" x2="960" y2="200" stroke="#00d4ff" stroke-opacity=".7" stroke-width="2"/>
+          <!-- water ripples -->
+          <path d="M40 207 Q120 212 200 207 T360 207 T520 207 T680 207 T840 207 T960 207"
+                stroke="#00d4ff" stroke-opacity=".25" stroke-width="1" fill="none"/>
+          <path d="M60 215 Q180 220 300 215 T540 215 T780 215 T940 215"
+                stroke="#00d4ff" stroke-opacity=".15" stroke-width="1" fill="none"/>
+
+          <!-- BELOW WATER — massive hidden mass -->
+          <polygon points="430,200 535,200 720,360 815,540 645,615 380,615 175,520 245,335"
+                   fill="url(#ice-mass)" stroke="rgba(0,146,255,.35)" stroke-width="1.2"/>
+          <!-- Inner facets (gives 3D ice feel) -->
+          <line x1="430" y1="200" x2="380" y2="615" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+          <line x1="535" y1="200" x2="645" y2="615" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+          <line x1="480" y1="200" x2="500" y2="615" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+          <line x1="245" y1="335" x2="720" y2="360" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+          <line x1="175" y1="520" x2="815" y2="540" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+
+          <!-- Surface reflection on tip -->
+          <polygon points="430,200 535,200 520,215 445,215" fill="#00d4ff" opacity=".25"/>
+
+          <!-- Labels (inside SVG so they scale) -->
+          <text x="495" y="92" text-anchor="middle" fill="#FFD60A"
+                font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3" font-weight="700">VISIBLE</text>
+          <text x="495" y="660" text-anchor="middle" fill="#00d4ff"
+                font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="3" font-weight="700" opacity=".7">HIDDEN</text>
+
+          <!-- Pointer line from tip to label -->
+          <line x1="540" y1="155" x2="650" y2="155" stroke="rgba(255,214,10,.4)" stroke-width="1"/>
+          <circle cx="540" cy="155" r="2.5" fill="#FFD60A"/>
+
+          <!-- Pointer line from underwater to label -->
+          <line x1="725" y1="400" x2="830" y2="400" stroke="rgba(0,212,255,.4)" stroke-width="1"/>
+          <circle cx="725" cy="400" r="2.5" fill="#00d4ff"/>
         </svg>
-        <div class="ice-label" style="left:62%;top:8%" lang-ko>보이는 부분</div>
-        <div class="ice-label" style="left:62%;top:8%" lang-en>Visible</div>
-        <div class="ice-list" style="right:0;top:14%" lang-ko>
+
+        <!-- HTML labels (positioned percentage-based, scale with svg) -->
+        <div class="ice-label" style="left:67%;top:21%;color:var(--c-yellow)" lang-ko>보이는 일각</div>
+        <div class="ice-label" style="left:67%;top:21%;color:var(--c-yellow)" lang-en>Visible tip</div>
+        <div class="ice-list" style="left:67%;top:27%" lang-ko>
           <strong>AI 결과물</strong><br>
           빠르게 나온 산출물
         </div>
-        <div class="ice-list" style="right:0;top:14%" lang-en>
+        <div class="ice-list" style="left:67%;top:27%" lang-en>
           <strong>AI output</strong><br>
           The quick artifact
         </div>
-        <div class="ice-label" style="left:62%;top:42%;color:var(--c-cyan)" lang-ko>물 아래 — 학생에게서 사라진 것</div>
-        <div class="ice-label" style="left:62%;top:42%;color:var(--c-cyan)" lang-en>Underwater — gone from the student</div>
-        <div class="ice-list" style="right:0;top:48%" lang-ko>
+
+        <div class="ice-label" style="left:84%;top:58%;color:var(--c-cyan)" lang-ko>물 아래 —<br>학생에게서 사라진 것</div>
+        <div class="ice-label" style="left:84%;top:58%;color:var(--c-cyan)" lang-en>Underwater —<br>gone from the student</div>
+        <div class="ice-list" style="left:84%;top:68%" lang-ko>
           <strong>처음 생각</strong> · 누구의 의도였나<br>
           <strong>과정</strong> · 어떻게 거기 닿았나<br>
           <strong>피드백</strong> · 누가 봐줬나<br>
@@ -1776,7 +1826,7 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
           <strong>설명</strong> · 왜 그렇게 했나<br>
           <strong>성장</strong> · 처음보다 나아졌나
         </div>
-        <div class="ice-list" style="right:0;top:48%" lang-en>
+        <div class="ice-list" style="left:84%;top:68%" lang-en>
           <strong>First thought</strong> · whose intent<br>
           <strong>Process</strong> · how it got there<br>
           <strong>Feedback</strong> · who saw it<br>
@@ -1941,36 +1991,38 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
       </p>
 
       <div class="ig-equation">
-        <div class="eq-chip c1">
-          <div class="eq-num">01</div>
-          <div class="eq-label" lang-ko>자기 생각</div>
-          <div class="eq-label" lang-en>Own thought</div>
+        <div class="eq-row">
+          <div class="eq-chip c1">
+            <div class="eq-num">01</div>
+            <div class="eq-label" lang-ko>자기 생각</div>
+            <div class="eq-label" lang-en>Own thought</div>
+          </div>
+          <div class="eq-op">+</div>
+          <div class="eq-chip c2">
+            <div class="eq-num">02</div>
+            <div class="eq-label" lang-ko>AI 증폭</div>
+            <div class="eq-label" lang-en>AI amplifier</div>
+          </div>
+          <div class="eq-op">+</div>
+          <div class="eq-chip c3">
+            <div class="eq-num">03</div>
+            <div class="eq-label" lang-ko>다층 피드백</div>
+            <div class="eq-label" lang-en>Multi-feedback</div>
+          </div>
+          <div class="eq-op">+</div>
+          <div class="eq-chip c4">
+            <div class="eq-num">04</div>
+            <div class="eq-label" lang-ko>수정</div>
+            <div class="eq-label" lang-en>Revision</div>
+          </div>
+          <div class="eq-op">+</div>
+          <div class="eq-chip c5">
+            <div class="eq-num">05</div>
+            <div class="eq-label" lang-ko>설명</div>
+            <div class="eq-label" lang-en>Explanation</div>
+          </div>
         </div>
-        <div class="eq-op">+</div>
-        <div class="eq-chip c2">
-          <div class="eq-num">02</div>
-          <div class="eq-label" lang-ko>AI 증폭</div>
-          <div class="eq-label" lang-en>AI amplifier</div>
-        </div>
-        <div class="eq-op">+</div>
-        <div class="eq-chip c3">
-          <div class="eq-num">03</div>
-          <div class="eq-label" lang-ko>다층 피드백</div>
-          <div class="eq-label" lang-en>Multi-feedback</div>
-        </div>
-        <div class="eq-op">+</div>
-        <div class="eq-chip c4">
-          <div class="eq-num">04</div>
-          <div class="eq-label" lang-ko>수정</div>
-          <div class="eq-label" lang-en>Revision</div>
-        </div>
-        <div class="eq-op">+</div>
-        <div class="eq-chip c5">
-          <div class="eq-num">05</div>
-          <div class="eq-label" lang-ko>설명</div>
-          <div class="eq-label" lang-en>Explanation</div>
-        </div>
-        <div class="eq-op">=</div>
+        <div class="eq-arrow-down">↓</div>
         <div class="eq-result">
           <div class="eq-num">KISAS</div>
           <div class="eq-label" lang-ko>내가 만든 결과물이 더 좋아진다</div>
