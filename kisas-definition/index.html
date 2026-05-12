@@ -1038,13 +1038,235 @@ a:focus-visible,summary:focus-visible,button:focus-visible{
   outline:2px solid var(--c-pink);outline-offset:4px;border-radius:4px;
 }
 
+/* =============== MOTION SYSTEM (motion-catalog.md) =============== */
+
+/* Reveal — Fade Up base */
+.reveal{
+  opacity:0;transform:translateY(40px);
+  transition:opacity .8s var(--apple-ease),transform .8s var(--apple-ease);
+  will-change:opacity,transform;
+}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* Stagger children — delay cascade */
+.stagger > *{opacity:0;transform:translateY(28px);
+  transition:opacity .7s var(--apple-ease),transform .7s var(--apple-ease)}
+.stagger.in > *:nth-child(1){transition-delay:0ms;opacity:1;transform:translateY(0)}
+.stagger.in > *:nth-child(2){transition-delay:80ms;opacity:1;transform:translateY(0)}
+.stagger.in > *:nth-child(3){transition-delay:160ms;opacity:1;transform:translateY(0)}
+.stagger.in > *:nth-child(4){transition-delay:240ms;opacity:1;transform:translateY(0)}
+.stagger.in > *:nth-child(5){transition-delay:320ms;opacity:1;transform:translateY(0)}
+.stagger.in > *:nth-child(6){transition-delay:400ms;opacity:1;transform:translateY(0)}
+.stagger.in > *:nth-child(7){transition-delay:480ms;opacity:1;transform:translateY(0)}
+.stagger.in > *:nth-child(8){transition-delay:560ms;opacity:1;transform:translateY(0)}
+.stagger.in > *:nth-child(9){transition-delay:640ms;opacity:1;transform:translateY(0)}
+
+/* Section title reveal — line-by-line */
+.sec-head,.gate-hero,.cover-hero,.echo-text{
+  opacity:0;transform:translateY(30px) scale(.985);
+  transition:opacity 1s var(--apple-ease),transform 1s var(--apple-ease);
+  will-change:opacity,transform;
+}
+.sec-head.in,.gate-hero.in,.cover-hero.in,.echo-text.in{
+  opacity:1;transform:translateY(0) scale(1);
+}
+
+/* Mask Reveal — chapter giant numbers */
+.gate-num{
+  clip-path:inset(100% 0 0 0);
+  transition:clip-path 1.4s cubic-bezier(.22,1,.36,1);
+}
+.gate-num.in{clip-path:inset(0 0 0 0)}
+
+/* SVG stroke draw — Hub-Spoke lines + Timeline track */
+.hubspoke svg line,.hubspoke svg circle{
+  stroke-dasharray:600;stroke-dashoffset:600;
+  transition:stroke-dashoffset 1.6s var(--apple-ease);
+}
+.hubspoke.in svg line,.hubspoke.in svg circle{stroke-dashoffset:0}
+.hubspoke .hub-center{opacity:0;transform:translate(-50%,-50%) scale(.6);
+  transition:opacity 1s var(--apple-ease) .8s,transform 1s cubic-bezier(.22,1,.36,1) .8s}
+.hubspoke.in .hub-center{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.hubspoke .spoke-card{
+  opacity:0;transform:translate(-50%,-50%) scale(.85);
+  transition:opacity .6s var(--apple-ease),transform .6s var(--apple-ease);
+}
+.hubspoke.in .spoke-card{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.hubspoke.in .spoke-card:nth-child(3){transition-delay:1.2s}
+.hubspoke.in .spoke-card:nth-child(4){transition-delay:1.3s}
+.hubspoke.in .spoke-card:nth-child(5){transition-delay:1.4s}
+.hubspoke.in .spoke-card:nth-child(6){transition-delay:1.5s}
+.hubspoke.in .spoke-card:nth-child(7){transition-delay:1.6s}
+.hubspoke.in .spoke-card:nth-child(8){transition-delay:1.7s}
+
+/* Timeline track — line draw on reveal */
+.timeline-track::before{
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform 1.6s var(--apple-ease);
+}
+.timeline.in .timeline-track::before{transform:scaleX(1)}
+.timeline-node{opacity:0;transform:translateY(20px);
+  transition:opacity .5s var(--apple-ease),transform .5s var(--apple-ease)}
+.timeline.in .timeline-node{opacity:1;transform:translateY(0)}
+.timeline.in .timeline-node:nth-child(1){transition-delay:.2s}
+.timeline.in .timeline-node:nth-child(2){transition-delay:.35s}
+.timeline.in .timeline-node:nth-child(3){transition-delay:.5s}
+.timeline.in .timeline-node:nth-child(4){transition-delay:.65s}
+.timeline.in .timeline-node:nth-child(5){transition-delay:.8s}
+.timeline.in .timeline-node:nth-child(6){transition-delay:.95s}
+.timeline.in .timeline-node:nth-child(7){transition-delay:1.1s}
+.timeline.in .timeline-node:nth-child(8){transition-delay:1.25s}
+.timeline.in .timeline-node:nth-child(9){transition-delay:1.4s}
+
+/* Pyramid — top-down cascade */
+.pyramid .tier{opacity:0;transform:translateY(24px) scale(.97);
+  transition:opacity .8s var(--apple-ease),transform .8s var(--apple-ease)}
+.pyramid.in .tier-1{opacity:1;transform:translateY(0) scale(1);transition-delay:0ms}
+.pyramid.in .tier-2{opacity:1;transform:translateY(0) scale(1);transition-delay:.2s}
+.pyramid.in .tier-3{opacity:1;transform:translateY(0) scale(1);transition-delay:.4s}
+
+/* Sandwich (Frame Sandwich) — slide from sides */
+.sandwich .side.weak{opacity:0;transform:translateX(-30px);
+  transition:opacity .9s var(--apple-ease),transform .9s var(--apple-ease)}
+.sandwich .side.strong{opacity:0;transform:translateX(30px);
+  transition:opacity .9s var(--apple-ease) .15s,transform .9s var(--apple-ease) .15s}
+.sandwich.in .side.weak,.sandwich.in .side.strong{opacity:1;transform:translateX(0)}
+
+/* Splitframe ghost text drift */
+@keyframes ghost-drift{
+  0%,100%{transform:translate(0,0)}
+  50%{transform:translate(-12px,-8px)}
+}
+.splitframe .ghost{animation:ghost-drift 12s ease-in-out infinite}
+
+/* Animated gradient border — Decision Box·Pyramid tier-1·Annotated */
+@keyframes border-rotate{
+  0%{background-position:0% 0%}
+  100%{background-position:300% 0%}
+}
+.decision-box,.pyramid .tier-1,.annot{
+  position:relative;
+}
+.decision-box::after,.pyramid .tier-1::after,.annot::after{
+  content:'';position:absolute;inset:-1px;border-radius:inherit;
+  padding:1px;pointer-events:none;z-index:-1;
+  background:linear-gradient(90deg,
+    var(--c-yellow),var(--c-orange),var(--c-pink),var(--c-magenta),
+    var(--c-purple),var(--c-blue),var(--c-cyan),var(--c-green),
+    var(--c-yellow));
+  background-size:300% 100%;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:.5;
+  animation:border-rotate 8s linear infinite;
+}
+
+/* Subtle card 3D tilt on hover — JS-driven */
+.card,.ba,.stack-card,.archi-layer,.step,.spoke-card,.layer{
+  transform-style:preserve-3d;
+  transition:transform .3s var(--apple-ease),border-color .3s var(--apple-ease),box-shadow .3s var(--apple-ease);
+}
+.card.tilt,.ba.tilt,.spoke-card.tilt{
+  transition:none;
+}
+
+/* Hover glow lift */
+.card:hover,.ba:hover,.spoke-card:hover{
+  box-shadow:0 30px 80px rgba(255,36,105,.15),0 0 60px rgba(198,92,255,.1);
+}
+
+/* Number count-up — opacity placeholder while js animates */
+.count{font-variant-numeric:tabular-nums}
+
+/* Ambient — parallax driven via JS (no CSS animation conflict) */
+.monolith .ambient{will-change:transform}
+
+/* Cover hero parallax (scroll-linked) */
+.cover-hero,.gate-hero{
+  will-change:transform;
+}
+
+/* Echo text — line-by-line reveal */
+.echo-text{
+  opacity:1;transform:none;
+  transition:none;
+}
+.echo-text > span,.echo-text br{
+  display:inline-block;
+}
+
+/* Splitframe panel hover — depth shift */
+.splitframe .panel-a,.splitframe .panel-b{
+  transition:filter .5s var(--apple-ease);
+}
+.splitframe:hover .panel-a{filter:brightness(.7) saturate(.8)}
+.splitframe:hover .panel-b{filter:brightness(1.1)}
+
+/* Stack — wave reveal */
+.stack .stack-card{opacity:0;transform:translateX(-20px);
+  transition:opacity .6s var(--apple-ease),transform .6s var(--apple-ease)}
+.stack.in .stack-card:nth-child(1){opacity:1;transform:translateX(0);transition-delay:0ms}
+.stack.in .stack-card:nth-child(2){opacity:1;transform:translateX(0);transition-delay:.1s}
+.stack.in .stack-card:nth-child(3){opacity:1;transform:translateX(0);transition-delay:.2s}
+.stack.in .stack-card:nth-child(4){opacity:1;transform:translateX(0);transition-delay:.3s}
+.stack.in .stack-card:nth-child(5){opacity:1;transform:translateX(0);transition-delay:.4s}
+.stack.in .stack-card:nth-child(6){opacity:1;transform:translateX(0);transition-delay:.5s}
+
+/* Architecture layers — stagger from top */
+.archi .archi-layer{opacity:0;transform:translateX(-30px);
+  transition:opacity .7s var(--apple-ease),transform .7s var(--apple-ease)}
+.archi.in .archi-layer:nth-child(1){opacity:1;transform:translateX(0);transition-delay:0ms}
+.archi.in .archi-layer:nth-child(2){opacity:1;transform:translateX(0);transition-delay:.12s}
+.archi.in .archi-layer:nth-child(3){opacity:1;transform:translateX(0);transition-delay:.24s}
+.archi.in .archi-layer:nth-child(4){opacity:1;transform:translateX(0);transition-delay:.36s}
+.archi.in .archi-layer:nth-child(5){opacity:1;transform:translateX(0);transition-delay:.48s}
+
+/* Bento Asym — varied entrance */
+.bento-asym .ba{opacity:0;transform:translateY(40px) scale(.95);
+  transition:opacity .8s var(--apple-ease),transform .8s var(--apple-ease)}
+.bento-asym.in .ba:nth-child(1){opacity:1;transform:translateY(0) scale(1);transition-delay:0ms}
+.bento-asym.in .ba:nth-child(2){opacity:1;transform:translateY(0) scale(1);transition-delay:.12s}
+.bento-asym.in .ba:nth-child(3){opacity:1;transform:translateY(0) scale(1);transition-delay:.24s}
+.bento-asym.in .ba:nth-child(4){opacity:1;transform:translateY(0) scale(1);transition-delay:.36s}
+.bento-asym.in .ba:nth-child(5){opacity:1;transform:translateY(0) scale(1);transition-delay:.48s}
+.bento-asym.in .ba:nth-child(6){opacity:1;transform:translateY(0) scale(1);transition-delay:.6s}
+
+/* Compare table — row by row */
+.compare .row{opacity:0;transform:translateY(12px);
+  transition:opacity .5s var(--apple-ease),transform .5s var(--apple-ease)}
+.compare.in .row{opacity:1;transform:translateY(0)}
+.compare.in .row:nth-child(1){transition-delay:0ms}
+.compare.in .row:nth-child(2){transition-delay:.08s}
+.compare.in .row:nth-child(3){transition-delay:.16s}
+.compare.in .row:nth-child(4){transition-delay:.24s}
+.compare.in .row:nth-child(5){transition-delay:.32s}
+.compare.in .row:nth-child(6){transition-delay:.4s}
+.compare.in .row:nth-child(7){transition-delay:.48s}
+.compare.in .row:nth-child(8){transition-delay:.56s}
+
+/* Bigquote — premium reveal */
+.bigquote{
+  opacity:0;transform:translateY(30px);filter:blur(8px);
+  transition:opacity 1s var(--apple-ease),transform 1s var(--apple-ease),filter 1s var(--apple-ease);
+}
+.bigquote.in{opacity:1;transform:translateY(0);filter:blur(0)}
+
 /* Reduced motion */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
     transition-duration:.01ms !important;
   }
   html{scroll-behavior:auto}
+  .reveal,.reveal.in,.stagger > *,.sec-head,.gate-hero,.cover-hero,
+  .echo-text,.gate-num,.bigquote,.timeline-node,.archi-layer,.stack-card,
+  .ba,.tier,.row,.sandwich .side,.spoke-card,.hubspoke .hub-center{
+    opacity:1 !important;transform:none !important;clip-path:none !important;filter:none !important;
+  }
+  .hubspoke svg line,.hubspoke svg circle{stroke-dashoffset:0 !important}
+  .timeline-track::before{transform:scaleX(1) !important}
+  .decision-box::after,.pyramid .tier-1::after,.annot::after{animation:none !important}
 }
 
 /* Plain list */
@@ -2705,7 +2927,7 @@ window.addEventListener('scroll', () => {
 // Dot nav active
 const sections = document.querySelectorAll('section[id]');
 const dots = document.querySelectorAll('.dotnav a');
-const obs = new IntersectionObserver((entries) => {
+const navObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = entry.target.id;
@@ -2713,7 +2935,110 @@ const obs = new IntersectionObserver((entries) => {
     }
   });
 }, {rootMargin:'-40% 0px -40% 0px'});
-sections.forEach(s => obs.observe(s));
+sections.forEach(s => navObs.observe(s));
+
+/* =============== MOTION SYSTEM (reveal + tilt + parallax) =============== */
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!prefersReduced){
+  // 1. Reveal Observer — fade up on enter viewport
+  const revealTargets = document.querySelectorAll(
+    '.reveal, .stagger, .sec-head, .gate-hero, .cover-hero, .echo-text, .gate-num, ' +
+    '.bigquote, .timeline, .archi, .stack, .bento-asym, .pyramid, .sandwich, ' +
+    '.hubspoke, .compare'
+  );
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        e.target.classList.add('in');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, {rootMargin:'0px 0px -10% 0px', threshold:0.12});
+  revealTargets.forEach(el => revealObs.observe(el));
+
+  // 2. 3D Tilt — subtle, on hover, for cards (NOT spoke-card — fixed position)
+  const tiltCards = document.querySelectorAll('.card, .ba, .step');
+  tiltCards.forEach(card => {
+    let raf = null;
+    card.addEventListener('mousemove', (ev) => {
+      const rect = card.getBoundingClientRect();
+      const x = (ev.clientX - rect.left) / rect.width;
+      const y = (ev.clientY - rect.top) / rect.height;
+      const rotX = (0.5 - y) * 6;
+      const rotY = (x - 0.5) * 6;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      if (raf) cancelAnimationFrame(raf);
+      card.style.transform = '';
+    });
+  });
+
+  // 3. Ambient parallax — soft depth on cover/chapter gates
+  const ambients = document.querySelectorAll('.monolith .ambient');
+  let ticking = false;
+  function applyParallax(){
+    ambients.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const ch = window.innerHeight;
+      if (rect.bottom < 0 || rect.top > ch) return;
+      const center = rect.top + rect.height/2 - ch/2;
+      const ratio = center / ch;
+      el.style.transform = `translateY(${ratio * -50}px) scale(1.08)`;
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking){
+      requestAnimationFrame(applyParallax);
+      ticking = true;
+    }
+  }, {passive:true});
+  applyParallax();
+
+  // 4. Magnetic hub-center — subtle attraction
+  const hubCenters = document.querySelectorAll('.hubspoke');
+  hubCenters.forEach(hub => {
+    const center = hub.querySelector('.hub-center');
+    if (!center) return;
+    hub.addEventListener('mousemove', (ev) => {
+      const rect = hub.getBoundingClientRect();
+      const x = (ev.clientX - rect.left - rect.width/2) / rect.width;
+      const y = (ev.clientY - rect.top - rect.height/2) / rect.height;
+      center.style.transform = `translate(calc(-50% + ${x * 14}px), calc(-50% + ${y * 14}px))`;
+    });
+    hub.addEventListener('mouseleave', () => {
+      center.style.transform = 'translate(-50%, -50%)';
+    });
+  });
+
+  // 5. Echo text line-by-line reveal
+  const echoText = document.querySelectorAll('.echo-text');
+  echoText.forEach(et => {
+    const html = et.innerHTML;
+    // Wrap each "line" (split by <br>) in a span with delay
+    const parts = html.split(/<br\s*\/?>/i);
+    et.innerHTML = parts.map((line, i) =>
+      `<span style="display:inline-block;opacity:0;transform:translateY(20px) skewY(3deg);transition:all .8s cubic-bezier(.22,1,.36,1) ${i * 150}ms" class="echo-line">${line}</span>`
+    ).join('<br>');
+  });
+  const echoObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        e.target.querySelectorAll('.echo-line').forEach(s => {
+          s.style.opacity = '1';
+          s.style.transform = 'translateY(0) skewY(0)';
+        });
+        echoObs.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.3});
+  echoText.forEach(et => echoObs.observe(et));
+}
 </script>
 
 </body>
