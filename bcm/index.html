@@ -367,6 +367,47 @@ mjx-container[display="true"]{ overflow-x:auto; overflow-y:hidden; }
 /* nav right group — hamburger + lang-toggle */
 .nav-right{ display:flex; align-items:center; gap:var(--sp-3); }
 
+/* center visitor counter — black-on-black (visible only on selection)
+   + admin mode (?count=1 once → localStorage flag) shows in white */
+.nav-counter{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  display:inline-flex;
+  align-items:baseline;
+  gap:8px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.12em;
+  font-weight:600;
+  user-select:text;
+  -webkit-user-select:text;
+  pointer-events:auto;
+  white-space:nowrap;
+  color:#000;            /* same as nav background → invisible normally */
+  text-shadow:none;
+}
+.nav-counter .cnt-label{ color:#000; }
+.nav-counter .cnt-num{ color:#000; font-variant-numeric:tabular-nums; }
+/* selection reveals it on light highlight */
+.nav-counter::selection,
+.nav-counter *::selection{ background:#fff; color:#000; }
+.nav-counter::-moz-selection,
+.nav-counter *::-moz-selection{ background:#fff; color:#000; }
+
+/* admin mode — visible in white */
+html[data-counter="show"] .nav-counter,
+html[data-counter="show"] .nav-counter .cnt-label,
+html[data-counter="show"] .nav-counter .cnt-num{
+  color:rgba(255,255,255,.78);
+}
+
+/* hide on narrow viewport — nav center collides with brand+toggle */
+@media (max-width:640px){
+  .nav-counter{ display:none; }
+}
+
 /* hamburger button — inside nav, left of lang-toggle */
 .menu-toggle{
   appearance:none;
@@ -1027,6 +1068,10 @@ footer.foot p{ margin:0 0 var(--sp-2); }
   <div class="nav-brand">
     <span class="lang-ko">바버리안 연결망 모델</span>
     <span class="lang-en">Barbourian Connectivity Model</span>
+  </div>
+  <div class="nav-counter" id="navCounter" aria-label="Visitor count" title="">
+    <span class="cnt-label" aria-hidden="true">VISITS</span>
+    <span class="cnt-num" id="cntNum">·</span>
   </div>
   <div class="nav-right">
     <button type="button" class="menu-toggle" id="menuToggle" aria-controls="menuOverlay" aria-expanded="false" aria-label="섹션 메뉴 열기">
@@ -2308,6 +2353,46 @@ footer.foot p{ margin:0 0 var(--sp-2); }
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeMenu();
   });
+
+  // ====================================================================
+  // VISITOR COUNTER — counterapi.dev (no-auth, free)
+  // - +1 once per session (sessionStorage)
+  // - shows in nav center; black-on-black by default (selection reveals)
+  // - admin mode: ?count=1 → localStorage('bcm-counter')='show' → white text
+  // ====================================================================
+  (function(){
+    try {
+      var url = new URL(location.href);
+      var p = url.searchParams.get('count');
+      if (p === '1' || p === 'show') localStorage.setItem('bcm-counter','show');
+      else if (p === '0' || p === 'hide') localStorage.removeItem('bcm-counter');
+      if (localStorage.getItem('bcm-counter') === 'show') root.setAttribute('data-counter','show');
+    } catch(e){}
+
+    var numEl = document.getElementById('cntNum');
+    if (!numEl) return;
+    var NS = 'bcm-choi-build';
+    var KEY = 'visits';
+    var hitOnce = false;
+    try { hitOnce = sessionStorage.getItem('bcm-counted') === '1'; } catch(e){}
+    var ep = hitOnce
+      ? ('https://api.counterapi.dev/v1/' + NS + '/' + KEY)         // read only
+      : ('https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/up'); // increment
+
+    function fmt(n){
+      if (typeof n !== 'number') return '·';
+      return n.toLocaleString('en-US');
+    }
+    fetch(ep, { cache:'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){
+        if (j && typeof j.count === 'number'){
+          numEl.textContent = fmt(j.count);
+          try { sessionStorage.setItem('bcm-counted','1'); } catch(e){}
+        }
+      })
+      .catch(function(){ /* silent */ });
+  })();
 
   // reading progress
   var progressBar = document.getElementById('progressBar');
