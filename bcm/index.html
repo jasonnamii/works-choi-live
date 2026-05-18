@@ -2376,7 +2376,7 @@ footer.foot p{ margin:0 0 var(--sp-2); }
     var hitOnce = false;
     try { hitOnce = sessionStorage.getItem('bcm-counted') === '1'; } catch(e){}
     var ep = hitOnce
-      ? ('https://api.counterapi.dev/v1/' + NS + '/' + KEY)         // read only
+      ? ('https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/')   // read (trailing slash)
       : ('https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/up'); // increment
 
     function fmt(n){
