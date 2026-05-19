@@ -10,24 +10,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   Apple Canvas — Dual Tone · LV3 Vivid · Cinematic Pitch
-   인천 상상플랫폼 관객IP중심 PT v1.0
+   인천 상상플랫폼 관객 보유 IP 중심 활성화 PT v1.0
 ============================================================ */
 :root {
-  /* ground */
+  /* 배경 */
   --bg: #0a0a0f;
   --bg-alt: #111118;
   --bg-soft: #16161f;
   --line: rgba(255,255,255,0.08);
   --line-strong: rgba(255,255,255,0.16);
 
-  /* text */
+  /* 텍스트 */
   --text: #f5f5f7;
   --text-secondary: #d1d1d6;
   --text-tertiary: #9a9aa3;
   --headline: #ffffff;
 
-  /* vivid 25 — 폭넓은 컬러 스펙트럼 */
+  /* 포인트 컬러 */
   --v-orange: #ff7a00;
   --v-amber: #ffb800;
   --v-yellow: #ffd60a;
@@ -47,7 +46,7 @@
   --v-coral: #ff5f56;
   --v-rust: #ff4500;
 
-  /* highlighter 5 (형광펜) */
+  /* 강조 색상 */
   --hl-pink: #ff7ab6;
   --hl-yellow: #ffe066;
   --hl-cyan: #6fe3ff;
@@ -64,59 +63,26 @@ body { overflow-x: hidden; }
 img { max-width: 100%; height: auto; display: block; }
 
 /* ===========================================================
-   Top Bar — 햄버거 · 모드 토글
+   플로팅 햄버거 (우상단)
 =========================================================== */
-.topbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 24px;
-  background: rgba(10,10,15,0.75);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--line);
-}
-.brand {
-  font-weight: 900; font-size: 14px; letter-spacing: -0.01em;
-  background: linear-gradient(90deg, var(--v-orange), var(--v-pink), var(--v-purple), var(--v-azure));
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.brand small { display: block; font-size: 11px; font-weight: 500; color: var(--text-tertiary); -webkit-text-fill-color: var(--text-tertiary); margin-top: 2px; letter-spacing: 0; background: none; }
-.topbar-right { display: flex; align-items: center; gap: 10px; }
-
-/* 비공개 방문자 카운터 — 블랙 배경에 블랙 글자 (사실상 숨김) */
 .visitor-counter {
-  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  position: fixed; left: 8px; top: 8px; z-index: 800;
   font-family: 'Inter', monospace; font-size: 11px; font-weight: 700;
   color: #0a0a0f; background: transparent;
   letter-spacing: 0.06em;
   user-select: text; cursor: default;
   padding: 2px 6px;
   pointer-events: auto;
-  /* 텍스트는 있으나 배경과 동일색이라 안 보임. 드래그 선택하거나 dev tools에서만 확인 */
-}
-
-.mode-toggle {
-  display: inline-flex; background: rgba(255,255,255,0.06); border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px;
-}
-.mode-toggle button {
-  background: transparent; color: var(--text-tertiary); border: 0; cursor: pointer;
-  padding: 7px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.02em;
-  transition: all 0.25s var(--easing);
-  font-family: inherit;
-}
-.mode-toggle button.active {
-  background: linear-gradient(90deg, var(--v-pink), var(--v-purple));
-  color: #fff;
-  box-shadow: 0 0 24px rgba(255, 36, 105, 0.45);
 }
 
 .hamburger {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(255,255,255,0.06); border: 1px solid var(--line-strong);
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(20,20,28,0.85); border: 1px solid var(--line-strong);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
   transition: all 0.25s var(--easing);
 }
-.hamburger:hover { background: rgba(255,255,255,0.12); }
+.hamburger:hover { background: rgba(30,30,40,0.95); border-color: var(--v-pink); }
 .hamburger span {
   position: relative; width: 16px; height: 2px; background: var(--text); display: block;
 }
@@ -125,8 +91,11 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .hamburger span::before { top: -5px; }
 .hamburger span::after { top: 5px; }
+.floating-hamburger {
+  position: fixed; top: 18px; right: 18px; z-index: 1000;
+}
 
-/* Menu Panel */
+/* 목차 패널 */
 .menu-overlay {
   position: fixed; inset: 0; z-index: 2000;
   background: rgba(10,10,15,0.92); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
@@ -170,15 +139,17 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ===========================================================
-   Pages
+   페이지 영역
 =========================================================== */
 .page {
-  min-height: 100vh; padding: 110px 24px 140px;
-  border-bottom: 1px solid var(--line);
+  min-height: 100vh; padding: 56px clamp(24px, 4vw, 80px) 100px;
   position: relative;
 }
 .page-inner {
-  max-width: var(--max); margin: 0 auto;
+  /* 헤드라인·본문 모두 같은 가로 풀폭 (page padding만 양옆 여백) */
+  max-width: none;
+  width: 100%;
+  margin: 0 auto;
 }
 .eyebrow {
   display: block;
@@ -195,17 +166,17 @@ img { max-width: 100%; height: auto; display: block; }
 .eyebrow.violet { color: var(--v-violet); }
 
 .headline {
-  font-weight: 900; font-size: clamp(34px, 6.5vw, 84px); line-height: 1.02;
+  font-weight: 900; font-size: clamp(40px, 8vw, 140px); line-height: 1.02;
   letter-spacing: -0.035em; word-break: keep-all;
   color: var(--headline); margin-bottom: 24px;
 }
 .headline.mega {
-  font-size: clamp(44px, 9vw, 140px); line-height: 0.96;
+  font-size: clamp(52px, 11vw, 200px); line-height: 0.96;
 }
 .subhead {
-  font-weight: 700; font-size: clamp(18px, 2.2vw, 28px); line-height: 1.45;
+  font-weight: 700; font-size: clamp(20px, 2.8vw, 40px); line-height: 1.4;
   color: #ffffff; opacity: 0.96;
-  word-break: keep-all; margin-bottom: 24px;
+  word-break: keep-all; margin-bottom: 64px;
 }
 .body-text {
   font-size: clamp(15px, 1.3vw, 18px); line-height: 1.7; color: var(--text-secondary);
@@ -247,13 +218,56 @@ img { max-width: 100%; height: auto; display: block; }
 .card {
   background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
   border: 1px solid var(--line);
-  border-radius: 22px; padding: 28px;
+  border-radius: 22px; padding: 36px;
   transition: all 0.3s var(--easing);
 }
 .card:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+/* 비비드 컬러로 채워진 카드 — 검은 글씨 */
+.card.pack-color { border: 0; }
+.card.pack-color:hover { filter: brightness(1.06); }
+.card.pack-color .card-eyebrow,
+.card.pack-color .card-title,
+.card.pack-color .card-body { color: #0a0a0a !important; }
+.card.pack-color .card-body { color: rgba(0,0,0,0.78) !important; }
+/* P17 5패키지 — 풀쿼트가 위로 올라간 만큼 카드 폰트·패딩 압축 */
+.pack-grid-compact { gap: 12px !important; margin-top: 18px !important; }
+.pack-grid-compact .card.pack-color { padding: 24px 22px 26px; border-radius: 18px; min-height: 360px; }
+.pack-grid-compact .card.pack-color .card-eyebrow { font-size: clamp(11px, 0.85vw, 13px); margin-bottom: 12px; }
+.pack-grid-compact .card.pack-color .card-title { font-size: clamp(22px, 1.85vw, 28px); margin-bottom: 14px; line-height: 1.2; font-weight: 900; letter-spacing: -0.02em; }
+.pack-grid-compact .card.pack-color .card-body { font-size: clamp(13px, 0.95vw, 15px); line-height: 1.55; }
+.pack-grid-compact .card.pack-color .card-body .hl-dark {
+  background-color: rgba(0,0,0,0.78); color: #fff !important;
+  padding: 1px 9px; border-radius: 999px;
+  font-weight: 900; letter-spacing: -0.005em;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+/* 통합 형광펜 — 비비드 컬러 박스 위에서 사용하는 검은 하이라이트 */
+.signal-card .hl-dark,
+.phase-cell .hl-dark,
+.phase3-cell .hl-dark,
+.op-card .hl-dark,
+.flow-card .hl-dark,
+.ip-compact .hl-dark,
+.card.pack-color .hl-dark,
+.repeat-card .hl-dark {
+  background-color: rgba(0,0,0,0.78); color: #fff !important;
+  padding: 1px 10px; border-radius: 999px;
+  font-weight: 900; letter-spacing: -0.005em;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+/* 다크 배경 박스(.flow-card는 다크) — 노란 하이라이트 */
+.flow-card .hl-dark {
+  background-color: var(--hl-yellow); color: #0a0a0a !important;
+}
+/* 5열 세로형 — 패키지 5박스 한 줄 */
+.pack-grid-5 { grid-template-columns: repeat(5, 1fr) !important; }
+.pack-grid-5 .card.pack-color { display: flex; flex-direction: column; }
+.pack-grid-5 .card.pack-color .card-title { word-break: keep-all; }
+@media (max-width: 1100px) { .pack-grid-5 { grid-template-columns: repeat(3, 1fr) !important; } }
+@media (max-width: 700px)  { .pack-grid-5 { grid-template-columns: 1fr !important; } .pack-grid-compact .card.pack-color { min-height: 0; } }
 .card-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px; margin-top: 32px;
+  gap: 22px; margin-top: 56px;
 }
 .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
 .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
@@ -262,42 +276,48 @@ img { max-width: 100%; height: auto; display: block; }
   .card-grid[class*="cols-"] { grid-template-columns: 1fr !important; }
 }
 .card-eyebrow {
-  font-family: 'Inter', monospace; font-size: 12px; font-weight: 800;
+  font-family: 'Inter', monospace; font-size: clamp(13px, 1vw, 15px); font-weight: 800;
   letter-spacing: 0.12em; text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 .card-title {
-  font-size: clamp(18px, 1.7vw, 22px); font-weight: 800; line-height: 1.3;
-  color: #fff; margin-bottom: 10px; word-break: keep-all;
+  font-size: clamp(22px, 2.1vw, 30px); font-weight: 900; line-height: 1.25;
+  color: #fff; margin-bottom: 14px; word-break: keep-all; letter-spacing: -0.015em;
 }
 .card-body {
-  font-size: clamp(13px, 1.05vw, 15px); line-height: 1.6; color: var(--text-secondary);
-  word-break: keep-all;
+  font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: var(--text-secondary);
+  word-break: keep-all; font-weight: 500;
 }
 
-/* Compare matrix */
+/* 비교 표 */
 .matrix {
   width: 100%; border-collapse: separate; border-spacing: 0;
-  margin-top: 28px; font-size: clamp(13px, 1.1vw, 15px);
+  margin-top: 28px; font-size: clamp(18px, 1.55vw, 24px);
   border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
 }
 .matrix th, .matrix td {
-  padding: 16px 18px; text-align: left; vertical-align: top;
+  padding: 22px 26px; text-align: left; vertical-align: top;
   border-bottom: 1px solid var(--line);
-  word-break: keep-all;
+  word-break: keep-all; line-height: 1.45;
 }
 .matrix th {
   background: rgba(255,255,255,0.04);
   font-weight: 800; color: #fff;
-  font-size: 13px; letter-spacing: 0.04em;
+  font-size: clamp(14px, 1vw, 16px); letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 .matrix tr:last-child td { border-bottom: 0; }
-.matrix td { color: var(--text-secondary); }
+.matrix td { color: var(--text-secondary); font-weight: 600; }
 .matrix td strong { color: #fff; font-weight: 800; }
+.matrix td .hl-dark {
+  background-color: var(--hl-yellow); color: #0a0a0a !important;
+  padding: 1px 10px; border-radius: 999px;
+  font-weight: 900; letter-spacing: -0.005em;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
 .matrix tbody tr:hover td { background: rgba(255,255,255,0.025); }
 
-/* KPI Big Number */
+/* 주요 수치 */
 .bignum {
   display: flex; align-items: baseline; gap: 10px;
 }
@@ -309,7 +329,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 700; font-size: clamp(16px, 1.8vw, 22px); color: var(--text-secondary);
 }
 
-/* Pull quote */
+/* 강조 문장 */
 .pullquote {
   margin: 40px 0 32px;
   padding: 28px 32px;
@@ -320,7 +340,7 @@ img { max-width: 100%; height: auto; display: block; }
   border-radius: 0 18px 18px 0;
 }
 
-/* Section anchor + page chip */
+/* 섹션 표시 */
 .page-chip {
   display: flex; align-items: center; gap: 10px;
   width: fit-content;
@@ -343,7 +363,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-family: 'Inter', sans-serif; letter-spacing: 0.02em;
 }
 
-/* Number List */
+/* 번호 목록 */
 .numlist { margin-top: 32px; display: grid; gap: 14px; }
 .numlist li {
   list-style: none; padding: 18px 22px;
@@ -361,7 +381,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .numlist li strong { color: #fff; font-weight: 800; }
 
-/* Collapsible details */
+/* 세부 설명 */
 details.callout {
   margin-top: 28px;
   background: rgba(255,255,255,0.025); border: 1px solid var(--line);
@@ -386,10 +406,58 @@ details.callout[open] > summary::before { content: '−'; }
 details.callout .callout-body {
   padding: 0 22px 22px; color: var(--text-secondary); line-height: 1.7;
   font-size: clamp(14px, 1.1vw, 16px); word-break: keep-all;
+  overflow-wrap: anywhere;
 }
+details.callout .callout-body p { max-width: 100%; }
+details.callout .callout-body p.kw-line { word-break: break-word; overflow-wrap: anywhere; line-height: 1.8; }
 details.callout .callout-body p + p { margin-top: 14px; }
 
-/* Three repeat quotes */
+/* 부록 통합 페이지 — 섹션 헤더 (A·B·C·D·E) */
+.app-h {
+  font-size: clamp(28px, 3.2vw, 48px);
+  font-weight: 900; letter-spacing: -0.02em;
+  color: #fff;
+  margin: 48px 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--line-strong);
+  display: flex; align-items: baseline; gap: 14px;
+}
+.app-h:first-of-type { margin-top: 32px; }
+
+/* 부록 A~E 컬러 매핑 — 본문 비비드 톤과 동기화 */
+.app-h .app-letter {
+  font-size: 1.15em; font-weight: 900; letter-spacing: -0.03em;
+  background-clip: text; -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.app-h.app-A { border-bottom-color: rgba(255,122,0,0.55); }
+.app-h.app-A .app-letter { background-image: linear-gradient(90deg, var(--v-yellow), var(--v-orange)); }
+.app-h.app-B { border-bottom-color: rgba(255,36,105,0.55); }
+.app-h.app-B .app-letter { background-image: linear-gradient(90deg, var(--v-orange), var(--v-pink), var(--v-red)); }
+.app-h.app-C { border-bottom-color: rgba(155,92,255,0.55); }
+.app-h.app-C .app-letter { background-image: linear-gradient(90deg, var(--v-pink), var(--v-purple)); }
+.app-h.app-D { border-bottom-color: rgba(0,146,255,0.55); }
+.app-h.app-D .app-letter { background-image: linear-gradient(90deg, var(--v-purple), var(--v-azure), var(--v-blue)); }
+.app-h.app-E { border-bottom-color: rgba(7,237,33,0.55); }
+.app-h.app-E .app-letter { background-image: linear-gradient(90deg, var(--v-cyan), var(--v-emerald), var(--v-lime)); }
+
+/* 부록 F (FAQ) — 콜아웃 폰트 2배 강화 */
+#pF details.callout > summary,
+#pApp details.callout > summary {
+  padding: 26px 32px; font-size: 28px; gap: 18px;
+}
+#pF details.callout > summary::before,
+#pApp details.callout > summary::before {
+  width: 36px; height: 36px; font-size: 26px;
+}
+#pF details.callout .callout-body,
+#pApp details.callout .callout-body {
+  padding: 0 32px 30px; font-size: 24px; line-height: 1.7;
+}
+#pF details.callout .callout-body p + p,
+#pApp details.callout .callout-body p + p { margin-top: 20px; }
+
+/* 핵심 메시지 카드 */
 .repeat-row {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
   margin-top: 36px;
@@ -397,60 +465,75 @@ details.callout .callout-body p + p { margin-top: 14px; }
 @media (max-width: 880px) { .repeat-row { grid-template-columns: 1fr; } }
 .repeat-card {
   padding: 24px; border-radius: 20px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-  border: 1px solid var(--line-strong);
+  border: 1px solid transparent;
 }
+.repeat-card:nth-child(1) { background: var(--v-pink); border-color: var(--v-pink); }
+.repeat-card:nth-child(2) { background: var(--v-cyan); border-color: var(--v-cyan); }
+.repeat-card:nth-child(3) { background: var(--v-lime); border-color: var(--v-lime); }
 .repeat-card .tag {
   font-family: 'Inter', monospace; font-size: 11px; font-weight: 800;
   letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px;
   padding: 4px 10px; border-radius: 999px;
   display: inline-block;
+  background: rgba(0,0,0,0.18) !important;
+  color: #0a0a0a !important;
 }
 .repeat-card .quote {
   font-weight: 800; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.5;
-  color: #fff; word-break: keep-all;
+  color: #0a0a0a; word-break: keep-all;
 }
-.tag-1 { background: rgba(255,36,105,0.15); color: var(--hl-pink); }
-.tag-2 { background: rgba(0,201,255,0.15); color: var(--hl-cyan); }
-.tag-3 { background: rgba(173,255,47,0.15); color: var(--hl-lime); }
+.repeat-card .quote .hl { color: #0a0a0a; background: rgba(0,0,0,0.12); }
 
-/* Phase row */
+/* 단계 구성 */
 .phase-row {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-  margin-top: 40px; border: 1px solid var(--line); border-radius: 22px; overflow: hidden;
+  margin-top: 64px; border: 1px solid var(--line); border-radius: 22px; overflow: hidden;
 }
 @media (max-width: 880px) { .phase-row { grid-template-columns: 1fr; } }
+.phase-row { border: 0 !important; gap: 22px !important; border-radius: 0 !important; overflow: visible !important; }
 .phase-cell {
-  padding: 32px 28px;
-  border-right: 1px solid var(--line);
-  background: rgba(255,255,255,0.02);
+  padding: 34px 28px;
+  border: 0 !important;
+  border-radius: 22px;
   position: relative;
+  min-height: 240px;
 }
-.phase-cell:last-child { border-right: 0; }
+.phase-cell:nth-child(1) { background: var(--v-pink); }
+.phase-cell:nth-child(2) { background: var(--v-violet); }
+.phase-cell:nth-child(3) { background: var(--v-cyan); }
+
+/* p4 — 계단형 성장 흐름 (위쪽 라인이 단계적으로 올라감) */
+#p4 .phase-row { align-items: stretch; }
+#p4 .phase-cell { align-self: stretch; }
+#p4 .phase-cell:nth-child(1) { margin-top: 100px; }
+#p4 .phase-cell:nth-child(2) { margin-top: 50px; }
+#p4 .phase-cell:nth-child(3) { margin-top: 0; }
 @media (max-width: 880px) {
-  .phase-cell { border-right: 0; border-bottom: 1px solid var(--line); }
-  .phase-cell:last-child { border-bottom: 0; }
+  #p4 .phase-cell:nth-child(1),
+  #p4 .phase-cell:nth-child(2),
+  #p4 .phase-cell:nth-child(3) { margin-top: 0; }
 }
 .phase-num {
   font-family: 'Inter', sans-serif; font-weight: 900;
-  font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: -0.03em;
+  font-size: clamp(56px, 6.8vw, 88px); line-height: 1; letter-spacing: -0.03em;
+  color: #0a0a0a !important;
+  background: none !important; -webkit-text-fill-color: #0a0a0a !important;
 }
-.phase-num.p1 { background: linear-gradient(180deg, var(--v-orange), var(--v-pink)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-.phase-num.p2 { background: linear-gradient(180deg, var(--v-violet), var(--v-azure)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-.phase-num.p3 { background: linear-gradient(180deg, var(--v-emerald), var(--v-teal)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .phase-title {
-  font-weight: 900; font-size: clamp(20px, 2vw, 28px); line-height: 1.2; margin: 14px 0 10px;
-  color: #fff; letter-spacing: -0.02em;
+  font-weight: 900; font-size: clamp(28px, 2.8vw, 40px); line-height: 1.2; margin: 18px 0 14px;
+  color: #0a0a0a; letter-spacing: -0.02em;
 }
 .phase-meta {
-  font-family: 'Inter', monospace; font-size: 12px; color: var(--text-tertiary);
-  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px;
+  font-family: 'Inter', monospace; font-size: clamp(14px, 1.1vw, 16px); color: rgba(0,0,0,0.65);
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; font-weight: 700;
 }
 .phase-body {
-  font-size: 14px; line-height: 1.65; color: var(--text-secondary); word-break: keep-all;
+  font-size: clamp(17px, 1.4vw, 22px); line-height: 1.55; color: rgba(0,0,0,0.78); word-break: keep-all;
+  font-weight: 600;
 }
+.phase-cell .phase-body strong { color: #0a0a0a; font-weight: 900; }
 
-/* Floating Controls */
+/* 하단 고정 버튼 */
 .floating-bottom {
   position: fixed; right: 24px; bottom: 24px; z-index: 900;
   display: flex; flex-direction: column; gap: 10px;
@@ -471,92 +554,28 @@ details.callout .callout-body p + p { margin-top: 14px; }
 }
 .float-btn svg { width: 20px; height: 20px; }
 
-/* PT mode navigation */
-.pt-nav {
-  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-  z-index: 900;
-  display: none;
-  align-items: center; gap: 14px;
-  padding: 8px 14px;
-  background: rgba(20,20,28,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-}
-body.pt-mode .pt-nav { display: inline-flex; }
-.pt-nav button {
-  background: transparent; color: var(--text); border: 0;
-  width: 36px; height: 36px; border-radius: 50%;
-  cursor: pointer; font-size: 18px; display: inline-flex; align-items: center; justify-content: center;
-  transition: all 0.2s var(--easing);
-}
-.pt-nav button:hover { background: rgba(255,255,255,0.08); }
-.pt-nav .counter {
-  font-family: 'Inter', monospace; font-size: 13px; font-weight: 800;
-  color: var(--text); min-width: 60px; text-align: center; letter-spacing: 0.04em;
-}
+/* PT 보기 이동 */
 
-/* PT mode page behavior — 16:9 fit-to-viewport, no scroll */
-body.pt-mode { overflow: hidden; }
-body.pt-mode .page {
-  display: none;
-}
-body.pt-mode .page.current {
-  display: flex;
-  align-items: center; justify-content: center;
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  padding: 64px 16px 72px;
-  overflow: hidden;
-  animation: pageIn 0.45s var(--easing);
-}
-/* Inner stage: enforce 16:9, auto-scale to fit */
-body.pt-mode .page.current .page-inner {
-  width: 100%;
-  max-width: min(1800px, calc((100vh - 136px) * 16 / 9));
-  aspect-ratio: 16 / 9;
-  max-height: calc(100vh - 136px);
-  overflow: hidden;
-  display: flex; flex-direction: column; justify-content: center;
-  position: relative;
-  padding: clamp(40px, 4.5vmin, 80px) clamp(48px, 5.5vmin, 96px);
-  border-radius: 24px;
-  background: var(--bg);
-}
-/* In PT mode, callouts collapse to a single floating chip */
-body.pt-mode .page.current details.callout {
-  position: absolute;
-  left: clamp(28px, 3vw, 56px);
-  bottom: clamp(28px, 3vw, 56px);
-  right: clamp(28px, 3vw, 56px);
-  margin-top: 0;
-  max-height: calc(100% - 60px);
-  z-index: 5;
-}
-body.pt-mode .page.current details.callout:not([open]) {
-  background: rgba(20,20,28,0.85);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  width: fit-content; right: auto;
-}
-body.pt-mode .page.current details.callout[open] {
-  background: rgba(15,15,22,0.94);
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  border-color: var(--line-strong);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
+/* PT 보기 — 16:9 화면 맞춤 */
+
+/* 내부 화면 — 16:9 비율 유지 및 자동 맞춤 */
+
+/* PT 보기에서는 세부 설명을 하단 칩 형태로 표시 */
+
 @keyframes pageIn {
   from { opacity: 0; transform: scale(0.985); }
   to { opacity: 1; transform: scale(1); }
 }
 
 /* ===========================================================
-   Page Hero (이미지 레이어드) — 두 모드 공용
+   이미지형 페이지 헤더 — 공통
 =========================================================== */
 .page-hero {
   position: relative;
   border-radius: 22px; overflow: hidden;
   background: var(--bg-alt);
   isolation: isolate;
-  min-height: 460px;
+  min-height: 360px;
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: clamp(28px, 4vw, 56px);
 }
@@ -575,160 +594,63 @@ body.pt-mode .page.current details.callout[open] {
   z-index: -1;
 }
 .page-hero .hero-stack { position: relative; z-index: 1; max-width: 92%; }
+.page-hero .subhead { margin-bottom: 0; }
+#p3 .page-hero { min-height: 300px; }
 .page-hero .page-chip { color: rgba(255,255,255,0.85); }
 .page-hero .eyebrow { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(0,0,0,0.25); }
 
-/* PT mode — page-hero fills inner stage */
-body.pt-mode .page.current .page-hero {
-  position: absolute; inset: 0; border-radius: 24px;
-  min-height: 0; padding: clamp(36px, 4vw, 64px);
-  justify-content: center;
-}
-body.pt-mode .page.current .page-hero .hero-stack { max-width: 80%; }
+/* PT 보기 — 이미지형 헤더 화면 맞춤 */
 
 /* ===========================================================
-   PT mode — 시원한 타이포 & 노스크롤 fit
+   PT 보기 — 큰 타이포와 화면 맞춤
 =========================================================== */
-body.pt-mode .page.current .page-inner {
-  font-size: clamp(14px, 2.1vmin, 22px);
-}
-body.pt-mode .page.current .headline {
-  font-size: clamp(40px, 8vmin, 110px);
-  line-height: 0.98;
-  margin-bottom: 0.35em;
-}
-body.pt-mode .page.current .headline.mega {
-  font-size: clamp(52px, 12vmin, 180px);
-  line-height: 0.94;
-}
-body.pt-mode .page.current .subhead {
-  font-size: clamp(20px, 3.2vmin, 38px);
-  line-height: 1.35;
-  margin-bottom: 0.8em;
-}
-body.pt-mode .page.current .body-text {
-  font-size: clamp(15px, 1.9vmin, 22px);
-  line-height: 1.55;
-}
-body.pt-mode .page.current .matrix {
-  font-size: clamp(13px, 1.7vmin, 19px);
-  margin-top: 0.8em;
-}
-body.pt-mode .page.current .matrix th,
-body.pt-mode .page.current .matrix td {
-  padding: clamp(8px, 1.3vmin, 16px) clamp(10px, 1.6vmin, 20px);
-}
-body.pt-mode .page.current .pullquote {
-  font-size: clamp(17px, 2.5vmin, 30px);
-  line-height: 1.4;
-  margin: 0.8em 0; padding: clamp(18px, 2.2vmin, 28px) clamp(22px, 2.6vmin, 34px);
-}
-body.pt-mode .page.current .card { padding: clamp(18px, 2.2vmin, 28px); }
-body.pt-mode .page.current .card-title { font-size: clamp(17px, 2.2vmin, 26px); line-height: 1.25; }
-body.pt-mode .page.current .card-body { font-size: clamp(13px, 1.65vmin, 19px); line-height: 1.5; }
-body.pt-mode .page.current .card-eyebrow { font-size: clamp(11px, 1.35vmin, 14px); }
-body.pt-mode .page.current .card-grid { gap: clamp(10px, 1.3vmin, 18px); margin-top: 0.7em; }
-body.pt-mode .page.current .numlist { gap: clamp(8px, 1vmin, 14px); margin-top: 0.7em; }
-body.pt-mode .page.current .numlist li {
-  padding: clamp(12px, 1.6vmin, 22px) clamp(14px, 1.9vmin, 24px);
-  font-size: clamp(14px, 1.8vmin, 21px);
-}
-body.pt-mode .page.current .numlist li .n { font-size: clamp(20px, 2.6vmin, 32px); }
-body.pt-mode .page.current .phase-row { margin-top: 0.8em; }
-body.pt-mode .page.current .phase-cell { padding: clamp(18px, 2.6vmin, 36px) clamp(18px, 2.4vmin, 32px); }
-body.pt-mode .page.current .phase-num { font-size: clamp(40px, 6.5vmin, 88px); }
-body.pt-mode .page.current .phase-title { font-size: clamp(20px, 2.8vmin, 34px); margin: 0.4em 0 0.3em; line-height: 1.2; }
-body.pt-mode .page.current .phase-body { font-size: clamp(13px, 1.7vmin, 19px); line-height: 1.5; }
-body.pt-mode .page.current .phase-meta { font-size: clamp(11px, 1.35vmin, 14px); }
-body.pt-mode .page.current .repeat-row { margin-top: 0.7em; gap: clamp(12px, 1.4vmin, 20px); }
-body.pt-mode .page.current .repeat-card { padding: clamp(18px, 2.4vmin, 30px); }
-body.pt-mode .page.current .repeat-card .quote { font-size: clamp(15px, 2vmin, 24px); line-height: 1.45; }
-body.pt-mode .page.current .repeat-card .tag { font-size: clamp(11px, 1.3vmin, 14px); margin-bottom: 0.8em; }
-body.pt-mode .page.current .eyebrow { font-size: clamp(12px, 1.4vmin, 15px); margin-bottom: 0.8em; padding: 5px 14px; }
-body.pt-mode .page.current .page-chip { font-size: clamp(12px, 1.4vmin, 15px); margin-bottom: 0.6em; }
-body.pt-mode .page.current .hero-title { font-size: clamp(72px, 14vmin, 220px); line-height: 0.92; margin-bottom: 0.35em; letter-spacing: -0.045em; }
-body.pt-mode .page.current .hero-sub { font-size: clamp(22px, 3.6vmin, 44px); line-height: 1.32; margin-bottom: 0.6em; }
-body.pt-mode .page.current .hero-foot { font-size: clamp(14px, 1.8vmin, 20px); line-height: 1.55; }
-body.pt-mode .page.current .hero-meta { font-size: clamp(12px, 1.4vmin, 15px); margin-bottom: 1em; }
-body.pt-mode .page.current .bignum .num { font-size: clamp(56px, 9vmin, 130px); }
-body.pt-mode .page.current .bignum .unit { font-size: clamp(15px, 2vmin, 24px); }
+
 /* hero page tighter on PT — apply 16:9 stage to hero-inner too */
-body.pt-mode .page.current.hero { padding: 64px 16px 72px; }
-body.pt-mode .page.current.hero .hero-inner {
-  width: 100%;
-  max-width: min(1800px, calc((100vh - 136px) * 16 / 9));
-  aspect-ratio: 16 / 9;
-  max-height: calc(100vh - 136px);
-  overflow: hidden;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: clamp(40px, 4.5vmin, 80px) clamp(48px, 5.5vmin, 96px);
-}
-body.pt-mode .page.current details.callout > summary {
-  padding: clamp(12px, 1.6vmin, 20px) clamp(16px, 2vmin, 26px);
-  font-size: clamp(13px, 1.6vmin, 17px);
-}
-body.pt-mode .page.current details.callout .callout-body {
-  padding: 0 clamp(16px, 2vmin, 26px) clamp(16px, 2vmin, 26px);
-  font-size: clamp(13px, 1.6vmin, 18px);
-  line-height: 1.6;
-}
-/* hide page-hero img bg in PT mode if the page-hero is the WHOLE page (full bleed) */
-body.pt-mode .page.current .page-hero {
-  background: var(--bg);
-}
 
-/* If a page contains a page-hero + extra content, in PT mode the page-hero becomes the full backdrop */
-body.pt-mode .page.current .page-inner:has(> .page-hero) > :not(.page-hero):not(details) {
-  position: relative;
-  z-index: 2;
-  background: rgba(10,10,15,0.78);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: clamp(14px, 1.6vmin, 22px);
-  margin-top: clamp(8px, 1.2vmin, 18px);
-}
-body.pt-mode .page.current .page-inner:has(> .page-hero) {
-  padding: 0;
-}
-body.pt-mode .page.current .page-inner:has(> .page-hero) > .page-hero {
-  flex: 1 1 auto;
-}
+/* PT 보기에서 이미지형 헤더를 전체 배경으로 표시 */
 
-/* In PT mode, hide secondary body text on hero pages to avoid overflow — let image speak */
-body.pt-mode .page.current .page-inner:has(> .page-hero) > .body-text {
-  display: none;
-}
+/* 이미지형 헤더와 본문이 함께 있는 페이지는 PT 보기에서 이미지를 배경으로 사용 */
+
+/* PT 보기에서는 이미지형 페이지의 보조 본문을 숨겨 화면 넘침을 방지 */
+
+/* ===========================================================
+   PT 보기 보정 패치 — 16:9 fit 안정화 · 콜아웃 칩 강제 · 헤로 본문 정리
+=========================================================== */
+/* 1. 콜아웃 — PT 모드에서 absolute 해제 · 흐름 배치 · 토글 정상화 */
+
+/* 2. 이미지형 헤더 + 본문 페이지의 본문 박스 오버레이 정리
+      — 본문 박스가 헤로 이미지 위에 겹치며 가독성 깨지는 문제 보정 */
+
+/* 3. 본문이 viewport 16:9를 넘는 페이지는 잘림 대신 자동 축소 + 스크롤 폴백 */
+
+/* 4. (병합) details 흐름 배치는 패치 1번에서 일괄 처리 */
+
+/* 5. 헤로 페이지(.hero.current)의 inner 박스도 자동 스크롤 허용 */
+
+/* ===========================================================
+   PT 보기 보정 패치 2차 — 이미지형 헤더+본문 페이지 레이아웃 재설계
+   기존 580·692행은 헤로를 absolute로 띄워 본문이 그 위에 떠 겹침.
+   본문이 있는 헤로 페이지에서는 헤로를 흐름 내 상단 박스로 전환.
+=========================================================== */
+
+/* 헤로 타이포 축소 — 헤로가 작아졌으므로 본문과 균형 */
+
+/* 본문(.body-text)을 헤로+본문 페이지에서는 다시 노출 */
 
 /* Hint */
-.hint {
-  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
-  z-index: 800; display: none;
-  padding: 8px 14px; border-radius: 999px;
-  background: rgba(20,20,28,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--line);
-  font-family: 'Inter', monospace; font-size: 11px; color: var(--text-tertiary);
-  letter-spacing: 0.08em;
-}
-body.pt-mode .hint { display: inline-block; }
-.hint kbd {
-  background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px;
-  font-family: inherit; color: var(--text);
-}
 
 /* HERO */
 .hero {
-  min-height: 100vh; padding: 110px 24px 80px;
+  min-height: 100vh; padding: 64px clamp(24px, 4vw, 80px) 80px;
   display: flex; align-items: center;
   background:
     radial-gradient(ellipse at 20% 30%, rgba(255,36,105,0.18), transparent 50%),
     radial-gradient(ellipse at 80% 70%, rgba(0,146,255,0.18), transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(155,92,255,0.10), transparent 60%),
     var(--bg);
-  border-bottom: 1px solid var(--line);
 }
 .hero-inner {
-  max-width: var(--max); margin: 0 auto; width: 100%;
+  max-width: none; width: 100%;
 }
 .hero-meta {
   font-family: 'Inter', monospace; font-size: 12px; letter-spacing: 0.18em;
@@ -748,33 +670,16 @@ body.pt-mode .hint { display: inline-block; }
 }
 .hero-foot {
   font-size: clamp(14px, 1.2vw, 17px); color: var(--text-secondary); line-height: 1.6;
-  max-width: 760px; word-break: keep-all;
+  max-width: 1280px; word-break: keep-all;
 }
-
-/* Scroll mode side dotnav (optional) */
-.dotnav {
-  position: fixed; right: 14px; top: 50%; transform: translateY(-50%);
-  z-index: 700; display: none;
-  flex-direction: column; gap: 8px;
-}
-body:not(.pt-mode) .dotnav { display: flex; }
-@media (max-width: 900px) { .dotnav { display: none !important; } }
-.dotnav button {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(255,255,255,0.18); border: 0; cursor: pointer;
-  transition: all 0.25s var(--easing); padding: 0;
-}
-.dotnav button.active { background: var(--v-pink); transform: scale(1.5); box-shadow: 0 0 12px rgba(255,36,105,0.6); }
 
 /* Responsive */
 @media (max-width: 600px) {
-  .topbar { padding: 10px 14px; }
-  .brand small { display: none; }
-  .page { padding: 100px 18px 100px; }
-  .hero { padding: 100px 18px 60px; }
+  .floating-hamburger { top: 12px; right: 12px; }
+  .page { padding: 48px 18px 80px; }
+  .hero { padding: 64px 18px 60px; }
   .menu-inner { padding: 80px 18px 60px; }
   .floating-bottom { right: 14px; bottom: 14px; }
-  .pt-nav { bottom: 14px; }
   .pullquote { padding: 22px 22px; }
   .card { padding: 22px; }
 }
@@ -789,35 +694,661 @@ button:focus-visible, .menu-item:focus-visible {
   outline: 2px solid var(--v-cyan); outline-offset: 2px;
 }
 
-/* Print-ish friendly fallback */
+/* ===========================================================
+   PAGE 1 — 4기둥 카드 (관객·행사·운영자·세일즈)
+=========================================================== */
+.four-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin: 56px 0 28px;
+}
+.pillar {
+  position: relative;
+  padding: 36px 28px 32px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 240px;
+  overflow: hidden;
+  transition: transform 0.25s var(--easing), filter 0.25s var(--easing);
+}
+.pillar:hover { transform: translateY(-3px); filter: brightness(1.08); }
+.pillar-ico {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.12);
+  color: #0a0a0a;
+}
+.pillar-ico svg { width: 24px; height: 24px; }
+.pillar-title {
+  font-size: 32px; font-weight: 900; letter-spacing: -0.02em; color: #0a0a0a;
+}
+.pillar-sub {
+  font-size: 18px; font-weight: 600; color: rgba(0,0,0,0.75); line-height: 1.45;
+}
+/* 박스 면을 비비드 원색으로 채움 — 글자 전부 블랙 */
+.pillar-pink   { background: var(--v-pink);   border-color: var(--v-pink); }
+.pillar-yellow { background: var(--v-yellow); border-color: var(--v-yellow); }
+.pillar-cyan   { background: var(--v-cyan);   border-color: var(--v-cyan); }
+.pillar-lime   { background: var(--v-lime);   border-color: var(--v-lime); }
+.pillars-foot {
+  font-size: 20px; color: var(--text-secondary); line-height: 1.55; font-weight: 500;
+  margin: 10px 0 22px; padding-left: 4px;
+}
+
+/* PT 모드 — 4기둥 카드 폰트 업스케일 */
+
+/* ===========================================================
+   PAGE 1·2 — 긴 헤드라인 폰트 보정 (한 줄 가능하도록 약간 축소)
+=========================================================== */
+.page[data-num="01"] .headline, .page[data-num="02"] .headline {
+  font-size: clamp(36px, 6.5vw, 110px);
+  line-height: 1.05;
+}
+
+/* ===========================================================
+   PAGE 3 — Signal 2카드 + 메트릭
+=========================================================== */
+.signal-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
+  margin: 40px 0 24px;
+}
+.signal-card {
+  padding: 32px 30px; border-radius: 20px;
+  border: 1px solid transparent;
+  min-height: 280px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.signal-warm { background: var(--v-yellow); border-color: var(--v-yellow); }
+.signal-cool { background: var(--v-cyan);   border-color: var(--v-cyan); }
+.signal-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+.signal-eyebrow {
+  font-family: 'Inter', monospace; font-size: 12px; font-weight: 800;
+  color: rgba(0,0,0,0.7); letter-spacing: 0.18em;
+  padding: 4px 10px; border: 1px solid rgba(0,0,0,0.25); border-radius: 999px;
+}
+.signal-metric { text-align: right; display: flex; flex-direction: column; gap: 2px; }
+.signal-num {
+  font-size: clamp(44px, 5.5vw, 92px); font-weight: 900; line-height: 1;
+  letter-spacing: -0.045em; color: #0a0a0a;
+  background: none !important; -webkit-text-fill-color: #0a0a0a !important;
+}
+.signal-unit { font-size: 1em; margin-left: 4px; }
+.signal-label {
+  font-size: clamp(15px, 1.2vw, 19px);
+  color: rgba(0,0,0,0.78); font-weight: 800;
+  margin-top: 6px;
+}
+.signal-title { font-size: clamp(28px, 3vw, 42px); font-weight: 900; color: #0a0a0a; margin-bottom: 12px; letter-spacing: -0.02em; line-height: 1.2; }
+.signal-sub { font-size: clamp(17px, 1.5vw, 22px); font-weight: 600; color: rgba(0,0,0,0.78); line-height: 1.5; }
+@media (max-width: 800px) { .signal-grid { grid-template-columns: 1fr; } }
+
+/* ===========================================================
+   PAGE 6 — IP 그리드 (관객 보유 IP 7유형)
+=========================================================== */
+.ip-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+  margin: 20px 0;
+}
+.ip-card {
+  padding: 22px 26px; border-radius: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+  transition: border-color 0.2s var(--easing);
+}
+.ip-card:hover { border-color: var(--line-strong); }
+.ip-tag {
+  display: inline-block; font-size: 17px; font-weight: 800;
+  color: var(--hl-pink); margin-bottom: 14px;
+  padding: 5px 14px; border: 1px solid rgba(255,122,182,0.35);
+  border-radius: 999px; background: rgba(255,122,182,0.08);
+}
+.ip-body { display: grid; grid-template-columns: 1fr 40px 1.4fr; align-items: center; gap: 16px; font-size: 22px; line-height: 1.4; }
+.ip-in { color: var(--text-secondary); font-weight: 500; }
+.ip-arrow { text-align: center; color: var(--v-orange); font-weight: 700; font-size: 26px; }
+.ip-out { color: var(--headline); font-weight: 700; }
+@media (max-width: 900px) { .ip-grid { grid-template-columns: 1fr; } .ip-body { grid-template-columns: 1fr; } .ip-arrow { display: none; } }
+
+/* PAGE 9 — 가로 Flow 타임라인 (즉시 → 1개월 → 3개월 → 6개월) */
+.flowline {
+  position: relative;
+  margin: 56px 0 36px;
+}
+.flowline-track {
+  position: absolute; left: 4%; right: 4%; top: 46px; height: 2px;
+  background: linear-gradient(90deg,
+    var(--v-pink) 0%, var(--v-pink) 12%,
+    var(--v-orange) 25%, var(--v-yellow) 38%,
+    var(--v-cyan) 62%, var(--v-blue) 75%,
+    var(--v-lime) 88%, var(--v-emerald) 100%);
+  opacity: 0.55; border-radius: 999px;
+  z-index: 0;
+}
+.flowline-stages {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.flow-stage { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.flow-node {
+  width: 92px; height: 92px; border-radius: 999px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #fff; font-weight: 900; letter-spacing: -0.01em;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 0 0 2px rgba(255,255,255,0.18);
+  margin-bottom: 16px;
+}
+.flow-node .flow-when { font-size: 22px; line-height: 1; }
+.flow-node .flow-sub { font-size: 11px; opacity: 0.9; margin-top: 4px; letter-spacing: 0.06em; }
+.flow-stage.s-now  .flow-node { background: radial-gradient(circle at 30% 30%, var(--v-pink), #b3144d); }
+.flow-stage.s-1m   .flow-node { background: radial-gradient(circle at 30% 30%, var(--v-yellow), var(--v-orange)); color:#1a1208; }
+.flow-stage.s-3m   .flow-node { background: radial-gradient(circle at 30% 30%, var(--v-cyan), var(--v-blue)); }
+.flow-stage.s-6m   .flow-node { background: radial-gradient(circle at 30% 30%, var(--v-lime), var(--v-emerald)); color:#0a1f12; }
+.flow-card {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  text-align: left;
+}
+.flow-act {
+  font-size: clamp(17px, 1.4vw, 21px); font-weight: 800; color: var(--headline); line-height: 1.35;
+  padding-bottom: 12px; margin-bottom: 12px;
+  border-bottom: 1px dashed rgba(255,255,255,0.08);
+  word-break: keep-all;
+}
+.flow-act:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.flow-act .flow-kpi {
+  display: block; margin-top: 6px;
+  font-size: clamp(13px, 1.05vw, 16px); font-weight: 600; color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+.flow-stage.s-now .flow-card { border-color: rgba(255,36,105,0.35); }
+.flow-stage.s-1m  .flow-card { border-color: rgba(255,122,0,0.35); }
+.flow-stage.s-3m  .flow-card { border-color: rgba(0,201,255,0.35); }
+.flow-stage.s-6m  .flow-card { border-color: rgba(173,255,47,0.35); }
+
+/* 좁은 화면: 2x2 → 세로 */
+@media (max-width: 900px) {
+  .flowline-track { display: none; }
+  .flowline-stages { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .flowline-stages { grid-template-columns: 1fr; }
+}
+
+/* (구) PAGE 9 — 세로 타임라인 (유지·미사용) */
+.timeline {
+  display: flex; flex-direction: column; gap: 14px;
+  margin: 18px 0;
+}
+.timeline-stage {
+  display: grid; grid-template-columns: 130px 1fr; gap: 18px; align-items: flex-start;
+  padding: 18px 22px; border-radius: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+}
+.timeline-tag {
+  font-size: 20px; font-weight: 900; letter-spacing: -0.01em;
+  padding: 10px 16px; border-radius: 12px;
+  text-align: center; color: #fff;
+}
+.tag-now { background: linear-gradient(135deg, var(--v-pink), var(--v-magenta)); }
+.tag-1m  { background: linear-gradient(135deg, var(--v-orange), var(--v-yellow)); }
+.tag-3m  { background: linear-gradient(135deg, var(--v-cyan), var(--v-blue)); }
+.tag-6m  { background: linear-gradient(135deg, var(--v-lime), var(--v-emerald)); }
+.timeline-items { display: flex; flex-direction: column; gap: 8px; }
+.timeline-row {
+  display: grid; grid-template-columns: 1fr 240px; gap: 16px; align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+}
+.timeline-row:last-child { border-bottom: none; }
+.timeline-act { font-size: 18px; font-weight: 700; color: var(--headline); }
+.timeline-kpi { font-size: 14px; font-weight: 600; color: var(--text-tertiary); text-align: right; }
+@media (max-width: 800px) { .timeline-stage { grid-template-columns: 1fr; } .timeline-row { grid-template-columns: 1fr; } .timeline-kpi { text-align: left; } }
+
+/* PAGE 10 — 3단계 phase (초기·중기·장기) */
+.phase-3 {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  margin: 48px 0 28px;
+}
+.phase3-cell {
+  padding: 32px 28px; border-radius: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+  border: 2px solid transparent;
+  min-height: 220px;
+  transition: transform 0.2s var(--easing), filter 0.2s var(--easing);
+}
+.phase3-cell:hover { transform: translateY(-3px); filter: brightness(1.06); }
+.phase3-tag {
+  font-size: 14px; font-weight: 900; letter-spacing: 0.12em;
+  width: fit-content; padding: 5px 14px; border-radius: 999px;
+  color: #0a0a0a; background: rgba(0,0,0,0.15) !important;
+}
+.phase3-title { font-size: clamp(22px, 2.4vw, 32px); font-weight: 900; color: #0a0a0a; letter-spacing: -0.015em; line-height: 1.2; }
+.phase3-body { font-size: 17px; font-weight: 500; color: rgba(0,0,0,0.78); line-height: 1.55; }
+.phase3-body strong { color: #0a0a0a; }
+.phase3-init { background: var(--v-pink);   border-color: var(--v-pink); }
+.phase3-mid  { background: var(--v-yellow); border-color: var(--v-yellow); }
+.phase3-long { background: var(--v-cyan);   border-color: var(--v-cyan); }
+@media (max-width: 900px) { .phase-3 { grid-template-columns: 1fr; } }
+
+/* PAGE 12 — Flywheel 노트 */
+.flywheel-note {
+  margin: 22px 0;
+  padding: 22px 28px; border-radius: 16px;
+  font-size: 22px; font-weight: 700; color: var(--headline); line-height: 1.5;
+  background: linear-gradient(135deg, rgba(255,36,105,0.10), rgba(0,201,255,0.08), rgba(155,92,255,0.10));
+  border: 2px solid rgba(255,122,182,0.45);
+}
+.flywheel-note strong { color: var(--v-yellow); }
+
+/* op-violet 옛 정의 제거 — 비비드 단일 컬러로 통합 (아래 .op-violet 참조) */
+
+/* op-cards 자동 분할 */
+.op-cards { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+/* 6박스 전용 — 3×2 매트릭스 (빈 칸 방지) */
+.op-cards.op-cards-6 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) {
+  .op-cards.op-cards-6 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .op-cards.op-cards-6 { grid-template-columns: 1fr; }
+}
+
+/* PAGE 15 — 4단계 stage 카드 */
+.stage4 {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;
+  margin: 48px 0 28px;
+}
+.stage4-cell {
+  position: relative;
+  padding: 30px 26px 26px; border-radius: 20px;
+  border: 2px solid transparent; display: flex; flex-direction: column; gap: 10px;
+  min-height: 240px;
+  transition: transform 0.2s var(--easing), filter 0.2s var(--easing);
+}
+.stage4-cell:hover { transform: translateY(-3px); filter: brightness(1.06); }
+.stage4-num {
+  font-family: 'Inter', monospace; font-size: clamp(16px, 1.2vw, 18px); font-weight: 900;
+  color: rgba(0,0,0,0.65); letter-spacing: 0.1em;
+}
+.stage4-tag { font-size: clamp(28px, 2.4vw, 36px); font-weight: 900; color: #0a0a0a; letter-spacing: -0.02em; line-height: 1.15; }
+.stage4-period { font-size: clamp(18px, 1.5vw, 22px); font-weight: 800; color: #0a0a0a; }
+.stage4-cond { font-size: clamp(16px, 1.3vw, 19px); font-weight: 600; color: rgba(0,0,0,0.8); line-height: 1.45; }
+.stage4-place { font-size: clamp(15px, 1.15vw, 17px); font-weight: 600; color: rgba(0,0,0,0.65); padding-top: 10px; border-top: 1px dashed rgba(0,0,0,0.2); margin-top: 6px; }
+.stage4-cell .hl-dark {
+  background-color: rgba(0,0,0,0.78); color: #fff !important;
+  padding: 1px 10px; border-radius: 999px;
+  font-weight: 900; letter-spacing: -0.005em;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.stage4-1 { background: var(--v-pink);   border-color: var(--v-pink); }
+.stage4-2 { background: var(--v-orange); border-color: var(--v-orange); }
+.stage4-3 { background: var(--v-cyan);   border-color: var(--v-cyan); }
+.stage4-4 { background: var(--v-violet); border-color: var(--v-violet); }
+@media (max-width: 1000px) { .stage4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .stage4 { grid-template-columns: 1fr; } }
+
+/* PAGE 16 — 6가지 결정 카드 */
+.decisions {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  margin: 48px 0 32px;
+}
+.dec-card {
+  padding: 24px 22px 20px; border-radius: 18px;
+  border: 2px solid transparent;
+  display: flex; flex-direction: column; gap: 10px;
+  min-height: 160px;
+  transition: transform 0.2s var(--easing), filter 0.2s var(--easing);
+}
+.dec-card:hover { transform: translateY(-3px); filter: brightness(1.06); }
+.dec-num {
+  font-family: 'Inter', monospace; font-size: clamp(34px, 3vw, 44px); font-weight: 900;
+  letter-spacing: -0.02em; line-height: 1; color: #0a0a0a;
+}
+.dec-card { position: relative; }
+.dec-card .dec-body .hl-dark,
+.dec-card .dec-why .hl-dark {
+  background-color: rgba(0,0,0,0.78); color: #fff !important;
+  padding: 1px 10px; border-radius: 999px;
+  font-weight: 900; letter-spacing: -0.005em;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.dec-ico {
+  position: absolute; top: 22px; right: 22px;
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.14);
+  color: #0a0a0a;
+}
+.dec-ico svg { width: 28px; height: 28px; }
+.dec-title { font-size: clamp(24px, 2.1vw, 30px); font-weight: 900; color: #0a0a0a; letter-spacing: -0.02em; line-height: 1.2; }
+.dec-body { font-size: clamp(16px, 1.3vw, 19px); font-weight: 600; color: rgba(0,0,0,0.8); line-height: 1.5; }
+.dec-why {
+  margin-top: auto; padding-top: 12px;
+  border-top: 1px dashed rgba(0,0,0,0.2);
+  font-size: clamp(15px, 1.15vw, 17px); font-weight: 800; color: #0a0a0a;
+  font-style: italic;
+}
+/* p16 — 의사결정자별 메시지 3행 */
+.msg-rows { margin: 32px 0 12px; display: flex; flex-direction: column; gap: 14px; }
+.msg-row { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: baseline; padding: 22px 26px; border-radius: 16px; background: rgba(255,255,255,0.035); border: 1px solid var(--line); }
+.msg-row .msg-tag { font-family: 'Inter', monospace; font-size: clamp(14px, 1.2vw, 17px); font-weight: 900; color: var(--v-pink); letter-spacing: 0.02em; text-transform: uppercase; }
+.msg-row .msg-body { font-size: clamp(16px, 1.35vw, 20px); line-height: 1.55; color: var(--text); font-weight: 500; word-break: keep-all; margin: 0; }
+.msg-row .msg-body strong { color: #fff; font-weight: 900; }
+.msg-row:nth-child(2) .msg-tag { color: var(--v-cyan); }
+.msg-row:nth-child(3) .msg-tag { color: var(--v-lime); }
+@media (max-width: 880px) { .msg-row { grid-template-columns: 1fr; gap: 6px; } }
+
+.dec-pink   { background: var(--v-pink);   border-color: var(--v-pink); }
+.dec-orange { background: var(--v-orange); border-color: var(--v-orange); }
+.dec-yellow { background: var(--v-yellow); border-color: var(--v-yellow); }
+.dec-lime   { background: var(--v-lime);   border-color: var(--v-lime); }
+.dec-cyan   { background: var(--v-cyan);   border-color: var(--v-cyan); }
+.dec-violet { background: var(--v-violet); border-color: var(--v-violet); }
+@media (max-width: 1000px) { .decisions { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .decisions { grid-template-columns: 1fr; } }
+
+/* PAGE 6 — 굵고 크게 */
+.page6-headline {
+  font-size: clamp(56px, 8.6vw, 150px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.045em !important;
+  margin-bottom: 18px !important;
+}
+
+/* PAGE 9 — 헤드라인은 기본 크기 유지 (page9-headline = no-op) */
+.page6-reasons {
+  font-size: 24px; font-weight: 600; color: var(--text); line-height: 1.5;
+  margin: 18px 0 26px;
+  padding: 20px 26px;
+  border-left: 5px solid var(--v-orange);
+  background: linear-gradient(90deg, rgba(255,122,0,0.12), transparent 80%);
+  border-radius: 2px 14px 14px 2px;
+}
+.page6-reasons strong { color: var(--v-yellow); }
+.ip-compact-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px;
+  margin: 40px 0 32px;
+}
+.ip-compact {
+  padding: 22px 16px; border-radius: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  text-align: center;
+  min-height: 100px; justify-content: center;
+  transition: transform 0.2s var(--easing), filter 0.2s var(--easing);
+  border: 2px solid transparent;
+}
+.ip-compact:hover { transform: translateY(-3px); filter: brightness(1.06); }
+.ip-c-tag { font-size: clamp(22px, 1.9vw, 28px); font-weight: 900; color: #0a0a0a; line-height: 1.2; letter-spacing: -0.04em; word-break: keep-all; }
+.ip-c-desc { font-size: clamp(15px, 1.2vw, 18px); color: rgba(0,0,0,0.78); font-weight: 700; }
+
+.ip-c-pink    { background: var(--v-pink);    border-color: var(--v-pink); }
+.ip-c-orange  { background: var(--v-orange);  border-color: var(--v-orange); }
+.ip-c-yellow  { background: var(--v-yellow);  border-color: var(--v-yellow); }
+.ip-c-lime    { background: var(--v-lime);    border-color: var(--v-lime); }
+.ip-c-cyan    { background: var(--v-cyan);    border-color: var(--v-cyan); }
+.ip-c-violet  { background: var(--v-violet);  border-color: var(--v-violet); }
+.ip-c-magenta { background: var(--v-magenta); border-color: var(--v-magenta); }
+.ip-bonus-row {
+  margin: 0 0 22px;
+  padding: 26px 30px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255,122,0,0.12), rgba(0,201,255,0.08), rgba(155,92,255,0.12));
+  border: 2px dashed rgba(255,214,10,0.55);
+}
+.ip-bonus-label {
+  font-size: 24px; font-weight: 900; color: var(--v-yellow);
+  margin-bottom: 16px; letter-spacing: -0.01em;
+}
+.ip-bonus-chips {
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+.ip-bonus-chips span {
+  display: inline-block;
+  padding: 12px 22px; border-radius: 999px;
+  font-size: 19px; font-weight: 800;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border: 2px solid var(--line-strong);
+  transition: all 0.2s var(--easing);
+}
+.ip-bonus-chips span:hover {
+  background: rgba(255,36,105,0.18);
+  border-color: var(--v-pink); transform: translateY(-2px);
+}
+@media (max-width: 1100px) { .ip-compact-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 700px) { .ip-compact-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* 보너스 카드 — 또 다른 아이디어 키워드 */
+.ip-card-bonus {
+  background: linear-gradient(135deg, rgba(255,122,0,0.10), rgba(0,201,255,0.08), rgba(155,92,255,0.10));
+  border: 1px dashed rgba(255,122,182,0.5);
+}
+.ip-tag-bonus {
+  color: var(--v-yellow);
+  border-color: rgba(255,214,10,0.45);
+  background: rgba(255,214,10,0.10);
+  font-weight: 900;
+}
+.ip-bonus-keywords {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 4px;
+}
+.ip-bonus-keywords span {
+  display: inline-block;
+  padding: 9px 16px; border-radius: 999px;
+  font-size: 17px; font-weight: 700;
+  color: var(--text);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line-strong);
+  transition: all 0.2s var(--easing);
+}
+.ip-bonus-keywords span:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--v-pink);
+  color: #fff;
+}
+
+/* ===========================================================
+   PAGE 5 — 운영 항목 5카드
+=========================================================== */
+.op-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin: 36px 0 24px;
+}
+.op-card {
+  position: relative;
+  padding: 22px 20px 20px;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  display: flex; flex-direction: column; gap: 10px;
+  min-height: 140px;
+  transition: transform 0.25s var(--easing), filter 0.25s var(--easing);
+}
+.op-card:hover { transform: translateY(-3px); filter: brightness(1.06); }
+.op-ico {
+  width: 54px; height: 54px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.12);
+  color: #0a0a0a;
+}
+.op-ico svg { width: 30px; height: 30px; }
+.op-title { font-size: clamp(24px, 2.3vw, 34px); font-weight: 900; letter-spacing: -0.02em; color: #0a0a0a; line-height: 1.2; }
+.op-sub { font-size: clamp(16px, 1.3vw, 20px); font-weight: 600; color: rgba(0,0,0,0.78); line-height: 1.5; }
+/* 비비드 원색 + 검은 글씨 */
+.op-pink   { background: var(--v-pink);    border-color: var(--v-pink); }
+.op-orange { background: var(--v-orange);  border-color: var(--v-orange); }
+.op-yellow { background: var(--v-yellow);  border-color: var(--v-yellow); }
+.op-cyan   { background: var(--v-cyan);    border-color: var(--v-cyan); }
+.op-lime   { background: var(--v-lime);    border-color: var(--v-lime); }
+.op-violet { background: var(--v-violet);  border-color: var(--v-violet); }
+.op-magenta{ background: var(--v-magenta); border-color: var(--v-magenta); }
+
+@media (max-width: 1100px) {
+  .op-cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .op-cards { grid-template-columns: 1fr; }
+}
+
+/* ===========================================================
+   PAGE 2 — Before/After shift-grid + 강조 풀쿼트
+=========================================================== */
+.pullquote-emph {
+  font-size: 26px; font-weight: 800; line-height: 1.4; letter-spacing: -0.015em;
+  color: var(--headline);
+  margin: 22px 0 18px;
+  padding: 22px 26px;
+  border-left: 4px solid var(--v-orange);
+  background: linear-gradient(90deg, rgba(255,122,0,0.10), transparent 70%);
+  border-radius: 4px 14px 14px 4px;
+}
+.pullquote-emph .pq-sub {
+  display: block; margin-top: 8px;
+  font-size: 17px; font-weight: 500; color: var(--text-secondary); line-height: 1.55;
+}
+
+/* PAGE 2 — Before/After 단순 카드 그리드 (시각화 단순화) */
+.shift-grid {
+  display: flex; flex-direction: column;
+  gap: 16px;
+  margin: 56px 0 32px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+.shift-pair {
+  display: grid; grid-template-columns: 1fr 64px 1fr;
+  align-items: stretch; gap: 16px;
+}
+.shift-card {
+  padding: 32px 32px; border-radius: 20px;
+  display: flex; align-items: center; gap: 18px;
+  border: 1px solid transparent;
+  min-height: 120px;
+}
+.shift-card-tag {
+  font-size: 14px; font-weight: 800; letter-spacing: 0.02em;
+  flex-shrink: 0;
+  padding: 6px 12px; border-radius: 999px;
+  white-space: nowrap;
+}
+.shift-card-text {
+  font-size: clamp(17px, 1.45vw, 22px); font-weight: 800; line-height: 1.25; margin: 0;
+  word-break: keep-all; flex: 1;
+}
+.shift-card-before {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.08);
+}
+.shift-card-before .shift-card-tag {
+  color: var(--text-tertiary);
+  background: rgba(255,255,255,0.06);
+}
+.shift-card-before .shift-card-text {
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+  text-decoration-color: rgba(255,255,255,0.25);
+}
+.shift-card-after {
+  background: var(--v-cyan);
+  border-color: var(--v-cyan);
+}
+.shift-card-after .shift-card-tag {
+  color: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.14);
+}
+.shift-card-after .shift-card-text { color: #0a0a0a; font-weight: 900; }
+/* 행별 컬러 분기 — 페이지 톤 다양화 */
+.shift-pair.row-pink .shift-card-after { background: var(--v-cyan); border-color: var(--v-cyan); }
+.shift-pair.row-pink .shift-card-arrow { color: var(--v-cyan); }
+.shift-pair.row-lime .shift-card-after { background: var(--v-azure); border-color: var(--v-azure); }
+.shift-pair.row-lime .shift-card-arrow { color: var(--v-azure); }
+.shift-pair.row-lime .shift-card-after .shift-card-text { color: #fff; }
+.shift-pair.row-lime .shift-card-after .shift-card-tag { color: rgba(255,255,255,0.95); background: rgba(0,0,0,0.22); }
+.shift-card-arrow {
+  align-self: center; text-align: center;
+  font-size: 36px; font-weight: 900; color: var(--v-cyan);
+}
+@media (max-width: 800px) {
+  .shift-pair { grid-template-columns: 1fr; gap: 8px; }
+  .shift-card { min-height: 0; padding: 18px 22px; }
+  .shift-card-text { font-size: 18px; }
+  .shift-card-arrow { transform: rotate(90deg); font-size: 28px; }
+}
+.shift-head {
+  display: grid;
+  grid-template-columns: 1fr 60px 1.2fr;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 4px 14px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+.shift-head-before, .shift-head-after { display: flex; flex-direction: column; gap: 6px; }
+.shift-head-arrow { text-align: center; font-size: 22px; color: var(--text-tertiary); }
+.shift-tag {
+  display: inline-block; width: fit-content;
+  padding: 5px 12px; border-radius: 999px;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.02em;
+}
+.tag-before { background: rgba(255,255,255,0.06); color: var(--text-tertiary); border: 1px solid var(--line); }
+.tag-after { background: rgba(173,255,47,0.15); color: #c8ff6f; border: 1px solid rgba(173,255,47,0.35); }
+.shift-head-note { font-size: 13px; color: var(--text-tertiary); padding-left: 4px; }
+
+.shift-row {
+  display: grid;
+  grid-template-columns: 1fr 60px 1.2fr;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 4px;
+  border-radius: 10px;
+  transition: background 0.2s var(--easing);
+}
+.shift-row:hover { background: rgba(255,255,255,0.025); }
+.shift-row + .shift-row { border-top: 1px dashed rgba(255,255,255,0.06); }
+.shift-before {
+  font-size: 17px; color: var(--text-tertiary);
+  text-decoration: line-through; text-decoration-color: rgba(255,255,255,0.25);
+  line-height: 1.45;
+}
+.shift-arrow {
+  text-align: center; font-size: 24px; color: var(--v-orange); font-weight: 700;
+}
+.shift-after {
+  font-size: 18px; color: var(--headline); line-height: 1.45;
+}
+.shift-after strong { font-weight: 800; color: #fff; }
+
+/* PT 모드 — shift-grid 업스케일 */
+
+/* PAGE 1 — PT 모드 matrix 폰트 업스케일 */
+
+/* 인쇄용 표시 보정 */
 @media print {
-  body.pt-mode { overflow: visible !important; }
-  body.pt-mode .page { display: block !important; position: static !important; }
-  .topbar, .floating-bottom, .pt-nav, .dotnav, .hint { display: none !important; }
+  
+  
+  .floating-hamburger, .floating-bottom { display: none !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- ================= TOP BAR ================= -->
-<header class="topbar" role="banner">
-  <span id="visitorCounter" class="visitor-counter" aria-hidden="true" title=" ">·</span>
-  <div class="brand">
-    인천 상상플랫폼
-    <small>관객 보유 IP 중심 활성화 PT v1.0</small>
-  </div>
-  <div class="topbar-right">
-    <div class="mode-toggle" role="tablist" aria-label="보기 모드">
-      <button id="modeScroll" class="active" role="tab" aria-selected="true">스크롤</button>
-      <button id="modePT" role="tab" aria-selected="false">PT</button>
-    </div>
-    <button class="hamburger" id="menuOpen" aria-label="섹션 메뉴 열기" aria-expanded="false" aria-controls="menu">
-      <span></span>
-    </button>
-  </div>
-</header>
+<!-- ================= 상단 내비게이션 ================= -->
+<span id="visitorCounter" class="visitor-counter" aria-hidden="true" title=" ">·</span>
+<button class="hamburger floating-hamburger" id="menuOpen" aria-label="섹션 메뉴 열기" aria-expanded="false" aria-controls="menu">
+  <span></span>
+</button>
 
-<!-- ================= MENU OVERLAY ================= -->
+<!-- ================= 목차 패널 ================= -->
 <nav class="menu-overlay" id="menu" aria-hidden="true">
   <button class="menu-close" id="menuClose" aria-label="메뉴 닫기">✕</button>
   <div class="menu-inner">
@@ -826,26 +1357,8 @@ button:focus-visible, .menu-item:focus-visible {
   </div>
 </nav>
 
-<!-- ================= PT NAV ================= -->
-<nav class="pt-nav" aria-label="페이지 이동">
-  <button id="ptPrev" aria-label="이전 페이지">‹</button>
-  <span class="counter" id="ptCounter">1 / 25</span>
-  <button id="ptNext" aria-label="다음 페이지">›</button>
-</nav>
-
-<div class="hint">
-  <kbd>←</kbd> <kbd>→</kbd> 키보드 · 클릭 · 포인터 다음으로 페이지 전환
-</div>
-
-<!-- ================= FLOATING BOTTOM ================= -->
+<!-- ================= 하단 고정 버튼 ================= -->
 <div class="floating-bottom">
-  <button class="float-btn" id="expandAll" aria-label="전체 펴기/접기 토글" title="전체 펴기 / 접기">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="3 8 7 12 3 16"></polyline>
-      <polyline points="21 8 17 12 21 16"></polyline>
-      <line x1="7" y1="12" x2="17" y2="12"></line>
-    </svg>
-  </button>
   <button class="float-btn" id="topBtn" aria-label="맨 위로" title="맨 위로">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="18 15 12 9 6 15"></polyline>
@@ -853,42 +1366,39 @@ button:focus-visible, .menu-item:focus-visible {
   </button>
 </div>
 
-<!-- ================= DOT NAV (scroll mode) ================= -->
-<div class="dotnav" id="dotnav" aria-hidden="true"></div>
-
-<!-- ================= PAGES ================= -->
+<!-- ================= 본문 페이지 ================= -->
 <main id="pages">
 
-<!-- ============ PAGE 0 · HERO ============ -->
+<!-- ============ PAGE 0 · 표지 ============ -->
 <section class="page hero" id="p0" data-title="표지" data-num="00">
   <div class="hero-inner">
     <div class="hero-meta">
       <span>PITCH</span> · 2026 · 인천관광공사 · 인천광역시
     </div>
     <h1 class="hero-title">
-      <span class="g-text">인천 상상플랫폼</span>을<br/>
-      매주 작동하게<br/>
-      만드는 전략.
+      <span class="g-text">인천 상상플랫폼</span>이<br/>
+      매주 움직일 수 있는<br/>
+      운영 구조.
     </h1>
     <p class="hero-sub">
-      관객 보유 IP로 <strong>목적 방문</strong>을 만들고, 권역형 <strong>상설 방문지</strong>로 키운다.
+      관객 보유 IP를 통해 <strong>목적 방문</strong>의 계기를 만들고,<br/>권역형 <strong>상설 방문지</strong>로 확장 가능한 흐름을 설계합니다.
     </p>
     <p class="hero-foot">
-      상상플랫폼은 더 설명할 공간이 아니라, 매주 작동하게 만들어야 할 공공자산입니다. 1,002억 원 규모 공공자산에 관객, 운영자, 행사 IP, 브랜드 예산, 재방문 데이터를 순서대로 붙입니다.
+      상상플랫폼은 더 설명해야 할 공간이라기보다, 매주 작동할 수 있는 이유를 만들어야 할 공공자산입니다.<br/>1,002억 원 규모의 공공자산에 관객, 운영자, 행사 IP, 브랜드 예산, 재방문 데이터를 단계적으로 연결하는 구조가 필요합니다.
     </p>
 
     <div class="repeat-row">
       <div class="repeat-card">
         <span class="tag tag-1">문제 정의</span>
-        <p class="quote">상상플랫폼은 지금 성수처럼 그냥 들르는 곳이 아니라, <span class="hl hl-pink">목적이 있어야 움직이는 베뉴</span>입니다.</p>
+        <p class="quote">상상플랫폼은 지금 성수처럼 우연히 들르는 곳이 아니라, <span class="hl-dark">목적이 있어야 움직이는 베뉴</span>입니다.</p>
       </div>
       <div class="repeat-card">
         <span class="tag tag-2">전략 전환</span>
-        <p class="quote"><span class="hl hl-cyan">목적성이 분명한 관객 보유 IP</span>로 첫 방문을 만들고, 반복 방문으로 키워야 합니다.</p>
+        <p class="quote"><span class="hl-dark">목적이 분명한 관객 보유 IP</span>를 통해 첫 방문의 이유를 만들고, 이를 반복 방문으로 전환하는 흐름이 필요합니다.</p>
       </div>
       <div class="repeat-card">
         <span class="tag tag-3">실행 설득</span>
-        <p class="quote">첫 6개월은 수익보다 <span class="hl hl-lime">목적 방문이 반복된다는 증거</span>를 만드는 기간입니다.</p>
+        <p class="quote">첫 6개월은 수익보다 <span class="hl-dark">목적 방문이 반복될 수 있다는 증거</span>를 만드는 기간입니다.</p>
       </div>
     </div>
   </div>
@@ -900,29 +1410,59 @@ button:focus-visible, .menu-item:focus-visible {
     <div class="page-chip"><span class="dot"></span> CHAPTER 01 / 16</div>
     <span class="eyebrow pink">문제 정의</span>
     <h2 class="headline">상상플랫폼의 <span class="g-warm">진짜 문제</span>.</h2>
-    <p class="subhead">공간이 실패한 것이 아니라, <span class="hl hl-yellow">수요 엔진 없이 대형 공간을 먼저 연 구조</span>가 막힌 것입니다.</p>
-    <p class="body-text">
-      상상플랫폼은 인천 내항의 곡물창고를 리모델링한 약 1,002억 원 규모의 공공자산입니다. 문제는 공간의 크기나 건물의 상징성이 아니라, 이 공간을 매주 채울 <strong>관객·행사·운영자·세일즈 조직</strong>이 함께 준비되지 않았다는 점입니다.
-    </p>
+    <p class="subhead">공간이 실패한 것이 아니라, <span class="hl hl-yellow">수요를 만드는 구조 없이 대형 공간을 먼저 연 방식</span>이 막힌 것입니다.</p>
+
+    <!-- 4기둥 카드: 관객·행사·운영자·세일즈 -->
+    <div class="four-pillars" aria-label="공간을 매주 채울 4가지">
+      <div class="pillar pillar-pink">
+        <div class="pillar-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="10" r="2.4"/>
+            <path d="M3 19c0-3 2.7-5 6-5s6 2 6 5"/><path d="M14.5 19c0-2.2 1.6-3.5 3.5-3.5S21 16.8 21 19"/>
+          </svg>
+        </div>
+        <div class="pillar-title">관객</div>
+        <div class="pillar-sub">보유 IP가 데려옴</div>
+      </div>
+      <div class="pillar pillar-yellow">
+        <div class="pillar-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18"/><path d="M8 3v4"/><path d="M16 3v4"/>
+          </svg>
+        </div>
+        <div class="pillar-title">행사</div>
+        <div class="pillar-sub">매주 정례화</div>
+      </div>
+      <div class="pillar pillar-cyan">
+        <div class="pillar-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h18l-2 12H5L3 7z"/><path d="M8 7V4h8v3"/><path d="M10 11v5"/><path d="M14 11v5"/>
+          </svg>
+        </div>
+        <div class="pillar-title">운영자</div>
+        <div class="pillar-sub">편성·섭외 PMO</div>
+      </div>
+      <div class="pillar pillar-lime">
+        <div class="pillar-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12l3-3 4 4 5-5 6 6"/><path d="M21 14V7h-7"/>
+          </svg>
+        </div>
+        <div class="pillar-title">세일즈</div>
+        <div class="pillar-sub">B2B 직접 제안</div>
+      </div>
+    </div>
+    <p class="pillars-foot">이 <strong>4가지</strong>가 함께 준비되지 않은 채 1,002억 원 규모의 공공자산이 먼저 열린 것이 진짜 문제입니다.</p>
 
     <table class="matrix">
-      <thead><tr><th style="width:38%">관찰된 현상</th><th>회의장에서의 해석</th></tr></thead>
+      <thead><tr><th style="width:38%">관찰된 현상</th><th>정책적 해석</th></tr></thead>
       <tbody>
-        <tr><td><strong>자연 유동이 약한 입지</strong></td><td>성수처럼 우연히 들르는 방식이 아니라, 먼저 목적 방문을 만들고 반복 방문으로 전환해야 합니다.</td></tr>
-        <tr><td><strong>대형 앵커 테넌트 철수</strong></td><td>방문 수요가 검증되기 전에 고정비를 민간에 넘긴 구조입니다.</td></tr>
-        <tr><td><strong>핵심 공간 공모 유찰</strong></td><td>민간이 공간이 아니라 <span class="hl hl-pink">모객 리스크</span>를 거부한 것입니다.</td></tr>
-        <tr><td><strong>행사 때만 방문객 증가</strong></td><td>건물보다 구체적 방문 이유가 사람을 움직입니다.</td></tr>
-        <tr><td><strong>야시장 성과</strong></td><td>상상플랫폼은 죽은 공간이 아니라 <span class="hl hl-lime">편성되면 작동하는 베뉴</span>입니다.</td></tr>
+        <tr><td><strong>대형 앵커 테넌트 철수</strong></td><td>방문 수요가 검증되기 전에 <span class="hl-dark">고정비 부담을 민간에 넘긴 구조</span>입니다.</td></tr>
+        <tr><td><strong>핵심 공간 공모 유찰</strong></td><td>민간이 공간이 아니라 <span class="hl-dark">모객 리스크</span>를 거부한 것입니다.</td></tr>
+        <tr><td><strong>행사 때만 방문객 증가</strong></td><td>상상플랫폼은 죽은 공간이 아니라 <span class="hl-dark">편성되면 움직이는 베뉴</span>입니다.</td></tr>
       </tbody>
     </table>
 
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>상상플랫폼은 2024년 7월 개관 이후 원도심 활성화와 제물포 르네상스의 핵심 거점으로 기대를 받았습니다. 그러나 목표 대비 방문객은 낮았고, LG헬로비전은 운영을 중단했으며, 1~2층 핵심 공간에 대한 민간 공모도 응모 없이 끝났습니다.</p>
-        <p>이 흐름은 단순한 인지도 부족으로 보기 어렵습니다. 민간 사업자가 부담해야 하는 것은 임대료 하나가 아니라 설치비, 인건비, 홍보비, 운영비, 안전관리비, 모객 실패 리스크 전체입니다. 따라서 과제를 "더 알리는 일"로만 잡으면 다시 같은 벽에 부딪힙니다. 과제를 <strong>"수요 조달 구조"</strong>로 잡아야 합니다.</p>
-      </div>
-    </details>
   </div>
 </section>
 
@@ -931,88 +1471,75 @@ button:focus-visible, .menu-item:focus-visible {
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 02 / 16</div>
     <span class="eyebrow yellow">시장 신호</span>
-    <h2 class="headline">기존 방식은 <span class="g-text">시장이 거부</span>했습니다.</h2>
-    <p class="subhead">민간이 거부한 것은 상상플랫폼이 아니라, <span class="hl hl-orange">큰 공간을 통째로 떠안는 방식</span>입니다.</p>
-    <p class="body-text">
-      임대료를 낮추고 매출연동 구조를 제시해도 민간이 들어오지 않았다는 점이 중요합니다. 이것은 가격만의 문제가 아니라, <strong>실패 비용을 민간이 전부 떠안는 방식</strong>이 시장에서 받아들여지지 않았다는 신호입니다.
-    </p>
+    <h2 class="headline">기존 방식은 <span class="g-warm">시장에서<br/>받아들여지지 않았습니다</span>.</h2>
+    <p class="subhead">민간이 거부한 것은 가격이 아니라, <span class="hl hl-orange">큰 공간을 통째로 떠안는 위탁 구조</span>입니다.</p>
 
-    <table class="matrix">
-      <thead><tr><th>기존 인식</th><th>전환해야 할 인식</th></tr></thead>
-      <tbody>
-        <tr><td>상상플랫폼 입점 사업자 모집</td><td><strong>6개월 시즌 편성·집객·B2B 유치 운영사 모집</strong></td></tr>
-        <tr><td>장기 임대와 임대료 회수</td><td><strong>6개월 파일럿과 방문·매출 데이터 확보</strong></td></tr>
-        <tr><td>공간을 맡길 사업자</td><td><strong>관객 보유 IP를 데려올 운영 주체</strong></td></tr>
-        <tr><td>공실 해소</td><td><strong>월 행사 수, 방문자 수, B2B 유치, 재방문 DB 확보</strong></td></tr>
-      </tbody>
-    </table>
-
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>대형 공간은 카페 몇 개, 전시 몇 개, 마켓 몇 개로 채워지지 않습니다. 매주 행사, 브랜드, 셀러, 커뮤니티, 관객, 운영자가 돌아가야 합니다.</p>
-        <p>민간이 원하는 제안은 "싸게 빌려드립니다"가 아닙니다. 더 정확히는 "공간, 기본 운영, 공동 홍보, 초기 손실 방어를 같이 제공할 테니 <strong>당신의 콘텐츠와 관객을 가져오십시오</strong>"입니다. 이 문장으로 제안 구조가 바뀌어야 합니다.</p>
+    <!-- Before / After 단순 카드 그리드 — 핵심 2행만 -->
+    <div class="shift-grid" aria-label="기존 인식 vs 전환해야 할 인식">
+      <div class="shift-pair row-pink">
+        <div class="shift-card shift-card-before">
+          <span class="shift-card-tag">❌ 시장의 거부</span>
+          <p class="shift-card-text">상상플랫폼 입점 사업자 모집</p>
+        </div>
+        <div class="shift-card-arrow" aria-hidden="true">→</div>
+        <div class="shift-card shift-card-after">
+          <span class="shift-card-tag">✅ 시장의 수용</span>
+          <p class="shift-card-text">6개월 시즌 편성·집객·B2B 유치 운영사</p>
+        </div>
       </div>
-    </details>
+      <div class="shift-pair row-lime">
+        <div class="shift-card shift-card-before">
+          <span class="shift-card-tag">❌</span>
+          <p class="shift-card-text">공간을 통째로 맡길 사업자</p>
+        </div>
+        <div class="shift-card-arrow" aria-hidden="true">→</div>
+        <div class="shift-card shift-card-after">
+          <span class="shift-card-tag">✅</span>
+          <p class="shift-card-text">관객 보유 IP를 데려올 운영 주체</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pullquote pullquote-emph" style="margin-top: 32px;">
+      그래서 <strong>임대</strong>가 아니라 <strong>편성</strong>입니다.
+      <span class="pq-sub">민간을 다시 부르려면 위탁 구조 자체를 바꿔야 합니다.</span>
+    </div>
+
   </div>
 </section>
 
 <!-- ============ PAGE 3 ============ -->
 <section class="page" id="p3" data-title="3. 갈 이유가 있을 때만 공간은 작동했습니다" data-num="03">
   <div class="page-inner">
-    <div class="page-chip"><span class="dot"></span> CHAPTER 03 / 16</div>
-    <span class="eyebrow lime">성공 신호</span>
-    <h2 class="headline"><span class="hl hl-lime">갈 이유</span>가 있을 때만 공간은 작동했습니다.</h2>
-    <p class="subhead">사람들은 상상플랫폼이라는 <strong>이름</strong>보다, 먹을 것·볼 것·할 것이 있는 <strong>행사</strong>에 반응했습니다.</p>
-    <p class="body-text">
-      상상플랫폼은 완전히 죽은 공간이 아닙니다. 특정 콘텐츠가 있을 때는 사람이 모였습니다. 이 성공 신호를 단발 행사로 소비하지 말고, <strong>반복 가능한 시간표</strong>로 바꾸는 것이 핵심입니다.
-    </p>
-
-    <div class="card-grid cols-2">
-      <div class="card">
-        <div class="card-eyebrow g-cool">SIGNAL 01</div>
-        <h3 class="card-title">BYD 전기차 체험·키즈·마술쇼·전통놀이</h3>
-        <p class="card-body">명확한 체험 목적이 있으면 가족 방문이 가능합니다.</p>
-      </div>
-      <div class="card">
-        <div class="card-eyebrow g-warm">SIGNAL 02</div>
-        <h3 class="card-title">1883 상상플랫폼 야시장</h3>
-        <p class="card-body">먹거리·야간 분위기·광장이 결합하면 대규모 집객이 가능합니다.</p>
-      </div>
-      <div class="card">
-        <div class="card-eyebrow" style="color:var(--v-yellow)">SIGNAL 03</div>
-        <h3 class="card-title">쿠폰 사용과 주변 상권 활기</h3>
-        <p class="card-body">상상플랫폼 방문은 개항장·신포시장·차이나타운·월미도와 연결될 수 있습니다.</p>
-      </div>
-      <div class="card">
-        <div class="card-eyebrow" style="color:var(--v-pink)">SIGNAL 04</div>
-        <h3 class="card-title">사진과 영상 확산</h3>
-        <p class="card-body">콘텐츠 장면이 확산과 재방문 이유를 만듭니다.</p>
+    <div class="page-hero">
+      <img class="bg-img" src="assets/optimize.jpeg" alt="갈 이유가 있을 때만 공간은 작동했다" loading="lazy" />
+      <div class="hero-stack">
+        <div class="page-chip"><span class="dot"></span> CHAPTER 03 / 16</div>
+        <span class="eyebrow lime">성공 신호</span>
+        <h2 class="headline"><span class="hl hl-lime">갈 이유</span>가 있을 때만<br/><span class="g-cool">공간은 채워졌</span>습니다.</h2>
+        <p class="subhead">사람들은 상상플랫폼이라는 <strong>이름</strong>보다, 먹을 것·볼 것·할 것이 있는 <strong>구체적인 행사</strong>에 반응했습니다.</p>
       </div>
     </div>
 
-    <div class="card-grid cols-2" style="margin-top:18px;">
-      <div class="card" style="background: linear-gradient(180deg, rgba(255,184,0,0.10), rgba(255,36,105,0.06));">
-        <div class="bignum">
-          <span class="num g-warm">12<span style="font-size:.7em">만</span></span>
+    <div class="signal-grid" aria-label="성공 신호 2건">
+      <div class="signal-card signal-warm">
+        <div class="signal-head">
+          <span class="signal-eyebrow">SIGNAL 01</span>
+          <div class="signal-metric"><span class="signal-num">12<span class="signal-unit">만</span></span><span class="signal-label">5일 방문객</span></div>
         </div>
-        <p class="card-body" style="margin-top:14px;">1883 상상플랫폼 야시장 5일간 방문객 (추정)</p>
+        <div class="signal-title">1883 상상플랫폼 야시장</div>
+        <div class="signal-sub"><span class="hl-dark">먹거리·야간·광장</span>이 결합하면 대규모 집객.<br/>인천e지 쿠폰 사용도 평소 대비 크게 증가.</div>
       </div>
-      <div class="card" style="background: linear-gradient(180deg, rgba(0,201,255,0.10), rgba(155,92,255,0.06));">
-        <div class="bignum">
-          <span class="num g-cool">UP</span>
+      <div class="signal-card signal-cool">
+        <div class="signal-head">
+          <span class="signal-eyebrow">SIGNAL 02</span>
+          <div class="signal-metric"><span class="signal-num">가족</span><span class="signal-label">목적 방문</span></div>
         </div>
-        <p class="card-body" style="margin-top:14px;">인천e지 쿠폰 사용 평소 대비 크게 증가</p>
+        <div class="signal-title">BYD 전기차·키즈·마술쇼·전통놀이</div>
+        <div class="signal-sub"><span class="hl-dark">명확한 체험 목적</span>이 있으면 가족 단위 방문을 만들 수 있음.<br/>사진·영상 확산까지 이어짐.</div>
       </div>
     </div>
 
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>1883 상상플랫폼 야시장은 5일간 약 12만 명을 모았고, 인천e지 쿠폰 사용도 평소 대비 크게 늘어난 것으로 정리돼 있습니다. 이 수치는 단순한 행사 성과가 아니라 <strong>"상상플랫폼에 갈 이유가 있으면 사람들이 온다"</strong>는 증거입니다.</p>
-        <p>다만 야시장만 반복하면 이벤트성으로 끝날 수 있습니다. 야시장을 출발점으로 삼되, 낮·저녁·밤의 시간표와 실내·광장·권역 동선을 함께 설계해야 반복 방문이 생깁니다.</p>
-      </div>
-    </details>
   </div>
 </section>
 
@@ -1021,40 +1548,35 @@ button:focus-visible, .menu-item:focus-visible {
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 04 / 16</div>
     <span class="eyebrow violet">목표 재정의</span>
-    <h2 class="headline">목표를 <span class="g-text">다시 잡아야</span> 합니다.</h2>
-    <p class="subhead">처음에는 <span class="hl hl-pink">목적형 베뉴</span>로 시작하고, 최종적으로는 <span class="hl hl-cyan">계속 오는 권역형 방문지</span>로 키워야 합니다.</p>
-    <p class="body-text">
-      처음부터 매일 사람이 오는 상설 명소를 만들겠다는 목표는 지금 단계에서 너무 큽니다. 그렇다고 몇 년 동안 행사장으로만 운영하자는 뜻도 아닙니다. 순서는 <strong>목적 방문 → 반복 방문 → 권역형 상설 방문</strong>입니다.
-    </p>
+    <h2 class="headline">목표부터 <span class="g-cool">다시 잡아야</span> 합니다.</h2>
+    <p class="subhead">처음에는 <span class="hl hl-pink">목적형 베뉴</span>로 시작하고, 최종적으로는 <span class="hl hl-cyan">계속 찾는 권역형 방문지</span>로 키워야 합니다.</p>
+
+    <div class="pullquote pullquote-emph">
+      목적 방문 → 반복 방문 → 권역형 상설 방문지.<br/>
+      <span class="pq-sub">처음부터 매일 사람이 오는 상설 명소는 너무 큰 목표. 그렇다고 행사장으로만 두는 것도 ✗.</span>
+    </div>
 
     <div class="phase-row">
       <div class="phase-cell">
         <div class="phase-num p1">01</div>
         <div class="phase-meta">초기 · 0–6 개월</div>
         <h3 class="phase-title">목적형 베뉴</h3>
-        <p class="phase-body">키즈·푸드·펫·K-content·270m 워크스루처럼 <strong>일부러 갈 이유</strong>를 만듭니다.</p>
+        <p class="phase-body">키즈·푸드·펫·K-content·270m 워크스루처럼 <span class="hl-dark">일부러 찾아갈 이유</span>를 만듭니다.</p>
       </div>
       <div class="phase-cell">
         <div class="phase-num p2">02</div>
         <div class="phase-meta">중기 · 6–24 개월</div>
         <h3 class="phase-title">반복형 시즌 공간</h3>
-        <p class="phase-body">검증된 IP를 정례화하고, 팝업을 단기 입점과 <strong>크리에이터 빌리지</strong>로 키웁니다.</p>
+        <p class="phase-body">검증된 IP를 정례화하고, 팝업을 단기 입점과 <span class="hl-dark">크리에이터 빌리지</span>로 확장합니다.</p>
       </div>
       <div class="phase-cell">
         <div class="phase-num p3">03</div>
         <div class="phase-meta">장기 · 2028년 이후</div>
         <h3 class="phase-title">권역형 상설 방문지</h3>
-        <p class="phase-body">내항 재개발·1883 개항광장·개항장·월미도·차이나타운과 연결되어 <strong>자연스럽게 들르는 문화 앵커</strong>가 됩니다.</p>
+        <p class="phase-body">내항 재개발·1883 개항광장·개항장·월미도·차이나타운과 연결되어 <span class="hl-dark">자연스럽게 들르는 문화 거점</span>이 됩니다.</p>
       </div>
     </div>
 
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>"상설화"는 최종 목표일 수 있지만, 시작점이 되면 위험합니다. 방문 수요가 검증되지 않은 상태에서 장기 입점과 고정 임대를 먼저 요구하면 민간은 다시 들어오기 어렵습니다.</p>
-        <p>순서는 명확해야 합니다. 먼저 <strong>목적 방문</strong>을 만들고, 다음으로 <strong>반복되는 시간표</strong>를 만들고, 마지막으로 내항 권역 안에서 자연스럽게 들르는 상설 방문지로 키워야 합니다.</p>
-      </div>
-    </details>
   </div>
 </section>
 
@@ -1063,30 +1585,62 @@ button:focus-visible, .menu-item:focus-visible {
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 05 / 16</div>
     <span class="eyebrow">운영 전환</span>
-    <h2 class="headline">공간 임대 → <span class="g-warm">시즌 편성</span>으로.</h2>
-    <p class="subhead">상상플랫폼에는 임대사업자가 아니라 <span class="hl hl-yellow">방송국 편성국 같은 운영 체계</span>가 필요합니다.</p>
-    <p class="body-text">
-      매주 무엇을 열고, 누가 관객을 데려오고, 어떤 브랜드가 비용을 내고, 어떤 커뮤니티가 확산시키는지를 설계해야 합니다. 운영의 중심은 <strong>시설 관리가 아니라 시즌 편성</strong>입니다.
-    </p>
+    <h2 class="headline">공간 임대에서 <span class="g-text">시즌 편성</span>으로.</h2>
+    <p class="subhead">상상플랫폼에는 임대사업자가 아니라 <span class="hl hl-yellow">방송국 편성국처럼 움직이는 운영 체계</span>가 필요합니다.</p>
 
-    <table class="matrix">
-      <thead><tr><th style="width:24%">운영 항목</th><th>해야 할 일</th></tr></thead>
-      <tbody>
-        <tr><td><strong>6개월 편성표</strong></td><td>키즈, 푸드, 펫, K-content, 브랜드 팝업, 야간 프로그램을 월별로 배치합니다.</td></tr>
-        <tr><td><strong>행사 IP 섭외</strong></td><td>이미 관객을 가진 운영사와 커뮤니티를 계약합니다.</td></tr>
-        <tr><td><strong>B2B 세일즈</strong></td><td>브랜드, 대행사, 공공기관, 학교, 교육기관에 공간 활용 패키지를 직접 제안합니다.</td></tr>
-        <tr><td><strong>현장 운영</strong></td><td>안전, 동선, 주차, 부스, 결제, CS를 통합 관리합니다.</td></tr>
-        <tr><td><strong>데이터 관리</strong></td><td>방문자, 매출, 체류, 민원, 재방문 의향을 다음 제안서로 바꿉니다.</td></tr>
-      </tbody>
-    </table>
+    <div class="pullquote pullquote-emph">
+      방송국 편성국처럼.<br/>
+      <span class="pq-sub">매주 무엇을 열고, 누가 관객을 데려오며, 어떤 브랜드가 비용을 내고, 어떤 커뮤니티가 확산시킬지를 <strong>편성</strong>해야 합니다.</span>
+    </div>
 
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>관광공사가 모든 콘텐츠를 직접 만들 필요는 없습니다. 관광공사는 <strong>공공성·안전·시설 기준·행정 조율</strong>을 맡고, 민간 운영 주체는 <strong>편성·섭외·세일즈·마케팅·현장 운영</strong>을 맡는 구조가 적합합니다.</p>
-        <p>운영 주체에게는 편성권, 섭외권, 브랜드 패키지 판매권, 행사별 마케팅 집행권이 있어야 합니다. <strong>권한 없는 운영사는 현장을 바꾸지 못합니다.</strong></p>
+    <!-- 5개 운영 항목 카드 -->
+    <div class="op-cards" aria-label="운영 체계 5개 축">
+      <div class="op-card op-pink">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M8 13h2"/><path d="M14 13h2"/><path d="M8 17h2"/><path d="M14 17h2"/>
+          </svg>
+        </div>
+        <div class="op-title">6개월 편성표</div>
+        <div class="op-sub"><span class="hl-dark">키즈·푸드·펫·K-content</span><br/>·브랜드 팝업·야간 프로그램을<br/>월별 배치</div>
       </div>
-    </details>
+      <div class="op-card op-orange">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>
+          </svg>
+        </div>
+        <div class="op-title">행사 IP 섭외</div>
+        <div class="op-sub"><span class="hl-dark">이미 관객을 가진</span><br/>운영사·커뮤니티<br/>섭외·계약</div>
+      </div>
+      <div class="op-card op-yellow">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/>
+          </svg>
+        </div>
+        <div class="op-title">B2B 세일즈</div>
+        <div class="op-sub">브랜드·대행사·공공기관·학교에 <span class="hl-dark">활용 패키지 직접 제안</span></div>
+      </div>
+      <div class="op-card op-cyan">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6l9-4z"/><path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="op-title">현장 운영</div>
+        <div class="op-sub">안전·동선·주차·부스·결제·CS <span class="hl-dark">통합 관리</span></div>
+      </div>
+      <div class="op-card op-lime">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"/><path d="M7 15l4-4 4 3 5-7"/>
+          </svg>
+        </div>
+        <div class="op-title">데이터 관리</div>
+        <div class="op-sub">방문자·매출·체류·민원·<br/>재방문 의향을<br/><span class="hl-dark">다음 제안서로 전환</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1095,32 +1649,26 @@ button:focus-visible, .menu-item:focus-visible {
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 06 / 16</div>
     <span class="eyebrow pink">관객 보유 IP</span>
-    <h2 class="headline mega"><span class="g-text">관객을 가진 IP</span><br/>를 데려옵니다.</h2>
-    <p class="subhead">상상플랫폼이 사람을 모으는 것이 아니라, 관객 보유 IP가 <span class="hl hl-pink">상상플랫폼으로 들어오게</span> 해야 합니다.</p>
-    <p class="body-text">
-      지금은 "아이와 갈 이유", "반려동물과 갈 이유", "먹을 이유", "찍을 이유", "팬덤이 모일 이유"처럼 <strong>방문 목적이 먼저 보여야</strong> 움직이는 공간입니다. 여기서 말하는 IP는 행사, 브랜드, 커뮤니티, 콘텐츠 패키지를 모두 포함합니다.
-    </p>
+    <h2 class="headline page6-headline"><span class="g-text">관객을 가진 IP</span>를<br/>먼저 데려옵니다.</h2>
+    <p class="subhead">상상플랫폼이 처음부터 직접 관객을 모으기보다,<br/>관객 보유 IP가 <span class="hl hl-pink">상상플랫폼을 활용하고 싶어지는 조건</span>을 먼저 만들어야 합니다.</p>
 
-    <table class="matrix">
-      <thead><tr><th>관객 보유 IP</th><th>가져오는 것</th><th>상상플랫폼이 제공할 것</th></tr></thead>
-      <tbody>
-        <tr><td><strong>키즈 체험 운영사</strong></td><td>가족 단위 주말 방문</td><td>실내 공간, 안전, 공동 홍보, 최소 매출 방어</td></tr>
-        <tr><td><strong>펫 행사 운영사</strong></td><td>커뮤니티 기반 방문</td><td>야외 동선, 포토존, 셀러존, 주차·위생 지원</td></tr>
-        <tr><td><strong>푸드마켓 운영사</strong></td><td>셀러, 먹거리, 현장 활기</td><td>광장, 전기·수도, 부스, 결제·정산 인프라</td></tr>
-        <tr><td><strong>자동차·아웃도어 브랜드</strong></td><td>체험 예산과 신제품</td><td>대형 실내외 체험 면적, 촬영·PR 패키지</td></tr>
-        <tr><td><strong>K-content·팬덤 커뮤니티</strong></td><td>자발 확산과 숏폼</td><td>무대, 음향, 굿즈마켓, SNS 확산 장치</td></tr>
-        <tr><td><strong>로컬 인플루언서</strong></td><td>지역 도달</td><td>촬영 포인트, 초대권, 제휴 혜택</td></tr>
-        <tr><td><strong>학교·교육청·기관</strong></td><td>평일 단체 수요</td><td>체험 프로그램, 안전 동선, 교육형 패키지</td></tr>
-      </tbody>
-    </table>
+    <div class="ip-compact-grid" aria-label="관객 보유 IP 7유형">
+      <div class="ip-compact ip-c-pink"><span class="ip-c-tag">키즈 체험</span><span class="ip-c-desc">가족 주말</span></div>
+      <div class="ip-compact ip-c-orange"><span class="ip-c-tag">펫 행사</span><span class="ip-c-desc">커뮤니티</span></div>
+      <div class="ip-compact ip-c-yellow"><span class="ip-c-tag">푸드마켓</span><span class="ip-c-desc">셀러·먹거리</span></div>
+      <div class="ip-compact ip-c-lime"><span class="ip-c-tag">자동차·아웃도어</span><span class="ip-c-desc">체험 예산</span></div>
+      <div class="ip-compact ip-c-cyan"><span class="ip-c-tag">K-content·팬덤</span><span class="ip-c-desc">자발 확산</span></div>
+      <div class="ip-compact ip-c-violet"><span class="ip-c-tag">로컬 인플루언서</span><span class="ip-c-desc">지역 도달</span></div>
+      <div class="ip-compact ip-c-magenta"><span class="ip-c-tag">학교·교육청</span><span class="ip-c-desc">평일 단체</span></div>
+    </div>
 
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>공간명 중심 안내는 "상상플랫폼에 놀러오세요"에 머물기 쉽습니다. 콘텐츠 중심 안내는 "이번 주말 인천항 창고에서 키즈 실내 체험, 푸드마켓, 공연, 포토존이 함께 열립니다"처럼 <strong>방문 이유</strong>를 먼저 보여줍니다.</p>
-        <p>상상플랫폼 브랜드를 먼저 키우려 하면 시간이 오래 걸립니다. 반대로 관객 보유 IP를 데려오면, 그 관객이 상상플랫폼을 경험하고 다음 방문의 기반이 됩니다.</p>
+    <div class="ip-bonus-row">
+      <div class="ip-bonus-label">+ 또 다른 아이디어</div>
+      <div class="ip-bonus-chips">
+        <span>COMDEX형 테크쇼</span><span>스타트업 데모데이</span><span>e스포츠 페스티벌</span><span>코믹콘</span><span>국제 푸드페어</span><span>오토 살롱</span><span>웰니스 페어</span><span>북페어</span><span>K-뷰티 박람회</span><span>해양·항만 컨퍼런스</span><span>아트페어</span><span>로봇·드론쇼</span>
       </div>
-    </details>
+    </div>
+
   </div>
 </section>
 
@@ -1129,32 +1677,23 @@ button:focus-visible, .menu-item:focus-visible {
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 07 / 16</div>
     <span class="eyebrow yellow">시장 조성</span>
-    <h2 class="headline">민간이 들어올 <span class="g-warm">조건</span>을 먼저 만듭니다.</h2>
-    <p class="subhead">초기 예산은 <span class="hl hl-orange">수익을 사는 돈</span>이 아니라, 민간이 들어올 수 있는 <span class="hl hl-lime">증거를 만드는 돈</span>입니다.</p>
-    <p class="body-text">
-      첫 3~6개월은 시장 조성 구간입니다. 이 시기에는 민간이 들어와도 망하지 않게 <strong>공간·운영·홍보·손실 방어</strong>를 일부 제공해야 합니다.
-    </p>
+    <h2 class="headline">민간이 들어올 수 있는<br/><span class="g-cool">조건</span>을 먼저 만듭니다.</h2>
+    <p class="subhead">초기 예산은 <span class="hl hl-orange">수익을 사는 돈</span>이 아니라, 민간이 들어올 수 있다는 <span class="hl hl-lime">증거를 만드는 돈</span>입니다.</p>
+
 
     <div class="card-grid cols-3">
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-orange)">01</div><h3 class="card-title">공간 무상/저가 제공</h3><p class="card-body">행사사와 브랜드의 진입장벽을 낮춥니다.</p></div>
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-pink)">02</div><h3 class="card-title">최소 매출 보장 / 손실 방어</h3><p class="card-body">운영자가 첫 회차 실패를 두려워하지 않게 합니다.</p></div>
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-violet)">03</div><h3 class="card-title">공동 홍보비</h3><p class="card-body">모객 부담을 공공과 민간이 나눕니다.</p></div>
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-cyan)">04</div><h3 class="card-title">현장 운영 지원</h3><p class="card-body">안전·부스·동선·결제·CS 부담을 낮춥니다.</p></div>
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-emerald)">05</div><h3 class="card-title">콘텐츠 제작비</h3><p class="card-body">사진·숏폼·보도자료·다음 세일즈 자료를 확보합니다.</p></div>
-      <div class="card" style="background: linear-gradient(180deg, rgba(255,36,105,0.10), rgba(155,92,255,0.06)); border-color: rgba(255,36,105,0.3);">
-        <div class="card-eyebrow" style="color:var(--hl-pink)">RULE</div>
+      <div class="card pack-color" style="background: var(--v-orange);"><div class="card-eyebrow">01</div><h3 class="card-title">공간 무상/저가 제공</h3><p class="card-body">행사사와 브랜드의 <span class="hl-dark">진입 장벽</span>을 낮춥니다.</p></div>
+      <div class="card pack-color" style="background: var(--v-pink);"><div class="card-eyebrow">02</div><h3 class="card-title">초기 매출 안전장치 / 손실 완충</h3><p class="card-body">운영자가 <span class="hl-dark">첫 회차 리스크</span>를 과도하게 부담하지 않도록 설계합니다.</p></div>
+      <div class="card pack-color" style="background: var(--v-violet);"><div class="card-eyebrow">03</div><h3 class="card-title">공동 홍보비</h3><p class="card-body"><span class="hl-dark">모객 부담</span>을 공공과 민간이 나눕니다.</p></div>
+      <div class="card pack-color" style="background: var(--v-cyan);"><div class="card-eyebrow">04</div><h3 class="card-title">현장 운영 지원</h3><p class="card-body">안전·부스·동선·결제·CS <span class="hl-dark">부담을 낮춤</span>.</p></div>
+      <div class="card pack-color" style="background: var(--v-emerald);"><div class="card-eyebrow">05</div><h3 class="card-title">콘텐츠 제작비</h3><p class="card-body">사진·숏폼·보도자료·<span class="hl-dark">후속 세일즈 자료</span>를 확보합니다.</p></div>
+      <div class="card pack-color" style="background: var(--v-yellow);">
+        <div class="card-eyebrow">RULE</div>
         <h3 class="card-title">파일럿 구조 + 졸업 조건</h3>
-        <p class="card-body"><strong>2주 팝업 → 3~6개월 단기 입점 → 1년 상설 입점</strong>. 공개모집·기간 제한·성과 기준으로 특혜가 아닌 시장 검증 장치가 됩니다.</p>
+        <p class="card-body" style="font-size: clamp(14px, 1.05vw, 16px); line-height: 1.55;"><span class="hl-dark">2주 팝업 → 3~6개월 단기 입점 → 1년 상설 입점</span>. 공개모집·기간 제한·성과 기준을 두면 특혜가 아니라 시장 검증 장치가 됩니다.</p>
       </div>
     </div>
 
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>무료나 낮은 임대료는 특혜가 아니라 <strong>파일럿 구조</strong>로 설계해야 합니다. 공개모집, 기간 제한, 성과 기준, 졸업 조건을 명확히 두면 낮은 진입장벽은 시장 검증 장치가 됩니다.</p>
-        <p>권장 구조는 2주 팝업, 3~6개월 단기 입점, 1년 이상 상설 입점입니다. 방문객·매출·운영평가·민원·재참여 의향을 기준으로 다음 단계 진입을 결정합니다.</p>
-      </div>
-    </details>
   </div>
 </section>
 
@@ -1163,27 +1702,47 @@ button:focus-visible, .menu-item:focus-visible {
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 08 / 16</div>
     <span class="eyebrow violet">운영 PMO</span>
-    <h2 class="headline">운영 PMO는 <span class="g-text">무대감독</span>이어야 합니다.</h2>
-    <p class="subhead">콘텐츠를 전부 직접 만드는 제작자가 아니라, <span class="hl hl-pink">외부 IP가 성공하도록 판을 짜는</span> 무대감독.</p>
+    <h2 class="headline">운영 PMO는<br/><span class="g-cool">무대감독</span>이어야 합니다.</h2>
+    <p class="subhead">콘텐츠를 전부 직접 만드는 제작자가 아니라,<br/><span class="hl hl-pink">외부 IP가 성공하도록 판을 짜는</span> 무대감독.</p>
 
-    <table class="matrix">
-      <thead><tr><th style="width:16%">역할</th><th style="width:48%">책임</th><th>효과</th></tr></thead>
-      <tbody>
-        <tr><td><strong>큐레이션</strong></td><td>개항·항만·로컬·가족·야간 체류 기준 유지</td><td>잡다한 행사장화를 막습니다.</td></tr>
-        <tr><td><strong>인프라</strong></td><td>조명·음향·가변 부스·QR·예약·안전 동선 제공</td><td>외부 기획자의 진입장벽을 낮춥니다.</td></tr>
-        <tr><td><strong>유통</strong></td><td>SNS·인천e지·개항장·월미도·차이나타운 동선 연결</td><td>관객 공급을 만듭니다.</td></tr>
-        <tr><td><strong>세일즈</strong></td><td>브랜드·대행사·기관에 직접 제안</td><td>B2B 수익화를 만듭니다.</td></tr>
-        <tr><td><strong>데이터</strong></td><td>방문·매출·민원·체류시간 측정</td><td>다음 투자 판단의 근거를 만듭니다.</td></tr>
-      </tbody>
-    </table>
-
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>관광공사가 전부 직접 기획하면 속도가 느려질 수 있고, 민간에 전부 넘기면 공공성과 안전 관리가 약해질 수 있습니다. 그래서 <strong>역할 분리</strong>가 필요합니다.</p>
-        <p>관광공사는 공공성·안전·시설 기준·행정 조율을 맡습니다. 운영 PMO는 6개월 편성표·콘텐츠 섭외·B2B 세일즈·행사별 마케팅·현장 운영을 맡습니다.</p>
+    <div class="op-cards op-cards-5" aria-label="PMO 5역할">
+      <div class="op-card op-pink">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/></svg>
+        </div>
+        <div class="op-title">큐레이션</div>
+        <div class="op-sub">개항·항만·로컬·가족·야간 체류 기준 유지로 <span class="hl-dark">잡다한 행사장화</span>를 막음</div>
       </div>
-    </details>
+      <div class="op-card op-orange">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <div class="op-title">인프라</div>
+        <div class="op-sub">조명·음향·가변 부스·QR·예약·안전 동선으로 <span class="hl-dark">외부 기획자 진입 장벽</span> 낮춤</div>
+      </div>
+      <div class="op-card op-yellow">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 10.5l7-4"/><path d="M8.5 13.5l7 4"/></svg>
+        </div>
+        <div class="op-title">유통</div>
+        <div class="op-sub">SNS·인천e지·개항장·월미도·차이나타운 동선으로 <span class="hl-dark">관객 유입 경로</span> 생성</div>
+      </div>
+      <div class="op-card op-cyan">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <div class="op-title">세일즈</div>
+        <div class="op-sub">브랜드·대행사·기관에 직접 제안해 <span class="hl-dark">B2B 수익화 기회</span> 생성</div>
+      </div>
+      <div class="op-card op-lime">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="13" width="3" height="5"/><rect x="12" y="9" width="3" height="9"/><rect x="17" y="6" width="3" height="12"/></svg>
+        </div>
+        <div class="op-title">데이터</div>
+        <div class="op-sub">방문·매출·민원·체류시간 측정으로 <span class="hl-dark">후속 투자 판단 근거</span> 확보</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1192,31 +1751,52 @@ button:focus-visible, .menu-item:focus-visible {
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 09 / 16</div>
     <span class="eyebrow">6개월 파일럿</span>
-    <h2 class="headline">첫 6개월은 <span class="g-warm">증거를 만드는 기간</span>입니다.</h2>
-    <p class="subhead">목표는 "돈을 벌었다"가 아니라 <span class="hl hl-cyan">"반복 가능한 운영 모델이 보인다"</span>여야 합니다.</p>
+    <h2 class="headline">첫 6개월은 <span class="g-cool">확장 가능성을<br/>검증하는 기간</span>입니다.</h2>
+    <p class="subhead">목표는 단기 수익보다 <span class="hl hl-cyan">"반복 가능한 운영 모델이 보이는지"</span> 확인하는 데 두어야 합니다.</p>
 
-    <table class="matrix">
-      <thead><tr><th style="width:14%">시기</th><th style="width:46%">실행</th><th>검증 지표</th></tr></thead>
-      <tbody>
-        <tr><td><strong>즉시</strong></td><td>앵커 행사 IP 4개 후보 계약 협상</td><td>계약 수, 조건, 예상 관객</td></tr>
-        <tr><td><strong>즉시</strong></td><td>야시장·마켓 정례화</td><td>방문객, 매출, 민원</td></tr>
-        <tr><td><strong>1개월</strong></td><td>포토 트리거 5개 지점 설치</td><td>촬영률, 공유율, 동선 반응</td></tr>
-        <tr><td><strong>1개월</strong></td><td>QR 맵·스탬프·예약 테스트</td><td>사용률, 재방문 데이터</td></tr>
-        <tr><td><strong>3개월</strong></td><td>270m 워크스루 프리뷰 운영</td><td>체류시간, 전환율, 촬영률</td></tr>
-        <tr><td><strong>3개월</strong></td><td>1883 항만 나이트 파일럿</td><td>야간 체류, 소음 민원, F&amp;B 매출</td></tr>
-        <tr><td><strong>6개월</strong></td><td>팝업 입점 1차 공모</td><td>지원자 수, 재참여율, 매출연동 가능성</td></tr>
-        <tr><td><strong>6개월</strong></td><td>B2B 세일즈덱 업데이트</td><td>브랜드 문의, 제안 수락률</td></tr>
-      </tbody>
-    </table>
+    <div class="flowline" aria-label="6개월 파일럿 타임라인 — 가로 Flow">
+      <div class="flowline-track" aria-hidden="true"></div>
+      <div class="flowline-stages">
+        <div class="flow-stage s-now">
+          <div class="flow-node"><span class="flow-when">즉시</span><span class="flow-sub">D+0</span></div>
+          <div class="flow-card">
+            <div class="flow-act"><span class="hl-dark">앵커 행사 IP 4개 후보</span> 협의 착수<span class="flow-kpi">조건·비용·관객 적합성 검토</span></div>
+            <div class="flow-act">야시장·마켓 <span class="hl-dark">정례 운영 가능성</span> 점검<span class="flow-kpi">방문객 반응·매출 흐름·운영 리스크</span></div>
+          </div>
+        </div>
+        <div class="flow-stage s-1m">
+          <div class="flow-node"><span class="flow-when">1개월</span><span class="flow-sub">D+30</span></div>
+          <div class="flow-card">
+            <div class="flow-act"><span class="hl-dark">포토 트리거 5개 지점</span> 시범 배치<span class="flow-kpi">촬영률·공유율·동선 반응</span></div>
+            <div class="flow-act">QR 맵·스탬프·예약 기능 테스트<span class="flow-kpi">사용률·재방문 데이터</span></div>
+          </div>
+        </div>
+        <div class="flow-stage s-3m">
+          <div class="flow-node"><span class="flow-when">3개월</span><span class="flow-sub">D+90</span></div>
+          <div class="flow-card">
+            <div class="flow-act"><span class="hl-dark">270m 워크스루 프리뷰</span> 시범 운영<span class="flow-kpi">체류시간·전환율·촬영률</span></div>
+            <div class="flow-act">1883 연계 야간 프로그램 파일럿<span class="flow-kpi">야간 체류·소음 민원·F&amp;B 매출</span></div>
+          </div>
+        </div>
+        <div class="flow-stage s-6m">
+          <div class="flow-node"><span class="flow-when">6개월</span><span class="flow-sub">D+180</span></div>
+          <div class="flow-card">
+            <div class="flow-act"><span class="hl-dark">팝업 입점 1차 수요</span> 확인<span class="flow-kpi">지원 수요·재참여 의향·매출 가능성</span></div>
+            <div class="flow-act"><span class="hl-dark">B2B 제안서 고도화</span><span class="flow-kpi">브랜드 문의·협의 전환 가능성</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <div class="pullquote">
-      방문자가 많아도 민원이 크고 재참여가 없으면 확장하면 안 됩니다. 방문자가 중간 수준이어도 <span class="hl hl-lime">재참여율과 B2B 문의</span>가 높으면 다음 시즌으로 키울 수 있습니다.
+    <div class="pullquote pullquote-emph">
+      방문객 숫자만으로 판단하지 않습니다.<br/>
+      <span class="pq-sub">방문객이 많아도 민원과 운영 부담이 크고 재참여 신호가 약하면 확장은 보류합니다. 반대로 방문객이 중간 수준이어도 <strong>재참여 의향과 B2B 문의</strong>가 확인되면 다음 시즌 검토 대상으로 봅니다.</span>
     </div>
 
     <details class="callout">
       <summary>근거와 운영 기준</summary>
       <div class="callout-body">
-        <p>첫 6개월 KPI는 <strong>방문객 숫자 하나</strong>로 보면 안 됩니다. 행사별 매출·부스 재참여율·방문자 DB·SNS 확산·민원 건수·다음 B2B 문의까지 같이 봐야 합니다.</p>
+        <p>첫 6개월 KPI는 <strong>방문객 숫자 하나</strong>만으로 보면 안 됩니다. 행사별 매출·부스 재참여율·방문자 DB·SNS 확산·민원 건수·다음 B2B 문의까지 같이 봐야 합니다.</p>
         <p>그래야 단발 이벤트인지, 반복 가능한 운영 모델인지 구분할 수 있습니다.</p>
       </div>
     </details>
@@ -1232,32 +1812,28 @@ button:focus-visible, .menu-item:focus-visible {
         <div class="page-chip"><span class="dot"></span> CHAPTER 10 / 16</div>
         <span class="eyebrow lime">대표 경험</span>
         <h2 class="headline mega"><span class="hl hl-pink">270m</span><br/>개항 워크스루.</h2>
-        <p class="subhead">첫 방문 목적 → 계절별 재방문 장치 → <span class="hl hl-cyan">내항 권역 동선</span>으로 확장.</p>
+        <p class="subhead">첫 방문 목적 → 계절별 재방문 장치 → <span class="hl hl-cyan">내항 권역 동선</span>으로 확장합니다.</p>
       </div>
     </div>
 
-    <p class="body-text" style="margin-top:24px;">
-      상상플랫폼은 270m 길이의 곡물창고라는 강한 물리적 자산을 갖고 있습니다. 단순 미디어 전시로 쓰면 방어 부담이 커지지만, <strong>개항·항만·곡물창고·미래 내항을 걷는 경험</strong>으로 만들면 초기에는 첫 방문 목적, 중기에는 계절별 재방문 장치, 장기에는 권역을 걷는 대표 동선이 됩니다.
-    </p>
-
-    <table class="matrix">
-      <thead><tr><th style="width:14%">단계</th><th style="width:24%">역할</th><th>설명</th></tr></thead>
-      <tbody>
-        <tr><td><strong>초기</strong></td><td>첫 방문 목적</td><td>"상상플랫폼에 가면 반드시 이것을 본다"는 기억 포인트입니다.</td></tr>
-        <tr><td><strong>초기</strong></td><td>행사 보강 장치</td><td>키즈·펫·푸드·K-content·브랜드 팝업에 붙는 체험 동선입니다.</td></tr>
-        <tr><td><strong>중기</strong></td><td>계절별 재방문 장치</td><td>봄·여름·가을·겨울 테마를 바꾸며 다시 올 이유를 만듭니다.</td></tr>
-        <tr><td><strong>중기</strong></td><td>B2B 세일즈 배경</td><td>브랜드 촬영·체험·쇼케이스를 만들 수 있는 공간 배경입니다.</td></tr>
-        <tr><td><strong>장기</strong></td><td>권역 경험 동선</td><td>실내에서 광장·내항·개항장으로 이어지는 대표 보행 동선입니다.</td></tr>
-      </tbody>
-    </table>
-
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>처음부터 270m 전체를 구축하면 비용과 실패 반복 질문이 커집니다. <strong>시작은 프리뷰 구간</strong>이 맞습니다. 입구·기둥·외벽·광장에 포토 트리거를 만들고, 내부 3개 구간에서 해무·기적·크레인·곡물창고·개항거리·미래 내항을 걷는 경험을 검증합니다.</p>
-        <p>표현은 "고정형 대형 전시"가 아니라 <strong>"270m 창고 동선을 걷는 개항·항만 경험"</strong>이 적합합니다. 핵심은 장비가 아니라 동선·체류·촬영·공유·다음 방문 이유입니다.</p>
+    <div class="phase-3">
+      <div class="phase3-cell phase3-init">
+        <div class="phase3-tag">초기</div>
+        <div class="phase3-title">첫 방문 목적</div>
+        <div class="phase3-body"><span class="hl-dark">"상상플랫폼에 가면 떠올릴 수 있는"</span> 대표 기억점. 키즈·펫·푸드·K-content·브랜드 팝업과 결합되는 체험 동선.</div>
       </div>
-    </details>
+      <div class="phase3-cell phase3-mid">
+        <div class="phase3-tag">중기</div>
+        <div class="phase3-title">계절별 재방문 장치</div>
+        <div class="phase3-body"><span class="hl-dark">봄·여름·가을·겨울 테마 교체</span>로 다시 올 이유. 브랜드 촬영·체험·쇼케이스의 공간적 배경.</div>
+      </div>
+      <div class="phase3-cell phase3-long">
+        <div class="phase3-tag">장기</div>
+        <div class="phase3-title">권역 경험 동선</div>
+        <div class="phase3-body">실내에서 광장·내항·개항장으로 이어지는 <span class="hl-dark">대표 보행 동선</span>. 권역의 출발점.</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1269,40 +1845,32 @@ button:focus-visible, .menu-item:focus-visible {
       <div class="hero-stack">
         <div class="page-chip"><span class="dot"></span> CHAPTER 11 / 16</div>
         <span class="eyebrow yellow">시간표</span>
-        <h2 class="headline">낮 · 저녁 · 밤,<br/><span class="g-text">반복 방문</span>의 시간표.</h2>
+        <h2 class="headline">낮 · 저녁 · 밤,<br/><span class="g-text">반복 방문</span>을 만드는 시간표.</h2>
         <p class="subhead">시간대별 목적이 반복되면, 상상플랫폼은 <span class="hl hl-yellow">주말 시간표가 있는 공간</span>이 됩니다.</p>
       </div>
     </div>
 
     <div class="phase-row">
-      <div class="phase-cell" style="background:linear-gradient(180deg, rgba(255,184,0,0.08), transparent);">
-        <div class="phase-num p1" style="background: linear-gradient(180deg, var(--v-yellow), var(--v-orange)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">10–17</div>
+      <div class="phase-cell" style="background: var(--v-yellow);">
+        <div class="phase-num">10–17</div>
         <div class="phase-meta">낮 · DAY</div>
         <h3 class="phase-title">가족 · 체험</h3>
-        <p class="phase-body">키즈 체험·공예·플리마켓·카페·조용한 워크스루를 <strong>주말 루틴</strong>으로 만듭니다.</p>
+        <p class="phase-body">키즈 체험·공예·플리마켓·카페·조용한 워크스루를 <span class="hl-dark">주말 루틴</span>으로 만듭니다.</p>
       </div>
-      <div class="phase-cell" style="background:linear-gradient(180deg, rgba(255,36,105,0.10), transparent);">
-        <div class="phase-num p2" style="background: linear-gradient(180deg, var(--v-pink), var(--v-magenta)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">17–21</div>
+      <div class="phase-cell" style="background: var(--v-pink);">
+        <div class="phase-num">17–21</div>
         <div class="phase-meta">저녁 · EVENING</div>
         <h3 class="phase-title">먹거리 · 데이트</h3>
-        <p class="phase-body">야시장·푸드트럭·버스킹·창고 조명을 <strong>월 2회 이상 반복</strong>합니다.</p>
+        <p class="phase-body">야시장·푸드트럭·버스킹·창고 조명을 <span class="hl-dark">월 2회 이상 반복 운영</span>합니다.</p>
       </div>
-      <div class="phase-cell" style="background:linear-gradient(180deg, rgba(155,92,255,0.10), transparent);">
-        <div class="phase-num p3" style="background: linear-gradient(180deg, var(--v-violet), var(--v-azure)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">21~</div>
+      <div class="phase-cell" style="background: var(--v-violet);">
+        <div class="phase-num">21~</div>
         <div class="phase-meta">밤 · NIGHT</div>
         <h3 class="phase-title">안전한 야간 체류</h3>
-        <p class="phase-body">실내 중심 소규모 라이브·야간 음악 프로그램·로컬 탭룸을 <strong>제한적으로 검증</strong>합니다.</p>
+        <p class="phase-body">실내 중심의 소규모 라이브·야간 음악 프로그램·로컬 탭룸을 <span class="hl-dark">제한적으로 검증</span>합니다.</p>
       </div>
     </div>
 
-    <details class="callout">
-      <summary>근거와 운영 기준 — 야간 운영 3단계</summary>
-      <div class="callout-body">
-        <p>야간 운영은 <strong>조심스럽게 설계</strong>해야 합니다. 처음부터 늦은 시간의 대규모 야외 프로그램을 만들면 민원과 안전 리스크가 커집니다.</p>
-        <p><strong>1단계</strong> 21시 이전 야시장과 버스킹. <strong>2단계</strong> 실내 라이브와 공연 후 체류. <strong>3단계</strong> 허가·방음·보안·응급 대응 기준을 갖춘 제한적 야간 프로그램.</p>
-        <p>공공기관 발표에서는 "야간 음악 프로그램", "소규모 라이브", "야간 체류 콘텐츠"로 설명하는 것이 안전합니다.</p>
-      </div>
-    </details>
   </div>
 </section>
 
@@ -1311,27 +1879,55 @@ button:focus-visible, .menu-item:focus-visible {
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 12 / 16</div>
     <span class="eyebrow pink">B2B 세일즈</span>
-    <h2 class="headline">B2B 제안은 <span class="g-warm">기다리지 않고 직접</span>.</h2>
+    <h2 class="headline">B2B 제안은<br/><span class="g-warm">기다리지 말고 직접</span>.</h2>
     <p class="subhead">상상플랫폼은 알려지면 쓰는 공간이 아니라, <span class="hl hl-pink">활용 장면을 먼저 제안</span>해야 선택되는 베뉴입니다.</p>
-    <p class="body-text">
-      공간 소개만으로는 브랜드와 행사사가 움직이지 않습니다. 면적·동선·지원 조건·예상 관객·촬영 장면·홍보 패키지·데이터 리포트를 묶은 <strong>제안서</strong>로 직접 움직여야 합니다.
-    </p>
 
-    <table class="matrix">
-      <thead><tr><th style="width:30%">타깃</th><th>제안 방식</th></tr></thead>
-      <tbody>
-        <tr><td><strong>브랜드 마케팅팀</strong></td><td>신제품 체험 팝업, 쇼케이스, 촬영 패키지 제안</td></tr>
-        <tr><td><strong>광고·이벤트 대행사</strong></td><td>대형 베뉴 세일즈덱 발송과 방문 미팅</td></tr>
-        <tr><td><strong>키즈·교육 업체</strong></td><td>방학·주말 실내 체험 패키지 제안</td></tr>
-        <tr><td><strong>푸드·마켓 운영자</strong></td><td>셀러 모집과 공동 홍보 조건 제안</td></tr>
-        <tr><td><strong>자동차·아웃도어 브랜드</strong></td><td>실내외 대형 체험 팝업 제안</td></tr>
-        <tr><td><strong>공공기관·학교</strong></td><td>평일 단체 체험, 안전 동선, 교육형 상품 제안</td></tr>
-      </tbody>
-    </table>
 
-    <div class="pullquote">
-      6개월 동안 만든 데이터가 다음 시즌의 <strong>브랜드 제안서</strong>가 되고, 브랜드 제안서가 다시 상상플랫폼의 <strong>운영비</strong>를 만드는 구조가 됩니다.
+    <div class="op-cards op-cards-6" aria-label="B2B 6타깃">
+      <div class="op-card op-pink">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-7v16L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        </div>
+        <div class="op-title">브랜드 마케팅팀</div>
+        <div class="op-sub"><span class="hl-dark">신제품 체험 팝업</span>·쇼케이스·촬영 패키지</div>
+      </div>
+      <div class="op-card op-orange">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2.5h6V4"/><line x1="8.5" y1="10" x2="15.5" y2="10"/><line x1="8.5" y1="14" x2="15.5" y2="14"/><line x1="8.5" y1="18" x2="13" y2="18"/></svg>
+        </div>
+        <div class="op-title">광고·이벤트 대행사</div>
+        <div class="op-sub"><span class="hl-dark">대형 베뉴 세일즈덱</span> 발송 및 방문 미팅</div>
+      </div>
+      <div class="op-card op-yellow">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2.5 14.6 8.6 21 9.3 16.2 13.6 17.7 20 12 16.7 6.3 20 7.8 13.6 3 9.3 9.4 8.6 12 2.5"/></svg>
+        </div>
+        <div class="op-title">키즈·교육 업체</div>
+        <div class="op-sub"><span class="hl-dark">방학·주말 실내 체험</span> 패키지</div>
+      </div>
+      <div class="op-card op-lime">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h12v8a6 6 0 0 1-12 0V4z"/><path d="M17 7h2.5a2 2 0 0 1 0 4H17"/><line x1="4" y1="21" x2="18" y2="21"/></svg>
+        </div>
+        <div class="op-title">푸드·마켓 운영자</div>
+        <div class="op-sub"><span class="hl-dark">셀러 모집·공동 홍보</span> 조건 제안</div>
+      </div>
+      <div class="op-card op-cyan">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14l2-5.5A2 2 0 0 1 7.9 7h8.2a2 2 0 0 1 1.9 1.5L20 14"/><rect x="3" y="14" width="18" height="5" rx="1.5"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="16.5" cy="18.5" r="1.5"/></svg>
+        </div>
+        <div class="op-title">자동차·아웃도어 브랜드</div>
+        <div class="op-sub"><span class="hl-dark">실내외 대형 체험 팝업</span></div>
+      </div>
+      <div class="op-card op-violet">
+        <div class="op-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-4 7 4v12"/><rect x="9" y="13" width="2.5" height="3"/><rect x="12.5" y="13" width="2.5" height="3"/><path d="M11 21v-3h2v3"/></svg>
+        </div>
+        <div class="op-title">공공기관·학교</div>
+        <div class="op-sub"><span class="hl-dark">평일 단체 체험</span>·안전 동선·교육형 상품</div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -1340,28 +1936,23 @@ button:focus-visible, .menu-item:focus-visible {
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 13 / 16</div>
     <span class="eyebrow">재원 구조</span>
-    <h2 class="headline">재원은 <span class="g-text">임대료 하나</span>로 만들 수 없습니다.</h2>
-    <p class="subhead">초기 재원은 <span class="hl hl-cyan">공공 마중물 + 매출쉐어 + 브랜드 스폰서 + B2B 대관</span>을 섞어야 합니다.</p>
+    <h2 class="headline">재원은 <span class="g-cool">임대료 하나</span>만으로<br/>만들 수 없습니다.</h2>
+    <p class="subhead">초기 재원은 <span class="hl hl-cyan">공공 마중물 + 매출쉐어 + 브랜드 스폰서 + B2B 대관</span>을 혼합해야 합니다.</p>
 
-    <div class="card-grid cols-3">
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-orange)">REVENUE 01</div><h3 class="card-title">공공 마중물 예산</h3><p class="card-body">초기 콘텐츠 유치, 운영 리스크 보전, 공동 홍보비.</p></div>
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-pink)">REVENUE 02</div><h3 class="card-title">브랜드 팝업 비용</h3><p class="card-body">신제품 체험·쇼케이스·주말 팝업.</p></div>
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-yellow)">REVENUE 03</div><h3 class="card-title">행사 IP 매출</h3><p class="card-body">입장권·부스비·참가비.</p></div>
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-lime)">REVENUE 04</div><h3 class="card-title">F&amp;B · 마켓 수수료</h3><p class="card-body">푸드트럭·로컬 셀러·굿즈 판매.</p></div>
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-cyan)">REVENUE 05</div><h3 class="card-title">스폰서십</h3><p class="card-body">금융·모빌리티·통신·로컬 기업 협찬.</p></div>
-      <div class="card"><div class="card-eyebrow" style="color:var(--v-violet)">REVENUE 06</div><h3 class="card-title">B2B 대관</h3><p class="card-body">기업 행사·공공기관 행사·학교·단체 체험.</p></div>
+    <div class="op-cards op-cards-6" aria-label="재원 6축">
+      <div class="op-card op-orange"><div class="op-title">공공 마중물</div><div class="op-sub"><span class="hl-dark">초기 콘텐츠 유치</span>·운영 리스크 보전·공동 홍보비</div></div>
+      <div class="op-card op-pink"><div class="op-title">브랜드 팝업</div><div class="op-sub"><span class="hl-dark">신제품 체험·쇼케이스</span>·주말 팝업</div></div>
+      <div class="op-card op-yellow"><div class="op-title">행사 IP 매출</div><div class="op-sub"><span class="hl-dark">입장권·부스비·참가비</span></div></div>
+      <div class="op-card op-lime"><div class="op-title">F&amp;B · 마켓</div><div class="op-sub">푸드트럭·로컬 셀러·<span class="hl-dark">굿즈 판매 수수료</span></div></div>
+      <div class="op-card op-cyan"><div class="op-title">스폰서십</div><div class="op-sub"><span class="hl-dark">금융·모빌리티·통신</span>·로컬 기업 협찬</div></div>
+      <div class="op-card op-violet"><div class="op-title">B2B 대관</div><div class="op-sub"><span class="hl-dark">기업 행사·공공기관·학교</span>·단체 체험</div></div>
     </div>
 
-    <div class="pullquote">
-      초기 재원은 손실이 아니라 <span class="hl hl-lime">근거를 사는 비용</span>입니다. 방문자가 오고, 브랜드가 문의하고, 운영자가 재참여하고, 민원이 관리된다는 증거가 있어야 이후 민간 자금이 들어올 수 있습니다.
+    <div class="pullquote pullquote-emph">
+      초기 재원은 손실이 아닙니다.<br/>
+      <span class="pq-sub">방문·매출·재참여·B2B 문의·관리되는 민원 — <strong>다음 민간 자금을 부르는 증거</strong>를 만드는 비용입니다.</span>
     </div>
 
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>민관 공동투자 구조는 <strong>초기 카드가 아닙니다</strong>. 지금 단계에서 민간은 "누가 수요를 책임지느냐"를 먼저 묻습니다. 순서는 공공 마중물 6개월 파일럿 → 방문·매출·B2B 데이터 확보 → 성과 기반 민간 파트너 유치 → 이후 장기 투자 구조 검토가 맞습니다.</p>
-      </div>
-    </details>
   </div>
 </section>
 
@@ -1374,23 +1965,21 @@ button:focus-visible, .menu-item:focus-visible {
         <div class="page-chip"><span class="dot"></span> CHAPTER 14 / 16</div>
         <span class="eyebrow lime">권역 연계</span>
         <h2 class="headline">상상플랫폼 = <span class="g-cool">항구형 도시공원<br/>콘텐츠 플랫폼</span>.</h2>
-        <p class="subhead">단독 목적지가 아니라, 내항 재개발 권역에서 <span class="hl hl-cyan">자연스럽게 들르는 첫 문화 거점</span>.</p>
+        <p class="subhead">단독 목적지가 아니라, 내항 재개발 권역에서 <span class="hl hl-cyan">자연스럽게 들르는 첫 문화 거점</span>입니다.</p>
       </div>
     </div>
 
-    <table class="matrix">
-      <thead><tr><th style="width:30%">공간</th><th>역할</th></tr></thead>
-      <tbody>
-        <tr><td><strong>상상플랫폼 실내</strong></td><td>전시·팝업·키즈 체험·브랜드 쇼케이스·270m 워크스루</td></tr>
-        <tr><td><strong>1883 개항광장</strong></td><td>야시장·버스킹·푸드마켓·대형 야외 이벤트</td></tr>
-        <tr><td><strong>내항 수변·부두</strong></td><td>항구 산책·야간 경관·포토 동선</td></tr>
-        <tr><td><strong>개항장</strong></td><td>역사·근대건축·카페·도보 관광</td></tr>
-        <tr><td><strong>월미도·차이나타운</strong></td><td>관광 확장 동선과 식음 소비</td></tr>
-      </tbody>
-    </table>
+    <div class="op-cards" aria-label="내항 권역 5장소">
+      <div class="op-card op-pink"><div class="op-title">상상플랫폼 실내</div><div class="op-sub">전시·팝업·키즈·쇼케이스·<span class="hl-dark">270m 워크스루</span></div></div>
+      <div class="op-card op-orange"><div class="op-title">1883 개항광장</div><div class="op-sub"><span class="hl-dark">야시장·버스킹·푸드마켓</span>·대형 야외</div></div>
+      <div class="op-card op-yellow"><div class="op-title">내항 수변·부두</div><div class="op-sub">항구 산책·<span class="hl-dark">야간 경관·포토 동선</span></div></div>
+      <div class="op-card op-cyan"><div class="op-title">개항장</div><div class="op-sub"><span class="hl-dark">역사·근대건축</span>·카페·도보 관광</div></div>
+      <div class="op-card op-violet"><div class="op-title">월미도·차이나타운</div><div class="op-sub">관광 확장 동선·<span class="hl-dark">식음 소비 연결</span></div></div>
+    </div>
 
-    <div class="pullquote">
-      낮에는 아이와 실내 체험, 오후에는 개항광장에서 마켓·공연, 저녁에는 항구 야경과 푸드마켓. 이 코스가 반복되면 상상플랫폼은 <strong>"일부러 한 번 가는 곳"</strong>에서 <span class="hl hl-cyan">"내항에 오면 자연스럽게 들르는 곳"</span>으로 바뀝니다.
+    <div class="pullquote pullquote-emph">
+      낮 실내 체험 → 오후 마켓·공연 → 저녁 항구 야경.<br/>
+      <span class="pq-sub">코스가 반복되면 <strong>"일부러 한 번 가는 곳"</strong>에서 <strong>"내항에 오면 자연스럽게 들르는 곳"</strong>으로.</span>
     </div>
   </div>
 </section>
@@ -1403,28 +1992,42 @@ button:focus-visible, .menu-item:focus-visible {
       <div class="hero-stack">
         <div class="page-chip"><span class="dot"></span> CHAPTER 15 / 16</div>
         <span class="eyebrow violet">중기 전략</span>
-        <h2 class="headline">중기에는 <span class="g-text">운영자를 키워야</span> 합니다.</h2>
-        <p class="subhead">목적형 행사로 모은 관객을 <span class="hl hl-pink">검증된 운영자·상설 입점·오픈스튜디오</span>로 이어야 반복 방문이 생깁니다.</p>
+        <h2 class="headline">중기에는<br/><span class="g-cool">운영자를 키워야</span> 합니다.</h2>
+        <p class="subhead">목적형 행사로 모은 관객을<br/><span class="hl hl-pink">검증된 운영자·상설 입점·오픈스튜디오</span>로 이어야 반복 방문이 생깁니다.</p>
       </div>
     </div>
 
-    <table class="matrix">
-      <thead><tr><th style="width:18%">단계</th><th style="width:18%">기간</th><th style="width:32%">조건</th><th>공간</th></tr></thead>
-      <tbody>
-        <tr><td><strong>팝업</strong></td><td>2주~1개월</td><td>무료 또는 낮은 매출쉐어</td><td>팝업존·광장·가변 부스</td></tr>
-        <tr><td><strong>단기 입점</strong></td><td>3~6개월</td><td>매출연동 8~12% 수준 검토</td><td>셀렉트숍·체험존</td></tr>
-        <tr><td><strong>상설 입점</strong></td><td>1년 이상</td><td>고정+변동 혼합</td><td>검증된 구역</td></tr>
-        <tr><td><strong>체류형 창작 프로그램</strong></td><td>시즌 단위</td><td>작업실 중심·오픈스튜디오 결합</td><td>창작·교육·전시 연계 공간</td></tr>
-      </tbody>
-    </table>
-
-    <details class="callout">
-      <summary>근거와 운영 기준</summary>
-      <div class="callout-body">
-        <p>크리에이터 빌리지는 "예쁜 상점 몇 개"가 아니라 <strong>관객을 가진 창작자·브랜드·공예팀·음악팀·식문화팀</strong>이 테스트하고 성장하는 구조여야 합니다.</p>
-        <p>체류형 창작 프로그램은 숙박 기능을 전면에 세우면 인허가·소방·안전·특혜 질문이 커집니다. 따라서 발표에서는 <strong>작업실 중심 체류형 창작 프로그램·오픈스튜디오·시즌형 창작 프로그램</strong>으로 설명하는 것이 적합합니다.</p>
+    <div class="stage4">
+      <div class="stage4-cell stage4-1">
+        <div class="stage4-num">01</div>
+        <div class="stage4-tag">팝업</div>
+        <div class="stage4-period">2주~1개월</div>
+        <div class="stage4-cond"><span class="hl-dark">무료 또는 낮은 매출쉐어</span></div>
+        <div class="stage4-place">팝업존·광장·가변 부스</div>
       </div>
-    </details>
+      <div class="stage4-cell stage4-2">
+        <div class="stage4-num">02</div>
+        <div class="stage4-tag">단기 입점</div>
+        <div class="stage4-period">3~6개월</div>
+        <div class="stage4-cond"><span class="hl-dark">매출연동 8~12%</span> 검토</div>
+        <div class="stage4-place">셀렉트숍·체험존</div>
+      </div>
+      <div class="stage4-cell stage4-3">
+        <div class="stage4-num">03</div>
+        <div class="stage4-tag">상설 입점</div>
+        <div class="stage4-period">1년 이상</div>
+        <div class="stage4-cond"><span class="hl-dark">고정+변동 혼합</span></div>
+        <div class="stage4-place">검증된 구역</div>
+      </div>
+      <div class="stage4-cell stage4-4">
+        <div class="stage4-num">04</div>
+        <div class="stage4-tag">체류형 창작</div>
+        <div class="stage4-period">시즌 단위</div>
+        <div class="stage4-cond"><span class="hl-dark">작업실·오픈스튜디오</span></div>
+        <div class="stage4-place">창작·교육·전시 연계</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1433,260 +2036,267 @@ button:focus-visible, .menu-item:focus-visible {
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 16 / 16</div>
     <span class="eyebrow pink">의사결정</span>
-    <h2 class="headline mega"><span class="g-warm">오늘</span>의<br/>6가지 결정.</h2>
-    <p class="subhead">모든 장기 계획을 확정할 필요는 없습니다. 다만 <span class="hl hl-pink">6개월 실험이 가능한 조건</span>은 열어야 합니다.</p>
+    <h2 class="headline"><span class="g-text">중요한</span> 6가지 방향.</h2>
+    <p class="subhead">모든 장기 계획을 당장 확정할 필요는 없습니다.<br/>다만 <span class="hl hl-pink">6개월 실험이 가능한 방향</span>은 고민을 시작해야 합니다.</p>
 
-    <ul class="numlist">
-      <li><span class="n">01</span><span><strong>6개월 파일럿 승인</strong> — 야시장·앵커 IP·포토 트리거·QR·워크스루 프리뷰. <em style="color:var(--text-tertiary)">빠른 검증이 필요합니다.</em></span></li>
-      <li><span class="n">02</span><span><strong>운영 PMO 선정</strong> — 편성권·섭외권·세일즈권·마케팅 집행권 부여. <em style="color:var(--text-tertiary)">실행 속도를 확보해야 합니다.</em></span></li>
-      <li><span class="n">03</span><span><strong>관객 보유 IP 선계약</strong> — 키즈·푸드·펫·K-content 4개 이상. <em style="color:var(--text-tertiary)">집객할 콘텐츠가 먼저 있어야 합니다.</em></span></li>
-      <li><span class="n">04</span><span><strong>리스크 제거 예산</strong> — 공간·공동 홍보·최소 매출·운영 지원. <em style="color:var(--text-tertiary)">민간 진입장벽을 낮춰야 합니다.</em></span></li>
-      <li><span class="n">05</span><span><strong>입점·임대 유연성</strong> — 팝업·단기 입점·매출연동·졸업 구조. <em style="color:var(--text-tertiary)">실험 후 성장 구조가 필요합니다.</em></span></li>
-      <li><span class="n">06</span><span><strong>대표 경험 지정</strong> — 270m 개항 워크스루 프리뷰. <em style="color:var(--text-tertiary)">첫 방문 명분과 B2B 배경을 만들어야 합니다.</em></span></li>
-    </ul>
-
-    <details class="callout">
-      <summary>의사결정자별 메시지 번역</summary>
-      <div class="callout-body">
-        <p><strong>시장</strong>에게는 제물포 르네상스와 내항 재개발의 <strong>첫 체감 성과</strong>입니다.</p>
-        <p><strong>시청</strong>에게는 재개발 권역의 집객 리스크를 줄이는 <strong>선행 투자</strong>입니다.</p>
-        <p><strong>관광공사</strong>에게는 대형 위탁이 아니라 6개월 파일럿으로 방문객·매출·민원·공유 데이터를 쌓는 <strong>운영 모델</strong>입니다.</p>
+    <div class="decisions">
+      <div class="dec-card dec-pink">
+        <div class="dec-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 12.5l3 3 5.5-6"/></svg>
+        </div>
+        <div class="dec-num">01</div><div class="dec-title">6개월 파일럿 승인</div><div class="dec-body">야시장·앵커 IP·포토 트리거·QR·<span class="hl-dark">워크스루 프리뷰</span></div><div class="dec-why">빠른 검증</div>
       </div>
-    </details>
+      <div class="dec-card dec-orange">
+        <div class="dec-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 9l3 3-3 3"/><line x1="13.5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="dec-num">02</div><div class="dec-title">운영 PMO 선정</div><div class="dec-body"><span class="hl-dark">편성권·섭외권·세일즈권·마케팅 집행권</span> 부여</div><div class="dec-why">실행 속도</div>
+      </div>
+      <div class="dec-card dec-yellow">
+        <div class="dec-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h7"/><path d="M9 17h5"/></svg>
+        </div>
+        <div class="dec-num">03</div><div class="dec-title">관객 보유 IP 선계약</div><div class="dec-body"><span class="hl-dark">키즈·푸드·펫·K-content</span> 4개 이상</div><div class="dec-why">집객 콘텐츠 확보</div>
+      </div>
+      <div class="dec-card dec-lime">
+        <div class="dec-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/><path d="M9 12.5l2.2 2.2L15 10.5"/></svg>
+        </div>
+        <div class="dec-num">04</div><div class="dec-title">리스크 제거 예산</div><div class="dec-body"><span class="hl-dark">공간·공동 홍보·최소 매출·운영 지원</span></div><div class="dec-why">민간 진입 장벽 낮춤</div>
+      </div>
+      <div class="dec-card dec-cyan">
+        <div class="dec-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="9" cy="7" r="2.4" fill="currentColor"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="15" cy="12" r="2.4" fill="currentColor"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="11" cy="17" r="2.4" fill="currentColor"/></svg>
+        </div>
+        <div class="dec-num">05</div><div class="dec-title">입점·임대 유연성</div><div class="dec-body">팝업·단기 입점·<span class="hl-dark">매출연동·졸업 구조</span></div><div class="dec-why">실험 이후 성장</div>
+      </div>
+      <div class="dec-card dec-violet">
+        <div class="dec-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h12l-2.5 4L17 12H5"/></svg>
+        </div>
+        <div class="dec-num">06</div><div class="dec-title">대표 경험 지정</div><div class="dec-body"><span class="hl-dark">270m 개항 워크스루 프리뷰</span></div><div class="dec-why">B2B 제안 배경</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- ============ PAGE 17 · 마무리 ============ -->
+<!-- ============ PAGE 17 · 클로징 ============ -->
 <section class="page" id="p17" data-title="마무리. 다섯 가지 실행 패키지" data-num="17">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CLOSING</div>
     <span class="eyebrow yellow">실행 패키지</span>
-    <h2 class="headline mega"><span class="g-text">5</span>가지<br/>실행 패키지.</h2>
-    <p class="subhead">목적형으로 시작 → 반복형으로 키움 → <span class="hl hl-cyan">장기적 권역형 공간</span>으로.</p>
+    <h2 class="headline"><span class="g-text">5가지</span> 실행 패키지.</h2>
+    <p class="subhead">목적형으로 시작 → 반복형으로 키움 → <span class="hl hl-cyan">권역형 상설 방문지</span>로.</p>
 
-    <div class="card-grid cols-2">
-      <div class="card" style="background: linear-gradient(180deg, rgba(255,122,0,0.10), rgba(255,36,105,0.05));">
-        <div class="card-eyebrow" style="color:var(--v-orange)">PACKAGE 01</div>
-        <h3 class="card-title">목적 방문을 만들겠습니다</h3>
-        <p class="card-body">6개월 파일럿을 열고 키즈·푸드·펫·K-content·270m 워크스루를 선계약·프리뷰로 묶겠습니다. <span class="hl hl-orange">"일부러 갈 이유"</span>가 생깁니다.</p>
-      </div>
-      <div class="card" style="background: linear-gradient(180deg, rgba(255,36,105,0.10), rgba(155,92,255,0.05));">
-        <div class="card-eyebrow" style="color:var(--v-pink)">PACKAGE 02</div>
-        <h3 class="card-title">반복되는 시간표로 바꾸겠습니다</h3>
-        <p class="card-body">야시장·마켓·워크스루·야간 음악 프로그램을 낮·저녁·밤 시간표로 정례화하겠습니다. <span class="hl hl-pink">"이번 주말에 또 가는 이유"</span>가 생깁니다.</p>
-      </div>
-      <div class="card" style="background: linear-gradient(180deg, rgba(155,92,255,0.10), rgba(0,146,255,0.05));">
-        <div class="card-eyebrow" style="color:var(--v-violet)">PACKAGE 03</div>
-        <h3 class="card-title">검증된 운영자를 키우겠습니다</h3>
-        <p class="card-body">팝업 → 단기 입점 → 상설 입점·크리에이터 빌리지. <span style="background:rgba(155,92,255,0.25); color:#fff; padding:0 8px; border-radius:999px;">"계속 바뀌지만 믿고 가는 공간"</span>이 됩니다.</p>
-      </div>
-      <div class="card" style="background: linear-gradient(180deg, rgba(0,146,255,0.10), rgba(0,214,143,0.05));">
-        <div class="card-eyebrow" style="color:var(--v-cyan)">PACKAGE 04</div>
-        <h3 class="card-title">내항 권역과 연결하겠습니다</h3>
-        <p class="card-body">1883 개항광장·개항장·수변·월미도·차이나타운 동선을 <span class="hl hl-cyan">하루 코스</span>로 묶겠습니다.</p>
-      </div>
-      <div class="card" style="background: linear-gradient(180deg, rgba(7,237,33,0.10), rgba(255,214,10,0.05)); grid-column: span 2;">
-        <div class="card-eyebrow" style="color:var(--v-green)">PACKAGE 05</div>
-        <h3 class="card-title">다음 투자의 근거를 만들겠습니다</h3>
-        <p class="card-body">방문자·매출·DB·민원·재참여·B2B 문의 데이터를 쌓겠습니다. <span class="hl hl-lime">2028년 이후 권역형 상설 방문지로 확장할 근거</span>가 생깁니다.</p>
-      </div>
+    <div class="pullquote" style="margin: 18px 0 24px; font-size: clamp(18px, 2vw, 26px); border-left-color: var(--v-pink); padding: 18px 24px;">
+      상상플랫폼은 목적형 행사장에만 머무르기보다, 목적 방문에서 반복 방문으로 확장되며,<br/>내항 재개발 권역 안에서 <span class="g-warm" style="font-weight:900;">계속 찾는 상설 방문지</span>로 성장할 가능성을 만들어가야 합니다.
     </div>
 
-    <div class="pullquote" style="margin-top:48px; font-size: clamp(20px, 2.4vw, 30px); border-left-color: var(--v-pink);">
-      상상플랫폼은 목적형 행사장으로 머물러서는 안 됩니다.<br/>목적 방문으로 시작해 반복 방문을 만들고, 내항 재개발 권역 안에서 <span class="g-warm" style="font-weight:900;">계속 오는 상설 방문지</span>로 성장해야 합니다.
+    <div class="card-grid pack-grid-compact pack-grid-5">
+      <div class="card pack-color" style="background: var(--v-orange);">
+        <div class="card-eyebrow">PACKAGE 01</div>
+        <h3 class="card-title">목적 방문의 계기를 만들겠습니다</h3>
+        <p class="card-body">6개월 파일럿을 통해<br/>키즈·푸드·펫·K-content·270m 워크스루를<br/><span class="hl-dark">선계약·프리뷰</span> 형태로 묶어 검증합니다.<br/><br/><span class="hl-dark">"일부러 찾아갈 이유"</span>를 제시할 수 있습니다.</p>
+      </div>
+      <div class="card pack-color" style="background: var(--v-pink);">
+        <div class="card-eyebrow">PACKAGE 02</div>
+        <h3 class="card-title">반복 가능한 시간표를 설계하겠습니다</h3>
+        <p class="card-body">야시장·마켓·워크스루·<br/>야간 음악 프로그램을<br/><span class="hl-dark">낮·저녁·밤의 시간표</span>로 배치하고,<br/>정례화 가능성을 검증합니다.<br/><br/><span class="hl-dark">"이번 주말에 다시 갈 이유"</span>를<br/>만들 수 있습니다.</p>
+      </div>
+      <div class="card pack-color" style="background: var(--v-violet);">
+        <div class="card-eyebrow">PACKAGE 03</div>
+        <h3 class="card-title">검증된 운영자가 성장할 수 있는 구조를 만들겠습니다</h3>
+        <p class="card-body"><span class="hl-dark">팝업 → 단기 입점 → 상설 입점</span>·<br/>크리에이터 빌리지로<br/>이어지는 단계 구조를 검토합니다.<br/><br/><span class="hl-dark">"계속 바뀌지만 믿고 가는 공간"</span>에<br/>가까워질 수 있습니다.</p>
+      </div>
+      <div class="card pack-color" style="background: var(--v-cyan);">
+        <div class="card-eyebrow">PACKAGE 04</div>
+        <h3 class="card-title">내항 권역과의 연결성을 강화하겠습니다</h3>
+        <p class="card-body">1883 개항광장·개항장·수변·<br/>월미도·차이나타운 동선을<br/><span class="hl-dark">하루 코스로 묶는 방향</span>을<br/>제안합니다.</p>
+      </div>
+      <div class="card pack-color" style="background: var(--v-lime);">
+        <div class="card-eyebrow">PACKAGE 05</div>
+        <h3 class="card-title">다음 투자를 검토할 근거를 축적하겠습니다</h3>
+        <p class="card-body">방문자·매출·DB·민원·<br/><span class="hl-dark">재참여·B2B 문의 데이터</span>를<br/>축적합니다.<br/><br/>2028년 이후 권역형 상설 방문지로<br/><span class="hl-dark">확장 가능성을 판단할 근거</span>가<br/>됩니다.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ PAGE 18 · 부록 A ============ -->
-<section class="page" id="pA" data-title="부록 A. 270m 개항 워크스루 상세" data-num="A">
-  <div class="page-inner">
-    <div class="page-chip"><span class="dot" style="background:var(--v-cyan);"></span> APPENDIX A</div>
-    <span class="eyebrow lime">APPENDIX A</span>
-    <h2 class="headline">270m 개항 워크스루 <span class="g-cool">상세</span>.</h2>
-    <p class="subhead">첫 방문 목적을 만들고, 계절별 재방문과 <span class="hl hl-cyan">권역 동선</span>으로 확장되는 장치.</p>
-
-    <h3 style="margin-top:36px; font-size:22px; font-weight:900; color:#fff; letter-spacing:-0.02em;">A-1. 핵심 상품</h3>
-    <table class="matrix">
-      <thead><tr><th style="width:24%">상품</th><th style="width:38%">경험</th><th>역할</th></tr></thead>
-      <tbody>
-        <tr><td><strong>270m 개항 워크스루</strong></td><td>해무·기적·크레인·곡물·개항거리·미래 내항으로 이어지는 선형 동선</td><td>"상상플랫폼에 가면 반드시 이것"이라는 첫 방문 명분</td></tr>
-        <tr><td><strong>개항 포토 트리거</strong></td><td>창고 입구·기둥·외벽·광장·야시장 출구 촬영 지점</td><td>초기 확산을 만드는 UGC 유입</td></tr>
-        <tr><td><strong>워크스루 프리뷰</strong></td><td>야시장 방문객이 10분 안에 경험하는 일부 구간</td><td>전체 구축 전 반응 검증</td></tr>
-        <tr><td><strong>브랜드 쇼케이스 동선</strong></td><td>자동차·아웃도어·로컬 브랜드 촬영과 체험</td><td>B2B 세일즈 상품화</td></tr>
-      </tbody>
-    </table>
-
-    <h3 style="margin-top:36px; font-size:22px; font-weight:900; color:#fff; letter-spacing:-0.02em;">A-2. 단계적 구축</h3>
-    <table class="matrix">
-      <thead><tr><th style="width:14%">단계</th><th>내용</th><th style="width:32%">판단 기준</th></tr></thead>
-      <tbody>
-        <tr><td><strong>1단계</strong></td><td>입구·기둥·외벽·광장 포토 트리거 5개 설치</td><td>촬영률·공유율·체류시간</td></tr>
-        <tr><td><strong>2단계</strong></td><td>내부 3개 프리뷰 구간 운영</td><td>야시장 전환율·만족도·민원</td></tr>
-        <tr><td><strong>3단계</strong></td><td>야시장·브랜드 팝업과 패키지화</td><td>브랜드 문의·B2B 판매 가능성</td></tr>
-        <tr><td><strong>4단계</strong></td><td>성과 확인 후 270m 전체 동선 확장</td><td>스폰서·민간 투자·운영수익</td></tr>
-      </tbody>
-    </table>
-
-    <h3 style="margin-top:36px; font-size:22px; font-weight:900; color:#fff; letter-spacing:-0.02em;">A-3. 표현 원칙</h3>
-    <table class="matrix">
-      <thead><tr><th>피할 표현</th><th>쓸 표현</th></tr></thead>
-      <tbody>
-        <tr><td>고정형 대형 전시</td><td><strong>270m 창고 동선을 걷는 개항·항만 경험</strong></td></tr>
-        <tr><td>시설투자 중심 사업</td><td><strong>프리뷰 운영 후 단계 확장</strong></td></tr>
-        <tr><td>단독 집객 상품</td><td><strong>행사·브랜드 팝업을 보강하는 대표 경험</strong></td></tr>
-        <tr><td>한 번 보고 끝나는 전시</td><td><strong>분기별 테마 교체가 가능한 워크스루 플랫폼</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ============ PAGE 19 · 부록 B ============ -->
-<section class="page" id="pB" data-title="부록 B. 1883 항만 나이트" data-num="B">
-  <div class="page-inner">
-    <div class="page-hero">
-      <img class="bg-img" src="PT_이미지_상상플랫폼_v1.5_270m개항워크스루/05_단기_밤_1883항만나이트.png" alt="1883 항만 나이트" loading="lazy" />
-      <div class="hero-stack">
-        <div class="page-chip"><span class="dot" style="background:var(--v-violet);"></span> APPENDIX B</div>
-        <span class="eyebrow violet">APPENDIX B</span>
-        <h2 class="headline">1883 <span class="g-text">항만 나이트</span>.</h2>
-        <p class="subhead">야시장의 성공 신호를 <span class="hl hl-cyan">안전한 야간 체류 상품</span>으로 바꾸는 프로그램.</p>
-      </div>
+<!-- ============ 간지 · 감사합니다 ============ -->
+<section class="page hero" id="pThanks" data-title="감사합니다" data-num="—" style="text-align:center;">
+  <div class="hero-inner" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px;">
+    <div class="hero-meta" style="justify-content:center;">
+      <span>THANK YOU</span> · 2026 · 인천관광공사 · 인천광역시
     </div>
-
-    <table class="matrix">
-      <thead><tr><th style="width:20%">구분</th><th>내용</th></tr></thead>
-      <tbody>
-        <tr><td><strong>기본 콘셉트</strong></td><td>금·토 저녁, 워크스루 프리뷰 + 야시장 + 소규모 라이브 + 로컬 F&amp;B 연결</td></tr>
-        <tr><td><strong>운영 시간</strong></td><td>1단계는 21시 전후 야외 종료, 이후 실내 중심 검토</td></tr>
-        <tr><td><strong>장소</strong></td><td>1883 개항광장·창고 내부 일부·실내 라이브 구역</td></tr>
-        <tr><td><strong>수익</strong></td><td>F&amp;B 수수료·브랜드 협찬·티켓형 프로그램·B2B 초청 행사</td></tr>
-        <tr><td><strong>관리</strong></td><td>데시벨 기준·보안 인력·미성년자 관리·응급 대응·민원 창구</td></tr>
-      </tbody>
-    </table>
+    <h1 class="hero-title" style="font-size: clamp(64px, 14vw, 220px); margin-bottom:0;">
+      <span class="g-cool">감사합니다</span>.
+    </h1>
+    <p class="hero-sub" style="margin:0 auto; text-align:center;">
+      상상플랫폼이 <span class="hl hl-cyan">매주 움직일 수 있는 공공자산</span>에 가까워지도록,<br/>
+      관객·운영자·행사 IP·브랜드 예산·재방문 데이터를<br/>
+      단계적으로 연결하는 방향을 제안드립니다.
+    </p>
+    <div style="display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:8px;">
+      <span style="padding:10px 20px; border-radius:999px; background:rgba(255,36,105,0.12); border:1px solid rgba(255,36,105,0.35); font-weight:800; font-size:clamp(14px,1.2vw,17px); color:#ff7da5;">목적 방문</span>
+      <span style="padding:10px 20px; border-radius:999px; background:rgba(255,122,0,0.12); border:1px solid rgba(255,122,0,0.35); font-weight:800; font-size:clamp(14px,1.2vw,17px); color:#ffb070;">반복 방문</span>
+      <span style="padding:10px 20px; border-radius:999px; background:rgba(0,201,255,0.12); border:1px solid rgba(0,201,255,0.35); font-weight:800; font-size:clamp(14px,1.2vw,17px); color:#5ddcff;">상설 방문지</span>
+    </div>
+    <p class="hero-foot" style="margin:0 auto; text-align:center; max-width:720px;">
+      첫 6개월은 확장을 약속하는 기간이 아니라, <strong style="color:#fff;">확장 가능성을 검증하는 기간</strong>입니다.<br/>
+      그 검증 위에서, 상상플랫폼은 내항 권역의 상설 방문지로 함께 성장할 수 있습니다.
+    </p>
+    <p class="hero-foot" style="margin:14px auto 0; text-align:center; opacity:0.7; font-size:clamp(13px,1vw,15px);">
+      이어지는 부록과 FAQ에서 본문에서 다루지 않은 상세 자료와 예상 질문을 확인하실 수 있습니다.
+    </p>
   </div>
 </section>
 
-<!-- ============ PAGE 20 · 부록 C ============ -->
-<section class="page" id="pC" data-title="부록 C. 크리에이터 빌리지" data-num="C">
+<!-- ============ APPENDIX 통합 페이지 ============ -->
+<section class="page" id="pApp" data-title="부록 — 상세 자료" data-num="A">
   <div class="page-inner">
-    <div class="page-chip"><span class="dot" style="background:var(--v-emerald);"></span> APPENDIX C</div>
-    <span class="eyebrow lime">APPENDIX C</span>
-    <h2 class="headline">크리에이터 빌리지와 <span class="g-cool">체류형 창작 프로그램</span>.</h2>
-    <p class="subhead">상상플랫폼의 <span class="hl hl-lime">2년 차 확장 모델</span>.</p>
+    <div class="page-chip"><span class="dot" style="background:var(--v-cyan);"></span> APPENDIX</div>
+    <span class="eyebrow">부록 · 상세 자료</span>
+    <h2 class="headline">부록 <span class="g-cool">상세 자료</span>.</h2>
+    <p class="subhead">발표 본문에서 다루지 않은 상세 내용을 <span class="hl hl-cyan">주제별로 펼쳐 볼 수 있게</span> 정리했습니다.</p>
 
-    <table class="matrix">
-      <thead><tr><th style="width:18%">장르</th><th style="width:42%">운영 방식</th><th>기대 효과</th></tr></thead>
-      <tbody>
-        <tr><td><strong>팝아트·그래픽</strong></td><td>시즌 전시·굿즈마켓·라이브 페인팅</td><td>촬영과 판매가 동시에 발생합니다.</td></tr>
-        <tr><td><strong>음악</strong></td><td>소규모 라이브·커버댄스·팬덤 행사</td><td>젊은 층 방문과 야간 체류를 만듭니다.</td></tr>
-        <tr><td><strong>공예·디자인</strong></td><td>워크숍·클래스·마켓</td><td>가족·관광객 체험 수요를 만듭니다.</td></tr>
-        <tr><td><strong>식문화</strong></td><td>로컬 푸드·탭룸·푸드마켓</td><td>야시장과 평일 소비를 연결합니다.</td></tr>
-        <tr><td><strong>미디어·영상</strong></td><td>워크스루 테마 제작·숏폼 촬영</td><td>공간 자체의 확산 장면을 만듭니다.</td></tr>
-      </tbody>
-    </table>
-
-    <details class="callout" open>
-      <summary>체류형 창작 프로그램의 표현</summary>
+    <!-- A. 270m 워크스루 -->
+    <h3 class="app-h app-A"><span class="app-letter">A.</span> 270m 개항 워크스루 상세</h3>
+    <details class="callout">
+      <summary>A-1. 핵심 상품 4종</summary>
       <div class="callout-body">
-        <p>숙박 기능보다 <strong>작업실·오픈스튜디오·시민 공개 프로그램</strong>을 중심으로 설계합니다. 숙박은 별도 인허가와 안전 기준 검토 이후 단계로 둡니다.</p>
+        <p><strong>270m 개항 워크스루</strong> — 해무·기적·크레인·곡물·개항거리·미래 내항으로 이어지는 선형 동선. "상상플랫폼에 가면 떠올릴 수 있는 대표 경험"을 만드는 첫 방문 명분.</p>
+        <p><strong>개항 포토 트리거</strong> — 창고 입구·기둥·외벽·광장·야시장 출구 촬영 지점. 초기 확산을 만드는 UGC 유도 장치.</p>
+        <p><strong>워크스루 프리뷰</strong> — 야시장 방문객이 10분 안에 경험할 수 있는 일부 구간. 전체 구축 전 반응 검증.</p>
+        <p><strong>브랜드 쇼케이스 동선</strong> — 자동차·아웃도어·로컬 브랜드 촬영과 체험. B2B 세일즈 상품으로 전환.</p>
+      </div>
+    </details>
+    <details class="callout">
+      <summary>A-2. 단계적 구축 4단계</summary>
+      <div class="callout-body">
+        <p><strong>1단계</strong> — 입구·기둥·외벽·광장 포토 트리거 5개 설치. 판단 기준: 촬영률·공유율·체류시간.</p>
+        <p><strong>2단계</strong> — 내부 3개 프리뷰 구간 운영. 판단 기준: 야시장 전환율·만족도·민원.</p>
+        <p><strong>3단계</strong> — 야시장·브랜드 팝업과 패키지화. 판단 기준: 브랜드 문의·B2B 판매 가능성.</p>
+        <p><strong>4단계</strong> — 성과 확인 후 270m 전체 동선 확장. 판단 기준: 스폰서·민간 투자·운영수익.</p>
+      </div>
+    </details>
+
+    <!-- B. 1883 항만 나이트 -->
+    <h3 class="app-h app-B"><span class="app-letter">B.</span> 1883 항만 나이트</h3>
+    <details class="callout">
+      <summary>운영 구성</summary>
+      <div class="callout-body">
+        <p><strong>기본 콘셉트</strong> — 금·토 저녁, 워크스루 프리뷰 + 야시장 + 소규모 라이브 + 로컬 F&amp;B 연결.</p>
+        <p><strong>운영 시간</strong> — 1단계는 21시 전후 야외 운영 종료, 이후 실내 중심으로 검토.</p>
+        <p><strong>장소</strong> — 1883 개항광장·창고 내부 일부·실내 라이브 구역.</p>
+        <p><strong>수익</strong> — F&amp;B 수수료·브랜드 협찬·티켓형 프로그램·B2B 초청 행사.</p>
+        <p><strong>관리</strong> — 데시벨 기준·보안 인력·미성년자 관리·응급 대응·민원 창구 운영.</p>
+      </div>
+    </details>
+
+    <!-- C. 크리에이터 빌리지 -->
+    <h3 class="app-h app-C"><span class="app-letter">C.</span> 크리에이터 빌리지와 체류형 창작 프로그램</h3>
+    <details class="callout">
+      <summary>장르별 운영 방식 5종</summary>
+      <div class="callout-body">
+        <p><strong>팝아트·그래픽</strong> — 시즌 전시·굿즈마켓·라이브 페인팅. 촬영과 판매가 동시에 일어남.</p>
+        <p><strong>음악</strong> — 소규모 라이브·커버댄스·팬덤 행사. 젊은 층 방문과 야간 체류를 만듦.</p>
+        <p><strong>공예·디자인</strong> — 워크숍·클래스·마켓. 가족·관광객 체험 수요를 만듦.</p>
+        <p><strong>식문화</strong> — 로컬 푸드·탭룸·푸드마켓. 야시장과 평일 소비를 연결.</p>
+        <p><strong>미디어·영상</strong> — 워크스루 테마 제작·숏폼 촬영. 공간 자체가 확산되는 장면을 만듦.</p>
+        <p class="kw-line"><strong>그 외 확장 가능 키워드</strong> — 일러스트·캘리그래피·세라믹·우드크래프트·금속공예·가죽·패션·주얼리·향수·캔들·플라워·식물·반려동물·키즈·웰니스·요가·필라테스·VR·AR·게임·e스포츠·스트리밍·팟캐스트·북스토어·진(zine)·아트북·사진·필름·아날로그·LP·바이닐·재즈·인디밴드·DJ·EDM·국악·전통공예·테크아트·미디어아트·NFT·로봇·메이커·DIY·코딩·로컬 양조·내추럴 와인·스페셜티 커피·티·디저트·베이커리·비건·푸드페어링·바리스타·소믈리에·셰프 레지던시.</p>
+      </div>
+    </details>
+
+    <!-- D. 재원과 민간투자 구조 -->
+    <h3 class="app-h app-D"><span class="app-letter">D.</span> 재원과 민간투자 구조</h3>
+    <details class="callout">
+      <summary>왜 장기 투자 구조는 처음 카드가 아닌가</summary>
+      <div class="callout-body">
+        <p>SPC/JV를 처음부터 전면에 세우면 민간은 수요 책임을 먼저 묻습니다. 따라서 운영 성과와 현금흐름이 어느 정도 확인된 뒤 <strong>민관 공동투자 구조</strong>를 검토하는 것이 맞습니다.</p>
+      </div>
+    </details>
+    <details class="callout">
+      <summary>재원 5단계 진화</summary>
+      <div class="callout-body">
+        <p><strong>01 공공 마중물 예산</strong> — 공간 제공·운영비 일부·앵커 행사 유치·공동 홍보.</p>
+        <p><strong>02 매출쉐어와 행사 매출</strong> — 부스비·입장권·F&amp;B·굿즈 판매.</p>
+        <p><strong>03 브랜드 스폰서와 B2B 대관</strong> — 신제품 체험·기업행사·공공기관 행사.</p>
+        <p><strong>04 성과 기반 민간 파트너 유치</strong> — 정례 팝업·시즌 스폰서·고정 운영사.</p>
+        <p><strong>05 SPC/JV 등 장기 민관 공동투자 구조 검토</strong> — 검증된 수익과 운영 데이터를 기반으로 확장.</p>
+      </div>
+    </details>
+
+    <!-- E. 해외 벤치마킹 -->
+    <h3 class="app-h app-E"><span class="app-letter">E.</span> 해외 벤치마킹</h3>
+    <details class="callout">
+      <summary>공공자산 + 민간 운영 모델</summary>
+      <div class="callout-body">
+        <p><strong>Granville Island</strong> (밴쿠버) — 정부 소유 공간에 민간 운영·시장·예술·식문화를 결합. → 공공자산을 민간 편성과 상업 수익으로 활성화하는 모델.</p>
+        <p><strong>HafenCity</strong> (함부르크) — 항만 재개발을 장기 권역 서사로 구축. → 내항 1·8부두 재개발과 상상플랫폼을 권역으로 설명.</p>
+      </div>
+    </details>
+    <details class="callout">
+      <summary>산업시설 재생 + 도시 동선</summary>
+      <div class="callout-body">
+        <p><strong>Tate Modern</strong> (런던) — 산업시설 재생과 강변 동선의 결합. → 창고형 공간을 도시 산책·문화 방문의 목적지로 전환.</p>
+        <p><strong>TIRPITZ</strong> (덴마크) — 역사 공간과 선형 동선의 몰입 경험. → 270m 창고 동선을 개항·항만 경험으로.</p>
+        <p><strong>Wynwood</strong> (마이애미) — 폐창고 지역을 스트리트아트·이벤트로 재생. → 촬영·공유가 일어나는 로컬·브랜드 팝업 구역.</p>
+      </div>
+    </details>
+    <details class="callout">
+      <summary>야간·체류형 프로그램</summary>
+      <div class="callout-body">
+        <p><strong>La Villette</strong> (파리) — 공원·전시·음악·야외의 복합 운영. → 1883 개항광장과 실내 공간의 도시공원형 운영.</p>
+        <p><strong>V&amp;A Friday Lates</strong> (런던) — 박물관 야간 프로그램으로 새 고객층 유치. → 야간 음악 프로그램·소규모 라이브의 공공형 운영 참고.</p>
+        <p><strong>The Met Date Night</strong> (뉴욕) — 야간 관람·공연·체류 결합. → 저녁 이후 체류형 프로그램을 안전하게 표현하는 방식.</p>
+        <p><strong>Meow Wolf</strong> (미국) — 몰입형 경험·촬영·재방문 장치 결합. → 워크스루 포토 트리거와 분기별 테마 교체 참고.</p>
       </div>
     </details>
   </div>
 </section>
 
-<!-- ============ PAGE 21 · 부록 D ============ -->
-<section class="page" id="pD" data-title="부록 D. 재원과 민간투자 구조" data-num="D">
+<!-- ============ FAQ 페이지 ============ -->
+<section class="page" id="pF" data-title="FAQ" data-num="F">
   <div class="page-inner">
-    <div class="page-chip"><span class="dot" style="background:var(--v-yellow);"></span> APPENDIX D</div>
-    <span class="eyebrow yellow">APPENDIX D</span>
-    <h2 class="headline">재원과 <span class="g-warm">민간투자 구조</span>.</h2>
-    <p class="subhead">장기 투자 구조는 <span class="hl hl-yellow">성과 검증 이후</span>에 검토해야 합니다.</p>
-
-    <p class="body-text">
-      SPC/JV를 처음부터 전면에 세우면 민간은 수요 책임을 먼저 묻습니다. 따라서 운영 성과와 현금흐름이 어느 정도 확인된 뒤 <strong>민관 공동투자 구조</strong>를 검토하는 것이 맞습니다.
-    </p>
-
-    <ul class="numlist">
-      <li><span class="n">01</span><span><strong>공공 마중물 예산</strong> — 공간 제공·운영비 일부·앵커 행사 유치·공동 홍보</span></li>
-      <li><span class="n">02</span><span><strong>매출쉐어와 행사 매출</strong> — 부스비·입장권·F&amp;B·굿즈 판매</span></li>
-      <li><span class="n">03</span><span><strong>브랜드 스폰서와 B2B 대관</strong> — 신제품 체험·기업행사·공공기관 행사</span></li>
-      <li><span class="n">04</span><span><strong>성과 기반 민간 파트너 유치</strong> — 정례 팝업·시즌 스폰서·고정 운영사</span></li>
-      <li><span class="n">05</span><span><strong>SPC/JV 등 장기 민관 공동투자 구조 검토</strong> — 검증된 수익과 운영 데이터를 기반으로 확장</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============ PAGE 22 · 부록 E ============ -->
-<section class="page" id="pE" data-title="부록 E. 해외 벤치마킹" data-num="E">
-  <div class="page-inner">
-    <div class="page-chip"><span class="dot" style="background:var(--v-azure);"></span> APPENDIX E</div>
-    <span class="eyebrow">APPENDIX E</span>
-    <h2 class="headline">해외 <span class="g-text">벤치마킹</span>.</h2>
-    <p class="subhead">공통점은 <span class="hl hl-cyan">"사람들이 쓸 이유와 운영 주체를 먼저 만들었다"</span>는 점입니다.</p>
-
-    <table class="matrix">
-      <thead><tr><th style="width:18%">사례</th><th style="width:12%">위치</th><th style="width:32%">가져올 점</th><th>상상플랫폼 적용</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Granville Island</strong></td><td>밴쿠버</td><td>정부 소유 공간에 민간 운영·시장·예술·식문화 결합</td><td>공공자산을 민간 편성과 상업 수익으로 살리는 모델</td></tr>
-        <tr><td><strong>HafenCity</strong></td><td>함부르크</td><td>항만 재개발을 장기 권역 서사로 구축</td><td>내항 1·8부두 재개발과 상상플랫폼을 권역으로 설명</td></tr>
-        <tr><td><strong>Tate Modern</strong></td><td>런던</td><td>산업시설 재생과 강변 동선의 결합</td><td>창고형 공간을 도시 산책·문화 방문의 목적지로</td></tr>
-        <tr><td><strong>TIRPITZ</strong></td><td>덴마크</td><td>역사 공간과 선형 동선의 몰입 경험</td><td>270m 창고 동선을 개항·항만 경험으로</td></tr>
-        <tr><td><strong>Wynwood</strong></td><td>마이애미</td><td>폐창고 지역을 스트리트아트·이벤트로 재생</td><td>촬영·공유가 되는 로컬·브랜드 팝업 구역</td></tr>
-        <tr><td><strong>La Villette</strong></td><td>파리</td><td>공원·전시·음악·야외의 복합 운영</td><td>1883 개항광장과 실내 공간의 도시공원형 운영</td></tr>
-        <tr><td><strong>V&amp;A Friday Lates</strong></td><td>런던</td><td>박물관 야간 프로그램으로 새 고객층 유치</td><td>야간 음악 프로그램·소규모 라이브의 공공형 운영</td></tr>
-        <tr><td><strong>The Met Date Night</strong></td><td>뉴욕</td><td>야간 관람·공연·체류 결합</td><td>저녁 이후 체류형 프로그램의 안전한 표현</td></tr>
-        <tr><td><strong>Meow Wolf</strong></td><td>미국</td><td>몰입형 경험·촬영·재방문 장치 결합</td><td>워크스루 포토 트리거와 분기별 테마 교체 참고</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ============ PAGE 23 · 부록 F ============ -->
-<section class="page" id="pF" data-title="부록 F. 예상 질문 답변" data-num="F">
-  <div class="page-inner">
-    <div class="page-chip"><span class="dot" style="background:var(--v-pink);"></span> APPENDIX F</div>
-    <span class="eyebrow pink">APPENDIX F</span>
-    <h2 class="headline">예상 질문 <span class="g-warm">답변</span>.</h2>
+    <div class="page-chip"><span class="dot" style="background:var(--v-pink);"></span> FAQ</div>
+    <span class="eyebrow pink">FAQ</span>
+    <h2 class="headline"><span class="g-cool">FAQ</span>.</h2>
 
     <details class="callout" open>
-      <summary>Q1. 왜 기존 공모가 유찰됐습니까?</summary>
+      <summary>Q1. 기존 공모가 유찰된 이유를 무엇이라 생각하십니까?</summary>
       <div class="callout-body"><p>민간이 상상플랫폼 자체를 거부한 것이 아니라, <strong>큰 공간을 고정비와 모객 리스크까지 떠안는 방식</strong>으로 맡는 것을 거부한 것입니다. 통임대가 아니라 시즌 편성·팝업·매출연동·단계 성장 구조로 바꿔야 합니다.</p></div>
     </details>
     <details class="callout">
-      <summary>Q2. 민간이 정말 들어옵니까?</summary>
-      <div class="callout-body"><p>그냥 들어오라고 하면 어렵습니다. 그러나 공간·운영 지원·공동 홍보·최소 매출 방어·사진영상 자료화·다음 회차 세일즈 연결까지 제공하면 <strong>들어올 가능성이 커집니다</strong>.</p></div>
+      <summary>Q2. 이번에는 민간이 정말 들어올 것이라고 보십니까?</summary>
+      <div class="callout-body"><p>그냥 들어오라고 하면 어렵습니다. 그러나 공간·운영 지원·공동 홍보·초기 손실 완충·사진·영상 자료화·다음 회차 세일즈 연결까지 제공하면 <strong>참여를 검토할 이유가 분명해집니다</strong>.</p></div>
     </details>
     <details class="callout">
-      <summary>Q3. 270m 워크스루가 또 전시 실패를 반복하는 것 아닙니까?</summary>
-      <div class="callout-body"><p>단독 전시가 아니라 행사 IP·브랜드 팝업의 체험가치를 높이는 <strong>대표 경험</strong>입니다. 처음부터 전체 구축하지 않고 프리뷰 구간으로 체류시간·촬영률·전환율을 검증해야 합니다.</p></div>
+      <summary>Q3. 270m 워크스루도 결국 과거 전시 실패를 반복하게 되지 않겠습니까?</summary>
+      <div class="callout-body"><p>단독 전시가 아니라 행사 IP·브랜드 팝업의 체험 가치를 높이는 <strong>대표 경험</strong>입니다. 처음부터 전체 구축하지 않고 프리뷰 구간으로 체류시간·촬영률·전환율을 검증해야 합니다.</p></div>
     </details>
     <details class="callout">
-      <summary>Q4. 추가 예산이 많이 필요한 것 아닙니까?</summary>
-      <div class="callout-body"><p>처음부터 큰 시설투자를 하자는 것이 아닙니다. 초기에는 민간이 들어올 수 있는 조건을 만드는 <strong>마중물 예산</strong>이 필요합니다. 이 돈은 수익을 바로 사는 돈이 아니라 방문자·매출·B2B 레퍼런스를 만드는 돈입니다.</p></div>
+      <summary>Q4. 이 방안을 추진하려면 추가 예산이 많이 필요하지 않겠습니까?</summary>
+      <div class="callout-body"><p>처음부터 큰 시설 투자를 하자는 것이 아닙니다. 초기에는 민간이 들어올 수 있는 조건을 만드는 <strong>마중물 예산</strong>이 필요합니다. 이 돈은 수익을 바로 사는 돈이 아니라 방문자·매출·B2B 레퍼런스를 만드는 돈입니다.</p></div>
     </details>
     <details class="callout">
-      <summary>Q5. 무료/낮은 임대료는 특혜 논란이 있지 않습니까?</summary>
+      <summary>Q5. 무료나 낮은 임대료 조건은 특혜 논란을 부르지 않겠습니까?</summary>
       <div class="callout-body"><p>공개모집·기간 제한·성과 기준·졸업 조건을 명확히 하면 특혜가 아니라 <strong>파일럿 운영</strong>입니다. 2주 팝업·3~6개월 단기 입점·1년 상설 입점으로 단계를 나누고 성과 기준으로 결정합니다.</p></div>
     </details>
     <details class="callout">
-      <summary>Q6. 야간 운영은 부담스럽지 않습니까?</summary>
-      <div class="callout-body"><p>처음부터 늦은 시간의 대규모 야외 프로그램을 운영하자는 것이 아닙니다. 1단계는 21시 이전 야시장과 버스킹, 2단계는 실내 소규모 라이브, 3단계는 허가·방음 기준을 갖춘 <strong>제한적 야간 프로그램</strong>입니다.</p></div>
+      <summary>Q6. 야간 운영은 인력·안전 측면에서 부담이 크지 않겠습니까?</summary>
+      <div class="callout-body"><p>처음부터 늦은 시간대의 대규모 야외 프로그램을 운영하자는 것이 아닙니다. 1단계는 21시 이전 야시장과 버스킹, 2단계는 실내 소규모 라이브, 3단계는 허가·방음 기준을 갖춘 <strong>제한적 야간 프로그램</strong>입니다.</p></div>
     </details>
     <details class="callout">
-      <summary>Q7. 내항 재개발과 왜 묶어야 합니까?</summary>
-      <div class="callout-body"><p>상상플랫폼을 단독 시설로 보면 부담이 큽니다. 그러나 내항 재개발 권역의 <strong>첫 문화 거점</strong>으로 보면 이미 만들어진 공공자산이 권역 방문의 출발점이 됩니다. 지금부터 사람이 오는 시간표를 만들어야 향후 재개발 권역의 유동인구를 흡수할 수 있습니다.</p></div>
-    </details>
-    <details class="callout">
-      <summary>Q8. 오늘 이 자리에서 결정할 것은 무엇입니까?</summary>
-      <div class="callout-body"><p><strong>6개월 파일럿 승인·운영 PMO 권한·관객 보유 IP 선계약·입점·임대 유연성·초기 리스크 제거 예산·270m 워크스루 프리뷰 지정</strong>입니다.</p></div>
+      <summary>Q7. 내항 재개발과 함께 가져갈 이유가 있다고 보십니까?</summary>
+      <div class="callout-body"><p>상상플랫폼을 단독 시설로 보면 부담이 큽니다. 그러나 내항 재개발 권역의 <strong>첫 문화 거점</strong>으로 보면, 이미 만들어진 공공자산이 권역 방문의 출발점이 될 수 있습니다. 지금부터 사람이 찾는 시간표를 만들어야 향후 재개발 권역의 유동 흐름과 자연스럽게 연결될 수 있습니다.</p></div>
     </details>
   </div>
 </section>
 
 </main>
 
-<!-- ================= SCRIPT ================= -->
+<!-- ================= 화면 제어 스크립트 ================= -->
 <script>
 (function() {
   'use strict';
@@ -1708,16 +2318,6 @@ button:focus-visible, .menu-item:focus-visible {
     menuGrid.appendChild(btn);
   });
 
-  // Build dotnav
-  const dotnav = document.getElementById('dotnav');
-  pages.forEach((p, i) => {
-    const dot = document.createElement('button');
-    dot.setAttribute('aria-label', p.dataset.title);
-    dot.title = p.dataset.title;
-    dot.addEventListener('click', () => goTo(i));
-    dotnav.appendChild(dot);
-  });
-
   // Menu open/close
   const menu = document.getElementById('menu');
   const menuOpen = document.getElementById('menuOpen');
@@ -1728,198 +2328,102 @@ button:focus-visible, .menu-item:focus-visible {
   menuClose.addEventListener('click', closeMenu);
   menu.addEventListener('click', (e) => { if (e.target === menu) closeMenu(); });
 
-  // Mode toggle
-  const modeScroll = document.getElementById('modeScroll');
-  const modePT = document.getElementById('modePT');
-  const ptCounter = document.getElementById('ptCounter');
-
-  // Persistent state via URL hash
-  function getState() {
-    const hash = window.location.hash || '';
-    const m = hash.match(/^#(?:(pt|scroll)\/)?(p[0-9A-Za-z]+)?/);
-    return { mode: (m && m[1]) || 'scroll', page: (m && m[2]) || pages[0].id };
-  }
-  function setState(mode, pageId) {
-    window.history.replaceState(null, '', '#' + mode + '/' + pageId);
+  // Persistent state via URL hash (scroll only)
+  function setState(pageId) {
+    window.history.replaceState(null, '', '#' + pageId);
   }
 
-  let currentIndex = 0;
-  let currentMode = 'scroll';
-
-  function setMode(mode, opts = {}) {
-    currentMode = mode;
-    if (mode === 'pt') {
-      body.classList.add('pt-mode');
-      modePT.classList.add('active'); modePT.setAttribute('aria-selected','true');
-      modeScroll.classList.remove('active'); modeScroll.setAttribute('aria-selected','false');
-      showOnly(currentIndex);
-    } else {
-      body.classList.remove('pt-mode');
-      modeScroll.classList.add('active'); modeScroll.setAttribute('aria-selected','true');
-      modePT.classList.remove('active'); modePT.setAttribute('aria-selected','false');
-      pages.forEach(p => p.classList.remove('current'));
-      if (!opts.silent) {
-        const target = pages[currentIndex];
-        if (target) target.scrollIntoView({ behavior: opts.smooth ? 'smooth' : 'auto', block: 'start' });
-      }
+  // 페이지 단위 스크롤 — 짧은 커스텀 애니메이션(빠르게)
+  const NAV_DURATION = 240; // ms — 빠른 PPT식 전환
+  let scrollRAF = null;
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function animateScrollTo(targetY) {
+    if (scrollRAF) cancelAnimationFrame(scrollRAF);
+    const startY = window.pageYOffset;
+    const dy = targetY - startY;
+    if (Math.abs(dy) < 2) { window.scrollTo(0, targetY); return; }
+    const t0 = performance.now();
+    function step(now) {
+      const t = Math.min(1, (now - t0) / NAV_DURATION);
+      window.scrollTo(0, startY + dy * easeOutCubic(t));
+      if (t < 1) scrollRAF = requestAnimationFrame(step);
+      else scrollRAF = null;
     }
-    setState(mode, pages[currentIndex].id);
+    scrollRAF = requestAnimationFrame(step);
   }
-
-  function showOnly(idx) {
-    pages.forEach((p, i) => p.classList.toggle('current', i === idx));
-    ptCounter.textContent = (idx + 1) + ' / ' + total;
-    Array.from(dotnav.children).forEach((d, i) => d.classList.toggle('active', i === idx));
-    setState(currentMode, pages[idx].id);
-    // reset scroll inside the page
-    const cur = pages[idx];
-    if (cur) cur.scrollTop = 0;
-    // PT auto-fit: scale down inner content if it overflows the 16:9 stage
-    requestAnimationFrame(() => fitPagePT(cur));
+  function scrollToPage(target) {
+    const vh = window.innerHeight;
+    const rect = target.getBoundingClientRect();
+    const top = window.pageYOffset + rect.top;
+    const scrollY = rect.height >= vh ? top : top - (vh - rect.height) / 2;
+    animateScrollTo(Math.max(0, scrollY));
   }
-
-  function fitPagePT(pageEl) {
-    if (!pageEl || !document.body.classList.contains('pt-mode')) return;
-    const inner = pageEl.querySelector('.page-inner') || pageEl.querySelector('.hero-inner');
-    if (!inner) return;
-    // reset any prior scale to measure natural size
-    inner.style.transform = '';
-    inner.style.transformOrigin = 'center center';
-
-    // If page-hero is full-bleed, no fit needed
-    if (inner.querySelector(':scope > .page-hero') && inner.children.length <= 2) {
-      // hero + maybe one details — let CSS handle
-      return;
-    }
-
-    // Wait one frame for layout
-    requestAnimationFrame(() => {
-      const stage = inner.getBoundingClientRect();
-      // Measure scrollHeight vs clientHeight
-      const overflowY = inner.scrollHeight - inner.clientHeight;
-      if (overflowY > 6) {
-        const scaleY = inner.clientHeight / inner.scrollHeight;
-        // 최소 0.78 floor — 더 줄이지 않음 (가독성 우선)
-        const scale = Math.max(0.78, Math.min(1, scaleY * 0.99));
-        inner.style.transformOrigin = 'top left';
-        inner.style.transform = `scale(${scale})`;
-        inner.style.width = (100 / scale) + '%';
-        inner.style.height = (100 / scale) + '%';
-      } else {
-        inner.style.transform = '';
-        inner.style.width = '';
-        inner.style.height = '';
-      }
-    });
-  }
-
-  window.addEventListener('resize', () => {
-    if (document.body.classList.contains('pt-mode')) {
-      fitPagePT(pages[currentIndex]);
-    }
-  });
 
   function goTo(idx) {
     if (idx < 0) idx = 0;
     if (idx >= total) idx = total - 1;
-    currentIndex = idx;
-    if (currentMode === 'pt') {
-      showOnly(idx);
-    } else {
-      const target = pages[idx];
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setState(currentMode, target.id);
+    const target = pages[idx];
+    if (target) {
+      scrollToPage(target);
+      setState(target.id);
     }
   }
 
-  function next() { goTo(currentIndex + 1); }
-  function prev() { goTo(currentIndex - 1); }
+  // 현재 보이는 페이지 — 화면 중앙선이 들어있는 페이지
+  function currentIndex() {
+    const mid = window.pageYOffset + window.innerHeight / 2;
+    for (let i = 0; i < total; i++) {
+      const p = pages[i];
+      const top = window.pageYOffset + p.getBoundingClientRect().top;
+      const bottom = top + p.offsetHeight;
+      if (mid >= top && mid < bottom) return i;
+    }
+    let best = 0, bestDist = Infinity;
+    for (let i = 0; i < total; i++) {
+      const top = window.pageYOffset + pages[i].getBoundingClientRect().top;
+      const d = Math.abs(top - window.pageYOffset);
+      if (d < bestDist) { bestDist = d; best = i; }
+    }
+    return best;
+  }
 
-  modeScroll.addEventListener('click', () => setMode('scroll'));
-  modePT.addEventListener('click', () => setMode('pt'));
+  // 화살표 키 — 짧은 디바운스(연타로 쭉쭉 넘김)
+  let navBusy = false;
+  function slideNav(dir) {
+    if (navBusy) return;
+    navBusy = true;
+    setTimeout(() => { navBusy = false; }, 180);
+    goTo(currentIndex() + dir);
+  }
 
-  document.getElementById('ptNext').addEventListener('click', next);
-  document.getElementById('ptPrev').addEventListener('click', prev);
-
-  // Keyboard navigation — pages with arrow keys (both modes)
   document.addEventListener('keydown', (e) => {
     if (menu.classList.contains('open')) {
       if (e.key === 'Escape') closeMenu();
       return;
     }
-    // Avoid hijacking when typing
     const tag = (e.target && e.target.tagName || '').toLowerCase();
     if (tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable)) return;
+    if (e.key === 'Escape') { closeMenu(); return; }
 
-    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
-      e.preventDefault();
-      next();
-    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-      e.preventDefault();
-      prev();
+    // details 같은 인터랙티브 요소 안에서 Space는 통과
+    const isInteractive = e.target && e.target.closest && e.target.closest('summary, button, a, details');
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') {
+      e.preventDefault(); slideNav(+1);
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault(); slideNav(-1);
+    } else if (e.key === ' ' && !isInteractive) {
+      e.preventDefault(); slideNav(e.shiftKey ? -1 : +1);
     } else if (e.key === 'Home') {
       e.preventDefault(); goTo(0);
     } else if (e.key === 'End') {
       e.preventDefault(); goTo(total - 1);
-    } else if (e.key === 'Escape') {
-      closeMenu();
     }
   });
-
-  // Left mouse click on page (PT mode) -> next; in scroll mode the click acts as "next page"
-  document.addEventListener('click', (e) => {
-    // ignore clicks on interactive elements
-    const interactive = e.target.closest('button, a, summary, .menu-overlay, .topbar, .pt-nav, .floating-bottom, details, .menu-item, .hamburger, .float-btn, input, textarea, select, .figure img');
-    if (interactive) return;
-    // only respond to primary button (left click)
-    if (e.button !== 0) return;
-    // ignore if user just selected text
-    const sel = window.getSelection && window.getSelection();
-    if (sel && sel.toString().length > 0) return;
-
-    if (currentMode === 'pt') {
-      next();
-    } else {
-      // scroll mode: clicking blank area also advances page
-      next();
-    }
-  });
-
-  // Scroll mode: track which page is on screen to update currentIndex and dotnav
-  const io = new IntersectionObserver((entries) => {
-    if (currentMode !== 'scroll') return;
-    let best = null;
-    entries.forEach(en => {
-      if (en.isIntersecting) {
-        if (!best || en.intersectionRatio > best.intersectionRatio) best = en;
-      }
-    });
-    if (best) {
-      const idx = pages.indexOf(best.target);
-      if (idx >= 0) {
-        currentIndex = idx;
-        Array.from(dotnav.children).forEach((d, i) => d.classList.toggle('active', i === idx));
-        ptCounter.textContent = (idx + 1) + ' / ' + total;
-        setState(currentMode, pages[idx].id);
-      }
-    }
-  }, { threshold: [0.3, 0.5, 0.75] });
-  pages.forEach(p => io.observe(p));
 
   // Floating: top
   document.getElementById('topBtn').addEventListener('click', () => {
-    if (currentMode === 'pt') {
-      goTo(0);
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  });
-
-  // Floating: expand/collapse all
-  let allOpen = false;
-  document.getElementById('expandAll').addEventListener('click', () => {
-    allOpen = !allOpen;
-    document.querySelectorAll('details.callout').forEach(d => { d.open = allOpen; });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   // ===== 비공개 방문자 카운터 =====
@@ -1965,26 +2469,21 @@ button:focus-visible, .menu-item:focus-visible {
       });
   })();
 
-  // Init from hash (refresh in place)
-  function initFromState() {
-    const s = getState();
-    const idx = pages.findIndex(p => p.id === s.page);
-    currentIndex = idx >= 0 ? idx : 0;
-    if (s.mode === 'pt') {
-      setMode('pt');
-    } else {
-      setMode('scroll', { silent: true });
-      // for scroll, jump to anchor without smooth on refresh
-      const target = pages[currentIndex];
-      if (target) {
-        // Defer so layout is ready
-        requestAnimationFrame(() => {
-          target.scrollIntoView({ behavior: 'auto', block: 'start' });
-        });
-      }
+  // Init — 해시(#p3 등)에 페이지 ID가 있으면 그 페이지로 이동
+  (function initFromHash() {
+    const hash = (window.location.hash || '').replace(/^#(?:\w+\/)?/, '');
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (target) {
+      requestAnimationFrame(() => {
+        const vh = window.innerHeight;
+        const rect = target.getBoundingClientRect();
+        const top = window.pageYOffset + rect.top;
+        const scrollY = rect.height >= vh ? top : top - (vh - rect.height) / 2;
+        window.scrollTo({ top: scrollY, behavior: 'auto' });
+      });
     }
-  }
-  initFromState();
+  })();
 })();
 </script>
 </body>
