@@ -1311,6 +1311,95 @@ button:focus-visible, .menu-item:focus-visible {
 /* PAGE 1 — PT 모드 matrix 폰트 업스케일 */
 
 /* ============================================================
+   🎬 INTERLUDE — 간지 4장 (260520)
+   풀컬러 블리드 + 코너 잘리는 거대 넘버링 + 중앙 1문장 제목
+============================================================ */
+.interlude {
+  min-height: 100vh;
+  position: relative;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 80px clamp(40px, 6vw, 100px);
+  overflow: hidden;
+}
+/* 코너 잘림 보정 — 우하단에 안전하게 들어가되 일부만 살짝 잘리는 정도 */
+.interlude .il-bignum {
+  position: absolute;
+  font-family: 'Inter', 'Pretendard', sans-serif;
+  font-weight: 900;
+  font-size: clamp(360px, 56vw, 880px);
+  line-height: 0.82;
+  letter-spacing: -0.08em;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  right: -2vw;
+  bottom: -6vw;
+  opacity: 1;
+}
+/* 컨텐츠 (제목·보조문) — 넘버 위에 */
+.interlude .il-body {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+}
+.interlude .il-eyebrow {
+  font-family: 'Inter', monospace;
+  font-size: clamp(13px, 1.1vw, 16px);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  opacity: 0.55;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+.interlude .il-title {
+  font-weight: 900;
+  font-size: clamp(48px, 8vw, 144px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  word-break: keep-all;
+  margin: 0 0 44px;
+}
+/* 헤드 라인 단위 — 폰트가 커져도 의도한 줄바꿈 강제 보장 */
+.interlude .il-title .il-line {
+  display: block;
+  white-space: nowrap;
+}
+.interlude .il-sub {
+  font-weight: 600;
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: 1.55;
+  max-width: 900px;
+  margin: 0 auto;
+  word-break: keep-all;
+  opacity: 0.82;
+}
+
+/* 색 변형 — 다크 베이스 + 컬러 액센트 넘버 (눈에 부담 X) */
+.interlude-pink   { background: #1a1822; color: #f5f5f7; }
+.interlude-pink   .il-bignum { color: var(--v-pink); opacity: 0.22; }
+
+.interlude-blue   { background: #0e1a2e; color: #f5f5f7; }
+.interlude-blue   .il-bignum { color: var(--v-cyan); opacity: 0.20; }
+
+.interlude-orange { background: #221610; color: #f5f5f7; }
+.interlude-orange .il-bignum { color: var(--v-orange); opacity: 0.22; }
+
+.interlude-lime   { background: #0f1f17; color: #f5f5f7; }
+.interlude-lime   .il-bignum { color: var(--v-lime); opacity: 0.22; }
+
+/* 모바일 보강 */
+@media (max-width: 640px) {
+  .interlude { padding: 60px 22px; }
+  .interlude .il-eyebrow { font-size: 12px; margin-bottom: 28px; letter-spacing: 0.18em; }
+  .interlude .il-title { font-size: clamp(34px, 9vw, 56px); margin-bottom: 28px; }
+  .interlude .il-title .il-line { white-space: normal; }
+  .interlude .il-sub { font-size: 16px; line-height: 1.55; }
+  .interlude .il-bignum { font-size: 88vw; right: -8vw; bottom: -12vw; }
+}
+
+/* ============================================================
    📱 MOBILE PATCH — v1.0 모바일 외과 보강 (260520)
    원칙: PC 밸런스 불변. 모바일 깨짐만 외과적으로 봉합.
    브레이크포인트: 768 / 640 / 420
@@ -1500,7 +1589,17 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 1 ============ -->
-<section class="page" id="p1" data-title="1. 상상플랫폼의 진짜 문제" data-num="01">
+<!-- ============ 간지 01 · 오늘의 질문 ============ -->
+<section class="page interlude interlude-pink" id="pI1" data-title="01. 오늘의 질문" data-num="I">
+  <span class="il-bignum" aria-hidden="true">01</span>
+  <div class="il-body">
+    <div class="il-eyebrow">INTERLUDE · 01</div>
+    <h1 class="il-title"><span class="il-line">오늘의 질문</span></h1>
+    <p class="il-sub">상상플랫폼을 "공간"이 아니라 <strong>"매주 움직이는 운영 구조"</strong>로 보면<br/>무엇이 달라지는가.</p>
+  </div>
+</section>
+
+<section class="page" id="p1" data-title="1. 진짜 문제" data-num="01">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 01 / 16</div>
     <span class="eyebrow pink">문제 정의</span>
@@ -1562,7 +1661,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 2 ============ -->
-<section class="page" id="p2" data-title="2. 기존 방식의 한계가 확인됐습니다" data-num="02">
+<section class="page" id="p2" data-title="2. 기존 방식의 한계" data-num="02">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 02 / 16</div>
     <span class="eyebrow yellow">시장 신호</span>
@@ -1604,7 +1703,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 3 ============ -->
-<section class="page" id="p3" data-title="3. 갈 이유가 있을 때만 공간은 작동했습니다" data-num="03">
+<section class="page" id="p3" data-title="3. 갈 이유가 있을 때만 채워졌다" data-num="03">
   <div class="page-inner">
     <div class="page-hero">
       <img class="bg-img" src="assets/optimize.jpeg" alt="갈 이유가 있을 때만 공간은 작동했다" loading="lazy" />
@@ -1639,7 +1738,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 4 ============ -->
-<section class="page" id="p4" data-title="4. 목표를 다시 잡아야 합니다" data-num="04">
+<section class="page" id="p4" data-title="4. 목표부터 다시" data-num="04">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 04 / 16</div>
     <span class="eyebrow violet">목표 재정의</span>
@@ -1676,7 +1775,17 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 5 ============ -->
-<section class="page" id="p5" data-title="5. 공간 임대에서 시즌 편성으로 전환합니다" data-num="05">
+<!-- ============ 간지 02 · 공간이 아니라 편성 ============ -->
+<section class="page interlude interlude-blue" id="pI2" data-title="02. 공간이 아니라 편성" data-num="II">
+  <span class="il-bignum" aria-hidden="true">02</span>
+  <div class="il-body">
+    <div class="il-eyebrow">INTERLUDE · 02</div>
+    <h1 class="il-title"><span class="il-line">이제 공간이 아니라</span><span class="il-line">편성입니다.</span></h1>
+    <p class="il-sub">목적 방문을 만들려면,<br/>임대보다 먼저 <strong>시간표 · IP · 운영자</strong>가 필요합니다.</p>
+  </div>
+</section>
+
+<section class="page" id="p5" data-title="5. 공간 임대 → 시즌 편성" data-num="05">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 05 / 16</div>
     <span class="eyebrow">운영 전환</span>
@@ -1740,7 +1849,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 6 ============ -->
-<section class="page" id="p6" data-title="6. 목적성이 분명한 관객 보유 IP를 편성합니다" data-num="06">
+<section class="page" id="p6" data-title="6. 관객 보유 IP를 먼저" data-num="06">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 06 / 16</div>
     <span class="eyebrow pink">관객 보유 IP</span>
@@ -1768,7 +1877,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 7 ============ -->
-<section class="page" id="p7" data-title="7. 민간이 들어올 조건을 먼저 만듭니다" data-num="07">
+<section class="page" id="p7" data-title="7. 민간이 들어올 조건" data-num="07">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 07 / 16</div>
     <span class="eyebrow yellow">시장 조성</span>
@@ -1793,7 +1902,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 8 ============ -->
-<section class="page" id="p8" data-title="8. 운영 PMO는 무대감독이어야 합니다" data-num="08">
+<section class="page" id="p8" data-title="8. 운영 PMO = 무대감독" data-num="08">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 08 / 16</div>
     <span class="eyebrow violet">운영 PMO</span>
@@ -1842,7 +1951,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 9 ============ -->
-<section class="page" id="p9" data-title="9. 첫 6개월은 증거를 만드는 기간입니다" data-num="09">
+<section class="page" id="p9" data-title="9. 첫 6개월 — 확장 가능성 검증" data-num="09">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 09 / 16</div>
     <span class="eyebrow">6개월 파일럿</span>
@@ -1899,7 +2008,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 10 ============ -->
-<section class="page" id="p10" data-title="10. 270m 개항 워크스루는 대표 경험이 됩니다" data-num="10">
+<section class="page" id="p10" data-title="10. 270m 개항 워크스루" data-num="10">
   <div class="page-inner">
     <div class="page-hero">
       <img class="bg-img" src="PT_이미지_상상플랫폼_v1.5_270m개항워크스루/01_270m개항워크스루_내부.png" alt="270m 개항 워크스루 내부" loading="lazy" />
@@ -1933,7 +2042,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 11 ============ -->
-<section class="page" id="p11" data-title="11. 낮·저녁·밤의 시간표를 반복 방문 구조로" data-num="11">
+<section class="page" id="p11" data-title="11. 낮·저녁·밤 반복 방문 시간표" data-num="11">
   <div class="page-inner">
     <div class="page-hero">
       <img class="bg-img" src="PT_이미지_상상플랫폼_v1.5_270m개항워크스루/04_단기_저녁_야시장_워크스루프리뷰.png" alt="단기 저녁 야시장 워크스루 프리뷰" loading="lazy" />
@@ -1970,7 +2079,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 12 ============ -->
-<section class="page" id="p12" data-title="12. B2B 제안은 기다리지 않고 직접" data-num="12">
+<section class="page" id="p12" data-title="12. B2B 제안은 직접" data-num="12">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 12 / 16</div>
     <span class="eyebrow pink">B2B 세일즈</span>
@@ -2027,7 +2136,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 13 ============ -->
-<section class="page" id="p13" data-title="13. 재원은 임대료 하나로 만들 수 없습니다" data-num="13">
+<section class="page" id="p13" data-title="13. 재원은 임대료 하나로 불가" data-num="13">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 13 / 16</div>
     <span class="eyebrow">재원 구조</span>
@@ -2052,6 +2161,16 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 14 ============ -->
+<!-- ============ 간지 03 · 6개월의 실험 ============ -->
+<section class="page interlude interlude-orange" id="pI3" data-title="03. 6개월의 실험" data-num="III">
+  <span class="il-bignum" aria-hidden="true">03</span>
+  <div class="il-body">
+    <div class="il-eyebrow">INTERLUDE · 03</div>
+    <h1 class="il-title"><span class="il-line">6개월의 실험이</span><span class="il-line">권역의 미래를 엽니다.</span></h1>
+    <p class="il-sub">작은 파일럿의 데이터가<br/><strong>내항 권역 전체의 방문 흐름</strong>으로 이어질 수 있습니다.</p>
+  </div>
+</section>
+
 <section class="page" id="p14" data-title="14. 항구형 도시공원 콘텐츠 플랫폼" data-num="14">
   <div class="page-inner">
     <div class="page-hero">
@@ -2080,7 +2199,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 15 ============ -->
-<section class="page" id="p15" data-title="15. 중기에는 운영자를 키워야 합니다" data-num="15">
+<section class="page" id="p15" data-title="15. 중기 — 운영자를 키운다" data-num="15">
   <div class="page-inner">
     <div class="page-hero">
       <img class="bg-img" src="PT_이미지_상상플랫폼_v1.5_270m개항워크스루/06_중기_낮_크리에이터빌리지_워크스루.png" alt="중기 낮 크리에이터빌리지 워크스루" loading="lazy" />
@@ -2127,7 +2246,17 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 16 ============ -->
-<section class="page" id="p16" data-title="16. 오늘 필요한 결정" data-num="16">
+<!-- ============ 간지 04 · 방향의 정리 ============ -->
+<section class="page interlude interlude-lime" id="pI4" data-title="04. 방향의 정리" data-num="IV">
+  <span class="il-bignum" aria-hidden="true">04</span>
+  <div class="il-body">
+    <div class="il-eyebrow">INTERLUDE · 04</div>
+    <h1 class="il-title"><span class="il-line">그래서 오늘 필요한 것은</span><span class="il-line">방향의 정리입니다.</span></h1>
+    <p class="il-sub">모든 것을 확정하는 자리가 아니라,<br/><strong>6개월 안에 검증할 실행 방향을 맞추는 자리</strong>입니다.</p>
+  </div>
+</section>
+
+<section class="page" id="p16" data-title="16. 오늘 필요한 6가지 결정" data-num="16">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 16 / 16</div>
     <span class="eyebrow pink">의사결정</span>
@@ -2177,7 +2306,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 17 · 클로징 ============ -->
-<section class="page" id="p17" data-title="마무리. 다섯 가지 실행 패키지" data-num="17">
+<section class="page" id="p17" data-title="17. 5가지 실행 패키지" data-num="17">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CLOSING</div>
     <span class="eyebrow yellow">실행 패키지</span>
@@ -2248,7 +2377,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ APPENDIX 통합 페이지 ============ -->
-<section class="page" id="pApp" data-title="부록 — 상세 자료" data-num="A">
+<section class="page" id="pApp" data-title="부록. 상세 자료" data-num="A">
   <div class="page-inner">
     <div class="page-chip"><span class="dot" style="background:var(--v-cyan);"></span> APPENDIX</div>
     <span class="eyebrow">부록 · 상세 자료</span>
