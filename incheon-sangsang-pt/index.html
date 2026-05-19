@@ -66,9 +66,9 @@ img { max-width: 100%; height: auto; display: block; }
    플로팅 햄버거 (우상단)
 =========================================================== */
 .visitor-counter {
-  position: fixed; left: 8px; top: 8px; z-index: 800;
+  position: fixed; right: 74px; top: 28px; z-index: 1000;
   font-family: 'Inter', monospace; font-size: 11px; font-weight: 700;
-  color: #0a0a0f; background: transparent;
+  color: var(--bg); background: transparent;
   letter-spacing: 0.06em;
   user-select: text; cursor: default;
   padding: 2px 6px;
@@ -616,31 +616,6 @@ details.callout .callout-body p + p { margin-top: 14px; }
 
 /* PT 보기에서는 이미지형 페이지의 보조 본문을 숨겨 화면 넘침을 방지 */
 
-/* ===========================================================
-   PT 보기 보정 패치 — 16:9 fit 안정화 · 콜아웃 칩 강제 · 헤로 본문 정리
-=========================================================== */
-/* 1. 콜아웃 — PT 모드에서 absolute 해제 · 흐름 배치 · 토글 정상화 */
-
-/* 2. 이미지형 헤더 + 본문 페이지의 본문 박스 오버레이 정리
-      — 본문 박스가 헤로 이미지 위에 겹치며 가독성 깨지는 문제 보정 */
-
-/* 3. 본문이 viewport 16:9를 넘는 페이지는 잘림 대신 자동 축소 + 스크롤 폴백 */
-
-/* 4. (병합) details 흐름 배치는 패치 1번에서 일괄 처리 */
-
-/* 5. 헤로 페이지(.hero.current)의 inner 박스도 자동 스크롤 허용 */
-
-/* ===========================================================
-   PT 보기 보정 패치 2차 — 이미지형 헤더+본문 페이지 레이아웃 재설계
-   기존 580·692행은 헤로를 absolute로 띄워 본문이 그 위에 떠 겹침.
-   본문이 있는 헤로 페이지에서는 헤로를 흐름 내 상단 박스로 전환.
-=========================================================== */
-
-/* 헤로 타이포 축소 — 헤로가 작아졌으므로 본문과 균형 */
-
-/* 본문(.body-text)을 헤로+본문 페이지에서는 다시 노출 */
-
-/* Hint */
 
 /* HERO */
 .hero {
@@ -1335,10 +1310,90 @@ button:focus-visible, .menu-item:focus-visible {
 
 /* PAGE 1 — PT 모드 matrix 폰트 업스케일 */
 
+/* ============================================================
+   📱 MOBILE PATCH — v1.0 모바일 외과 보강 (260520)
+   원칙: PC 밸런스 불변. 모바일 깨짐만 외과적으로 봉합.
+   브레이크포인트: 768 / 640 / 420
+============================================================ */
+
+/* --- 1. 다열 그리드 일괄 1·2열 강제 (768px 이하) --- */
+@media (max-width: 768px) {
+  .four-pillars { grid-template-columns: repeat(2, 1fr) !important; gap: 14px; }
+  .flowline-stages { grid-template-columns: repeat(2, 1fr) !important; gap: 16px; }
+  .op-cards, .op-cards.op-cards-6 { grid-template-columns: repeat(2, 1fr) !important; gap: 14px; }
+  .card-grid.cols-3, .card-grid.cols-4 { grid-template-columns: 1fr !important; gap: 14px; }
+  .stage4 { grid-template-columns: repeat(2, 1fr) !important; gap: 14px; }
+  .decisions { grid-template-columns: repeat(2, 1fr) !important; gap: 14px; }
+  .phase-3 { grid-template-columns: 1fr !important; gap: 14px; }
+  .repeat-row { grid-template-columns: 1fr !important; gap: 14px; }
+  .phase-row { grid-template-columns: 1fr !important; }
+  .timeline-stage, .timeline-row { grid-template-columns: 1fr !important; gap: 12px; }
+  .timeline-kpi { text-align: left !important; }
+  .signal-grid { grid-template-columns: 1fr !important; gap: 16px; }
+  .ip-grid, .ip-body { grid-template-columns: 1fr !important; }
+  .ip-arrow { display: none !important; }
+  .ip-compact-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+  .pack-grid-5 { grid-template-columns: repeat(2, 1fr) !important; }
+  .msg-row { grid-template-columns: 1fr !important; gap: 8px; padding: 16px 18px; }
+}
+
+/* --- 2. 카드 padding·폰트 축소 (640px 이하) --- */
+@media (max-width: 640px) {
+  .page { padding: 40px 16px 72px !important; }
+  .hero { padding: 56px 16px 56px !important; }
+  .menu-inner { padding: 72px 16px 48px !important; }
+  .four-pillars > *,
+  .op-cards > *,
+  .stage4 > *,
+  .decisions > *,
+  .phase-3 > * { padding: 20px 18px !important; }
+  .flowline-stages > * { padding: 16px 14px !important; }
+  .ip-compact-grid > * { padding: 16px 12px !important; }
+  .msg-row .msg-tag { font-size: 12px !important; letter-spacing: 0.05em; }
+  .pack-grid-compact .card.pack-color { padding: 20px 18px 22px !important; min-height: 0 !important; }
+  /* hero 칩 3개 (인라인 style) — gap·여백만 조정 */
+  .hero-inner > div[style*="flex-wrap"] { gap: 8px !important; }
+  .hero-inner > div[style*="flex-wrap"] > span { padding: 8px 14px !important; }
+  /* 큰 KPI 숫자 클램프 하한 살짝 더 내려 모바일에서 한 줄 보존 */
+  .stat-num, .signal-num, .timeline-kpi-num { letter-spacing: -0.04em !important; }
+  /* msg-row tag 영역 작게 */
+  .msg-row .msg-body { font-size: 15px !important; line-height: 1.55; }
+  /* 햄버거 메뉴 내부 항목 간격 축소 */
+  .menu-list li, .menu-overlay li { padding: 14px 16px !important; }
+}
+
+/* --- 3. 초협소(아이폰SE 375px·갤폴드 외부) 1열 강제 (420px 이하) --- */
+@media (max-width: 420px) {
+  .page { padding: 36px 14px 64px !important; }
+  .hero { padding: 48px 14px 48px !important; }
+  .four-pillars,
+  .flowline-stages,
+  .op-cards, .op-cards.op-cards-6,
+  .stage4,
+  .decisions,
+  .ip-compact-grid,
+  .pack-grid-5 { grid-template-columns: 1fr !important; gap: 12px !important; }
+  /* hero 칩 — 세로 정렬로 안전하게 */
+  .hero-inner > div[style*="flex-wrap"] { flex-direction: column !important; align-items: center !important; gap: 8px !important; }
+  .hero-inner > div[style*="flex-wrap"] > span { width: 100%; max-width: 240px; text-align: center; padding: 10px 16px !important; }
+  /* floating UI 위치 보정 */
+  .floating-hamburger { top: 12px !important; right: 12px !important; }
+  .visitor-counter { right: 64px !important; top: 22px !important; font-size: 10px !important; }
+  /* 카드 내부 hr/divider 여백 축소 */
+  .pullquote { padding: 18px 16px !important; }
+}
+
+/* --- 4. 가로 스크롤 차단 안전망 --- */
+@media (max-width: 768px) {
+  body, html { overflow-x: hidden !important; }
+  img, table { max-width: 100% !important; }
+  pre, code { white-space: pre-wrap !important; word-break: break-word !important; }
+}
+
 /* 인쇄용 표시 보정 */
 @media print {
-  
-  
+
+
   .floating-hamburger, .floating-bottom { display: none !important; }
 }
 </style>
@@ -1413,7 +1468,7 @@ button:focus-visible, .menu-item:focus-visible {
     <div class="page-chip"><span class="dot"></span> CHAPTER 01 / 16</div>
     <span class="eyebrow pink">문제 정의</span>
     <h2 class="headline">상상플랫폼의 <span class="g-warm">진짜 문제</span>.</h2>
-    <p class="subhead">공간이 실패한 것이 아니라, <span class="hl hl-yellow">수요를 만드는 구조 없이 대형 공간을 먼저 연 방식</span>이 막힌 것입니다.</p>
+    <p class="subhead">공간 자체보다, <span class="hl hl-yellow">초기 운영모델과 수요 형성 구조를 함께 보완할 시점</span>입니다.</p>
 
     <!-- 4기둥 카드: 관객·행사·운영자·세일즈 -->
     <div class="four-pillars" aria-label="공간을 매주 채울 4가지">
@@ -1455,14 +1510,14 @@ button:focus-visible, .menu-item:focus-visible {
         <div class="pillar-sub">B2B 직접 제안</div>
       </div>
     </div>
-    <p class="pillars-foot">이 <strong>4가지</strong>가 함께 준비되지 않은 채 1,002억 원 규모의 공공자산이 먼저 열린 것이 진짜 문제입니다.</p>
+    <p class="pillars-foot">이 <strong>4가지</strong>를 함께 작동시키는 것이 1,002억 원 규모 공공자산의 <strong>활용도를 높일 다음 과제</strong>입니다.</p>
 
     <table class="matrix">
       <thead><tr><th style="width:38%">관찰된 현상</th><th>정책적 해석</th></tr></thead>
       <tbody>
-        <tr><td><strong>대형 앵커 테넌트 철수</strong></td><td>방문 수요가 검증되기 전에 <span class="hl-dark">고정비 부담을 민간에 넘긴 구조</span>입니다.</td></tr>
-        <tr><td><strong>핵심 공간 공모 유찰</strong></td><td>민간이 공간이 아니라 <span class="hl-dark">모객 리스크</span>를 거부한 것입니다.</td></tr>
-        <tr><td><strong>행사 때만 방문객 증가</strong></td><td>상상플랫폼은 죽은 공간이 아니라 <span class="hl-dark">편성되면 움직이는 베뉴</span>입니다.</td></tr>
+        <tr><td><strong>대형 앵커 테넌트 철수</strong></td><td>민간이 부담해야 할 <span class="hl-dark">고정비와 수요 불확실성</span>이 컸던 구조입니다.</td></tr>
+        <tr><td><strong>핵심 공간 공모 유찰</strong></td><td>민간이 공간이 아니라 <span class="hl-dark">모객 리스크를 크게 본 것</span>입니다.</td></tr>
+        <tr><td><strong>행사 때만 방문객 증가</strong></td><td>상상플랫폼은 <span class="hl-dark">편성될 때 반응하는 공간</span>입니다.</td></tr>
       </tbody>
     </table>
 
@@ -1470,23 +1525,23 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 2 ============ -->
-<section class="page" id="p2" data-title="2. 기존 방식은 시장이 거부했습니다" data-num="02">
+<section class="page" id="p2" data-title="2. 기존 방식의 한계가 확인됐습니다" data-num="02">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 02 / 16</div>
     <span class="eyebrow yellow">시장 신호</span>
-    <h2 class="headline">기존 방식은 <span class="g-warm">시장에서<br/>받아들여지지 않았습니다</span>.</h2>
-    <p class="subhead">민간이 거부한 것은 가격이 아니라, <span class="hl hl-orange">큰 공간을 통째로 떠안는 위탁 구조</span>입니다.</p>
+    <h2 class="headline">기존 방식은 <span class="g-warm">시장에서<br/>한계가 확인됐습니다</span>.</h2>
+    <p class="subhead">민간이 크게 본 것은 가격보다, <span class="hl hl-orange">큰 공간을 통째로 운영해야 하는 부담과 모객 불확실성</span>입니다.</p>
 
     <!-- Before / After 단순 카드 그리드 — 핵심 2행만 -->
     <div class="shift-grid" aria-label="기존 인식 vs 전환해야 할 인식">
       <div class="shift-pair row-pink">
         <div class="shift-card shift-card-before">
-          <span class="shift-card-tag">❌ 시장의 거부</span>
+          <span class="shift-card-tag">❌ 기존 방식</span>
           <p class="shift-card-text">상상플랫폼 입점 사업자 모집</p>
         </div>
         <div class="shift-card-arrow" aria-hidden="true">→</div>
         <div class="shift-card shift-card-after">
-          <span class="shift-card-tag">✅ 시장의 수용</span>
+          <span class="shift-card-tag">✅ 시장이 보여준 신호</span>
           <p class="shift-card-text">6개월 시즌 편성·집객·B2B 유치 운영사</p>
         </div>
       </div>
@@ -1520,7 +1575,7 @@ button:focus-visible, .menu-item:focus-visible {
         <div class="page-chip"><span class="dot"></span> CHAPTER 03 / 16</div>
         <span class="eyebrow lime">성공 신호</span>
         <h2 class="headline"><span class="hl hl-lime">갈 이유</span>가 있을 때만<br/><span class="g-cool">공간은 채워졌</span>습니다.</h2>
-        <p class="subhead">사람들은 상상플랫폼이라는 <strong>이름</strong>보다, 먹을 것·볼 것·할 것이 있는 <strong>구체적인 행사</strong>에 반응했습니다.</p>
+        <p class="subhead">사람들은 상상플랫폼이라는 <span class="hl hl-pink">이름</span>보다,<br/>먹을 것·볼 것·할 것이 있는 <span class="hl hl-orange">구체적인 행사</span>에 반응했습니다.</p>
       </div>
     </div>
 
@@ -1556,7 +1611,7 @@ button:focus-visible, .menu-item:focus-visible {
 
     <div class="pullquote pullquote-emph">
       목적 방문 → 반복 방문 → 권역형 상설 방문지.<br/>
-      <span class="pq-sub">처음부터 매일 사람이 오는 상설 명소는 너무 큰 목표. 그렇다고 행사장으로만 두는 것도 ✗.</span>
+      <span class="pq-sub">처음부터 매일 사람이 오는 상설 명소는 단계적 접근이 필요한 목표. 그렇다고 행사장으로만 두는 것도 ✗.</span>
     </div>
 
     <div class="phase-row">
@@ -1681,19 +1736,19 @@ button:focus-visible, .menu-item:focus-visible {
     <div class="page-chip"><span class="dot"></span> CHAPTER 07 / 16</div>
     <span class="eyebrow yellow">시장 조성</span>
     <h2 class="headline">민간이 들어올 수 있는<br/><span class="g-cool">조건</span>을 먼저 만듭니다.</h2>
-    <p class="subhead">초기 예산은 <span class="hl hl-orange">수익을 사는 돈</span>이 아니라, 민간이 들어올 수 있다는 <span class="hl hl-lime">증거를 만드는 돈</span>입니다.</p>
+    <p class="subhead">초기 예산은 <span class="hl hl-orange">단기 수익을 보장하는 예산</span>이 아니라,<br/>민간이 들어올 수 있다는 <span class="hl hl-lime">검증 데이터를 만드는 예산</span>입니다.</p>
 
 
     <div class="card-grid cols-3">
-      <div class="card pack-color" style="background: var(--v-orange);"><div class="card-eyebrow">01</div><h3 class="card-title">공간 무상/저가 제공</h3><p class="card-body">행사사와 브랜드의 <span class="hl-dark">진입 장벽</span>을 낮춥니다.</p></div>
-      <div class="card pack-color" style="background: var(--v-pink);"><div class="card-eyebrow">02</div><h3 class="card-title">초기 매출 안전장치 / 손실 완충</h3><p class="card-body">운영자가 <span class="hl-dark">첫 회차 리스크</span>를 과도하게 부담하지 않도록 설계합니다.</p></div>
+      <div class="card pack-color" style="background: var(--v-orange);"><div class="card-eyebrow">01</div><h3 class="card-title">파일럿 조건부 사용료</h3><p class="card-body">행사사와 브랜드의 <span class="hl-dark">진입 장벽</span>을 낮춥니다.</p></div>
+      <div class="card pack-color" style="background: var(--v-pink);"><div class="card-eyebrow">02</div><h3 class="card-title">초기 운영 리스크 완충</h3><p class="card-body">운영자가 <span class="hl-dark">첫 회차 리스크</span>를 과도하게 부담하지 않도록 설계합니다.</p></div>
       <div class="card pack-color" style="background: var(--v-violet);"><div class="card-eyebrow">03</div><h3 class="card-title">공동 홍보비</h3><p class="card-body"><span class="hl-dark">모객 부담</span>을 공공과 민간이 나눕니다.</p></div>
       <div class="card pack-color" style="background: var(--v-cyan);"><div class="card-eyebrow">04</div><h3 class="card-title">현장 운영 지원</h3><p class="card-body">안전·부스·동선·결제·CS <span class="hl-dark">부담을 낮춤</span>.</p></div>
       <div class="card pack-color" style="background: var(--v-emerald);"><div class="card-eyebrow">05</div><h3 class="card-title">콘텐츠 제작비</h3><p class="card-body">사진·숏폼·보도자료·<span class="hl-dark">후속 세일즈 자료</span>를 확보합니다.</p></div>
       <div class="card pack-color" style="background: var(--v-yellow);">
         <div class="card-eyebrow">RULE</div>
         <h3 class="card-title">파일럿 구조 + 졸업 조건</h3>
-        <p class="card-body" style="font-size: clamp(14px, 1.05vw, 16px); line-height: 1.55;"><span class="hl-dark">2주 팝업 → 3~6개월 단기 입점 → 1년 상설 입점</span>. 공개모집·기간 제한·성과 기준을 두면 특혜가 아니라 시장 검증 장치가 됩니다.</p>
+        <p class="card-body" style="font-size: clamp(14px, 1.05vw, 16px); line-height: 1.55;"><span class="hl-dark">2주 팝업 → 3~6개월 단기 입점 → 1년 상설 입점</span>. 공개모집·기간 제한·성과 기준을 두는 <strong>시장 검증 장치</strong>입니다.</p>
       </div>
     </div>
 
@@ -1867,10 +1922,10 @@ button:focus-visible, .menu-item:focus-visible {
         <p class="phase-body">야시장·푸드트럭·버스킹·창고 조명을 <span class="hl-dark">월 2회 이상 반복 운영</span>합니다.</p>
       </div>
       <div class="phase-cell" style="background: var(--v-violet);">
-        <div class="phase-num">21~</div>
-        <div class="phase-meta">밤 · NIGHT</div>
-        <h3 class="phase-title">안전한 야간 체류</h3>
-        <p class="phase-body">실내 중심의 소규모 라이브·야간 음악 프로그램·로컬 탭룸을 <span class="hl-dark">제한적으로 검증</span>합니다.</p>
+        <div class="phase-num">21시 이후</div>
+        <div class="phase-meta">실내 중심</div>
+        <h3 class="phase-title">제한적 야간 체류</h3>
+        <p class="phase-body">실내 중심의 소규모 라이브·야간 프로그램을 <span class="hl-dark">안전 기준 안에서 검증</span>합니다.</p>
       </div>
     </div>
 
@@ -1943,7 +1998,7 @@ button:focus-visible, .menu-item:focus-visible {
     <p class="subhead">초기 재원은 <span class="hl hl-cyan">공공 마중물 + 매출쉐어 + 브랜드 스폰서 + B2B 대관</span>을 혼합해야 합니다.</p>
 
     <div class="op-cards op-cards-6" aria-label="재원 6축">
-      <div class="op-card op-orange"><div class="op-title">공공 마중물</div><div class="op-sub"><span class="hl-dark">초기 콘텐츠 유치</span>·운영 리스크 보전·공동 홍보비</div></div>
+      <div class="op-card op-orange"><div class="op-title">공공 마중물</div><div class="op-sub"><span class="hl-dark">초기 콘텐츠 유치</span>·운영 리스크 완충·공동 홍보비</div></div>
       <div class="op-card op-pink"><div class="op-title">브랜드 팝업</div><div class="op-sub"><span class="hl-dark">신제품 체험·쇼케이스</span>·주말 팝업</div></div>
       <div class="op-card op-yellow"><div class="op-title">행사 IP 매출</div><div class="op-sub"><span class="hl-dark">입장권·부스비·참가비</span></div></div>
       <div class="op-card op-lime"><div class="op-title">F&amp;B · 마켓</div><div class="op-sub">푸드트럭·로컬 셀러·<span class="hl-dark">굿즈 판매 수수료</span></div></div>
@@ -2005,7 +2060,7 @@ button:focus-visible, .menu-item:focus-visible {
         <div class="stage4-num">01</div>
         <div class="stage4-tag">팝업</div>
         <div class="stage4-period">2주~1개월</div>
-        <div class="stage4-cond"><span class="hl-dark">무료 또는 낮은 매출쉐어</span></div>
+        <div class="stage4-cond"><span class="hl-dark">성과연동형 사용 조건</span></div>
         <div class="stage4-place">팝업존·광장·가변 부스</div>
       </div>
       <div class="stage4-cell stage4-2">
@@ -2040,7 +2095,7 @@ button:focus-visible, .menu-item:focus-visible {
     <div class="page-chip"><span class="dot"></span> CHAPTER 16 / 16</div>
     <span class="eyebrow pink">의사결정</span>
     <h2 class="headline"><span class="g-text">중요한</span> 6가지 방향.</h2>
-    <p class="subhead">모든 장기 계획을 당장 확정할 필요는 없습니다.<br/>다만 <span class="hl hl-pink">6개월 실험이 가능한 방향</span>은 고민을 시작해야 합니다.</p>
+    <p class="subhead">모든 장기 계획을 당장 확정할 필요는 없습니다.<br/>다만 <span class="hl hl-pink">6개월 파일럿으로 검증할 방향</span>은 정리할 필요가 있습니다.</p>
 
     <div class="decisions">
       <div class="dec-card dec-pink">
@@ -2053,19 +2108,19 @@ button:focus-visible, .menu-item:focus-visible {
         <div class="dec-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 9l3 3-3 3"/><line x1="13.5" y1="12" x2="19" y2="12"/></svg>
         </div>
-        <div class="dec-num">02</div><div class="dec-title">운영 PMO 선정</div><div class="dec-body"><span class="hl-dark">편성권·섭외권·세일즈권·마케팅 집행권</span> 부여</div><div class="dec-why">실행 속도</div>
+        <div class="dec-num">02</div><div class="dec-title">운영 PMO 선정</div><div class="dec-body">편성·섭외·세일즈·마케팅의 <span class="hl-dark">역할과 책임 범위 명확화</span></div><div class="dec-why">실행 속도</div>
       </div>
       <div class="dec-card dec-yellow">
         <div class="dec-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h7"/><path d="M9 17h5"/></svg>
         </div>
-        <div class="dec-num">03</div><div class="dec-title">관객 보유 IP 선계약</div><div class="dec-body"><span class="hl-dark">키즈·푸드·펫·K-content</span> 4개 이상</div><div class="dec-why">집객 콘텐츠 확보</div>
+        <div class="dec-num">03</div><div class="dec-title">관객 보유 IP 우선협의</div><div class="dec-body"><span class="hl-dark">키즈·푸드·펫·K-content</span> 4개 이상</div><div class="dec-why">집객 콘텐츠 확보</div>
       </div>
       <div class="dec-card dec-lime">
         <div class="dec-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/><path d="M9 12.5l2.2 2.2L15 10.5"/></svg>
         </div>
-        <div class="dec-num">04</div><div class="dec-title">리스크 제거 예산</div><div class="dec-body"><span class="hl-dark">공간·공동 홍보·최소 매출·운영 지원</span></div><div class="dec-why">민간 진입 장벽 낮춤</div>
+        <div class="dec-num">04</div><div class="dec-title">초기 진입장벽 완화 예산</div><div class="dec-body"><span class="hl-dark">공간·공동 홍보·성과연동 지원·운영 지원</span></div><div class="dec-why">민간 진입 장벽 낮춤</div>
       </div>
       <div class="dec-card dec-cyan">
         <div class="dec-ico" aria-hidden="true">
@@ -2100,7 +2155,7 @@ button:focus-visible, .menu-item:focus-visible {
       <div class="card pack-color" style="background: var(--v-orange);">
         <div class="card-eyebrow">PACKAGE 01</div>
         <h3 class="card-title">목적 방문의 계기를 만들겠습니다</h3>
-        <p class="card-body">6개월 파일럿을 통해<br/>키즈·푸드·펫·K-content·270m 워크스루를<br/><span class="hl-dark">선계약·프리뷰</span> 형태로 묶어 검증합니다.<br/><br/><span class="hl-dark">"일부러 찾아갈 이유"</span>를 제시할 수 있습니다.</p>
+        <p class="card-body">6개월 파일럿을 통해<br/>키즈·푸드·펫·K-content·270m 워크스루를<br/><span class="hl-dark">우선협의·프리뷰</span> 형태로 묶어 검증합니다.<br/><br/><span class="hl-dark">"일부러 찾아갈 이유"</span>를 제시할 수 있습니다.</p>
       </div>
       <div class="card pack-color" style="background: var(--v-pink);">
         <div class="card-eyebrow">PACKAGE 02</div>
@@ -2190,7 +2245,7 @@ button:focus-visible, .menu-item:focus-visible {
       <summary>운영 구성</summary>
       <div class="callout-body">
         <p><strong>기본 콘셉트</strong> — 금·토 저녁, 워크스루 프리뷰 + 야시장 + 소규모 라이브 + 로컬 F&amp;B 연결.</p>
-        <p><strong>운영 시간</strong> — 1단계는 21시 전후 야외 운영 종료, 이후 실내 중심으로 검토.</p>
+        <p><strong>운영 시간</strong> — 1단계는 21시 이전 야외 운영을 마무리하고, 이후는 실내 중심의 제한 운영으로 검토.</p>
         <p><strong>장소</strong> — 1883 개항광장·창고 내부 일부·실내 라이브 구역.</p>
         <p><strong>수익</strong> — F&amp;B 수수료·브랜드 협찬·티켓형 프로그램·B2B 초청 행사.</p>
         <p><strong>관리</strong> — 데시벨 기준·보안 인력·미성년자 관리·응급 대응·민원 창구 운영.</p>
@@ -2216,7 +2271,7 @@ button:focus-visible, .menu-item:focus-visible {
     <details class="callout">
       <summary>왜 장기 투자 구조는 처음 카드가 아닌가</summary>
       <div class="callout-body">
-        <p>SPC/JV를 처음부터 전면에 세우면 민간은 수요 책임을 먼저 묻습니다. 따라서 운영 성과와 현금흐름이 어느 정도 확인된 뒤 <strong>민관 공동투자 구조</strong>를 검토하는 것이 맞습니다.</p>
+        <p>SPC/JV를 처음부터 전면에 세우면 민간은 수요 검증 자료를 우선 확인합니다. 따라서 운영 성과와 현금흐름이 어느 정도 확인된 뒤 <strong>민관 공동투자 구조</strong>를 검토하는 것이 맞습니다.</p>
       </div>
     </details>
     <details class="callout">
@@ -2268,27 +2323,27 @@ button:focus-visible, .menu-item:focus-visible {
 
     <details class="callout" open>
       <summary>Q1. 기존 공모가 유찰된 이유를 무엇이라 생각하십니까?</summary>
-      <div class="callout-body"><p>민간이 상상플랫폼 자체를 거부한 것이 아니라, <strong>큰 공간을 고정비와 모객 리스크까지 떠안는 방식</strong>으로 맡는 것을 거부한 것입니다. 통임대가 아니라 시즌 편성·팝업·매출연동·단계 성장 구조로 바꿔야 합니다.</p></div>
+      <div class="callout-body"><p>민간이 상상플랫폼 자체를 부정적으로 본 것이 아니라, <strong>고정비와 모객 리스크를 함께 부담해야 하는 운영 조건</strong>을 크게 본 것입니다. 통임대가 아니라 시즌 편성·팝업·매출연동·단계 성장 구조로 바꿔야 합니다.</p></div>
     </details>
     <details class="callout">
       <summary>Q2. 이번에는 민간이 정말 들어올 것이라고 보십니까?</summary>
-      <div class="callout-body"><p>그냥 들어오라고 하면 어렵습니다. 그러나 공간·운영 지원·공동 홍보·초기 손실 완충·사진·영상 자료화·다음 회차 세일즈 연결까지 제공하면 <strong>참여를 검토할 이유가 분명해집니다</strong>.</p></div>
+      <div class="callout-body"><p>참여 조건이 구체화되어야 합니다. 공간·운영 지원·공동 홍보·초기 운영 리스크 완충·사진·영상 자료화·다음 회차 세일즈 연결이 함께 제시되면 <strong>참여를 검토할 이유가 분명해집니다</strong>.</p></div>
     </details>
     <details class="callout">
-      <summary>Q3. 270m 워크스루도 결국 과거 전시 실패를 반복하게 되지 않겠습니까?</summary>
+      <summary>Q3. 기존 전시형 운영의 한계를 반복하지 않으려면 어떻게 합니까?</summary>
       <div class="callout-body"><p>단독 전시가 아니라 행사 IP·브랜드 팝업의 체험 가치를 높이는 <strong>대표 경험</strong>입니다. 처음부터 전체 구축하지 않고 프리뷰 구간으로 체류시간·촬영률·전환율을 검증해야 합니다.</p></div>
     </details>
     <details class="callout">
       <summary>Q4. 이 방안을 추진하려면 추가 예산이 많이 필요하지 않겠습니까?</summary>
-      <div class="callout-body"><p>처음부터 큰 시설 투자를 하자는 것이 아닙니다. 초기에는 민간이 들어올 수 있는 조건을 만드는 <strong>마중물 예산</strong>이 필요합니다. 이 돈은 수익을 바로 사는 돈이 아니라 방문자·매출·B2B 레퍼런스를 만드는 돈입니다.</p></div>
+      <div class="callout-body"><p>처음부터 큰 시설 투자를 하자는 것이 아닙니다. 초기에는 민간이 들어올 수 있는 조건을 만드는 <strong>마중물 예산</strong>이 필요합니다. 단기 수익보다 <strong>검증 데이터(방문자·매출·B2B 레퍼런스) 확보</strong>를 목적으로 하는 예산입니다.</p></div>
     </details>
     <details class="callout">
-      <summary>Q5. 무료나 낮은 임대료 조건은 특혜 논란을 부르지 않겠습니까?</summary>
-      <div class="callout-body"><p>공개모집·기간 제한·성과 기준·졸업 조건을 명확히 하면 특혜가 아니라 <strong>파일럿 운영</strong>입니다. 2주 팝업·3~6개월 단기 입점·1년 상설 입점으로 단계를 나누고 성과 기준으로 결정합니다.</p></div>
+      <summary>Q5. 파일럿 조건부 사용료가 형평성 논란을 부르지 않겠습니까?</summary>
+      <div class="callout-body"><p>공개모집·기간 제한·성과 기준·졸업 조건을 명확히 하면 <strong>파일럿 운영</strong>이 됩니다. 2주 팝업·3~6개월 단기 입점·1년 상설 입점으로 단계를 나누고 성과 기준으로 결정합니다.</p></div>
     </details>
     <details class="callout">
       <summary>Q6. 야간 운영은 인력·안전 측면에서 부담이 크지 않겠습니까?</summary>
-      <div class="callout-body"><p>처음부터 늦은 시간대의 대규모 야외 프로그램을 운영하자는 것이 아닙니다. 1단계는 21시 이전 야시장과 버스킹, 2단계는 실내 소규모 라이브, 3단계는 허가·방음 기준을 갖춘 <strong>제한적 야간 프로그램</strong>입니다.</p></div>
+      <div class="callout-body"><p>처음부터 늦은 시간대의 대규모 야외 프로그램을 운영하자는 것이 아닙니다. 1단계는 21시 이전 야외 프로그램 중심, 2단계는 21시 이후 실내 소규모 라이브, 3단계는 허가·방음 기준을 갖춘 <strong>제한적 야간 프로그램</strong>입니다.</p></div>
     </details>
     <details class="callout">
       <summary>Q7. 내항 재개발과 함께 가져갈 이유가 있다고 보십니까?</summary>
@@ -2441,9 +2496,8 @@ button:focus-visible, .menu-item:focus-visible {
     const alreadyCounted = sessionStorage.getItem(sessionFlag);
 
     const showCount = (n, source) => {
-      const txt = `visits ${n}` + (source ? ` · ${source}` : '');
-      el.textContent = txt;
-      el.title = txt; // hover시 툴팁
+      el.textContent = String(n);
+      el.title = `visits ${n}` + (source ? ` · ${source}` : '');
     };
 
     // 1순위: api.counterapi.dev (무료, CORS 허용)
