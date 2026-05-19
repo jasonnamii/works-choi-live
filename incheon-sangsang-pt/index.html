@@ -1376,18 +1376,24 @@ button:focus-visible, .menu-item:focus-visible {
   opacity: 0.82;
 }
 
-/* 색 변형 — 다크 베이스 + 컬러 액센트 넘버 (눈에 부담 X) */
-.interlude-pink   { background: #1a1822; color: #f5f5f7; }
-.interlude-pink   .il-bignum { color: var(--v-pink); opacity: 0.22; }
+/* 색 변형 — 풀-블리드 비비드 (간지 강조) */
+.interlude-violet { background: var(--v-violet); color: #ffffff; }
+.interlude-violet .il-bignum { color: rgba(255,255,255,0.18); }
 
-.interlude-blue   { background: #0e1a2e; color: #f5f5f7; }
-.interlude-blue   .il-bignum { color: var(--v-cyan); opacity: 0.20; }
+.interlude-pink   { background: var(--v-pink);   color: #0a0a0a; }
+.interlude-pink   .il-bignum { color: rgba(0,0,0,0.18); }
 
-.interlude-orange { background: #221610; color: #f5f5f7; }
-.interlude-orange .il-bignum { color: var(--v-orange); opacity: 0.22; }
+.interlude-blue   { background: var(--v-blue);   color: #ffffff; }
+.interlude-blue   .il-bignum { color: rgba(255,255,255,0.16); }
 
-.interlude-lime   { background: #0f1f17; color: #f5f5f7; }
-.interlude-lime   .il-bignum { color: var(--v-lime); opacity: 0.22; }
+.interlude-cyan   { background: var(--v-cyan);   color: #0a0a0a; }
+.interlude-cyan   .il-bignum { color: rgba(0,0,0,0.16); }
+
+.interlude-orange { background: var(--v-orange); color: #0a0a0a; }
+.interlude-orange .il-bignum { color: rgba(0,0,0,0.18); }
+
+.interlude-lime   { background: var(--v-lime);   color: #0a0a0a; }
+.interlude-lime   .il-bignum { color: rgba(0,0,0,0.18); }
 
 /* 모바일 보강 */
 @media (max-width: 640px) {
@@ -1589,7 +1595,7 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ 간지 01 · 오늘의 질문 ============ -->
-<section class="page interlude interlude-pink" id="pI1" data-title="01. 오늘의 질문" data-num="I">
+<section class="page interlude interlude-violet" id="pI1" data-title="01. 오늘의 질문" data-num="I">
   <span class="il-bignum" aria-hidden="true">01</span>
   <div class="il-body">
     <div class="il-eyebrow">INTERLUDE · 01</div>
@@ -2002,6 +2008,16 @@ button:focus-visible, .menu-item:focus-visible {
   </div>
 </section>
 
+<!-- ============ 간지 03 · 핵심 운영 구조 ============ -->
+<section class="page interlude interlude-cyan" id="pI3a" data-title="03. 핵심 운영 구조" data-num="III">
+  <span class="il-bignum" aria-hidden="true">03</span>
+  <div class="il-body">
+    <div class="il-eyebrow">INTERLUDE · 03</div>
+    <h1 class="il-title"><span class="il-line">이제,</span><span class="il-line">핵심 운영 구조입니다.</span></h1>
+    <p class="il-sub">관객을 모으는 장면을 만들었다면, 다음은<br/>그 장면이 반복되도록 만드는 <strong>참여 조건 · 운영 주체 · 재원 구조</strong>입니다.</p>
+  </div>
+</section>
+
 <!-- ============ PAGE 7 ============ -->
 <section class="page" id="p7" data-title="10. 민간이 들어올 조건" data-num="10">
   <div class="page-inner">
@@ -2028,11 +2044,11 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ PAGE 8 ============ -->
-<section class="page" id="p8" data-title="11. 운영 PMO = 무대감독" data-num="11">
+<section class="page" id="p8" data-title="11. 초기 PMO = 무대감독" data-num="11">
   <div class="page-inner">
     <div class="page-chip"><span class="dot"></span> CHAPTER 11 / 17</div>
-    <span class="eyebrow violet">운영 PMO</span>
-    <h2 class="headline">운영 PMO는<br/><span class="g-cool">무대감독</span>이어야 합니다.</h2>
+    <span class="eyebrow violet">초기 PMO</span>
+    <h2 class="headline">초기 PMO는<br/><span class="g-cool">무대감독</span>이어야 합니다.</h2>
     <p class="subhead">콘텐츠를 전부 직접 만드는 제작자가 아니라,<br/><span class="hl hl-pink">외부 IP가 성공하도록 판을 짜는</span> 무대감독.</p>
 
     <div class="op-cards op-cards-5" aria-label="PMO 5역할">
@@ -2206,10 +2222,10 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ 간지 03 · 6개월의 실험 ============ -->
-<section class="page interlude interlude-orange" id="pI3" data-title="03. 6개월의 실험" data-num="III">
-  <span class="il-bignum" aria-hidden="true">03</span>
+<section class="page interlude interlude-orange" id="pI3" data-title="04. 6개월의 실험" data-num="IV">
+  <span class="il-bignum" aria-hidden="true">04</span>
   <div class="il-body">
-    <div class="il-eyebrow">INTERLUDE · 03</div>
+    <div class="il-eyebrow">INTERLUDE · 04</div>
     <h1 class="il-title"><span class="il-line">6개월의 실험이</span><span class="il-line">권역의 미래를 엽니다.</span></h1>
     <p class="il-sub">작은 파일럿의 데이터가<br/><strong>내항 권역 전체의 방문 흐름</strong>으로 이어질 수 있습니다.</p>
   </div>
@@ -2243,10 +2259,10 @@ button:focus-visible, .menu-item:focus-visible {
 </section>
 
 <!-- ============ 간지 04 · 방향의 정리 ============ -->
-<section class="page interlude interlude-lime" id="pI4" data-title="04. 방향의 정리" data-num="IV">
-  <span class="il-bignum" aria-hidden="true">04</span>
+<section class="page interlude interlude-lime" id="pI4" data-title="05. 방향의 정리" data-num="V">
+  <span class="il-bignum" aria-hidden="true">05</span>
   <div class="il-body">
-    <div class="il-eyebrow">INTERLUDE · 04</div>
+    <div class="il-eyebrow">INTERLUDE · 05</div>
     <h1 class="il-title"><span class="il-line">그래서 오늘 필요한 것은</span><span class="il-line">방향의 정리입니다.</span></h1>
     <p class="il-sub">모든 것을 확정하는 자리가 아니라,<br/><strong>6개월 안에 검증할 실행 방향을 맞추는 자리</strong>입니다.</p>
   </div>
@@ -2270,7 +2286,7 @@ button:focus-visible, .menu-item:focus-visible {
         <div class="dec-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 9l3 3-3 3"/><line x1="13.5" y1="12" x2="19" y2="12"/></svg>
         </div>
-        <div class="dec-num">02</div><div class="dec-title">운영 PMO 선정</div><div class="dec-body">편성·섭외·세일즈·마케팅의 <span class="hl-dark">역할과 책임 범위 명확화</span></div><div class="dec-why">실행 속도</div>
+        <div class="dec-num">02</div><div class="dec-title">초기 PMO 선정</div><div class="dec-body">편성·섭외·세일즈·마케팅의 <span class="hl-dark">역할과 책임 범위 명확화</span></div><div class="dec-why">실행 속도</div>
       </div>
       <div class="dec-card dec-yellow">
         <div class="dec-ico" aria-hidden="true">
