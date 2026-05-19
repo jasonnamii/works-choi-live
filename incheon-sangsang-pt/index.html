@@ -1360,6 +1360,43 @@ button:focus-visible, .menu-item:focus-visible {
   .msg-row .msg-body { font-size: 15px !important; line-height: 1.55; }
   /* 햄버거 메뉴 내부 항목 간격 축소 */
   .menu-list li, .menu-overlay li { padding: 14px 16px !important; }
+
+  /* --- 2-A. four-pillars 카드 슬림화 (높이 적정화) --- */
+  .pillar {
+    min-height: 0 !important;
+    padding: 22px 20px 22px !important;
+    gap: 10px !important;
+  }
+  .pillar-ico { width: 36px !important; height: 36px !important; border-radius: 10px !important; }
+  .pillar-ico svg { width: 20px !important; height: 20px !important; }
+  .pillar-title { font-size: 24px !important; }
+  .pillar-sub { font-size: 15px !important; line-height: 1.4 !important; }
+
+  /* --- 2-B. shift-pair 그루핑 강화 (before↓after 한 묶음) --- */
+  .shift-grid { gap: 24px !important; }
+  .shift-pair {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    padding: 14px 14px 16px !important;
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 18px !important;
+  }
+  .shift-card { min-height: 0 !important; padding: 16px 18px !important; }
+  .shift-card-text { font-size: 16px !important; }
+  /* ↓ 화살표: 기존 → 글자 숨기고 ↓로 교체 */
+  .shift-card-arrow {
+    transform: none !important;
+    font-size: 0 !important;
+    padding: 2px 0 !important;
+    line-height: 1 !important;
+  }
+  .shift-card-arrow::before {
+    content: "↓";
+    font-size: 24px !important;
+    font-weight: 900;
+    color: inherit;
+  }
 }
 
 /* --- 3. 초협소(아이폰SE 375px·갤폴드 외부) 1열 강제 (420px 이하) --- */
