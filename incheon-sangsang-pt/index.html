@@ -142,8 +142,9 @@ img { max-width: 100%; height: auto; display: block; }
    페이지 영역
 =========================================================== */
 .page {
-  min-height: 100vh; padding: 56px clamp(24px, 4vw, 80px) 100px;
+  min-height: 0 !important; padding: 48px clamp(24px, 4vw, 80px) 32px !important;
   position: relative;
+  display: block;
 }
 .page-inner {
   /* 헤드라인·본문 모두 같은 가로 풀폭 (page padding만 양옆 여백) */
@@ -2352,11 +2353,9 @@ button:focus-visible, .menu-item:focus-visible {
     scrollRAF = requestAnimationFrame(step);
   }
   function scrollToPage(target) {
-    const vh = window.innerHeight;
     const rect = target.getBoundingClientRect();
     const top = window.pageYOffset + rect.top;
-    const scrollY = rect.height >= vh ? top : top - (vh - rect.height) / 2;
-    animateScrollTo(Math.max(0, scrollY));
+    animateScrollTo(Math.max(0, top));
   }
 
   function goTo(idx) {
@@ -2476,11 +2475,9 @@ button:focus-visible, .menu-item:focus-visible {
     const target = document.getElementById(hash);
     if (target) {
       requestAnimationFrame(() => {
-        const vh = window.innerHeight;
         const rect = target.getBoundingClientRect();
         const top = window.pageYOffset + rect.top;
-        const scrollY = rect.height >= vh ? top : top - (vh - rect.height) / 2;
-        window.scrollTo({ top: scrollY, behavior: 'auto' });
+        window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
       });
     }
   })();
