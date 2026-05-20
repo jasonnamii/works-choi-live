@@ -579,6 +579,18 @@ details.callout .callout-body p + p { margin-top: 14px; }
 }
 .float-btn svg { width: 20px; height: 20px; }
 
+/* 부록 전용 플로팅 — 기본 숨김, JS가 .show-appendix 추가 시 표시 */
+.float-btn.appendix-only {
+  opacity: 0; visibility: hidden;
+  transform: translateX(60px);
+  transition: opacity 0.25s var(--easing), transform 0.25s var(--easing), visibility 0s linear 0.25s;
+}
+.floating-bottom.show-appendix .float-btn.appendix-only {
+  opacity: 1; visibility: visible;
+  transform: translateX(0);
+  transition: opacity 0.25s var(--easing), transform 0.25s var(--easing), visibility 0s;
+}
+
 /* PT 보기 이동 */
 
 /* PT 보기 — 16:9 화면 맞춤 */
@@ -1638,7 +1650,19 @@ button:focus-visible, .menu-item:focus-visible {
 </nav>
 
 <!-- ================= 하단 고정 버튼 ================= -->
-<div class="floating-bottom">
+<div class="floating-bottom" id="floatingBottom">
+  <button class="float-btn appendix-only" id="expandAllBtn" aria-label="부록 전체 열기" title="부록 전체 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+      <polyline points="6 4 12 10 18 4"></polyline>
+    </svg>
+  </button>
+  <button class="float-btn appendix-only" id="collapseAllBtn" aria-label="부록 전체 접기" title="부록 전체 접기">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+      <polyline points="18 20 12 14 6 20"></polyline>
+    </svg>
+  </button>
   <button class="float-btn" id="topBtn" aria-label="맨 위로" title="맨 위로">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="18 15 12 9 6 15"></polyline>
@@ -2751,6 +2775,38 @@ button:focus-visible, .menu-item:focus-visible {
   document.getElementById('topBtn').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  // ===== 부록 전용 플로팅 (전체 열기/접기) =====
+  // 부록 섹션(pApp)이 뷰포트에 들어왔을 때만 노출.
+  // IntersectionObserver로 안정 감지.
+  (function initAppendixFloating() {
+    const appendix = document.getElementById('pApp');
+    const floatingBottom = document.getElementById('floatingBottom');
+    const expandBtn = document.getElementById('expandAllBtn');
+    const collapseBtn = document.getElementById('collapseAllBtn');
+    if (!appendix || !floatingBottom || !expandBtn || !collapseBtn) return;
+
+    // 뷰포트 진입 감지 — 부록의 어느 부분이라도 보이면 표시
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          floatingBottom.classList.add('show-appendix');
+        } else {
+          floatingBottom.classList.remove('show-appendix');
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -20% 0px' });
+    io.observe(appendix);
+
+    // 전체 열기
+    expandBtn.addEventListener('click', () => {
+      appendix.querySelectorAll('details').forEach((d) => { d.open = true; });
+    });
+    // 전체 접기
+    collapseBtn.addEventListener('click', () => {
+      appendix.querySelectorAll('details').forEach((d) => { d.open = false; });
+    });
+  })();
 
   // 스크롤로 이동한 위치도 URL 해시에 반영 (리프레시 시 현재 위치 복원)
   // — 키보드 goTo()가 setState로 해시를 갱신하는 것과 동일하게 스크롤에도 적용
