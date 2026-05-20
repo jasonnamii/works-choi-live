@@ -1578,9 +1578,45 @@ button:focus-visible, .menu-item:focus-visible {
 
 /* 인쇄용 표시 보정 */
 @media print {
-
-
   .floating-hamburger, .floating-bottom { display: none !important; }
+
+  /* 모든 모션 정지 */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* radial-gradient 일괄 제거 — PDF에서 거대한 원으로 깨지는 원인 */
+  .hero, .page-hero {
+    background: var(--bg) !important;
+    background-image: none !important;
+  }
+  .hero::before, .hero::after,
+  .page-hero::before, .page-hero::after,
+  .page::before, .page::after {
+    background: none !important;
+    background-image: none !important;
+    display: none !important;
+  }
+
+  /* 그라데이션 텍스트 PDF 폴백 — background-clip:text가 인쇄 엔진에서
+     깨져 글자가 사라지는 문제 방지. 인쇄 시 단색으로 강제 표시. */
+  .g-text, .g-warm, .g-cool {
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+    -webkit-text-fill-color: #ffffff !important;
+    color: #ffffff !important;
+  }
+
+  /* 카드·간지의 비비드 배경은 살림 */
+  .hl, .hl-pink, .hl-cyan, .hl-lime, .hl-orange, .hl-yellow,
+  .pillar, .card.pack-color, .interlude,
+  .shift-card-after, .pack-color {
+    -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+  }
 }
 </style>
 </head>
