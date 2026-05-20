@@ -1345,6 +1345,20 @@ button:focus-visible, .menu-item:focus-visible {
 /* PAGE 1 — PT 모드 matrix 폰트 업스케일 */
 
 /* ============================================================
+   📘 PAGE 0 표지 + 감사합니다 — 배경 그라데이션 제거 (블랙 단색)
+============================================================ */
+#p0.hero, #pThanks.hero {
+  background: var(--bg) !important;
+  background-image: none !important;
+}
+#p0.hero::before, #p0.hero::after,
+#pThanks.hero::before, #pThanks.hero::after {
+  background: none !important;
+  background-image: none !important;
+  display: none !important;
+}
+
+/* ============================================================
    📘 PAGE 0 표지 hero-title — "매일, 매주 활성화…" 한 줄 안전 폭
 ============================================================ */
 #p0 .hero-title {
@@ -1651,16 +1665,10 @@ button:focus-visible, .menu-item:focus-visible {
 
 <!-- ================= 하단 고정 버튼 ================= -->
 <div class="floating-bottom" id="floatingBottom">
-  <button class="float-btn appendix-only" id="expandAllBtn" aria-label="부록 전체 열기" title="부록 전체 열기">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <button class="float-btn appendix-only" id="toggleAllBtn" aria-label="전체 열기" title="전체 열기">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="toggleAllIcon">
       <polyline points="6 9 12 15 18 9"></polyline>
       <polyline points="6 4 12 10 18 4"></polyline>
-    </svg>
-  </button>
-  <button class="float-btn appendix-only" id="collapseAllBtn" aria-label="부록 전체 접기" title="부록 전체 접기">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15"></polyline>
-      <polyline points="18 20 12 14 6 20"></polyline>
     </svg>
   </button>
   <button class="float-btn" id="topBtn" aria-label="맨 위로" title="맨 위로">
@@ -2776,35 +2784,73 @@ button:focus-visible, .menu-item:focus-visible {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // ===== 부록 전용 플로팅 (전체 열기/접기) =====
-  // 부록 섹션(pApp)이 뷰포트에 들어왔을 때만 노출.
-  // IntersectionObserver로 안정 감지.
+  // ===== 부록 + FAQ 전용 플로팅 (전체 열기/접기 토글 1버튼) =====
+  // pApp(부록) 또는 pF(FAQ)가 뷰포트에 들어왔을 때만 노출.
+  // 버튼 1개로 토글: 하나라도 닫혀 있으면 → 전체 열기, 다 열려 있으면 → 전체 접기.
   (function initAppendixFloating() {
-    const appendix = document.getElementById('pApp');
+    const targets = ['pApp', 'pF']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
     const floatingBottom = document.getElementById('floatingBottom');
-    const expandBtn = document.getElementById('expandAllBtn');
-    const collapseBtn = document.getElementById('collapseAllBtn');
-    if (!appendix || !floatingBottom || !expandBtn || !collapseBtn) return;
+    const toggleBtn = document.getElementById('toggleAllBtn');
+    const toggleIcon = document.getElementById('toggleAllIcon');
+    if (!targets.length || !floatingBottom || !toggleBtn) return;
 
-    // 뷰포트 진입 감지 — 부록의 어느 부분이라도 보이면 표시
+    const ICON_EXPAND = '<polyline points="6 9 12 15 18 9"></polyline><polyline points="6 4 12 10 18 4"></polyline>';
+    const ICON_COLLAPSE = '<polyline points="18 15 12 9 6 15"></polyline><polyline points="18 20 12 14 6 20"></polyline>';
+
+    // 어느 섹션이 현재 보이는지 추적
+    const visibleSet = new Set();
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          floatingBottom.classList.add('show-appendix');
-        } else {
-          floatingBottom.classList.remove('show-appendix');
-        }
+        if (entry.isIntersecting) visibleSet.add(entry.target);
+        else visibleSet.delete(entry.target);
       });
+      if (visibleSet.size > 0) {
+        floatingBottom.classList.add('show-appendix');
+        updateIcon();
+      } else {
+        floatingBottom.classList.remove('show-appendix');
+      }
     }, { threshold: 0, rootMargin: '0px 0px -20% 0px' });
-    io.observe(appendix);
+    targets.forEach(t => io.observe(t));
 
-    // 전체 열기
-    expandBtn.addEventListener('click', () => {
-      appendix.querySelectorAll('details').forEach((d) => { d.open = true; });
+    // 현재 보이는 섹션의 details 상태를 확인 — 다 열려 있으면 collapse 모드, 아니면 expand 모드
+    function getScope() {
+      return visibleSet.size > 0 ? Array.from(visibleSet) : targets;
+    }
+    function allOpen() {
+      const scope = getScope();
+      const allDetails = scope.flatMap(sec => Array.from(sec.querySelectorAll('details')));
+      if (!allDetails.length) return false;
+      return allDetails.every(d => d.open);
+    }
+    function updateIcon() {
+      if (!toggleIcon) return;
+      if (allOpen()) {
+        toggleIcon.innerHTML = ICON_COLLAPSE;
+        toggleBtn.setAttribute('aria-label', '전체 접기');
+        toggleBtn.setAttribute('title', '전체 접기');
+      } else {
+        toggleIcon.innerHTML = ICON_EXPAND;
+        toggleBtn.setAttribute('aria-label', '전체 열기');
+        toggleBtn.setAttribute('title', '전체 열기');
+      }
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const open = !allOpen();
+      getScope().forEach(sec => {
+        sec.querySelectorAll('details').forEach(d => { d.open = open; });
+      });
+      updateIcon();
     });
-    // 전체 접기
-    collapseBtn.addEventListener('click', () => {
-      appendix.querySelectorAll('details').forEach((d) => { d.open = false; });
+
+    // details 사용자 직접 클릭 시도 아이콘 동기화
+    targets.forEach(sec => {
+      sec.querySelectorAll('details').forEach(d => {
+        d.addEventListener('toggle', updateIcon);
+      });
     });
   })();
 
