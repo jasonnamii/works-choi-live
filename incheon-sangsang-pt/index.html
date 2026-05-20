@@ -2815,13 +2815,12 @@ button:focus-visible, .menu-item:focus-visible {
     }, { threshold: 0, rootMargin: '0px 0px -20% 0px' });
     targets.forEach(t => io.observe(t));
 
-    // 현재 보이는 섹션의 details 상태를 확인 — 다 열려 있으면 collapse 모드, 아니면 expand 모드
+    // 토글은 항상 부록·FAQ 둘 다 적용 (가시성과 별개)
     function getScope() {
-      return visibleSet.size > 0 ? Array.from(visibleSet) : targets;
+      return targets;
     }
     function allOpen() {
-      const scope = getScope();
-      const allDetails = scope.flatMap(sec => Array.from(sec.querySelectorAll('details')));
+      const allDetails = targets.flatMap(sec => Array.from(sec.querySelectorAll('details')));
       if (!allDetails.length) return false;
       return allDetails.every(d => d.open);
     }
