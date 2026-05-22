@@ -5,6 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>사공이호 × MAD POP</title>
+<link rel="icon" type="image/webp" href="assets/logo_402.webp">
+<link rel="apple-touch-icon" href="assets/logo_402.webp">
 <!-- 중국 차단 회피 — Google Fonts 제거, 시스템 폰트 fallback만 사용 -->
 <!-- Pretendard / Inter / JetBrains Mono는 시스템에 있으면 사용, 없으면 system-ui로 fallback -->
 <style>
@@ -1879,6 +1881,69 @@ a:focus-visible { outline: 2px solid var(--v-blue); outline-offset: 3px; border-
   font-weight: 700;
 }
 
+/* ============== SITE LOGO (좌상단 고정) ============== */
+.site-logo {
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  z-index: 99999;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px 0 6px;
+  box-sizing: border-box;
+  background: rgba(20,20,26,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  text-decoration: none;
+}
+.site-logo img {
+  height: 34px;
+  width: 34px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+.site-logo .site-logo-txt {
+  font-family: 'Inter', 'Pretendard', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.92);
+}
+@media (max-width: 768px) {
+  .site-logo { top: 20px; left: 14px; height: 44px; padding: 0 12px 0 5px; }
+  .site-logo img { height: 32px; width: 32px; }
+  .site-logo .site-logo-txt { display: none; }
+}
+
+/* ============== HERO LOGO (표지 대형) ============== */
+.hero-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 132px;
+  height: 132px;
+  margin: 0 0 28px;
+  border-radius: 30px;
+  background: #be1e2d;
+  box-shadow: 0 18px 50px rgba(190,30,45,0.35), 0 0 0 1px rgba(255,255,255,0.06) inset;
+  overflow: hidden;
+}
+.hero-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 768px) {
+  .hero-logo { width: 100px; height: 100px; border-radius: 24px; margin-bottom: 20px; }
+}
+
 /* ============== LANGUAGE TOGGLE ============== */
 .lang-toggle {
   position: fixed;
@@ -1956,6 +2021,12 @@ a:focus-visible { outline: 2px solid var(--v-blue); outline-offset: 3px; border-
 </style>
 </head>
 <body>
+<!-- ============== SITE LOGO ============== -->
+<a class="site-logo" href="#exec-summary" aria-label="사공이호 SAGONG EE HO">
+  <img src="assets/logo_402.webp" alt="사공이호 로고">
+  <span class="site-logo-txt">SAGONG EE HO</span>
+</a>
+
 <!-- ============== LANGUAGE TOGGLE ============== -->
 <nav class="lang-toggle" role="tablist" aria-label="Language">
   <button type="button" data-lang-btn="ko" class="active" role="tab" aria-selected="true">KR</button>
@@ -2101,6 +2172,7 @@ a:focus-visible { outline: 2px solid var(--v-blue); outline-offset: 3px; border-
 <div data-lang-content="ko" class="lang-content active">
 <section class="no-border bg-hero-world" id="exec-summary">
   <div class="wrap">
+    <div class="hero-logo"><img src="assets/logo_402.webp" alt="사공이호 SAGONG EE HO 로고"></div>
     <div class="eyebrow">0. Executive Summary</div>
 
     <div class="exec-headline-wrap">
@@ -5109,6 +5181,7 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
 <div data-lang-content="cn" class="lang-content">
 <section class="no-border bg-hero-world" id="exec-summary">
   <div class="wrap">
+    <div class="hero-logo"><img src="assets/logo_402.webp" alt="사공이호 SAGONG EE HO 로고"></div>
     <div class="eyebrow">0. Executive Summary</div>
 
     <div class="exec-headline-wrap">
@@ -8075,6 +8148,7 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
 <div data-lang-content="en" class="lang-content">
 <section class="no-border bg-hero-world" id="exec-summary">
   <div class="wrap">
+    <div class="hero-logo"><img src="assets/logo_402.webp" alt="사공이호 SAGONG EE HO 로고"></div>
     <div class="eyebrow">0. Executive Summary</div>
 
     <div class="exec-headline-wrap">
