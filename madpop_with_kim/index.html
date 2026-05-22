@@ -1266,11 +1266,13 @@ a:focus-visible { outline: 2px solid var(--v-blue); outline-offset: 3px; border-
   text-shadow: 0 2px 18px rgba(0,0,0,0.7);
 }
 .exec-headline .line { display:block; }
-.exec-headline .accent {
+.exec-headline .accent,
+.exec-headline .hl {
   display: inline-block;
   background: #FFE875;
   color: #0a0a0c;
-  padding: 0.04em 0.28em 0.1em;
+  padding: 0 0.24em;
+  line-height: 1.12;
   border-radius: 6px;
   font-weight: 900;
   text-shadow: none;
@@ -1278,6 +1280,10 @@ a:focus-visible { outline: 2px solid var(--v-blue); outline-offset: 3px; border-
   position: relative;
   z-index: 1;
 }
+.exec-headline .hl { white-space: normal; }
+.exec-headline .hl-pink   { background: #FF8FC7; }
+.exec-headline .hl-cyan   { background: #7BE8F0; }
+.exec-headline .hl-purple { background: #C7A5FF; }
 
 .exec-kpi-grid {
   display: grid;
@@ -1825,6 +1831,107 @@ a:focus-visible { outline: 2px solid var(--v-blue); outline-offset: 3px; border-
   letter-spacing: 0.06em;
 }
 
+/* 매거진/신문 레이아웃 — 좌 인물 누끼 + 우 텍스트 */
+.mag-spread {
+  display: grid;
+  grid-template-columns: 232px 1fr;
+  gap: 48px;
+  align-items: stretch;
+  margin: 52px 0 28px;
+  padding-top: 32px;
+  border-top: 2px solid var(--line);
+}
+.mag-portrait {
+  position: relative;
+  align-self: stretch;
+  background:
+    radial-gradient(120% 80% at 50% 100%, rgba(255,255,255,0.06), transparent 72%);
+  border-radius: 16px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+.mag-portrait img {
+  width: 100%;
+  max-width: 232px;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  filter: drop-shadow(0 18px 38px rgba(0,0,0,0.55));
+}
+.mag-portrait .mag-photo-cap {
+  position: absolute;
+  left: 2px;
+  bottom: 4px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+  font-weight: 600;
+}
+.mag-body { padding-top: 2px; }
+.mag-kicker {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent, #c9a23a);
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+.mag-body h3 {
+  margin-top: 0 !important;
+  margin-bottom: 18px !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.mag-body h3::before { display: none !important; }
+.mag-body p {
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.95;
+  letter-spacing: -0.005em;
+  color: rgba(255,255,255,0.84);
+  margin: 0 0 16px;
+  max-width: none;
+  word-break: keep-all;
+}
+.mag-body p:last-child { margin-bottom: 0; }
+.mag-creds {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  max-width: none;
+}
+.mag-creds li {
+  position: relative;
+  padding: 11px 0 11px 22px;
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.65;
+  color: rgba(255,255,255,0.84);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  word-break: keep-all;
+}
+.mag-creds li:last-child { border-bottom: none; }
+.mag-creds li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 19px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent, #c9a23a);
+}
+.mag-creds li b { color: #fff; font-weight: 700; }
+@media (max-width: 760px) {
+  .mag-spread { grid-template-columns: 1fr; gap: 16px; }
+  .mag-portrait { align-self: center; max-width: 220px; margin: 0 auto; padding-bottom: 0; }
+  .mag-portrait img { height: auto; }
+  .mag-portrait .mag-photo-cap { position: static; display: block; margin-top: 8px; text-align: center; }
+}
+
 /* CIRCUS DAY 슬림 divider */
 .circus-divider {
   margin: 60px 0;
@@ -2186,9 +2293,9 @@ a:focus-visible { outline: 2px solid var(--v-blue); outline-offset: 3px; border-
 
     <div class="exec-headline-wrap">
       <h2 class="exec-headline">
-        <span class="line">사공이호는 음악·캐릭터·공연·굿즈·숏드라마를</span>
-        <span class="line">하나의 세계관 안에서 확장하는 캐릭터 음악 IP입니다.</span>
-        <span class="line">MAD POP C+C+C+X 모델을 중국 시장에서</span>
+        <span class="line">사공이호는 <span class="hl hl-pink">음악·캐릭터·공연·굿즈·숏드라마</span>를</span>
+        <span class="line">하나의 세계관 안에서 확장하는 <span class="hl hl-cyan">캐릭터 음악 IP</span>입니다.</span>
+        <span class="line">MAD POP <span class="hl hl-purple">C+C+C+X 모델</span>을 중국 시장에서</span>
         <span class="line">가장 먼저 실행하는 <span class="accent">리드 IP입니다.</span></span>
       </h2>
     </div>
@@ -2349,9 +2456,24 @@ a:focus-visible { outline: 2px solid var(--v-blue); outline-offset: 3px; border-
 
     <p>이후 발매된 `CIRCUS DA`(2022-10-11)는 하이틴 인디팝 정서로 IP를 확장했고, `Polaris`(2023-11-10, `Prod. by OREER.C`)와 `Paper Plane`(2023-11-10)은 멤버 개별 캐릭터를 프로듀서·피처링 단위로 분화할 수 있음을 보여준 트랙입니다. 사공이호는 멤버별 솔로, 피처링, 프로듀싱, 캐릭터 라인으로 분화되는 그룹형 IP 구조입니다.</p>
 
-    <h3>1-4. 음악적 정통성</h3>
-    <p>사공이호의 음악은 김형석 프로듀서가 이끄는 PDK Music Label이 총괄합니다. 김형석 프로듀서는 김광석, 김건모, 박진영, 솔리드, 임창정 등 1990년대부터 현재까지, 한국 대중음악을 대표하는 작품을 작업해 온 인물입니다.</p>
-    <p>또한 김형석 프로듀서는 옥스퍼드 ASMES(Asian Studies on the Music and Entertainment Sectors)의 Global Artist in Residence이며, 한국음악저작권협회 25대 회장 후보로도 거론되는 인지도를 보유하고 있습니다. 이는 사공이호 IP가 한국 K-Pop 산업의 정통 제작 메서드와 버추얼 IP 구조의 결합 위에서 작동한다는 점을 입증합니다.</p>
+    <div class="mag-spread">
+      <div class="mag-portrait">
+        <img src="assets/kimhyungsuk_cutout.png" alt="김형석 프로듀서" loading="lazy">
+        <span class="mag-photo-cap">PRODUCER · KIM HYUNG-SUK</span>
+      </div>
+      <div class="mag-body">
+        <p class="mag-kicker">Musical Authenticity</p>
+        <h3>1-4. 음악적 정통성</h3>
+        <p>사공이호의 음악은 <span class="hl hl-yellow">김형석 프로듀서</span>가 이끄는 PDK Music Label이 총괄합니다. 김형석 프로듀서는 김광석, 김건모, 박진영, 솔리드, 임창정 등 1990년대부터 현재까지, 한국 대중음악을 대표하는 작품을 작업해 온 인물입니다.</p>
+        <p>김형석 프로듀서는 국내 제작 이력을 넘어 글로벌 권위 기반과 산업 대표성까지 갖춘 인물입니다.</p>
+        <ul class="mag-creds">
+          <li><b>옥스퍼드 Global Artist in Residence</b> — 옥스퍼드 ASMES(Asian Studies on the Music and Entertainment Sectors) 입주 아티스트입니다.</li>
+          <li><b>옥스퍼드 선정 세계 예술인 6인</b> — 2024년 옥스퍼드대학교가 신설한 인문대·켈로그 칼리지 방문 프로그램 아래 선정한 세계 예술인 6인 중 한 명입니다. K-Pop의 글로벌 성공을 이끈 혁신적 예술가로 평가받은 결과입니다.</li>
+          <li><b>한국음악저작권협회 25대 회장 후보</b> — 한국 음악 산업을 대표하는 인지도를 보유하고 있습니다.</li>
+        </ul>
+        <p>이는 사공이호 IP가 한국 K-Pop 산업의 정통 제작 메서드와 버추얼 IP 구조의 결합 위에서 작동한다는 점을 입증합니다.</p>
+      </div>
+    </div>
 
     <details>
       <summary>1-5. 기존 투자·파트너 트랙 <span class="summary-meta">3개 협력 이력</span></summary>
@@ -2407,7 +2529,7 @@ a:focus-visible { outline: 2px solid var(--v-blue); outline-offset: 3px; border-
         <div class="vc-num">03</div>
         <div class="vc-role">밴드 퍼포먼스</div>
         <h4 class="vc-name">이태원팍 (원팍)</h4>
-        <p class="vc-desc">드러머·퍼포머·댄서. 나노 단위 비트·근육질·걸스힙합 댄서·요리. XR 콘서트·스트릿 패션·스포츠 콜라보.</p>
+        <p class="vc-desc">드러머·퍼포머·댄서·래퍼. 나노 단위 비트·근육질·걸스힙합 댄서·요리. XR 콘서트·스트릿 패션·스포츠 콜라보.</p>
         <span class="vc-tag">Commerce / Community</span>
       </div>
       <div class="vc" role="listitem">
@@ -5194,9 +5316,9 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
 
     <div class="exec-headline-wrap">
       <h2 class="exec-headline">
-        <span class="line">四公二号是将音乐·角色·演出·周边·短剧</span>
-        <span class="line">在同一世界观内进行扩展的角色音乐 IP。</span>
-        <span class="line">是在中国市场率先实施 MAD POP C+C+C+X 模型的</span>
+        <span class="line">四公二号是将<span class="hl hl-pink">音乐·角色·演出·周边·短剧</span></span>
+        <span class="line">在同一世界观内进行扩展的<span class="hl hl-cyan">角色音乐 IP</span>。</span>
+        <span class="line">是在中国市场率先实施 MAD POP <span class="hl hl-purple">C+C+C+X 模型</span>的</span>
         <span class="line"><span class="accent">领头 IP。</span></span>
       </h2>
     </div>
@@ -5357,9 +5479,24 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
 
     <p>此后发行的 `CIRCUS DA`(2022-10-11)以青春独立流行的情绪扩展了 IP;`Polaris`(2023-11-10, `Prod. by OREER.C`)与 `Paper Plane`(2023-11-10)则是体现各成员角色可按制作人·Feature 单位进行分化的曲目。四公二号是可按成员的 SOLO、Feature、制作、角色支线进行分化的组合型 IP 结构。</p>
 
-    <h3>1-4. 音乐正统性</h3>
-    <p>四公二号的音乐由金亨锡制作人所率领的 PDK Music Label 统筹。金亨锡制作人是参与过金光石、金健模、朴振英、Solid、林昌正等从1990年代至今代表性韩国大众音乐作品制作的人物。</p>
-    <p>此外,金亨锡制作人还是牛津 ASMES(Asian Studies on the Music and Entertainment Sectors)的 Global Artist in Residence,并获提名为韩国音乐著作权协会第 25 届会长候选人,具备相应的影响力。这证明四公二号 IP 在韩国 K-Pop 产业的正统制作方法与虚拟 IP 结构的结合之上运转。</p>
+    <div class="mag-spread">
+      <div class="mag-portrait">
+        <img src="assets/kimhyungsuk_cutout.png" alt="金亨锡制作人" loading="lazy">
+        <span class="mag-photo-cap">PRODUCER · KIM HYUNG-SUK</span>
+      </div>
+      <div class="mag-body">
+        <p class="mag-kicker">Musical Authenticity</p>
+        <h3>1-4. 音乐正统性</h3>
+        <p>四公二号的音乐由<span class="hl hl-yellow">金亨锡制作人</span>所率领的 PDK Music Label 统筹。金亨锡制作人是参与过金光石、金健模、朴振英、Solid、林昌正等从1990年代至今代表性韩国大众音乐作品制作的人物。</p>
+        <p>金亨锡制作人不仅拥有韩国本土的制作履历,更具备全球权威背景与产业代表性。</p>
+        <ul class="mag-creds">
+          <li><b>牛津 Global Artist in Residence</b> — 牛津 ASMES(Asian Studies on the Music and Entertainment Sectors)的入驻艺术家。</li>
+          <li><b>牛津评选全球六位艺术家</b> — 于 2024 年入选牛津大学新设的人文学院·凯洛格学院访问项目所遴选的全球六位艺术家之一。这是基于其作为引领 K-Pop 全球成功的创新艺术家所获得的评价。</li>
+          <li><b>韩国音乐著作权协会第 25 届会长候选人</b> — 具备代表韩国音乐产业的影响力。</li>
+        </ul>
+        <p>这证明四公二号 IP 在韩国 K-Pop 产业的正统制作方法与虚拟 IP 结构的结合之上运转。</p>
+      </div>
+    </div>
 
     <details>
       <summary>1-5. 既有投资·合作履历 <span class="summary-meta">3 项合作记录</span></summary>
@@ -5415,7 +5552,7 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
         <div class="vc-num">03</div>
         <div class="vc-role">乐队舞台演出</div>
         <h4 class="vc-name">梨泰院朴 (元朴)</h4>
-        <p class="vc-desc">鼓手·演出者·舞者。纳米级节奏·肌肉型·女子嘻哈舞者·烹饪。可扩展至 XR 演唱会·街头时尚·体育联名。</p>
+        <p class="vc-desc">鼓手·演出者·舞者·说唱者。纳米级节奏·肌肉型·女子嘻哈舞者·烹饪。可扩展至 XR 演唱会·街头时尚·体育联名。</p>
         <span class="vc-tag">Commerce / Community</span>
       </div>
       <div class="vc" role="listitem">
@@ -8160,10 +8297,10 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
 
     <div class="exec-headline-wrap">
       <h2 class="exec-headline">
-        <span class="line">SAGONG EE HO (사공이호) is a character music IP that expands music,</span>
-        <span class="line">characters, performances, merchandise, and short-form drama within a single universe.</span>
+        <span class="line">SAGONG EE HO (사공이호) is a <span class="hl hl-cyan">character music IP</span> that expands <span class="hl hl-pink">music,</span></span>
+        <span class="line"><span class="hl hl-pink">characters, performances, merchandise, and short-form drama</span> within a single universe.</span>
         <span class="line">It is the <span class="accent">lead IP that first executes</span></span>
-        <span class="line">the MAD POP C+C+C+X model in the Chinese market.</span>
+        <span class="line">the MAD POP <span class="hl hl-purple">C+C+C+X model</span> in the Chinese market.</span>
       </h2>
     </div>
 
@@ -8323,9 +8460,24 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
 
     <p>The subsequent release `CIRCUS DA` (2022-10-11) extended the IP with a high-teen indie-pop sensibility, while `Polaris` (2023-11-10, `Prod. by OREER.C`) and `Paper Plane` (2023-11-10) demonstrated that the IP can differentiate individual member characters at the producer and featured-artist levels. SAGONG EE HO is a group-format IP that can branch by member into solo, featuring, producing, and character lines.</p>
 
-    <h3>1-4. Musical authenticity</h3>
-    <p>The music of SAGONG EE HO is led by PDK Music Label, headed by producer Kim Hyung-suk. Kim Hyung-suk has produced works that represent Korean popular music from the 1990s to the present, including those of Kim Kwang-seok, Kim Gun-mo, Park Jin-young, Solid, and Lim Chang-jung.</p>
-    <p>Kim Hyung-suk is also a Global Artist in Residence at Oxford ASMES (Asian Studies on the Music and Entertainment Sectors), and a candidate for the 25th presidency of the Korea Music Copyright Association. This establishes that the SAGONG EE HO IP operates on the combination of an authentic K-Pop production method and a virtual IP structure.</p>
+    <div class="mag-spread">
+      <div class="mag-portrait">
+        <img src="assets/kimhyungsuk_cutout.png" alt="Producer Kim Hyung-suk" loading="lazy">
+        <span class="mag-photo-cap">PRODUCER · KIM HYUNG-SUK</span>
+      </div>
+      <div class="mag-body">
+        <p class="mag-kicker">Musical Authenticity</p>
+        <h3>1-4. Musical authenticity</h3>
+        <p>The music of SAGONG EE HO is led by PDK Music Label, headed by <span class="hl hl-yellow">producer Kim Hyung-suk</span>. Kim Hyung-suk has produced works that represent Korean popular music from the 1990s to the present, including those of Kim Kwang-seok, Kim Gun-mo, Park Jin-young, Solid, and Lim Chang-jung.</p>
+        <p>Beyond his domestic production record, Kim Hyung-suk holds global authority and represents the industry at large.</p>
+        <ul class="mag-creds">
+          <li><b>Oxford Global Artist in Residence</b> — Artist in residence at Oxford ASMES (Asian Studies on the Music and Entertainment Sectors).</li>
+          <li><b>One of six world artists selected by Oxford</b> — In 2024, named one of six world artists selected under the newly established Faculty of Humanities · Kellogg College visiting program at the University of Oxford, in recognition of his role as an innovative artist who led the global success of K-Pop.</li>
+          <li><b>Candidate for the 25th presidency of the Korea Music Copyright Association</b> — Holding a stature that represents the Korean music industry.</li>
+        </ul>
+        <p>This establishes that the SAGONG EE HO IP operates on the combination of an authentic K-Pop production method and a virtual IP structure.</p>
+      </div>
+    </div>
 
     <details>
       <summary>1-5. Prior investment and partnership track record <span class="summary-meta">Three partnership records</span></summary>
@@ -8381,7 +8533,7 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
         <div class="vc-num">03</div>
         <div class="vc-role">Band performance</div>
         <h4 class="vc-name">Itaewon Pak (One Pak)</h4>
-        <p class="vc-desc">Drummer, performer, dancer. Nano-precision beats, muscular build, girls-hip-hop dancer, cooking. XR concerts, streetwear, sports collaborations.</p>
+        <p class="vc-desc">Drummer, performer, dancer, rapper. Nano-precision beats, muscular build, girls-hip-hop dancer, cooking. XR concerts, streetwear, sports collaborations.</p>
         <span class="vc-tag">Commerce / Community</span>
       </div>
       <div class="vc" role="listitem">
