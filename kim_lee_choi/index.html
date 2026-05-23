@@ -433,11 +433,11 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
   background: var(--fg) !important; color: var(--fg-on-dark) !important;
   border: none !important; border-left: 4px solid var(--accent) !important;
   padding: 12px 14px !important;
-  max-height: 280px; overflow-y: auto;
+  /* max-height·overflow 제거 — 사이드바 전체 스크롤에 위임 */
 }
-/* 경로 합 섹션 자체도 줄어들 수 있게 — 사이드바 높이 초과 방지 */
+/* 경로 합 섹션은 내용에 맞춰 펼침 */
 .sidebar-section.combo-section {
-  flex: 0 1 auto; min-height: 80px;
+  flex: 0 0 auto;
 }
 .combo-box .lbl {
   color: var(--accent-bright) !important; font-size: 13px;
