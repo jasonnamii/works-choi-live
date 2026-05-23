@@ -887,9 +887,9 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
   </p>
   <div class="kpi-row">
     <div class="kpi"><div class="num">11</div><div class="lbl">결정 레이어</div><div class="desc">L1·L2·L3·L4·L5·L6·L7·L8·L9·L10·L11 — 관할·법적 형태·분배·보유·Fee·거버넌스·베스팅 등</div></div>
-    <div class="kpi"><div class="num">26</div><div class="lbl">총 옵션</div><div class="desc">11 레이어 안에서 고를 수 있는 선택지 합계 — 옵션 클릭 시 다른 레이어가 자동 연동</div></div>
+    <div class="kpi"><div class="num">28</div><div class="lbl">총 옵션</div><div class="desc">11 레이어 안에서 고를 수 있는 선택지 합계 — 옵션 클릭 시 다른 레이어가 자동 연동</div></div>
     <div class="kpi"><div class="num">8</div><div class="lbl">연결 룰</div><div class="desc">한 옵션이 다른 레이어를 강제·권장·비활성·메모로 변경하는 자동 연결 규칙 개수</div></div>
-    <div class="kpi"><div class="num">51</div><div class="lbl">결합 시나리오</div><div class="desc">11 레이어 조합으로 생성 가능한 시나리오 — 권장경로 1 + 변형 50(세무·통제·상장·분쟁·CFC·키맨·하이브리드 최선/최악 포함)</div></div>
+    <div class="kpi"><div class="num">71</div><div class="lbl">결합 시나리오</div><div class="desc">11 레이어 조합으로 생성 가능한 시나리오 — 권장경로 1 + 변형 70(세무·통제·상장·분쟁·CFC·키맨·L4 6안 풀커버·양강·절대다수·4자 동등·하이브리드 최선/최악)</div></div>
     <div class="kpi"><div class="num"><span class="accent">40</span>%</div><div class="lbl">한국측 지분</div></div>
     <div class="kpi"><div class="num">4</div><div class="lbl">보유 주체</div><div class="desc">노느니특공대·김형석·이승규·최남희 — 한국측 40%를 나눠 가지는 4자</div></div>
   </div>
@@ -1275,18 +1275,18 @@ const COMBO_SCENARIOS = [
   },
   {
     id: 'V_L4F',
-    name: '변형 4 — 최남희 동등(L4=F)',
+    name: '변형 4 — 4자 동등 분배(L4=F, 25/25/25/25)',
     match: function(sel) { return sel.L4 === 'F'; },
     axes: {
-      tax: '최남희 비중 20→25 → 익금불산입 구간 변동(노느니 30 < 50% 미만, 80% 구간)',
-      control: '노느니 단일 최대 지분이 30으로 축소 → "IP는 한국이 쥔다" 시그널 약화. R7 룰에 의해 L10=A 자동 강제(75% 가중)로 보완',
-      ipo: '외부(중국측·투자자·미디어) 인식: "김형석이 사공이호의 얼굴인데 왜 최남희가 더 많이 가져가나" — IR 시 약점 노출 가능',
-      voidRisk: '약관법 §6 신의칙 위반 주장 여지는 적으나, 4자 간 형평성을 다투는 SHA 무효 주장 시 통합 무효확률 가산',
-      dispute: '최남희 동기 부여 최대 + 통합 설계 책임 보상 — 장기 헌신 BATNA↑',
+      tax: '4자 동등 25%씩 — 노느니 익금불산입 구간 30% 적용(20~30% 미만). 노느니 단일 IP Fee·도급 마진(L6·L7) 비중이 노느니 직접 현금흐름 본체',
+      control: '노느니 단일 최대 지분 부재 → IP 회수권 단독 거부 임계 미달. R7 룰에 의해 L10=A 자동 강제(75% 가중)로 보완',
+      ipo: '정치적 평탄·캡테이블 표준 — 자본시장 입장 가장 깔끔. 단 "IP 법인 통제 시그널" 약화로 자본시장 디스카운트 여지',
+      voidRisk: '4자 동등은 형평성 분쟁 여지 최소(약관법 §6 신의칙 OK). 단 의사결정 정족수 분쟁 가능성 ↑',
+      dispute: 'BATNA 약화 — 노느니 단독 거부권 사라짐. 분쟁 시 4자 합의 정족수 마비 가능',
       odi: '중국측 ODI 심사에 영향 거의 없음',
-      cash: '최남희 직접 현금흐름 +25% 비중. 단 노느니 IP Fee가 동시에 깎이면 한국측 전체 도달액 변동 미미'
+      cash: '4자 동등 분배 — 단 노느니 IP Fee 비중 협상 보강 필수'
     },
-    cite: 'R7 룰 강제 L10=A · 노느니 단일 최대 지분 시그널 변동'
+    cite: 'R7 룰 강제 L10=A · 4자 동등으로 노느니 단일 최대 시그널 부재'
   },
   {
     id: 'V_L1B',
@@ -1425,18 +1425,18 @@ const COMBO_SCENARIOS = [
   },
   {
     id: 'V_L4F_L7B',
-    name: '변형 14 — 최남희 동등 × 라텔 직접 도급(L4=F, L7=B, R6×R7 이중 강제)',
+    name: '변형 14 — 4자 동등 × 라텔 직접 도급(L4=F, L7=B, R6×R7 이중 강제)',
     match: function(sel) { return sel.L4==='F' && sel.L7==='B'; },
     axes: {
-      tax: '최남희 25% × 노느니 30% → 노느니 익금불산입 구간 30~50%(80%). 노느니 도급 마진 소실',
-      control: 'R6×R7 이중 강제로 L10=A(특별의결권 75%) 자동. 단 노느니 통합 검수 단계 소실로 한국측 통제력 약화',
-      ipo: 'IR 시 "최남희 > 노느니"·"라텔 직접 도급" 두 약점 동시 노출',
-      voidRisk: '거래상지위 남용(공정거래법 §45) 발동 가능 + 형평성 분쟁 여지',
+      tax: '4자 25% 동등 — 노느니 익금불산입 30% 구간. 노느니 도급 마진 소실로 직접 현금흐름 IP Fee 단일 의존',
+      control: 'R6×R7 이중 강제로 L10=A(75% 가중) 자동. 단 노느니 단일 최대 부재 + 통합 검수 소실 = 한국측 통제력 이중 약화',
+      ipo: 'IR 시 "IP법인 통제 시그널 부재" + "라텔 직접 도급" 두 약점 동시 노출',
+      voidRisk: '거래상지위 남용(공정거래법 §45) 발동 가능. 4자 동등은 형평성 여지 ↓',
       dispute: 'BATNA 약화 — KFTC 카운터 1개로 축소',
       odi: '중국측 라텔 직접 통제 그림자 강화',
-      cash: '노느니 도급 마진 소실 + IP Fee 절대값 감소 가능'
+      cash: '노느니 도급 마진 소실 + 4자 동등으로 IP Fee 절대값 협상 보강 필수'
     },
-    cite: 'R6×R7 룰 동시 강제 · 공정거래법 §45 · KFTC 거래상지위 처분 강화'
+    cite: 'R6×R7 룰 동시 강제 · 공정거래법 §45 · 4자 동등 + 라텔 직접 통제력 이중 약화'
   },
   {
     id: 'V_L4G_L1C',
@@ -1455,18 +1455,18 @@ const COMBO_SCENARIOS = [
   },
   {
     id: 'V_L9B_L4F',
-    name: '변형 16 — 이승규 겸직 × 최남희 동등(L9=B, L4=F)',
+    name: '변형 16 — 이승규 겸직 × 4자 동등(L9=B, L4=F)',
     match: function(sel) { return sel.L9==='B' && sel.L4==='F'; },
     axes: {
-      tax: '이승규 비중 R5 룰로 감액 권장(20→10~15) + 최남희 25 — 노느니 30 단일 최대',
-      control: '이승규 겸직 + R7 룰로 L10=A 강제. SPV 대표성·노느니 단일 최대 동시 약화',
-      ipo: 'IR 시 "겸직 대표 + 최남희 > 김형석" 이중 약점',
-      voidRisk: '경업금지 합리적 범위(2009다82244) + 형평성 분쟁 여지',
-      dispute: '핑크퐁 K-콘텐츠 분쟁 + 4자 형평성 분쟁 동시 발생 가능',
+      tax: '이승규 비중 R5 룰로 감액 권장(25→15~20) — 4자 동등 깨짐. 노느니 익금불산입 30% 구간',
+      control: '이승규 겸직 + R7 룰로 L10=A 강제. SPV 대표성·노느니 단일 최대 동시 부재 — 통제력 결정적 약화',
+      ipo: 'IR 시 "겸직 대표 + IP법인 통제 시그널 부재" 이중 약점',
+      voidRisk: '경업금지 합리적 범위(2009다82244) + 4자 동등 의사결정 정족수 위험',
+      dispute: '핑크퐁 K-콘텐츠 분쟁 + 4자 정족수 마비 동시 발생 가능',
       odi: '중국측이 이중 약점을 매각 압박 카드로 활용',
-      cash: '이승규 직접 보상(경업금지 보상) + 최남희 25% 직접 현금흐름'
+      cash: '이승규 직접 보상(경업금지 보상) + 4자 동등으로 IP Fee 협상 보강 필수'
     },
-    cite: 'L9-B × L4-F · R5 + R7 룰 중첩'
+    cite: 'L9-B × L4-F · R5 + R7 룰 중첩 · 통제력 이중 약화'
   },
   {
     id: 'V_L9B_L7B',
@@ -1680,18 +1680,18 @@ const COMBO_SCENARIOS = [
   },
   {
     id: 'V_L4F_L9C_L11_NONE',
-    name: '변형 31 — 최남희 동등 × 이승규 무산 × 베스팅 없음(L4=F, L9=C, L11 미설정)',
+    name: '변형 31 — 4자 동등 × 이승규 무산 × 베스팅 없음(L4=F, L9=C, L11 미설정)',
     match: function(sel) { return sel.L4==='F' && sel.L9==='C' && !sel.L11; },
     axes: {
-      tax: '재분배 누적',
-      control: '키맨 부재 + 락업 없음 + 형평성 분쟁 트리플',
+      tax: '이승규 25% 재할당 → 3자 33%씩 — 노느니 익금불산입 33% 구간',
+      control: '키맨 부재 + 락업 없음 + IP법인 단일 최대 부재 트리플',
       ipo: '자본시장 트랙 사실상 와해',
-      voidRisk: 'SHA 형평성 분쟁 + 키맨 락업 부재로 무효 여지',
-      dispute: 'BATNA 최악',
+      voidRisk: 'SHA 정족수 분쟁 + 키맨 락업 부재로 무효 여지',
+      dispute: 'BATNA 최악 — IP 회수권 단독 거부 임계 미달',
       odi: '중국측 매각 압박 카드',
       cash: '이탈자 보유분 영구 잠김'
     },
-    cite: 'L4-F + L9-C + L11 미설정 트리플'
+    cite: 'L4-F + L9-C + L11 미설정 트리플 · 통제·키맨·락업 동시 와해'
   },
   {
     id: 'V_L1C_L7B_L9B',
@@ -1905,18 +1905,18 @@ const COMBO_SCENARIOS = [
   },
   {
     id: 'V_L9A_L4F',
-    name: '변형 46 — 이승규 헌신 × 최남희 동등(L9=A, L4=F)',
+    name: '변형 46 — 이승규 헌신 × 4자 동등(L9=A, L4=F)',
     match: function(sel) { return sel.L9==='A' && sel.L4==='F'; },
     axes: {
-      tax: '노느니 30 → 익금불산입 80% 구간',
-      control: 'R7 강제 L10=A. 최남희 통합 설계 보상 + 이승규 헌신 양립',
-      ipo: 'IR 시 "최남희 > 김형석" 외부 인식 약점',
-      voidRisk: '형평성 분쟁 여지 ↓ — 4자 동등 헌신 가시화 시 완화',
-      dispute: '최남희 장기 헌신 BATNA ↑',
+      tax: '4자 동등 25%씩 — 노느니 익금불산입 30% 구간',
+      control: 'R7 강제 L10=A(75% 가중). 이승규 풀헌신 + 4자 동등 정치적 평탄',
+      ipo: 'IR 시 정치적 평탄 시그널 + IP법인 단일 통제 시그널 부재 혼합',
+      voidRisk: '4자 동등으로 형평성 분쟁 여지 최소',
+      dispute: 'BATNA 균형형 — 노느니 단독 거부권 ✗, 4자 합의 정족수 부담',
       odi: '중국측 ODI 변동 없음',
-      cash: '최남희 직접 현금흐름 +25% 비중'
+      cash: '4자 동등 분배 + 노느니 IP Fee 비중 협상 보강 필수'
     },
-    cite: 'L9-A + L4-F + R7 강제'
+    cite: 'L9-A + L4-F + R7 강제 · 4자 동등 + 이승규 풀헌신'
   },
   {
     id: 'V_L3_LATEL_INCLUDED',
@@ -1935,18 +1935,18 @@ const COMBO_SCENARIOS = [
   },
   {
     id: 'V_L1A_L4F_L7B',
-    name: '변형 48 — 권장 세무 × 최남희 동등 × 라텔 직접(L1=A, L4=F, L7=B)',
+    name: '변형 48 — 권장 세무 × 4자 동등 × 라텔 직접(L1=A, L4=F, L7=B)',
     match: function(sel) { return sel.L1==='A' && sel.L4==='F' && sel.L7==='B'; },
     axes: {
-      tax: '세무는 최적 — 통제는 R6×R7 이중 강제로 L10=A',
-      control: '세무 최적 + 통제 약점 혼합 — SHA에 R6·R7 verbatim 필수',
-      ipo: '세무 강점 + 외부 인식 약점',
-      voidRisk: 'KFTC + 형평성 이중 분쟁',
-      dispute: 'BATNA 중간',
+      tax: '세무는 최적(케이맨 2층) — 단 노느니 익금불산입 30% 구간 + 도급 마진 소실 누적',
+      control: '세무 최적 + 통제 이중 약화(IP법인 단일 최대 부재 + 통합 검수 소실) — SHA에 R6·R7 verbatim 필수',
+      ipo: '세무 강점 + 통제 시그널 약점 혼합',
+      voidRisk: 'KFTC 거래상지위 + 4자 정족수 마비 이중 분쟁',
+      dispute: 'BATNA 중간 — IP 회수권 약화 + KFTC 카운터 보존',
       odi: '중국측 ODI 변동 없음',
-      cash: '노느니 도급 마진 소실 + 최남희 25% 가산'
+      cash: '노느니 도급 마진 소실 + 4자 동등으로 IP Fee 협상 보강 필수'
     },
-    cite: 'L1-A + L4-F + L7-B · 세무 × 통제 혼합'
+    cite: 'L1-A + L4-F + L7-B · 세무 × 통제 혼합 · 4자 동등'
   },
   {
     id: 'V_REC_IP_TRIGGER_KOSDAQ',
@@ -1977,6 +1977,306 @@ const COMBO_SCENARIOS = [
       cash: '노느니 직접 현금흐름 최대 + 상장 트랙 약화'
     },
     cite: 'L1-A + L9-C + L4-E · 세무 최적 × 키맨 부재'
+  },
+  {
+    id: 'V_L4H',
+    name: '변형 51 — IP법인·창작자 양강(L4=H, 30/30/20/20)',
+    match: function(sel) { return sel.L4==='H'; },
+    axes: {
+      tax: '노느니 30% × 김형석 30% — 노느니 익금불산입 80% 구간(30~50% 미만)',
+      control: '노느니·김형석 양강 60%로 SPV 통제. 단 단일 최대 지분 부재 — 노느니 IP 회수권 단독 거부 임계 미달',
+      ipo: 'IR 시 "IP×창작 양축" 시그널. 자본시장 안정적 받아들임',
+      voidRisk: '형평성 여지 ↓. 단 양자 충돌 시 SPV 마비 위험',
+      dispute: 'BATNA 균형 — 노느니+김형석 합의 시 강력. 충돌 시 의사결정 마비',
+      odi: '중국측 ODI 변동 없음',
+      cash: '노느니 IP Fee + 김형석 가족법인 가업승계 동시 효율'
+    },
+    cite: 'L4-H · IP법인·창작자 양강 · 익금불산입 80% 구간'
+  },
+  {
+    id: 'V_L4I',
+    name: '변형 52 — IP법인 절대다수(L4=I, 45/20/20/15)',
+    match: function(sel) { return sel.L4==='I'; },
+    axes: {
+      tax: '노느니 45% 단일 최대 — 익금불산입 80% 구간. 노느니 직접 현금흐름 극대화',
+      control: 'IP 회수권 절대화 — 분쟁 시 노느니 단독 거부권 압도적. 중국측 1대1 BATNA 최강',
+      ipo: 'IR 시 "IP법인 일방 통제" 거버넌스 디스카운트 결정적',
+      voidRisk: '4자 형평성 분쟁(약관법 §6) 여지 최대 — SHA verbatim 필수',
+      dispute: 'BATNA 최강 — 노느니 단독 매각 위협(드래그얼롱) 가능',
+      odi: '중국측 ODI 변동 없음',
+      cash: '노느니 절대 현금흐름 + 3자(김형석·이승규·실무자) 보상 Fee 보완 부담 최대'
+    },
+    cite: 'L4-I · IP법인 절대다수 · IP 회수권 절대화'
+  },
+  {
+    id: 'V_L4H_L1A',
+    name: '변형 53 — 양강 × 케이맨 2층(L4=H, L1=A)',
+    match: function(sel) { return sel.L4==='H' && sel.L1==='A'; },
+    axes: {
+      tax: '세무 최적 + 양강 노느니 익금불산입 80% — 4자 실수령 균형 최대화',
+      control: '양강 구조 + 케이맨 Top NASDAQ/홍콩 정합',
+      ipo: 'IR 시 "IP×창작 양강 + 세무 최적" 시그널',
+      voidRisk: '양자 충돌 시 SPV 마비 위험은 잔존',
+      dispute: 'BATNA 균형',
+      odi: 'BVI/HK 경유 표준',
+      cash: '노느니+김형석 양축 직접 현금흐름'
+    },
+    cite: 'L4-H + L1-A · 양강 + 세무 최적'
+  },
+  {
+    id: 'V_L4H_L9A',
+    name: '변형 54 — 양강 × 이승규 풀헌신(L4=H, L9=A)',
+    match: function(sel) { return sel.L4==='H' && sel.L9==='A'; },
+    axes: {
+      tax: '양강 노느니 30% 익금불산입 80%',
+      control: '노느니+김형석 60% 통제 + 이승규 풀헌신 + L10=A 권장',
+      ipo: 'IR 시 "양강 + 상장 트랙" 시그널 강화',
+      voidRisk: '양자 충돌 시 SPV 마비 위험',
+      dispute: 'BATNA 균형 강화',
+      odi: '중국측 ODI 변동 없음',
+      cash: '양축 + 이승규 상장 가치 가산'
+    },
+    cite: 'L4-H + L9-A · 양강 + 자본시장 핵심'
+  },
+  {
+    id: 'V_L4H_L10A',
+    name: '변형 55 — 양강 × 특별의결권(L4=H, L10=A)',
+    match: function(sel) { return sel.L4==='H' && sel.L10==='A'; },
+    axes: {
+      tax: '양강 익금불산입 80%',
+      control: '양강 60% 통제 + 75% 가중 → 노느니·김형석 어느 하나라도 단독 거부 가능. 양자 충돌 시 SPV 마비 위험 완화',
+      ipo: 'IR 시 거버넌스 안정 시그널',
+      voidRisk: 'SHA 75% 가중 verbatim 필수',
+      dispute: 'BATNA 강화',
+      odi: '중국측 ODI 변동 없음',
+      cash: '양축 + 75% 가중 안전판'
+    },
+    cite: 'L4-H + L10-A · 양강 + 핵심사안 보호'
+  },
+  {
+    id: 'V_L4H_L1C',
+    name: '변형 56 — 양강 × 케이맨 단층(L4=H, L1=C, 위험)',
+    match: function(sel) { return sel.L4==='H' && sel.L1==='C'; },
+    axes: {
+      tax: 'CFC 폭탄 — 김형석 30% 한국 거주자 + 케이맨 50%↑ + 15%↓ 충족 시 매년 합산과세',
+      control: '양강 + CFC 추징 동시 발생',
+      ipo: 'IR 시 CFC 이력 + 키맨 비중 동시 노출',
+      voidRisk: 'CFC 확정 과세',
+      dispute: 'BATNA 약화',
+      odi: 'SAT 단속 시 중국세 추징 동시',
+      cash: '4자 실수령 마이너스 위험'
+    },
+    cite: 'L4-H + L1-C · 양강 + CFC 폭탄'
+  },
+  {
+    id: 'V_L4I_L1A',
+    name: '변형 57 — IP법인 절대다수 × 케이맨 2층(L4=I, L1=A)',
+    match: function(sel) { return sel.L4==='I' && sel.L1==='A'; },
+    axes: {
+      tax: '세무 최적 + 노느니 45% 익금불산입 80% — 노느니 직접 현금흐름 극대화',
+      control: 'IP 회수권 절대화 + 케이맨 표준 정합',
+      ipo: 'IR 시 "IP 절대 통제 + 세무 최적" 시그널 — 단 거버넌스 디스카운트 잔존',
+      voidRisk: '4자 형평성 분쟁 여지 최대',
+      dispute: 'BATNA 최강',
+      odi: 'BVI/HK 경유 표준',
+      cash: '노느니 절대 현금흐름 + 3자 Fee 보완 부담'
+    },
+    cite: 'L4-I + L1-A · IP 절대다수 + 세무 최적'
+  },
+  {
+    id: 'V_L4I_L10A',
+    name: '변형 58 — IP법인 절대다수 × 특별의결권(L4=I, L10=A)',
+    match: function(sel) { return sel.L4==='I' && sel.L10==='A'; },
+    axes: {
+      tax: '노느니 45% 익금불산입 80%',
+      control: '노느니 절대 다수 + 75% 가중 = IP 회수권 최강 + 다른 3자 단독 거부 보호. 균형 보강',
+      ipo: 'IR 시 "IP 절대 + 다중 안전장치" 시그널',
+      voidRisk: 'SHA 75% 가중 verbatim 필수',
+      dispute: 'BATNA 최강 + 3자 거부권 안전판',
+      odi: '중국측 ODI 변동 없음',
+      cash: '노느니 절대 현금흐름 + 3자 거부권 보호'
+    },
+    cite: 'L4-I + L10-A · IP 절대다수 + 핵심사안 보호'
+  },
+  {
+    id: 'V_L4I_L9A',
+    name: '변형 59 — IP법인 절대다수 × 이승규 풀헌신(L4=I, L9=A)',
+    match: function(sel) { return sel.L4==='I' && sel.L9==='A'; },
+    axes: {
+      tax: '노느니 45% 익금불산입 80%',
+      control: 'IP 절대다수 + 이승규 풀헌신 — IP·자본시장 양축',
+      ipo: 'IR 시 "IP 절대 + 상장 핵심" — 거버넌스 디스카운트 일부 상쇄',
+      voidRisk: '이승규 20% 형평성 분쟁 여지',
+      dispute: 'BATNA 최강 + 상장 트랙 안정',
+      odi: '중국측 ODI 변동 없음',
+      cash: '노느니 절대 현금흐름 + 이승규 상장 가치'
+    },
+    cite: 'L4-I + L9-A · IP 절대다수 + 상장 핵심'
+  },
+  {
+    id: 'V_L4I_L9C',
+    name: '변형 60 — IP법인 절대다수 × 이승규 무산(L4=I, L9=C)',
+    match: function(sel) { return sel.L4==='I' && sel.L9==='C'; },
+    axes: {
+      tax: '이승규 20% 재할당 → 노느니 55+ 단일 과반 가능 — 익금불산입 100% 구간 가능',
+      control: 'IP 회수권 절대화 극단 — 노느니 단독 의사결정 가능',
+      ipo: '상장 핵심 인물 부재 + IP 일방 통제 이중 약점',
+      voidRisk: '형평성 분쟁 여지 + 재분배 SHA 합의',
+      dispute: 'BATNA = 노느니 IP 회수 단일',
+      odi: '중국측 매각 압박 카드',
+      cash: '노느니 직접 현금흐름 최대화 + 상장 트랙 약화'
+    },
+    cite: 'L4-I + L9-C · IP 절대다수 + 키맨 부재'
+  },
+  {
+    id: 'V_L4F_L10A',
+    name: '변형 61 — 4자 동등 × 특별의결권(L4=F, L10=A)',
+    match: function(sel) { return sel.L4==='F' && sel.L10==='A'; },
+    axes: {
+      tax: '4자 동등 노느니 익금불산입 30% 구간',
+      control: '4자 동등 + 75% 가중 — 어느 1인이라도 단독 거부 가능. R7 룰 정합',
+      ipo: 'IR 시 거버넌스 안정 시그널',
+      voidRisk: 'SHA 75% 가중 verbatim 필수',
+      dispute: 'BATNA 균형 — 4자 합의 부담 + 핵심사안 보호',
+      odi: '중국측 ODI 변동 없음',
+      cash: '4자 동등 + 노느니 IP Fee 협상 보강 필수'
+    },
+    cite: 'L4-F + L10-A · 4자 동등 + 핵심사안 보호'
+  },
+  {
+    id: 'V_L4F_L1A',
+    name: '변형 62 — 4자 동등 × 케이맨 2층(L4=F, L1=A)',
+    match: function(sel) { return sel.L4==='F' && sel.L1==='A'; },
+    axes: {
+      tax: '세무 최적 + 노느니 익금불산입 30% — 4자 균등 실수령',
+      control: '4자 동등 + 케이맨 표준 정합 — IP 통제 시그널 약점은 잔존',
+      ipo: '세무·캡테이블 양 측면 표준',
+      voidRisk: '형평성 분쟁 여지 최소',
+      dispute: 'BATNA 균형',
+      odi: 'BVI/HK 경유 표준',
+      cash: '4자 균등 + IP Fee 협상 보강'
+    },
+    cite: 'L4-F + L1-A · 4자 동등 + 세무 최적'
+  },
+  {
+    id: 'V_REC_L4H',
+    name: '변형 63 — 권장 + 양강 분배(L4=H 적용)',
+    match: function(sel) { return sel.L1==='A' && sel.L2==='A' && sel.L4==='H' && sel.L5==='B'; },
+    axes: {
+      tax: '권장 경로 + 양강 익금불산입 80% — 실수령 최적',
+      control: '양강 60% 통제 + 75% 가중 권장',
+      ipo: 'IR 시 "IP×창작 양축 + 권장 풀세트" 시그널',
+      voidRisk: '양자 충돌 시 SPV 마비 위험은 잔존 — SHA verbatim 필수',
+      dispute: 'BATNA 균형 강화',
+      odi: 'BVI/HK 경유 표준',
+      cash: '양축 + IP Fee 보호'
+    },
+    cite: '권장 경로 + L4-H 양강 분배'
+  },
+  {
+    id: 'V_REC_L4I',
+    name: '변형 64 — 권장 + IP법인 절대다수(L4=I 적용)',
+    match: function(sel) { return sel.L1==='A' && sel.L2==='A' && sel.L4==='I' && sel.L5==='B'; },
+    axes: {
+      tax: '권장 경로 + 노느니 45% 익금불산입 80%',
+      control: 'IP 회수권 절대화 + 권장 풀세트',
+      ipo: 'IR 시 거버넌스 디스카운트 잔존',
+      voidRisk: '4자 형평성 분쟁 여지 최대',
+      dispute: 'BATNA 최강',
+      odi: 'BVI/HK 경유 표준',
+      cash: '노느니 직접 현금흐름 극대화'
+    },
+    cite: '권장 경로 + L4-I 절대다수'
+  },
+  {
+    id: 'V_L4G_L5B',
+    name: '변형 65 — 창작자 최대 × 가족법인(L4=G, L5=B)',
+    match: function(sel) { return sel.L4==='G' && sel.L5==='B'; },
+    axes: {
+      tax: '김형석 35% × 가족법인 = 가업승계 특례(상증법 §30의6) 최대 활용 + 익금불산입 50% 구간',
+      control: '키맨 종속 완화 — 가족법인이 SPV 통제 일관 유지',
+      ipo: 'IR 시 "가업승계 준비된 키맨" 시그널 — 키맨 리스크 일부 완화',
+      voidRisk: '가족법인 5년 사후관리 위반 시 추징',
+      dispute: '김형석 변고 시 가족법인 단위 통제 유지',
+      odi: '중국측 ODI 변동 없음',
+      cash: '가족법인 익금불산입 + 가업승계 특례 누적'
+    },
+    cite: 'L4-G + L5-B · 창작자 최대 + 가족법인 가업승계'
+  },
+  {
+    id: 'V_L4E_L11A',
+    name: '변형 66 — IP법인 과반 임박 × 베스팅 가속(L4=E, L11=A)',
+    match: function(sel) { return sel.L4==='E' && sel.L11==='A'; },
+    axes: {
+      tax: '노느니 40% 익금불산입 80% 구간',
+      control: 'IP 회수권 최강 + 베스팅 가속 = 이탈 시 자동 회수 + IP 회수권 동시',
+      ipo: 'IR 시 "IP 통제 + 자본시장 표준 락업" 시그널 최강',
+      voidRisk: 'SHA 가속 트리거 verbatim 필수',
+      dispute: 'BATNA 최강 — 노느니 단독 거부 + 이탈자 회수',
+      odi: '중국측 ODI 변동 없음',
+      cash: '노느니 직접 현금흐름 + 이탈자 회수 균등 재분배'
+    },
+    cite: 'L4-E + L11-A · IP 과반 + 베스팅 가속'
+  },
+  {
+    id: 'V_L4D_L11A_L10A',
+    name: '변형 67 — 권장 분배 × 거버넌스·베스팅 풀세트(L4=D, L10=A, L11=A)',
+    match: function(sel) { return sel.L4==='D' && sel.L10==='A' && sel.L11==='A' && sel.L9!=='C'; },
+    axes: {
+      tax: '권장 분배 노느니 익금불산입 50% 구간',
+      control: '노느니 단일 35 + 75% 가중 + 베스팅 가속 = 한국측 통제 완비',
+      ipo: 'IR 시 "권장 + 통제·락업 풀세트" 시그널 최강',
+      voidRisk: '2018다223054 표준 충족 + SHA verbatim 필수',
+      dispute: 'BATNA 최강 — IP 회수 + 75% 거부권 + 베스팅 회수',
+      odi: '중국측 ODI 변동 없음',
+      cash: '권장 + 이탈자 회수 안전판'
+    },
+    cite: 'L4-D + L10-A + L11-A · 권장 분배 + 통제·락업 풀세트'
+  },
+  {
+    id: 'V_L4F_L11A',
+    name: '변형 68 — 4자 동등 × 베스팅 가속(L4=F, L11=A)',
+    match: function(sel) { return sel.L4==='F' && sel.L11==='A'; },
+    axes: {
+      tax: '4자 동등 노느니 익금불산입 30% 구간',
+      control: '4자 동등 + 베스팅 가속 — 이탈자 25% 자동 회수 → 3자 균등 재분배(33%씩) → 노느니 익금불산입 80% 점프',
+      ipo: 'IR 시 "동등 + 락업" 시그널',
+      voidRisk: 'SHA 가속 트리거 verbatim 필수',
+      dispute: 'BATNA 균형 — 이탈자 회수 안전판',
+      odi: '중국측 ODI 변동 없음',
+      cash: '4자 균등 + 회수 시 익금불산입 점프'
+    },
+    cite: 'L4-F + L11-A · 4자 동등 + 베스팅 가속'
+  },
+  {
+    id: 'V_L4H_L6B_L7A',
+    name: '변형 69 — 양강 × IP Fee MG × 권장 도급(L4=H, L6=B, L7=A)',
+    match: function(sel) { return sel.L4==='H' && sel.L6==='B' && sel.L7==='A'; },
+    axes: {
+      tax: '양강 익금불산입 80% + IP Fee MG 안전판 + 노느니 도급 마진',
+      control: '양강 통제 + 노느니 통합 검수 + IP Fee 안전판 = 3중 통제',
+      ipo: 'IR 시 "양강 + 3중 통제" 시그널 최강',
+      voidRisk: 'SHA verbatim + IP Fee MG 협상 필요',
+      dispute: 'BATNA 최강 — 양강 + 통합 검수 + IP Fee 보호',
+      odi: '중국측 ODI 변동 없음',
+      cash: '양축 + IP Fee MG + 도급 마진 누적'
+    },
+    cite: 'L4-H + L6-B + L7-A · 양강 + 3중 통제 풀세트'
+  },
+  {
+    id: 'V_L4I_L1C',
+    name: '변형 70 — IP법인 절대다수 × 케이맨 단층(L4=I, L1=C, 위험)',
+    match: function(sel) { return sel.L4==='I' && sel.L1==='C'; },
+    axes: {
+      tax: '노느니 45% — 노느니가 케이맨 단층 SPV 50%↑ 보유 가능성 → CFC 합산과세 발동 가능',
+      control: 'IP 회수권 절대화 + CFC 동시 발생',
+      ipo: 'IR 시 CFC 이력 + IP 일방 통제 이중 약점',
+      voidRisk: 'CFC 확정 과세 + 형평성 분쟁',
+      dispute: 'BATNA 약화',
+      odi: 'SAT 단속 시 중국세 추징 동시',
+      cash: '4자 실수령 마이너스 위험'
+    },
+    cite: 'L4-I + L1-C · IP 절대다수 + CFC 폭탄'
   }
 ];
 
