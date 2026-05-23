@@ -270,5 +270,13 @@
     "last_kind": "backfill",
     "last_sha256": "",
     "timestamp": "2026-05-23T02:32:12Z"
+  },
+  "kim_lee_choi": {
+    "slug": "kim_lee_choi",
+    "mode": "choi",
+    "url": "https://works.choi.build/kim_lee_choi/",
+    "last_kind": "new",
+    "last_sha256": "ddc94437542211bec2a6376bdaaf5511c12690dacdaf09f6200e2a253b80af91",
+    "timestamp": "2026-05-23T11:51:53.168761Z"
   }
 }
