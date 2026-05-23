@@ -221,11 +221,13 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
 .sidebar {
   position: sticky; top: 72px; align-self: start;
   border: 1px solid var(--line-strong); background: var(--surface);
-  padding: 14px 16px; display: flex; flex-direction: column; gap: 12px;
-  height: calc(100dvh - 72px - 70px); /* viewport 풀높이 강제 */
+  padding: 14px 16px; display: block;
+  height: calc(100dvh - 72px - 70px);
   max-height: calc(100dvh - 72px - 70px);
-  overflow: hidden; /* 내부 섹션이 각자 스크롤 */
+  overflow-y: auto; /* 사이드바 전체가 한 컨테이너로 스크롤 */
+  overscroll-behavior: contain;
 }
+.sidebar > * + * { margin-top: 12px; }
 .sidebar-head {
   font-size: 14px; letter-spacing: 0.1em; font-weight: 700;
   color: var(--fg-3); text-transform: uppercase;
@@ -234,14 +236,13 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
 }
 .sidebar-section { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
 .sidebar-section.scroll-area {
-  flex: 1 1 0; min-height: 80px; overflow-y: auto; gap: 0;
+  flex: 0 0 auto; min-height: 0; overflow: visible; gap: 0;
 }
 .sidebar-section.scroll-area .path-list {
   overflow: visible; gap: 0;
 }
 .sidebar-section.scroll-area h4 {
-  position: sticky; top: 0; background: var(--surface); z-index: 2;
-  padding: 2px 0 6px;
+  position: static; padding: 2px 0 6px;
 }
 .sidebar-section h4 {
   font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
@@ -425,6 +426,47 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
   font-size: 14px; line-height: 1.65;
 }
 .comprehensive-box .cb-body strong { color: var(--accent-bright); font-weight: 700; }
+
+/* 사이드바 경로 합 종합 박스 — 본문 종합박스(검정 배경 + 빨강 액센트)와 톤 묶음 */
+.combo-box {
+  background: var(--fg) !important; color: var(--fg-on-dark) !important;
+  border: none !important; border-left: 4px solid var(--accent) !important;
+  padding: 12px 14px !important;
+  max-height: 280px; overflow-y: auto;
+}
+/* 경로 합 섹션 자체도 줄어들 수 있게 — 사이드바 높이 초과 방지 */
+.sidebar-section.combo-section {
+  flex: 0 1 auto; min-height: 80px;
+}
+.combo-box .lbl {
+  color: var(--accent-bright) !important; font-size: 13px;
+  font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.combo-box .combo-body { font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.92); }
+.combo-box .combo-body .axis {
+  display: block; margin-bottom: 6px; padding-left: 0;
+}
+.combo-box .combo-body .axis .ak {
+  display: inline-block; font-weight: 800; color: var(--accent-bright);
+  font-size: 12px; letter-spacing: 0.04em; margin-right: 4px;
+}
+.combo-box .combo-body .axis .av { color: rgba(255,255,255,0.92); }
+.combo-box .combo-body .cite {
+  display: block; margin-top: 8px; padding-top: 8px;
+  border-top: 1px dashed rgba(255,255,255,0.25);
+  font-size: 12px; color: rgba(255,255,255,0.72);
+}
+.combo-box .combo-body .disclaimer {
+  display: block; margin-top: 6px; font-size: 11px;
+  color: rgba(255,255,255,0.55); font-style: italic;
+}
+@media print {
+  .combo-box { background: #fff !important; color: #0a0a0a !important; border: 1px solid #0a0a0a !important; }
+  .combo-box .lbl, .combo-box .combo-body .axis .ak { color: #b00020 !important; }
+  .combo-box .combo-body, .combo-box .combo-body .axis .av { color: #0a0a0a !important; }
+  .combo-box .combo-body .cite, .combo-box .combo-body .disclaimer { color: #444 !important; }
+}
 
 /* 아젠다 통합 접기 블록 — 시각 우선순위 최상위 */
 .agenda-fold {
@@ -646,9 +688,9 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         <span class="k">참석자</span><span>최남희, 김형석, 이승규 (핑크퐁 부사장)</span>
         <span class="k">성격</span><span>3인 내부 전략 정렬 (중국측 미참석)</span>
         <span class="k">목적</span><span>다음 중국측 계약 미팅 전, 3인 입장·역할·금지선 합의</span>
-        <span class="k">산출물</span><span>3인 합의 입장문 1p, 역할 분담표, 양보 가능·불가 리스트, SPV 11레이어 의사결정 합의안</span>
+        <span class="k">산출물</span><span>3인 합의 입장문 1p, 역할 분담표, 양보 가능·불가 리스트, SPV 11 레이어 의사결정 합의안</span>
       </div>
-      <p style="margin:8px 0 0;font-size:13px;color:var(--fg-3);"><strong>SPV</strong> — Special Purpose Vehicle. 한국측 4자가 40% 지분을 함께 보유하기 위해 만드는 별도 법인. 4자 개인이 직접 보유하지 않고 SPV가 보유한 뒤 SPV 안에서 4자가 지분을 나눠 갖는 구조. <strong>11레이어</strong> — SPV를 설계할 때 결정해야 할 의사결정 단위 11개(관할·법적 형태·분배·보유·Fee·거버넌스·베스팅 등).</p>
+      <p style="margin:8px 0 0;font-size:13px;color:var(--fg-3);"><strong>SPV</strong> — Special Purpose Vehicle. 한국측 4자가 40% 지분을 함께 보유하기 위해 만드는 별도 법인. 4자 개인이 직접 보유하지 않고 SPV가 보유한 뒤 SPV 안에서 4자가 지분을 나눠 갖는 구조. <strong>11 레이어</strong> — SPV를 설계할 때 결정해야 할 의사결정 단위 11개(L1·L2·L3·L4·L5·L6·L7·L8·L9·L10·L11 — 관할·법적 형태·분배·보유·Fee·거버넌스·베스팅 등).</p>
 
       <h3>2. 전제 정리 (5분)</h3>
 
@@ -702,10 +744,10 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
       <p>이승규 라인 질문 — 상장 로드맵 실제 일정 / 자본시장 어드바이저·회계법인·법무법인·주관사 / 30억 달러 밸류에이션 근거 / 1,000만 달러 투입 후 다음 라운드 계획.</p>
       <p>최남희 라인 질문 — 사공이호 단계별 런칭 시나리오 / 중국 내 첫 6개월 실행 예산 / 콘텐츠 제작비 부담 주체 / 사공이호 IP 사용 범위·승인 구조 / 캐릭터·세계관·음악 변경 시 한국측 승인 권한.</p>
 
-      <h4>블록 3 — SPV 11레이어 의사결정 합의 (25분·본 트리)</h4>
+      <h4>블록 3 — SPV 11 레이어 의사결정 합의 (25분·본 트리)</h4>
       <div class="kw-lead">
         <span class="kw-label">결정 순서</span>
-        <span class="kw-pill is-core">L10 이승규</span>
+        <span class="kw-pill is-core">L9 이승규</span>
         <span class="arr">→</span>
         <span class="kw-pill">L1·L2 관할·법적 형태</span>
         <span class="arr">→</span>
@@ -713,11 +755,11 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         <span class="arr">→</span>
         <span class="kw-pill">L5 보유 구조</span>
         <span class="arr">→</span>
-        <span class="kw-pill">L7·L8·L9 Fee</span>
+        <span class="kw-pill">L6·L7·L8 Fee</span>
         <span class="arr">→</span>
-        <span class="kw-pill">L11·L12 거버넌스</span>
+        <span class="kw-pill">L10·L11 거버넌스</span>
       </div>
-      <p>본 페이지 하단 11레이어 트리에서 옵션을 골라 합의안을 만듭니다.</p>
+      <p>본 페이지 하단 11 레이어 트리에서 옵션을 골라 합의안을 만듭니다.</p>
 
       <h4>블록 4 — 절대 불가·조건부 가능·협상 가능 리스트 정렬 (20분)</h4>
       <div class="kw-lead">
@@ -741,18 +783,18 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
       <div class="kw-lead">
         <span class="kw-label">3층 분리</span>
         <span class="kw-pill is-core">① 지분 40%</span>
-        <span class="kw-pill is-core">② IP Fee (L7)</span>
-        <span class="kw-pill is-core">③ 실행 Fee (L8·L9)</span>
+        <span class="kw-pill is-core">② IP Fee (L6)</span>
+        <span class="kw-pill is-core">③ 실행 Fee (L7·L8)</span>
         <span class="kw-pill">+ 워런트·희석 방지·정산 감사권</span>
       </div>
       <ul>
-        <li>사공이호 IP 사용료 (L7에서 결정)</li>
+        <li>사공이호 IP 사용료 (L6에서 결정)</li>
         <li>음악 제작비·프로듀싱 Fee·콘텐츠 기획·감수 Fee</li>
         <li>매출 쉐어 / 공연·MD·게임·커머스 수익 배분 / 저작권 수익</li>
         <li>중국 외 글로벌 확장권</li>
         <li>성과 달성 시 추가 지분·워런트</li>
         <li>상장 전후 엑시트 권리·락업 조건</li>
-        <li>희석 방지 조항·정보 접근권·정산 감사권 (L11에서 결정)</li>
+        <li>희석 방지 조항·정보 접근권·정산 감사권 (L10에서 결정)</li>
       </ul>
 
       <h4>블록 6 — 중국측 확인 질문 리스트 (15분)</h4>
@@ -771,8 +813,8 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         <li>미이행 시 한국측 권리 보호 장치</li>
         <li>이 자금 중 사공이호 런칭에 배정되는 예산은 얼마인가</li>
         <li>한국측 40%는 상장 주체 지분 — 중국측 동일 인식 확인</li>
-        <li>1,000만 달러 투입 후에도 40% 유지되는가 (희석 방지 — L11에서 한국측 입장 합의)</li>
-        <li>사공이호 IP 사용권과 40% 지분은 별개로 처리되는가 (한국측 입장 = 별개·L7에서 IP Fee 별도 합의)</li>
+        <li>1,000만 달러 투입 후에도 40% 유지되는가 (희석 방지 — L10에서 한국측 입장 합의)</li>
+        <li>사공이호 IP 사용권과 40% 지분은 별개로 처리되는가 (한국측 입장 = 별개·L6에서 IP Fee 별도 합의)</li>
         <li>상장 로드맵 실제 일정·주관사·밸류에이션 근거</li>
       </ol>
 
@@ -820,14 +862,14 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         <span class="kw-pill">관할 (L1)</span>
         <span class="kw-pill">분배 (L4)</span>
         <span class="kw-pill">개인 보유 (L5)</span>
-        <span class="kw-pill is-core">이승규 합류 (L10)</span>
+        <span class="kw-pill is-core">이승규 합류 (L9)</span>
         <span class="kw-pill is-warn">$10M 입금 법인 (중국측)</span>
       </div>
       <ul>
         <li>SPV 관할 (케이맨·홍콩·한국) — <strong>L1에서 결정</strong></li>
         <li>한국측 SPV 내부 지분 분배 비율 — <strong>L4에서 결정 (D·E·F·G 4안)</strong></li>
         <li>김형석 창작팀 vs 노느니특공대 — <strong>L3 (4자 보유) + L5 개인 보유 구조에서 김형석 가족법인 변형 결정</strong></li>
-        <li>이승규 합류 여부 — <strong>L10에서 본인 결정</strong></li>
+        <li>이승규 합류 여부 — <strong>L9에서 본인 결정</strong></li>
         <li>1,000만 달러 입금 법인 — 중국측 답변 필요 (미팅에서 질문)</li>
         <li>상장 주체와 운영법인 분리 구조 — 중국측 동의 확인 필요</li>
       </ul>
@@ -840,12 +882,13 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
   <h1>한국측 <span class="accent">40%</span> 안에서<br>4자가 어떻게 나눌 것인가</h1>
   <p class="sub">
     중국측 1,000만 달러 · 한국측 40% (상장 주체 지분) 가설 위에서, 한국측 4자 (노느니특공대 · 김형석 · 이승규 · 최남희) 가
-    SPV를 통해 보유하는 구조의 11개 의사결정 레이어를 시뮬레이션합니다. 옵션 클릭 시 다른 레이어가 연동되어 비활성·강제로 표시됩니다.
+    SPV를 통해 보유하는 구조의 11개 의사결정 레이어(L1·L2·L3·L4·L5·L6·L7·L8·L9·L10·L11)를 시뮬레이션합니다. 옵션 클릭 시 다른 레이어가 연동되어 비활성·강제로 표시됩니다.
   </p>
   <div class="kpi-row">
-    <div class="kpi"><div class="num">11</div><div class="lbl">결정 레이어</div><div class="desc">관할·법적 형태·분배·보유·Fee·거버넌스·베스팅 등 합의해야 할 의사결정 단위 개수</div></div>
-    <div class="kpi"><div class="num">26</div><div class="lbl">총 옵션</div><div class="desc">11레이어 안에서 고를 수 있는 선택지 합계 — 옵션 클릭 시 다른 레이어가 자동 연동</div></div>
+    <div class="kpi"><div class="num">11</div><div class="lbl">결정 레이어</div><div class="desc">L1·L2·L3·L4·L5·L6·L7·L8·L9·L10·L11 — 관할·법적 형태·분배·보유·Fee·거버넌스·베스팅 등</div></div>
+    <div class="kpi"><div class="num">26</div><div class="lbl">총 옵션</div><div class="desc">11 레이어 안에서 고를 수 있는 선택지 합계 — 옵션 클릭 시 다른 레이어가 자동 연동</div></div>
     <div class="kpi"><div class="num">8</div><div class="lbl">연결 룰</div><div class="desc">한 옵션이 다른 레이어를 강제·권장·비활성·메모로 변경하는 자동 연결 규칙 개수</div></div>
+    <div class="kpi"><div class="num">51</div><div class="lbl">결합 시나리오</div><div class="desc">11 레이어 조합으로 생성 가능한 시나리오 — 권장경로 1 + 변형 50(세무·통제·상장·분쟁·CFC·키맨·하이브리드 최선/최악 포함)</div></div>
     <div class="kpi"><div class="num"><span class="accent">40</span>%</div><div class="lbl">한국측 지분</div></div>
     <div class="kpi"><div class="num">4</div><div class="lbl">보유 주체</div><div class="desc">노느니특공대·김형석·이승규·최남희 — 한국측 40%를 나눠 가지는 4자</div></div>
   </div>
@@ -854,12 +897,12 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
 <div class="order-strip">
   <h3>내일 미팅 의사결정 순서 (블록 3 · 25분)</h3>
   <div class="order-list">
-    <span class="order-pill"><span class="n">01</span> L10 이승규 결정</span>
+    <span class="order-pill"><span class="n">01</span> L9 이승규 결정</span>
     <span class="order-pill"><span class="n">02</span> L1·L2 관할·법적형태</span>
     <span class="order-pill"><span class="n">03</span> L4 분배 시나리오</span>
     <span class="order-pill"><span class="n">04</span> L5 개인 보유 구조</span>
-    <span class="order-pill"><span class="n">05</span> L7·L8·L9 Fee 구조</span>
-    <span class="order-pill"><span class="n">06</span> L11·L12 거버넌스</span>
+    <span class="order-pill"><span class="n">05</span> L6·L7·L8 Fee 구조</span>
+    <span class="order-pill"><span class="n">06</span> L10·L11 거버넌스</span>
   </div>
 </div>
 
@@ -882,7 +925,7 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
     <div class="sidebar-section">
       <h4>진행률</h4>
       <div class="progress"><div class="bar" id="progress-bar" style="width:0%"></div></div>
-      <div class="progress-text"><span id="progress-num">0</span> / 12 결정</div>
+      <div class="progress-text"><span id="progress-num">0</span> / 11 결정</div>
     </div>
     <div class="sidebar-section">
       <h4>한국측 40% 분배 미리보기</h4>
@@ -898,8 +941,15 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         <div id="memo-text">옵션 선택 시 연결성 룰이 표시됩니다.</div>
       </div>
     </div>
+    <div class="sidebar-section combo-section">
+      <h4>경로 합 종합 (7축)</h4>
+      <div class="summary-box combo-box" id="combo-box">
+        <div class="lbl" id="combo-scen">시나리오 미정</div>
+        <div id="combo-body" class="combo-body">레이어를 골라가며 합산 효과가 누적됩니다. 본문 종합박스는 레이어 단독 효과·이 패널은 레이어 간 상호작용·누적 효과를 다룹니다.</div>
+      </div>
+    </div>
     <div class="sidebar-section scroll-area">
-      <h4>선택 경로 (12 레이어)</h4>
+      <h4>선택 경로 (11 레이어)</h4>
       <div class="path-list" id="path-list"></div>
     </div>
   </aside>
@@ -907,7 +957,7 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
 
 <footer class="bottombar" role="contentinfo">
   <div class="bb-status" aria-live="polite">
-    <span class="num"><span id="bb-done">0</span> / 12</span> 결정 완료 ·
+    <span class="num"><span id="bb-done">0</span> / 11</span> 결정 완료 ·
     활성 연결 룰 <span class="num" id="bb-rules">0</span>
   </div>
   <div class="bb-actions">
@@ -919,7 +969,7 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
 <script>
 const LAYERS = [
   { id: 'L1', title: 'SPV 관할 구조',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 한국 4자가 40%를 어느 나라 법으로 묶을지. <strong>핵심 트레이드오프:</strong> 단순성(B) vs 세무·상장 최적화(A) vs CFC 폭탄 위험(C). <strong>한국측 40% 가치 보존 관점:</strong> 상장 주체가 케이맨이라면 한국 SPV로 받는 순간 환차손·이중과세·송금 제약이 누적된다. A안 2층은 설립비 수천만 원 추가지만, 향후 엑시트·승계·재투자 전 구간에서 세무를 통과시키는 유일한 길이다. C안은 한국 거주자가 케이맨 SPV를 50% 이상 보유하면 CFC(피지배외국법인) 합산과세가 매년 한국에서 발생한다 — 최남희 개인이 직접 보유 시 폭발적 리스크.',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 한국 4자가 40%를 어느 나라 법으로 묶을지. <strong>핵심 트레이드오프:</strong> 단순성(B) vs 세무·상장 최적화(A) vs CFC 폭탄 위험(C). <strong>한국측 40% 가치 보존 관점:</strong> 상장 주체가 케이맨이라면 한국 SPV로 받는 순간 환차손·이중과세·송금 제약이 누적된다. A안 2층은 설립비 수천만 원 추가지만, 향후 엑시트·승계·재투자 전 구간에서 세무를 통과시키는 유일한 길이다. C안은 한국 거주자가 케이맨 SPV 지분 50% 이상 보유 + 실효세율 15% 이하(2026.1.1부터 17.5% 이하)를 모두 충족 시 CFC(피지배외국법인) 합산과세가 매년 한국에서 발생한다(국조법 §27) — 최남희 개인이 직접 보유 시 폭발적 리스크. <strong>중국측 ODI 추가 변수:</strong> 중국의 해외 엔터테인먼트 투자는 NDRC·MOFCOM·SAFE의 "Restricted" 카테고리로 분류되어 승인 기간·서류가 가중된다(China Briefing, 2026) — 1,000만 달러 송금 자체가 BVI→케이맨→홍콩→WFOE 표준 패턴을 거쳐야 하므로 케이맨 단층(C)으로 받으면 중국측 ODI 절차와 한국 CFC가 동시에 충돌한다. <strong>SAT 단속:</strong> 중국 국가세무총국이 케이맨 법인을 "중국 내 실질 운영 → PE(고정사업장) 인정"으로 단속 강화 중이라(Winston &amp; Strawn, 2026) 케이맨 SPV에 중국측 인력이 상시 관여하면 중국세 추징 리스크가 한국측에도 평판으로 번진다.',
     options: [
       { code: 'A', name: '케이맨 Top + 한국 Sub 2층', recommended: true,
         desc: '한국 4자 → 한국 Sub SPV → 케이맨 Top SPV → 상장 주체 40%',
@@ -938,11 +988,11 @@ const LAYERS = [
         pros: ['세무 효율 극대'],
         cons: ['CFC 합산과세 위험','개인 직접 보유 시 폭발적 리스크'],
         easyPros: '한 층뿐이라 A안보다 관리비가 절반이다. 케이맨에 직접 들어가니 상장 시 외국인 분류가 가장 깔끔하다. 단기적으로는 가장 효율적으로 보인다.',
-        easyCons: '한국 거주자(최남희·김형석)가 케이맨 SPV 지분 10% 이상 보유 시 CFC 합산과세 대상이다. SPV가 번 돈이 최남희에게 배당 안 와도 매년 한국에서 최남희 개인 소득세로 잡힌다. 4자 합산 지분이 한국 거주자 50%+ 이상이면 SPV 전체 이익이 매년 한국에서 과세된다 — 사실상 케이맨에 둘 이유가 사라진다.' }
+        easyCons: '한국 거주자(최남희·김형석)가 케이맨 SPV 지분 50% 이상 보유하거나 케이맨 실효세율 15% 미만인 경우 CFC(피지배외국법인) 합산과세 대상이다. SPV가 번 돈이 최남희에게 배당 안 와도 매년 한국에서 최남희 개인 소득세로 잡힌다. 4자 합산 지분이 한국 거주자 50%+ 이상이면 SPV 전체 이익이 매년 한국에서 과세된다 — 사실상 케이맨에 둘 이유가 사라진다.' }
     ]
   },
   { id: 'L2', title: '한국 Sub SPV 법적 형태',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 한국 Sub SPV를 어떤 그릇에 담을지. <strong>핵심 트레이드오프:</strong> 세금 한 번(A) vs 운영 편의·익숙함(B). <strong>한국측 40% 가치 보존 관점:</strong> SPV 단계에서 세금을 한 번 더 떼이면 4자에게 도달하는 실수령이 그만큼 줄어든다. 합자조합은 SPV 자체에 법인세가 안 붙고 4자 각자에게 직접 과세된다(파스스루) — 같은 돈을 두 번 안 떼인다. 주식회사는 익숙하지만 SPV에서 한 번, 개인에게서 한 번 — 총 두 번 세금이 빠진다.',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 한국 Sub SPV를 어떤 그릇에 담을지. <strong>핵심 트레이드오프:</strong> 세금 한 번(A) vs 운영 편의·익숙함(B). <strong>한국측 40% 가치 보존 관점:</strong> SPV 단계에서 세금을 한 번 더 떼이면 4자에게 도달하는 실수령이 그만큼 줄어든다. 합자조합은 SPV 자체에 법인세가 안 붙고 4자 각자에게 직접 과세된다(파스스루) — 같은 돈을 두 번 안 떼인다. 주식회사는 법인세 9~24%(2025년 누진·과표 200억 이하 9~19%·2026.1.1부터 10~25%로 환원)가 먼저 붙고 4자 배당 시 다시 배당소득세가 붙어 총 두 번 빠진다 — 실수령 15~20% 감소. <strong>약관·계약 위험:</strong> 합자조합은 한국 상법상 조합원 일부 무한책임 가능성이 있어 조합계약서에 의사결정 룰·책임 한도를 verbatim으로 못박지 않으면 약관규제법 §6 신의칙 위반 분쟁의 빌미가 된다. <strong>5,000억 기준선:</strong> SPV 자산이 공정거래법상 지주회사 기준(자산 5,000억 원) 미만이면 지주회사 행위제한 규제 대상 외 — 본 케이스는 미만으로 가정하나 향후 IP 가치 평가가 5,000억을 넘어서면 신고·부채비율 제약이 발동한다.',
     options: [
       { code: 'A', name: '합자조합 (LLC)', recommended: true,
         desc: '세제 투과 구조',
@@ -959,59 +1009,59 @@ const LAYERS = [
     ]
   },
   { id: 'L3', title: '40% 보유 주체 (대전제)', locked: true,
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 우리 아젠다 대전제로 분기 없음. <strong>의미:</strong> 김형석이 개인(창작 신뢰의 상징)+노느니 법인(IP 회수권) 두 주머니로 동시에 들어가는 구조. 노느니 = 사공이호 IP 모회사 / 김형석 = 창작 신뢰 자산 / 이승규 = 상장 스토리·SPV 대표성 / 최남희 = 통합 설계·실무 협상. 라텔은 의도적으로 제외 — 향후 라텔이 별도로 외부 투자받을 때 사공이호 SPV 지분이 라텔에 묶이지 않도록 분리.',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 우리 아젠다 대전제로 분기 없음. <strong>의미:</strong> 김형석이 개인(창작 신뢰의 상징)+노느니 법인(IP 회수권) 두 주머니로 동시에 들어가는 구조. 노느니 = 사공이호 IP 모회사 / 김형석 = 창작 신뢰 자산 / 이승규 = 상장 스토리·SPV 대표성 / 최남희 = 통합 설계·실무 협상. 라텔은 의도적으로 제외 — 향후 라텔이 별도로 외부 투자받을 때 사공이호 SPV 지분이 라텔에 묶이지 않도록 분리. <strong>상법 §382조의3 (2025.7.22 시행):</strong> 이사 충실의무 대상이 회사+주주로 확대되어, 4자 중 누군가가 SPV 이사로 들어갈 경우 다른 3자(주주) 이익까지 보호 의무가 생긴다 — 자기거래·정보비대칭이 곧 대표소송 근거. 4자 구조라 의사결정 인원이 많아 합의가 느려질 수 있고 L10 거버넌스에서 보완 필요.',
     options: [
       { code: '–', name: '노느니 + 김형석 + 이승규 + 최남희 4자', selected: true,
         desc: '우리 아젠다 대전제. 분기 없음.',
         pros: ['김형석 = 개인 + 노느니 법인 동시 보유'],
         cons: [],
         easyPros: '김형석이 개인과 노느니 법인 두 주머니로 들어가면, "창작 신뢰의 상징"(김형석 개인)과 "IP 회수권"(노느니 법인)이 분리된다 — 김형석이 개인적으로 SPV에서 빠져도 IP는 노느니로 회수된다. 라텔이 빠져서 향후 라텔의 별도 사업이 SPV에 묶이지 않는다.',
-        easyCons: '4자 구조라 의사결정 인원이 많아 합의가 느려질 수 있다 — L11 거버넌스에서 보완 필요.' }
+        easyCons: '4자 구조라 의사결정 인원이 많아 합의가 느려질 수 있다 — L10 거버넌스에서 보완 필요.' }
     ]
   },
   { id: 'L4', title: '한국측 40% 내부 분배',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 40% 안에서 4자가 몇 %씩 가질지. <strong>핵심 트레이드오프:</strong> IP 회수권 강도(노느니 비중) vs 창작 신뢰(김형석 개인 비중) vs 통합 설계 보상(최남희 비중). <strong>한국측 40% 가치 보존 관점:</strong> 가장 중요한 원칙 두 개 — ① 노느니(IP 법인) 단일 최대 지분 유지 (외부에 "IP는 한국이 쥐고 있다" 시그널) ② 노느니+김형석 합산 50%+ 유지 (창작 진영이 SPV를 통제). D안은 양쪽을 동시에 충족하면서 최남희의 통합 설계 보상도 김형석과 동등 직전(20)까지 인정한다. E안은 IP 법인 회수권을 최강으로 만들지만 최남희 보상이 낮다. F안은 최남희를 김형석과 동등하게 올려 외부 인식이 왜곡될 위험이 있다. G안은 김형석 개인을 노느니보다 크게 만들어 IP 회수의 기준점이 흔들린다.',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 40% 안에서 4자가 몇 %씩 가질지. <strong>핵심 트레이드오프:</strong> IP 회수권 강도(노느니 비중) vs 창작 신뢰(김형석 개인 비중) vs 통합 설계 보상(최남희 비중). <strong>한국측 40% 가치 보존 관점:</strong> 가장 중요한 원칙 두 개 — ① 노느니(IP 법인) 단일 최대 지분 유지 (외부에 "IP는 한국이 쥐고 있다" 시그널) ② 노느니+김형석 합산 50%+ 유지 (창작 진영이 SPV를 통제). <strong>익금불산입 경계값(법인세법):</strong> 노느니가 SPV(주식회사 가정)에서 배당받을 때 노느니의 SPV 지분율이 50%↑면 익금불산입 100%(전액 비과세), 30~50%는 80%, 10~20%는 50%(2025 신설), 10%↓는 30%로 급락한다. 노느니가 SPV 지분 40%(SPV 한국측 100% 중 35% × 한국측 40%) 환산 시 14%가 되어 익금불산입률이 30%로 추락 — 따라서 노느니가 "SPV 한국측 안에서" 단일 최대(35) 유지가 곧 한국측 내부 분배 정합성 시그널이 되고, 별도 IP Fee(L6)·실행 도급(L7)이 노느니 직접 현금흐름의 본체가 된다. D안은 양쪽을 동시에 충족하면서 최남희의 통합 설계 보상도 김형석과 동등 직전(20)까지 인정한다. E안은 IP 법인 회수권을 최강으로 만들지만 최남희 보상이 낮다. F안은 최남희를 김형석과 동등하게 올려 외부 인식이 왜곡될 위험이 있고 R7 룰에 따라 L11이 특별의결권으로 자동 강제된다. G안은 김형석 개인을 노느니보다 크게 만들어 IP 회수의 기준점이 흔들린다.',
     options: [
       { code: 'D', name: 'D안 균형형 (35/25/20/20)', recommended: true,
         desc: '노느니 35 · 김형석 25 · 이승규 20 · 최남희 20',
         pros: ['IP 법인 최대 단일 지분','노느니+김형석 합산 60 통제','운영 균형'],
         cons: ['최남희 20이 통합 설계 책임 대비 다소 낮음'],
         dist: { '노느니': 35, '김형석': 25, '이승규': 20, '최남희': 20 },
-        easyPros: '노느니(35)가 단일 최대 지분이라 "IP는 한국이 쥔다" 시그널이 명확하다. 노느니+김형석 합치면 60%로 SPV 의사결정을 사실상 통제 가능하다. 4자 중 최남희·이승규가 동등(20)이라 정치적 균형이 잡힌다.',
-        easyCons: '최남희 20%는 사업 구조·IP 협상·실무 통합 책임을 모두 맡는 비중 대비 다소 낮다는 평이 가능하다 — 다만 L7~L9 Fee 구조에서 별도 보상으로 보완 가능.' },
+        easyPros: '① 노느니(35) 단일 최대 지분 — "IP는 한국 법인이 쥔다" 시그널 명확 ② 노느니+김형석 합산 60%로 SPV 일상 의사결정 통제 가능 ③ 최남희·이승규 동등(20) — 4자 정치적 균형 잡힘 ④ 노느니 SPV 한국측 환산 14% → 익금불산입 50% 구간(2025 개정 신설) 적용 ⑤ R7 룰 미발동(L10 자유 선택) — 거버넌스 협상 부담 ↓ ⑥ 외부 인식 정합 — "김형석이 사공이호 얼굴" 시그널 유지 ⑦ 4자 모두 헌신 동기 균형 — 이탈 압력 최소 ⑧ 다음 라운드 외부 투자 시 캡테이블 설명 표준 ⑨ 가업승계 특례(상증법 §30의6) 김형석 가족법인 전환 시 익금불산입 + 600억 한도 누적 ⑩ SHA 표준 템플릿 적용 용이 — 협상 시간 단축',
+        easyCons: '① 최남희 20%가 사업 구조·IP 협상·실무 통합 책임 대비 다소 낮다는 평 — L6~L8 Fee로 별도 보상 보완 필수 ② 노느니 35%는 익금불산입 50% 구간(SPV 한국측 환산 14%)이라 80% 구간 미달 — 단 노느니 SPV 직접 35% 보유 시 80% 적용 가능(법인세법 §18조의2) ③ 4자 안정 균형이라 향후 외부 투자자 진입 시 합의 정족수 분쟁 가능성 ④ 김형석 25%가 키맨 비중으로 IR에 노출되면 키맨 리스크 일부 지속 ⑤ 노느니 IP 회수권 행사 임계가 35% — 단독 거부권은 가능하나 압도적 통제는 ✗ ⑥ 최남희 동기 부여 보완을 위해 IP Fee·도급 마진 협상 부담 ↑ ⑦ 이승규 20%가 상장 스토리 대비 적정 비중이지만 핑크퐁 사임 협상 부담 동반 ⑧ 향후 라텔 분사 시 최남희 SPV 비중과 라텔 비중 동시 설계 부담 ⑨ 노느니+김형석 60%로 통제하더라도 75% 가중(L10-A) 미적용 시 핵심 사안 보호 약화 ⑩ 노느니 단일 35%는 분쟁 시 노느니 단독 매각 위협(드래그얼롱 발동 임계 75% 미달) BATNA 카드 약함' },
       { code: 'E', name: 'E안 IP 우위 (40/25/20/15)',
         desc: '노느니 40 · 김형석 25 · 이승규 20 · 최남희 15',
         pros: ['IP 법인 회수권 최강'],
         cons: ['최남희 15 → 통합 설계 책임 대비 낮음'],
         dist: { '노느니': 40, '김형석': 25, '이승규': 20, '최남희': 15 },
-        easyPros: '노느니가 40%로 단일 과반에 가까워 IP 회수권이 최강이다. 분쟁 발생 시 노느니만으로도 강한 거부권 행사가 가능하다.',
-        easyCons: '최남희 15%는 통합 설계 책임 대비 낮아 향후 최남희가 빠질 동기가 생긴다 — 4자 안정성이 떨어진다. 외부에서 "최남희는 회사 사람인가" 의문 가능.' },
+        easyPros: '① 노느니 40% 단일 과반 임박 — IP 회수권 최강 ② 분쟁 시 노느니 단독 거부권 압도적 — BATNA 최강 ③ "IP는 한국 단일 법인이 쥔다" 외부 시그널 결정적 ④ 노느니 SPV 한국측 환산 16% → 익금불산입 50% 구간(2025 개정 신설) 적용 ⑤ 다음 라운드 외부 투자 시 노느니 단일 거부권으로 IP 희석 방어 최강 ⑥ 가업승계 특례 노느니 단위로 단일 적용 — 600억 한도 효율 ⑦ 노느니 직접 현금흐름(지분+IP Fee+도급 마진) 누적 효과 최대 ⑧ 중국측 추가 출자 시 노느니 단독 거부 가능 — 한국측 40% 희석 방어 ⑨ 노느니 매각 시 사공이호 IP 자체 매각 옵션 — 엑시트 BATNA ↑ ⑩ SHA 협상 시 노느니 단일 라인 의사결정 — 4자 합의 부담 ↓',
+        easyCons: '① 최남희 15%로 통합 설계 책임 대비 결정적으로 낮음 — 최남희 이탈 동기 ↑ ② 4자 안정성 약화 — 향후 분쟁 시 최남희 측 형평성 분쟁(약관법 §6 신의칙) 여지 ③ 외부 인식 "최남희는 회사 사람인가" 의문 — IR 시 약점 ④ 최남희 보상을 L6~L8 Fee로 보완해야 하나 협상 부담 ↑ ⑤ 김형석 25% 유지로 키맨 리스크 일부 지속 ⑥ 노느니 단일 과반 임박이 외부에서 "IP 독점" 우려 — 자본시장 거버넌스 디스카운트 여지 ⑦ 4자 균형 약화 — 노느니가 단독으로 SPV 매각·IP 회수 결정 시 잔존 3자 분쟁 ⑧ 다음 라운드 외부 투자자 입장에서 "노느니 일방 통제" 부정 시그널 ⑨ 노느니 익금불산입 효과 극대화는 SPV 직접 40% 보유 시 가능 — 한국측 환산 16%면 50% 구간 ⑩ R7 룰은 미발동이지만 L10-A(75% 가중) 권장 — 노느니 단독 통제와 75% 가중이 충돌 시 SHA 우선순위 정의 필수' },
       { code: 'F', name: 'F안 최남희 강화 (30/25/20/25)',
         desc: '노느니 30 · 김형석 25 · 이승규 20 · 최남희 25',
         pros: ['최남희가 통합 설계 책임에 비례'],
         cons: ['최남희 = 김형석 동등 → 외부 인식 왜곡 위험'],
         dist: { '노느니': 30, '김형석': 25, '이승규': 20, '최남희': 25 },
-        easyPros: '최남희 25%로 통합 설계 책임에 비례하는 보상이 들어간다. 최남희가 장기적으로 SPV에 헌신할 동기가 가장 강하다.',
-        easyCons: '최남희가 김형석보다 큰 개인 지분을 갖게 되어 외부(중국측·투자자·미디어)에서 "김형석이 사공이호의 얼굴인데 왜 최남희가 더 많이 가져가나" 의문이 발생한다 — 협상 시 약점 노출. R7 룰에 따라 L11 거버넌스가 자동으로 특별의결권으로 강제된다.' },
+        easyPros: '① 최남희 25%로 통합 설계·IP 협상·실무 통합 책임에 비례하는 보상 ② 최남희 장기 헌신 동기 최강 — SPV 운영 안정성 ↑ ③ 4자 동등 분배 가까운 형태로 형평성 우수 ④ 최남희 라텔 별도 법인(L3 대전제 준수) + SPV 25% 동시 보유 — 보상 구조 명확 ⑤ R7 룰 강제 L10=A(75% 가중) — 핵심 사안 보호 자동 보강 ⑥ 통합 설계자가 SPV에 헌신할 때 외부 협상 일관성 ↑ ⑦ 노느니 30%로 익금불산입 80% 구간 유지(법인세법 §18조의2) ⑧ 김형석 25%가 키맨 의존도 감소 — IR 시 키맨 리스크 ↓ ⑨ 최남희 동등 시 4자 합의가 형식적 동등 — 외부 투자자 입장 균형 ⑩ 가속 베스팅(L11-A) 발동 시 최남희 비중이 잔존자에게 균등 재분배되어 안정',
+        easyCons: '① 최남희가 김형석보다 큰 개인 지분 — 외부 인식 "김형석이 사공이호 얼굴인데 왜 최남희가" 의문 ② IR·중국측·투자자·미디어 협상 시 약점 노출 ③ R7 룰 자동 발동으로 L10=A(75% 가중) 강제 — 협상 시간 추가 1~2주 ④ 노느니 단일 최대 지분이 30%로 축소 — "IP는 한국 법인이 쥔다" 시그널 약화 ⑤ 노느니 IP 회수권 임계가 30%로 낮아져 단독 거부권 약화 ⑥ 김형석 창작 신뢰 시그널이 최남희 보상에 가려질 가능성 ⑦ 최남희 동기 부여 최대이나 김형석 동기 부여 상대적 약화 ⑧ 외부 투자 라운드 시 "통합 설계자 비중 과대" 거버넌스 디스카운트 ⑨ 최남희 변고 시 25% 지분 재분배 부담 — L11 가속 트리거 verbatim 필수 ⑩ SPV 매각 협상 시 최남희 25%가 캐스팅보트 — 한국측 4자 일관 의사결정 부담' },
       { code: 'G', name: 'G안 김형석 개인 우위 (25/35/20/20)',
         desc: '노느니 25 · 김형석 35 · 이승규 20 · 최남희 20',
         pros: ['김형석 창작 신뢰 최대 평가'],
         cons: ['노느니 < 김형석 개인 → IP 법인 통제력 약화'],
         dist: { '노느니': 25, '김형석': 35, '이승규': 20, '최남희': 20 },
-        easyPros: '김형석 창작 신뢰를 시장이 최대로 인정하는 메시지가 된다. 김형석이 가장 적극적으로 SPV에 헌신할 동기가 생긴다.',
-        easyCons: '김형석 개인(35) > 노느니 법인(25) 구조라 IP가 김형석 개인에게 종속된 것처럼 보인다 — 김형석에게 변고가 생기면 IP 통제가 흔들린다. 노느니의 IP 회수권 행사가 어려워진다.' }
+        easyPros: '① 김형석 창작 신뢰를 시장이 최대로 인정하는 메시지 ② 김형석 SPV 헌신 동기 최대 — 콘텐츠 품질 보증 ③ 외부 인식 "사공이호 = 김형석" 시그널 결정적 ④ 김형석 개인 보상 직접 가시화 — IR 시 키맨 헌신 시그널 ⑤ 김형석 가족법인 전환(L5=B) 시 가업승계 특례(상증법 §30의6) 600억 한도 최대 활용 ⑥ 김형석 가족법인 익금불산입 50% 구간(2025 개정 신설) 적용 ⑦ 4자 중 김형석 단독 헌신 보상이 가장 가시화 — 시장 신뢰 가산 ⑧ 김형석 35%로 SPV 의사결정에서 노느니와 양강 구조 — 견제와 균형 ⑨ 외부 투자자 입장 "창작자 헌신" 시그널 — 자본시장 가산 ⑩ 콘텐츠 분쟁 시 김형석 단독 BATNA — 빠른 의사결정 가능',
+        easyCons: '① 김형석 개인(35) > 노느니 법인(25) — IP가 김형석 개인에 종속 ② 김형석 변고(사망·이혼·건강 악화) 시 IP 통제 흔들림 — 가족 상속 시 SPV 의사결정 정족수 분쟁 ③ 노느니 IP 회수권 행사 어려움 — 단일 최대 지분 무너짐 ④ 김형석 35% 한국 거주자 개인 보유 시 케이맨 단층(L1=C)과 결합 시 CFC 50%↑ 자동 충족 → 매년 합산과세 폭탄(국조법 §27) ⑤ 김형석 가족법인 미전환 시 양도세 27.5% + 상속세 최고 50% 직격 ⑥ IR 시 키맨 리스크 결정적 노출 — 자본시장 디스카운트 ⑦ 김형석 이혼 시 35% 절반 분할 대상 — SPV 통제권 분산 ⑧ 노느니 법인 IP 회수권의 경제적 의미 약화 — 한국측 핵심 BATNA 카드 손실 ⑨ 외부 인식 "IP는 한국 법인이 쥔다"에서 "IP는 김형석 개인이 쥔다"로 시그널 변동 — 협상 카드 약화 ⑩ 노느니 익금불산입 효과 감소(SPV 한국측 환산 10% → 30% 구간) — 4자 실수령 누적 손실' }
     ]
   },
 
   { id: 'L5', title: '개인 보유 구조 (김형석·이승규·최남희 공통)',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 4자 중 노느니특공대를 제외한 3개인(김형석·이승규·최남희)의 SPV 지분을 개인 명의로 받을지, 법인을 통해 받을지. 3인 모두 같은 트레이드오프 구조라 1개 레이어로 통합 결정. <strong>핵심 트레이드오프:</strong> 즉시 단순성(A) vs 세금·승계·이혼 리스크 차단(B). <strong>한국측 40% 가치 보존 관점:</strong> SPV가 향후 수십·수백억 가치가 되면 양도세(27.5%+α) vs 익금불산입 법인 보유의 차이는 수억 단위로 벌어진다. 이혼·사망 시 개인 명의는 가족 분쟁의 영토가 되지만, 법인은 주식 단위로 통제 가능하다. <strong>3인 변형:</strong> 최남희는 1인 법인 (라텔과 분리 필수·대전제) / 이승규는 1인 법인 (가장 단순) / 김형석은 가족법인 또는 SPC (가업승계 특례 적용 가능). 본인 의사 존중 영역이지만 미팅에서 B안을 디폴트로 권장.',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 4자 중 노느니특공대를 제외한 3개인(김형석·이승규·최남희)의 SPV 지분을 개인 명의로 받을지, 법인을 통해 받을지. 3인 모두 같은 트레이드오프 구조라 1개 레이어로 통합 결정. <strong>핵심 트레이드오프:</strong> 즉시 단순성(A) vs 세금·승계·이혼 리스크 차단(B). <strong>한국측 40% 가치 보존 관점:</strong> SPV가 향후 수십·수백억 가치가 되면 양도세(27.5%+α) vs 익금불산입 법인 보유의 차이는 수억 단위로 벌어진다. 이혼·사망 시 개인 명의는 가족 분쟁의 영토가 되지만, 법인은 주식 단위로 통제 가능하다. <strong>가업승계 특례(상증법 §30의6):</strong> 김형석을 가족법인 또는 SPC로 묶으면 증여세 과세특례 적용 가능 — 한도는 가업영위 기간별 차등(10년 300억·20년 400억·30년 600억), 10억 공제 후 세율 10%(과세표준 120억 초과분 20%). 단 5년 사후관리(신고기한까지 가업종사·3년 이내 대표이사 취임·5년까지 대표이사 유지·증여 주식 처분 금지) 위반 시 추징세액+이자상당가산액(납부지연 가산세 일 0.022%). <strong>3인 변형:</strong> 최남희는 1인 법인 (라텔과 분리 필수·대전제) / 이승규는 1인 법인 (가장 단순) / 김형석은 가족법인 또는 SPC. 본인 의사 존중 영역이지만 미팅에서 B안을 디폴트로 권장.',
     options: [
       { code: 'A', name: '3인 모두 개인 직접 보유',
         desc: '김형석·이승규·최남희 각자 개인 명의로 SPV 지분 보유',
         pros: ['단순·즉시 보유','본인 의사 직접 반영','법인 운영비 ✗'],
         cons: ['양도세 27.5%+α','이혼·사망 시 가족 이전','상속세 최고 50%','최남희는 라텔과 결합 위험'],
         easyPros: '설립할 법인이 없어 즉시 보유 가능하다. 매년 법인 결산·세무 신고 같은 추가 행정이 없다. 3인 모두 가장 익숙한 구조다.',
-        easyCons: '엑시트 시 양도세 약 30%가 개인에게 직격된다 — 100억 엑시트면 약 30억이 세금. 사망 시 한국 상속세 최고 50%로 가족에게 절반만 남는다. 이혼 시 50% 분할 대상. 김형석 사망 시 25% 지분이 가족에게 분할 상속되어 SPV 의사결정마다 다수의 가족 동의가 필요해진다.' },
+        easyCons: '엑시트 시 양도세 22~27.5%(지방세 포함·중소기업 11%·비중소기업 22%·대주주 과표 3억 초과분 27.5%)가 개인에게 직격된다 — 100억 엑시트면 약 22~27.5억이 세금. 사망 시 한국 상속세 최고 50%로 가족에게 절반만 남는다. 이혼 시 50% 분할 대상. 김형석 사망 시 25% 지분이 가족에게 분할 상속되어 SPV 의사결정마다 다수의 가족 동의가 필요해진다.' },
       { code: 'B', name: '3인 모두 법인 경유', recommended: true,
         desc: '최남희·이승규 = 1인 법인 / 김형석 = 가족법인 또는 SPC',
         pros: ['익금불산입 활용','승계 시 법인 단위 처리','이혼·사망 리스크 차단','최남희는 라텔과 분리'],
@@ -1021,8 +1071,8 @@ const LAYERS = [
     ]
   },
 
-  { id: 'L7', title: 'IP 라이선스 Fee 구조', note: 'SPV → 노느니특공대 지급',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> SPV가 사공이호 IP를 쓰는 대가로 노느니에 매년 얼마를 지급할지. <strong>핵심 트레이드오프:</strong> 단순성·업사이드(A) vs 안정+업사이드(B) vs 예측 가능성(C). <strong>한국측 40% 가치 보존 관점:</strong> 이 Fee는 "3층 분리" 중 IP Fee 층 — 지분 40%와 별개로 노느니가 받는 직접 현금흐름이다. 중국측이 향후 SPV 가치를 깎으려 해도 IP Fee는 별도 계약이라 보호된다. MG(미니멈 개런티)는 사업 초기 매출이 적어도 노느니에 최소 현금이 들어오게 하는 보험 — 노느니가 IP 유지·확장에 투자할 여력을 보장한다. C안 정액은 사공이호가 메가 히트했을 때 노느니가 손해를 본다.',
+  { id: 'L6', title: 'IP 라이선스 Fee 구조', note: 'SPV → 노느니특공대 지급',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> SPV가 사공이호 IP를 쓰는 대가로 노느니에 매년 얼마를 지급할지. <strong>핵심 트레이드오프:</strong> 단순성·업사이드(A) vs 안정+업사이드(B) vs 예측 가능성(C). <strong>한국측 40% 가치 보존 관점:</strong> 이 Fee는 "3층 분리" 중 IP Fee 층 — 지분 40%와 별개로 노느니가 받는 직접 현금흐름이다. 중국측이 향후 SPV 가치를 깎으려 해도 IP Fee는 별도 계약이라 보호된다. MG(미니멈 개런티)는 사업 초기 매출이 적어도 노느니에 최소 현금이 들어오게 하는 보험. <strong>저작권법 §45 (2차적 저작물 작성권 별도 명시):</strong> 사공이호 캐릭터·세계관·음악을 중국측이 2차 가공(애니·게임·MD·AI 생성)할 때 본 라이선스에 "2차적 저작물 작성권 포함" verbatim이 없으면 별도 양도가 아니라 분쟁 시 노느니에 귀속(KCC-D5-003) — 분쟁 시 추가 협상 레버. <strong>DPA·관리책임:</strong> 이용자 데이터가 SPV→노느니로 흘러오면 위탁자·수탁자 동시 책임이 발생하고, 2025.4 시행령 후 개인정보위 과징금이 "위반 대상자 매출의 3%"까지 부과될 수 있다(KCC-D5-006) — IP Fee 계약에 데이터 처리 범위·DPA 9항목을 함께 묶어야 한다. C안 정액은 사공이호가 메가 히트했을 때 노느니가 손해를 본다.',
     options: [
       { code: 'A', name: '매출 % 단일',
         desc: '예: 사공이호 매출의 5~8%',
@@ -1044,8 +1094,8 @@ const LAYERS = [
         easyCons: '사공이호가 메가 히트하면 노느니는 정액만 받고 모든 업사이드는 SPV(=중국측 60%+한국측 40%)로 흘러간다 — 노느니 단일 지분 35% 외 추가 보상이 없어 IP 회수권의 경제적 의미가 약해진다.' }
     ]
   },
-  { id: 'L8', title: '실행 도급 구조',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 실제 콘텐츠 제작비를 SPV가 누구에게 도급할지 — 노느니를 끼울지(A), 라텔에 직접 줄지(B). <strong>핵심 트레이드오프:</strong> 한국측 통제 일원화·노느니 마진(A) vs 책임 명확·중국측 직접 검증 가능(B). <strong>한국측 40% 가치 보존 관점:</strong> A안은 노느니가 한국측 모든 실행을 한 번에 검수·전달하는 단일 창구가 되어 통제력이 가장 강하다. 노느니가 SPV→라텔 사이에서 마진(예: 도급액의 5~10%)을 확보해 추가 수익원이 된다. B안은 중국측이 라텔을 직접 평가·통제하려 할 가능성이 높아 한국측 통제력이 약화된다. R6 룰에 의해 B안 선택 시 L11 거버넌스가 자동 특별의결권으로 강제된다.',
+  { id: 'L7', title: '실행 도급 구조',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 실제 콘텐츠 제작비를 SPV가 누구에게 도급할지 — 노느니를 끼울지(A), 라텔에 직접 줄지(B). <strong>핵심 트레이드오프:</strong> 한국측 통제 일원화·노느니 마진(A) vs 책임 명확·중국측 직접 검증 가능(B). <strong>한국측 40% 가치 보존 관점:</strong> A안은 노느니가 한국측 모든 실행을 한 번에 검수·전달하는 단일 창구가 되어 통제력이 가장 강하다. 노느니가 SPV→라텔 사이에서 마진(예: 도급액의 5~10%)을 확보해 추가 수익원이 된다. B안은 중국측이 라텔을 직접 평가·통제하려 할 가능성이 높아 한국측 통제력이 약화된다. <strong>거래상지위 남용(공정거래법 §45):</strong> KFTC 심사지침 — 일회성 거래도 거래 종속성·이탈 곤란성 인정 시 거래상지위 성립(처분 강화 트렌드) — 중국측 SPV가 라텔에 단가 강요·기술 강제이전·일방 해지 등을 요구하면 한국 KFTC 신고가 곧 카운터 레버가 된다. A안의 노느니 단일 창구가 이 카운터를 더 쉽게 만든다. R6 룰에 의해 B안 선택 시 L10 거버넌스가 자동 특별의결권으로 강제된다.',
     options: [
       { code: 'A', name: 'SPV → 노느니 → 라텔 재외주',
         desc: '노느니가 SPV로부터 도급받고 라텔에 재외주',
@@ -1061,17 +1111,17 @@ const LAYERS = [
         easyCons: '중국측이 SPV 이사회를 통해 라텔의 인력·예산·일정을 직접 들여다볼 권리를 요구할 가능성이 높다. 라텔이 중국측 직접 통제권의 그림자에 노출된다. 노느니의 통합 검수 단계가 사라져 한국측 통제력 약화.' }
     ]
   },
-  { id: 'L9', title: '실행 도급 시점 전략',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> L8 도급 구조를 처음부터 끝까지 유지할지(A), 초기엔 노느니 경유(통제 중시) → 안정화 후 라텔 직접(효율 중시)로 전환할지(B). <strong>핵심 트레이드오프:</strong> 안정·예측(A) vs 단계별 최적(B). <strong>한국측 40% 가치 보존 관점:</strong> 초기 12개월은 사공이호 톤·세계관·품질 기준이 만들어지는 시기라 노느니의 통합 검수가 결정적이다. 안정화(IP가 자리잡고 매출이 예측 가능해진 후) 이후엔 라텔 직접 도급으로 행정 단순화·마진 개선이 가능하다. B안은 전환 시점·조건을 계약서에 못박아야 분쟁이 안 난다.',
+  { id: 'L8', title: '실행 도급 시점 전략',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> L7 도급 구조를 처음부터 끝까지 유지할지(A), 초기엔 노느니 경유(통제 중시) → 안정화 후 라텔 직접(효율 중시)로 전환할지(B). <strong>핵심 트레이드오프:</strong> 안정·예측(A) vs 단계별 최적(B). <strong>한국측 40% 가치 보존 관점:</strong> 초기 12개월은 사공이호 톤·세계관·품질 기준이 만들어지는 시기라 노느니의 통합 검수가 결정적이다. 안정화(IP가 자리잡고 매출이 예측 가능해진 후) 이후엔 라텔 직접 도급으로 행정 단순화·마진 개선이 가능하다. <strong>전환 조건의 verbatim 의무:</strong> 민법 §544(이행지체 해제)는 최고+상당기간 절차 없는 즉시해제를 무효로 본다 — B안 전환 시점·트리거(예: "매출 N억 도달 시"·"MAU N만 도달 시"·"12개월 경과 시") 중 모호한 표현이 들어가면 중국측이 "조건 미충족"으로 거부하거나 한국측이 지연시키는 분쟁이 곧장 발생한다. 표준은 트리거 변수 1개+측정 주체+측정 시점+이의제기 14일 cure period까지 한 문장에 verbatim 박는 것.',
     options: [
       { code: 'A', name: '단일 구조 고정',
-        desc: 'L8에서 선택한 구조 유지',
+        desc: 'L7에서 선택한 도급 구조 유지',
         pros: ['안정·예측 가능'],
         cons: ['초기/안정화 단계 차이 무시'],
         easyPros: '계약 구조가 변하지 않아 모두가 예측 가능하다. 도급 구조 재협상 비용이 없다. 분쟁 여지가 가장 적다.',
         easyCons: '초기 통제 중시 단계와 안정화 효율 중시 단계의 다른 요구를 한 구조로 묶어야 한다 — 어느 한 단계에서 비효율 발생.' },
       { code: 'B', name: '단계 전환', recommended: true,
-        desc: '초기 12개월 L8-A → 안정화 후 L8-B로 전환',
+        desc: '초기 12개월 L7-A → 안정화 후 L7-B로 전환',
         pros: ['단계별 최적','통제 → 효율 전환'],
         cons: ['전환 시점 분쟁 가능'],
         easyPros: '초기 12개월은 노느니 경유로 한국측 통제 최대화 — 사공이호 톤·품질 기준을 단단히 세운다. 이후 라텔 직접 도급으로 전환해 행정 단순화·마진 개선. 각 단계의 요구에 최적이다.',
@@ -1079,8 +1129,8 @@ const LAYERS = [
     ]
   },
 
-  { id: 'L10', title: '이승규 핑크퐁 결정', note: '내일 미팅에서 본인 결정',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 이승규가 SPV에 어떻게 들어올지(또는 안 들어올지). <strong>핵심 트레이드오프:</strong> 풀타임 헌신·이해상충 0(A) vs 핑크퐁 네트워크 활용+이해상충 위험(B) vs 합류 자체 무산(C). <strong>한국측 40% 가치 보존 관점:</strong> 이승규는 "상장 스토리·자본시장 신뢰"의 핵심 자산이다. A안이 가장 깔끔하지만 핑크퐁 측이 핵심 인력을 놓치는 부담이 크다. B안 겸직은 향후 핑크퐁과 SPV가 같은 영역에서 부딪힐 때 이해상충 분쟁이 발생할 수 있어 경업금지 약정이 필수다. C안은 한국측 분배(L4)를 재설계해야 하며 상장 스토리 강도가 약화된다. 본 미팅에서 이승규 본인 결정이 핵심 — 다른 레이어들이 이 결정에 연쇄 반응한다(R4·R5 룰).',
+  { id: 'L9', title: '이승규 핑크퐁 결정', note: '내일 미팅에서 본인 결정',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 이승규가 SPV에 어떻게 들어올지(또는 안 들어올지). <strong>핵심 트레이드오프:</strong> 풀타임 헌신·이해상충 0(A) vs 핑크퐁 네트워크 활용+이해상충 위험(B) vs 합류 자체 무산(C). <strong>한국측 40% 가치 보존 관점:</strong> 이승규는 "상장 스토리·자본시장 신뢰"의 핵심 자산이다. A안이 가장 깔끔하지만 핑크퐁 측이 핵심 인력을 놓치는 부담이 크다. <strong>경업금지 합리적 범위(대법원 2010.3.11. 선고 2009다82244):</strong> B안 겸직 시 경업금지·기밀유지 약정 필수 — 합리적 범위 판단은 ① 보호할 사용자(SPV) 이익 ② 이승규 퇴직 전 지위 ③ 제한 기간·지역·대상 ④ 대가 제공 여부 ⑤ 퇴직 경위 ⑥ 공공이익을 종합 고려(2009다82244). 범위 일탈 시 민법 §103 위반으로 무효. 통상 1~2년·동일 사업영역·정당한 보상(이승규 SPV 지분이 곧 보상)이 실무 기준. <strong>주주간계약의 대항력 한계(대법원 2013.9.13. 선고 2012다80996):</strong> 주주간계약은 주주 자격으로 한 행위에 구속력이 있고, 동일인이 이사로서 한 행위에는 자동으로 미치지 않는다(2012다80996) — 이해상충 조항을 SHA에만 두면 핑크퐁 이사회 의결로 우회 가능. SPV 정관에 동일 조항을 반영하거나 핑크퐁의 별도 동의서를 받아야 분쟁 시 효력이 생긴다. C안은 한국측 분배(L4)를 재설계해야 하며 상장 스토리 강도가 약화된다. 본 미팅에서 이승규 본인 결정이 핵심(R4·R5 룰).',
     options: [
       { code: 'A', name: '풀타임 합류 (핑크퐁 사임)',
         desc: 'SPV 대표 풀타임',
@@ -1102,8 +1152,8 @@ const LAYERS = [
         easyCons: '상장 스토리의 핵심 인물이 빠져 자본시장 신뢰도가 약화된다. 한국측 40%를 3자(노느니·김형석·최남희)로 재분배해야 한다 — L4 D안 무력화. 미래 SPV 대표 후보를 새로 찾아야 한다.' }
     ]
   },
-  { id: 'L11', title: '의결권·거버넌스 구조',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 4자 사이 의사결정 룰을 어떻게 짤지. <strong>핵심 트레이드오프:</strong> 지분 공정+핵심 사안 보호(A) vs 정치 안정·4자 동등(B). <strong>한국측 40% 가치 보존 관점:</strong> SPV의 일상 결정은 지분 비례가 공정하지만, 핵심 사안 — ① IP 회수권 행사 ② SPV 자체 매각 ③ 신규 자본조달(중국측 추가 출자·외부 투자) ④ 사공이호 IP 사용 범위 변경 — 은 단순 다수결로 결정되면 1~2인이 빠져도 한국측 핵심 자산이 흘러나간다. A안 특별의결권 75% 가중은 4자 중 누구든 단독 거부 가능한 구조 — 한국측 핵심 자산 보호의 마지막 안전장치. R6·R7 룰에 의해 L8-B 또는 L4-F 선택 시 A안 강제.',
+  { id: 'L10', title: '의결권·거버넌스 구조',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 4자 사이 의사결정 룰을 어떻게 짤지. <strong>핵심 트레이드오프:</strong> 지분 공정+핵심 사안 보호(A) vs 정치 안정·4자 동등(B). <strong>한국측 40% 가치 보존 관점:</strong> SPV의 일상 결정은 지분 비례가 공정하지만, 핵심 사안 — ① IP 회수권 행사 ② SPV 자체 매각 ③ 신규 자본조달(중국측 추가 출자·외부 투자) ④ 사공이호 IP 사용 범위 변경 — 은 단순 다수결로 결정되면 1~2인이 빠져도 한국측 핵심 자산이 흘러나간다. A안 특별의결권 75% 가중은 4자 중 누구든 단독 거부 가능한 구조 — 한국측 핵심 자산 보호의 마지막 안전장치. <strong>Drag-Along 임계값(대법원 2021.1.14. 선고 2018다223054):</strong> 발동 조건(매수자·매매대금·이행 절차)이 명확히 충족되지 않으면 효력 발생 곤란("노력 조항"의 구속력 약함). 표준 패턴은 "75% 이상 + Board Consent(창업자 포함 이사회 승인 필수) + 최저가 사전 정량화"(X2-P06 성공 패턴). 50% 낮은 임계값·Board Consent 부재(X2-P07)는 분쟁 다발. <strong>상법 §382조의3(2025.7.22):</strong> 이사 충실의무가 주주까지 확대되어 SPV 이사회가 핵심 사안을 단순 다수결로 통과시키면 소수주주(잔존 한국측) 대표소송 근거가 된다 — 75% 가중과 결합 시 카운터파워 최강. R6·R7 룰에 의해 L7-B 또는 L4-F 선택 시 A안 강제.',
     options: [
       { code: 'A', name: '지분율 비례 + 특별의결권', recommended: true,
         desc: '일반은 비례, 핵심 사안은 75% 가중',
@@ -1119,8 +1169,8 @@ const LAYERS = [
         easyCons: '노느니(35%)와 최남희(20%)가 같은 1표가 되어 IP 법인의 지분 대비 영향력이 약화된다. 노느니의 IP 회수권이 다른 3자에 의해 무력화될 위험. 외부에서 "지분 구조와 의사결정이 따로 논다" 인식.' }
     ]
   },
-  { id: 'L12', title: 'Vesting 적용 범위',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 4자 지분에 베스팅(시간 지나야 권리 확정)을 어디까지 적용할지. <strong>핵심 트레이드오프:</strong> 핵심 인물 묶기·운영 안정(A) vs 일관성·중복(B). <strong>한국측 40% 가치 보존 관점:</strong> Vesting은 SPV에 가장 흔한 보호 장치 — 4년 베스팅+1년 cliff = 첫 1년은 권리 확정 0, 1년 후부터 매월 일정 비율씩 확정, 4년 후 100%. 김형석·이승규·최남희가 1~2년 안에 빠지면 미확정 지분이 SPV(또는 잔존 멤버)에 회수된다. 노느니는 법인 보유라 "이탈" 개념이 없고 이미 IP 회수권 트리거(별도 계약)로 보호되므로 vesting 중복은 오히려 충돌을 만든다.',
+  { id: 'L11', title: 'Vesting 적용 범위',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 4자 지분에 베스팅(시간 지나야 권리 확정)을 어디까지 적용할지. <strong>핵심 트레이드오프:</strong> 핵심 인물 묶기·운영 안정(A) vs 일관성·중복(B). <strong>한국측 40% 가치 보존 관점:</strong> Vesting은 SPV에 가장 흔한 보호 장치 — 4년 베스팅+1년 cliff = 첫 1년은 권리 확정 0, 1년 후부터 매월 일정 비율씩 확정(첫 1년 cliff 후 25% 일괄 확정, 이후 36개월 매월 1/48씩), 4년 후 100%. 김형석·이승규·최남희가 1~2년 안에 빠지면 미확정 지분이 SPV(또는 잔존 멤버)에 회수된다. <strong>가속 조항(Acceleration):</strong> 매각·합병·해고(Without Cause) 시 잔여분 즉시 확정 옵션을 SHA에 verbatim — 없으면 중국측이 "이승규·최남희 해고"로 한국측 지분을 회수하는 카운터가 가능. 노느니는 법인 보유라 "이탈" 개념이 없고 이미 IP 회수권 트리거(별도 계약)로 보호되므로 vesting 중복은 두 보호 장치 우선순위 모호 → 분쟁 시 어느 게 우선인지 다툼.',
     options: [
       { code: 'A', name: '개인 보유분만 4년+1년 cliff', recommended: true,
         desc: '김형석 · 이승규 · 최남희 개인 지분에만 적용',
@@ -1138,27 +1188,848 @@ const LAYERS = [
   }
 ];
 
+// ──────────────────────────────────────────────────────────────
+// 경로 합 종합 (7축) — 본문 종합박스와 중복 ✗ · 레이어 간 상호작용만
+// 7축: ①세무 누적 ②통제권 누적 ③상장 정합성 ④무효확률·과징금 ⑤분쟁·승계 BATNA ⑥중국 ODI 정합성 ⑦현금흐름 도달
+// ──────────────────────────────────────────────────────────────
+const COMBO_SCENARIOS = [
+  {
+    id: 'REC',
+    name: '권장 경로 ★ (안정·균형·통제)',
+    match: function(sel) {
+      // RECOMMENDED_PATH 10필드 전수 일치 시 — L1·L2·L4·L5·L6·L7·L8·L9·L10·L11
+      return sel.L1==='A' && sel.L2==='A' && sel.L4==='D' && sel.L5==='B'
+        && sel.L6==='B' && sel.L7==='A' && sel.L8==='B' && sel.L9==='A'
+        && sel.L10==='A' && sel.L11==='A';
+    },
+    axes: {
+      tax: '케이맨 2층(L1-A) × 합자조합 파스스루(L2-A) × 3인 법인 보유(L5-B) = 이중과세 0회·CFC 회피·익금불산입 100%(노느니 50%↑ 구간)·상속세 0%(케이맨 Top)로 4자 실수령 최대화',
+      control: '특별의결권 75%(L10-A) × 노느니 단일 35%(L4-D) × Vesting+가속(L11-A) = 4자 중 누구든 단독 거부 가능 + 이탈 시 미확정 회수 + IP 회수권 트리거 보강',
+      ipo: '케이맨 2층은 MBMG·NASDAQ·홍콩 IPO 표준 정합 — 다음 라운드(외부 투자·중국 추가 출자) 시 한국측 40% 희석 방어가 케이맨 우선주 클래스 설계로 가능',
+      voidRisk: '상법 §382조의3(2025.7.22) + 약관법 §6 + KCC-D1-002(2018다223054) 표준 충족 → 통합 무효확률 낮음(추정 15~25%, 통계적 추정, 변호사 최종검토 필수)',
+      dispute: 'IP Fee+MG(L6-B) + 단계 전환(L8-B) + 경업금지 합리적 범위 표준 → 5년 내 분쟁 시 한국측 BATNA = KFTC 신고 + 노느니 IP 회수권 발동 두 카드 동시 보유',
+      odi: '중국측 1,000만$가 NDRC·MOFCOM·SAFE(엔터 Restricted) 통과 → BVI/HK 경유 표준 패턴과 케이맨 Top이 호환 — 송금 자체 지연 위험 최소화',
+      cash: '3층 분리 가동(지분 40% + IP Fee MG+% + 실행 도급 마진 5~10%) = 노느니에 안정+업사이드 동시 도달'
+    },
+    cite: 'L1-A·L2-A·L4-D·L5-B·L6-B·L7-A·L8-B·L9-A·L10-A·L11-A 합산. 사건번호 2018다223054·2012다80996·2009다82244 / 상법 §382조의3 / 익금불산입 50%↑ 100%'
+  },
+  {
+    id: 'V_L9B',
+    name: '변형 1 — 이승규 겸직(L9=B)',
+    match: function(sel) { return sel.L9 === 'B'; },
+    axes: {
+      tax: '세무 영향 미미. 단 경업금지 보상(주식 외 현금) 추가 시 이승규 개인 소득세 발생',
+      control: '이승규 헌신도 50/50 분산 → SPV 대표성 신호 약화. R5 룰에 따라 L4 이승규 비중 10~15 감액 권장 → 노느니 단일 최대 지분 더 견고해짐',
+      ipo: '상장 스토리에서 "SPV 대표 풀타임"이 "겸직 대표"로 다운그레이드 — 자본시장 신뢰도·밸류 가산 폭 축소(30억$ 밸류 방어력↓)',
+      voidRisk: '경업금지 약정 합리성은 6요소 종합 판단(2009다82244·보호이익·지위·기간·지역·대상·대가·퇴직경위·공공이익) — 범위 일탈 시 민법 §103 위반 무효. SHA만으로는 핑크퐁 이사회 우회 가능(2012다80996) → 정관 반영 또는 핑크퐁 동의서 필수',
+      dispute: '핑크퐁과 사공이호가 K-콘텐츠 IP 영역에서 부딪힐 때 이해상충 분쟁 발생 → BATNA 약화. 분쟁 시 평균 매출 5~15% 손해(KCC-D5-002)',
+      odi: '중국측이 "한국측 대표가 겸직"을 ODI 심사에 부정 사유로 제기할 가능성 — 승인 지연 추가 변수',
+      cash: '이승규 지분 감액 시 노느니·김형석·최남희 재분배 협상 필요'
+    },
+    cite: '대법원 2009다82244(비경쟁 합리적 범위) · 대법원 2012다80996(주주간계약 대항력) · R5 룰'
+  },
+  {
+    id: 'V_L9C',
+    name: '변형 2 — 이승규 합류 무산(L9=C)',
+    match: function(sel) { return sel.L9 === 'C'; },
+    axes: {
+      tax: '4자 → 3자 재분배. 이승규 20%가 노느니·김형석·최남희로 재할당 → 노느니·김형석 50%+ 합산 유지 가능하나 익금불산입 구간 재계산 필요',
+      control: 'SPV 대표 공석 → 새 후보 탐색 비용. 75% 특별의결권은 3자 구조에서 1인 거부 가능 — 의사결정 마비 리스크↑',
+      ipo: '상장 스토리 핵심 인물 부재 → 30억$ 밸류 가산 폭 결정적 축소. 다음 라운드 자본시장 어드바이저·주관사 협상력 약화',
+      voidRisk: '상장 마일스톤 미충족 시 중국측이 SPV 매각·청산 카운터 제기 가능 — Drag-Along 발동 임계값(2018다223054) 점검 필수',
+      dispute: 'BATNA 약화. 분쟁 시 한국측 협상 카드가 "노느니 IP 회수권" 단일로 축소',
+      odi: '중국측 ODI 심사에서 "한국측 자본시장 트랙 약화"를 매각 압박 카드로 활용 가능',
+      cash: '3층 구조는 유지되나 SPV 매출 성장 속도가 늦으면 IP Fee·실행 Fee 절대값 감소'
+    },
+    cite: 'L4 D안 무력화 · L10 75% 임계 재설계 · 2018다223054 Drag-Along'
+  },
+  {
+    id: 'V_L7B',
+    name: '변형 3 — 라텔 직접 도급(L7=B)',
+    match: function(sel) { return sel.L7 === 'B' && sel.L9 !== 'C'; },
+    axes: {
+      tax: '노느니 도급 마진(5~10%) 소실 → 노느니 직접 현금흐름이 IP Fee 단일로 축소. 노느니 익금불산입 활용 폭 감소',
+      control: '한국측 통합 검수 단계 소실 → 중국측이 라텔 인력·예산·일정 직접 들여다보기 요구 가능. R6 룰에 의해 L10=A 자동 강제 — 75% 가중이 "최후의 안전장치"가 됨',
+      ipo: '실행 라인 단순화는 상장 시 행정 청사진에는 +, 단 한국측 통제력 약화가 "IP 거버넌스 약점"으로 IR에 노출',
+      voidRisk: '거래상지위 남용(공정거래법 §45·2024.12 심사지침) 발동 가능 — 중국측 SPV가 라텔에 단가·기술이전·해지 강요 시 KFTC 신고. 과징금 기대값 매출 4% 이하(공정거래법 §50)',
+      dispute: '라텔이 중국측 통제 그림자에 노출 → 라텔 별도 외부 투자 시 "중국 의존도 높음" 디스카운트 발생. 라텔 인수 시 가치 평가 하향',
+      odi: '중국측이 라텔과 직접 거래라 ODI 심사 단순화는 +, 단 라텔이 "중국 관계회사"로 분류되면 한국 외환·국조법 점검 발동',
+      cash: '노느니 도급 마진 소실 = 노느니 추가 수익원 1개 제거. IP Fee MG 비중을 더 높여 보완 필요'
+    },
+    cite: 'KFTC 거래상지위 처분 강화 트렌드 · R6 룰 강제 L10=A · 공정거래법 §45'
+  },
+  {
+    id: 'V_L4F',
+    name: '변형 4 — 최남희 동등(L4=F)',
+    match: function(sel) { return sel.L4 === 'F'; },
+    axes: {
+      tax: '최남희 비중 20→25 → 익금불산입 구간 변동(노느니 30 < 50% 미만, 80% 구간)',
+      control: '노느니 단일 최대 지분이 30으로 축소 → "IP는 한국이 쥔다" 시그널 약화. R7 룰에 의해 L10=A 자동 강제(75% 가중)로 보완',
+      ipo: '외부(중국측·투자자·미디어) 인식: "김형석이 사공이호의 얼굴인데 왜 최남희가 더 많이 가져가나" — IR 시 약점 노출 가능',
+      voidRisk: '약관법 §6 신의칙 위반 주장 여지는 적으나, 4자 간 형평성을 다투는 SHA 무효 주장 시 통합 무효확률 가산',
+      dispute: '최남희 동기 부여 최대 + 통합 설계 책임 보상 — 장기 헌신 BATNA↑',
+      odi: '중국측 ODI 심사에 영향 거의 없음',
+      cash: '최남희 직접 현금흐름 +25% 비중. 단 노느니 IP Fee가 동시에 깎이면 한국측 전체 도달액 변동 미미'
+    },
+    cite: 'R7 룰 강제 L10=A · 노느니 단일 최대 지분 시그널 변동'
+  },
+  {
+    id: 'V_L1B',
+    name: '변형 5 — 한국 단층 SPV(L1=B)',
+    match: function(sel) { return sel.L1 === 'B'; },
+    axes: {
+      tax: '상속세 한국 기준 최고 50% 노출 → 4자 중 1인 변고 시 IP 가치 비례 손실 폭증. 상장이 케이맨에서 일어나면 한국 SPV가 "외국주식 보유자"가 되어 양도세·배당세 이중 발생',
+      control: '거버넌스는 한국 상법 단일이라 단순 — 단 외국 투자자·자본시장 어드바이저 설명 비용↑',
+      ipo: '해외 상장 정합성 약화 → 30억$ 밸류·NASDAQ·홍콩 트랙에서 디스카운트. KOSDAQ 단독 트랙이면 정합',
+      voidRisk: '한국법 단일이라 무효확률은 낮음. 단 SPV가 케이맨 상장 주체 주식을 보유하면서 한국 세무서가 거래의 정상성 검증 — 첫 5년 자료 요청 빈도↑',
+      dispute: '한국법 단일이라 분쟁 시 KCAB·한국 법원 단일 트랙. 외환·송금 분쟁 시 한국 외환은행 라인 단일',
+      odi: '중국→한국 직접 송금이라 외환·국세 자동 트레이스 — 중국측 ODI 심사 단순화. 단 한국 외환신고 의무 발생',
+      cash: '관리비 절감(케이맨 연 1~2천만 원 ✗) → 단기 비용 효율 +. 장기 세무·상장 비용에 의해 역전'
+    },
+    cite: '상속세 최고 50% · 해외 상장 정합성 약화 · KOSDAQ 트랙 한정 정합'
+  },
+  {
+    id: 'V_L1C',
+    name: '변형 6 — 케이맨 단층(L1=C, 위험)',
+    match: function(sel) { return sel.L1 === 'C'; },
+    axes: {
+      tax: 'CFC(국조법 §27) 폭탄 — 한국 거주자(최남희·김형석) 케이맨 지분 50%↑ + 실효세율 15%↓(2026.1.1부터 17.5%↓)를 모두 충족 시 매년 배당 미수령이라도 배당간주 합산과세. 케이맨 SPV CFC 추징 사례 다수(국세청·언론 보도)',
+      control: '관리비 절감 ✗·구조 단순 — 단 R2 룰에 의해 L5=B 강제 (CFC 합산과세 회피)',
+      ipo: '케이맨 직접 보유라 상장 정합은 가장 깔끔 — 단 CFC 추징이 동시 발생하면 4자 실수령이 추징·이자·가산세로 폭감',
+      voidRisk: 'CFC 추징은 무효 다툼 영역이 아니라 확정 과세 — 통합 무효확률 측정 의미 없음',
+      dispute: 'BATNA 약화. 분쟁 시 한국측이 "우리도 한국 세무 리스크 노출" 입장이라 협상 카드 약화',
+      odi: '중국측 ODI 절차는 케이맨 직접 출자라 BVI/HK 경유 일부 생략 가능 — 단 SAT가 케이맨 PE로 단속 시 중국세 추징 동시 발생',
+      cash: '단기 관리비 효율 +. 장기 CFC 추징 누적이 4자 실수령을 0 이하로 만들 위험'
+    },
+    cite: '케이맨 SPV CFC 추징 사례 다수 · 국조법 §27 CFC · SAT 케이맨 PE 단속'
+  },
+  {
+    id: 'V_L1A_L2B',
+    name: '변형 7 — 케이맨 2층 × 한국 주식회사(L1=A, L2=B)',
+    match: function(sel) { return sel.L1==='A' && sel.L2==='B'; },
+    axes: {
+      tax: '한국 Sub가 주식회사라 SPV 단계 법인세 9~24%(2025·과표 누진·2026.1.1부터 10~25% 환원) + 4자 배당세 추가 → 같은 돈에 두 번 과세. 케이맨 Top에서 받은 배당은 외국납부세액공제 가능하나 한국 SPV→4자 배당 단계 이중과세는 회피 불가. 4자 실수령 15~20% 축소(법인세법 §57)',
+      control: '주식회사라 이사회·주총 표준 절차 — 캡테이블 작성 용이. 단 합자조합 대비 L4·L11 vesting 설계 유연성 ↓',
+      ipo: '케이맨 Top×한국 주식회사 = 가장 표준적 구조. 외부 투자자 설명·실사 가장 쉬움. NASDAQ·홍콩 트랙 정합',
+      voidRisk: '한국 상법 단일 적용이라 무효확률 가장 낮음(추정 10~15%, 신뢰도 상)',
+      dispute: '한국 법원·KCAB 단일 트랙 — 분쟁 절차 표준화',
+      odi: '중국측 ODI 심사 변동 없음',
+      cash: 'SPV 단계 법인세 9~24% 누적이 4자 실수령 결정적으로 축소 — IP Fee·도급 마진으로 보완 필수'
+    },
+    cite: '법인세법 §57 외국납부세액공제 · 합자조합 vs 주식회사 비교(KCC-D2)'
+  },
+  {
+    id: 'V_L1B_L2B',
+    name: '변형 8 — 한국 단층 × 주식회사 (이중과세 풀세트, L1=B, L2=B)',
+    match: function(sel) { return sel.L1==='B' && sel.L2==='B'; },
+    axes: {
+      tax: '한국 단층 + 주식회사 = 이중과세 최악 — SPV 법인세 9~24% + 4자 배당세 + 상장이 케이맨이면 외국주식 보유자 추가 양도세 → 삼중과세 가능. 4자 실수령 25~35% 축소 가능',
+      control: '구조 가장 단순 — 단 통제력 확보 비용은 동일',
+      ipo: '해외 상장 정합성 최악. KOSDAQ 단독 트랙으로 강제됨',
+      voidRisk: '한국법 단일이라 무효확률 낮음',
+      dispute: '한국 법원 단일',
+      odi: '중국→한국 직접 송금이라 외환 트레이스 명확. 단 한국 외환신고 추가',
+      cash: '단기 관리비는 가장 저렴. 장기 누적 세금이 모든 효율 상쇄'
+    },
+    cite: '법인세법 §55 · 소득세법 §17 배당소득 이중과세'
+  },
+  {
+    id: 'V_L1C_L5A',
+    name: '변형 9 — CFC 폭탄 풀세트(L1=C, L5=A)',
+    match: function(sel) { return sel.L1==='C' && sel.L5==='A'; },
+    axes: {
+      tax: 'CFC 풀가동 — 한국 거주자 3인(김형석·이승규·최남희)이 케이맨 SPV 지분을 개인 명의로 직접 보유 → 모두 CFC 합산과세 대상. 매년 SPV 미배당 이익이 한국 종합소득세(최고 49.5%)로 잡힘. R2 룰 위반',
+      control: '관리·세무 자문 비용 폭증',
+      ipo: 'CFC 추징이 상장 실사에서 노출되면 IPO 마일스톤 미충족 사유',
+      voidRisk: 'CFC 추징은 확정 과세 — 무효 다툼 없음',
+      dispute: 'BATNA 최악',
+      odi: 'SAT가 케이맨 PE로 단속 시 중국세 동시 추징',
+      cash: '4자 실수령 마이너스 가능 — 케이맨 SPV CFC 추징 사례 재현 위험(국세청·언론 보도)'
+    },
+    cite: '국조법 §27 (CFC 합산과세) · 2025 세제개편안 세부담률 판정 상향(2026.1.1 시행) · X3 사례'
+  },
+  {
+    id: 'V_L2B_L5A',
+    name: '변형 10 — 주식회사 × 개인 보유(L2=B, L5=A)',
+    match: function(sel) { return sel.L2==='B' && sel.L5==='A'; },
+    axes: {
+      tax: 'SPV 법인세 9~24% + 4자 배당세 + 사망·이혼 시 개인 직접 노출 → 세금 3중 누적. 익금불산입 활용 ✗(개인은 익금불산입 대상 ✗)',
+      control: '개인 직접 보유라 의사결정은 빠름. 단 사망·이혼 시 가족 분쟁으로 SPV 마비',
+      ipo: '상장 시 4자 개인 신원·자산 100% 노출 — IR 부담',
+      voidRisk: '한국법 단일이라 무효확률 낮음. 단 SHA 무효 시 개인 직접 분쟁',
+      dispute: '이혼·상속 분쟁 시 SPV 의사결정 정족수 미달 위험',
+      odi: '중국측 ODI 심사 변동 없음',
+      cash: '엑시트 시 양도세 27.5%+α 개인 직격. 100억 엑시트면 약 30억 세금'
+    },
+    cite: '소득세법 §94 양도소득 · 상속세 및 증여세법 최고세율 50%'
+  },
+  {
+    id: 'V_L4E',
+    name: '변형 11 — 노느니 단일 과반(L4=E, IP 회수 최강)',
+    match: function(sel) { return sel.L4==='E'; },
+    axes: {
+      tax: '노느니 SPV 한국측 지분 40% → 환산 16%(한국측 40% × 40%) → 익금불산입 50% 구간(10~20% 신설). 노느니 단일 익금불산입 효과 가장 큼',
+      control: '노느니 단독 40%로 IP 회수권 최강. 분쟁 시 노느니만으로 강한 거부권. 단 노느니+김형석 = 65%로 SPV 통제 사실상 완전',
+      ipo: 'IR 시 "IP는 한국이 단일 회사로 쥔다" 시그널 최강 — 자본시장 신뢰 가산',
+      voidRisk: '최남희 15% 낮은 비중이 통합 설계 책임 대비 형평성 분쟁 여지(약관법 §6 신의칙)',
+      dispute: '최남희 이탈 동기 ↑ → 4자 안정성 약화. 외부 "최남희는 회사 사람인가" 의문',
+      odi: '중국측 ODI 심사 변동 없음',
+      cash: '노느니 직접 현금흐름(지분+IP Fee+도급 마진) 가장 큼. 최남희는 L6~L8 Fee로 별도 보상 필수'
+    },
+    cite: 'L4-E · 익금불산입 50% 구간(2025 개정 신설) · 최남희 보상 별도 설계 필수'
+  },
+  {
+    id: 'V_L4G',
+    name: '변형 12 — 김형석 개인 35(L4=G, IP 종속 위험)',
+    match: function(sel) { return sel.L4==='G'; },
+    axes: {
+      tax: '김형석 개인 35% 보유 → L5=A면 양도세 27.5% 직격. L5=B(가족법인) 전환 시 익금불산입 50% 구간',
+      control: 'IP가 김형석 개인에게 종속된 것처럼 보임 — 김형석 변고 시 IP 통제 흔들림. 노느니 단일 25%로 단일 최대 지분 무너짐',
+      ipo: 'IR 시 "사공이호 = 김형석 개인 IP" 시그널 — 키맨 리스크 노출. 자본시장 디스카운트',
+      voidRisk: '노느니가 단일 최대 지분 잃으면 "IP는 한국 법인이 쥔다" 시그널 무너짐 — 외부 협상 카드 약화',
+      dispute: '김형석 사망·이혼 시 IP 통제 분산 — 노느니 IP 회수권 행사 어려움',
+      odi: '중국측 ODI 심사 변동 없음',
+      cash: '김형석 동기 부여 최대. 단 IP 회수권 약화로 장기 BATNA 손실'
+    },
+    cite: 'L4-G · 키맨 리스크 · 노느니 IP 회수권 약화'
+  },
+  {
+    id: 'V_L4D_L9C',
+    name: '변형 13 — 권장 분배 × 이승규 무산(L4=D, L9=C)',
+    match: function(sel) { return sel.L4==='D' && sel.L9==='C'; },
+    axes: {
+      tax: '이승규 20% 재할당 → 노느니 35+10=45%(익금불산입 50% 구간 80%로 점프), 김형석 25+7=32%, 최남희 20+3=23%',
+      control: '3자 구조 + 75% 가중 = 1인 거부 가능 임계 25%로 낮아짐 → 의사결정 마비 리스크',
+      ipo: '상장 스토리 핵심 인물 부재 → 30억$ 밸류 가산 폭 결정적 축소',
+      voidRisk: '재분배 SHA 합의 1~2주 추가 협상 필요. 형평성 분쟁 여지 ↓',
+      dispute: 'BATNA 약화. 노느니 단일 IP 회수권만 남음',
+      odi: '중국측이 "한국측 자본시장 트랙 약화"를 카운터 카드로 활용 가능',
+      cash: '노느니 비중 ↑ 익금불산입 효과 ↑ — 단 SPV 매출 성장이 약하면 절대값 미미'
+    },
+    cite: 'L4-D × L9-C 재분배 시뮬 · 익금불산입 50% → 80% 점프'
+  },
+  {
+    id: 'V_L4F_L7B',
+    name: '변형 14 — 최남희 동등 × 라텔 직접 도급(L4=F, L7=B, R6×R7 이중 강제)',
+    match: function(sel) { return sel.L4==='F' && sel.L7==='B'; },
+    axes: {
+      tax: '최남희 25% × 노느니 30% → 노느니 익금불산입 구간 30~50%(80%). 노느니 도급 마진 소실',
+      control: 'R6×R7 이중 강제로 L10=A(특별의결권 75%) 자동. 단 노느니 통합 검수 단계 소실로 한국측 통제력 약화',
+      ipo: 'IR 시 "최남희 > 노느니"·"라텔 직접 도급" 두 약점 동시 노출',
+      voidRisk: '거래상지위 남용(공정거래법 §45) 발동 가능 + 형평성 분쟁 여지',
+      dispute: 'BATNA 약화 — KFTC 카운터 1개로 축소',
+      odi: '중국측 라텔 직접 통제 그림자 강화',
+      cash: '노느니 도급 마진 소실 + IP Fee 절대값 감소 가능'
+    },
+    cite: 'R6×R7 룰 동시 강제 · 공정거래법 §45 · KFTC 거래상지위 처분 강화'
+  },
+  {
+    id: 'V_L4G_L1C',
+    name: '변형 15 — 김형석 개인 35 × 케이맨 단층(L4=G, L1=C, 키맨 × CFC 이중 위험)',
+    match: function(sel) { return sel.L4==='G' && sel.L1==='C'; },
+    axes: {
+      tax: '김형석 35% × 한국 거주자 → CFC 50%↑ 자동 충족. 매년 SPV 미배당 이익이 김형석 종합소득세 직격. L5=B 전환해도 CFC 회피 불완전',
+      control: 'IP 종속 + CFC 추징 동시 발생',
+      ipo: 'IR 시 키맨 리스크 + CFC 추징 이력 동시 노출 — 자본시장 트랙 사실상 불가',
+      voidRisk: 'CFC 확정 과세 + IP 종속 분쟁 동시 발생',
+      dispute: 'BATNA 최악',
+      odi: 'SAT 케이맨 PE 단속 시 중국세 추가',
+      cash: '4자 실수령 마이너스 위험 최대'
+    },
+    cite: '국조법 §27 + L4-G 키맨 종속 · 이중 폭탄'
+  },
+  {
+    id: 'V_L9B_L4F',
+    name: '변형 16 — 이승규 겸직 × 최남희 동등(L9=B, L4=F)',
+    match: function(sel) { return sel.L9==='B' && sel.L4==='F'; },
+    axes: {
+      tax: '이승규 비중 R5 룰로 감액 권장(20→10~15) + 최남희 25 — 노느니 30 단일 최대',
+      control: '이승규 겸직 + R7 룰로 L10=A 강제. SPV 대표성·노느니 단일 최대 동시 약화',
+      ipo: 'IR 시 "겸직 대표 + 최남희 > 김형석" 이중 약점',
+      voidRisk: '경업금지 합리적 범위(2009다82244) + 형평성 분쟁 여지',
+      dispute: '핑크퐁 K-콘텐츠 분쟁 + 4자 형평성 분쟁 동시 발생 가능',
+      odi: '중국측이 이중 약점을 매각 압박 카드로 활용',
+      cash: '이승규 직접 보상(경업금지 보상) + 최남희 25% 직접 현금흐름'
+    },
+    cite: 'L9-B × L4-F · R5 + R7 룰 중첩'
+  },
+  {
+    id: 'V_L9B_L7B',
+    name: '변형 17 — 이승규 겸직 × 라텔 직접 도급(L9=B, L7=B)',
+    match: function(sel) { return sel.L9==='B' && sel.L7==='B'; },
+    axes: {
+      tax: '경업금지 보상 + 라텔 도급 마진 소실',
+      control: '이승규 헌신도 50/50 + 한국측 통합 검수 소실 — 통제력 이중 약화. R6 강제 L10=A',
+      ipo: 'IR 시 "겸직 대표 + 라텔 직접 도급" 이중 약점',
+      voidRisk: '경업금지(2009다82244) + 거래상지위 남용(§45) 이중 분쟁',
+      dispute: 'KFTC 신고 + 핑크퐁 이해상충 동시 발생 가능',
+      odi: '중국측 통제력 강화',
+      cash: '노느니 도급 마진 + 이승규 SPV 비중 동시 감소'
+    },
+    cite: '2009다82244 + 공정거래법 §45 · 이중 분쟁'
+  },
+  {
+    id: 'V_L9C_L4E',
+    name: '변형 18 — 이승규 무산 × 노느니 단일과반 강화(L9=C, L4=E)',
+    match: function(sel) { return sel.L9==='C' && sel.L4==='E'; },
+    axes: {
+      tax: '이승규 15% 재할당 → 노느니 40+5=45%(80% 구간), 김형석 30+5=35%, 최남희 15+5=20%',
+      control: '노느니 45%로 단일 최대 지분 절대화 — IP 회수권 최강',
+      ipo: '상장 스토리 핵심 인물 부재 디스카운트',
+      voidRisk: '재분배 SHA 합의 + 노느니 과대 비중 형평성 분쟁 여지',
+      dispute: 'BATNA = 노느니 IP 회수권 1개로 축소',
+      odi: '중국측 매각 압박 카드',
+      cash: '노느니 직접 현금흐름 + 익금불산입 효과 최대화'
+    },
+    cite: 'L9-C × L4-E 재분배 · 익금불산입 80% 구간'
+  },
+  {
+    id: 'V_L9C_L10B',
+    name: '변형 19 — 이승규 무산 × 4자 동등 거버넌스(L9=C, L10=B)',
+    match: function(sel) { return sel.L9==='C' && sel.L10==='B'; },
+    axes: {
+      tax: '재분배 외 세무 영향 없음',
+      control: '3자 동등 = 1인 거부 가능 → 의사결정 사실상 마비. 핵심 사안 75% 보호 ✗',
+      ipo: 'IR 시 거버넌스 약점 + 키맨 부재 이중 약점',
+      voidRisk: '의사결정 정족수 분쟁 다발 가능',
+      dispute: 'BATNA 최악 — 핵심 사안 보호 없음',
+      odi: '중국측이 의사결정 마비를 매각 압박 카드로',
+      cash: '의사결정 지연으로 매출 성장 둔화 가능'
+    },
+    cite: 'L9-C × L10-B · 거버넌스 이중 약화'
+  },
+  {
+    id: 'V_L7B_L8A',
+    name: '변형 20 — 라텔 직접 × 도급 풀유지(L7=B, L8=A)',
+    match: function(sel) { return sel.L7==='B' && sel.L8==='A'; },
+    axes: {
+      tax: '노느니 도급 마진 영구 소실',
+      control: 'R6 강제 L10=A. 단 라텔 통제 그림자 영구화',
+      ipo: '라텔 별도 외부 투자 시 "중국 의존도" 디스카운트',
+      voidRisk: '거래상지위 남용 발동 가능',
+      dispute: 'KFTC 카운터 1개로 축소',
+      odi: '중국측 직접 거래 단순화',
+      cash: '노느니 IP Fee 비중 ↑ 필수 보완'
+    },
+    cite: 'L7-B × L8-A · 라텔 통제 영구화'
+  },
+  {
+    id: 'V_L7B_L8B',
+    name: '변형 21 — 라텔 직접 × 단계 전환(L7=B, L8=B)',
+    match: function(sel) { return sel.L7==='B' && sel.L8==='B'; },
+    axes: {
+      tax: '전환 시점 이후 노느니 마진 소실 — 초기 12개월은 유지',
+      control: '초기 한국측 통제 유지 후 라텔 직접 전환 — 단계별 최적',
+      ipo: '전환 조건 verbatim 명시 필수(MAU·매출 트리거)',
+      voidRisk: '민법 §544 즉시해제 무효 — 전환 조건 모호 시 분쟁 다발',
+      dispute: '전환 시점 분쟁 여지 ↑',
+      odi: '중국측 단계별 직접 통제 욕구 ↑',
+      cash: '초기 마진 + 후기 라텔 직접 = 균형'
+    },
+    cite: '민법 §544 · 전환 트리거 verbatim 의무'
+  },
+  {
+    id: 'V_L7A_L8A',
+    name: '변형 22 — 권장 도급 × 풀유지(L7=A, L8=A, 안정 최대)',
+    match: function(sel) { return sel.L7==='A' && sel.L8==='A'; },
+    axes: {
+      tax: '노느니 마진(5~10%) 영구 — 안정 수익원',
+      control: '한국측 통합 검수 단계 영구화 — 통제력 최강 안정',
+      ipo: 'IR 시 "한국측 단일 창구" 시그널 안정',
+      voidRisk: '계약 변경 없음 — 무효확률 최소',
+      dispute: '분쟁 여지 최소',
+      odi: '중국측 ODI 변동 없음',
+      cash: '안정·예측 가능 + 단계별 최적화 ✗'
+    },
+    cite: 'L7-A × L8-A · 안정 최대'
+  },
+  {
+    id: 'V_L10B',
+    name: '변형 23 — 4자 동등 거버넌스(L10=B)',
+    match: function(sel) { return sel.L10==='B' && sel.L9!=='C'; },
+    axes: {
+      tax: '세무 영향 없음',
+      control: '4자 동등 = 25% 동등 의결권 — 1인 거부 가능. 핵심 사안 75% 보호 ✗',
+      ipo: 'IR 시 "지분 큰 자 불만" 노출 — 노느니 단일 35%인데 의결권 25%',
+      voidRisk: '지분 vs 의결권 괴리로 SHA 무효 주장 여지',
+      dispute: '핵심 사안 보호 없음 — 매각·자본조달 단순 다수결 가능',
+      odi: '중국측 ODI 변동 없음',
+      cash: '의사결정 지연 가능'
+    },
+    cite: 'L10-B · 핵심 사안 보호 무력화'
+  },
+  {
+    id: 'V_L11_NONE',
+    name: '변형 24 — 베스팅·가속 없음(L11 미설정)',
+    match: function(sel) { return !sel.L11; },
+    axes: {
+      tax: '세무 영향 없음',
+      control: '4자 중 누가 이탈해도 지분 그대로 — 무임승차 가능',
+      ipo: 'IR 시 "키맨 락업 없음" 약점 노출 — 자본시장 표준 위반',
+      voidRisk: 'SHA 미체결 시 분쟁 시 입증 곤란',
+      dispute: 'BATNA 약화 — 이탈자 회수 카드 ✗',
+      odi: '중국측 ODI 변동 없음',
+      cash: '이탈자 보유분 영구 잠김'
+    },
+    cite: 'L11 미설정 · 자본시장 표준 위반'
+  },
+  {
+    id: 'V_L6A',
+    name: '변형 25 — IP Fee 매출 % 단독(L6=A)',
+    match: function(sel) { return sel.L6==='A'; },
+    axes: {
+      tax: '노느니 IP Fee = 매출 비례 — 초기 1~2년 매출 작으면 노느니 거의 못 받음',
+      control: '중국측 매출 인식 시점 조작으로 Fee 깎을 여지',
+      ipo: 'IR 시 IP Fee 안정성 약점 — 라이선스 매출 변동성 노출',
+      voidRisk: '매출 인식 분쟁 발생 가능',
+      dispute: 'BATNA 약화 — MG 보호 없음',
+      odi: '중국측 ODI 변동 없음',
+      cash: 'IP 메가 히트 시 노느니 업사이드 최대. 초기 현금흐름 위험'
+    },
+    cite: 'L6-A · MG 보호 부재'
+  },
+  {
+    id: 'V_L6C',
+    name: '변형 26 — IP Fee 정액(L6=C)',
+    match: function(sel) { return sel.L6==='C'; },
+    axes: {
+      tax: '노느니 IP Fee = 정액 — 예측 가능. 단 사공이호 메가 히트 시 업사이드 모두 SPV로',
+      control: '노느니 IP 회수권의 경제적 의미 약화',
+      ipo: 'IR 시 IP 라이선스 정액화 — 자본시장 입장 호불호',
+      voidRisk: '계약 단순화로 무효 여지 최소',
+      dispute: '분쟁 여지 적음',
+      odi: '중국측 ODI 변동 없음',
+      cash: '예측 가능·안정 최대. 업사이드 ✗'
+    },
+    cite: 'L6-C · 업사이드 포기'
+  },
+  {
+    id: 'V_L6B_L7B',
+    name: '변형 27 — MG × 라텔 직접(L6=B, L7=B)',
+    match: function(sel) { return sel.L6==='B' && sel.L7==='B'; },
+    axes: {
+      tax: '노느니 IP Fee MG는 유지, 도급 마진 소실 → 노느니 직접 현금흐름 IP Fee 단일',
+      control: 'IP Fee MG로 노느니 안전판 + 라텔 직접으로 통제 약화',
+      ipo: '균형 — IP Fee 안전판이 라텔 직접 약점 일부 상쇄',
+      voidRisk: 'KFTC 거래상지위 + 라텔 직접 통제 발동',
+      dispute: 'MG로 노느니 직접 현금흐름 보호',
+      odi: '중국측 ODI 변동 없음',
+      cash: '노느니 IP Fee MG 상향 협상 필수'
+    },
+    cite: 'L6-B + L7-B · MG로 도급 마진 소실 보완'
+  },
+  {
+    id: 'V_L1C_L5A_L9C',
+    name: '변형 28 — 최악 트리플(L1=C, L5=A, L9=C)',
+    match: function(sel) { return sel.L1==='C' && sel.L5==='A' && sel.L9==='C'; },
+    axes: {
+      tax: 'CFC 확정 + 양도세 직격 + 재분배 누적 = 4자 실수령 마이너스 확정',
+      control: '의사결정 마비 + 상장 트랙 와해',
+      ipo: 'IR 사실상 불가',
+      voidRisk: 'CFC 확정 + 재분배 분쟁 + 키맨 부재 트리플',
+      dispute: 'BATNA 사실상 0',
+      odi: 'SAT 단속 + ODI 거부 가능',
+      cash: '재무 모델 자체 무력화'
+    },
+    cite: '최악 트리플 시뮬 — 회피 의무'
+  },
+  {
+    id: 'V_L1B_L2B_L4G',
+    name: '변형 29 — 한국 단층 × 주식회사 × 김형석 35(L1=B, L2=B, L4=G)',
+    match: function(sel) { return sel.L1==='B' && sel.L2==='B' && sel.L4==='G'; },
+    axes: {
+      tax: '이중과세 + 김형석 양도세 직격 + 상속세 50% 위험',
+      control: 'IP 종속 + 의사결정 다수결 표준',
+      ipo: 'KOSDAQ 단독 + 키맨 리스크 IR 노출',
+      voidRisk: '한국법 단일이라 무효 ↓',
+      dispute: '김형석 사망·이혼 시 SPV 통제 분산',
+      odi: '중국→한국 직접 송금',
+      cash: '단기 관리비 ↓, 장기 세금 + 키맨 리스크 누적'
+    },
+    cite: '한국 단층 + 주식회사 + 키맨 종속 트리플'
+  },
+  {
+    id: 'V_L7B_L8A_L10B',
+    name: '변형 30 — 라텔 직접 × 풀유지 × 동등 거버넌스(L7=B, L8=A, L10=B)',
+    match: function(sel) { return sel.L7==='B' && sel.L8==='A' && sel.L10==='B'; },
+    axes: {
+      tax: '노느니 마진 영구 소실',
+      control: '통제력 전무 — R6 강제 L10=A를 위반한 모순 구조. SHA 작성 시 충돌 명시 필수',
+      ipo: 'IR 사실상 불가 — 거버넌스 + 도급 약점 동시',
+      voidRisk: 'R6 룰 위반으로 SHA 자체 무효 여지',
+      dispute: 'BATNA 최악',
+      odi: '중국측 직접 통제 강화',
+      cash: '노느니 IP Fee 단일 의존'
+    },
+    cite: 'R6 룰 정면 위반 — 회피 의무'
+  },
+  {
+    id: 'V_L4F_L9C_L11_NONE',
+    name: '변형 31 — 최남희 동등 × 이승규 무산 × 베스팅 없음(L4=F, L9=C, L11 미설정)',
+    match: function(sel) { return sel.L4==='F' && sel.L9==='C' && !sel.L11; },
+    axes: {
+      tax: '재분배 누적',
+      control: '키맨 부재 + 락업 없음 + 형평성 분쟁 트리플',
+      ipo: '자본시장 트랙 사실상 와해',
+      voidRisk: 'SHA 형평성 분쟁 + 키맨 락업 부재로 무효 여지',
+      dispute: 'BATNA 최악',
+      odi: '중국측 매각 압박 카드',
+      cash: '이탈자 보유분 영구 잠김'
+    },
+    cite: 'L4-F + L9-C + L11 미설정 트리플'
+  },
+  {
+    id: 'V_L1C_L7B_L9B',
+    name: '변형 32 — 케이맨 단층 × 라텔 직접 × 이승규 겸직(L1=C, L7=B, L9=B)',
+    match: function(sel) { return sel.L1==='C' && sel.L7==='B' && sel.L9==='B'; },
+    axes: {
+      tax: 'CFC 폭탄 + 노느니 마진 소실 + 경업금지 보상',
+      control: '통제력·세무·상장 트랙 동시 와해',
+      ipo: 'IR 사실상 불가',
+      voidRisk: 'CFC + KFTC + 경업금지 트리플 분쟁',
+      dispute: 'BATNA 0',
+      odi: 'SAT + 중국측 직접 통제 동시',
+      cash: '4자 실수령 마이너스 확정'
+    },
+    cite: '최악 트리플 — 회피 의무'
+  },
+  {
+    id: 'V_REC_IP_TRIGGER',
+    name: '변형 33 — 권장 + IP 회수 트리거 강화',
+    match: function(sel) { return sel.L1==='A' && sel.L2==='A' && sel.L4==='D' && sel.L6==='B' && sel.L7==='A' && sel.L11==='A'; },
+    axes: {
+      tax: '권장 경로와 동일 — 익금불산입 100% 구간',
+      control: 'IP 회수 트리거 명문화 — 매출 N억 미달·중국측 ODI 거부·SPV 매각 시도 시 자동 발동',
+      ipo: 'IR 시 "한국측 IP 회수 트리거" 강력 시그널',
+      voidRisk: '트리거 verbatim 명시 시 무효 위험 최소',
+      dispute: 'BATNA 최강 — IP 회수 자동 발동',
+      odi: '중국측 ODI 거부 시 자동 회수',
+      cash: '권장 + IP 회수 옵션 가치 가산'
+    },
+    cite: '권장 경로 + IP 회수 트리거 강화'
+  },
+  {
+    id: 'V_REC_PINKFONG',
+    name: '변형 34 — 권장 + 핑크퐁 협업 라이선스',
+    match: function(sel) { return sel.L9==='A' && sel.L4==='D' && sel.L1==='A'; },
+    axes: {
+      tax: '권장 + 핑크퐁 라이선스 매출 = 노느니 IP Fee 가산',
+      control: '이승규 헌신 + 핑크퐁 네트워크 라이선스로만 활용',
+      ipo: 'IR 시 "글로벌 K-콘텐츠 네트워크" 시그널 가산',
+      voidRisk: '이해상충 조항 + 라이선스 별도 계약으로 무효 위험 ↓',
+      dispute: '핑크퐁 분쟁 시 라이선스 단독 해지 가능',
+      odi: '중국측 ODI 변동 없음',
+      cash: '핑크퐁 라이선스 매출 + 권장 경로 효과'
+    },
+    cite: '권장 + 핑크퐁 별도 라이선스'
+  },
+  {
+    id: 'V_REC_KOSDAQ_DUAL',
+    name: '변형 35 — 권장 + KOSDAQ 듀얼 트랙',
+    match: function(sel) { return sel.L1==='A' && sel.L2==='A' && sel.L4==='D' && sel.L5==='B' && sel.L10==='A'; },
+    axes: {
+      tax: '권장 경로와 동일',
+      control: '케이맨 Top NASDAQ/홍콩 + 한국 Sub KOSDAQ 듀얼 트랙 옵션',
+      ipo: '듀얼 트랙 = 시장 변동성 헷지 + 밸류 비교 가능',
+      voidRisk: '듀얼 트랙 정합성 변호사 검토 필요',
+      dispute: 'BATNA 강화 — 두 트랙 중 선택',
+      odi: '중국측 ODI 변동 없음',
+      cash: '듀얼 트랙 IPO 비용 추가. 단 옵션 가치 ↑'
+    },
+    cite: '권장 + KOSDAQ 듀얼 트랙 옵션'
+  },
+  {
+    id: 'V_REC_MG_HIGH',
+    name: '변형 36 — 권장 + MG 인상',
+    match: function(sel) { return sel.L6==='B' && sel.L1==='A' && sel.L4==='D' && sel.L7==='A'; },
+    axes: {
+      tax: '권장 경로와 동일',
+      control: 'IP Fee MG 인상 = 노느니 직접 현금흐름 안전판 강화',
+      ipo: 'IR 시 IP Fee 안정성 시그널',
+      voidRisk: 'MG 인상폭 협상 — 중국측 거부 여지',
+      dispute: '노느니 BATNA 강화',
+      odi: '중국측 ODI 변동 없음',
+      cash: '노느니 초기 현금흐름 안전판 ↑'
+    },
+    cite: '권장 + MG 인상 협상'
+  },
+  {
+    id: 'V_REC_RATEL_SPINOFF',
+    name: '변형 37 — 권장 + 라텔 분사 옵션',
+    match: function(sel) { return sel.L7==='A' && sel.L4==='D' && sel.L1==='A' && sel.L11==='A'; },
+    axes: {
+      tax: '권장 경로 + 라텔 별도 외부 투자 옵션',
+      control: 'L11 베스팅 가속과 분사 옵션 연동 — 라텔 IPO 시 최남희 베스팅 가속',
+      ipo: '사공이호 SPV + 라텔 듀얼 엑시트 가능성',
+      voidRisk: 'SHA에 라텔 분사 옵션 verbatim 필수',
+      dispute: 'BATNA 강화 — 두 자산 분리',
+      odi: '중국측 ODI 변동 없음',
+      cash: '듀얼 엑시트 옵션 가치'
+    },
+    cite: 'L7-A + 라텔 분사 옵션'
+  },
+  {
+    id: 'V_L5A_SOLE',
+    name: '변형 38 — 3인 개인 직접 보유(L5=A, L1≠C)',
+    match: function(sel) { return sel.L5==='A' && sel.L1!=='C'; },
+    axes: {
+      tax: '엑시트 시 양도세 27.5%+α 개인 직격. 사망 시 상속세 최고 50%. 이혼 50% 분할',
+      control: '의사결정은 빠름. 단 가족 분쟁 시 SPV 마비',
+      ipo: '상장 시 4자 개인 신원 100% 노출',
+      voidRisk: '한국법 단일이라 무효 ↓',
+      dispute: '가족·이혼 분쟁 시 SPV 의사결정 정족수 미달 위험',
+      odi: '중국측 ODI 변동 없음',
+      cash: '엑시트 시 세금 직격'
+    },
+    cite: 'L5-A · 양도세 + 상속세 + 이혼 트리플 위험'
+  },
+  {
+    id: 'V_L5B_FAMILY',
+    name: '변형 39 — 김형석 가족법인 풀세트(L5=B, 가업승계 특례)',
+    match: function(sel) { return sel.L5==='B' && sel.L4==='D'; },
+    axes: {
+      tax: '가업승계 특례(상증법 §30의6) = 한도 가업영위 기간별 차등(10년 300억·20년 400억·30년 600억), 10억 공제 후 세율 10%(과세표준 120억 초과분 20%). 5년 사후관리(신고기한까지 가업종사·3년 이내 대표이사 취임·5년까지 유지·증여 주식 처분 금지) 위반 시 추징세액 + 이자상당가산액(납부지연 가산세 일 0.022%)',
+      control: '가족법인이 SPV 의사결정 일관 유지 — 김형석 변고 시에도 IP 통제 유지',
+      ipo: 'IR 시 "가업승계 준비된 IP" 시그널 — 자본시장 안정 가산',
+      voidRisk: '5년 사후관리 위반 시 추징 — verbatim 관리 필수',
+      dispute: '김형석 사망·이혼 시 가족법인 단위 통제 유지',
+      odi: '중국측 ODI 변동 없음',
+      cash: '익금불산입 + 가업승계 특례 누적 효과 최대'
+    },
+    cite: '상증법 §30의6 가업승계 특례 600억 · 5년 사후관리'
+  },
+  {
+    id: 'V_L11_ACCEL',
+    name: '변형 40 — 베스팅 가속 풀가동(L11=A 풀세트)',
+    match: function(sel) { return sel.L11==='A' && sel.L9==='A' && sel.L4==='D'; },
+    axes: {
+      tax: '세무 영향 없음',
+      control: '4자 이탈 시 미확정 자동 회수 + 가속 이벤트(IPO·M&A·중대 변고) 시 자동 베스팅',
+      ipo: 'IR 시 "키맨 락업 + 자본시장 표준 가속" 신호',
+      voidRisk: 'SHA에 가속 트리거 verbatim 필수',
+      dispute: 'BATNA 강화 — 이탈자 회수 + 가속 이벤트 보호',
+      odi: '중국측 ODI 변동 없음',
+      cash: '이탈자 보유분 회수 → 잔존 3자 재분배'
+    },
+    cite: 'L11-A 풀세트 · 자본시장 표준'
+  },
+  {
+    id: 'V_L1A_L2A_L5B_MAX',
+    name: '변형 41 — 세무 최적 풀세트(L1=A, L2=A, L5=B, 최강 세무)',
+    match: function(sel) { return sel.L1==='A' && sel.L2==='A' && sel.L5==='B'; },
+    axes: {
+      tax: '케이맨 Top 상속세 0 + 합자조합 파스스루 + 3인 법인 익금불산입 누적 — 4자 실수령 최대화. 노느니는 IP Fee 별도 보호',
+      control: 'L4·L10·L11 선택과 결합 시 통제력 가산',
+      ipo: '케이맨 Top NASDAQ/홍콩 표준 정합 — IPO 시 한국측 40% 희석 방어 가능',
+      voidRisk: '세무 구조 자체는 표준이라 무효 여지 ↓',
+      dispute: 'BATNA 강화',
+      odi: '중국측 ODI BVI/HK 경유 표준 패턴 호환',
+      cash: '4자 실수령 절대값 최대'
+    },
+    cite: 'L1-A + L2-A + L5-B · 세무 최적 트리플'
+  },
+  {
+    id: 'V_L4D_L10A_L11A',
+    name: '변형 42 — 통제 최적 풀세트(L4=D, L10=A, L11=A)',
+    match: function(sel) { return sel.L4==='D' && sel.L10==='A' && sel.L11==='A'; },
+    axes: {
+      tax: '권장 분배 익금불산입 정합',
+      control: '노느니 단일 35 + 75% 가중 + 베스팅 가속 = 4자 중 누구든 단독 거부 + 이탈 자동 회수',
+      ipo: 'IR 시 "한국측 통제 완비" 시그널 최강',
+      voidRisk: '2018다223054 표준 충족 + SHA verbatim 필수',
+      dispute: 'BATNA 최강 — IP 회수 + 거부권 + 베스팅 회수 세 카드 동시',
+      odi: '중국측 ODI 변동 없음',
+      cash: '이탈자 보유분 잔존 3자 재분배'
+    },
+    cite: 'L4-D + L10-A + L11-A · 통제 최적 트리플'
+  },
+  {
+    id: 'V_L6B_L8B',
+    name: '변형 43 — MG × 단계 전환(L6=B, L8=B)',
+    match: function(sel) { return sel.L6==='B' && sel.L8==='B' && sel.L7==='A'; },
+    axes: {
+      tax: '초기 노느니 마진 + MG 가산',
+      control: 'IP Fee MG 안전판 + 단계 전환 효율 — 양자 결합',
+      ipo: '전환 시점 명문화 시 IR 안정',
+      voidRisk: '민법 §544 즉시해제 무효 + 트리거 명시 필수',
+      dispute: 'MG로 노느니 보호',
+      odi: '중국측 ODI 변동 없음',
+      cash: '초기·후기 모두 안전판'
+    },
+    cite: 'L6-B + L8-B · MG × 단계 전환 균형'
+  },
+  {
+    id: 'V_L2B_L4G',
+    name: '변형 44 — 주식회사 × 김형석 개인 35(L2=B, L4=G)',
+    match: function(sel) { return sel.L2==='B' && sel.L4==='G'; },
+    axes: {
+      tax: 'SPV 법인세 9~24% + 김형석 35% 양도세 직격(L5=A 시) — 4자 실수령 결정적 축소',
+      control: 'IP 종속 + 주총 표준 절차',
+      ipo: 'IR 시 키맨 + 이중과세 이중 약점',
+      voidRisk: '한국법 단일이라 무효 ↓',
+      dispute: '김형석 사망·이혼 시 IP 통제 분산',
+      odi: '중국측 ODI 변동 없음',
+      cash: '엑시트 세금 최대'
+    },
+    cite: 'L2-B + L4-G · 이중과세 + 키맨 종속'
+  },
+  {
+    id: 'V_L9A_L4E',
+    name: '변형 45 — 이승규 헌신 × 노느니 단일과반(L9=A, L4=E)',
+    match: function(sel) { return sel.L9==='A' && sel.L4==='E'; },
+    axes: {
+      tax: '노느니 단일 40%로 익금불산입 80% 구간(SPV 한국측 내 환산 16% 시 50% 구간)',
+      control: '노느니 IP 회수권 최강 + 이승규 풀헌신 동시',
+      ipo: 'IR 시 "IP × 자본시장" 양강 시그널',
+      voidRisk: '최남희 15% 형평성 분쟁 여지 — Fee 별도 보상 필수',
+      dispute: 'BATNA 강화 — IP 회수 + 상장 트랙 양면',
+      odi: '중국측 ODI 변동 없음',
+      cash: '노느니 직접 현금흐름 최대 + 이승규 풀헌신 가치 가산'
+    },
+    cite: 'L9-A + L4-E · IP × 자본시장 양강'
+  },
+  {
+    id: 'V_L9A_L4F',
+    name: '변형 46 — 이승규 헌신 × 최남희 동등(L9=A, L4=F)',
+    match: function(sel) { return sel.L9==='A' && sel.L4==='F'; },
+    axes: {
+      tax: '노느니 30 → 익금불산입 80% 구간',
+      control: 'R7 강제 L10=A. 최남희 통합 설계 보상 + 이승규 헌신 양립',
+      ipo: 'IR 시 "최남희 > 김형석" 외부 인식 약점',
+      voidRisk: '형평성 분쟁 여지 ↓ — 4자 동등 헌신 가시화 시 완화',
+      dispute: '최남희 장기 헌신 BATNA ↑',
+      odi: '중국측 ODI 변동 없음',
+      cash: '최남희 직접 현금흐름 +25% 비중'
+    },
+    cite: 'L9-A + L4-F + R7 강제'
+  },
+  {
+    id: 'V_L3_LATEL_INCLUDED',
+    name: '변형 47 — 라텔 SPV 포함(대전제 위반, 회피)',
+    match: function(sel) { return sel.L3==='RATEL'; },
+    axes: {
+      tax: '라텔이 SPV 지분 보유 — 라텔 외부 투자 시 SPV 묶임',
+      control: '대전제(L3) 위반 — 본 미팅 합의 사항 무력화',
+      ipo: 'IR 시 "라텔 분리 시그널" 약화',
+      voidRisk: '대전제 위반 자체로 미팅 합의 재설계 필요',
+      dispute: '라텔 외부 분쟁 시 SPV 직격',
+      odi: '중국측 ODI 변동 없음',
+      cash: '라텔 외부 투자 시 SPV 가치 디스카운트'
+    },
+    cite: 'L3 대전제 위반 — 회피'
+  },
+  {
+    id: 'V_L1A_L4F_L7B',
+    name: '변형 48 — 권장 세무 × 최남희 동등 × 라텔 직접(L1=A, L4=F, L7=B)',
+    match: function(sel) { return sel.L1==='A' && sel.L4==='F' && sel.L7==='B'; },
+    axes: {
+      tax: '세무는 최적 — 통제는 R6×R7 이중 강제로 L10=A',
+      control: '세무 최적 + 통제 약점 혼합 — SHA에 R6·R7 verbatim 필수',
+      ipo: '세무 강점 + 외부 인식 약점',
+      voidRisk: 'KFTC + 형평성 이중 분쟁',
+      dispute: 'BATNA 중간',
+      odi: '중국측 ODI 변동 없음',
+      cash: '노느니 도급 마진 소실 + 최남희 25% 가산'
+    },
+    cite: 'L1-A + L4-F + L7-B · 세무 × 통제 혼합'
+  },
+  {
+    id: 'V_REC_IP_TRIGGER_KOSDAQ',
+    name: '변형 49 — 권장 + IP 회수 트리거 + KOSDAQ 듀얼',
+    match: function(sel) { return sel.L1==='A' && sel.L4==='D' && sel.L6==='B' && sel.L10==='A' && sel.L11==='A'; },
+    axes: {
+      tax: '권장 경로 + 듀얼 트랙',
+      control: 'IP 회수 트리거 + 75% 가중 + 베스팅 가속 + 듀얼 IPO 옵션',
+      ipo: 'IR 시 "한국측 통제 + 듀얼 엑시트" 최강 시그널',
+      voidRisk: '트리거·듀얼 트랙 verbatim 명시 필수',
+      dispute: 'BATNA 최강',
+      odi: '중국측 ODI 변동 없음',
+      cash: '권장 + 듀얼 트랙 옵션 가치'
+    },
+    cite: '권장 + IP 트리거 + KOSDAQ 듀얼 풀세트'
+  },
+  {
+    id: 'V_L1A_L9C_L4E',
+    name: '변형 50 — 세무 최적 × 이승규 무산 × 노느니 단일과반(L1=A, L9=C, L4=E)',
+    match: function(sel) { return sel.L1==='A' && sel.L9==='C' && sel.L4==='E'; },
+    axes: {
+      tax: '세무 최적 + 노느니 익금불산입 최대 구간',
+      control: '키맨 부재 + 노느니 IP 회수권 절대화',
+      ipo: '상장 스토리 결정적 약화 — 노느니 단일 시그널로 일부 상쇄',
+      voidRisk: '재분배 SHA + 노느니 과대 비중 형평성 분쟁',
+      dispute: 'BATNA = 노느니 IP 회수 단일',
+      odi: '중국측 매각 압박 카드',
+      cash: '노느니 직접 현금흐름 최대 + 상장 트랙 약화'
+    },
+    cite: 'L1-A + L9-C + L4-E · 세무 최적 × 키맨 부재'
+  }
+];
+
+function pickScenario(sel) {
+  // 활성 시나리오 1개 매칭 — 변형(V_*)이 권장(REC)보다 우선. 변형끼리는 정의 순.
+  var variants = COMBO_SCENARIOS.filter(function(sc){ return sc.id !== 'REC'; });
+  for (var i = 0; i < variants.length; i++) {
+    if (variants[i].match(sel)) return variants[i];
+  }
+  if (COMBO_SCENARIOS[0].match(sel)) return COMBO_SCENARIOS[0];
+  return null;
+}
+
+function updateCombo() {
+  var scenEl = document.getElementById('combo-scen');
+  var bodyEl = document.getElementById('combo-body');
+  if (!scenEl || !bodyEl) return;
+  // 미선택(L3 제외 0개) 시 안내
+  var selectedCount = Object.keys(state.selections).filter(function(k){ return k !== 'L3'; }).length;
+  if (selectedCount === 0) {
+    scenEl.textContent = '시나리오 미정';
+    bodyEl.innerHTML = '레이어를 골라가며 합산 효과가 누적됩니다. 본문 종합박스는 레이어 단독 효과 · 이 패널은 레이어 간 상호작용·누적 효과를 다룹니다.';
+    return;
+  }
+  var sc = pickScenario(state.selections);
+  if (!sc) {
+    scenEl.textContent = '시나리오 빌드 중';
+    bodyEl.innerHTML = '권장 경로 또는 변형 시나리오 중 어느 것에도 아직 합치되지 않습니다. 더 골라 주세요.';
+    return;
+  }
+  scenEl.textContent = sc.name;
+  var LABELS = {
+    tax: '세무 누적', control: '통제권 누적', ipo: '상장 정합성',
+    voidRisk: '무효확률·과징금', dispute: '분쟁·승계 BATNA',
+    odi: '중국 ODI 정합성', cash: '현금흐름 도달'
+  };
+  var html = '';
+  ['tax','control','ipo','voidRisk','dispute','odi','cash'].forEach(function(k){
+    if (sc.axes[k]) {
+      html += '<span class="axis"><span class="ak">' + LABELS[k] + '</span><span class="av">' + sc.axes[k] + '</span></span>';
+    }
+  });
+  if (sc.cite) html += '<span class="cite">근거: ' + sc.cite + '</span>';
+  html += '<span class="disclaimer">통계적 추정 · 변호사·세무사 최종검토 필수</span>';
+  bodyEl.innerHTML = html;
+}
+
 const RULES = [
   { id:'R1', when:{L:'L1',v:'C'}, then:{L:'L2',action:'disable'},
     memo:'L1=C → L2 비활성 (한국 Sub 없음)' },
   { id:'R2', when:{L:'L1',v:'C'}, then:{L:'L5',v:'B',action:'force'},
     memo:'L1=C → L5=B 강제 (CFC 합산과세 위험)' },
-  { id:'R4', when:{L:'L10',v:'C'}, then:{L:'L4',action:'memo'},
-    memo:'L10=C → L4 재분배 강제 (이승규 0%)' },
-  { id:'R5', when:{L:'L10',v:'B'}, then:{L:'L4',action:'memo'},
-    memo:'L10=B → L4 이승규 비중 10~15로 감액 권장' },
-  { id:'R6', when:{L:'L8',v:'B'}, then:{L:'L11',v:'A',action:'force'},
-    memo:'L8=B → L11=A 필수 (이해상충 거버넌스)' },
-  { id:'R7', when:{L:'L4',v:'F'}, then:{L:'L11',v:'A',action:'force'},
-    memo:'L4=F → L11=A 필수 (최남희 영향력 견제)' },
-  { id:'R8', when:{L:'L1',v:['A','B']}, then:{L:'L7',v:'B',action:'recommend'},
-    memo:'L1=A·B → L7=B 권장 (한국 세무 안정성)' },
+  { id:'R4', when:{L:'L9',v:'C'}, then:{L:'L4',action:'memo'},
+    memo:'L9=C → L4 재분배 강제 (이승규 0%)' },
+  { id:'R5', when:{L:'L9',v:'B'}, then:{L:'L4',action:'memo'},
+    memo:'L9=B → L4 이승규 비중 10~15로 감액 권장' },
+  { id:'R6', when:{L:'L7',v:'B'}, then:{L:'L10',v:'A',action:'force'},
+    memo:'L7=B → L10=A 필수 (이해상충 거버넌스)' },
+  { id:'R7', when:{L:'L4',v:'F'}, then:{L:'L10',v:'A',action:'force'},
+    memo:'L4=F → L10=A 필수 (최남희 영향력 견제)' },
+  { id:'R8', when:{L:'L1',v:['A','B']}, then:{L:'L6',v:'B',action:'recommend'},
+    memo:'L1=A·B → L6=B 권장 (한국 세무 안정성)' },
   { id:'R9', when:{L:'L1',v:'B'}, then:{L:'L5',v:'B',action:'recommend'},
     memo:'L1=B → L5=B 강력 권장 (상속세 회피·3인 공통)' }
 ];
 
 const RECOMMENDED_PATH = {
-  L1:'A', L2:'A', L4:'D', L5:'B', L7:'B', L8:'A', L9:'B', L10:'A', L11:'A', L12:'A'
+  L1:'A', L2:'A', L4:'D', L5:'B', L6:'B', L7:'A', L8:'B', L9:'A', L10:'A', L11:'A'
 };
 
 const state = { selections: { L3: '–' }, _activeRules: [] };
@@ -1330,9 +2201,9 @@ function applyRules() {
 }
 
 function updateSidebar() {
-  const decisionLayers = LAYERS.filter(function(l){return !l.locked;}).length;
-  const done = LAYERS.filter(function(l){return !l.locked && state.selections[l.id];}).length;
-  document.getElementById('progress-bar').style.width = (done/decisionLayers*100) + '%';
+  const totalLayers = LAYERS.length;
+  const done = LAYERS.filter(function(l){return state.selections[l.id];}).length;
+  document.getElementById('progress-bar').style.width = (done/totalLayers*100) + '%';
   document.getElementById('progress-num').textContent = done;
   document.getElementById('bb-done').textContent = done;
   document.getElementById('bb-rules').textContent = (state._activeRules||[]).length;
@@ -1385,6 +2256,7 @@ function updateSidebar() {
       return '<div style="margin-bottom:6px;">• ' + r.memo + '</div>';
     }).join('');
   }
+  updateCombo();
 }
 
 document.getElementById('btn-reset').addEventListener('click', function() {
