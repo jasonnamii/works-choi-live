@@ -97,12 +97,12 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
   border-top: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line-strong);
 }
-.kpi { padding: 16px 20px; border-right: 1px solid var(--line); }
+.kpi { padding: 16px 20px; border-right: 1px solid var(--line); min-width: 0; }
 .kpi:last-child { border-right: none; }
 .kpi .num { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
 .kpi .num .accent { color: var(--accent); }
 .kpi .lbl { font-size: 14px; color: var(--fg-3); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 6px; }
-.kpi .desc { font-size: 13px; color: #555; line-height: 1.45; margin-top: 6px; word-break: keep-all; }
+.kpi .desc { font-size: 13px; color: #555; line-height: 1.45; margin-top: 6px; word-break: keep-all; overflow-wrap: anywhere; hyphens: auto; }
 
 .main {
   max-width: 1400px; margin: 0 auto; padding: 40px 24px;
@@ -529,6 +529,51 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
   padding: 10px 14px; margin: 10px 0; font-size: 14px;
 }
 .agenda-fold .ag-body .lock-note strong { color: var(--forced-border); }
+
+/* 키워드 리드 컴포넌트 — 컨셉어 가시화 */
+.agenda-fold .ag-body .kw-lead {
+  display: flex; flex-wrap: wrap; gap: 6px 8px;
+  margin: 10px 0 12px; padding: 10px 12px;
+  background: var(--bg-2); border-left: 3px solid var(--accent);
+  border-radius: 4px;
+}
+.agenda-fold .ag-body .kw-lead .kw-label {
+  font-size: 12px; font-weight: 600; color: var(--fg-3);
+  letter-spacing: .04em; text-transform: uppercase;
+  margin-right: 4px; align-self: center;
+}
+.agenda-fold .ag-body .kw-pill {
+  display: inline-flex; align-items: center;
+  padding: 3px 9px; font-size: 13px; font-weight: 600;
+  background: var(--bg-1); color: var(--fg-1);
+  border: 1px solid var(--bd-1); border-radius: 999px;
+  line-height: 1.4;
+}
+.agenda-fold .ag-body .kw-pill.is-core { background: var(--accent); color: #fff; border-color: var(--accent); }
+.agenda-fold .ag-body .kw-pill.is-warn { background: var(--forced-border, #c33); color: #fff; border-color: var(--forced-border, #c33); }
+.agenda-fold .ag-body .kw-pill.is-flip { background: #f5f0e0; color: #6b4e00; border-color: #d9c98a; }
+.agenda-fold .ag-body .kw-pill .kw-dot { opacity: .5; margin: 0 4px; }
+.agenda-fold .ag-body .kw-vs {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 9px; font-size: 13px; font-weight: 600;
+  background: var(--bg-1); border: 1px solid var(--bd-1); border-radius: 999px;
+}
+.agenda-fold .ag-body .kw-vs .vs-l { color: var(--fg-3); }
+.agenda-fold .ag-body .kw-vs .vs-x { color: var(--fg-3); font-weight: 400; }
+.agenda-fold .ag-body .kw-vs .vs-r { color: var(--accent); }
+.agenda-fold .ag-body mark.kw {
+  background: linear-gradient(transparent 55%, rgba(255,220,80,.55) 55%);
+  color: inherit; padding: 0 1px; font-weight: 600;
+}
+.agenda-fold .ag-body .kw-flip-line {
+  display: inline-flex; align-items: center; gap: 8px; margin: 6px 0;
+  font-size: 13px;
+}
+.agenda-fold .ag-body .kw-flip-line .arr { color: var(--fg-3); }
+@media (max-width: 720px){
+  .agenda-fold .ag-body .kw-lead { padding: 8px 10px; }
+  .agenda-fold .ag-body .kw-pill, .agenda-fold .ag-body .kw-vs { font-size: 12px; }
+}
 @media (max-width: 640px) {
   .agenda-fold { padding: 0 16px; }
   .agenda-fold .agenda-pretitle { font-size: 14px; padding: 5px 10px; }
@@ -580,42 +625,59 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
     </summary>
     <div class="ag-body">
 
-      <div class="lock-note">
-        <strong>참석자 표기 규칙</strong><br>
-        김형석 PD님 (이하 <strong>김형석</strong>) · 이승규 부사장님 (이하 <strong>이승규</strong>) · 최남희 대표 (이하 <strong>최남희</strong>). 이후 본문에서는 이름만으로 진행합니다.
-      </div>
-
       <h3>1. 미팅 메타</h3>
       <div class="meta-grid">
         <span class="k">일시</span><span>2026-05-24</span>
-        <span class="k">참석자</span><span>최남희, 김형석, 이승규 (미래 SPV 대표 후보·핑크퐁 부사장)</span>
+        <span class="k">참석자</span><span>최남희, 김형석, 이승규 (핑크퐁 부사장)</span>
         <span class="k">성격</span><span>3인 내부 전략 정렬 (중국측 미참석)</span>
         <span class="k">목적</span><span>다음 중국측 계약 미팅 전, 3인 입장·역할·금지선 합의</span>
         <span class="k">산출물</span><span>3인 합의 입장문 1p, 역할 분담표, 양보 가능·불가 리스트, SPV 11레이어 의사결정 합의안</span>
       </div>
+      <p style="margin:8px 0 0;font-size:13px;color:var(--fg-3);"><strong>SPV</strong> — Special Purpose Vehicle. 한국측 4자가 40% 지분을 함께 보유하기 위해 만드는 별도 법인. 4자 개인이 직접 보유하지 않고 SPV가 보유한 뒤 SPV 안에서 4자가 지분을 나눠 갖는 구조. <strong>11레이어</strong> — SPV를 설계할 때 결정해야 할 의사결정 단위 11개(관할·법적 형태·분배·보유·Fee·거버넌스·베스팅 등).</p>
 
       <h3>2. 전제 정리 (5분)</h3>
-      <p>이번 미팅 전까지 확정된 사실 + 본 의사결정 트리에서 최남희가 이미 확정한 사항을 함께 정렬합니다.</p>
-      <h4>중국측 합의 사항</h4>
+
+      <div class="kw-lead">
+        <span class="kw-label">논의 축 이동</span>
+        <span class="kw-pill is-flip">이전 가설 · 20%</span>
+        <span class="arr">→</span>
+        <span class="kw-pill is-core">현재 가설 · 40% + SPV</span>
+        <span class="kw-pill">핵심 점검 = 40% 정합성</span>
+      </div>
+      <p style="margin:-4px 0 10px;font-size:13px;color:var(--fg-3);"><strong>40% 정합성</strong> — 단순히 숫자 40%가 아니라, 그 40%가 ① 어느 법인의 지분인지(상장 주체 vs 운영법인) ② 1,000만 달러 투입 후에도 희석되지 않고 유지되는지 ③ IP 사용권·승인권 같은 SPV 권리가 함께 붙어 있는지가 맞물려야 한다는 뜻. 논의 축이 “지분율”에서 <mark class="kw">“40%가 어느 법인의 지분이고, 희석 방지·SPV 권리가 붙어 있는가”</mark>로 이동했습니다.</p>
+
+      <h4>4월 중국측 계약서 송부안 (사실)</h4>
       <ul>
-        <li>중국측이 <strong>1,000만 달러 출자 의지</strong>를 계약서에 명시</li>
-        <li>중국측이 <strong>한국측 지분 40%</strong>를 부여하기로 합의</li>
+        <li>중국측이 <strong>1,000만 달러 출자 의지</strong>를 계약서에 기재</li>
+        <li>중국측이 <strong>한국측 지분 40%</strong>를 부여하는 안으로 송부</li>
         <li>한국측은 <strong>SPV 구조</strong>로 40% 수령</li>
         <li>한국측은 <strong>현금 출자 의도 없음</strong> — 자산 출자로 대응</li>
       </ul>
       <div class="lock-note">
-        <strong>최남희 확정 사항 (변경 불가) — 본 트리 기준</strong><br>
-        ① 40% = <strong>상장 주체 지분</strong> (운영법인 ✗) · ② <strong>3층 분리</strong> (지분·IP Fee·실행 Fee) · ③ <strong>라텔 지분 ✗</strong>·최남희 개인 보유 · ④ 보유 4자 = 노느니특공대·김형석·이승규·최남희 · ⑤ 김형석 = 개인 + 노느니 법인 동시 보유
+        <strong>우리 아젠다의 대전제 — 본 트리 기준</strong><br>
+        ① 40% = <strong>상장 주체 지분</strong> — 향후 상장하는 모회사(MAD POP 그룹) 지분, 중국 내 운영법인 지분이 아님<br>
+        ② <strong>3층 분리</strong> — 한국측이 받을 보상을 세 층으로 분리. 1층 지분 40% · 2층 IP Fee(노느니가 IP 사용료로 매년 수취) · 3층 실행 Fee(라텔이 콘텐츠 제작 도급비로 수취). 지분 한 통으로 묶지 않고 분리해야 SPV 가치가 흔들려도 IP Fee·실행 Fee는 별도 계약으로 보호됨<br>
+        ③ <strong>라텔 지분 ✗</strong> — 라텔은 SPV 지분을 받지 않고, 최남희가 개인 자격으로 보유<br>
+        ④ 보유 4자 = 노느니특공대·김형석·이승규·최남희<br>
+        ⑤ 김형석 = 개인 + 노느니 법인 동시 보유
       </div>
 
       <h3>3. 핵심 아젠다 (6블록)</h3>
 
-      <h4>블록 1 — 한국측 포지션 1문장 확정 (15분)</h4>
+      <h4>블록 1 — 한국측 포지션 1문장 정렬 (15분)</h4>
+      <p style="font-size:13px;color:var(--fg-3);"><strong>Cash Partner ↔ Asset Partner</strong> — 중국은 1,000만 달러 현금을 넣어 사업을 굴리는 쪽(Cash), 한국은 돈이 아닌 IP·창작 시스템·K-POP 신뢰 자산을 넣어 사업의 실체를 만드는 쪽(Asset). 같은 사업 안에서 서로 다른 종류의 자본을 댄다는 프레임.</p>
       <p>중국측 앞에서 세 사람이 같은 문장을 써야 합니다.</p>
-      <blockquote>한국측은 현금 투자자가 아니라, MAD POP의 기업가치와 상장 스토리를 가능하게 하는 핵심 IP·창작 시스템·콘텐츠 신뢰 자산 제공자입니다.</blockquote>
+      <blockquote>한국측은 <mark class="kw">현금 투자자가 아니라</mark>, MAD POP의 기업가치와 상장 스토리를 가능하게 하는 <mark class="kw">핵심 IP·창작 시스템·콘텐츠 신뢰 자산 제공자</mark>입니다.</blockquote>
       <p>논의 포인트 — 이 문장을 셋 다 동일하게 발언 가능한가, "현금 투자자가 아니다"를 방어형 ✗ 정의형 ○ 으로 풀 것인가, "전략 자산 파트너 vs Cash Partner" 프레임을 어디까지 노출할 것인가.</p>
 
-      <h4>블록 2 — 3인 역할 분담 확정 (15분)</h4>
+      <h4>블록 2 — 3인 역할 분담 정렬 (15분)</h4>
+      <div class="kw-lead">
+        <span class="kw-label">라인 분리</span>
+        <span class="kw-pill">김형석 · 창작 신뢰 상징</span>
+        <span class="kw-pill">최남희 · IP·실무</span>
+        <span class="kw-pill is-core">이승규 · SPV 대표·자본시장</span>
+      </div>
+      <p style="margin:-4px 0 10px;font-size:13px;color:var(--fg-3);">피디님이 직접 묻지 않고 <mark class="kw">상장·밸류·자본시장 라인은 이승규가 담당</mark>합니다.</p>
       <table>
         <tr><th>역할</th><th>담당</th></tr>
         <tr><td>최종 의사결정·큰 방향·창작 신뢰의 상징</td><td>김형석</td></tr>
@@ -626,11 +688,31 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
       <p>최남희 라인 질문 — 사공이호 단계별 런칭 시나리오 / 중국 내 첫 6개월 실행 예산 / 콘텐츠 제작비 부담 주체 / 사공이호 IP 사용 범위·승인 구조 / 캐릭터·세계관·음악 변경 시 한국측 승인 권한.</p>
 
       <h4>블록 3 — SPV 11레이어 의사결정 합의 (25분·본 트리)</h4>
-      <p>본 페이지 하단 11레이어 트리에서 옵션을 골라 합의안을 만듭니다. 우측 사이드바에서 권장 경로·진행률·연결 룰을 실시간 확인 가능합니다.</p>
-      <p>핵심 결정 순서 — <strong>L10 이승규 결정 → L1·L2 관할·법적 형태 → L4 분배 시나리오 → L5 개인 보유 구조 → L7·L8·L9 Fee 구조 → L11·L12 거버넌스.</strong></p>
-      <p>각 옵션마다 "쉽게 풀어 보기" 평이체 해설 + 레이어 끝 "종합 장단점" 박스가 붙어 있어 비전문가도 판단 가능합니다.</p>
+      <div class="kw-lead">
+        <span class="kw-label">결정 순서</span>
+        <span class="kw-pill is-core">L10 이승규</span>
+        <span class="arr">→</span>
+        <span class="kw-pill">L1·L2 관할·법적 형태</span>
+        <span class="arr">→</span>
+        <span class="kw-pill">L4 분배</span>
+        <span class="arr">→</span>
+        <span class="kw-pill">L5 보유 구조</span>
+        <span class="arr">→</span>
+        <span class="kw-pill">L7·L8·L9 Fee</span>
+        <span class="arr">→</span>
+        <span class="kw-pill">L11·L12 거버넌스</span>
+      </div>
+      <p>본 페이지 하단 11레이어 트리에서 옵션을 골라 합의안을 만듭니다.</p>
 
-      <h4>블록 4 — 절대 불가·조건부 가능·협상 가능 리스트 확정 (20분)</h4>
+      <h4>블록 4 — 절대 불가·조건부 가능·협상 가능 리스트 정렬 (20분)</h4>
+      <div class="kw-lead">
+        <span class="kw-label">금지선</span>
+        <span class="kw-pill is-warn">절대 불가 7</span>
+        <span class="kw-pill">조건부 가능</span>
+        <span class="kw-pill">협상 가능</span>
+        <span class="kw-pill is-core">반드시 확보</span>
+      </div>
+      <p style="margin:-4px 0 10px;font-size:13px;color:var(--fg-3);">“무엇을 받을 것인가”보다 <mark class="kw">“무엇을 절대 넘기지 않을 것인가”</mark>가 먼저입니다.</p>
       <table>
         <tr><th>구분</th><th>항목</th></tr>
         <tr><td><strong>절대 불가</strong></td><td>사공이호 원천 IP 소유권 이전 / 무기한 독점권 / 전 세계 포괄 사용권 / 김형석 이름·초상 자유 사용 / 신규 IP 자동 귀속 / 정산 열람권 없는 수익 배분 / 중국측 제3자 재라이선스 자유</td></tr>
@@ -641,7 +723,13 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
       <p>논의 포인트 — "무기한 독점권" 기간 상한선 (몇 년) / 중국측 제3자 재라이선스 — 동의권 vs 사전 통지권.</p>
 
       <h4>블록 5 — 20% 외 업사이드 패키지 (15분)</h4>
-      <p>지분 40%가 상장 주체 지분으로 확정되었어도, 지분 외 권리 확보가 별도로 필요합니다. (본 트리 L7 IP Fee·L8·L9 실행 도급 Fee가 이 패키지의 일부)</p>
+      <div class="kw-lead">
+        <span class="kw-label">3층 분리</span>
+        <span class="kw-pill is-core">① 지분 40%</span>
+        <span class="kw-pill is-core">② IP Fee (L7)</span>
+        <span class="kw-pill is-core">③ 실행 Fee (L8·L9)</span>
+        <span class="kw-pill">+ 워런트·희석 방지·정산 감사권</span>
+      </div>
       <ul>
         <li>사공이호 IP 사용료 (L7에서 결정)</li>
         <li>음악 제작비·프로듀싱 Fee·콘텐츠 기획·감수 Fee</li>
@@ -653,6 +741,13 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
       </ul>
 
       <h4>블록 6 — 중국측 확인 질문 리스트 (15분)</h4>
+      <div class="kw-lead">
+        <span class="kw-label">확인할 4축</span>
+        <span class="kw-pill is-core">$10M 성격·입금 법인</span>
+        <span class="kw-pill is-core">40% 정합성·희석 방지</span>
+        <span class="kw-pill">IP 사용권 ↔ 지분 분리</span>
+        <span class="kw-pill">상장 로드맵 실체</span>
+      </div>
       <ol>
         <li>1,000만 달러는 출자금·운영비·대여금 중 무엇인가</li>
         <li>어느 법인에 들어가는가 (MADVERSE·MBMG·MAD POP·케이맨·홍콩·중국 내자회사 중)</li>
@@ -660,7 +755,7 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         <li>단계별 투입이라면 조건은 무엇인가</li>
         <li>미이행 시 한국측 권리 보호 장치</li>
         <li>이 자금 중 사공이호 런칭에 배정되는 예산은 얼마인가</li>
-        <li>한국측 40%는 상장 주체 지분 (최남희 확정 사항으로 한국측 입장 명확화) — 중국측 동일 인식 확인</li>
+        <li>한국측 40%는 상장 주체 지분 — 중국측 동일 인식 확인</li>
         <li>1,000만 달러 투입 후에도 40% 유지되는가 (희석 방지 — L11에서 한국측 입장 합의)</li>
         <li>사공이호 IP 사용권과 40% 지분은 별개로 처리되는가 (한국측 입장 = 별개·L7에서 IP Fee 별도 합의)</li>
         <li>상장 로드맵 실제 일정·주관사·밸류에이션 근거</li>
@@ -685,37 +780,41 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
       </table>
       <p>초기 우선순위 6개 — IP 바이블 → 캐릭터 DNA → 캐릭터 디자인 → 음악 → 영상 쇼츠 → AI 운용 규칙.</p>
 
-      <h3>5. 회의 결론으로 확정해야 할 5가지</h3>
+      <h3>5. 회의 결론으로 정렬해야 할 5가지</h3>
+      <div class="kw-lead">
+        <span class="kw-label">5개 한 줄</span>
+        <span class="kw-pill is-core">무투자</span>
+        <span class="kw-pill is-core">Asset Partner</span>
+        <span class="kw-pill is-warn">원천 IP 사수</span>
+        <span class="kw-pill is-core">3층 분리</span>
+        <span class="kw-pill">$10M 성격 확인</span>
+      </div>
       <p>회의 종료 전 다음 5개가 "셋 다 같은 답"이어야 합니다.</p>
       <ol>
-        <li>한국측은 돈을 넣지 않는다 (현금 출자 ✗·자산 출자 ○)</li>
-        <li>IP·창작 시스템·K-POP 신뢰 자산을 전략 자산으로 평가받는다</li>
-        <li>사공이호 원천 IP는 넘기지 않는다</li>
-        <li>40% 지분은 상장 주체 기준으로 확정 + Fee·수익권·성과 업사이드·승인권 별도 확보 (3층 분리)</li>
+        <li><mark class="kw">한국측은 돈을 넣지 않는다</mark> (현금 출자 ✗·자산 출자 ○)</li>
+        <li>IP·창작 시스템·K-POP 신뢰 자산을 <mark class="kw">전략 자산</mark>으로 평가받는다</li>
+        <li><mark class="kw">사공이호 원천 IP는 넘기지 않는다</mark></li>
+        <li>40% 지분은 <mark class="kw">상장 주체 기준</mark>으로 정렬 + Fee·수익권·성과 업사이드·승인권 별도 확보 (3층 분리)</li>
         <li>중국측 1,000만 달러 성격과 입금 법인을 다음 미팅에서 반드시 확인</li>
       </ol>
-      <blockquote>중국측의 돈이 기업가치가 되려면 한국측의 IP·창작 시스템이 필요하다는 구조를, 세 사람이 같은 언어로 말해야 합니다.</blockquote>
+      <blockquote><mark class="kw">중국측의 돈이 기업가치가 되려면 한국측의 IP·창작 시스템이 필요하다</mark>는 구조를, 세 사람이 같은 언어로 말해야 합니다.</blockquote>
 
-      <h3>6. 액션 아이템 (회의 직후)</h3>
-      <table>
-        <tr><th>#</th><th>액션</th><th>담당</th><th>기한</th></tr>
-        <tr><td>1</td><td>한국측 입장문 1페이지 작성</td><td>최남희</td><td>미팅 3일 전</td></tr>
-        <tr><td>2</td><td>한국측 기여 자산표 (자산·범위·방식·권리·대가)</td><td>최남희</td><td>미팅 3일 전</td></tr>
-        <tr><td>3</td><td>사공이호 IP 권리 기준표 (소유·사용·기간·지역·승인·수익·회수)</td><td>최남희</td><td>미팅 3일 전</td></tr>
-        <tr><td>4</td><td>중국측 확인 질문 리스트 정리</td><td>이승규</td><td>미팅 2일 전</td></tr>
-        <tr><td>5</td><td>양보 가능·불가 리스트 (내부용)</td><td>최남희</td><td>미팅 2일 전</td></tr>
-        <tr><td>6</td><td>SPV 11레이어 합의안 확정 (본 트리 기반)</td><td>3인 공동</td><td>미팅 당일</td></tr>
-      </table>
-
-      <h3>7. 미결 잔여물 (이번 미팅에서 결정)</h3>
-      <p>아래는 이전 아젠다 단계에서 미결이었으나, 본 트리에서 의사결정 가능합니다.</p>
+      <h3>6. 미결 잔여물 (이번 미팅에서 결정)</h3>
+      <div class="kw-lead">
+        <span class="kw-label">남은 결정</span>
+        <span class="kw-pill">관할 (L1)</span>
+        <span class="kw-pill">분배 (L4)</span>
+        <span class="kw-pill">개인 보유 (L5)</span>
+        <span class="kw-pill is-core">이승규 합류 (L10)</span>
+        <span class="kw-pill is-warn">$10M 입금 법인 (중국측)</span>
+      </div>
       <ul>
         <li>SPV 관할 (케이맨·홍콩·한국) — <strong>L1에서 결정</strong></li>
         <li>한국측 SPV 내부 지분 분배 비율 — <strong>L4에서 결정 (D·E·F·G 4안)</strong></li>
-        <li>김형석 창작팀 vs 노느니특공대 — <strong>L3 확정 (4자 보유) + L5 개인 보유 구조에서 김형석 가족법인 변형 결정</strong></li>
+        <li>김형석 창작팀 vs 노느니특공대 — <strong>L3 (4자 보유) + L5 개인 보유 구조에서 김형석 가족법인 변형 결정</strong></li>
         <li>이승규 합류 여부 — <strong>L10에서 본인 결정</strong></li>
-        <li>1,000만 달러 입금 법인 확정 — 중국측 답변 필요 (미팅에서 질문)</li>
-        <li>상장 주체와 운영법인 분리 구조 — <strong>최남희 확정 사항으로 한국측 입장 = 상장 주체</strong>·중국측 동의 확인 필요</li>
+        <li>1,000만 달러 입금 법인 — 중국측 답변 필요 (미팅에서 질문)</li>
+        <li>상장 주체와 운영법인 분리 구조 — 중국측 동의 확인 필요</li>
       </ul>
 
     </div>
@@ -725,7 +824,7 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
 <section class="hero">
   <h1>한국측 <span class="accent">40%</span> 안에서<br>4자가 어떻게 나눌 것인가</h1>
   <p class="sub">
-    중국측 1,000만 달러 · 한국측 40% (상장 주체 지분) 확정 이후, 한국측 4자 (노느니특공대 · 김형석 · 이승규 · 최남희) 가
+    중국측 1,000만 달러 · 한국측 40% (상장 주체 지분) 가설 위에서, 한국측 4자 (노느니특공대 · 김형석 · 이승규 · 최남희) 가
     SPV를 통해 보유하는 구조의 11개 의사결정 레이어를 시뮬레이션합니다. 옵션 클릭 시 다른 레이어가 연동되어 비활성·강제로 표시됩니다.
   </p>
   <div class="kpi-row">
@@ -752,7 +851,7 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
 <main class="main" role="main">
   <div class="layers" id="layers" role="region" aria-label="의사결정 레이어">
     <div class="locked">
-      <div class="locked-head">최남희 확정 사항 (변경 불가)</div>
+      <div class="locked-head">우리 아젠다의 대전제</div>
       <div class="locked-grid">
         <div class="locked-item">40% = 상장 주체 지분</div>
         <div class="locked-item">3층 분리 (지분 · IP Fee · 실행 Fee)</div>
@@ -844,11 +943,11 @@ const LAYERS = [
         easyCons: 'SPV가 받은 돈에 법인세(약 22%)가 먼저 붙고, 4자에게 배당될 때 다시 배당소득세가 붙는다 — 같은 돈에 두 번 과세된다. 합자조합 대비 4자 실수령이 약 15~20% 줄어든다.' }
     ]
   },
-  { id: 'L3', title: '40% 보유 주체 (확정)', locked: true,
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 최남희 확정 사항으로 분기 없음. <strong>의미:</strong> 김형석이 개인(창작 신뢰의 상징)+노느니 법인(IP 회수권) 두 주머니로 동시에 들어가는 구조. 노느니 = 사공이호 IP 모회사 / 김형석 = 창작 신뢰 자산 / 이승규 = 상장 스토리·SPV 대표성 / 최남희 = 통합 설계·실무 협상. 라텔은 의도적으로 제외 — 향후 라텔이 별도로 외부 투자받을 때 사공이호 SPV 지분이 라텔에 묶이지 않도록 분리.',
+  { id: 'L3', title: '40% 보유 주체 (대전제)', locked: true,
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 우리 아젠다 대전제로 분기 없음. <strong>의미:</strong> 김형석이 개인(창작 신뢰의 상징)+노느니 법인(IP 회수권) 두 주머니로 동시에 들어가는 구조. 노느니 = 사공이호 IP 모회사 / 김형석 = 창작 신뢰 자산 / 이승규 = 상장 스토리·SPV 대표성 / 최남희 = 통합 설계·실무 협상. 라텔은 의도적으로 제외 — 향후 라텔이 별도로 외부 투자받을 때 사공이호 SPV 지분이 라텔에 묶이지 않도록 분리.',
     options: [
       { code: '–', name: '노느니 + 김형석 + 이승규 + 최남희 4자', selected: true,
-        desc: '최남희 확정 사항. 분기 없음.',
+        desc: '우리 아젠다 대전제. 분기 없음.',
         pros: ['김형석 = 개인 + 노느니 법인 동시 보유'],
         cons: [],
         easyPros: '김형석이 개인과 노느니 법인 두 주머니로 들어가면, "창작 신뢰의 상징"(김형석 개인)과 "IP 회수권"(노느니 법인)이 분리된다 — 김형석이 개인적으로 SPV에서 빠져도 IP는 노느니로 회수된다. 라텔이 빠져서 향후 라텔의 별도 사업이 SPV에 묶이지 않는다.',
@@ -890,7 +989,7 @@ const LAYERS = [
   },
 
   { id: 'L5', title: '개인 보유 구조 (김형석·이승규·최남희 공통)',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 4자 중 노느니특공대를 제외한 3개인(김형석·이승규·최남희)의 SPV 지분을 개인 명의로 받을지, 법인을 통해 받을지. 3인 모두 같은 트레이드오프 구조라 1개 레이어로 통합 결정. <strong>핵심 트레이드오프:</strong> 즉시 단순성(A) vs 세금·승계·이혼 리스크 차단(B). <strong>한국측 40% 가치 보존 관점:</strong> SPV가 향후 수십·수백억 가치가 되면 양도세(27.5%+α) vs 익금불산입 법인 보유의 차이는 수억 단위로 벌어진다. 이혼·사망 시 개인 명의는 가족 분쟁의 영토가 되지만, 법인은 주식 단위로 통제 가능하다. <strong>3인 변형:</strong> 최남희는 1인 법인 (라텔과 분리 필수·형 확정사항) / 이승규는 1인 법인 (가장 단순) / 김형석은 가족법인 또는 SPC (가업승계 특례 적용 가능). 본인 의사 존중 영역이지만 미팅에서 B안을 디폴트로 권장.',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 4자 중 노느니특공대를 제외한 3개인(김형석·이승규·최남희)의 SPV 지분을 개인 명의로 받을지, 법인을 통해 받을지. 3인 모두 같은 트레이드오프 구조라 1개 레이어로 통합 결정. <strong>핵심 트레이드오프:</strong> 즉시 단순성(A) vs 세금·승계·이혼 리스크 차단(B). <strong>한국측 40% 가치 보존 관점:</strong> SPV가 향후 수십·수백억 가치가 되면 양도세(27.5%+α) vs 익금불산입 법인 보유의 차이는 수억 단위로 벌어진다. 이혼·사망 시 개인 명의는 가족 분쟁의 영토가 되지만, 법인은 주식 단위로 통제 가능하다. <strong>3인 변형:</strong> 최남희는 1인 법인 (라텔과 분리 필수·대전제) / 이승규는 1인 법인 (가장 단순) / 김형석은 가족법인 또는 SPC (가업승계 특례 적용 가능). 본인 의사 존중 영역이지만 미팅에서 B안을 디폴트로 권장.',
     options: [
       { code: 'A', name: '3인 모두 개인 직접 보유',
         desc: '김형석·이승규·최남희 각자 개인 명의로 SPV 지분 보유',
