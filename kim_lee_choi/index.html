@@ -887,9 +887,9 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
   </p>
   <div class="kpi-row">
     <div class="kpi"><div class="num">11</div><div class="lbl">결정 레이어</div><div class="desc">L1·L2·L3·L4·L5·L6·L7·L8·L9·L10·L11 — 관할·법적 형태·분배·보유·Fee·거버넌스·베스팅 등</div></div>
-    <div class="kpi"><div class="num">28</div><div class="lbl">총 옵션</div><div class="desc">11 레이어 안에서 고를 수 있는 선택지 합계 — 옵션 클릭 시 다른 레이어가 자동 연동</div></div>
+    <div class="kpi"><div class="num">29</div><div class="lbl">총 옵션</div><div class="desc">11 레이어 안에서 고를 수 있는 선택지 합계 — 옵션 클릭 시 다른 레이어가 자동 연동</div></div>
     <div class="kpi"><div class="num">8</div><div class="lbl">연결 룰</div><div class="desc">한 옵션이 다른 레이어를 강제·권장·비활성·메모로 변경하는 자동 연결 규칙 개수</div></div>
-    <div class="kpi"><div class="num">71</div><div class="lbl">결합 시나리오</div><div class="desc">11 레이어 조합으로 생성 가능한 시나리오 — 권장경로 1 + 변형 70(세무·통제·상장·분쟁·CFC·키맨·L4 6안 풀커버·양강·절대다수·4자 동등·하이브리드 최선/최악)</div></div>
+    <div class="kpi"><div class="num">76</div><div class="lbl">결합 시나리오</div><div class="desc">11 레이어 조합으로 생성 가능한 시나리오 — 권장경로 1 + 변형 75(세무·통제·상장·분쟁·CFC·키맨·L4 6안 풀커버·양강·절대다수·4자 동등·L7 공동 도급·하이브리드 최선/최악)</div></div>
     <div class="kpi"><div class="num"><span class="accent">40</span>%</div><div class="lbl">한국측 지분</div></div>
     <div class="kpi"><div class="num">4</div><div class="lbl">보유 주체</div><div class="desc">노느니특공대·김형석·이승규·최남희 — 한국측 40%를 나눠 가지는 4자</div></div>
   </div>
@@ -1110,20 +1110,26 @@ const LAYERS = [
     ]
   },
   { id: 'L7', title: '실행 도급 구조',
-    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 실제 콘텐츠 제작비를 SPV가 누구에게 도급할지 — 노느니를 끼울지(A), 라텔에 직접 줄지(B). <strong>핵심 트레이드오프:</strong> 한국측 통제 일원화·노느니 마진(A) vs 책임 명확·중국측 직접 검증 가능(B). <strong>한국측 40% 가치 보존 관점:</strong> A안은 노느니가 한국측 모든 실행을 한 번에 검수·전달하는 단일 창구가 되어 통제력이 가장 강하다. 노느니가 SPV→라텔 사이에서 마진(예: 도급액의 5~10%)을 확보해 추가 수익원이 된다. B안은 중국측이 라텔을 직접 평가·통제하려 할 가능성이 높아 한국측 통제력이 약화된다. <strong>거래상지위 남용(공정거래법 §45):</strong> KFTC 심사지침 — 일회성 거래도 거래 종속성·이탈 곤란성 인정 시 거래상지위 성립(처분 강화 트렌드) — 중국측 SPV가 라텔에 단가 강요·기술 강제이전·일방 해지 등을 요구하면 한국 KFTC 신고가 곧 카운터 레버가 된다. A안의 노느니 단일 창구가 이 카운터를 더 쉽게 만든다. R6 룰에 의해 B안 선택 시 L10 거버넌스가 자동 특별의결권으로 강제된다.',
+    comprehensive: '<strong>이 레이어가 결정하는 것:</strong> 실제 콘텐츠 제작비를 SPV가 누구에게 도급할지 — 노느니 단독 경유(A), 라텔 단독 직접(B), 노느니+라텔 공동 도급(C). <strong>핵심 트레이드오프:</strong> 한국측 통제 일원화·노느니 마진(A) vs 책임 명확·중국측 직접 검증(B) vs 책임 분담·통제 균형(C). <strong>한국측 40% 가치 보존 관점:</strong> A안은 노느니 단일 창구로 통제력 최강·마진 5~10% 확보. B안은 책임 명확하나 중국측 라텔 직접 통제 그림자 강화. C안은 노느니=IP 통합 검수·창의 방향, 라텔=제작 실행·예산·일정으로 책임 영역을 명문화하여 통제 균형. <strong>거래상지위 남용(공정거래법 §45):</strong> KFTC 심사지침 — 일회성 거래도 거래 종속성·이탈 곤란성 인정 시 거래상지위 성립(처분 강화 트렌드). A·C안은 노느니 라인이 KFTC 카운터 레버 보존. R6 룰에 의해 B안 선택 시 L10 거버넌스 자동 특별의결권 강제. C안은 R6 미적용(공동 도급 시 한국측 통제 절반 유지).',
     options: [
-      { code: 'A', name: 'SPV → 노느니 → 라텔 재외주',
+      { code: 'A', name: 'SPV → 노느니 단독 (라텔 재외주)',
         desc: '노느니가 SPV로부터 도급받고 라텔에 재외주',
         pros: ['한국측 통제 일원화','노느니 마진 확보'],
         cons: ['노느니 행정부담','이중 계약'],
         easyPros: '한국측 모든 실행이 노느니를 거쳐 검수·전달되어 통제력이 가장 강하다. 노느니가 SPV→라텔 사이 마진(약 5~10%)을 확보해 추가 수익원이 생긴다. 중국측이 라텔과 직접 접촉할 통로가 차단된다.',
         easyCons: '노느니가 도급 행정(계약·정산·세금계산서)을 두 건씩 처리해야 한다. 노느니 인력·시스템 부담이 늘어난다.' },
-      { code: 'B', name: 'SPV → 라텔 직접 도급',
+      { code: 'B', name: 'SPV → 라텔 단독 (직접 도급)',
         desc: 'SPV가 라텔에 직접 도급',
         pros: ['책임 명확','노느니 행정부담 ✗'],
         cons: ['중국측이 라텔 직접 검증 요구 가능'],
         easyPros: '도급 라인이 한 단계라 계약이 단순하다. 노느니 행정 부담이 없다. 책임 소재가 라텔로 명확하다.',
-        easyCons: '중국측이 SPV 이사회를 통해 라텔의 인력·예산·일정을 직접 들여다볼 권리를 요구할 가능성이 높다. 라텔이 중국측 직접 통제권의 그림자에 노출된다. 노느니의 통합 검수 단계가 사라져 한국측 통제력 약화.' }
+        easyCons: '중국측이 SPV 이사회를 통해 라텔의 인력·예산·일정을 직접 들여다볼 권리를 요구할 가능성이 높다. 라텔이 중국측 직접 통제권의 그림자에 노출된다. 노느니의 통합 검수 단계가 사라져 한국측 통제력 약화.' },
+      { code: 'C', name: 'SPV → 노느니 + 라텔 공동 도급',
+        desc: '노느니=IP 검수·창의 / 라텔=제작 실행 책임 분담',
+        pros: ['책임 영역 명문화','통제 균형','노느니 IP 검수 + 라텔 실행 양 라인 가시화'],
+        cons: ['행정 이원화','책임 경계 분쟁 여지'],
+        easyPros: '노느니는 IP 통합 검수·창의 방향을, 라텔은 제작 실행·예산·일정을 각자 책임진다. 한국측 통제가 절반은 유지되면서 책임 영역이 명확해진다. 노느니가 IP Fee로 마진을 흡수하고 라텔이 실행 도급비를 별도 수령한다. 중국측 직접 통제 그림자가 라텔에만 국한된다.',
+        easyCons: '도급 라인이 둘로 나뉘어 행정 부담이 늘어난다. 책임 경계가 모호하면(예: IP 톤이 깨졌는데 노느니 검수 책임인지 라텔 실행 책임인지) 분쟁 여지가 발생한다. SHA·계약서에 책임 영역을 verbatim으로 명문화해야 한다.' }
     ]
   },
   { id: 'L8', title: '실행 도급 시점 전략',
@@ -2277,6 +2283,81 @@ const COMBO_SCENARIOS = [
       cash: '4자 실수령 마이너스 위험'
     },
     cite: 'L4-I + L1-C · IP 절대다수 + CFC 폭탄'
+  },
+  {
+    id: 'V_L7C',
+    name: '변형 71 — 공동 도급(L7=C, 노느니+라텔)',
+    match: function(sel) { return sel.L7==='C' && sel.L9!=='C'; },
+    axes: {
+      tax: '노느니 IP Fee + 라텔 도급비 분리 — 노느니 도급 마진은 IP Fee로 흡수. 양 라인 세금계산서 분리',
+      control: '책임 영역 명문화(노느니=IP 검수·라텔=실행) — 통제 절반 유지. R6 룰 미적용(B만 강제)',
+      ipo: 'IR 시 "이중 책임 라인" 시그널 — 거버넌스 명확성 가산',
+      voidRisk: '책임 경계 verbatim 명시 안 하면 분쟁 여지(IP 톤 깨짐 시 노느니·라텔 책임 다툼)',
+      dispute: 'BATNA 균형 — 노느니 IP 회수 + 라텔 실행 분리 가능',
+      odi: '중국측 ODI 변동 없음',
+      cash: '노느니 IP Fee + 라텔 도급비 양 라인 분리 정산'
+    },
+    cite: 'L7-C · 공동 도급 · 통제 균형 + 책임 분담'
+  },
+  {
+    id: 'V_L7C_L1A',
+    name: '변형 72 — 공동 도급 × 케이맨 2층(L7=C, L1=A)',
+    match: function(sel) { return sel.L7==='C' && sel.L1==='A'; },
+    axes: {
+      tax: '세무 최적 + 공동 도급 양 라인 분리 — 노느니 IP Fee + 라텔 도급비 각자 세무 통과',
+      control: '케이맨 표준 + 공동 도급 책임 분담',
+      ipo: 'IR 시 "세무 최적 + 이중 책임" 시그널',
+      voidRisk: '책임 경계 verbatim 필수',
+      dispute: 'BATNA 균형',
+      odi: 'BVI/HK 경유 표준',
+      cash: '양 라인 분리 정산 + 세무 최적'
+    },
+    cite: 'L7-C + L1-A · 공동 도급 + 세무 최적'
+  },
+  {
+    id: 'V_L7C_L10A',
+    name: '변형 73 — 공동 도급 × 특별의결권(L7=C, L10=A)',
+    match: function(sel) { return sel.L7==='C' && sel.L10==='A'; },
+    axes: {
+      tax: '공동 도급 양 라인 분리',
+      control: '공동 도급 통제 절반 + 75% 가중 = 통제 균형 + 핵심사안 보호 동시',
+      ipo: 'IR 시 거버넌스 안정 + 책임 명확 양 시그널',
+      voidRisk: '책임 경계 + SHA 75% 가중 verbatim 필수',
+      dispute: 'BATNA 균형 강화',
+      odi: '중국측 ODI 변동 없음',
+      cash: '양 라인 + 75% 가중 안전판'
+    },
+    cite: 'L7-C + L10-A · 공동 도급 + 핵심사안 보호'
+  },
+  {
+    id: 'V_REC_L7C',
+    name: '변형 74 — 권장 + 공동 도급(L7=C 적용)',
+    match: function(sel) { return sel.L1==='A' && sel.L2==='A' && sel.L4==='D' && sel.L7==='C'; },
+    axes: {
+      tax: '권장 세무 + 공동 도급 양 라인 분리',
+      control: '권장 분배 + 공동 도급 통제 균형',
+      ipo: 'IR 시 "권장 + 이중 책임" 시그널',
+      voidRisk: '책임 경계 verbatim 필수',
+      dispute: 'BATNA 균형',
+      odi: 'BVI/HK 경유 표준',
+      cash: '권장 + 양 라인 분리 정산'
+    },
+    cite: '권장 경로 + L7-C 공동 도급'
+  },
+  {
+    id: 'V_L4H_L7C',
+    name: '변형 75 — 양강 × 공동 도급(L4=H, L7=C)',
+    match: function(sel) { return sel.L4==='H' && sel.L7==='C'; },
+    axes: {
+      tax: '양강 노느니 익금불산입 80% + 공동 도급 양 라인',
+      control: 'IP법인·창작자 양강 통제 + 공동 도급 책임 분담 = 4축 균형',
+      ipo: 'IR 시 "양강 + 이중 책임" 시그널',
+      voidRisk: '책임 경계 + SHA verbatim 필수',
+      dispute: 'BATNA 균형',
+      odi: '중국측 ODI 변동 없음',
+      cash: '양축 + 양 라인 분리'
+    },
+    cite: 'L4-H + L7-C · 양강 + 공동 도급'
   }
 ];
 
