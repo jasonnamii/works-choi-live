@@ -721,6 +721,11 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         <tr><td><strong>합자조합(한국 상법상 조합형 구조·LP 유사)</strong></td><td>한국 상법상 조합. SPV 자체에 법인세 ✗(파스스루)·4자 각자에게 직접 과세. 미국 LLC와 동일한 법적 형태는 아니므로, 해외 투자자 설명 시 "Korean limited partnership-like vehicle" 또는 "contractual partnership vehicle"로 설명한다.</td></tr>
         <tr><td><strong>경업금지 6요소</strong></td><td>대법원 2009다82244(2010.3.11) — ①보호이익 ②퇴직 전 지위 ③기간·지역·대상 ④대가 ⑤퇴직경위 ⑥공공이익 종합 판단. 합리적 범위 일탈 시 민법 §103 무효.</td></tr>
         <tr><td><strong>주주간계약 대항력</strong></td><td>대법원 2012다80996(2013.9.13) — 주주간계약은 주주 자격 행위만 구속. 동일인이 이사로 한 행위에는 자동 미적용. 정관 반영 또는 프로큐어 조항 필요.</td></tr>
+        <tr><td><strong>Fully-Diluted</strong></td><td>완전희석 기준. 발행 보통주 + 미발행 옵션풀(ESOP) + 전환사채(CB)·전환우선주(CPS)·SAFE·워런트 전부 보통주로 전환·행사되었다고 가정한 분모. "40%"가 보통주 기준 40%인지 fully-diluted 40%인지에 따라 실질 지분율 5~15%p 차이 발생.</td></tr>
+        <tr><td><strong>Anti-Dilution</strong></td><td>희석 방지 조항. 다음 라운드 발행가가 직전 라운드보다 낮을 때(down round) 기존 주주의 지분 가치 보존 장치. 한국측 40%가 1,000만 달러 투입 후·다음 라운드 후에도 유지되려면 SHA에 verbatim 명시 필수.</td></tr>
+        <tr><td><strong>Broad-Based Weighted Average</strong></td><td>가중평균 anti-dilution 방식. down round 시 직전 발행가·신주 발행가·발행주식 총수를 가중평균하여 전환비율을 조정. 한국측에 <em>유리한 정도가 중간</em> — 발행자(중국측·SPV) 친화적 표준. 글로벌 VC 시장 표준이며 "공정" 명분으로 끌고 가기 쉬움.</td></tr>
+        <tr><td><strong>Full Ratchet</strong></td><td>완전비례 anti-dilution 방식. down round 시 기존 주주 전환가를 신주 발행가까지 완전히 내려서 지분율을 그대로 유지. 한국측에 <em>가장 유리</em> — 단 협상 난이도 최상. 한국측이 40% 유지의 절대선이 필요할 때 1차 카드, 가중평균이 2차 fallback.</td></tr>
+        <tr><td><strong>Class B (차등의결권 우선주)</strong></td><td>보통주(Class A)와 의결권·배당·잔여재산 분배 우선권에서 차이를 가지는 별도 주식 클래스. NASDAQ·홍콩 상장 케이맨 법인에서 창업자·전략 파트너 통제력 유지 목적으로 흔히 설계됨. 한국측 40%를 Class B로 받으면 향후 라운드 희석 방어와 의결권 유지에 유리하나, 상장 거래소·인수자 평가에 따라 디스카운트 가능.</td></tr>
       </table>
 
       <h3>2. 전제 정리 (5분)</h3>
@@ -748,6 +753,35 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         ③ <strong>라텔 지분 ✗</strong> — 라텔은 SPV 지분을 받지 않고, 최남희가 개인 자격으로 보유<br>
         ④ 보유 4자 = 노느니특공대·김형석·이승규·최남희<br>
         ⑤ 김형석 = 개인 + 노느니 법인 동시 보유
+      </div>
+
+      <div class="lock-note" style="background:#fff8e6;border:2px solid #b25b00;margin-top:10px;">
+        <strong style="color:#b25b00;">40% 정합성 3축 — "40%"는 1차원 숫자가 아니라 3차원 좌표</strong><br>
+        <span style="font-size:13px;color:#555;">단순히 "40%"를 받았다는 합의는 미팅 후 30%대로 재해석될 여지가 있다. 미팅 자리에서 다음 3축이 함께 합의되어야 한국측 40%가 비로소 40%다.</span>
+        <table style="width:100%;margin-top:10px;font-size:13px;">
+          <tr style="background:rgba(178,91,0,0.08);">
+            <th style="width:20%;text-align:left;padding:8px 10px;border-bottom:1px solid #b25b00;">축</th>
+            <th style="width:35%;text-align:left;padding:8px 10px;border-bottom:1px solid #b25b00;">정의</th>
+            <th style="width:45%;text-align:left;padding:8px 10px;border-bottom:1px solid #b25b00;">합의 확보 항목</th>
+          </tr>
+          <tr>
+            <td style="padding:8px 10px;border-bottom:1px dashed #ccc;"><strong>① 법인 식별자</strong><br><span style="font-size:12px;color:#888;">분자가 무엇인가</span></td>
+            <td style="padding:8px 10px;border-bottom:1px dashed #ccc;">상장 예정 케이맨 법인의 법적 식별자</td>
+            <td style="padding:8px 10px;border-bottom:1px dashed #ccc;">법인 등록명·등록번호·관할·등록일·주주명부 / IPO 시점 발행 entity와 동일성 / MAD POP 그룹 내 다른 SPV·중간지주 존재 여부</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 10px;border-bottom:1px dashed #ccc;"><strong>② 분모 정의</strong><br><span style="font-size:12px;color:#888;">무엇으로 나눈 40%인가</span></td>
+            <td style="padding:8px 10px;border-bottom:1px dashed #ccc;">발행주식 총수 산정 기준 (Fully-Diluted 권장)</td>
+            <td style="padding:8px 10px;border-bottom:1px dashed #ccc;">보통주 기준 vs Fully-Diluted 기준 / ESOP·전환사채·옵션풀 포함 여부 / Anti-Dilution 조항 적용 방식 (Broad-Based vs Full Ratchet)</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 10px;"><strong>③ 권리 클래스</strong><br><span style="font-size:12px;color:#888;">어떤 권리가 붙은 40%인가</span></td>
+            <td style="padding:8px 10px;">주식 종류·의결권·잔여재산 분배 우선권</td>
+            <td style="padding:8px 10px;">보통주(Class A) vs 우선주(Class B) / 의결권 1:1 vs 차등 / 잔여재산 분배 우선권 / 배당 우선권</td>
+          </tr>
+        </table>
+        <p style="margin-top:10px;font-size:13px;color:#555;"><strong>미팅 1문장</strong> — "40%를 다시 정의합시다. 상장 예정 케이맨 법인(MAD POP의 법인 등록명 확인 필요)의 상장 시점 fully-diluted 기준 40%, 그리고 그 권리 클래스가 어떤 우선권을 가지는지. 이 세 가지가 함께 합의되어야 한국측 40%가 비로소 40%입니다."</p>
+        <p style="margin-top:6px;font-size:12px;color:#888;"><strong>협상 순서 주의</strong> — Anti-Dilution을 먼저 꺼내면 중국측이 "그럼 broad-based로 합시다"로 끌고 갈 수 있다. <strong>분모 정의(②)를 먼저 합의</strong>한 뒤 Anti-Dilution(②-3)을 꺼내는 순서가 유리.</p>
       </div>
 
       <h3>3. 핵심 아젠다 (6블록)</h3>
@@ -853,9 +887,27 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         <li>단계별 투입이라면 조건은 무엇인가</li>
         <li>미이행 시 한국측 권리 보호 장치</li>
         <li>이 자금 중 사공이호 런칭에 배정되는 예산은 얼마인가</li>
-        <li>한국측 40%는 상장 주체 지분 — 중국측 동일 인식 확인</li>
-        <li>1,000만 달러 투입 후에도 40% 유지되는가 (희석 방지 — 10에서 한국측 입장 합의)</li>
-        <li>사공이호 IP 사용권과 40% 지분은 별개로 처리되는가 (한국측 입장 = 별개·07에서 IP Fee 별도 합의)</li>
+        <li>한국측 40%는 상장 주체 지분 — 중국측 동일 인식 확인 <strong>(축 ① 법인 식별자)</strong>
+          <ul style="margin-top:4px;">
+            <li>7-1 상장 entity 법인 등록명·등록번호·관할 확인</li>
+            <li>7-2 그 법인이 IPO 시점의 발행 entity와 동일한가 (중간지주 끼우는가)</li>
+            <li>7-3 MAD POP 그룹 내 다른 SPV·중간지주 존재 여부·구조도 제공</li>
+          </ul>
+        </li>
+        <li>1,000만 달러 투입 후에도 40% 유지되는가 <strong>(축 ② 분모 정의 — 희석 방지·10에서 한국측 입장 합의)</strong>
+          <ul style="margin-top:4px;">
+            <li>8-1 분모 정의 — 보통주 기준 vs Fully-Diluted 기준 <em>(먼저 합의)</em></li>
+            <li>8-2 ESOP·전환사채·옵션풀·SAFE 포함 여부 <em>(분모 확정)</em></li>
+            <li>8-3 다음 라운드 down round 발생 시 Anti-Dilution 조항 적용 여부·방식 (Broad-Based Weighted Average vs Full Ratchet) <em>(분모 합의 후 꺼냄)</em></li>
+          </ul>
+        </li>
+        <li>사공이호 IP 사용권과 40% 지분은 별개로 처리되는가 — 한국측 입장 = 별개·07에서 IP Fee 별도 합의 <strong>(축 ③ 권리 클래스 + 3층 분리)</strong>
+          <ul style="margin-top:4px;">
+            <li>9-1 40% 지분의 주식 종류 — 보통주(Class A) vs 우선주(Class B 차등의결권) · 의결권 1:1 vs 차등 · 잔여재산 분배 우선권</li>
+            <li>9-2 IP 사용권 라이선스 계약과 SPV 주주간계약 분리 여부 / IP Fee 산정·지급 주체 (운영법인 vs 상장 주체)</li>
+            <li>9-3 40% 지분 가치 변동 시 IP 사용권 자동 회수 조건 (트리거·통지·유예기간)</li>
+          </ul>
+        </li>
         <li>상장 로드맵 실제 일정·주관사·밸류에이션 근거</li>
       </ol>
 
@@ -892,7 +944,7 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         <li><mark class="kw">한국측은 돈을 넣지 않는다</mark> (현금 출자 ✗·자산 출자 ○)</li>
         <li>IP·창작 시스템·K-POP 신뢰 자산을 <mark class="kw">전략 자산</mark>으로 평가받는다</li>
         <li><mark class="kw">사공이호 원천 IP는 넘기지 않는다</mark></li>
-        <li>40% 지분은 <mark class="kw">상장 주체 기준</mark>으로 정렬 + Fee·수익권·성과 업사이드·승인권 별도 확보 (3층 분리)</li>
+        <li>40%는 <mark class="kw">상장 entity의 Fully-Diluted 기준 보통주(또는 우선주 Class B) 40%</mark>로 정의하고, Fee·수익권·승인권을 별도 계약으로 분리한다 (3층 분리·40% 정합성 3축 = 법인 식별자·분모 정의·권리 클래스)</li>
         <li>중국측 1,000만 달러 성격과 입금 법인을 다음 미팅에서 반드시 확인</li>
       </ol>
       <blockquote><mark class="kw">중국측의 돈이 기업가치가 되려면 한국측의 IP·창작 시스템이 필요하다</mark>는 구조를, 세 사람이 같은 언어로 말해야 합니다.</blockquote>
@@ -913,6 +965,7 @@ h2.title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin: 0
         <li>이승규 합류 여부 — <strong>02에서 본인 결정</strong></li>
         <li>1,000만 달러 입금 법인 — 중국측 답변 필요 (미팅에서 질문)</li>
         <li>상장 주체와 운영법인 분리 구조 — 중국측 동의 확인 필요</li>
+        <li><strong>40% 정합성 3축</strong> — ① 법인 식별자 (상장 entity 등록명·번호) ② 분모 정의 (Fully-Diluted 기준) ③ 권리 클래스 (Class B 우선주·anti-dilution 방식) <strong>모두 중국측 답변 필요</strong></li>
       </ul>
 
     </div>
