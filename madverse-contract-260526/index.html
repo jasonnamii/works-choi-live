@@ -1093,7 +1093,10 @@ function setActive(id){
     el.classList.remove("hot","dim");
   });
   if(!id){drawEdges(null);renderPanel(null);return;}
-  const n=byId[id]; const linked=new Set([id, ...(n.links||[])]);
+  const n=byId[id];
+  // OUT + IN 모두 포함 (양방향 강조)
+  const inboundIds = NODES.filter(x=>(x.links||[]).includes(id)).map(x=>x.id);
+  const linked=new Set([id, ...(n.links||[]), ...inboundIds]);
   document.querySelectorAll(".node").forEach(el=>{
     const nid=el.dataset.id;
     if(nid===id) el.classList.add("hot");
@@ -1123,14 +1126,18 @@ function renderPanel(id){
   const tagMap={fav:'<span class="tag fav">갑 유리</span>',bad:'<span class="tag bad">을 불리</span>',trap:'<span class="tag trap">함정</span>',neu:'<span class="tag">중립</span>'};
   const chains=(n.chains||[]).map(c=>`<span class="tag chain c${c}">체인${c}</span>`).join(" ");
   const warn=n.warn?'<div class="pmark">⚠ 맹점 마커: '+(n.note||"")+'</div>':"";
-  const linksHtml=(n.links||[]).map(x=>`<a data-go="${x}">${byId[x].no}</a>`).join(" ");
+  const outLinks=(n.links||[]);
+  const inLinks=NODES.filter(x=>(x.links||[]).includes(id) && !outLinks.includes(x.id)).map(x=>x.id);
+  const outHtml=outLinks.map(x=>`<a data-go="${x}">${byId[x].no}</a>`).join(" ");
+  const inHtml=inLinks.map(x=>`<a data-go="${x}">${byId[x].no}</a>`).join(" ");
   p.innerHTML=
     `<h2>조항 상세 (verbatim)</h2>
      <div class="pno">${n.no}</div>
      <div class="ptt">${tagMap[n.cls]||""} ${chains} ${n.ttl}</div>
      ${warn}
      <div class="pverbatim">${(n.body||"").replace(/&/g,"&amp;").replace(/</g,"&lt;")}</div>
-     <div class="plinks"><b>연결 조항:</b> ${linksHtml||"<i>없음</i>"}</div>
+     <div class="plinks"><b>→ 가리키는 조항(OUT):</b> ${outHtml||"<i>없음</i>"}</div>
+     <div class="plinks" style="margin-top:4px"><b>← 가리켜지는 조항(IN):</b> ${inHtml||"<i>없음</i>"}</div>
      <div class="pnote">${n.note||""}</div>`;
   p.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",()=>setActive(a.dataset.go)));
 }
