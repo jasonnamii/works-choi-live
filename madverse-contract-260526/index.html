@@ -54,7 +54,7 @@ header .sub{font-size:12px;color:var(--mute)}
 .stage-wrap{height:720px}
 @media (min-width: 1001px){ .stage-wrap{height:760px} }
 @media (max-width: 1000px){ .panel-wrap{height:auto;max-height:none;position:static;width:100%} .stage-wrap{height:680px} }
-.stage-wrap{position:relative;background:var(--bg);overflow:hidden;height:100%;width:100%}
+.stage-wrap{position:relative;background:var(--bg);overflow:hidden;width:100%}
 .scroller{position:absolute;inset:0;overflow:auto;background:
   linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px) 0 0/40px 40px,
   linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px) 0 0/40px 40px,
@@ -1289,8 +1289,14 @@ function setZoom(v){
 }
 function fitZoom(){
   const sc=document.getElementById("scroller");
-  const fw=sc.clientWidth/STAGE_W;
-  setZoom(fw*0.99);
+  let w=sc.clientWidth;
+  // fallback — scroller가 닫혀있어 width=0이면 stage-wrap·viewport 기준
+  if(!w){
+    const sw=document.querySelector(".stage-wrap");
+    w = (sw && sw.clientWidth) || window.innerWidth || 1200;
+  }
+  const fw=w/STAGE_W;
+  setZoom(Math.max(0.35, fw*0.99));
 }
 document.getElementById("zin").onclick=()=>setZoom(z+0.1);
 document.getElementById("zout").onclick=()=>setZoom(z-0.1);
