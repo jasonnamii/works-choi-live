@@ -12,7 +12,9 @@
 
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fafaf9">
+<meta name="format-detection" content="telephone=no">
 <title>MADVERSE × 김형석 합자계약서 — 조항 관계도</title>
 <style>
 :root{
@@ -188,6 +190,74 @@ header .sub{font-size:12px;color:var(--mute)}
 .ch-body .header-relmap{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.97);backdrop-filter:saturate(120%) blur(6px);border-bottom:0.5px solid #e5e5e5;padding:12px 20px}
 .ch-body .header-relmap h2{margin:0 0 4px;font-size:15px;font-weight:600}
 .ch-body .header-relmap .sub{font-size:12px;color:#6b7280}
+
+/* === 전역 가독성·접근성 보강 === */
+html,body{word-break:keep-all;line-break:strict;overflow-wrap:anywhere;-webkit-text-size-adjust:100%}
+p{orphans:2;widows:2}
+header .sub{color:#4b5563}
+.warn{color:#92400e}
+.chainsw .b1.on{background:#0369a1;border-color:#0369a1}
+.shell-header .shell-meta{color:#6b7280}
+
+/* === 인쇄·접근성 === */
+@media print{
+  header,.ctrl,.zoombox,.panel-wrap,.ch-banner .ch-arrow{display:none !important}
+  .stage{transform:none !important}
+  .ch-body{max-height:none !important}
+  body{background:#fff;color:#000}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none !important;animation:none !important}
+}
+@media (prefers-color-scheme: light){
+  /* 디폴트가 light 톤이라 별도 변경 없음 — 분기 명시 */
+}
+
+/* === 모바일 오버라이드 (≤480·≤768) === */
+@media (max-width: 768px){
+  .wrap{height:auto}
+  .stage-wrap{height:78vh; height:78dvh; min-height:520px}
+  .panel-wrap{position:fixed; top:auto; right:0; bottom:0; left:0; width:100%; height:55vh; height:55dvh; max-height:60vh; border-left:0; border-top:0.5px solid var(--line); transform:translateY(100%); transition:transform .25s ease; z-index:30}
+  .panel-wrap.open{transform:translateY(0)}
+  .zoombox{right:8px; top:8px}
+  header{padding:8px 12px}
+  header h1{font-size:14.5px}
+  .ctrl input[type=text]{min-width:0; flex:1 1 100%}
+  .ch-inner{padding:24px 16px 32px}
+  .mb-h1{font-size:22px}
+  .mb-h2{font-size:17px; padding-left:10px}
+  .mb-h3{font-size:15px}
+  .ch-inner p, .ch-inner li{font-size:14.5px; line-height:1.7}
+  .mb-tbl{font-size:12.5px; display:block; overflow-x:auto; -webkit-overflow-scrolling:touch}
+  .mb-tbl thead th, .mb-tbl td{padding:7px 9px}
+  .shell-header{padding:14px 16px 12px}
+  .shell-header h1{font-size:16px; line-height:1.4}
+  .ch-banner{padding:14px 16px}
+  .ch-banner .ch-ttl{font-size:15px}
+  .ch-banner .ch-no{font-size:11.5px; margin-right:8px}
+  /* 터치 타겟 44px */
+  .ctrl button{min-height:44px; min-width:44px; padding:8px 14px; font-size:13px}
+  .panel-wrap a, .panel-wrap button{min-height:44px}
+  .zoombox button{min-height:36px; min-width:36px; padding:4px 10px}
+  /* safe-area */
+  body{padding-bottom:env(safe-area-inset-bottom)}
+  .panel-wrap{padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+}
+@media (max-width: 480px){
+  header h1{font-size:13.5px; font-weight:600}
+  header .sub{font-size:11px}
+  .legend{font-size:10.5px}
+  .stage-wrap{height:72vh; height:72dvh; min-height:480px}
+  .panel-wrap{height:60vh; height:60dvh}
+  .mb-h1{font-size:20px}
+  .mb-h2{font-size:16px}
+  .shell-header h1{font-size:15px}
+  .ch-banner{padding:12px 14px}
+  .ch-banner .ch-ttl{font-size:14px}
+  .ctrl{gap:5px}
+  .ctrl button{padding:8px 12px; font-size:12.5px}
+  .chainsw button{min-width:36px}
+}
 </style>
 </head>
 <body>
@@ -1106,7 +1176,25 @@ function setActive(id){
   renderPanel(id);
   // scroll panel top
   document.getElementById("panel").scrollTop=0;
+  // mobile: open panel bottom-sheet
+  const pw=document.querySelector(".panel-wrap");
+  if(pw && window.matchMedia("(max-width: 768px)").matches){ pw.classList.add("open"); }
 }
+// 모바일 — 패널 닫기 버튼 동적 주입
+(function injectPanelClose(){
+  const pw=document.querySelector(".panel-wrap");
+  if(!pw) return;
+  const btn=document.createElement("button");
+  btn.type="button";
+  btn.setAttribute("aria-label","패널 닫기");
+  btn.textContent="✕ 닫기";
+  btn.style.cssText="position:sticky;top:0;float:right;margin:-6px -6px 6px 0;padding:8px 12px;font:12px inherit;background:#111;color:#fff;border:0;border-radius:8px;cursor:pointer;min-height:36px;display:none;z-index:5";
+  btn.id="panelCloseBtn";
+  btn.addEventListener("click",()=>pw.classList.remove("open"));
+  pw.insertBefore(btn, pw.firstChild);
+  const sync=()=>{ btn.style.display = window.matchMedia("(max-width: 768px)").matches ? "inline-block" : "none"; };
+  sync(); window.addEventListener("resize", sync);
+})();
 function renderPanel(id){
   const p=document.getElementById("panel");
   if(!id){
