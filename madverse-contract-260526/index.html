@@ -27,7 +27,7 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif}
-header{position:sticky;top:0;z-index:10;background:rgba(250,250,249,.96);backdrop-filter:saturate(120%) blur(6px);border-bottom:0.5px solid var(--line);padding:10px 16px}
+header{background:rgba(250,250,249,.96);border-bottom:0.5px solid var(--line);padding:10px 16px}
 header h1{margin:0 0 4px;font-size:16px;font-weight:600}
 header .sub{font-size:12px;color:var(--mute)}
 .ctrl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
@@ -50,8 +50,10 @@ header .sub{font-size:12px;color:var(--mute)}
 .chainsw .b3.on{background:var(--c3);border-color:var(--c3);color:#fff}
 .chainsw .b4.on{background:var(--c4);border-color:var(--c4);color:#fff}
 
-.wrap{position:relative; height:calc(100vh - 150px); min-height:600px}
-@media (max-width: 1000px){ .wrap{height:auto} .panel-wrap{height:auto;max-height:none;position:static;width:100%} .stage-wrap{height:80vh} }
+.wrap{position:relative; height:auto; min-height:720px}
+.stage-wrap{height:720px}
+@media (min-width: 1001px){ .stage-wrap{height:760px} }
+@media (max-width: 1000px){ .panel-wrap{height:auto;max-height:none;position:static;width:100%} .stage-wrap{height:680px} }
 .stage-wrap{position:relative;background:var(--bg);overflow:hidden;height:100%;width:100%}
 .scroller{position:absolute;inset:0;overflow:auto;background:
   linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px) 0 0/40px 40px,
@@ -187,7 +189,7 @@ header .sub{font-size:12px;color:var(--mute)}
 .shell-header .shell-sub{font-size:12.5px;color:#6b7280;font-weight:400}
 .shell-header .shell-meta{font-size:11px;color:#9ca3af;margin-top:4px}
 /* §3 관계도 챕터 내부 헤더 톤 다운 */
-.ch-body .header-relmap{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.97);backdrop-filter:saturate(120%) blur(6px);border-bottom:0.5px solid #e5e5e5;padding:12px 20px}
+.ch-body .header-relmap{background:rgba(255,255,255,.97);border-bottom:0.5px solid #e5e5e5;padding:12px 20px}
 .ch-body .header-relmap h2{margin:0 0 4px;font-size:15px;font-weight:600}
 .ch-body .header-relmap .sub{font-size:12px;color:#6b7280}
 
