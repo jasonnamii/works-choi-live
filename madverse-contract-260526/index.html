@@ -48,9 +48,9 @@ header .sub{font-size:12px;color:var(--mute)}
 .chainsw .b3.on{background:var(--c3);border-color:var(--c3);color:#fff}
 .chainsw .b4.on{background:var(--c4);border-color:var(--c4);color:#fff}
 
-.wrap{display:grid;grid-template-columns: 1fr 380px; gap:0; height:calc(100vh - 150px); min-height:600px}
-@media (max-width: 1000px){ .wrap{grid-template-columns:1fr; height:auto} .panel-wrap{height:auto;max-height:none;position:static} .stage-wrap{height:80vh} }
-.stage-wrap{position:relative;background:var(--bg);overflow:hidden}
+.wrap{position:relative; height:calc(100vh - 150px); min-height:600px}
+@media (max-width: 1000px){ .wrap{height:auto} .panel-wrap{height:auto;max-height:none;position:static;width:100%} .stage-wrap{height:80vh} }
+.stage-wrap{position:relative;background:var(--bg);overflow:hidden;height:100%;width:100%}
 .scroller{position:absolute;inset:0;overflow:auto;background:
   linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px) 0 0/40px 40px,
   linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px) 0 0/40px 40px,
@@ -84,7 +84,7 @@ header .sub{font-size:12px;color:var(--mute)}
 .tag.c3{background:var(--c3);border-color:var(--c3)}
 .tag.c4{background:var(--c4);border-color:var(--c4)}
 
-.panel-wrap{border-left:0.5px solid var(--line);background:var(--panel);padding:14px 16px;overflow:auto;position:relative}
+.panel-wrap{border-left:0.5px solid var(--line);background:rgba(255,255,255,0.96);backdrop-filter:saturate(120%) blur(6px);padding:14px 16px;overflow:auto;position:absolute;right:0;top:0;width:380px;height:100%;z-index:5;box-shadow:-4px 0 16px rgba(0,0,0,0.06)}
 .panel-wrap h2{font-size:13px;margin:0 0 6px;color:var(--mute);font-weight:600}
 .panel-wrap .pno{font-size:12px;color:var(--mute);margin-bottom:2px}
 .panel-wrap .ptt{font-size:15px;font-weight:600;margin-bottom:8px}
@@ -94,7 +94,7 @@ header .sub{font-size:12px;color:var(--mute)}
 .panel-wrap .plinks a:hover{text-decoration:underline}
 .panel-wrap .pnote{font-size:12px;color:var(--mute);margin-top:8px;border-top:0.5px dashed var(--line);padding-top:8px}
 .panel-wrap .pmark{font-size:12px;color:#92400e;background:#fffbeb;border:0.5px solid #fde68a;padding:6px 8px;border-radius:8px;margin-bottom:8px}
-.zoombox{position:absolute;right:10px;top:10px;display:flex;gap:4px;background:#fff;border:0.5px solid var(--line2);border-radius:8px;padding:4px;z-index:6}
+.zoombox{position:absolute;right:400px;top:10px;display:flex;gap:4px;background:#fff;border:0.5px solid var(--line2);border-radius:8px;padding:4px;z-index:6}
 .zoombox button{font:12px inherit;padding:2px 8px;border:0;background:transparent;cursor:pointer}
 .fnote{padding:8px 16px;font-size:11.5px;color:var(--mute);border-top:0.5px solid var(--line);background:#fff}
 
