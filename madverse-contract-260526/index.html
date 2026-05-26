@@ -854,7 +854,7 @@ const NODES = [
 {id:"c20", no:"제20조", ttl:"자금=갑 전액·운영비 계상·을 현금 ✗",
  cls:"trap", warn:true, chains:[2],
  body:"자금 관리: 합자회사 운영 자금은 갑이 경영 필요에 따라 제공하고, 합자회사 운영 비용으로 계상하며, 재무 제도에 따라 규범적으로 회계 처리합니다. MAD POP 프로젝트의 모든 초기 투자, 선투입금, 운영 지출은 갑이 독립적으로 전액 부담하고, 을은 현금 투자 또는 선투입을 하지 않습니다.",
- links:["c11","c17","c22","c21"],
+ links:["c11","c17","c19","c21","c22"],
  note:"⚠ 자금 성격(출자/대여/비용) 모호. ‘경영 필요에 따라’ 갑 재량. 22조 우선상환과 결합 시 갑 회수권 강력."},
 {id:"c21", no:"제21조", ttl:"책임 구분(을 손실 단독 부담)",
  cls:"bad", warn:true, chains:[2,4],
@@ -884,7 +884,7 @@ const NODES = [
 {id:"c26", no:"제26조", ttl:"을 IP=을 귀속·영구·취소불가·철회불가",
  cls:"bad", warn:true, chains:[3],
  body:"을의 기존 IP: 을이 투입하는 SAGONG EE HO 디지털 IP, 모든 작사·작곡 저작권, 곡목 라이브러리, 오디오 소재, 제작팀, 아티스트 자원, AI 모델 등 지식재산권은 을에게 귀속됩니다. 을은 합자회사에 전 세계, 전 시나리오, 독점, 영구 취소 불가능한 상업 사용 라이선스를 부여합니다. 계약 기간 및 지분 존속 기간 동안 을은 일방적으로 해당 라이선스를 철회하거나 중단하거나, 제3자에게 별도로 사용 허가할 수 없습니다.",
- links:["c2","c12","c25","c27","c30"],
+ links:["c2","c12","c19","c25","c27","c30","c33","c41"],
  note:"⚠ 형식적으로 ‘을 귀속’이나 실질적 ‘영구·취소불가·철회불가·제3자 라이선스 금지’ → 양도 동의어. 분쟁·종료 시에도 회수 ✗."},
 {id:"c27", no:"제27조", ttl:"MAD POP 공동보유·합자회사 운영",
  cls:"trap", warn:true, chains:[1,3],
@@ -924,7 +924,7 @@ const NODES = [
 {id:"c34", no:"제34조", ttl:"비밀·경업·허위·권리하자 위반 손해",
  cls:"bad", warn:true, chains:[3,4],
  body:"어느 일방이 본 계약상 비밀유지 의무, 동종업계 경쟁금지 의무를 위반하거나, 허위 자료를 제공하거나, 권리 하자가 존재하여 합자회사 및 MAD POP 프로젝트의 이익에 손해를 초래한 경우, 해당 일방은 합자회사 및 계약을 준수한 당사자의 모든 손실을 배상해야 합니다.",
- links:["c21","c26","c32","c33"],
+ links:["c21","c26","c32","c33","c41"],
  note:"⚠ ‘동종업계 경쟁금지’ — 본 계약 본문 어디에도 경업금지 조항 정의 ✗ (모호한 의무 부과)."},
 {id:"c35", no:"제35조", ttl:"준거법=중국법",
  cls:"bad", warn:true, chains:[4],
@@ -942,9 +942,9 @@ const NODES = [
  links:["c33","c35","c36","c39"],
  note:"⚠ 분쟁 중 ‘이행 강제’ — 을의 협상 레버 봉쇄. ‘악의적 지연’ 판단 주체 베이징중재위."},
 {id:"c38", no:"제38조", ttl:"통지·송달(갑 주소 명시·을 공란)",
- cls:"neu", warn:true, chains:[],
+ cls:"neu", warn:true, chains:[4],
  body:"본 계약에 달리 규정된 경우를 제외하고, 어느 일방이 본 계약에 따라 상대방에게 발송하는 모든 통지 또는 서면 연락은 직접 송달, 팩스 또는 특급우편 방식으로 발송해야 합니다. 모든 통지와 서면 연락은 상대방에게 서면으로 주소 변경 통지를 하기 전까지 아래 주소로 발송합니다.\n1. 갑\n담당자: 주윈(朱芸)\n주소: 베이징시 차오양구 관탕예술구 2호동\n전화: 8610 64321880\n이메일: avis.zhu@sunsevenstars.com\n2. 을\n담당자:\n주소:\n전화:\n이메일:",
- links:[],
+ links:["c36","c41"],
  note:"⚠ 을 측 주소·담당자·연락처 공란. 송달 의제 시 갑 측 일방통보 위험."},
 {id:"c39", no:"제39조", ttl:"상장협조 의무·위반=중대위약",
  cls:"trap", warn:true, chains:[2,4],
@@ -959,7 +959,7 @@ const NODES = [
 {id:"c41", no:"제41조", ttl:"수정·해제·종료=서면 합의 only",
  cls:"trap", warn:true, chains:[4],
  body:"각 당사자는 협의를 통해 서면 방식으로 본 계약을 수정, 해제 또는 종료할 수 있습니다.",
- links:["c33","c40"],
+ links:["c25","c26","c27","c30","c33","c40"],
  note:"⚠ 합의해제만 가능. 을 일방 해지권 ✗. 33조 ‘중대위약 시 해제’만 예외."},
 {id:"c42", no:"제42조", ttl:"보충계약 동일효력",
  cls:"neu", warn:true, chains:[4],
@@ -974,13 +974,13 @@ const NODES = [
 {id:"c44", no:"제44조", ttl:"서명·날인일 효력 발생",
  cls:"neu", warn:false, chains:[4],
  body:"본 계약은 각 당사자의 서명·날인일로부터 효력이 발생합니다.",
- links:["c45"],
- note:"전제조건(CP) 미설정."},
+ links:[],
+ note:"전제조건(CP) 미설정. 형식조항으로 본류 그래프와 분리."},
 {id:"c45", no:"제45조", ttl:"2부 작성·동일효력",
  cls:"neu", warn:false, chains:[4],
  body:"본 계약은 2부 작성되며, 갑과 을이 각 1부씩 보관하고, 각 부는 동일한 법적 효력을 가집니다.\n이하 본문 없음.\n서명 페이지\n이 페이지는 본문이 없으며, 《합자계약서》의 서명 페이지입니다.\n갑:\n수권대표(서명):\n을:\n수권대표(서명):",
- links:["c44"],
- note:"중문본·국문본 우선순위 조항 부재 → 해석 충돌 시 모호."}
+ links:[],
+ note:"중문본·국문본 우선순위 조항 부재 → 해석 충돌 시 모호. 형식조항으로 본류 그래프와 분리."}
 ];
 
 // ===== LAYOUT =====
@@ -1184,7 +1184,7 @@ const STAGE_W=1700, STAGE_H=2620;
 const stageInner=document.getElementById("stageInner");
 let z=1;
 function setZoom(v){
-  z=Math.max(0.3, Math.min(1.4, v));
+  z=Math.max(0.3, Math.min(2.0, v));
   stage.style.transform=`scale(${z})`;
   stageInner.style.width=(STAGE_W*z)+"px";
   stageInner.style.height=(STAGE_H*z)+"px";
@@ -1193,8 +1193,7 @@ function setZoom(v){
 function fitZoom(){
   const sc=document.getElementById("scroller");
   const fw=sc.clientWidth/STAGE_W;
-  const fh=sc.clientHeight/STAGE_H;
-  setZoom(Math.min(fw, fh)*0.98);
+  setZoom(fw*0.99);
 }
 document.getElementById("zin").onclick=()=>setZoom(z+0.1);
 document.getElementById("zout").onclick=()=>setZoom(z-0.1);
