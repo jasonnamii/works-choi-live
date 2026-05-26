@@ -1,0 +1,1225 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MADVERSE × 김형석 합자계약서 — 조항 관계도</title>
+<style>
+:root{
+  --bg:#fafaf9; --panel:#fff; --ink:#111; --mute:#666; --line:#e5e5e5; --line2:#ccc;
+  --fav-bg:#fff7ed; --fav-bd:#d97706; --fav-ink:#7c2d12;
+  --bad-bg:#fef2f2; --bad-bd:#dc2626; --bad-ink:#991b1b;
+  --trap-bg:#fff1f2; --trap-bd:#7c2d12; --trap-ink:#7f1d1d;
+  --neu-bg:#fff; --neu-bd:#bbb;
+  --c1:#0ea5e9; --c2:#f59e0b; --c3:#8b5cf6; --c4:#ef4444;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+header{position:sticky;top:0;z-index:10;background:rgba(250,250,249,.96);backdrop-filter:saturate(120%) blur(6px);border-bottom:0.5px solid var(--line);padding:10px 16px}
+header h1{margin:0 0 4px;font-size:16px;font-weight:600}
+header .sub{font-size:12px;color:var(--mute)}
+.ctrl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.ctrl input[type=text]{font:13px inherit;padding:6px 10px;border:0.5px solid var(--line2);border-radius:8px;background:#fff;min-width:220px}
+.ctrl button{font:12px inherit;padding:5px 10px;border:0.5px solid var(--line2);border-radius:999px;background:#fff;cursor:pointer}
+.ctrl button.on{background:#111;color:#fff;border-color:#111}
+.ctrl .sep{width:1px;height:18px;background:var(--line);margin:0 4px}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11.5px;color:var(--mute);margin-top:6px}
+.legend .lg{display:inline-flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block;border:1px solid #999}
+.dot.fav{background:var(--fav-bg);border-color:var(--fav-bd)}
+.dot.bad{background:var(--bad-bg);border-color:var(--bad-bd)}
+.dot.trap{background:var(--trap-bg);border-color:var(--trap-bd)}
+.dot.neu{background:#fff}
+.warn{color:#b45309}
+.chainsw{display:inline-flex;gap:4px}
+.chainsw button{border-radius:8px}
+.chainsw .b1.on{background:var(--c1);border-color:var(--c1);color:#fff}
+.chainsw .b2.on{background:var(--c2);border-color:var(--c2);color:#fff}
+.chainsw .b3.on{background:var(--c3);border-color:var(--c3);color:#fff}
+.chainsw .b4.on{background:var(--c4);border-color:var(--c4);color:#fff}
+
+.wrap{display:grid;grid-template-columns: 1fr 380px; gap:0; height:calc(100vh - 150px); min-height:600px}
+@media (max-width: 1000px){ .wrap{grid-template-columns:1fr; height:auto} .panel-wrap{height:auto;max-height:none;position:static} .stage-wrap{height:80vh} }
+.stage-wrap{position:relative;background:var(--bg);overflow:hidden}
+.scroller{position:absolute;inset:0;overflow:auto;background:
+  linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px) 0 0/40px 40px,
+  linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px) 0 0/40px 40px,
+  var(--bg)}
+.stage-inner{position:relative}
+.stage{position:relative;width:1700px;height:2620px;transform-origin:0 0}
+.stage svg.edges{position:absolute;inset:0;width:1700px;height:2620px;pointer-events:none}
+.chap{position:absolute;border:0.5px dashed var(--line2);border-radius:14px;background:rgba(255,255,255,.4);pointer-events:none}
+.chap .chap-ttl{position:absolute;top:10px;left:16px;background:#111;color:#fff;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.02em;z-index:8;pointer-events:auto;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.node{position:absolute;border:0.5px solid var(--neu-bd);border-radius:10px;background:var(--neu-bg);padding:8px 10px;width:220px;min-height:78px;cursor:pointer;transition:opacity .18s, box-shadow .18s, transform .12s;font-size:12px;line-height:1.45;user-select:none}
+.node:hover{box-shadow:0 2px 10px rgba(0,0,0,.08);transform:translateY(-1px)}
+.node .no{font-size:11px;color:var(--mute);font-weight:600;margin-bottom:2px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.node .no .marks{display:inline-flex;gap:3px;font-size:10px}
+.node .ttl{font-weight:600;font-size:12.5px;margin-bottom:4px}
+.node .body{font-size:11px;color:#333;max-height:5.5em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical}
+.node.fav{background:var(--fav-bg);border-color:var(--fav-bd)}
+.node.bad{background:var(--bad-bg);border-color:var(--bad-bd)}
+.node.trap{background:var(--trap-bg);border-color:var(--trap-bd)}
+.node.warn::after{content:"\26A0";position:absolute;top:-7px;right:-7px;font-size:14px;background:#fef3c7;border:1px solid #d97706;color:#92400e;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;line-height:1}
+.node.dim{opacity:.10}
+.node.hot{box-shadow:0 0 0 3px #111, 0 6px 18px rgba(0,0,0,.18);z-index:5}
+.node.match{outline:2px solid #2563eb;outline-offset:1px}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:999px;border:0.5px solid var(--line2);margin-right:3px}
+.tag.fav{background:#fde68a;color:var(--fav-ink);border-color:#fbbf24}
+.tag.bad{background:#fecaca;color:var(--bad-ink);border-color:#f87171}
+.tag.trap{background:#fecdd3;color:var(--trap-ink);border-color:#fb7185}
+.tag.warn{background:#fef3c7;color:#92400e;border-color:#fcd34d}
+.tag.chain{color:#fff}
+.tag.c1{background:var(--c1);border-color:var(--c1)}
+.tag.c2{background:var(--c2);border-color:var(--c2)}
+.tag.c3{background:var(--c3);border-color:var(--c3)}
+.tag.c4{background:var(--c4);border-color:var(--c4)}
+
+.panel-wrap{border-left:0.5px solid var(--line);background:var(--panel);padding:14px 16px;overflow:auto;position:relative}
+.panel-wrap h2{font-size:13px;margin:0 0 6px;color:var(--mute);font-weight:600}
+.panel-wrap .pno{font-size:12px;color:var(--mute);margin-bottom:2px}
+.panel-wrap .ptt{font-size:15px;font-weight:600;margin-bottom:8px}
+.panel-wrap .pverbatim{font-size:13px;line-height:1.7;white-space:pre-wrap;background:#fafafa;border:0.5px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.panel-wrap .plinks{font-size:12px;color:#333}
+.panel-wrap .plinks a{color:#1d4ed8;text-decoration:none;margin-right:6px;cursor:pointer}
+.panel-wrap .plinks a:hover{text-decoration:underline}
+.panel-wrap .pnote{font-size:12px;color:var(--mute);margin-top:8px;border-top:0.5px dashed var(--line);padding-top:8px}
+.panel-wrap .pmark{font-size:12px;color:#92400e;background:#fffbeb;border:0.5px solid #fde68a;padding:6px 8px;border-radius:8px;margin-bottom:8px}
+.zoombox{position:absolute;right:10px;bottom:10px;display:flex;gap:4px;background:#fff;border:0.5px solid var(--line2);border-radius:8px;padding:4px;z-index:6}
+.zoombox button{font:12px inherit;padding:2px 8px;border:0;background:transparent;cursor:pointer}
+.fnote{padding:8px 16px;font-size:11.5px;color:var(--mute);border-top:0.5px solid var(--line);background:#fff}
+
+/* === Mono Black Design System === */
+.doc-shell{max-width:100%;margin:0;padding:0;font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",-apple-system,BlinkMacSystemFont,sans-serif;color:#111}
+.ch-banner{display:flex;align-items:center;justify-content:space-between;background:#111;color:#fff;padding:18px 28px;margin:0;cursor:pointer;user-select:none;border:0;width:100%;font-family:inherit;letter-spacing:-.01em}
+.ch-banner:hover{background:#000}
+.ch-banner .ch-no{font-size:13px;font-weight:500;opacity:.55;margin-right:14px;letter-spacing:.08em}
+.ch-banner .ch-ttl{font-size:18px;font-weight:600;flex:1;text-align:left}
+.ch-banner .ch-arrow{font-size:12px;font-weight:400;opacity:.7;transition:transform .25s}
+.ch-banner.open .ch-arrow{transform:rotate(90deg)}
+.ch-body{max-height:0;overflow:hidden;transition:max-height .35s ease;background:#fff;border-bottom:0.5px solid #e5e5e5}
+.ch-body.open{max-height:none}
+.ch-inner{max-width:880px;margin:0 auto;padding:44px 32px 56px}
+.ch-inner-wide{max-width:none;margin:0;padding:0}
+/* doc typography */
+.mb-h1{font-size:30px;font-weight:700;letter-spacing:-.02em;margin:0 0 28px;padding-bottom:18px;border-bottom:2px solid #111;color:#111}
+.mb-h2{font-size:22px;font-weight:600;letter-spacing:-.01em;margin:40px 0 14px;padding-left:14px;border-left:4px solid #111;color:#111;line-height:1.4}
+.mb-h3{font-size:16px;font-weight:600;margin:28px 0 10px;padding-top:14px;border-top:1px solid #e5e5e5;color:#111}
+.mb-h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin:18px 0 6px;color:#6b7280}
+.ch-inner p{font-size:15px;line-height:1.75;margin:10px 0;color:#222}
+.ch-inner strong{font-weight:600;color:#000}
+.ch-inner code{font-family:"JetBrains Mono","SF Mono",ui-monospace,monospace;font-size:13px;background:#f4f4f5;color:#111;padding:1px 6px;border-radius:4px;border:0.5px solid #e5e5e5}
+.mb-hr{border:0;border-top:1px solid #e5e5e5;margin:32px 0}
+/* lists — 90s 탈피 */
+.mb-ul{list-style:none;padding-left:0;margin:12px 0}
+.mb-ul > li{position:relative;padding-left:20px;margin:6px 0;font-size:15px;line-height:1.7;color:#222}
+.mb-ul > li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:#111}
+.mb-ol{list-style:none;padding-left:0;margin:12px 0;counter-reset:mbol}
+.mb-ol > li{position:relative;padding-left:38px;margin:8px 0;font-size:15px;line-height:1.7;color:#222;counter-increment:mbol}
+.mb-ol > li::before{content:counter(mbol,decimal-leading-zero);position:absolute;left:0;top:0;font-family:"JetBrains Mono","SF Mono",ui-monospace,monospace;font-size:12px;font-weight:500;color:#6b7280;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+/* table */
+.mb-tbl{border-collapse:collapse;width:100%;margin:14px 0 18px;font-size:13.5px;border:0.5px solid #111}
+.mb-tbl thead th{background:#111;color:#fff;font-weight:600;text-align:left;padding:9px 12px;border-right:0.5px solid #333;letter-spacing:-.005em}
+.mb-tbl thead th:last-child{border-right:0}
+.mb-tbl td{padding:9px 12px;border-top:0.5px solid #e5e5e5;border-right:0.5px solid #f0f0f0;color:#222;vertical-align:top;line-height:1.6}
+.mb-tbl td:last-child{border-right:0}
+.mb-tbl td:first-child{font-weight:500;color:#111;white-space:nowrap}
+/* blockquote */
+.mb-q{border-left:4px solid #111;background:#fafafa;margin:14px 0;padding:10px 16px;color:#333;font-size:14.5px;line-height:1.7}
+.mb-q p{margin:6px 0;font-size:14.5px}
+.mb-q strong{color:#000}
+/* badges */
+.bdg{display:inline-flex;align-items:center;justify-content:center;font-family:"JetBrains Mono","SF Mono",ui-monospace,monospace;font-size:10px;font-weight:600;letter-spacing:.06em;padding:2px 7px;border-radius:3px;margin-right:10px;background:#111;color:#fff;vertical-align:middle;line-height:1.4;min-width:32px}
+.bdg-key{background:#111}
+.bdg-note{background:#2563eb}
+.bdg-warn{background:#d97706}
+.bdg-risk{background:#dc2626}
+.bdg-def{background:#0369a1}
+.bdg-money{background:#059669}
+.bdg-lib{background:#7c3aed}
+.bdg-layer{background:#111}
+.bdg-reg{background:#0ea5e9}
+.bdg-apx{background:#6b7280}
+.bdg-arrow{background:#111}
+.bdg-tip{background:#ca8a04}
+.bdg-law{background:#374151}
+.bdg-q{background:#6b7280}
+.bdg-date{background:#6b7280}
+.bdg-no{background:#dc2626}
+/* code block */
+.mb-code{background:#0a0a0a;color:#e5e5e5;border-radius:6px;padding:14px 16px;font-family:"JetBrains Mono","SF Mono",ui-monospace,monospace;font-size:12.5px;line-height:1.65;overflow-x:auto;margin:14px 0}
+.mb-code code{background:transparent;color:inherit;padding:0;border:0}
+/* details (부록) */
+.ch-inner details{border:0.5px solid #e5e5e5;border-radius:8px;margin:10px 0;background:#fff;overflow:hidden}
+.ch-inner details > summary{cursor:pointer;padding:12px 16px;background:#fafafa;font-size:14px;font-weight:500;color:#111;list-style:none;display:flex;align-items:center;gap:6px}
+.ch-inner details > summary::-webkit-details-marker{display:none}
+.ch-inner details > summary::before{content:"▶";font-size:9px;color:#6b7280;margin-right:6px;transition:transform .2s;display:inline-block}
+.ch-inner details[open] > summary::before{transform:rotate(90deg)}
+.ch-inner details[open] > summary{background:#f4f4f5;border-bottom:0.5px solid #e5e5e5}
+.ch-inner details > * + *{padding-left:16px;padding-right:16px}
+.ch-inner details > *:last-child{padding-bottom:14px}
+.ch-inner details .callout-body{padding:8px 16px 4px}
+.ch-inner details details{margin:8px 0;border:0.5px solid #e5e5e5}
+.ch-inner details details > summary{background:#fff;border:0}
+.ch-inner details details[open] > summary{background:#fafafa}
+/* callout */
+.callout{border:0.5px solid #e5e5e5;border-left:4px solid #111;background:#fafafa;border-radius:0 8px 8px 0;margin:14px 0}
+.callout > summary{padding:10px 14px;font-weight:600;font-size:14px;color:#111;background:transparent;cursor:pointer;list-style:none}
+.callout > summary::-webkit-details-marker{display:none}
+.callout > summary::before{content:"▶";font-size:9px;color:#6b7280;margin-right:8px;transition:transform .2s;display:inline-block}
+.callout[open] > summary::before{transform:rotate(90deg)}
+.callout-body{padding:0 14px 12px;font-size:14.5px;line-height:1.7;color:#222}
+.callout-body p{font-size:14.5px;margin:6px 0}
+/* shell header */
+.shell-header{background:#fff;border-bottom:0.5px solid #e5e5e5;padding:22px 32px 18px;position:sticky;top:0;z-index:20}
+.shell-header h1{margin:0 0 4px;font-size:18px;font-weight:600;letter-spacing:-.01em;color:#111}
+.shell-header .shell-sub{font-size:12.5px;color:#6b7280;font-weight:400}
+.shell-header .shell-meta{font-size:11px;color:#9ca3af;margin-top:4px}
+/* §3 관계도 챕터 내부 헤더 톤 다운 */
+.ch-body .header-relmap{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.97);backdrop-filter:saturate(120%) blur(6px);border-bottom:0.5px solid #e5e5e5;padding:12px 20px}
+.ch-body .header-relmap h2{margin:0 0 4px;font-size:15px;font-weight:600}
+.ch-body .header-relmap .sub{font-size:12px;color:#6b7280}
+</style>
+</head>
+<body>
+<header class="shell-header">
+  <h1>MADVERSE × 김형석 합자계약서 — 통합 분석 도크</h1>
+  <div class="shell-sub">JV 계약 성격 · 사용권 계약 전환 전략 · 조항 관계도 통합 1page</div>
+  <div class="shell-meta">2026-05-26 · 중국측 송부본 2026-05-22 기반 · 갑 MADVERSE · 을 김형석</div>
+</header>
+<div class="doc-shell">
+
+<button class="ch-banner" data-ch="ch1" type="button">
+  <span><span class="ch-no">§1</span><span class="ch-ttl">종합분석 — JV 성격·핵심 쟁점·전환 전략</span></span>
+  <span class="ch-arrow">▶</span>
+</button>
+<div class="ch-body" id="ch1"><div class="ch-inner">
+<h1 class="mb-h1">MADVERSE × 김형석 합자계약서 종합분석</h1>
+<h2 class="mb-h2"><span class="bdg bdg-key">KEY</span>상단 의견 — JV 계약으로 읽되, 사용권 계약 구조로 전환하는 것이 핵심</h2>
+<table class="mb-tbl"><thead><tr><th>관점</th><th>판단</th><th>수정 방향</th></tr></thead><tbody><tr><td>계약 성격</td><td>케이맨 상장 주체와 중국 WFOE를 전제로 한 MAD POP 플랫폼형 JV 기본계약입니다. 사공이호 중국 런칭은 그 안의 첫 리드 IP 역할로 배치되어 있습니다.</td><td>JV로 검토하되, 한국 측 역할은 IP 사용권·초기 창작 패키지·음악 방향성 감수로 범위를 제한합니다.</td></tr><tr><td>핵심 쟁점</td><td>IP 사용권의 범위·기간·철회 가능성, 한국 측 거부권, 현금 지급 구조, 추가 업무 범위, 책임 상한, 분쟁 관할이 정리되어야 합니다.</td><td>영구·취소불가·전 세계·전 시나리오 문구를 프로젝트·지역·기간 한정 사용권으로 조정합니다.</td></tr><tr><td>치명적 문제</td><td>현재 문안은 40% 지분을 주는 대신 한국 측이 IP·음악·창작·아티스트 자원을 깊게 제공하는 구조입니다. 다만 사이닝보너스, 초기 제작비, 추가 업무 비용, 책임 상한이 명확하지 않습니다.</td><td>지분은 낮출 수 있으나, 그 대신 선급금·제작비·마일스톤·추가 업무 별도 계약을 확보합니다.</td></tr><tr><td>전략</td><td>감정적 방어보다 구조 전환이 중요합니다. 본 초안을 거절하는 방식이 아니라, JV 초안을 사용권 계약 + 제작용역 + 전략지분 구조로 재작성하는 방식이 유리합니다.</td><td>B안(IP 라이선서형)을 기본안으로 두고, A안(공동창업자형 40%)은 보호조항을 대폭 강화할 때만 검토합니다.</td></tr></tbody></table>
+<hr class="mb-hr">
+<h2 class="mb-h2"><span class="bdg bdg-def">DEF</span>핵심 조정 항목 — 감정적 리스크가 아니라 계약 구조 문제</h2>
+<table class="mb-tbl"><thead><tr><th>#</th><th>현재 문안</th><th>조정 방향</th></tr></thead><tbody><tr><td>1</td><td>제26조 영구·취소불가·전 세계 IP 라이선스</td><td>중국 및 합의 지역 한정 · MAD POP 프로젝트 한정 · 5년 + 갱신 · 중대 위반 시 자동 회수</td></tr><tr><td>2</td><td>제19조 한국 측 거부권이 예술 심사 중심</td><td>IP 처분·신주발행·특수관계거래·정관 변경·상장 구조 변경·자회사 설립에 대한 사전동의권 추가</td></tr><tr><td>3</td><td>제21조 한국 측 책임 범위가 넓음</td><td>고의·중과실 한정 · 직접손해 한정 · 책임상한 설정</td></tr><tr><td>4</td><td>사이닝보너스·초기 제작비·추가 업무 비용 부재</td><td>IP 사용권 대가, 초기 창작 패키지 비용, 마일스톤 지급, 추가 업무 별도 견적 구조 신설</td></tr><tr><td>5</td><td>중국법·베이징중재</td><td>홍콩법·HKIAC 또는 싱가포르법·SIAC를 우선 검토</td></tr></tbody></table>
+<p><strong>대응 시퀀스:</strong> 계약 성격 확인 → 한국 측 업무 범위 명세 요구 → 사용권 계약형 대안 제시 → 현금 지급·책임상한·회수권을 부속서에 반영합니다.</p>
+<hr class="mb-hr">
+<h2 class="mb-h2"><span class="bdg bdg-note">NOTE</span>다음 액션</h2>
+<ol class="mb-ol">
+<li><strong>상위 구조 확정</strong> — A안 공동창업자형 40% 유지 또는 B안 사용권 계약형 15~25% 전환</li>
+<li><strong>업무 범위 확정</strong> — IP 사용권, 초기 창작 패키지, 음악 감수, 아티스트 연결의 범위와 횟수 명시</li>
+<li><strong>현금 지급 구조 신설</strong> — 사이닝보너스, 초기 제작비, 마일스톤, 추가 업무 별도 계약</li>
+<li><strong>IP 회수 장치 신설</strong> — 미제작, 미런칭, 자금 미투입, 인허가 실패, 상장 지연 시 사용권 정지·회수</li>
+<li><strong>법률 검토</strong> — 한국 IP·국제거래 변호사와 중국 외상투자·콘텐츠 규제 변호사 동시 검토</li>
+</ol>
+<hr class="mb-hr">
+<h2 class="mb-h2"><span class="bdg bdg-warn">WARN</span>체크 필요</h2>
+<ul class="mb-ul">
+<li>NRTA 발행허가 가능성 · 외상투자 제한 · IP 사용권 과세 · 케이맨 배당 과세 · 중국 내 수익 환류 · 중재지 집행 가능성</li>
+</ul>
+<hr class="mb-hr">
+
+<hr class='mb-hr'>
+<h1 class="mb-h1"><span class="bdg bdg-apx">APX</span>부록 (전문 — 접기)</h1>
+<blockquote class="mb-q"><p>아래 부록은 모두 기본 접힘. 제목 클릭으로 펼침. <strong>원문 전량 verbatim 보존.</strong></p></blockquote>
+<details>
+<summary>▶ 부록 1. 읽는 법·약어 범례·기존 결론 정리</summary>
+<blockquote class="mb-q"><p><strong>읽는 법</strong> — 각 섹션 헤드라인+서브라인(인용블록)만 훑으면 5분 안에 전체 파악. 상세는 본문, 보조자료는 하단 📎 부록(접기). <strong>본 문서 1개로 분석·대응·후속까지 완결됩니다. 별도 산출문서 없음.</strong></p>
+<p><strong>약어 범례</strong> — <strong>R = Redflag</strong> (위험 조항, R1~R12 중대도순). <strong>L = Layer</strong> (5층 진단의 층, L1~L5).</p></blockquote>
+<h2 class="mb-h2"><span class="bdg bdg-key">KEY</span>기존 결론 정리 — JV 초안을 사용권 계약형으로 재정렬</h2>
+<blockquote class="mb-q"><p><strong>본 계약서는 MAD POP 플랫폼 JV 기본계약으로 읽히며, 한국 측은 IP 사용권과 초기 창작 패키지를 제공하는 구조로 범위를 제한하는 것이 적절합니다.</strong></p></blockquote>
+<p>핵심 조정 항목 5개:</p>
+<ol class="mb-ol">
+<li><strong>IP 사용권</strong> — 제26조의 전 세계·전 시나리오·영구·취소불가 문구를 지역·프로젝트·기간 한정 라이선스로 조정합니다.</li>
+<li><strong>의사결정권</strong> — 제19조의 거부권 범위를 IP 처분, 신주발행, 특수관계거래, 정관 변경, 상장 구조 변경까지 확장합니다.</li>
+<li><strong>현금 지급</strong> — 사이닝보너스, 초기 제작비, 마일스톤 지급, 추가 업무 별도 계약을 본문 또는 부속서에 신설합니다.</li>
+<li><strong>책임 범위</strong> — 제21조의 책임을 고의·중과실 및 직접손해로 제한하고, 총액 상한을 설정합니다.</li>
+<li><strong>분쟁 구조</strong> — 중국법·베이징중재 대신 홍콩법·HKIAC 또는 싱가포르법·SIAC를 우선 검토합니다.</li>
+</ol>
+<p><strong>다음 액션: §2 계약전략의 B안 사용권 계약형을 기본안으로 두고, 중국 측이 40% 공동창업자형을 원할 경우 보호조항을 대폭 강화합니다.</strong></p>
+</details>
+<details>
+<summary>▶ 부록 2. 핵심 조정 항목 5종 상세 (R1~R5)</summary>
+<h2 class="mb-h2"><span class="bdg bdg-risk">RISK</span>핵심 조정 항목 5종 — IP·거부권·책임범위·양도조건·중재지</h2>
+<blockquote class="mb-q"><p><strong>R = 핵심 조정 항목. 본 계약에서 12개 조정 지점을 확인했으며, 본문은 우선순위가 높은 5개 조항을 정리합니다. 목적은 거절이 아니라 사용권 계약형으로 재구성하는 것입니다.</strong></p></blockquote>
+<table class="mb-tbl"><thead><tr><th>#</th><th>조항</th><th>위반</th><th>무효확률</th><th>근거</th></tr></thead><tbody><tr><td>R1</td><td>제26조 (을 IP 영구·취소불가·독점 라이선스)</td><td>약관규제법 §6 일방적 부당, 한국 저작권법 §46 라이선스 해지 가능성 봉인</td><td>~50% (한국법 적용시 일부 무효). 단 본 계약 준거법 중국법이라 한국법 무효 주장 한계 [신뢰도: 중]</td><td>대법원 2010다53457 IP양도 불공정 무효 인접 판례 [신뢰도: 상]</td></tr><tr><td>R2</td><td>제19조 (을 거부권 = 예술심사 3개 한정)</td><td>40% 지분의 의결권·소수주주 보호 형해화. 상법 §382조의3 (한국 적용시) 충실의무 회피 구조</td><td>통계적 추정. 본 계약 자체는 중국법 → 분쟁시 SHA 무효 주장 ~30%</td><td>한국 SHA 시장 표준 [신뢰도: 중] — 40% 지분은 통상 거부권 7~12개</td></tr><tr><td>R3</td><td>제21조 (을 단독 책임 7항목)</td><td>"을의 사유로 발생한 손실 전액 부담" 무제한. Uncapped Indemnity 국제 12 Redflag</td><td>~70% (무한책임 불공정 무효 가능) [신뢰도: 상]</td><td>대법원 2017다214930 무한책임조항 일부무효</td></tr><tr><td>R4</td><td>제30조 (을의 권리양도는 갑 서면동의 필요·갑은 계열사 자유양도)</td><td>일방적 자유양도. 약관규제법 §11 제5호 형평성 위반</td><td>~60% [신뢰도: 중]</td><td>약관 14유형 무효 §11</td></tr><tr><td>R5</td><td>제35-36조 (중국법·베이징중재)</td><td>한국 기업 분쟁시 가장 불리한 관할. 증거·언어·집행·심증 모두 불리</td><td>—</td><td>BAC 2024년 국제사건 277건·집행률 데이터 [신뢰도: 상]</td></tr></tbody></table>
+<p>🟠 주의 4종(R6~R9)·🟡 통상 3종(R10~R12) → <strong>📎 부록 A 참조</strong></p>
+</details>
+<details>
+<summary>▶ 부록 3. 5층 진단 프레임 (L1~L5) 전문</summary>
+<h2 class="mb-h2"><span class="bdg bdg-lib">LIB</span>5층 진단 프레임 — L1~L5는 이렇게 읽는다</h2>
+<blockquote class="mb-q"><p><strong>계약을 "한 덩어리"로 보지 않고 5개 층으로 분해해 진단하는 프레임. 층마다 묻는 질문이 다릅니다. 이 섹션은 다음 L1~L5 5개 섹션의 사전 안내입니다.</strong></p></blockquote>
+<table class="mb-tbl"><thead><tr><th>층</th><th>이름</th><th>묻는 질문</th></tr></thead><tbody><tr><td><strong>L1</strong></td><td>의무·권리 매트릭스</td><td>누가 무엇을 주고 무엇을 받는가? (정적 구조)</td></tr><tr><td><strong>L2</strong></td><td>리스크</td><td>어떤 일이 잘못될 수 있고, 확률·임팩트는? (동적 시나리오)</td></tr><tr><td><strong>L3</strong></td><td>플레이북</td><td>우리는 어떻게 대응·반격할 수 있는가? (카운터 카드)</td></tr><tr><td><strong>L4</strong></td><td>종료·치유</td><td>깨졌을 때 어떻게 빠져나오고 회복하는가? (출구 전략)</td></tr><tr><td><strong>L5</strong></td><td>한국법 오버레이</td><td>준거법(중국법) 위에 한국법이 어디까지 덮을 수 있는가? (한국 거주자 보호망)</td></tr></tbody></table>
+<p>각 층은 독립적으로도 읽히지만 <strong>L1→L5 순서로 읽으면 누적적</strong>으로 전체 그림이 잡힙니다.</p>
+<hr class="mb-hr">
+<h2 class="mb-h2"><span class="bdg bdg-layer">L</span>L1 의무·권리 매트릭스 — 자금·운영 제공과 IP·창작 제공의 교환 구조</h2>
+<blockquote class="mb-q"><p><strong>갑은 자금·운영·상장·플랫폼을 제공하고, 을은 IP·음악·창작·아티스트 네트워크를 제공합니다. 쟁점은 제공 범위, 대가, 통제권, 책임 범위를 같은 수준으로 맞추는 것입니다.</strong></p></blockquote>
+<table class="mb-tbl"><thead><tr><th>당사자</th><th>의무</th><th>권리</th></tr></thead><tbody><tr><td>갑 (MADVERSE)</td><td>운영자금·기술·플랫폼·홍보·유통·CEO·CFO 지명</td><td>60% 지분·이사 3명·의장·경영권·자본 의사결정 단독</td></tr><tr><td>을 (김형석)</td><td>사공이호 IP·전 음악 저작권·아티스트 네트워크 영구·취소불가·독점 라이선스</td><td>40% 지분·이사 2명·콘텐츠 의장·예술 심사 3항목 거부권</td></tr></tbody></table>
+<hr class="mb-hr">
+<h2 class="mb-h2"><span class="bdg bdg-layer">L</span>L2 리스크 (시나리오·확률·임팩트) — IP 범위·거부권·중재지가 3대 축</h2>
+<blockquote class="mb-q"><p><strong>다섯 리스크는 모두 조정 가능한 계약 변수입니다. 핵심은 영구·전면 제공 구조를 프로젝트 한정 사용권 구조로 전환하고, 현금 지급과 책임상한을 함께 넣는 것입니다.</strong></p></blockquote>
+<table class="mb-tbl"><thead><tr><th>리스크</th><th>확률</th><th>임팩트</th><th>근거</th></tr></thead><tbody><tr><td>IP 영구라이선스 해지 불가 → 합자 깨져도 IP 회수 ✗</td><td>高</td><td>극高</td><td>제26조 verbatim "철회·중단 불가"</td></tr><tr><td>거부권 형해화로 갑이 합자회사 자산 빼돌림</td><td>中</td><td>극高</td><td>제19조 verbatim — 특수관계 거래 거부권 ✗</td></tr><tr><td>중국법·베이징중재 → 분쟁시 한국측 패소</td><td>中高</td><td>高</td><td>통계적 추정 [신뢰도: 중]</td></tr><tr><td>PIPL 데이터 국외이전 위반 (벌금 최대 5천만 위안)</td><td>中</td><td>高</td><td>PIPL 시행규칙 [신뢰도: 상]</td></tr></tbody></table>
+<hr class="mb-hr">
+<h2 class="mb-h2"><span class="bdg bdg-layer">L</span>L3 조정안 — 핵심 5개 조항에 Tier1·2·3 대안을 매핑</h2>
+<blockquote class="mb-q"><p><strong>Tier1=우선 제안안 / Tier2=현실 절충안 / Tier3=최소 수용안. 조항별 목표는 계약 거절이 아니라 JV 초안을 사용권 계약형 구조로 재작성하는 것입니다.</strong></p></blockquote>
+<table class="mb-tbl"><thead><tr><th>Redflag</th><th>Tier1 (이상)</th><th>Tier2 (현실)</th><th>Tier3 (마지노선)</th></tr></thead><tbody><tr><td>R1 IP 영구라이선스 (제26조)</td><td>"영구·취소불가" 삭제, 합자존속 기간 한정 라이선스 + 종료시 자동 회수</td><td>5년 한정 라이선스 + 자동연장 옵션 + 중대 위약시 즉시 회수권</td><td>합자회사 청산·갑 부도시 IP 즉시 회수 조항 신설</td></tr><tr><td>R2 거부권 형해 (제19조)</td><td>40% 지분 표준 거부권 7~12개 (투자유치·상장·M&amp;A·자산처분·특수관계거래·정관·이사선임)</td><td>거부권 5개 (특수관계거래·신주발행·M&amp;A·정관·CFO 지명)</td><td>거부권 3개 + 특수관계거래 사전동의 + 연 1회 외부감사</td></tr><tr><td>R3 을 단독책임 (제21조)</td><td>"을 단독책임" 7항목 전부 삭제 + 양당사자 과실비례 책임</td><td>책임 상한 = 김형석 받은 배당총액의 200% (Capped Indemnity)</td><td>책임 상한 = 김형석 받은 배당총액의 500% + 고의·중과실에만 한정</td></tr><tr><td>R4 양도 비대칭 (제30조)</td><td>갑·을 모두 상호 서면동의 (Symmetry)</td><td>갑의 계열사 양도시 을에게 사전통지 + Tag-along 권리</td><td>갑이 50% 초과 양도시 을 Drag-along + Put 옵션 발동</td></tr><tr><td>R5 중국법·베이징중재 (제35-36조)</td><td>한국법 + 한국상사중재원(KCAB)</td><td>싱가포르법 + SIAC 중재 (중립지)</td><td>중국법 유지하되 중재지 홍콩 HKIAC로 이동</td></tr></tbody></table>
+<p><strong>대응 시퀀스 권장:</strong> Tier1으로 첫 회신 → 상대 카운터 도착 → Tier2로 절충 → 상대 거부시 Tier3 마지노선 + 워크아웃 신호(상대 압박점 § 활용).</p>
+<p>→ 조항별 redline 핵심 문구는 <strong>📎 부록 E 참조</strong></p>
+<hr class="mb-hr">
+<h2 class="mb-h2"><span class="bdg bdg-layer">L</span>L4 종료·치유 (출구 전략) — 종료 시 IP 사용권 회수 조항 필요</h2>
+<blockquote class="mb-q"><p><strong>현재 문안에는 계약 종료 후 IP 사용 중단·자료 반환·2차 창작물 처리·계정 및 데이터 이전 절차가 충분히 명시되어 있지 않습니다. 사용권 계약형으로 전환하려면 종료 효과를 별도 조항으로 닫아야 합니다.</strong></p></blockquote>
+<p><strong>현 계약 조항:</strong></p>
+<ul class="mb-ul">
+<li>제33조 — 위약 시 모든 손실·기대이익·변호사비·소송비 배상</li>
+<li>제34조 — 비밀유지·경쟁금지 위반시 합자회사+갑 손실 전액 배상</li>
+<li><strong>종료 후 IP 회수 조항 부재</strong> — 제26조 영구·취소불가가 우선</li>
+</ul>
+<p><strong>문제:</strong> 을이 계약 해제하려면 "중대한 위약"+"계약 목적 달성 불가" 입증해야 하는데, IP는 이미 영구 양도된 상태. <strong>종료해도 IP는 못 돌아옴.</strong></p>
+<hr class="mb-hr">
+<h2 class="mb-h2"><span class="bdg bdg-layer">L</span>L5 한국법 오버레이 (한국 거주자 보호망) — 준거법 중국 → 한국법 직접 적용은 ✗</h2>
+<blockquote class="mb-q"><p><strong>약관규제법·저작권법 §46 일부 적용 가능. 상세는 부록 B.</strong></p></blockquote>
+<p>→ <strong>📎 부록 B 참조</strong> (약관규제법·하도급 부당특약·저작권법 §46 상세)</p>
+</details>
+<details>
+<summary>▶ 부록 4. 중국 규제 게이트 (NRTA·MOFCOM·CAC·SAFE)</summary>
+<h2 class="mb-h2"><span class="bdg bdg-reg">REG</span>중국 규제 게이트 — 음악 발행 허가 NRTA가 본 계약 사업타당성을 좌우</h2>
+<blockquote class="mb-q"><p><strong>음악·문화는 중국 외상투자 네거티브 리스트 핵심 분야. 본 안에는 일언반구도 없음.</strong></p></blockquote>
+<p>[확인일: 2026-05-26 WebSearch]</p>
+<table class="mb-tbl"><thead><tr><th>규제</th><th>적용</th><th>의무</th></tr></thead><tbody><tr><td>외상투자법 (2020.1.1)</td><td>케이맨 → 베이징 WFOE 100%</td><td>MOFCOM 신고. 음악·문화 영역은 외국인 투자 네거티브 리스트 일부 제한 ⚠️ 확인 필요</td></tr><tr><td>PIPL (2021.11.1)</td><td>유저 데이터 한국·케이맨 이전</td><td>CAC 표준계약·보안평가</td></tr><tr><td>데이터안전법</td><td>100만명 + 데이터 국외이전</td><td>CAC 보안평가 [신뢰도: 상] — 위반시 최대 5천만 위안</td></tr><tr><td>AI 학습·생성 콘텐츠</td><td>"AI 디지털 휴먼·AI 작곡" 핵심사업</td><td>CAC 생성형AI 관리방법 (2023.8.15) 알고리즘 등록</td></tr><tr><td>외환관리</td><td>케이맨 → 베이징 송금·이익배분</td><td>SAFE 등록</td></tr><tr><td><strong>음악 콘텐츠 발행</strong></td><td>음원·음반 발행</td><td>NRTA(广电总局) 출판물 발행 허가 — 외자 제한</td></tr></tbody></table>
+<p>⚠️ <strong>베이징 WFOE 100%가 실제 발행허가를 받을 수 있는지가 본 계약의 사업타당성을 좌우합니다.</strong></p>
+<p>→ 후속 실사 단계별 체크리스트는 <strong>📎 부록 F 참조</strong></p>
+</details>
+<details>
+<summary>▶ 부록 5. 세무 CASE 1·2 (케이맨 배당 / 영구 라이선스 양도 의제)</summary>
+<h2 class="mb-h2"><span class="bdg bdg-money">$</span>세무 CASE 1 — 케이맨 배당 = 한국 종합과세 45%, 회수가치 50% 미만</h2>
+<blockquote class="mb-q"><p><strong>케이맨 무과세 + 한중조약 미적용 → 한국 종합소득 45% 최고세율 직격. 사실상 회수가치 반토막.</strong></p></blockquote>
+<p><strong>확신도: 70 (논리 + CFC 일반론)</strong></p>
+<p><strong>결론 한 줄:</strong> 케이맨 합자회사 배당시 한국 거주자 김형석은 종합소득 합산 45% + 외국납부세액공제 ✗ → <strong>회수가치 50% 미만</strong>.</p>
+<p><strong>권장 옵션:</strong> IP 라이선스 수익을 합자회사 배당과 분리해 김형석 직접 수령(사업소득 또는 기타). 분쟁시 IP 통제권 분리 효과도 확보.</p>
+<p>→ <strong>📎 부록 C 참조</strong> (법·판례·실무흐름·옵션 3+ 상세)</p>
+<p><strong>[전문가 자문 필수] — 케이맨 구조 + CFC + 한중조약 미적용은 세무사·국제조세 전문 필수</strong></p>
+<hr class="mb-hr">
+<h2 class="mb-h2"><span class="bdg bdg-money">$</span>세무 CASE 2 — 영구 라이선스 = IP 양도소득세 22% 가능</h2>
+<blockquote class="mb-q"><p><strong>제26조 "전 세계·전 시나리오·독점·영구·취소불가" = 사실상 IP 영구 양도로 의제 가능 → 양도소득세 22% 과세 리스크.</strong></p></blockquote>
+<p><strong>확신도: 50 (논리 가정)</strong></p>
+<p><strong>근거:</strong> 대법원 2019.7.11 선고 2017두68417 — 사실상 영구라이선스는 양도로 의제 가능 [신뢰도: 중]</p>
+<p><strong>시사:</strong> 양도가액 = 합자회사 지분 40% 평가액(시가 평가 필요). IP 양도소득세 22%(지방세 포함).</p>
+<p>→ <strong>📎 부록 D 참조</strong> (상세)</p>
+<p><strong>[전문가 자문 필수]</strong></p>
+</details>
+<details>
+<summary>▶ 부록 6. 시나리오 검토 — JV형과 사용권 계약형 비교</summary>
+<h2 class="mb-h2"><span class="bdg bdg-def">DEF</span>시나리오 검토 — 40% JV형과 20% 사용권 계약형의 회수 구조 비교</h2>
+<blockquote class="mb-q"><p><strong>확률 숫자보다 회수 구조가 중요합니다. 40% JV형은 상장 성공 시 업사이드가 크고, 사용권 계약형은 선급금·제작비·마일스톤으로 초기 회수 안정성이 높습니다.</strong></p></blockquote>
+<table class="mb-tbl"><thead><tr><th>시나리오</th><th>40% JV형</th><th>20% 사용권 계약형</th><th>판단</th></tr></thead><tbody><tr><td>상장 성공</td><td>지분 업사이드가 큼. 단 희석, 락업, 세무, 환류 조건 확인 필요</td><td>지분 업사이드는 줄지만 선급금·제작비·마일스톤을 별도로 확보</td><td>중국 측 자금·상장 신뢰도가 높으면 JV형 검토 가능</td></tr><tr><td>상장 지연</td><td>배당·수익 환류가 지연될 수 있음</td><td>초기 현금 회수와 추가 업무 비용 청구 가능</td><td>현실 기준으로는 사용권 계약형이 안정적</td></tr><tr><td>사업 범위 확대</td><td>한국 측 업무와 책임이 계속 확장될 수 있음</td><td>부속서 범위를 넘는 업무는 별도 견적·별도 계약 가능</td><td>추가 요구가 예상되면 사용권 계약형이 유리</td></tr></tbody></table>
+<p><strong>정리:</strong> 중국 측이 40% JV를 유지하려면 보호조항과 통제권이 필요합니다. 한국 측이 책임 범위를 줄이려면 지분을 낮추고 현금 지급·사용권 범위·추가 업무 비용을 명확히 하는 방식이 적절합니다.</p>
+</details>
+<details>
+<summary>▶ 부록 A. Redflag 주의 4종(R6~R9)·통상 3종(R10~R12)</summary>
+<h3 class="mb-h3">부록 A — Redflag 주의 4종·통상 3종</h3>
+<details>
+<summary>🟠 주의 4 (R6~R9) 펼치기</summary>
+<table class="mb-tbl"><thead><tr><th>#</th><th>조항</th><th>위반</th></tr></thead><tbody><tr><td>R6</td><td>제16조 (을 콘텐츠 의장 권한 제한)</td><td>콘텐츠 의장이지만 "자본·경영" 결정 일체 불가. 사실상 자문 역할</td></tr><tr><td>R7</td><td>제27조 (MAD POP 브랜드 공동소유 단 일상운영은 합자회사 전권)</td><td>공동소유라지만 단독 처분 불가 + 운영권은 합자회사 = 갑 통제</td></tr><tr><td>R8</td><td>제31조 (실제 아티스트 초상권은 본인·운영수익은 합자회사)</td><td>한국 아티스트 초상권 수익화 시 한국 아티스트 동의·지급 누락 위험</td></tr><tr><td>R9</td><td>제20조 (운영자금 갑 제공·합자회사 비용 계상)</td><td>"전액 부담" 같지만 비용으로 계상 = 자기자본 아닌 차입 가능성. 회수 우선권 명확화 필요</td></tr></tbody></table>
+</details>
+<details>
+<summary>🟡 통상 3 (R10~R12) 펼치기</summary>
+<table class="mb-tbl"><thead><tr><th>#</th><th>조항</th></tr></thead><tbody><tr><td>R10</td><td>제22조 이익배분 60:40 — 통상</td></tr><tr><td>R11</td><td>제32조 영구 비밀유지 — 국제 12 Redflag(Perpetual Confidentiality) 해당이나 통상</td></tr><tr><td>R12</td><td>제40조 entire agreement — 통상</td></tr></tbody></table>
+</details>
+</details>
+<details>
+<summary>▶ 부록 B. L5 한국법 오버레이 상세</summary>
+<h3 class="mb-h3">부록 B — L5 한국법 오버레이 상세</h3>
+<details>
+<summary>한국법 일부 적용 근거 펼치기</summary>
+<p>본 계약은 준거법이 중국법이라 한국법 오버레이가 직접 적용 ✗. 단 김형석이 한국 거주자이므로:</p>
+<ul class="mb-ul">
+<li><strong>약관규제법</strong> §6 (일반조항)·§11 (해제·해지 제한) 한국법원 분쟁시 일부 적용 가능 [신뢰도: 중]</li>
+<li><strong>하도급 부당특약 무효</strong> (2025.3.13) — 김형석이 사업자로 IP 제공시 적용 검토</li>
+<li><strong>저작권법</strong> §46 라이선스 해지권 — 영구 라이선스 강제는 한국 공서양속 위반 주장 가능 [신뢰도: 중]</li>
+</ul>
+</details>
+</details>
+<details>
+<summary>▶ 부록 C. 세무 CASE 1 상세 (케이맨 배당 한국 과세)</summary>
+<h3 class="mb-h3">부록 C — 세무 CASE 1 상세 (케이맨 배당 한국 과세)</h3>
+<details>
+<summary>(a) 법 펼치기</summary>
+<ul class="mb-ul">
+<li>국제조세조정법 §27 (특정외국법인 유보소득 합산과세, 일명 CFC) — 한국 거주자가 케이맨 등 무세지에 50% 초과 지분 보유시 합산</li>
+<li>김형석 40% → CFC 직접 적용은 ✗ (50% 미만). 단 갑과 특수관계 형성시 합산 검토</li>
+<li>소득세법 §17 (배당소득) — 케이맨 합자회사 배당시 한국에서 종합과세</li>
+<li>한중조세조약 — 케이맨은 적용 ✗ (케이맨은 한국과 조세조약 ✗)</li>
+</ul>
+</details>
+<details>
+<summary>(b) 판례 펼치기</summary>
+<ul class="mb-ul">
+<li>대법원 2014.7.24 선고 2013두24389 — 케이맨 SPC 실질귀속자 과세 (확신도: 상)</li>
+<li>대법원 2018.10.25 선고 2018두50000 — CFC 적용범위 [신뢰도: 상]</li>
+</ul>
+</details>
+<details>
+<summary>(c) 실무 흐름 펼치기</summary>
+<ol class="mb-ol">
+<li>케이맨 합자회사 배당 시 → 케이맨 무과세 (현지)</li>
+<li>한국 김형석 수령 → 종합소득 합산 (45% 최고세율)</li>
+<li>별도 외국납부세액공제 ✗ (케이맨 무과세이므로)</li>
+<li><strong>결론:</strong> 배당의 45% 한국 세금 + 한중 양자 미적용 = 사실상 회수가치 50% 미만</li>
+</ol>
+</details>
+<details>
+<summary>(d) 옵션 3+ 펼치기</summary>
+<table class="mb-tbl"><thead><tr><th>옵션</th><th>액션</th><th>세부담</th><th>적합</th></tr></thead><tbody><tr><td>1</td><td>케이맨 직접 보유</td><td>배당 45% 한국 종합과세</td><td>단순하지만 비효율</td></tr><tr><td>2</td><td>한국 SPC 경유</td><td>케이맨 → 한국 SPC → 김형석 (이중배당)</td><td>복잡·이중과세</td></tr><tr><td>3</td><td>라이선스 수익 별도 분리</td><td>IP 라이선스 → 김형석 직접 수령 (사업소득 또는 기타)</td><td><strong>권장</strong> — 분쟁시 IP 통제권 분리</td></tr></tbody></table>
+</details>
+</details>
+<details>
+<summary>▶ 부록 D. 세무 CASE 2 상세 (영구 라이선스 양도 의제)</summary>
+<h3 class="mb-h3">부록 D — 세무 CASE 2 상세 (영구 라이선스 양도 의제)</h3>
+<details>
+<summary>쟁점·판례·시사 펼치기</summary>
+<h4 class="mb-h4">쟁점</h4>
+<p>제26조 "전 세계·전 시나리오·독점·영구·취소불가" 라이선스 = 사실상 IP 영구 양도. 한국 세법상 "양도"로 의제될 가능성.</p>
+<h4 class="mb-h4">판례</h4>
+<ul class="mb-ul">
+<li>대법원 2019.7.11 선고 2017두68417 — 사실상 영구라이선스는 양도로 의제 가능 [신뢰도: 중]</li>
+</ul>
+<h4 class="mb-h4">시사</h4>
+<ul class="mb-ul">
+<li>영구 라이선스 = 양도소득세 과세 가능성</li>
+<li>양도가액 = 합자회사 지분 40% 평가액 (시가 평가 필요)</li>
+<li>IP 양도소득세 22% (지방세 포함)</li>
+</ul>
+</details>
+</details>
+<details>
+<summary>▶ 부록 E. 카운터레드라인 핵심 문구 (5중대 조항)</summary>
+<h3 class="mb-h3">부록 E — 카운터레드라인 핵심 문구 (5중대 조항)</h3>
+<details>
+<summary>R1~R5 조항별 redline 핵심 펼치기</summary>
+<p><strong>전제:</strong> 아래 문구는 변호사 검토 전 1차 초안 수준. 정식 redline은 변호사 명의로 작성·송부.</p>
+<p><strong>R1 — 제26조 IP 라이선스 (영구·취소불가 → 한정·회수가능)</strong></p>
+<ul class="mb-ul">
+<li>삭제: "영구적·취소불가능·독점적"</li>
+<li>신설: "본 합자회사 존속기간 한정 라이선스. 본 계약 해제·합자회사 청산·갑 부도·중대한 위약 발생시 즉시 자동 회수되며, 회수일 이후 갑·합자회사·그 계열사는 일체 사용을 즉시 중단한다."</li>
+</ul>
+<p><strong>R2 — 제19조 거부권 (예술심사 3개 → 7~12개)</strong></p>
+<ul class="mb-ul">
+<li>신설 거부권 항목: ① 신주 발행·전환사채 발행 ② 합병·분할·자산매각 ③ 특수관계인 거래 ④ 정관 변경 ⑤ 이사·CFO·CEO 선임·해임 ⑥ 회계법인 선임 ⑦ 연간 예산·사업계획 ⑧ 자회사 설립·매각 ⑨ 차입금·지급보증 한도 초과 ⑩ 배당정책 변경</li>
+</ul>
+<p><strong>R3 — 제21조 책임 (을 단독·무한 → 양당사자 과실비례·상한)</strong></p>
+<ul class="mb-ul">
+<li>삭제: "을의 사유로 발생한 손실 전액 부담"</li>
+<li>신설: "각 당사자의 책임은 고의·중과실에 한정한다. 을의 손해배상 책임 총액은 본 계약에 따라 을이 실제 수령한 배당금 누적액의 200%를 초과하지 아니한다. 단 IP 권리하자에 대한 진술보장 위반은 본 상한에서 제외하되, 상한은 합자회사 지분 평가액의 100%로 한다."</li>
+</ul>
+<p><strong>R4 — 제30조 양도 (을 제한·갑 자유 → 대칭)</strong></p>
+<ul class="mb-ul">
+<li>신설: "어느 일방도 본 계약상 권리·의무 및 합자회사 지분의 전부 또는 일부를 상대방의 사전 서면동의 없이 양도·이전·담보제공할 수 없다. 갑의 계열사 양도 포함. 갑이 50% 초과 지분을 제3자에 양도하는 경우 을은 동일 조건의 Tag-along 권리 또는 Put 옵션(공정시가 평가액)을 행사할 수 있다."</li>
+</ul>
+<p><strong>R5 — 제35-36조 준거법·중재 (중국법·베이징 → 중립지)</strong></p>
+<ul class="mb-ul">
+<li>1순위: "본 계약의 준거법은 대한민국 법률로 한다. 본 계약과 관련된 일체의 분쟁은 대한상사중재원(KCAB) 국제중재규칙에 따라 서울에서 중재한다."</li>
+<li>2순위(타협): "본 계약의 준거법은 싱가포르 법률로 한다. 분쟁은 싱가포르국제중재센터(SIAC) 규칙에 따라 싱가포르에서 중재한다."</li>
+<li>3순위(마지노선): "준거법은 중화인민공화국 법률로 하되, 분쟁은 홍콩국제중재센터(HKIAC) 규칙에 따라 홍콩에서 중재한다."</li>
+</ul>
+</details>
+</details>
+<details>
+<summary>▶ 부록 F. 중국 규제 실사 체크리스트 (NRTA·MOFCOM·CAC·SAFE 5종 단계별)</summary>
+<h3 class="mb-h3">부록 F — 중국 규제 실사 체크리스트</h3>
+<details>
+<summary>NRTA·MOFCOM·CAC·SAFE 5종 단계별 펼치기</summary>
+<p><strong>전제:</strong> 본 합자 사업의 핵심은 음악·AI 콘텐츠. 외상투자 네거티브 리스트·발행허가가 사업 자체의 가부를 결정. 계약 체결 전에 1·2단계 완료 필수.</p>
+<p><strong>1단계 — Pre-실사 (계약 체결 전, 1~2주)</strong></p>
+<ol class="mb-ol">
+<li>☐ NRTA(国家广电总局) 출판물 발행 허가의 외자 가능 여부 공식 조회 (음악·음반·디지털음원 카테고리별)</li>
+<li>☐ 2025년 외상투자 네거티브 리스트(最新版) 내 "엔터테인먼트 콘텐츠 제작·발행" 항목 확인</li>
+<li>☐ 베이징 WFOE 100% 구조에서 발행허가 취득 가능 여부 → 합작회사(JV) 전환 필요성 확인</li>
+<li>☐ AI 작곡·디지털 휴먼 핵심사업이 "생성형 AI 서비스 관리방법(2023.8.15)" 알고리즘 등록 대상인지 확인</li>
+</ol>
+<p><strong>2단계 — MOFCOM·SAFE 사전 등록 (계약 체결 ~ 송금 전, 2~4주)</strong></p>
+<ol class="mb-ol">
+<li>☐ 케이맨 → 베이징 WFOE 자본금 송금: MOFCOM 외상투자 정보보고 (5영업일 내)</li>
+<li>☐ SAFE(国家外汇管理局) 외환등록: ODI/FDI 양방향 등록</li>
+<li>☐ 베이징 WFOE 영업집조 발급 후 30일 내 세무·인감·은행 등록 3종</li>
+</ol>
+<p><strong>3단계 — 데이터·AI 컴플라이언스 (서비스 런칭 전, 4~8주)</strong></p>
+<ol class="mb-ol">
+<li>☐ PIPL 개인정보 처리자 등록 + 한국·케이맨 국외이전 표준계약(CAC 표준조항) 체결</li>
+<li>☐ 누적 유저 100만명 도달 시점 D-30일 전 데이터안전법 보안평가 신청 (CAC) — 위반시 최대 5천만 위안 벌금</li>
+<li>☐ 생성형 AI 알고리즘 등록 (CAC, 国家互联网信息办公室) — AI 작곡·디지털 휴먼 모델별 개별 등록</li>
+<li>☐ 음원·콘텐츠 사전 심의 — NRTA·中国音像与数字出版协会 단체 가입 검토</li>
+</ol>
+<p><strong>4단계 — 운영·이익배분 (런칭 후, 분기별)</strong></p>
+<ol class="mb-ol">
+<li>☐ 합자회사 이익배분 시 케이맨 송금: SAFE 외환 사전등록 + 한국 김형석 종합소득 신고 (45% 최고세율)</li>
+<li>☐ NRTA 발행허가 갱신 주기 확인 (통상 3~5년) + 사업계획 변경시 사전 신고</li>
+<li>☐ 분기별 PIPL·데이터안전법 컴플라이언스 자체점검 보고서</li>
+</ol>
+<p><strong>5단계 — 분쟁·종료 시 (트리거 발생시)</strong></p>
+<ol class="mb-ol">
+<li>☐ BAC 중재 신청 전 한국 측 변호사 + 중국 측 변호사 공동 BATNA·증거전략 수립</li>
+<li>☐ 종료시 IP 회수 절차: 합자회사 IP 사용 즉시중단 통지·발행허가 명의이전 거부·NRTA에 갑 측 단독사용 차단 신청</li>
+<li>☐ 베이징 WFOE 청산: SAFE 송금 신청 + MOFCOM·세무 청산 절차 (통상 6~12개월)</li>
+</ol>
+</details>
+</details>
+<hr class="mb-hr">
+<p>⚠️ 법률자문·세무자문 대체 ✗ · 📅 검토일 2026-05-26 · ⚖️ 준거법 본 계약 = 중국 / 한국 거주자 한국법 일부 적용 · 📚 참조 약관규제법·저작권법·국제조세조정법·민법·중국 외상투자법·PIPL·BAC 중재규칙 · 🔍 α 출력은 통계적 추정 · 변호사 선임 필수</p>
+
+</div></div>
+
+<button class="ch-banner" data-ch="ch2" type="button">
+  <span><span class="ch-no">§2</span><span class="ch-ttl">계약전략 — 사용권 계약형 전환·협상순서</span></span>
+  <span class="ch-arrow">▶</span>
+</button>
+<div class="ch-body" id="ch2"><div class="ch-inner">
+<h1 class="mb-h1">계약전략 — 사용권 계약형 전환과 협상 순서</h1>
+<h2 class="mb-h2">결론 한 줄</h2>
+<p><strong>기본 전략은 B안입니다. 즉, 현재 JV 초안을 IP 사용권 계약 + 초기 제작 패키지 + 전략지분 구조로 전환하고, 지분은 낮추더라도 선급금·제작비·마일스톤·추가 업무 비용을 확보하는 방향입니다.</strong></p>
+<h3 class="mb-h3">3대 결정 축</h3>
+<table class="mb-tbl"><thead><tr><th>구분</th><th>A안</th><th>B안</th></tr></thead><tbody><tr><td>포지션</td><td>공동창업자형 JV</td><td>IP 사용권자 + 초기 제작 파트너</td></tr><tr><td>지분</td><td>40%</td><td>15~25%</td></tr><tr><td>현금 흐름</td><td>지분 업사이드 + 향후 배당</td><td>선급금 + 제작비 + 마일스톤 + 추가 업무비 + 지분 업사이드</td></tr></tbody></table>
+<h3 class="mb-h3">B안 추천 근거</h3>
+<ul class="mb-ul">
+<li>현재 계약서는 한국 측 업무와 책임 범위가 넓습니다. 이를 그대로 수용하려면 40% 지분뿐 아니라 강한 보호조항이 필요합니다.</li>
+<li>한국 측이 실제로 제공하려는 범위가 IP 사용권, 초기 창작 패키지, 음악 방향성 감수라면 지분을 낮추고 현금 지급 구조를 붙이는 편이 더 명료합니다.</li>
+<li>중국 측이 운영·투자·상장·현지 인허가를 주도한다면, 한국 측은 사용권 범위와 추가 업무 비용을 명확히 하는 방식으로 책임을 제한해야 합니다.</li>
+</ul>
+<hr class="mb-hr">
+<h2 class="mb-h2">1장. A안과 B안 양자 비교</h2>
+<h3 class="mb-h3">1.1 A안 — 공동창업자형 (40% 유지 + 강한 보호)</h3>
+<p><strong>전제:</strong> 중국 측 자금·운영·상장 약속 이행에 신뢰가 있고, PD님 측이 콘텐츠·창작에 깊이 들어갈 의지와 역량이 있는 경우입니다.</p>
+<table class="mb-tbl"><thead><tr><th>항목</th><th>조건</th></tr></thead><tbody><tr><td>지분</td><td>40%</td></tr><tr><td>이사회</td><td>6명(3:3) 또는 5명(3:2 + 의장 합의)</td></tr><tr><td>거부권</td><td>12개 항목 (특수관계 거래·신주발행·IP 처분·정관 변경·청산·M&amp;A·CEO 임면 등)</td></tr><tr><td>IP 라이선스</td><td>10년 한정 + 합자 종료 시 자동 회수</td></tr><tr><td>진술보장</td><td>중국·한국 규제 클리어런스 진술. 위반 시 즉시 해제</td></tr><tr><td>풋옵션</td><td>36개월 후 자금 미투입·상장 미진행 시</td></tr><tr><td>책임 한도</td><td>누적 배당액 한도 + 고의·중과실에 한정</td></tr><tr><td>준거법·중재</td><td>홍콩법·HKIAC</td></tr><tr><td>현금</td><td>사이닝보너스 또는 초기 운영비 (선택)</td></tr></tbody></table>
+<p><strong>장점:</strong> 상장 성공 시 큰 업사이드 · 콘텐츠 통제권 유지 · 글로벌 자본시장 경로 확보 <strong>단점:</strong> 책임 범위 큼 · 의무 확장 해석 위험 · IP 10년 묶임 · 변호사비 부담 큼 <strong>적합한 상황:</strong> 중국 측 신뢰 회복 + PD님 측 5년 이상 장기전 각오가 가능할 때</p>
+<h3 class="mb-h3">1.2 B안 — IP 라이선서형 (15~25% + 현금 + 범위 제한) — 추천</h3>
+<p><strong>전제:</strong> 본 계약 조항의 IP 영구·취소불가 라이선스·거부권 박탈·을 단독책임·양도 비대칭이 명시된 상태. IP 보호 · 현금 회수 · 범위 제한이 최우선인 경우입니다.</p>
+<table class="mb-tbl"><thead><tr><th>항목</th><th>조건</th></tr></thead><tbody><tr><td>지분</td><td>20% (15~25% 범위)</td></tr><tr><td>한국 측 역할</td><td>사공이호 IP 사용권 + 초기 창작 패키지 + 음악 방향성 감수</td></tr><tr><td>사이닝보너스</td><td>100만~200만 달러 (계약 체결 시)</td></tr><tr><td>초기 제작비</td><td>100만~300만 달러 (부속서 한정)</td></tr><tr><td>마일스톤 지급</td><td>5단계 (계약·법인 설립·첫 제작·첫 런칭·첫 매출)</td></tr><tr><td>MG</td><td>연간 최소보장금 (선택)</td></tr><tr><td>추가 업무</td><td>별도 견적·별도 계약</td></tr><tr><td>IP 라이선스</td><td>중국+동남아 한정·MAD POP 프로젝트 한정·5년 + 갱신</td></tr><tr><td>Use-it-or-Lose-it</td><td>5단계 트리거 (제작·런칭·투자·상장·갑 진술보장 위반)</td></tr><tr><td>Territory</td><td>중국 + 동남아 한정 (글로벌 제외)</td></tr><tr><td>진술보장</td><td>중국 측 규제 클리어런스</td></tr><tr><td>준거법·중재</td><td>홍콩법·HKIAC</td></tr><tr><td>책임 한도</td><td>IP 사용권료의 50% Cap</td></tr></tbody></table>
+<p><strong>장점:</strong> 현금 즉시 회수 · 책임 범위가 닫힘 · IP 보호 강함 · 중국 측 신용 의존도 낮음 · 변호사비 부담 낮음 <strong>단점:</strong> 상장 업사이드 축소 · 콘텐츠 통제 약화 · "공동창업자" 명분 약화 <strong>적합한 상황:</strong> IP 보호 최우선 · 일본·동남아·미국 시장 동시 진출 의지가 있을 때</p>
+<h3 class="mb-h3">1.3 양자 비교 매트릭스</h3>
+<table class="mb-tbl"><thead><tr><th>기준</th><th>A안</th><th>B안</th></tr></thead><tbody><tr><td>지분</td><td>40%</td><td>20%</td></tr><tr><td>현금 (즉시 Year 0)</td><td>0 또는 소액</td><td>200만~500만 달러</td></tr><tr><td>책임 범위</td><td>큼</td><td>닫힘</td></tr><tr><td>IP 묶임</td><td>강 (10년)</td><td>한정 (5년·Territory)</td></tr><tr><td>상장 업사이드</td><td>큼 (페이퍼 1~3억)</td><td>중간 (페이퍼 5,000만~1억)</td></tr><tr><td>변호사비</td><td>1억 이상</td><td>5천만~</td></tr><tr><td>중국 측 신용 의존도</td><td>높음</td><td>중간</td></tr><tr><td>협상 난이도</td><td>매우 높음</td><td>높음</td></tr><tr><td>대안 가용성</td><td>중간</td><td>높음</td></tr></tbody></table>
+<h3 class="mb-h3">1.4 5년 기대값</h3>
+<table class="mb-tbl"><thead><tr><th>시나리오</th><th>확률</th><th>A안 회수</th><th>B안 회수</th></tr></thead><tbody><tr><td>최선 (상장 성공)</td><td>15%</td><td>페이퍼 1~3억 달러</td><td>페이퍼 5천만~1억 + 현금 500만~1,000만</td></tr><tr><td>기본 (상장 지연·5년 운영)</td><td>55%</td><td>0~3,000만</td><td>현금 500만~1,000만 확정</td></tr><tr><td>최악 (조항 미해결·결렬)</td><td>30%</td><td>손해배상 가능</td><td>현금 200만~500만 확정 · IP 회수</td></tr></tbody></table>
+<p><strong>B안 기대값은 모든 시나리오에서 양(+)입니다. A안 최악 시나리오에서는 음(-) 가능성이 있습니다.</strong></p>
+<hr class="mb-hr">
+<h2 class="mb-h2">2장. 5단계 협상 순서</h2>
+<pre class="mb-code"><code>1단계. 프레임 정립        → &quot;이 계약은 공동창업자형 합자입니다&quot;
+2단계. 책임 명세 요구      → 정보 우위 확보
+3단계. 대안 제시          → A안 또는 B안
+4단계. 보호 패키지 무장    → 진술보장·풋옵션·중재지
+5단계. 합의 또는 결렬</code></pre>
+<h3 class="mb-h3">2.1 1단계 — 프레임 정립 (D+7)</h3>
+<p><strong>중국 측 담당자(朱芸 변호사)에게 1차 회신 핵심 메시지입니다.</strong></p>
+<blockquote class="mb-q"><p>"본 계약서를 신중히 검토했습니다. 현재 문안은 한국 측이 단순한 IP 제공자가 아니라, MAD POP 전 영역의 콘텐츠·창작·품질·저작권·아티스트 자원을 깊게 책임지는 <strong>공동창업자급 구조</strong>로 이해됩니다. 이 이해가 맞는지 먼저 확인 부탁드립니다."</p></blockquote>
+<p><strong>효과:</strong></p>
+<ul class="mb-ul">
+<li>중국 측이 "그렇다" → 2단계 책임 명세 요구</li>
+<li>중국 측이 "단순 IP 제공"이라 답변 → B안 즉시 전환 명분 확보</li>
+<li>중국 측이 모호하게 답변 → 양측 해석 모두 카운터 가능</li>
+</ul>
+<h3 class="mb-h3">2.2 2단계 — 책임 명세 요구 (D+10~14)</h3>
+<p>중국 측에 요청할 명세 항목입니다.</p>
+<table class="mb-tbl"><thead><tr><th>#</th><th>항목</th></tr></thead><tbody><tr><td>1</td><td>PD님 측 콘텐츠 책임 범위·KPI</td></tr><tr><td>2</td><td>PD님 상시 참여 의무·시간·강도</td></tr><tr><td>3</td><td>추가 곡·캐릭터·영상 제작 의무 범위</td></tr><tr><td>4</td><td>사공이호 외 한국 아티스트 연결 의무</td></tr><tr><td>5</td><td>중국 측 자금 투입 일정·자금원 증빙</td></tr><tr><td>6</td><td>NRTA·MOFCOM 등 중국 인허가 사전 확인 결과</td></tr><tr><td>7</td><td>상장 일정·로드맵·자문사</td></tr><tr><td>8</td><td>갑 모회사 재무 정보·자금 출처</td></tr></tbody></table>
+<p><strong>전략:</strong> 항목 5·6·7·8은 중국 측의 실행 책임을 확인하기 위한 기준입니다. 답변이 구체적이면 A안 보호조항 협상으로 가고, 답변이 추상적이면 B안 사용권 계약형으로 전환할 근거가 생깁니다.</p>
+<h3 class="mb-h3">2.3 3단계 — 대안 제시 (D+14~21)</h3>
+<p>중국 측이 책임 범위를 명확히 답하지 않거나 과도한 책임을 요구할 경우, 다음과 같이 회신합니다.</p>
+<blockquote class="mb-q"><p>"한국 측이 요구된 책임을 충실히 이행하려면 공동창업자급 깊이가 필요합니다. 이 깊이를 감당할 경우 지분 40%가 합당하나, 보호조항이 함께 들어가야 합니다. 만약 중국 측이 운영·제작·사업화를 주도하고, 한국 측이 IP·초기 창작 패키지·음악 방향성 감수를 제공하는 단순한 전략적 파트너십이라면, 구조를 IP 라이선스+제작용역+전략지분 형태로 조정할 수 있습니다. 이 경우 지분은 20% 수준이며, 사이닝보너스·초기 제작비·마일스톤 지급이 함께 합의되어야 합니다."</p></blockquote>
+<h3 class="mb-h3">2.4 4단계 — 보호 패키지 무장 (D+21~45)</h3>
+<p><strong>A·B 공통 필수 조항:</strong></p>
+<ul class="mb-ul">
+<li>진술보장 (중국 측 규제 클리어런스 · 위반 시 즉시 해제 — 표준 진술보장)</li>
+<li>풋옵션 (자금 미투입·상장 미진행)</li>
+<li>Anti-dilution (broad-based weighted-average)</li>
+<li>정보 접근권 (월간 재무·이사회 의사록·특수관계 거래)</li>
+<li>외부감사 (4대 회계법인 합의)</li>
+<li>준거법·중재 (홍콩법·HKIAC. 베이징 제외)</li>
+<li>발효 조건 (NRTA·MOFCOM 인허가 사전 확보)</li>
+</ul>
+<p><strong>B안 추가 조항:</strong></p>
+<ul class="mb-ul">
+<li>Use-it-or-Lose-it 5단계</li>
+<li>Territory 제한</li>
+<li>마일스톤 5단계</li>
+<li>추가 업무 별도 계약 (부속서)</li>
+<li>책임 한도 Cap</li>
+</ul>
+<h3 class="mb-h3">2.5 5단계 — 합의 조건 또는 보류 조건 (D+45~75)</h3>
+<p><strong>합의 조건:</strong> 사용권 범위·기간 제한 수용 · 사이닝보너스 및 초기 제작비 반영 · 추가 업무 별도 계약 수용 · 책임상한 반영 · 홍콩 또는 싱가포르 중재 수용</p>
+<p><strong>보류 조건:</strong> 영구·취소불가 사용권 유지 · 현금 지급 구조 부재 · 추가 업무 범위 미정 · 책임상한 부재 · 중국법·베이징중재 고수</p>
+<hr class="mb-hr">
+<h2 class="mb-h2">3장. 즉시 액션</h2>
+<h3 class="mb-h3">3.1 D+1 ~ D+14 액션 플랜</h3>
+<table class="mb-tbl"><thead><tr><th>일정</th><th>액션</th></tr></thead><tbody><tr><td>D+1</td><td>PD님·부사장님 결정 — B안 사용권 계약형을 기본안으로 확정할지 판단</td></tr><tr><td>D+2</td><td>한국 변호사 선임 — 국제거래·IP 라이선스·제작용역 계약 전문</td></tr><tr><td>D+3</td><td>사공이호 IP 사용권 범위 정리 — 지역·기간·매체·2차 창작·AI 학습 사용 여부</td></tr><tr><td>D+5</td><td>선급금·초기 제작비·마일스톤·추가 업무 단가표 초안 작성</td></tr><tr><td>D+7</td><td><strong>1단계 — 朱芸 변호사에게 계약 성격 확인 및 업무 범위 명세 요청</strong></td></tr><tr><td>D+10</td><td>중국 현지 변호사 의견서 발주 — NRTA·외상투자·IP 사용권·콘텐츠 규제</td></tr><tr><td>D+14</td><td>2단계 책임 명세 수령 및 B안 전환 문안 준비</td></tr><tr><td>D+21</td><td>3단계 사용권 계약형 대안 제시</td></tr><tr><td>D+45</td><td>4단계 보호조항·부속서·지급 조건 확정</td></tr><tr><td>D+75</td><td>5단계 합의 또는 보류 판단</td></tr></tbody></table>
+<h3 class="mb-h3">3.2 朱芸 변호사 1차 회신 (전문)</h3>
+<blockquote class="mb-q"><p>朱芸 변호사님께,</p>
+<p>본 합자계약서(2026-05-22)를 신중히 검토했습니다. 합자의 큰 방향에는 동의하나, 몇 가지 핵심 영역에서 양측이 추가로 정렬해야 할 부분이 있습니다.</p>
+<p>현재 문안은 한국 측이 단순한 IP 제공자가 아니라, MAD POP·MAD BLOX·AI XR 음악회·MAD EX 전 영역의 <strong>콘텐츠·창작·품질·저작권·아티스트 자원을 깊게 책임지는 공동창업자급 구조</strong>로 이해됩니다.</p>
+<p>이 이해가 맞는다면, 한국 측 책임 범위·KPI·상시 의무·제작 의무·아티스트 연결 의무·감수 범위·기한에 대한 정확한 명세를 부속서로 받아보고 싶습니다. 그 명세에 따라 한국 측의 적정 지분·보호조항·자금 흐름 구조가 결정됩니다.</p>
+<p>만약 중국 측이 운영·제작·사업화를 주도하고, 한국 측은 IP 사용권과 초기 창작 패키지 공급, 음악 방향성 감수까지를 책임지는 보다 단순한 <strong>전략적 IP 파트너십</strong> 구조라면, 양측 모두에게 더 명료한 형태로 조정도 가능합니다. 이 경우 지분 비율, 라이선스 범위·기간, 사이닝보너스, 초기 제작비, 마일스톤 지급, 추가 업무 별도 계약 구조가 함께 정렬되어야 합니다.</p>
+<p>첫 미팅을 D+14~21 사이에 서울 또는 홍콩에서 가지면 어떻겠습니까. 양측 변호사 동석을 권장드립니다.</p>
+<p>김형석 측 드림</p></blockquote>
+<hr class="mb-hr">
+<h2 class="mb-h2">4장. 한 줄 결정</h2>
+<pre class="mb-code"><code>기본안: B안 (IP 사용권 계약형 15~25%)
+  → 사공이호 IP 사용권 + 초기 창작 패키지 + 음악 방향성 감수
+  → 선급금 + 초기 제작비 + 마일스톤 + 추가 업무 별도 계약
+  → 지역·기간·프로젝트 한정 사용권
+  → 책임상한 및 회수권 명확화
+보조안: A안 (공동창업자형 JV 40%)
+  → 중국 측이 40% JV 구조를 유지하길 원할 때만 검토
+  → 강한 거부권, 보호조항, 정보권, 외부감사, 중재지 변경 필요
+  → 현금 지급 또는 최소 제작비 보전 장치 필요</code></pre>
+<h3 class="mb-h3">결정이 필요한 사항</h3>
+<ol class="mb-ol">
+<li>B안 사용권 계약형을 기본안으로 확정할지 여부</li>
+<li>IP 사용권 범위 — 지역, 기간, 매체, 2차 창작, AI 학습 사용 여부</li>
+<li>현금 지급 구조 — 선급금, 초기 제작비, 마일스톤, 추가 업무 단가</li>
+<li>중국 측에 보낼 1차 회신 시점과 회신 주체</li>
+</ol>
+<hr class="mb-hr">
+
+<hr class='mb-hr'>
+<h2 class="mb-h2"><span class="bdg bdg-apx">APX</span>부록 (필요시 펼침)</h2>
+<p>아래 4개 부록은 모두 기본 접힘입니다. 제목 클릭으로 펼침.</p>
+<details class="callout callout-note"><summary><span class="bdg bdg-apx">APX</span>부록 1. 본 계약서의 정체</summary><div class="callout-body"><p><strong>이 계약서는 사공이호 중국 런칭을 포함한 MAD POP 플랫폼형 JV 기본계약입니다.</strong></p>
+<ul class="mb-ul">
+<li>사공이호는 첫 리드 IP이자 Proof Asset 역할입니다.</li>
+<li>계약의 상위 구조는 케이맨 상장체 + 베이징 WFOE + 글로벌 AI 음악 플랫폼 그룹입니다.</li>
+<li>한국 측 전략은 이 JV 초안을 IP 사용권 계약 + 제작용역 + 전략지분 구조로 재정렬하는 것입니다.</li>
+</ul>
+<p>계약서에 들어간 사업 범위:</p>
+<ul class="mb-ul">
+<li>MAD POP (광조성구·UGC 플랫폼)</li>
+<li>MAD BLOX (음악 소셜 게임)</li>
+<li>AI XR 음악회</li>
+<li>MAD EX (음악 NFT·IP 자산증권화)</li>
+<li>디지털 음악 매니지먼트·교육 캠프</li>
+<li>미구 협력·청두 산업기지</li>
+</ul>
+<p>목표: 2027년 1분기 런던·홍콩 상장, 10억 달러 밸류에이션, 2~3억 달러 조달.</p>
+<p><strong>한국 측 포지션:</strong> 콘텐츠·창작 생태·공연 제작·품질·저작권·아티스트 네트워크 주도 = 공동창업자급 책임.</p>
+<p><strong>한국 측 실제 위치:</strong></p>
+<table class="mb-tbl"><thead><tr><th>영역</th><th>현재 계약서</th></tr></thead><tbody><tr><td>책임</td><td><strong>큼</strong> — 콘텐츠 품질·창작·아티스트 자원</td></tr><tr><td>통제</td><td><strong>제한적</strong> — 이사회 2/5·예술심사 거부권만</td></tr><tr><td>현금흐름</td><td><strong>없음</strong> — 사이닝보너스·제작비·MG 일체 없음</td></tr><tr><td>IP 묶임</td><td><strong>강함</strong> — 전 세계·전 시나리오·독점·영구·취소불가</td></tr></tbody></table></div></details>
+<details class="callout callout-note"><summary><span class="bdg bdg-apx">APX</span>부록 2. 포지셔닝 전환의 본질</summary><div class="callout-body"><p><strong>공동창업자형 (A안)</strong></p>
+<ul class="mb-ul">
+<li>"함께 만든다, 함께 책임진다"</li>
+<li>40% + 깊은 의무 + 큰 업사이드</li>
+<li>IP·콘텐츠·창작·품질·아티스트 자원이 깊게 묶임</li>
+<li>회수 = 배당 + 상장 시가총액</li>
+</ul>
+<p><strong>IP 라이선서형 (B안)</strong></p>
+<ul class="mb-ul">
+<li>"IP와 초기 패키지를 공급한다. 운영은 중국 측이 한다"</li>
+<li>15~25% + 제한된 의무 + 현금 흐름</li>
+<li>IP는 범위·기간 한정으로 빌려준다</li>
+<li>회수 = 선급금 + 제작비 + 마일스톤 + 지분 업사이드</li>
+</ul>
+<p><strong>현금 흐름 안전도:</strong></p>
+<table class="mb-tbl"><thead><tr><th>안전도</th><th>수익 방식</th></tr></thead><tbody><tr><td>★★★★★</td><td>선급금</td></tr><tr><td>★★★★</td><td>제작비</td></tr><tr><td>★★★</td><td>마일스톤</td></tr><tr><td>★★</td><td>순이익 배분</td></tr><tr><td>★</td><td>러닝개런티</td></tr><tr><td>?</td><td>상장 기대값</td></tr></tbody></table>
+<p>중국 합자에서는 순이익 배분·러닝개런티보다 계약 체결 시점의 선급금, 초기 제작비, 마일스톤 지급, 추가 업무 별도 계약이 회수 안정성이 높습니다. 따라서 B안에서는 현금 지급 구조를 본계약 또는 부속서에 명확히 넣어야 합니다.</p>
+<p><strong>"20%를 먼저 제시하지 말 것" 원칙:</strong></p>
+<ul class="mb-ul">
+<li>1단계: 현재 문안이 공동창업자형 JV인지 확인합니다.</li>
+<li>2단계: 한국 측 업무 범위·KPI·추가 제작 의무를 부속서로 요청합니다.</li>
+<li>3단계: 업무 범위를 제한하는 대신 지분을 낮추고, 선급금·제작비·마일스톤을 받는 구조를 제시합니다.</li>
+</ul>
+<p>핵심: 지분을 양보하는 것이 아니라, 한국 측 포지션을 공동창업자에서 IP 사용권자·초기 제작 파트너로 재정렬하는 것입니다.</p></div></details>
+<details class="callout callout-note"><summary><span class="bdg bdg-apx">APX</span>부록 3. 수익 구조 재설계 + IP 라이선스 명세</summary><div class="callout-body"><p><strong>A안 수익 구조:</strong></p>
+<table class="mb-tbl"><thead><tr><th>항목</th><th>금액·조건</th><th>안전도</th></tr></thead><tbody><tr><td>사이닝보너스</td><td>50만~100만 달러 (선택)</td><td>★★★★★</td></tr><tr><td>운영비 분담</td><td>중국 측 100%</td><td>—</td></tr><tr><td>배당 (세후)</td><td>60:40</td><td>★★</td></tr><tr><td>상장 시가총액</td><td>40% 비율</td><td>?</td></tr><tr><td>책임 한도</td><td>누적 배당 한도 + 고의·중과실</td><td>방어선</td></tr></tbody></table>
+<p>현금 회수 추정: 사이닝 + 5년 후 상장 성공 시 페이퍼 1~3억 달러 (lock-up 2년 이상). 실패 시 0.</p>
+<p><strong>B안 수익 구조 (추천):</strong></p>
+<table class="mb-tbl"><thead><tr><th>항목</th><th>금액·조건</th><th>안전도</th></tr></thead><tbody><tr><td>사이닝보너스</td><td>100만~200만 달러</td><td>★★★★★</td></tr><tr><td>초기 제작비</td><td>100만~300만 달러 (부속서 한정)</td><td>★★★★</td></tr><tr><td>마일스톤 5단계</td><td>각 30만~80만 달러 × 5 = 150만~400만 달러</td><td>★★★</td></tr><tr><td>MG (연간)</td><td>30만 달러 × N년 (선택)</td><td>★★</td></tr><tr><td>추가 업무</td><td>별도 견적·발주·계약</td><td>★★★★</td></tr><tr><td>지분 20%</td><td>상장 성공 시 페이퍼 5천만~1억 달러</td><td>?</td></tr></tbody></table>
+<p>현금 회수 추정 (보수적):</p>
+<ul class="mb-ul">
+<li>Year 0 즉시: 사이닝 200만 + 초기 제작비 300만 = <strong>500만 달러</strong></li>
+<li>Year 1~3: 마일스톤 150만~400만 달러</li>
+<li>Year 5+: 상장 성공 시 페이퍼 5천만~1억 달러 (lock-up 1~2년)</li>
+<li>합계: 안전 회수 <strong>650만~900만 달러 + 옵션형 5천만~1억 달러</strong></li>
+</ul>
+<p><strong>B안 IP 라이선스 명세 — 제공물 4종 (부속서 명시):</strong></p>
+<table class="mb-tbl"><thead><tr><th>#</th><th>제공물</th><th>범위</th></tr></thead><tbody><tr><td>1</td><td>사공이호 IP 사용권</td><td>캐릭터·세계관·로고·디자인</td></tr><tr><td>2</td><td>초기 창작 패키지</td><td>신규 곡 N곡·세계관 확장·캐릭터 DNA·런칭 영상</td></tr><tr><td>3</td><td>음악 방향성 감수</td><td>분기별 N회 리뷰</td></tr><tr><td>4</td><td>한국 아티스트 1차 연결</td><td>협력 가능 아티스트 리스트 (계약 의무 없음)</td></tr></tbody></table>
+<p><strong>Territory 제한:</strong></p>
+<ul class="mb-ul">
+<li>✓ 중국 본토 / 홍콩·마카오·대만 / 동남아 (베트남·태국·인도네시아·필리핀·말레이시아)</li>
+<li>✗ 한국 (PD님 본거지) / 일본·미국·유럽 (별도 시장)</li>
+</ul>
+<p><strong>Use-it-or-Lose-it (5단계 회수 트리거):</strong></p>
+<table class="mb-tbl"><thead><tr><th>트리거</th><th>마감</th><th>위반 시</th></tr></thead><tbody><tr><td>1. 중국 합자법인 설립</td><td>D+90</td><td>라이선스 발효 안 함</td></tr><tr><td>2. 첫 제작 착수</td><td>D+180</td><td>독점권 → 비독점 전환</td></tr><tr><td>3. 첫 런칭</td><td>D+360</td><td>라이선스 일시 정지</td></tr><tr><td>4. 첫 매출</td><td>D+540</td><td>마일스톤 지급 trigger</td></tr><tr><td>5. 상장 신청</td><td>D+720</td><td>한국 측 풋옵션 발동</td></tr></tbody></table>
+<p>본 계약상 갑의 진술보장 위반 또는 중대한 자금 미투입 시: 즉시 해제권.</p></div></details>
+<hr class="mb-hr">
+<p>⚠️ 본 문서는 변호사 자문 전 사전 정리본입니다 · 한국 측 내부 공유 한정 · 2026-05-26 · 확신도 90</p>
+
+</div></div>
+
+<button class="ch-banner" data-ch="ch3" type="button">
+  <span><span class="ch-no">§3</span><span class="ch-ttl">계약서 관계도 — 45조 verbatim·연결망</span></span>
+  <span class="ch-arrow">▶</span>
+</button>
+<div class="ch-body" id="ch3"><div class="ch-inner ch-inner-wide">
+<header>
+  <h1>MADVERSE × 김형석 합자계약서 — 조항 관계도 (2026.05.22 중국측 송부본)</h1>
+  <div class="sub">박스 클릭 → 직접 연결조항만 부각, 나머지 딤드. 박스=조항 verbatim 전문. 우측 패널에 원문 기준으로 표시.</div>
+  <div class="ctrl">
+    <input type="text" id="q" placeholder="조항 본문 검색 (예: 상장, 베이징, IP, 거부권)">
+    <span class="sep"></span>
+    <button class="filt" data-f="all">전체</button>
+    <button class="filt" data-f="fav">갑유리</button>
+    <button class="filt" data-f="bad">을불리</button>
+    <button class="filt" data-f="trap">함정</button>
+    <button class="filt" data-f="warn">맹점⚠</button>
+    <span class="sep"></span>
+    <span style="font-size:11.5px;color:var(--mute)">연결체인:</span>
+    <span class="chainsw">
+      <button class="chf b1 on" data-c="1">①의결</button>
+      <button class="chf b2 on" data-c="2">②자금</button>
+      <button class="chf b3 on" data-c="3">③IP</button>
+      <button class="chf b4 on" data-c="4">④분쟁</button>
+    </span>
+  </div>
+  <div class="legend">
+    <span class="lg"><span class="dot fav"></span>갑 유리</span>
+    <span class="lg"><span class="dot bad"></span>을 불리</span>
+    <span class="lg"><span class="dot trap"></span>함정/연역적 치팅</span>
+    <span class="lg"><span class="dot neu"></span>중립</span>
+    <span class="lg"><span class="warn">⚠</span> 맹점 마커(중복 부착)</span>
+    <span class="lg"><span class="tag chain c1">①</span>의결·지배</span>
+    <span class="lg"><span class="tag chain c2">②</span>자금·이익</span>
+    <span class="lg"><span class="tag chain c3">③</span>IP·자산</span>
+    <span class="lg"><span class="tag chain c4">④</span>분쟁·종료·통제</span>
+  </div>
+</header>
+<div class="wrap">
+  <div class="stage-wrap">
+    <div class="scroller" id="scroller">
+      <div class="stage-inner" id="stageInner">
+        <div class="stage" id="stage">
+          <svg class="edges" id="edges" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+      </div>
+    </div>
+    <div class="zoombox">
+      <button id="zout">−</button><button id="zrst">100%</button><button id="zin">+</button>
+      <button id="zfit" title="화면맞춤">맞춤</button>
+    </div>
+  </div>
+  <aside class="panel-wrap" id="panel">
+    <h2>조항 상세 (verbatim)</h2>
+    <div class="pno">박스를 클릭하면 본 조항 원문 전체가 여기에 표시됩니다.</div>
+    <div class="ptt">사용법</div>
+    <div class="pverbatim">· 박스 = 제1조~제45조 (총 45개)
+· 박스 클릭 → 연결조항만 부각, 본문 verbatim 표시
+· 상단 검색창 = 조항 본문 grep
+· 상단 필터 = 분류·맹점 토글
+· 체인 토글 = 4계열(의결/자금/IP/분쟁) 선 표시 ON/OFF
+· ⚠ 마커 = 맹점·모호·누락 의심 조항
+· 한 글자도 누락 없이 표시됨</div>
+    <div class="pnote">분석 관점: JV 구조, IP 사용권, 중국 실행 책임, 현금 지급 구조, 분쟁 관할을 기준으로 조항 간 연결성을 확인합니다.</div>
+  </aside>
+</div>
+
+</div></div>
+
+</div>
+
+<div class="fnote">© 내부 분석용. 본 화면은 중국측 송부 국문번역본(20260522)을 기반으로 한 조항 관계 시각화이며, 최종 계약 문안은 관할 법률 전문가와 세무 전문가 검토가 필요합니다.</div>
+
+<script>
+// ===== DATA: 45조 verbatim =====
+// cls: fav | bad | trap | neu
+// warn: true 면 맹점 ⚠ 마커
+// chains: [1,2,3,4] 중 해당
+// links: 직접 연결 조항 id
+const TITLES_HEAD = "본 계약은 다음 각 당사자가 2026년 5월【 】일 【베이징】에서 체결합니다.\n갑: MADVERSE\n주소:\n을: 김형석(대한민국 여권번호:  )\n주소:\n위 각 당사자는 개별적으로 “일방”, 통칭하여 “각 당사자”라 합니다.\n각 당사자는 평등·자발, 공정·신의성실, 호혜·상생의 원칙에 따라 우호적으로 협의하여 다음과 같이 합의합니다.";
+
+const CHAPTERS = [
+  {id:"ch1", no:"제1장", ttl:"합자 구상 및 핵심 취지 (※ 머리말 포함)", nodes:["c0","c1","c2","c3"]},
+  {id:"ch2", no:"제2장", ttl:"합자 주체 및 지분 구조", nodes:["c4","c5","c6"]},
+  {id:"ch3", no:"제3장", ttl:"협력 목표 및 자본 계획", nodes:["c7","c8","c9","c10"]},
+  {id:"ch4", no:"제4장", ttl:"각 당사자의 자원 투입", nodes:["c11","c12"]},
+  {id:"ch5", no:"제5장", ttl:"회사 지배구조", nodes:["c13","c14","c15","c16","c17","c18","c19"]},
+  {id:"ch6", no:"제6장", ttl:"재무 및 수익 배분", nodes:["c20","c21","c22","c23","c24"]},
+  {id:"ch7", no:"제7장", ttl:"자산 및 지식재산권", nodes:["c25","c26","c27","c28","c29","c30","c31"]},
+  {id:"ch8", no:"제8장", ttl:"비밀유지·경업금지·위약책임", nodes:["c32","c33","c34"]},
+  {id:"ch9", no:"제9장", ttl:"분쟁 해결", nodes:["c35","c36","c37"]},
+  {id:"ch10",no:"제10장",ttl:"통지 및 송달", nodes:["c38"]},
+  {id:"ch11",no:"제11장",ttl:"기타", nodes:["c39","c40","c41","c42","c43","c44","c45"]}
+];
+
+const NODES = [
+{id:"c0", no:"머리말", ttl:"체결 당사자·기본 원칙",
+ cls:"neu", warn:true, chains:[],
+ body:"합자계약서\n본 계약은 다음 각 당사자가 2026년 5월【 】일 【베이징】에서 체결합니다.\n갑: MADVERSE\n주소:\n을: 김형석(대한민국 여권번호:  )\n주소:\n위 각 당사자는 개별적으로 “일방”, 통칭하여 “각 당사자”라 합니다.\n각 당사자는 평등·자발, 공정·신의성실, 호혜·상생의 원칙에 따라 우호적으로 협의하여 다음과 같이 합의합니다.",
+ links:["c4","c38"],
+ note:"⚠ 체결일·갑 주소·을 주소·여권번호 전부 공란. 계약 성립일·관할 송달 다툼 가능."},
+{id:"c1", no:"제1조", ttl:"갑의 투입·주도 영역",
+ cls:"fav", warn:true, chains:[1,2,3],
+ body:"갑은 현금, AI 디지털 음악 풀스택 기술, 글로벌 생태계, 글로벌 전략, 자본 운용, 상장 총괄, 디지털 자산 운영, 가상·현실 공연 네트워크, MAD POP 글로벌 디지털 휴먼 콘서트의 전 과정 기술/제작/방송/오프라인 유통 등을 합자회사에 투입하며, 글로벌 전략, 기술, 자본, 컴플라이언스, 상장, MAD POP 프로젝트 전 과정 운영 및 전액 자금 투입을 주도합니다.",
+ links:["c2","c11","c15","c18","c20"],
+ note:"갑이 ‘전액 자금 투입+주도’ 선언. 18·20·22조와 결합 시 자금·경영·이익 회수 전권. 맹점=‘주도’의 외연 모호."},
+{id:"c2", no:"제2조", ttl:"을의 투입·주도 영역",
+ cls:"neu", warn:false, chains:[3],
+ body:"을은 SAGONG EE HO의 한국 우수 디지털 캐릭터 IP와 성숙한 음악 콘텐츠 기반을 핵심 주력 자산으로 합자회사에 투입하며, MAD POP 프로젝트의 음악 콘텐츠, 예술적 품질, 스타 매트릭스, 디지털 분신 예술 심사, 창작 생태계, 공연 제작, 콘텐츠 품질 및 저작권 관리를 주도합니다.",
+ links:["c1","c12","c16","c26"],
+ note:"을 주도 영역은 ‘콘텐츠·예술품질’ 한정. 자본·상장·재무 ✗(18·19조 후단과 연동)."},
+{id:"c3", no:"제3조", ttl:"케이맨 합자·중국 자회사 설립·상장 목표",
+ cls:"neu", warn:false, chains:[1,2,4],
+ body:"양측은 공동으로 케이맨 제도에 Mad POP AI Music Group(이하 “합자회사”)을 등록·설립하고, 중국 내에 자회사를 설립하여 MAD POP 글로벌 디지털 휴먼 콘서트 및 브랜드 디지털 뮤지션 시리즈 핵심 프로젝트를 실행합니다. 이를 통해 “콘텐츠 제작 + 소셜 게임 커뮤니티 + 상업 공간 운영 + 자산 거래(C+C+C+X)” 모델로 글로벌 선도 AI 디지털 소셜 음악 플랫폼을 구축하고, 가능한 한 조속히 런던 및 홍콩 상장을 실현하며, 목표 기업가치 10억 달러 이상 달성을 위해 노력합니다.",
+ links:["c4","c5","c6","c10","c39"],
+ note:"케이맨-WFOE 듀얼구조 + 런던·홍콩 상장 + 목표 10억$. 노력의무 표현."},
+{id:"c4", no:"제4조", ttl:"합자 주체(갑60:을40)",
+ cls:"fav", warn:true, chains:[1,2],
+ body:"합자 주체:\n1. 합자회사 명칭: Mad POP AI Music Group(최종 등록 명칭 기준).\n2. 등록지: 케이맨 제도(최종 등록지 기준).\n3. 지분 비율: 갑 60%, 을 40%.",
+ links:["c14","c19","c22","c23","c30"],
+ note:"⚠ ‘최종 등록 기준’ 단서 → 사후 변경 여지. 60:40이 의결·이익·자본 전체의 기준값."},
+{id:"c5", no:"제5조", ttl:"중국 합자 자회사(WFOE 100%)",
+ cls:"neu", warn:true, chains:[1,2],
+ body:"중국 합자 자회사:\n1. 회사 명칭: 맥덕포포음악문화(베이징)유한회사 / Mad POP AI Music (Beijing) Co., Ltd.(최종 등록 명칭 기준).\n2. 등록지: 베이징시 차오양구(최종 등록지 기준).\n3. 지분 비율: 케이맨 합자회사가 100% 지분을 보유합니다.",
+ links:["c4","c6","c35"],
+ note:"⚠ WFOE 100% — 중국 영업·자산은 케이맨 통제. 등록지 사후 변경 여지."},
+{id:"c6", no:"제6조", ttl:"회사 구조·통합 회계",
+ cls:"trap", warn:true, chains:[1,2,4],
+ body:"회사 구조: 케이맨 합자회사는 상장 주체 및 자본 운영 주체로서 글로벌 자본 운용, 지분 관리, 상장 신청 업무를 총괄합니다. 중국 내 WFOE 회사는 프로젝트 실행, 사업 운영, 시장 집행 주체로서 모든 중국 내 사업, 프로젝트 실행, 오프라인 운영 업무를 수행합니다. 중국 내외 사업, 자산, 수익은 모두 연동되어 해외 상장 주체에 편입되고 통합 회계 처리됩니다.",
+ links:["c4","c5","c10","c20","c24"],
+ note:"⚠ ‘통합 회계’ 구조 — 중국→케이맨 자금이동(VIE형)·이전가격 리스크. 환류 메커니즘 미정의."},
+{id:"c7", no:"제7조", ttl:"핵심 포지셔닝(C+C+C+X)",
+ cls:"neu", warn:false, chains:[],
+ body:"핵심 포지셔닝: 콘텐츠 제작 + 소셜 게임 커뮤니티 + 상업 공간 운영 + 자산 거래(C+C+C+X)의 4위일체 모델을 통해 글로벌 선도 AI 디지털 소셜 음악 플랫폼을 구축합니다.",
+ links:["c8","c9"],
+ note:"선언적 포지셔닝. 법적 구속력 약."},
+{id:"c8", no:"제8조", ttl:"사업 모델(베이징 본부·SAGONG EE HO 핵심)",
+ cls:"neu", warn:false, chains:[3],
+ body:"사업 모델: 베이징 MADVerse를 글로벌 운영 본부로 삼고, 김형석 선생이 투입하는 SAGONG EE HO 한국 우수 디지털 캐릭터 IP 및 성숙한 음악 콘텐츠 기반을 핵심 주력 IP로 삼아, 글로벌 시장을 대상으로 영상, 애니메이션, 문화·엔터테인먼트 파생사업 등 전 영역을 심층 개발합니다. 이를 MAD POP 및 MADVERSE 생태계에 전면 통합하여 글로벌 Pop 음악 트렌드 문화 랜드마크를 조성하고, 창작·소셜·공연·수익화를 하나로 결합하여 연중 무중단 운영을 실현하며 글로벌 비즈니스 구조를 구축합니다.",
+ links:["c9","c11","c12","c26"],
+ note:"베이징 본부 명시. 한국 거점·서울 본부 표현 ✗."},
+{id:"c9", no:"제9조", ttl:"핵심 사업 범위 5분야",
+ cls:"neu", warn:false, chains:[3],
+ body:"핵심 사업 범위:\n1. 콘텐츠 창작 브랜드: MAD POP 광조성구(疯潮星球). AI 기반 전 국민 POP 스타 메이킹 메타버스로서, “전 국민이 함께 트렌드 문화를 창작하고, 모두가 POP STAR가 된다”는 이념을 바탕으로 합니다. 한국 K-POP 교부 김형석 선생의 독점 라이선스와 AI 3D 월드 모델 기술에 기반하여, 창작·소셜·IP 인큐베이션·글로벌 유통이 결합된 트렌드 생태계를 구축합니다. AI 원클릭 작곡, 안무, 3D MV 생성, 버추얼 아이돌/그룹 커스터마이징, 전 플랫폼 원클릭 배포 등의 핵심 기능을 제공하여 일반인이 1분 만에 오리지널 POP 작품을 만들고 글로벌 데뷔할 수 있도록 합니다. 비즈니스 모델은 광고, 멤버십, 콘텐츠 수익 배분, 버추얼 아이템, IP 인큐베이션, 기술 라이선스를 포함하며 글로벌 선도 POP UGC 생태계를 구축합니다.\n2. 디지털 음악 콘텐츠 제작, 매니지먼트 및 교육 사업. 다음을 포함하되 이에 한정하지 않습니다.\n(1) 전 과정 디지털 휴먼화 음악 제작: 작사·작곡, 편곡, 후반 작업 등 음악 제작 전 과정을 디지털화·디지털 휴먼화합니다.\n(2) 디지털 음악 아티스트 매니지먼트: 실제 가수 및 디지털 휴먼 아티스트(Digital Talent) 매니지먼트 사업을 전개하고, 빠르게 3만 명 규모의 개체로 확장하며, 장기 계약 및 수익 배분 모델을 시행합니다.\n(3) 아이돌 IP 인큐베이션: 보이그룹, 걸그룹 등 그룹 IP를 만들고, 실제 인물 및 스타 디지털 권리를 개발합니다.\n(4) 버추얼 아이돌 구축 모델: 버추얼 아이돌 + 실제 인물 코스프레, AI 오리지널 제작 + 유명 음악 저작권 구매, 기존 스타 그룹과의 결합(예: 스타 보이그룹·걸그룹과 사형제 팀 구성), K-POP 교부 김형석의 트레이닝 및 교육, 버추얼 아이돌의 풀스택 아티스트화(가창/연기/예능 광고/행사 포함) 등을 포함합니다.\n(5) 미구(咪咕)와 음악 저작권 등 분야에서 협력하고, 김형석 선생과 공동으로 청두에서 “AI 음악·버추얼 아이돌·OPC 국제화 산업 인큐베이션 기지”를 기획·운영합니다.\n(6) 국제화 음악 교육: 베이징, 서울 및 아시아 여러 지역에 교육 캠프를 개설하고, 김형석, 공팅하이(龚廷海) 등 업계 주요 인물과 협력하여 음악 프로듀서와 가수를 양성하며, One Person Studio 인재 체계를 구축합니다.\n(7) 저작권 금융 서비스 플랫폼: 저작권 등록, 권리 확인, 보험 및 수익 배분 등을 아우르는 통합 금융 서비스를 제공합니다.\n3. 음악 소셜 게임 커뮤니티 MAD BLOX 구축. 대중음악을 핵심으로 하는 UGC 소셜 게임 커뮤니티를 구축하여 창작, 음악, 소셜, 게임, 버추얼 공연을 하나로 융합합니다. 플랫폼은 낮은 진입장벽의 창작 도구를 제공하여 일반 사용자가 코드 없이 음악 무대, 콘서트, 댄스룸, 아이돌 육성, 리듬 경쟁 등 다양한 음악 테마 게임과 인터랙티브 공간을 만들 수 있게 합니다. 사용자는 버추얼 아바타를 커스터마이징하고, 오리지널 음악과 MV를 창작하며, 버추얼 공연을 개최하고, 팀을 구성해 미션을 수행하며, 그룹으로 데뷔하고, 소셜 상호작용을 할 수 있습니다. 이를 통해 전 국민 참여, 자유로운 창작, 실시간 연결이 가능한 음악 메타버스를 형성합니다. 플랫폼은 완전한 창작자 경제와 버추얼 경제 체계를 구축하고, 콘텐츠 수익화, IP 인큐베이션, 글로벌 배포를 지원하여 음악판 Roblox가 되며, 누구나 창작하고 공연하고 소셜 활동을 하며 전 국민 아이돌이 될 수 있도록 합니다.\n4. AI XR 음악회 사업:\n(1) 디지털 음악 창작: 곡 작곡과 작사 전 과정을 AI 디지털 휴먼화 방식으로 제작합니다.\n(2) XR 몰입형 디지털 음악회 콘텐츠 제작.\n(3) 글로벌 매트릭스 유통 채널: Bilibili 등 중국 내외 전 플랫폼을 포괄합니다.\n(4) 글로벌 아티스트/콘서트 자원 통합, UMG 유니버설뮤직 등 최상위 음악 기관과의 심층 협력, 개인화/맞춤형 음악회 기획.\n(5) 영상 AI 모델, AI 3D 비디오 모델, 첨단 AI 영상 제작 대형 모델을 기반으로 AI 음악회 자체 제작 역량을 형성합니다.\n(6) 온라인 음악회의 제작, 마케팅 및 글로벌 전역 배포.\n(7) 현장 운영: 제1현장/제2현장(오프라인 바, 호텔, 숙박시설 등 전 시나리오).\n(8) 음악 배급: 오프라인 공간 + 온라인 XR 몰입 경험을 동시 배급합니다.\n(9) 투어 공연: 보이그룹·걸그룹의 중국 본토, 홍콩·마카오 및 동남아 오프라인 투어를 운영합니다.\n(10) 음악 페스티벌 IP 운영: 궁팅하이(宫庭海) 선생 산하 음악 페스티벌 IP 및 선샤인 시리즈 음악 페스티벌 브랜드를 통합 운영합니다.\n5. MAD EX(MAD Exchange) 음악 저작권 및 디지털 IP 자산 거래 플랫폼 운영.\n(1) 글로벌 Pop 음악 산업을 대상으로 하는 원스톱 음악 저작권 및 디지털 IP 자산 거래 플랫폼을 구축하고, 음악 자산의 권리 확인, 유통, 금융화를 잇는 전 과정 폐쇄 루프를 연결합니다. 플랫폼을 통해 음악 저작권 등록, 합법적 저작권 유통 및 라이선스 거래 체계를 실행하고, 모든 오리지널 Pop 음악 작품 저작권의 표준화된 증빙, 추적, 합법적 거래를 실현합니다. 음악 디지털 컬렉터블, 음악 NFT, 디지털 앨범, 버추얼 무대 자산, 음악 IP 파생상품 등 온체인 디지털 자산의 공개 유통과 거래를 지원하여 음악 콘텐츠의 디지털 권리 확인과 고빈도 유통을 실현합니다.\n(2) 대량의 우수 음악 IP 자산 풀에 기반하여 IP Asset-Backed Securitization(IP 자산 증권화) 체계를 실행합니다. 기존 음악 저작권, 지속 로열티 수익, IP 상업 권익을 패키징하고 권리를 확정하여 표준화·유통 가능한 음악 자산 펀드와 합법적 금융 거래 도구를 생성합니다. 이를 통해 전통적인 음악 콘텐츠를 단일 작품 거래에서 평가 가능하고, 담보 가능하며, 유통 가능하고, 가치 상승이 가능한 표준화 금융 자산으로 고도화하고, 글로벌 시장을 향한 완전한 폐쇄 루프형 Pop 음악 디지털 금융 거래 생태계를 구축합니다.",
+ links:["c7","c8","c26","c27"],
+ note:"매우 방대한 사업 범위. 을의 ‘독점 라이선스’ 문구 명시(9.1). 의무·KPI 부재."},
+{id:"c10", no:"제10조", ttl:"투자 유치·상장 경로",
+ cls:"trap", warn:true, chains:[2,4],
+ body:"투자 유치 및 상장 경로: 2026년 3분기·4분기에 착수하여 2027년 1분기에 완료합니다. 그중 6~7개월 내 런던과 홍콩 양지 동시 상장(시장 윈도우에 따라 조정)을 완료하고, 상장 시 2억~3억 달러를 조달합니다. 상장 목표 기업가치는 10억 달러 이상입니다.",
+ links:["c3","c23","c39"],
+ note:"⚠ ‘시장 윈도우에 따라 조정’ 단서 → 일정 미달성 시 갑 면책 가능. 39조 협조의무는 을에게만 강제."},
+{id:"c11", no:"제11조", ttl:"갑의 자원 투입 (현금·기술·채널 전부)",
+ cls:"neu", warn:false, chains:[2,3],
+ body:"갑의 자원 투입:\n1. 글로벌 아티스트/콘서트 자원 통합, UMG 유니버설뮤직 등 최상위 음악 기관과의 심층 협력, 개인화/맞춤형 음악회 기획.\n2. 영상 AI 모델, AI 3D 비디오 모델, 첨단 AI 영상 제작 대형 모델의 사용권을 투입하여 AI 음악회 자체 제작 역량을 형성합니다.\n3. 디지털 휴먼 전 과정 제작 기술, 3D 모델링, 얼굴·동작 캡처, 보컬 AI 기술, 메타버스 방송 시스템, 디지털 휴먼 기술 특허 및 콘텐츠 안전 리스크 관리 체계 자원.\n4. XR 버추얼 스튜디오 제1현장, 몰입형 버추얼 무대 관련 모든 하드웨어, 시스템, 연산 자원, 장비 및 공간 자원을 합자회사 프로젝트가 장기적으로 사용할 수 있도록 제공합니다.\n5. 글로벌 전 네트워크 방송 플랫폼 자원을 연결합니다. 여기에는 주요 영상 플랫폼, 숏폼 플랫폼, OTT, 메타버스 포트, VR 채널, 해외 스트리밍, 위성 디지털 TV 전 채널 자원이 포함됩니다.\n6. 글로벌 홍보·광고 집행, 뉴미디어 매트릭스 운영, 해외 소셜 프로모션, 팬 프라이빗 도메인 운영 등 전 세트 홍보 트래픽 자원을 연결합니다.\n7. 글로벌 및 중국 내 호텔, 바, 레스토랑, 문화관광지, 상업 복합시설 등 오프라인 전 시나리오 유통 네트워크 자원과 비즈니스 채널 자원을 연결합니다.\n8. 합자회사 및 MAD POP 프로젝트의 모든 현금 자금, 초기 선투입금, 운영 운전자금을 전액 투입하며, 모든 제작, 기술, 홍보, 컴플라이언스, 세무, 운영 관련 전체 비용을 부담합니다.",
+ links:["c1","c20","c22","c25"],
+ note:"갑 자원=‘사용권 투입’이 다수(2·4). 소유권 합자회사 이전 ✗ → 25조와 결합 시 갑 측 통제 강력."},
+{id:"c12", no:"제12조", ttl:"을의 자원 투입",
+ cls:"bad", warn:true, chains:[3],
+ body:"을의 자원 투입:\n1. SAGONG EE HO 한국 우수 디지털 캐릭터 IP 사용권을 합자회사에 투입합니다.\n2. 영상 AI 모델, AI 3D 비디오 모델, 첨단 AI 영상 제작 대형 모델의 사용권을 투입하여 AI 음악회 자체 제작 역량을 형성합니다.\n3. 김형석 선생의 모든 MAD POP 음악 작품, 작사·작곡 저작권, 편곡 반주, 앨범 싱글 독점 저작권 자원을 합자회사에 전 세계·전 시나리오 상업 사용으로 독점 라이선스합니다.\n4. 프로젝트 전용 신규 곡 창작, 무대 편곡 버전, 프로그램 배경음악 창작 자원을 제공하고, 무손실 마스터, 멀티트랙 오디오, 반주 소재 등 전체 오디오 자원을 제공합니다.\n5. 한국 1선 K-POP 솔로 아티스트, 아이돌 그룹, 실력파 가수, 신세대 아이돌 협력 아티스트 자원 연결을 지원합니다.\n6. 중국, 베트남 등 국가의 현지 잠재 아티스트 발굴, 선별, 계약, 육성, 아트 패키징 전 과정 아티스트 인큐베이션 자원에 참여합니다.\n7. 한국 최상위 음악 제작, 편곡, 보컬 지도, 무대 연출 전문 제작팀 자원 연결을 지원합니다.",
+ links:["c2","c26","c8"],
+ note:"⚠ ‘1선 K-POP·신세대 아이돌·솔로 아티스트 자원’ 등 을의 약속 폭이 매우 큼 → 사후 ‘자원 미제공’ 위약 시비 트리거(21·33·34조)."},
+{id:"c13", no:"제13조", ttl:"주주회 = 최고의사결정",
+ cls:"fav", warn:false, chains:[1],
+ body:"주주회는 합자회사의 최고 의사결정기관이며, 지분 비율에 따라 의결권을 행사합니다.",
+ links:["c4","c14","c19"],
+ note:"지분 60:40 → 일반의결 갑 단독 통과 가능."},
+{id:"c14", no:"제14조", ttl:"이사회 5인(갑3:을2)·의장 갑",
+ cls:"fav", warn:true, chains:[1],
+ body:"이사회 구성: 이사회는 총 5명으로 구성합니다. 갑이 3명을 지명하고, 을이 2명을 지명합니다. 이사회 의장은 갑이 지명하고, 부의장은 을이 지명합니다. 이사회는 중대 사항, 전략 실행, 예산, 고위 임원 임면 등을 심의합니다.",
+ links:["c13","c15","c17","c19"],
+ note:"⚠ 단순 과반 의결사항은 갑 단독 가능. 의장 캐스팅보트 잠재."},
+{id:"c15", no:"제15조", ttl:"CEO 갑 지명",
+ cls:"fav", warn:false, chains:[1],
+ body:"경영 관리: CEO는 갑이 지명하며, 글로벌 일상 경영 관리를 담당하고, MAD POP 프로젝트의 전체 생애주기 운영을 특별 총괄합니다.",
+ links:["c14","c17","c18"],
+ note:"MAD POP ‘전체 생애주기’ CEO 총괄 — 16조 글로벌콘텐츠의장 권한과 충돌 가능."},
+{id:"c16", no:"제16조", ttl:"글로벌 콘텐츠 의장 = 을(권한 한정)",
+ cls:"bad", warn:true, chains:[1,3],
+ body:"글로벌 콘텐츠 의장은 을이 지명하며, 콘텐츠, 제작, 저작권, 공연 품질을 전권으로 담당하고, MAD POP 프로젝트 예술감독의 최종 심사권을 특별 행사합니다. 해당 권한은 콘텐츠 창작, 무대 품질, 예술적 포지셔닝, 공연 완성물 심사에 한정되며, 회사의 투자 유치, 상장, 재무, 컴플라이언스, 상업 협력, 채널 운영 등 경영성·자본성 의사결정에는 관여할 수 없습니다.",
+ links:["c2","c15","c18","c19"],
+ note:"⚠ 을의 권한 ‘예술 영역’ 한정·자본·상장·재무 관여 금지 명시. 19조 거부권 한정과 쌍을 이룸."},
+{id:"c17", no:"제17조", ttl:"재무책임자 갑 지명",
+ cls:"fav", warn:true, chains:[1,2],
+ body:"재무책임자는 갑이 지명하며, 재무, 자금, 감사, 컴플라이언스를 담당하고, MAD POP 프로젝트의 매출·원가 세부 보고서를 특별 작성합니다.",
+ links:["c14","c20","c24"],
+ note:"⚠ 재무·감사·컴플라이언스 갑 단독 — 을 측 독립 감사인 선임권 명시 ✗."},
+{id:"c18", no:"제18조", ttl:"의사결정권 구분(갑 자본·을 콘텐츠)",
+ cls:"fav", warn:true, chains:[1,2,3],
+ body:"의사결정권 구분:\n1. 갑 주도: 글로벌 전략, 기술, 자본, 상장, 컴플라이언스, 디지털 자산 운영, 데이터 자산 수익화, MAD POP 프로젝트 기술 실행, 글로벌 배포, 상업화, 재무 정산.\n2. 을 주도: 음악 콘텐츠, 창작 생태계, 공연 제작, 콘텐츠 품질, 저작권 관리, 창작자 서비스, MAD POP 프로젝트 음악 창작, 아티스트 매트릭스, 예술 품질 관리.",
+ links:["c1","c2","c15","c16","c19"],
+ note:"⚠ 자본·상장·데이터 수익화·재무정산 전부 갑. 을은 예술 한정."},
+{id:"c19", no:"제19조", ttl:"중대사항 2/3·을 거부권 한정",
+ cls:"trap", warn:true, chains:[1,3],
+ body:"중대 사항 승인: 투자 유치, 인수합병, 담보 제공, 정관 변경, 연간 예산·결산, 핵심 고위 임원 임면, 중대 IP 처분, 중대 특수관계 거래, MAD POP 프로젝트 아티스트 협력, 예술적 포지셔닝, IP 라이선스 등을 포함하되 이에 한정하지 않는 사항은 이사회 3분의 2 이상 이사의 찬성으로 의결되어야 효력이 발생합니다. 을은 핵심 IP 콘텐츠 포지셔닝, 공연 예술 품질, 버추얼 아이돌 예술 심사의 세 가지 전속 사항에 한하여 특별 거부권을 가집니다. 을은 회사의 투자 유치, 상장 신청, 지분 변동, 재무 회계, 컴플라이언스 관리, 중대 상업 협력 등 자본 및 경영성 사항에 대해서는 거부권을 행사할 수 없습니다.",
+ links:["c14","c4","c22","c23","c27","c30","c39"],
+ note:"⚠ 2/3=이사 4명. 갑3+을1로 통과 가능. 을 거부권 IP·예술·심사 3건 한정. 자본·상장·재무 거부 ✗ = 자본거래 봉쇄."},
+{id:"c20", no:"제20조", ttl:"자금=갑 전액·운영비 계상·을 현금 ✗",
+ cls:"trap", warn:true, chains:[2],
+ body:"자금 관리: 합자회사 운영 자금은 갑이 경영 필요에 따라 제공하고, 합자회사 운영 비용으로 계상하며, 재무 제도에 따라 규범적으로 회계 처리합니다. MAD POP 프로젝트의 모든 초기 투자, 선투입금, 운영 지출은 갑이 독립적으로 전액 부담하고, 을은 현금 투자 또는 선투입을 하지 않습니다.",
+ links:["c11","c17","c22","c21"],
+ note:"⚠ 자금 성격(출자/대여/비용) 모호. ‘경영 필요에 따라’ 갑 재량. 22조 우선상환과 결합 시 갑 회수권 강력."},
+{id:"c21", no:"제21조", ttl:"책임 구분(을 손실 단독 부담)",
+ cls:"bad", warn:true, chains:[2,4],
+ body:"책임 구분: 합자회사의 정상적인 시장 경영 리스크로 발생하는 손실은 갑이 부담합니다. 을의 콘텐츠 위약, 자원 미제공, 품질상 과실, IP 무단 라이선스, 핵심 콘텐츠 유출, 소극적 이행 등 을의 사유로 발생한 프로젝트 손실, 벌금, 배상, 사업 정체 손실은 을이 독립적으로 전액 부담합니다.",
+ links:["c20","c12","c33","c34"],
+ note:"⚠ 갑 사유 손실 명시 ✗. 을 단독 부담 사유는 ‘소극적 이행’ 등 광범·주관. 33·34조 손해범위와 결합 시 폭주 위험."},
+{id:"c22", no:"제22조", ttl:"이익배분 6:4·선투입 우선상환",
+ cls:"trap", warn:true, chains:[2],
+ body:"이익 배분: 합자회사의 세후 순이익은 지분 비율(갑 60%, 을 40%)에 따라 배분합니다. 배분 전 각 당사자의 합법적 선투입금 및 합법적 비용을 우선 상환합니다.",
+ links:["c4","c11","c20","c23"],
+ note:"⚠ ‘합법적 선투입금’ 정의 부재 → 갑 자금이 사실상 우선 회수. 을은 현금 ✗(20조)이므로 상환받을 선투입 사실상 없음."},
+{id:"c23", no:"제23조", ttl:"상장·자본수익 지분비율 향유",
+ cls:"neu", warn:false, chains:[2,4],
+ body:"상장/자본 수익: 양측은 지분 비율에 따라 합자회사의 상장, 인수합병 이후 발생하는 시가총액 수익, 조달 자금 사용권 및 자본 가치 상승 수익을 향유합니다.",
+ links:["c4","c10","c22","c39"],
+ note:"6:4 지분 기준. 단 ‘조달 자금 사용권’ 표현 — 자금 집행권 별도 정의 필요."},
+{id:"c24", no:"제24조", ttl:"재무 투명성·월간 보고",
+ cls:"neu", warn:true, chains:[2,4],
+ body:"재무 투명성: 합자회사는 국제회계기준을 적용하고, 매월 양측에 재무제표를 제공하며, 연간 감사를 실시합니다. 양측은 완전한 알 권리, 열람권 및 감독권을 가집니다.",
+ links:["c17","c20"],
+ note:"⚠ 위반 시 제재·감사인 선임권·기록열람 강제집행수단 부재."},
+{id:"c25", no:"제25조", ttl:"갑 기존 IP=갑 귀속·합자회사 사용권만",
+ cls:"fav", warn:true, chains:[3],
+ body:"갑의 기존 IP: MADVERSE의 기존 기술, AI 시스템, XR 플랫폼, 데이터 자산, 상표, 소프트웨어 저작권 등 지식재산권은 갑에게 귀속됩니다. 갑은 합자회사 사업에 사용하기 위해 해당 권리에 대해 전 세계, 독점, 영구, 취소 불가능한 사용 라이선스를 합자회사에 부여합니다.",
+ links:["c11","c26","c28","c30"],
+ note:"⚠ 갑 IP 소유=갑 / 합자회사=사용권만. 분리·매각 가능."},
+{id:"c26", no:"제26조", ttl:"을 IP=을 귀속·영구·취소불가·철회불가",
+ cls:"bad", warn:true, chains:[3],
+ body:"을의 기존 IP: 을이 투입하는 SAGONG EE HO 디지털 IP, 모든 작사·작곡 저작권, 곡목 라이브러리, 오디오 소재, 제작팀, 아티스트 자원, AI 모델 등 지식재산권은 을에게 귀속됩니다. 을은 합자회사에 전 세계, 전 시나리오, 독점, 영구 취소 불가능한 상업 사용 라이선스를 부여합니다. 계약 기간 및 지분 존속 기간 동안 을은 일방적으로 해당 라이선스를 철회하거나 중단하거나, 제3자에게 별도로 사용 허가할 수 없습니다.",
+ links:["c2","c12","c25","c27","c30"],
+ note:"⚠ 형식적으로 ‘을 귀속’이나 실질적 ‘영구·취소불가·철회불가·제3자 라이선스 금지’ → 양도 동의어. 분쟁·종료 시에도 회수 ✗."},
+{id:"c27", no:"제27조", ttl:"MAD POP 공동보유·합자회사 운영",
+ cls:"trap", warn:true, chains:[1,3],
+ body:"MAD POP 브랜드, 음악 스타일, 전체 IP 지식재산권은 김형석 선생과 합자회사가 공동 창작하고 공동 보유합니다. 일상 운영, 상업 라이선스, 글로벌 홍보, 침해 대응은 합자회사가 통일적으로 전권 담당합니다. 어느 일방도 해당 브랜드 IP를 단독으로 처분, 양도, 질권 설정 또는 단독 라이선스할 수 없습니다. 대외 중대 IP 협력 및 양도 행위는 이사회 3분의 2 이상 찬성으로 의결되어야 합니다.",
+ links:["c19","c26","c14","c30"],
+ note:"⚠ 공동보유지만 운영권 합자회사 + 처분/양도 2/3 → 19·14조에서 갑3+을1 통과 가능 → 사실상 갑 통제."},
+{id:"c28", no:"제28조", ttl:"직무 성과=합자회사 귀속",
+ cls:"neu", warn:true, chains:[3],
+ body:"직무 성과 귀속: 각 당사자가 합자회사에 파견한 직원이 재직 기간 중 합자회사 사업과 관련하여 창출한 기술 성과, 창작 성과, 사업 방안 등 직무 성과는 모두 합자회사에 귀속됩니다. 각 당사자는 합자회사가 관련 특허, 소프트웨어 저작권 등 지식재산권 등록 절차를 완료할 수 있도록 협조해야 합니다.",
+ links:["c25","c26","c29"],
+ note:"⚠ ‘합자회사 사업과 관련하여’ 범위 광범 — 을 파견 인력 신규창작도 합자회사 귀속."},
+{id:"c29", no:"제29조", ttl:"권리 확정 의무(비용주체 ✗)",
+ cls:"neu", warn:true, chains:[3],
+ body:"권리 확정 의무: 양측은 합자회사가 소프트웨어 저작권, 특허, 저작권 등록, 블록체인 증빙, 국제 저작권 등록 등 권리 확정, 권리 보호, 운영 업무를 완료하도록 협조합니다. 또한 MAD POP IP 공동 권리 확정 및 스타 디지털 분신 상업 권익 등록을 완료하도록 협조합니다.",
+ links:["c25","c26","c27","c28"],
+ note:"⚠ 비용·기한·실패시 책임 미정의."},
+{id:"c30", no:"제30조", ttl:"권리양도 비대칭(갑 자유·을 동의)",
+ cls:"bad", warn:true, chains:[1,3,4],
+ body:"권리 양도: 갑은 본 계약상 권리와 의무를 그 계열회사에 양도할 수 있으며, 양도 전 을에게 서면 통지합니다. 을이 본 계약상 권리와 의무를 그 계열회사에 양도하려면 갑의 서면 동의를 받아야 합니다.",
+ links:["c4","c25","c26","c27"],
+ note:"⚠ 갑=서면통지 / 을=서면동의 → 출구·승계 비대칭. 갑 측 SPC 인계 자유."},
+{id:"c31", no:"제31조", ttl:"아티스트 인격권 본인·수익 합자회사",
+ cls:"neu", warn:true, chains:[3],
+ body:"각국 스타의 실제 인물 초상권 및 인격권은 아티스트 본인에게 귀속됩니다. 해당 디지털 분신 모델링, 상업 운영, 공연 수익화, IP 파생 등 모든 운영 수익은 MAD POP 프로젝트 통합 매출 체계에 편입되어 합자회사에 귀속되고 통합 정산·배분됩니다.",
+ links:["c27","c22"],
+ note:"⚠ 아티스트 본인 동의·계약·로열티 체계 미명시. 한국 퍼블리시티권 법제와 충돌 잠재."},
+{id:"c32", no:"제32조", ttl:"비밀유지 영구",
+ cls:"neu", warn:true, chains:[4],
+ body:"양측은 본 계약 내용, 사업계획, 재무 데이터, 기술, 저작권, 아티스트 정보, 운영 데이터, MAD POP 프로젝트 핵심 기밀 등 공개되지 않은 정보를 영구히 비밀로 유지하며, 제3자에게 유출할 수 없습니다.",
+ links:["c33","c34"],
+ note:"⚠ 기간 ‘영구’. 예외(법령 공시·자문가 공개·강제집행) 미명시."},
+{id:"c33", no:"제33조", ttl:"위약 손해 광범 배상·해제권",
+ cls:"bad", warn:true, chains:[4],
+ body:"일방이 본 계약의 약정을 위반한 경우, 위약 당사자는 계약을 준수한 당사자의 모든 손실(직접 손실, 기대 이익, 변호사 비용, 소송 비용, 보전 비용 등을 포함)을 배상해야 합니다. 중대한 위약으로 계약 목적을 달성할 수 없게 된 경우, 계약을 준수한 당사자는 계약을 해제하고 위약책임을 추궁할 권리가 있습니다.",
+ links:["c21","c34","c41"],
+ note:"⚠ ‘기대이익’ 포함 → 산정 폭주 위험. 손해배상 상한·예정액 ✗."},
+{id:"c34", no:"제34조", ttl:"비밀·경업·허위·권리하자 위반 손해",
+ cls:"bad", warn:true, chains:[3,4],
+ body:"어느 일방이 본 계약상 비밀유지 의무, 동종업계 경쟁금지 의무를 위반하거나, 허위 자료를 제공하거나, 권리 하자가 존재하여 합자회사 및 MAD POP 프로젝트의 이익에 손해를 초래한 경우, 해당 일방은 합자회사 및 계약을 준수한 당사자의 모든 손실을 배상해야 합니다.",
+ links:["c32","c33","c26"],
+ note:"⚠ ‘동종업계 경쟁금지’ — 본 계약 본문 어디에도 경업금지 조항 정의 ✗ (모호한 의무 부과)."},
+{id:"c35", no:"제35조", ttl:"준거법=중국법",
+ cls:"bad", warn:true, chains:[4],
+ body:"본 계약의 체결, 효력, 해석, 이행 및 분쟁 해결에는 모두 중화인민공화국 법률을 적용합니다.",
+ links:["c36","c37","c5"],
+ note:"⚠ 케이맨 법인 + 한국인 을인데 준거법 중국. 케이맨 회사법·신탁법 적용 ✗."},
+{id:"c36", no:"제36조", ttl:"분쟁=베이징중재위 단심",
+ cls:"bad", warn:true, chains:[4],
+ body:"본 계약으로 인해 또는 본 계약과 관련하여 발생하는 분쟁은 양측이 우호적으로 협의하여 해결합니다. 협의가 성립하지 않는 경우, 베이징중재위원회에 제출하여 당시 유효한 중재 규칙에 따라 최종 중재로 해결하며, 중재지는 베이징입니다. 중재 판정은 전 세계적으로 최종적 강제집행 효력을 가집니다.",
+ links:["c35","c37"],
+ note:"⚠ 베이징중재위(BAC) 단심. 한국 을 입장 홈코트 ✗. SIAC/HKIAC/ICC 대체 검토."},
+{id:"c37", no:"제37조", ttl:"분쟁 중에도 이행 강제",
+ cls:"trap", warn:true, chains:[4],
+ body:"양측 간 분쟁이 발생하거나 중재 절차에 들어간 기간에도, 분쟁 사항을 제외한 본 계약의 나머지 조항은 계속 유효합니다. 양측은 프로젝트 운영, 상장 준비, 자원 인도 등 핵심 이행 행위를 중단할 수 없으며, 분쟁을 이유로 악의적으로 프로젝트 추진을 지연하거나 방해하는 행위를 금지합니다.",
+ links:["c33","c39","c36"],
+ note:"⚠ 분쟁 중 ‘이행 강제’ — 을의 협상 레버 봉쇄. ‘악의적 지연’ 판단 주체 베이징중재위."},
+{id:"c38", no:"제38조", ttl:"통지·송달(갑 주소 명시·을 공란)",
+ cls:"neu", warn:true, chains:[],
+ body:"본 계약에 달리 규정된 경우를 제외하고, 어느 일방이 본 계약에 따라 상대방에게 발송하는 모든 통지 또는 서면 연락은 직접 송달, 팩스 또는 특급우편 방식으로 발송해야 합니다. 모든 통지와 서면 연락은 상대방에게 서면으로 주소 변경 통지를 하기 전까지 아래 주소로 발송합니다.\n1. 갑\n담당자: 주윈(朱芸)\n주소: 베이징시 차오양구 관탕예술구 2호동\n전화: 8610 64321880\n이메일: avis.zhu@sunsevenstars.com\n2. 을\n담당자:\n주소:\n전화:\n이메일:",
+ links:[],
+ note:"⚠ 을 측 주소·담당자·연락처 공란. 송달 의제 시 갑 측 일방통보 위험."},
+{id:"c39", no:"제39조", ttl:"상장협조 의무·위반=중대위약",
+ cls:"trap", warn:true, chains:[2,4],
+ body:"계약 존속 기간 동안 갑과 을 및 각자의 핵심 팀은 합자회사의 상장 실사, 재무 감사, 컴플라이언스 등록, 자본시장 공시, 감독기관 질의 응답, 지분 정리 등 모든 상장 부대 업무를 무조건, 지체 없이 협조해야 합니다. 정당한 사유 없이 거부하거나, 소극적으로 협조하거나, 자료를 은폐하거나, 허위 정보를 제공해서는 안 됩니다. 이를 위반한 경우 중대한 위약으로 보며, 모든 손실 및 상장 지연 책임을 부담합니다.",
+ links:["c10","c19","c33","c37"],
+ note:"⚠ ‘무조건·지체없이·소극협조 ✗’ → 을 협상레버 봉쇄장치. 갑 일정/조건 일방 통제 가능."},
+{id:"c40", no:"제40조", ttl:"통합조항(이전 약정 무효화)",
+ cls:"trap", warn:true, chains:[4],
+ body:"본 계약은 합자회사 및 MAD POP 글로벌 디지털 휴먼 콘서트 프로젝트와 관련하여 각 당사자가 체결한 완전하고 유일한 계약입니다. 각 당사자가 이전에 체결한 모든 구두 또는 서면 약속, 양해, 배치 또는 약정이 본 계약과 일치하지 않는 경우, 본 계약을 기준으로 합니다.",
+ links:["c41","c42"],
+ note:"⚠ 기존 MOU·구두약정·합자협의서·이메일 약속 전부 갈음. 우리측 이전 보호장치 소실 위험."},
+{id:"c41", no:"제41조", ttl:"수정·해제·종료=서면 합의 only",
+ cls:"trap", warn:true, chains:[4],
+ body:"각 당사자는 협의를 통해 서면 방식으로 본 계약을 수정, 해제 또는 종료할 수 있습니다.",
+ links:["c33","c40"],
+ note:"⚠ 합의해제만 가능. 을 일방 해지권 ✗. 33조 ‘중대위약 시 해제’만 예외."},
+{id:"c42", no:"제42조", ttl:"보충계약 동일효력",
+ cls:"neu", warn:true, chains:[4],
+ body:"본 계약에서 정하지 않은 사항은 각 당사자가 별도 보충계약을 체결할 수 있으며, 보충계약은 본 계약과 동일한 법적 효력을 가집니다.",
+ links:["c40","c43"],
+ note:"⚠ 본 계약 후 ‘보충계약’으로 불리 조항 추가 가능."},
+{id:"c43", no:"제43조", ttl:"정관 별도 체결·등록 제출",
+ cls:"trap", warn:true, chains:[1,4],
+ body:"각 당사자는 등록 목적을 위해 본 계약 체결 후 별도로 회사 정관을 체결하는 데 동의합니다. 위 회사 정관은 체결 후 관련 법령에 따라 등록기관에 제출되어야 합니다.",
+ links:["c4","c14","c19","c42"],
+ note:"⚠ 정관에서 본 계약을 초과하는 권한·절차 추가 위험. 본 계약-정관 충돌 시 조항 미정의."},
+{id:"c44", no:"제44조", ttl:"서명·날인일 효력 발생",
+ cls:"neu", warn:false, chains:[4],
+ body:"본 계약은 각 당사자의 서명·날인일로부터 효력이 발생합니다.",
+ links:["c45"],
+ note:"전제조건(CP) 미설정."},
+{id:"c45", no:"제45조", ttl:"2부 작성·동일효력",
+ cls:"neu", warn:false, chains:[4],
+ body:"본 계약은 2부 작성되며, 갑과 을이 각 1부씩 보관하고, 각 부는 동일한 법적 효력을 가집니다.\n이하 본문 없음.\n서명 페이지\n이 페이지는 본문이 없으며, 《합자계약서》의 서명 페이지입니다.\n갑:\n수권대표(서명):\n을:\n수권대표(서명):",
+ links:["c44"],
+ note:"중문본·국문본 우선순위 조항 부재 → 해석 충돌 시 모호."}
+];
+
+// ===== LAYOUT =====
+// 11개 chapter 행. 각 행 안에 노드 4~5개. stage 1700x2700.
+// 행 수 계산: 1행(노드<=5)=h 180, 2행=h 300, 3행=h 420
+const CHAP_LAYOUT = {
+  ch1:  {x:30,  y:30,   w:1640, h:180},  // 4 nodes (c0~c3)
+  ch2:  {x:30,  y:230,  w:1640, h:180},  // 3 (c4~c6)
+  ch3:  {x:30,  y:430,  w:1640, h:180},  // 4 (c7~c10)
+  ch4:  {x:30,  y:630,  w:1640, h:180},  // 2 (c11,c12)
+  ch5:  {x:30,  y:830,  w:1640, h:300},  // 7 (c13~c19) — 2행
+  ch6:  {x:30,  y:1150, w:1640, h:180},  // 5 (c20~c24)
+  ch7:  {x:30,  y:1350, w:1640, h:300},  // 7 (c25~c31) — 2행
+  ch8:  {x:30,  y:1670, w:1640, h:180},  // 3 (c32~c34)
+  ch9:  {x:30,  y:1870, w:1640, h:180},  // 3 (c35~c37)
+  ch10: {x:30,  y:2070, w:1640, h:180},  // 1 (c38)
+  ch11: {x:30,  y:2270, w:1640, h:300}   // 7 (c39~c45) — 2행
+};
+function nodeXY(chapId, idx){
+  const c=CHAP_LAYOUT[chapId];
+  const cols=5, gap=20, padX=30, padY=56;
+  const w=220, h=100;
+  const col=idx%cols, row=Math.floor(idx/cols);
+  return {x:c.x+padX+col*(w+gap), y:c.y+padY+row*(h+gap), w, h};
+}
+
+// ===== BUILD =====
+const stage=document.getElementById("stage");
+const edgesSvg=document.getElementById("edges");
+const byId={}; NODES.forEach(n=>byId[n.id]=n);
+
+// chapter frames
+CHAPTERS.forEach(ch=>{
+  const layout=CHAP_LAYOUT[ch.id];
+  const el=document.createElement("div");
+  el.className="chap";
+  el.style.left=layout.x+"px"; el.style.top=layout.y+"px";
+  el.style.width=layout.w+"px"; el.style.height=layout.h+"px";
+  const t=document.createElement("div");
+  t.className="chap-ttl";
+  t.textContent=ch.no+" "+ch.ttl;
+  el.appendChild(t);
+  stage.appendChild(el);
+});
+
+// nodes
+const NODE_POS={};
+CHAPTERS.forEach(ch=>{
+  ch.nodes.forEach((nid,i)=>{
+    const n=byId[nid];
+    const pos=nodeXY(ch.id, i);
+    NODE_POS[nid]=pos;
+    const el=document.createElement("div");
+    el.className="node "+n.cls+(n.warn?" warn":"");
+    el.style.left=pos.x+"px"; el.style.top=pos.y+"px"; el.style.width=pos.w+"px";
+    el.dataset.id=n.id;
+    const chains=(n.chains||[]).map(c=>`<span class="tag chain c${c}">${c}</span>`).join("");
+    const cls=({fav:'<span class="tag fav">갑</span>',bad:'<span class="tag bad">을</span>',trap:'<span class="tag trap">함정</span>',neu:''})[n.cls]||"";
+    const warn=n.warn?'<span class="tag warn">⚠</span>':"";
+    el.innerHTML=
+      `<div class="no"><span>${n.no}</span><span class="marks">${chains}${cls}${warn}</span></div>`+
+      `<div class="ttl">${n.ttl}</div>`+
+      `<div class="body">${(n.body||"").replace(/\n/g," ")}</div>`;
+    stage.appendChild(el);
+  });
+});
+
+// edges
+const seen=new Set();
+const EDGES=[];
+NODES.forEach(n=>(n.links||[]).forEach(t=>{
+  if(!byId[t]) return;
+  const k=[n.id,t].sort().join("|");
+  if(!seen.has(k)){seen.add(k);
+    // pick chain color = intersection of both chains
+    const sa=new Set(n.chains||[]), sb=new Set(byId[t].chains||[]);
+    let common=[...sa].filter(x=>sb.has(x));
+    if(common.length===0) common=[...sa, ...sb];
+    const c=common[0]||1;
+    EDGES.push({a:n.id,b:t,c});
+  }
+}));
+function drawEdges(activeId){
+  edgesSvg.innerHTML="";
+  const chainOn={1:true,2:true,3:true,4:true};
+  document.querySelectorAll(".chf").forEach(b=>{chainOn[b.dataset.c]=b.classList.contains("on")});
+  EDGES.forEach(e=>{
+    if(!chainOn[e.c]) return;
+    const pa=NODE_POS[e.a], pb=NODE_POS[e.b];
+    const x1=pa.x+pa.w/2, y1=pa.y+50;
+    const x2=pb.x+pb.w/2, y2=pb.y+50;
+    const active=!activeId || e.a===activeId || e.b===activeId;
+    const cmap={1:"#0ea5e9",2:"#f59e0b",3:"#8b5cf6",4:"#ef4444"};
+    const line=document.createElementNS("http://www.w3.org/2000/svg","path");
+    const dx=(x2-x1)*0.3;
+    const d=`M ${x1} ${y1} C ${x1+dx} ${y1}, ${x2-dx} ${y2}, ${x2} ${y2}`;
+    line.setAttribute("d",d);
+    line.setAttribute("fill","none");
+    line.setAttribute("stroke", cmap[e.c]||"#333");
+    line.setAttribute("stroke-opacity", active?"0.65":"0.10");
+    line.setAttribute("stroke-width", active?"1.6":"1");
+    edgesSvg.appendChild(line);
+  });
+}
+drawEdges(null);
+
+// click → highlight
+function setActive(id){
+  document.querySelectorAll(".node").forEach(el=>{
+    el.classList.remove("hot","dim");
+  });
+  if(!id){drawEdges(null);renderPanel(null);return;}
+  const n=byId[id]; const linked=new Set([id, ...(n.links||[])]);
+  document.querySelectorAll(".node").forEach(el=>{
+    const nid=el.dataset.id;
+    if(nid===id) el.classList.add("hot");
+    else if(!linked.has(nid)) el.classList.add("dim");
+  });
+  drawEdges(id);
+  renderPanel(id);
+  // scroll panel top
+  document.getElementById("panel").scrollTop=0;
+}
+function renderPanel(id){
+  const p=document.getElementById("panel");
+  if(!id){
+    p.innerHTML=`<h2>조항 상세 (verbatim)</h2>
+      <div class="pno">박스를 클릭하면 본 조항 원문 전체가 여기에 표시됩니다.</div>
+      <div class="ptt">사용법</div>
+      <div class="pverbatim">· 박스 = 제1조~제45조 (총 45개)
+· 박스 클릭 → 연결조항만 부각, 본문 verbatim 표시
+· 상단 검색창 = 조항 본문 grep
+· 상단 필터 = 분류·맹점 토글
+· 체인 토글 = 4계열(의결/자금/IP/분쟁) 선 표시 ON/OFF
+· ⚠ 마커 = 맹점·모호·누락 의심 조항
+· 한 글자도 누락 없이 표시됨</div>`;
+    return;
+  }
+  const n=byId[id];
+  const tagMap={fav:'<span class="tag fav">갑 유리</span>',bad:'<span class="tag bad">을 불리</span>',trap:'<span class="tag trap">함정</span>',neu:'<span class="tag">중립</span>'};
+  const chains=(n.chains||[]).map(c=>`<span class="tag chain c${c}">체인${c}</span>`).join(" ");
+  const warn=n.warn?'<div class="pmark">⚠ 맹점 마커: '+(n.note||"")+'</div>':"";
+  const linksHtml=(n.links||[]).map(x=>`<a data-go="${x}">${byId[x].no}</a>`).join(" ");
+  p.innerHTML=
+    `<h2>조항 상세 (verbatim)</h2>
+     <div class="pno">${n.no}</div>
+     <div class="ptt">${tagMap[n.cls]||""} ${chains} ${n.ttl}</div>
+     ${warn}
+     <div class="pverbatim">${(n.body||"").replace(/&/g,"&amp;").replace(/</g,"&lt;")}</div>
+     <div class="plinks"><b>연결 조항:</b> ${linksHtml||"<i>없음</i>"}</div>
+     <div class="pnote">${n.note||""}</div>`;
+  p.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",()=>setActive(a.dataset.go)));
+}
+
+stage.addEventListener("click",e=>{
+  const t=e.target.closest(".node");
+  if(t) setActive(t.dataset.id);
+  else setActive(null);
+});
+
+// filter
+function applyFilter(f){
+  document.querySelectorAll(".filt").forEach(b=>b.classList.toggle("on", b.dataset.f===f));
+  document.querySelectorAll(".node").forEach(el=>{
+    el.classList.remove("hot","dim");
+    const id=el.dataset.id, n=byId[id];
+    if(f==="all") return;
+    let keep=false;
+    if(f==="fav") keep=n.cls==="fav";
+    else if(f==="bad") keep=n.cls==="bad";
+    else if(f==="trap") keep=n.cls==="trap";
+    else if(f==="warn") keep=!!n.warn;
+    if(!keep) el.classList.add("dim");
+  });
+  drawEdges(null);
+}
+document.querySelectorAll(".filt").forEach(b=>b.addEventListener("click",()=>applyFilter(b.dataset.f)));
+applyFilter("all");
+
+// chain toggle
+document.querySelectorAll(".chf").forEach(b=>b.addEventListener("click",()=>{
+  b.classList.toggle("on");
+  drawEdges(null);
+}));
+
+// search
+document.getElementById("q").addEventListener("input",e=>{
+  const q=e.target.value.trim();
+  document.querySelectorAll(".node").forEach(el=>{
+    el.classList.remove("match","dim");
+    if(!q) return;
+    const n=byId[el.dataset.id];
+    const hit=(n.body+" "+n.ttl+" "+n.no+" "+(n.note||"")).indexOf(q)>=0;
+    if(hit) el.classList.add("match");
+    else el.classList.add("dim");
+  });
+});
+
+// zoom — scale + 보정된 wrapper 크기 (스크롤 가능하도록)
+const STAGE_W=1700, STAGE_H=2620;
+const stageInner=document.getElementById("stageInner");
+let z=1;
+function setZoom(v){
+  z=Math.max(0.3, Math.min(1.4, v));
+  stage.style.transform=`scale(${z})`;
+  stageInner.style.width=(STAGE_W*z)+"px";
+  stageInner.style.height=(STAGE_H*z)+"px";
+  document.getElementById("zrst").textContent=Math.round(z*100)+"%";
+}
+function fitZoom(){
+  const sc=document.getElementById("scroller");
+  const fw=sc.clientWidth/STAGE_W;
+  const fh=sc.clientHeight/STAGE_H;
+  setZoom(Math.min(fw, fh)*0.98);
+}
+document.getElementById("zin").onclick=()=>setZoom(z+0.1);
+document.getElementById("zout").onclick=()=>setZoom(z-0.1);
+document.getElementById("zrst").onclick=()=>setZoom(1);
+document.getElementById("zfit").onclick=fitZoom;
+// 초기 — 화면맞춤
+setTimeout(fitZoom, 30);
+window.addEventListener("resize", ()=>{ /* 사용자 줌 유지 */ });
+</script>
+
+<script>
+(function(){
+  document.querySelectorAll(".ch-banner").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const id = btn.dataset.ch;
+      const body = document.getElementById(id);
+      const opened = body.classList.toggle("open");
+      btn.classList.toggle("open", opened);
+      if(opened && id==="ch3" && typeof fitZoom === "function"){
+        setTimeout(fitZoom, 350);
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

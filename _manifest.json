@@ -278,5 +278,13 @@
     "last_kind": "redeploy",
     "last_sha256": "06216bc850aeafc51351b010a8d67667afb84c16c47a161516485616309d8f26",
     "timestamp": "2026-05-24T02:22:27.953720Z"
+  },
+  "madverse-contract-260526": {
+    "slug": "madverse-contract-260526",
+    "mode": "choi",
+    "url": "https://works.choi.build/madverse-contract-260526/",
+    "last_kind": "new",
+    "last_sha256": "b65b1684cae4fed37afb8a5c8ecb89af1ac5ed1777e0822952fed8fec92344ef",
+    "timestamp": "2026-05-26T08:03:19.805846Z"
   }
 }
