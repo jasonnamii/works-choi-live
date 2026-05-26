@@ -260,6 +260,29 @@ header .sub{color:#4b5563}
   .ctrl button{padding:8px 12px; font-size:12.5px}
   .chainsw button{min-width:36px}
 }
+/* PDF 링크 블록 */
+.pdf-links{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:14px;padding:12px 14px;background:#f8fafc;border:0.5px solid #e2e8f0;border-radius:8px;font-size:12.5px;color:#334155}
+.pdf-links .pdf-grp{display:inline-flex;align-items:center;gap:8px}
+.pdf-links .pdf-grp-lbl{font-size:11px;font-weight:600;color:#64748b;letter-spacing:.02em;text-transform:uppercase}
+.pdf-links a.pdf-lnk{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#fff;border:0.5px solid #cbd5e1;border-radius:6px;color:#0f172a;text-decoration:none;font-weight:500;transition:background .15s,border-color .15s}
+.pdf-links a.pdf-lnk:hover{background:#0f172a;color:#fff;border-color:#0f172a}
+.pdf-links a.pdf-lnk .pdf-ic{font-family:"JetBrains Mono","SF Mono",ui-monospace,monospace;font-size:9.5px;font-weight:700;background:#dc2626;color:#fff;padding:1px 4px;border-radius:3px;letter-spacing:.04em}
+.pdf-links a.pdf-lnk:hover .pdf-ic{background:#fff;color:#dc2626}
+/* Article 10 툴팁 */
+.a10-tip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#dc2626;color:#fff;font-size:10px;font-weight:700;font-family:"JetBrains Mono","SF Mono",ui-monospace,monospace;cursor:help;margin-left:4px;border:0;line-height:1}
+.a10-tip:hover .a10-pop,.a10-tip:focus .a10-pop{opacity:1;visibility:visible;transform:translateY(0)}
+.a10-pop{position:absolute;top:calc(100% + 10px);left:50%;transform:translate(-50%,-6px);width:min(440px,80vw);background:#0f172a;color:#f1f5f9;border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.6;text-align:left;font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-weight:400;letter-spacing:0;box-shadow:0 12px 32px rgba(0,0,0,.32);opacity:0;visibility:hidden;transition:opacity .18s,transform .18s;z-index:9999;pointer-events:none;white-space:normal}
+.a10-pop::before{content:"";position:absolute;bottom:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-bottom-color:#0f172a}
+.a10-pop .a10-ttl{font-size:12px;font-weight:700;color:#fca5a5;margin:0 0 8px;letter-spacing:.02em;text-transform:uppercase}
+.a10-pop .a10-sec{margin:8px 0 0}
+.a10-pop .a10-sec-lbl{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.a10-pop .a10-bad{color:#fecaca}
+.a10-pop .a10-good{color:#bbf7d0}
+.a10-pop code{background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px;font-size:11px;font-family:"JetBrains Mono","SF Mono",ui-monospace,monospace;color:#e2e8f0}
+@media (max-width: 700px){
+  .pdf-links{gap:10px 14px;font-size:12px}
+  .a10-pop{width:min(320px,90vw);font-size:11.5px}
+}
 </style>
 </head>
 <body>
@@ -267,6 +290,32 @@ header .sub{color:#4b5563}
   <h1>MADVERSE × 김형석 합자계약서 — 통합 분석 도크</h1>
   <div class="shell-sub">JV 계약 성격 · 사용권 계약 전환 전략 · 조항 관계도 통합 1page</div>
   <div class="shell-meta">2026-05-26 · 중국측 송부본 2026-05-22 기반 · 갑 MADVERSE · 을 김형석</div>
+  <div class="pdf-links">
+    <span class="pdf-grp">
+      <span class="pdf-grp-lbl">중국으로부터 받은 계약서</span>
+      <a class="pdf-lnk" href="./pdfs/contract_CN.pdf" target="_blank" rel="noopener">중문</a>
+      <a class="pdf-lnk" href="./pdfs/contract_EN.pdf" target="_blank" rel="noopener">영문<span class="pdf-ic">!</span></a>
+      <button class="a10-tip" type="button" aria-label="Article 10 영문 오류 안내" tabindex="0">i<span class="a10-pop" role="tooltip">
+        <span class="a10-ttl">⚠ Article 10 — 영문본 숫자 오류</span>
+        <div class="a10-sec">
+          <div class="a10-sec-lbl">중문 원문 (정본)</div>
+          2026년 Q3·Q4 착수 → 2027년 Q1 완료. 6~7개월 내 런던·홍콩 동시 상장. 조달 <strong>US$2~3억 달러</strong>, 목표 기업가치 <strong>US$10억 달러 이상</strong>.
+        </div>
+        <div class="a10-sec">
+          <div class="a10-sec-lbl a10-bad">현재 영문본 (오류)</div>
+          <span class="a10-bad"><code>"with financing of US$1 billion."</code> — 조달액과 밸류에이션이 분리되지 않음. 단순 오타가 아닌 <strong>계약상 숫자 조항</strong>이므로 반드시 수정.</span>
+        </div>
+        <div class="a10-sec">
+          <div class="a10-sec-lbl a10-good">수정안 (반영 요청)</div>
+          <span class="a10-good">"Article 10 Financing and Listing Path: The financing and listing process shall be launched in Q3 and Q4 of 2026 and completed in Q1 of 2027. A dual listing in London and Hong Kong shall be completed within 6–7 months, subject to market window adjustments. The financing amount at the time of listing shall be <strong>US$200–300 million</strong>, and the target valuation at listing shall be <strong>no less than US$1 billion</strong>."</span>
+        </div>
+      </span></button>
+    </span>
+    <span class="pdf-grp">
+      <span class="pdf-grp-lbl">한글 번역</span>
+      <a class="pdf-lnk" href="./pdfs/contract_KR.pdf" target="_blank" rel="noopener">한글</a>
+    </span>
+  </div>
 </header>
 <div class="doc-shell">
 
