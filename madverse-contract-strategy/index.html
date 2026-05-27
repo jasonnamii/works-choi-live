@@ -691,6 +691,54 @@
       .hero-title { font-size: clamp(46px, 15vw, 76px); }
       .panel, .flow-col, .stat, .option { padding: 18px; }
       th, td { padding: 10px; font-size: 13px; }
+      #tab-risk > .risk-table {
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+      #tab-risk > .risk-table thead {
+        display: none;
+      }
+      #tab-risk > .risk-table,
+      #tab-risk > .risk-table tbody,
+      #tab-risk > .risk-table tr,
+      #tab-risk > .risk-table td {
+        display: block;
+        width: 100%;
+      }
+      #tab-risk > .risk-table tr {
+        border: 1px solid var(--ink);
+        margin-bottom: 12px;
+        background: var(--paper);
+      }
+      #tab-risk > .risk-table td {
+        border: 0;
+        padding: 10px 12px;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      #tab-risk > .risk-table td:first-child {
+        background: var(--ink);
+        color: var(--paper);
+        font-size: 12px;
+        letter-spacing: 0.02em;
+      }
+      #tab-risk > .risk-table td:not(:first-child) {
+        border-top: 1px solid var(--line);
+        padding-left: 74px;
+        position: relative;
+      }
+      #tab-risk > .risk-table td:nth-child(2)::before,
+      #tab-risk > .risk-table td:nth-child(3)::before {
+        position: absolute;
+        left: 12px;
+        top: 10px;
+        width: 48px;
+        font-size: 11px;
+        font-weight: 900;
+        color: var(--muted);
+      }
+      #tab-risk > .risk-table td:nth-child(2)::before { content: "위험"; }
+      #tab-risk > .risk-table td:nth-child(3)::before { content: "처리"; }
       .checklist li { grid-template-columns: 1fr; gap: 6px; }
       .link-list li { grid-template-columns: 1fr; gap: 8px; }
       .link-list a { width: max-content; }
@@ -1002,7 +1050,7 @@
       </div>
 
       <div class="tab-panel active" role="tabpanel" id="tab-risk" aria-labelledby="btn-risk">
-        <table aria-label="기존 JV 조항별 회피표">
+        <table class="risk-table" aria-label="기존 JV 조항별 회피표">
           <thead>
             <tr>
               <th>기존 조항</th>
