@@ -565,14 +565,102 @@
       font-size: 15px;
       font-weight: 590;
     }
+    .detail-body p {
+      max-width: 920px;
+      margin: 10px 0 0;
+      line-height: 1.68;
+    }
     .detail-body ul {
       margin: 10px 0 0;
       padding: 0 0 0 18px;
+    }
+    .detail-body ol {
+      margin: 10px 0 0;
+      padding: 0 0 0 22px;
     }
     .detail-body li { margin: 6px 0; }
     .detail-body table {
       margin-top: 10px;
       font-size: 13px;
+    }
+    .strategy-note {
+      display: grid;
+      gap: 14px;
+    }
+    .strategy-lead {
+      border-left: 4px solid var(--ink);
+      padding-left: 14px;
+      color: var(--ink);
+      font-size: 17px;
+      font-weight: 760;
+    }
+    .strategy-flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 2px;
+    }
+    .strategy-step {
+      position: relative;
+      border: 1px solid var(--ink);
+      background: var(--surface);
+      padding: 16px;
+      min-height: 190px;
+    }
+    .strategy-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: -18px;
+      transform: translateY(-50%);
+      z-index: 1;
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--ink);
+      background: var(--accent);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .strategy-step b {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+    .strategy-step strong {
+      display: block;
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.18;
+      font-weight: 900;
+    }
+    .strategy-step ul {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .strategy-step li {
+      margin: 7px 0 0;
+      padding-top: 7px;
+      border-top: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 720;
+      line-height: 1.35;
+    }
+    .strategy-step.final {
+      background: var(--ink);
+    }
+    .strategy-step.final b,
+    .strategy-step.final strong,
+    .strategy-step.final li {
+      color: var(--bg);
+      border-color: rgba(255, 255, 255, 0.22);
     }
 
     .link-list {
@@ -652,6 +740,8 @@
       }
       .doc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .strategy-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .strategy-step:not(:last-child)::after { display: none; }
       .stat:nth-child(2) { border-right: 0; }
       .stat:nth-child(-n+2) { border-bottom: 1px solid var(--ink); }
     }
@@ -676,7 +766,7 @@
       .topbar-inner, .hero, main { padding-left: 16px; padding-right: 16px; }
       .hero-title { font-size: clamp(44px, 14.5vw, 76px); }
       .panel, .flow-col, .stat, .doc-card { padding: 18px; }
-      .doc-grid, .stat-row { grid-template-columns: 1fr; }
+      .doc-grid, .stat-row, .strategy-flow { grid-template-columns: 1fr; }
       .stat { border-right: 0; border-bottom: 1px solid var(--ink); }
       .stat:last-child { border-bottom: 0; }
       th, td { padding: 10px; font-size: 13px; }
@@ -801,6 +891,54 @@
           <p>KHS Holder가 받을 수 있는 지분 또는 지분 옵션입니다.</p>
         </div>
       </div>
+
+      <details open>
+        <summary>1차 송부 전략</summary>
+        <div class="detail-body strategy-note">
+          <p class="strategy-lead">이번 V2 패키지는 내부적으로 총 9개 문서로 구성되어 있습니다. 다만 중국 측에 처음부터 전체 문서를 모두 송부하는 방식은 적절하지 않습니다.</p>
+          <p>초기 단계에서 문서가 많으면 핵심 쟁점이 분산되고, 상대방이 전체 구조보다 개별 계약 문구에 먼저 반응할 수 있습니다. 따라서 1차 송부는 핵심 구조 확인에 필요한 문서로 제한하는 것이 좋습니다.</p>
+
+          <div class="strategy-flow" aria-label="1차 송부에서 2차 제시까지의 진행 순서">
+            <article class="strategy-step">
+              <b>STEP 01</b>
+              <strong>1차 송부</strong>
+              <ul>
+                <li>커버레터</li>
+                <li>MADVERSE 필수 확인 및 요청사항</li>
+                <li>Master Term Sheet</li>
+              </ul>
+            </article>
+            <article class="strategy-step">
+              <b>STEP 02</b>
+              <strong>우선 확인</strong>
+              <ul>
+                <li>계약 당사자</li>
+                <li>지급 주체</li>
+                <li>IP 사용 범위</li>
+                <li>30% 지분 또는 옵션 구조</li>
+              </ul>
+            </article>
+            <article class="strategy-step">
+              <b>STEP 03</b>
+              <strong>2차 제시</strong>
+              <ul>
+                <li>Agreement A</li>
+                <li>Agreement B</li>
+                <li>Equity / Option Side Letter</li>
+              </ul>
+            </article>
+            <article class="strategy-step final">
+              <b>STEP 04</b>
+              <strong>전체 검토</strong>
+              <ul>
+                <li>변호사 검토는 전체 9개 문서 기준</li>
+                <li>외부 송부는 단계적으로 진행</li>
+                <li>협상 부담과 쟁점 확산을 줄이는 방향</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </details>
 
       <details open>
         <summary>V2에서 지켜야 할 기준</summary>
