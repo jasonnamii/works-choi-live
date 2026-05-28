@@ -607,6 +607,16 @@
       padding: 16px;
       min-height: 190px;
     }
+    .strategy-step.primary {
+      background: var(--accent);
+      box-shadow: 5px 5px 0 var(--ink);
+    }
+    .strategy-step.primary b,
+    .strategy-step.primary strong,
+    .strategy-step.primary li {
+      color: var(--ink);
+      border-color: rgba(0, 0, 0, 0.28);
+    }
     .strategy-step:not(:last-child)::after {
       content: "→";
       position: absolute;
@@ -899,7 +909,7 @@
           <p>초기 단계에서 문서가 많으면 핵심 쟁점이 분산되고, 상대방이 전체 구조보다 개별 계약 문구에 먼저 반응할 수 있습니다. 따라서 1차 송부는 핵심 구조 확인에 필요한 문서로 제한하는 것이 좋습니다.</p>
 
           <div class="strategy-flow" aria-label="1차 송부에서 2차 제시까지의 진행 순서">
-            <article class="strategy-step">
+            <article class="strategy-step primary">
               <b>STEP 01</b>
               <strong>1차 송부</strong>
               <ul>
@@ -908,7 +918,7 @@
                 <li>Master Term Sheet</li>
               </ul>
             </article>
-            <article class="strategy-step">
+            <article class="strategy-step primary">
               <b>STEP 02</b>
               <strong>우선 확인</strong>
               <ul>
