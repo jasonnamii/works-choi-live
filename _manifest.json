@@ -302,5 +302,13 @@
     "last_kind": "redeploy",
     "last_sha256": "2a7f93d0d54097099ab280b36fa673592c33ab5a8059790b4d0963f0018956ba",
     "timestamp": "2026-05-28T04:30:53.180424Z"
+  },
+  "cre8orclub-chris-product-design-lead": {
+    "slug": "cre8orclub-chris-product-design-lead",
+    "mode": "choi",
+    "url": "https://works.choi.build/cre8orclub-chris-product-design-lead/",
+    "last_kind": "new",
+    "last_sha256": "59c2eb0355948af250b1d6cf2ad807f9cb892941cf205fe92a778180fefc4031",
+    "timestamp": "2026-05-29T15:21:52.463023Z"
   }
 }

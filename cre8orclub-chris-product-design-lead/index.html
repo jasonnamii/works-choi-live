@@ -1,0 +1,1481 @@
+<!doctype html>
+<html lang="ko" data-theme="light" data-volume="standard">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cre8orClub Founding Product Design Lead Role Proposal</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+    :root {
+      --bg: #f4f4f2;
+      --paper: #ffffff;
+      --ink: #090909;
+      --muted: #757575;
+      --soft: #757575;
+      --line: #d8d8d3;
+      --line-strong: #111111;
+      --shade: #ededeb;
+      --shade-2: #e2e2de;
+      --inverse: #090909;
+      --inverse-ink: #ffffff;
+      --focus: #111111;
+      --max: 1180px;
+      --radius: 8px;
+      --font-display: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-text: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-text), sans-serif;
+      font-size: 17px;
+      line-height: 1.62;
+      letter-spacing: 0;
+      word-break: keep-all;
+      line-break: strict;
+      overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    summary {
+      font: inherit;
+    }
+
+    button {
+      min-height: 44px;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: #f4f4f2;
+    }
+
+    .topbar-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 64px;
+    }
+
+    .brand {
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .ghost-button {
+      border: 1px solid var(--line-strong);
+      background: var(--paper);
+      color: var(--ink);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .hero {
+      min-height: calc(100dvh - 64px);
+      display: grid;
+      align-items: end;
+      border-bottom: 1px solid var(--line-strong);
+      background: var(--paper);
+    }
+
+    .hero-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 96px 0 44px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 34px;
+      padding: 6px 10px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--paper);
+    }
+
+    .hero h1 {
+      margin: 28px 0 0;
+      max-width: 1180px;
+      font-size: clamp(76px, 10.8vw, 158px);
+      line-height: 94%;
+      letter-spacing: 0;
+      font-weight: 920;
+    }
+
+    .hero h1 .hero-line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .hero-copy {
+      display: block;
+      max-width: 960px;
+      margin-top: 48px;
+      border-top: 1px solid var(--line-strong);
+      padding-top: 28px;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 46px);
+      line-height: 116%;
+      font-weight: 850;
+    }
+
+    .hero-note {
+      border-left: 1px solid var(--line-strong);
+      padding-left: 24px;
+      color: var(--muted);
+      font-size: clamp(22px, 2vw, 30px);
+      line-height: 150%;
+      font-weight: 650;
+    }
+
+    .doc-shell {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 34px;
+      padding: 34px 0 96px;
+    }
+
+    .toc {
+      position: sticky;
+      top: 88px;
+      align-self: start;
+      max-height: calc(100dvh - 112px);
+      overflow: auto;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+    .toc strong {
+      display: block;
+      padding: 6px 8px 12px;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .toc a {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 8px;
+      align-items: start;
+      min-height: 44px;
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 135%;
+    }
+
+    .toc a:last-child {
+      border-bottom: 0;
+    }
+
+    .toc .toc-num {
+      color: var(--ink);
+      font-weight: 850;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    .section {
+      margin: 0 0 26px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--paper);
+      overflow: clip;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      border-bottom: 1px solid var(--line-strong);
+      background: var(--paper);
+    }
+
+    .num {
+      display: grid;
+      place-items: center;
+      border-right: 1px solid var(--line-strong);
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 100%;
+      font-weight: 920;
+      font-family: var(--font-display), sans-serif;
+    }
+
+    .num-reveal-trigger {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .num-reveal-trigger:hover {
+      background: var(--shade);
+    }
+
+    .head-copy {
+      padding: 26px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(32px, 4.7vw, 76px);
+      line-height: 102%;
+      letter-spacing: 0;
+      font-weight: 920;
+    }
+
+    .section-lead {
+      margin: 18px 0 0;
+      max-width: 850px;
+      color: var(--muted);
+      font-size: clamp(18px, 2.1vw, 25px);
+      line-height: 138%;
+      font-weight: 650;
+    }
+
+    .visual {
+      padding: 26px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfbfa;
+    }
+
+    .fold {
+      background: var(--paper);
+    }
+
+    .fold summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      min-height: 56px;
+      padding: 18px 26px;
+      cursor: pointer;
+      font-weight: 850;
+      border-top: 1px solid var(--line);
+      list-style: none;
+    }
+
+    .fold summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .fold summary::after {
+      content: "+";
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      font-size: 22px;
+      line-height: 100%;
+      font-weight: 700;
+    }
+
+    .fold[open] summary::after {
+      content: "-";
+    }
+
+    .detail-body {
+      padding: 0 26px 28px;
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    .detail-body p {
+      margin: 14px 0;
+      orphans: 2;
+      widows: 2;
+    }
+
+    .hl {
+      display: inline;
+      background: #050505;
+      color: #ffffff;
+      padding: 0 0.34em;
+      border: 0;
+      border-radius: 999px;
+      font-weight: 850;
+      line-height: inherit;
+      vertical-align: baseline;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    h2 .hl {
+      display: inline-flex;
+      align-items: center;
+      height: 0.85em;
+      line-height: 0.85em;
+      vertical-align: 0.05em;
+    }
+
+    .comp-secret {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 0 0.3em;
+      background: #050505;
+      color: transparent;
+      line-height: 1.03;
+      text-shadow: none;
+      user-select: none;
+      vertical-align: baseline;
+      transition: background 160ms ease, color 160ms ease;
+    }
+
+    body[data-comp-revealed="true"] .comp-secret {
+      background: transparent;
+      color: inherit;
+      line-height: inherit;
+      padding: 0;
+      user-select: text;
+    }
+
+    body[data-comp-revealed="true"] .tile.dark .comp-secret,
+    body[data-comp-revealed="true"] .statement .comp-secret,
+    body[data-comp-revealed="true"] .code-card .comp-secret {
+      background: transparent;
+    }
+
+    .detail-body ul,
+    .detail-body ol {
+      margin: 12px 0 0;
+      padding-left: 22px;
+    }
+
+    .detail-body li {
+      margin: 5px 0;
+    }
+
+    .grid-3,
+    .grid-4,
+    .grid-2 {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .tile {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: var(--paper);
+      min-height: 118px;
+    }
+
+    .tile.dark {
+      background: var(--inverse);
+      color: var(--inverse-ink);
+    }
+
+    .tile small,
+    .table small {
+      display: block;
+      color: var(--soft);
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .tile.dark small {
+      color: #d4d4d4;
+    }
+
+    .tile b {
+      display: block;
+      font-size: 22px;
+      line-height: 122%;
+      margin-bottom: 8px;
+    }
+
+    .tile p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .tile.dark p {
+      color: #eeeeee;
+    }
+
+    .case-stack {
+      display: grid;
+      margin: 18px 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .case-row {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .case-row:last-child {
+      border-bottom: 0;
+    }
+
+    .case-label {
+      padding: 15px;
+      background: var(--shade);
+      border-right: 1px solid var(--line);
+      font-size: 14px;
+      line-height: 128%;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .case-copy {
+      padding: 15px;
+    }
+
+    .case-copy strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+      line-height: 126%;
+    }
+
+    .case-copy p {
+      margin: 0;
+    }
+
+    .case-copy small {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .decision-strip {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: stretch;
+      gap: 10px;
+    }
+
+    .decision {
+      min-height: 136px;
+      border: 1px solid var(--line-strong);
+      background: var(--paper);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .decision strong {
+      display: block;
+      font-size: 26px;
+      line-height: 116%;
+      margin-bottom: 10px;
+    }
+
+    .arrow {
+      display: grid;
+      place-items: center;
+      font-size: 34px;
+      font-weight: 900;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--paper);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: min(680px, 100%);
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      padding: 14px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--inverse);
+      color: var(--inverse-ink);
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td:last-child,
+    th:last-child {
+      border-right: 0;
+    }
+
+    .status-cell {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .status-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      font-size: 19px;
+      line-height: 1;
+      font-weight: 920;
+      font-family: var(--font-display), sans-serif;
+    }
+
+    .status-no {
+      color: #d71920;
+    }
+
+    .status-yes {
+      color: #0057ff;
+    }
+
+    .org {
+      display: grid;
+      gap: 14px;
+    }
+
+    .org-top {
+      display: grid;
+      place-items: center;
+      min-height: 72px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--inverse);
+      color: var(--inverse-ink);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .org-connector {
+      width: 1px;
+      height: 34px;
+      background: var(--line-strong);
+      margin: 0 auto;
+    }
+
+    .org-group {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--paper);
+      padding: 18px;
+    }
+
+    .org-group h3 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      line-height: 115%;
+    }
+
+    .org-lanes {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .lane {
+      border: 1px solid var(--line);
+      background: var(--shade);
+      border-radius: var(--radius);
+      padding: 14px;
+      min-height: 96px;
+      font-weight: 800;
+    }
+
+    .raci {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(4, 1fr);
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .raci > div {
+      padding: 13px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      min-height: 58px;
+    }
+
+    .raci > div:nth-child(5n) {
+      border-right: 0;
+    }
+
+    .raci .head {
+      background: var(--inverse);
+      color: var(--inverse-ink);
+      font-weight: 850;
+    }
+
+    .raci .mark {
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 22px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
+      gap: 8px;
+      overflow-x: visible;
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: 94px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 10px;
+      background: var(--paper);
+    }
+
+    .flow-step span {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      margin-bottom: 10px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .flow-step b {
+      display: block;
+      line-height: 125%;
+      font-size: 14px;
+      word-break: keep-all;
+    }
+
+    .map {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .map-center {
+      display: grid;
+      place-items: center;
+      min-height: 240px;
+      border: 2px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--inverse);
+      color: var(--inverse-ink);
+      padding: 24px;
+      text-align: center;
+      font-size: 30px;
+      line-height: 118%;
+      font-weight: 920;
+    }
+
+    .map-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .map-item {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: var(--paper);
+      font-weight: 800;
+    }
+
+    .leverage {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .lever {
+      padding: 18px;
+      border-right: 1px solid var(--line);
+      min-height: 172px;
+    }
+
+    .lever:last-child {
+      border-right: 0;
+    }
+
+    .lever b {
+      display: block;
+      font-size: 20px;
+      line-height: 120%;
+      margin-bottom: 10px;
+    }
+
+    .statement {
+      border: 2px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: var(--inverse);
+      color: var(--inverse-ink);
+      padding: 28px;
+      font-size: clamp(24px, 3.4vw, 48px);
+      line-height: 118%;
+      font-weight: 900;
+    }
+
+    .quote {
+      border-left: 8px solid var(--line-strong);
+      background: var(--shade);
+      padding: 24px;
+      font-size: clamp(22px, 2.4vw, 34px);
+      line-height: 125%;
+      font-weight: 850;
+    }
+
+    .code-card {
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: #111111;
+      color: #ffffff;
+      padding: 18px;
+      font-family: var(--font-mono), monospace;
+      font-size: 15px;
+      line-height: 1.65;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line-strong);
+      background: var(--paper);
+      padding: 32px 0;
+    }
+
+    .footer-inner {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .flow {
+        grid-template-columns: repeat(auto-fit, minmax(74px, 1fr));
+      }
+
+      .section {
+        margin-bottom: 22px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .doc-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: relative;
+        top: 0;
+        max-height: none;
+      }
+
+      .toc nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-copy,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .map,
+      .leverage {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-note {
+        border-left: 0;
+        border-top: 1px solid var(--line-strong);
+        padding: 18px 0 0;
+        max-width: 720px;
+      }
+
+      .decision-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .arrow {
+        min-height: 28px;
+        transform: rotate(90deg);
+      }
+
+      .org-lanes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .lever {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .lever:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        font-size: 16px;
+      }
+
+      .topbar-inner,
+      .hero-inner,
+      .doc-shell,
+      .footer-inner {
+        width: calc(100vw - 24px);
+        max-width: var(--max);
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 0;
+      }
+
+      .nav-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-inner {
+        padding: 56px 0 32px;
+      }
+
+      .hero h1 {
+        font-size: clamp(45px, 14.4vw, 72px);
+        line-height: 96%;
+      }
+
+      .hero-copy p {
+        font-size: clamp(27px, 8vw, 38px);
+        line-height: 114%;
+      }
+
+      .hero-note {
+        font-size: clamp(19px, 5vw, 23px);
+        line-height: 152%;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .num {
+        place-items: start;
+        padding: 18px 22px 0;
+        border-right: 0;
+        font-size: 44px;
+      }
+
+      .head-copy,
+      .visual,
+      .fold summary,
+      .detail-body {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      h2 {
+        font-size: clamp(34px, 11vw, 54px);
+        line-height: 104%;
+      }
+
+      .toc nav {
+        grid-template-columns: 1fr;
+      }
+
+      .org-lanes {
+        grid-template-columns: 1fr;
+      }
+
+      .raci {
+        grid-template-columns: 1fr;
+      }
+
+      .raci > div,
+      .raci > div:nth-child(5n) {
+        border-right: 0;
+      }
+
+      .raci .head:not(:first-child),
+      .raci .mark {
+        display: none;
+      }
+
+      .case-row {
+        grid-template-columns: 1fr;
+      }
+
+      .case-label {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .statement {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        word-break: keep-all;
+        line-break: strict;
+        text-wrap: pretty;
+      }
+
+      .hero h1 {
+        font-size: clamp(38px, 11vw, 52px);
+        line-height: 98%;
+        font-weight: 920;
+      }
+
+      h2 {
+        font-size: clamp(32px, 10vw, 50px);
+        line-height: 104%;
+      }
+
+      .num {
+        font-size: 42px;
+      }
+
+      table {
+        min-width: 100%;
+      }
+    }
+
+    @media print {
+      .topbar,
+      .toc,
+      .nav-actions {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .doc-shell {
+        display: block;
+      }
+
+      .section {
+        break-inside: avoid;
+      }
+
+      .fold {
+        display: block;
+      }
+
+      .fold summary::after {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="문서 맨 위로 이동">Cre8orClub / 크리스</a>
+      <div class="nav-actions" aria-label="접기 제어">
+        <button class="ghost-button" type="button" data-action="open-all">상세 모두 열기</button>
+        <button class="ghost-button" type="button" data-action="close-all">상세 모두 접기</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <span class="eyebrow">Role Proposal</span>
+      <h1><span class="hero-line">Cre8orClub</span><span class="hero-line">Founding Product</span><span class="hero-line">Design Lead 제안</span></h1>
+      <div class="hero-copy">
+        <div class="hero-note">
+          이 문서는 크리스에게 제안하는 역할, 담당 범위, 권한, 협업 방식, 보상 구조를 정리한 제안서입니다. 핵심은 <span class="hl">C8의 제품 경험을 어떤 기준으로 함께 만들고, 어떤 범위까지 맡을 것인지</span>를 명확히 하는 데 있습니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="doc-shell">
+    <aside class="toc" aria-label="문서 목차">
+      <strong>Decision Flow</strong>
+      <nav>
+        <a href="#s1"><span class="toc-num">01</span><span>제안 요약</span></a>
+        <a href="#s2"><span class="toc-num">02</span><span>통합 운영 이유</span></a>
+        <a href="#s3"><span class="toc-num">03</span><span>조직 구조</span></a>
+        <a href="#s4"><span class="toc-num">04</span><span>크리스 역할</span></a>
+        <a href="#s5"><span class="toc-num">05</span><span>권한과 경계</span></a>
+        <a href="#s6"><span class="toc-num">06</span><span>운영 방식</span></a>
+        <a href="#s7"><span class="toc-num">07</span><span>합의안</span></a>
+      </nav>
+    </aside>
+
+    <main>
+      <section class="section" id="s1">
+        <div class="section-head">
+          <button class="num num-reveal-trigger" type="button" aria-pressed="false" aria-label="보상 숫자 공개">1</button>
+          <div class="head-copy">
+            <h2>크리스에게 C8 제품 경험을 이끄는 Founding Product Design Lead 역할을 제안합니다.</h2>
+            <p class="section-lead">제안 조건은 연봉 <span class="comp-secret">1억 원</span>, 기본 지분 <span class="comp-secret">1%</span>, 성과 조건부 최대 <span class="comp-secret">2%</span>입니다. 역할은 C8 제품 UI/UX, 디자인 시스템, AI 디자인 워크플로우, 투자용 제품 데모 퀄리티에 집중합니다.</p>
+          </div>
+        </div>
+        <div class="visual">
+          <div class="grid-4" aria-label="제안 요약">
+            <div class="tile dark"><small>Title</small><b>Founding Product Design Lead</b><p>초기 제품 경험과 화면 완성도를 이끄는 역할입니다.</p></div>
+            <div class="tile"><small>Compensation</small><b>연봉 <span class="comp-secret">1억 원</span> / 최대 <span class="comp-secret">2%</span></b><p>기본 <span class="comp-secret">1%</span>, 성과 조건 충족 시 추가 <span class="comp-secret">0.5~1%</span>.</p></div>
+            <div class="tile"><small>Focus</small><b>C8 제품 경험</b><p>핵심 화면, 사용 흐름, 디자인 시스템, 투자용 데모를 맡습니다.</p></div>
+            <div class="tile"><small>Boundary</small><b>조직 운영 제외</b><p>인사평가, 조직장 역할, 아큐브 디자인은 맡기지 않습니다.</p></div>
+          </div>
+        </div>
+        <details class="fold">
+          <summary>제안 요약 상세 보기</summary>
+          <div class="detail-body">
+            <p>이번 제안은 크리스를 화면 제작 담당자로 보는 조건이 아닙니다. C8의 핵심 화면, 사용자 흐름, 디자인 기준, 투자자에게 보여줄 제품 데모를 함께 끌어올리는 역할입니다.</p>
+            <p>보상은 역할의 무게와 성과를 함께 반영합니다. 입사 시 기본 지분 <span class="comp-secret">1%</span>를 부여하고, 핵심 UI 개선, 디자인 시스템 구축, 투자용 데모 완성도, AI 디자인 워크플로우 정착이 확인되면 추가 <span class="comp-secret">0.5~1%</span>를 검토합니다.</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="s2">
+        <div class="section-head">
+          <div class="num">2</div>
+          <div class="head-copy">
+            <h2>기획과 디자인을 함께 보면 C8의 제품 설득력이 더 빨리 올라갑니다.</h2>
+            <p class="section-lead">C8은 플랫폼 구조, 사용자 흐름, 화면 경험이 동시에 맞아야 합니다. 문서가 먼저 있고 디자인이 뒤따르는 방식보다, 문제 정의부터 프로토타입까지 함께 보는 운영이 맞습니다.</p>
+          </div>
+        </div>
+        <div class="visual">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>운영 방식</th>
+                  <th>확인할 지점</th>
+                  <th>운영 기준</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>기획과 디자인 분리 운영</td>
+                  <td>기능 정의와 실제 화면 경험이 분리되고, 디자인이 후반 작업으로 밀릴 수 있습니다.</td>
+                  <td class="status-cell"><span class="status-mark status-no" aria-label="지양">X</span></td>
+                </tr>
+                <tr>
+                  <td>기획을 디자인 산하로 편입</td>
+                  <td>상하 관계처럼 보일 수 있고, 플랫폼 기획의 담당 범위가 흐려질 수 있습니다.</td>
+                  <td class="status-cell"><span class="status-mark status-no" aria-label="지양">X</span></td>
+                </tr>
+                <tr>
+                  <td>제품 경험 협업 구조</td>
+                  <td>플랫폼 구조, 사용자 흐름, 화면 설계, 디자인 시스템을 하나의 제품 경험 체계 안에서 맞춥니다.</td>
+                  <td class="status-cell"><span class="status-mark status-yes" aria-label="제안">O</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <details class="fold">
+          <summary>통합 운영 이유 상세 보기</summary>
+          <div class="detail-body">
+            <p>기획이 기능을 정의하고 디자인이 나중에 화면을 붙이면, 정책과 사용 흐름 사이에 빈틈이 생깁니다. 이 빈틈은 투자자 데모와 첫 사용자 경험에서 바로 드러납니다.</p>
+            <p>실리콘밸리식 제품 운영의 핵심도 같은 방향입니다. PM, 디자인, 엔지니어링이 같은 문제를 보고 빠르게 프로토타입을 만들며 판단합니다. AI 도구가 들어오면서 이 흐름은 더 빨라졌습니다.</p>
+            <div class="case-stack" aria-label="해외 제품 조직 운영 사례">
+              <div class="case-row">
+                <div class="case-label">Atlassian</div>
+                <div class="case-copy">
+                  <strong>개발, 디자인, 비즈니스가 한 테이블에서 제품 전략을 맞춥니다.</strong>
+                  <p>이 방식은 C8에도 맞습니다. 기능 정의, 화면 흐름, 사업 판단을 따로 검토하지 않고 같은 화면을 보며 결정해야 합니다.</p>
+                  <small>확신도: 90(Atlassian 공개 자료)</small>
+                </div>
+              </div>
+              <div class="case-row">
+                <div class="case-label">Airbnb</div>
+                <div class="case-copy">
+                  <strong>디자인을 겉모양이 아니라 서비스가 작동하는 방식으로 봅니다.</strong>
+                  <p>C8도 창작자와 찾는 사람이 신뢰하고 연결되는 전 과정을 디자인 판단 안에 넣어야 합니다.</p>
+                  <small>확신도: 90(Airbnb 공식 글)</small>
+                </div>
+              </div>
+              <div class="case-row">
+                <div class="case-label">AI Trend</div>
+                <div class="case-copy">
+                  <strong>AI 이후에는 화면 시안보다 작동하는 프로토타입이 먼저입니다.</strong>
+                  <p>C8에 필요한 것은 디자인 산출물 관리가 아니라, 제품 경험을 더 빨리 만들고 더 빨리 검증하는 운영 방식입니다.</p>
+                  <small>확신도: 90(Figma, Webflow 공개 자료)</small>
+                </div>
+              </div>
+            </div>
+            <p><span class="hl">핵심은 상하관계가 아니라 제품 경험의 판단 기준을 하나로 맞추는 것입니다.</span></p>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="s3">
+        <div class="section-head">
+          <div class="num">3</div>
+          <div class="head-copy">
+            <h2>제품 경험 협업 구조는 기획팀을 디자인팀 산하로 넣는 조직이 아닙니다.</h2>
+            <p class="section-lead">CEO 아래 제품 경험 협업 구조를 두고, 플랫폼 기획, UX/UI, 디자인 시스템, AI 디자인 워크플로우, QA, 제품 데모 퀄리티를 함께 봅니다.</p>
+          </div>
+        </div>
+        <div class="visual">
+          <div class="org" aria-label="제품 경험 협업 구조 관계형 조직도">
+            <div class="org-top">CEO</div>
+            <div class="org-connector" aria-hidden="true"></div>
+            <div class="org-group">
+              <h3>Cre8orClub Product Experience Group</h3>
+              <div class="org-lanes">
+                <div class="lane">Platform Planning</div>
+                <div class="lane">UX / UI Design</div>
+                <div class="lane">Design System</div>
+                <div class="lane">AI Design Workflow</div>
+                <div class="lane">Product QA / Demo Quality</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <details class="fold">
+          <summary>조직 구조 상세 보기</summary>
+          <div class="detail-body">
+            <p>기획팀은 플랫폼 구조, 정책, 기능 정의를 계속 맡습니다. 크리스는 그 구조가 실제 화면과 사용 흐름으로 이어지는 기준을 잡습니다.</p>
+            <p>개발팀은 구현 가능성과 일정, CEO 또는 지정된 Product Owner는 사업 우선순위와 최종 사업 판단을 맡습니다.</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="s4">
+        <div class="section-head">
+          <div class="num">4</div>
+          <div class="head-copy">
+            <h2>크리스의 역할은 C8 제품 경험과 디자인 완성도를 끌어올리는 것입니다.</h2>
+            <p class="section-lead"><span class="hl">단순 UI 제작이 아닙니다.</span> 핵심 화면 구조, 사용자 흐름, 디자인 시스템, AI 디자인 워크플로우, 투자용 제품 데모 퀄리티를 함께 다루는 역할입니다.</p>
+          </div>
+        </div>
+        <div class="visual">
+          <div class="grid-4">
+            <div class="tile dark"><small>UI / UX</small><b>핵심 화면 리드</b><p>온보딩, 프로필, 검색, 매칭 흐름을 봅니다.</p></div>
+            <div class="tile"><small>System</small><b>디자인 시스템</b><p>반복 가능한 화면 기준과 컴포넌트 기준을 만듭니다.</p></div>
+            <div class="tile"><small>AI Workflow</small><b>AI 디자인 리드</b><p>시안, 프로토타입, 반복 개선 속도를 높입니다.</p></div>
+            <div class="tile"><small>Demo</small><b>투자용 데모</b><p>투자자가 C8의 가능성을 화면으로 이해하게 만듭니다.</p></div>
+          </div>
+        </div>
+        <details class="fold">
+          <summary>크리스 역할 상세 보기</summary>
+          <div class="detail-body">
+            <h3>주요 역할</h3>
+            <ul>
+              <li>Cre8orClub 제품 UI/UX 리드</li>
+              <li>핵심 화면 구조 및 사용자 흐름 설계</li>
+              <li>디자인 시스템 구축</li>
+              <li>AI 기반 디자인 워크플로우 리드</li>
+              <li>투자용 제품 데모 퀄리티 리드</li>
+              <li>개발 전달 전 UX/UI 정합성 검수</li>
+            </ul>
+            <p>역할의 중심은 결과물의 양이 아니라 기준입니다. 핵심 화면이 C8의 사업 논리, 사용자 행동, 투자자 설득력을 동시에 담도록 판단하는 역할입니다.</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="s5">
+        <div class="section-head">
+          <div class="num">5</div>
+          <div class="head-copy">
+            <h2>권한은 제품 경험 최종 판단권으로 정리합니다.</h2>
+            <p class="section-lead">크리스는 C8의 UI/UX, 디자인 시스템, 핵심 화면 경험을 판단합니다. 사업 우선순위, 기능 우선순위, 조직 인사권은 CEO 또는 지정된 Product Owner가 맡습니다.</p>
+          </div>
+        </div>
+        <div class="visual">
+          <div class="raci" aria-label="권한과 경계 매트릭스">
+            <div class="head">판단 영역</div>
+            <div class="head">기획팀</div>
+            <div class="head">크리스</div>
+            <div class="head">개발</div>
+            <div class="head">CEO / PO</div>
+            <div>플랫폼 구조와 기능 정의</div>
+            <div class="mark">●</div><div></div><div></div><div></div>
+            <div>UI/UX와 디자인 시스템</div>
+            <div></div><div class="mark">●</div><div></div><div></div>
+            <div>구현 가능성과 개발 일정</div>
+            <div></div><div></div><div class="mark">●</div><div></div>
+            <div>사업 우선순위와 인사 판단</div>
+            <div></div><div></div><div></div><div class="mark">●</div>
+          </div>
+        </div>
+        <details class="fold">
+          <summary>권한과 경계 상세 보기</summary>
+          <div class="detail-body">
+            <p><span class="hl">최종 판단권</span>은 C8 제품 경험과 디자인 품질을 빠르게 끌어올리기 위한 권한입니다. 법적 의결권이나 조직 인사권을 뜻하지 않습니다.</p>
+            <p>크리스에게 조직장 역할, 인사평가, 전체 사업기획 총괄을 맡기지 않습니다. 이 경계가 있어야 크리스가 제품 경험의 핵심 판단에 집중할 수 있습니다.</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="s6">
+        <div class="section-head">
+          <div class="num">6</div>
+          <div class="head-copy">
+            <h2>운영은 주 1~2회 Product Review로 맞춥니다.</h2>
+            <p class="section-lead">기획, 디자인, 개발이 같은 화면을 보고 움직이도록 문제 정의부터 QA까지 하나의 흐름으로 반복합니다.</p>
+          </div>
+        </div>
+        <div class="visual">
+          <div class="flow" aria-label="공통 산출물 흐름">
+            <div class="flow-step"><span>1</span><b>문제 정의</b></div>
+            <div class="flow-step"><span>2</span><b>사용자 행동</b></div>
+            <div class="flow-step"><span>3</span><b>화면 흐름</b></div>
+            <div class="flow-step"><span>4</span><b>정책 / 예외 케이스</b></div>
+            <div class="flow-step"><span>5</span><b>와이어프레임</b></div>
+            <div class="flow-step"><span>6</span><b>UI 디자인</b></div>
+            <div class="flow-step"><span>7</span><b>개발 전달</b></div>
+            <div class="flow-step"><span>8</span><b>QA 체크리스트</b></div>
+            <div class="flow-step"><span>9</span><b>지표 확인</b></div>
+          </div>
+        </div>
+        <details class="fold">
+          <summary>운영 방식 상세 보기</summary>
+          <div class="detail-body">
+            <p>참석자는 CEO, 크리스, 플랫폼 기획 담당, 개발 리드입니다. 필요한 경우 마케팅 또는 운영 담당도 함께 봅니다.</p>
+            <p>리뷰 대상은 온보딩, 프로필, 포트폴리오, 검색, 매칭 / Finder, 메시지, 투자자 데모 화면, 디자인 시스템, AI 디자인 워크플로우입니다.</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="section" id="s7">
+        <div class="section-head">
+          <div class="num">7</div>
+          <div class="head-copy">
+            <h2>합의안은 조건, 역할, 권한, 범위를 한 장에 정리합니다.</h2>
+            <p class="section-lead">이 제안의 목적은 조건을 복잡하게 만드는 것이 아니라, 함께 일할 기준을 명확히 하는 것입니다.</p>
+          </div>
+        </div>
+        <div class="visual">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>항목</th>
+                  <th>합의 내용</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>보상</td>
+                  <td>연봉 <span class="comp-secret">1억 원</span>, 기본 지분 <span class="comp-secret">1%</span>, 성과 조건 충족 시 추가 <span class="comp-secret">0.5~1%</span>.</td>
+                </tr>
+                <tr>
+                  <td>직책</td>
+                  <td>Cre8orClub Founding Product Design Lead.</td>
+                </tr>
+                <tr>
+                  <td>권한</td>
+                  <td>C8 UI/UX, 디자인 시스템, 핵심 화면 경험의 최종 판단권.</td>
+                </tr>
+                <tr>
+                  <td>역할</td>
+                  <td>제품 UI/UX, 디자인 시스템, AI 디자인 워크플로우, 투자용 제품 데모 퀄리티.</td>
+                </tr>
+                <tr>
+                  <td>제외 범위</td>
+                  <td>조직장 역할, 기획팀 인사평가, 전체 사업기획 총괄, 아큐브 디자인, 개발 조직 관리.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <details class="fold">
+          <summary>합의안 상세 보기</summary>
+          <div class="detail-body">
+            <div class="code-card">연봉:
+<span class="comp-secret">1억</span>
+
+지분:
+최대 <span class="comp-secret">2%</span>
+
+지분 구조:
+- 입사 시 <span class="comp-secret">1%</span>
+- <span class="comp-secret">4년</span> 베스팅 / <span class="comp-secret">1년</span> 클리프(<span class="comp-secret">4년</span>에 나눠 받고, 첫 <span class="comp-secret">1년</span> 안에 나가면 받지 않는 조건)
+- 성과 조건 충족 시 추가 <span class="comp-secret">0.5~1%</span>
+- 직접 지분보다 스톡옵션 또는 조건부 지분 형태 우선 검토
+
+직책:
+Cre8orClub Founding Product Design Lead
+
+조직 체계:
+Cre8orClub Product Experience Group
+
+권한:
+C8 UI/UX 및 디자인 시스템 최종 판단권
+
+역할:
+- C8 제품 UI/UX
+- 디자인 시스템
+- AI 디자인 워크플로우
+- 투자용 제품 데모 퀄리티
+- 핵심 화면 사용 경험 개선
+- 플랫폼 기획 산출물의 화면화 기준 제시
+- 개발 전달 전 UX/UI 정합성 검수
+
+역할 범위 제외:
+- 조직장 역할
+- 기획팀 인사평가
+- 전체 사업기획 총괄
+- 아큐브 디자인 담당
+- 아큐브 조직 운영
+- 개발 조직 관리</div>
+          </div>
+        </details>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Cre8orClub Founding Product Design Lead Role Proposal</span>
+    </div>
+  </footer>
+
+  <script>
+    const allDetails = Array.from(document.querySelectorAll('details.fold'));
+    const revealTrigger = document.querySelector('.num-reveal-trigger');
+
+    if (revealTrigger) {
+      revealTrigger.addEventListener('click', () => {
+        const isRevealed = document.body.dataset.compRevealed === 'true';
+        document.body.dataset.compRevealed = isRevealed ? 'false' : 'true';
+        revealTrigger.setAttribute('aria-pressed', String(!isRevealed));
+        revealTrigger.setAttribute('aria-label', isRevealed ? '보상 숫자 공개' : '보상 숫자 숨기기');
+      });
+    }
+
+    document.querySelector('[data-action="open-all"]').addEventListener('click', () => {
+      allDetails.forEach((item) => {
+        item.open = true;
+      });
+    });
+    document.querySelector('[data-action="close-all"]').addEventListener('click', () => {
+      allDetails.forEach((item) => {
+        item.open = false;
+      });
+    });
+  </script>
+</body>
+</html>
