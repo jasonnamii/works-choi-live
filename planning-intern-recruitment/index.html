@@ -1235,7 +1235,7 @@
         </a>
         <a class="brand-title" href="#top" aria-label="채용형 기획 인턴 모집 상단으로 이동">Planning Intern</a>
       </div>
-      <span class="visitor-count" id="visitor-count" aria-hidden="true">방문자수/유니크수 : 0/0</span>
+      <span class="visitor-count" id="visitor-count" aria-hidden="true">0/0</span>
       <nav class="nav" aria-label="문서 목차">
         <a href="#definition">기획의 정의</a>
         <a href="#criteria">우리가 찾는 사람</a>
@@ -1859,7 +1859,7 @@
         const visitNumber = Number.parseInt(visits, 10);
         const uniqueNumber = Number.parseInt(unique, 10);
         if (!counter || !Number.isFinite(visitNumber) || !Number.isFinite(uniqueNumber)) return;
-        counter.textContent = `방문자수/유니크수 : ${visitNumber}/${uniqueNumber}`;
+        counter.textContent = `${visitNumber}/${uniqueNumber}`;
       };
 
       const hasCounted = () => {
