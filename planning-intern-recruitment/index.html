@@ -1235,7 +1235,7 @@
         </a>
         <a class="brand-title" href="#top" aria-label="채용형 기획 인턴 모집 상단으로 이동">Planning Intern</a>
       </div>
-      <span class="visitor-count" id="visitor-count" aria-hidden="true">0/0</span>
+      <span class="visitor-count" id="visitor-count" aria-hidden="true">1/1</span>
       <nav class="nav" aria-label="문서 목차">
         <a href="#definition">기획의 정의</a>
         <a href="#criteria">우리가 찾는 사람</a>
@@ -1851,13 +1851,13 @@
     (() => {
       const counter = document.getElementById("visitor-count");
       const apiBase = "https://countapi.mileshilliard.com/api/v1";
-      const visitKey = "cre8orclub-planning-intern-recruitment-total-visits-260531";
-      const uniqueKey = "cre8orclub-planning-intern-recruitment-unique-devices-260531";
-      const storageKey = "cc-planning-intern-counted-device-v1";
+      const visitKey = "cre8orclub-planning-intern-recruitment-total-visits-260601";
+      const uniqueKey = "cre8orclub-planning-intern-recruitment-unique-devices-260601";
+      const storageKey = "cc-planning-intern-counted-device-v2";
 
       const writeCount = (visits, unique) => {
-        const visitNumber = Number.parseInt(visits, 10);
-        const uniqueNumber = Number.parseInt(unique, 10);
+        const visitNumber = Math.max(1, Number.parseInt(visits, 10));
+        const uniqueNumber = Math.max(1, Number.parseInt(unique, 10));
         if (!counter || !Number.isFinite(visitNumber) || !Number.isFinite(uniqueNumber)) return;
         counter.textContent = `${visitNumber}/${uniqueNumber}`;
       };
