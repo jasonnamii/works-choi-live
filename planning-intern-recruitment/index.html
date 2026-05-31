@@ -110,6 +110,7 @@
     }
 
     .topbar-inner {
+      position: relative;
       width: var(--wrap);
       margin: 0 auto;
       display: flex;
@@ -153,6 +154,20 @@
       min-height: 44px;
       display: inline-flex;
       align-items: center;
+    }
+
+    .visitor-count {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--black);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+      pointer-events: none;
+      user-select: text;
     }
 
     .nav {
@@ -1220,6 +1235,7 @@
         </a>
         <a class="brand-title" href="#top" aria-label="채용형 기획 인턴 모집 상단으로 이동">Planning Intern</a>
       </div>
+      <span class="visitor-count" id="visitor-count" aria-hidden="true">방문자수/유니크수 : 0/0</span>
       <nav class="nav" aria-label="문서 목차">
         <a href="#definition">기획의 정의</a>
         <a href="#criteria">우리가 찾는 사람</a>
@@ -1830,5 +1846,55 @@
       <span>채용형 기획 인턴 모집 · 5명 선발 · 실무 트레이닝 · 최종 3명 전환</span>
     </div>
   </footer>
+
+  <script>
+    (() => {
+      const counter = document.getElementById("visitor-count");
+      const apiBase = "https://countapi.mileshilliard.com/api/v1";
+      const visitKey = "cre8orclub-planning-intern-recruitment-total-visits-260531";
+      const uniqueKey = "cre8orclub-planning-intern-recruitment-unique-devices-260531";
+      const storageKey = "cc-planning-intern-counted-device-v1";
+
+      const writeCount = (visits, unique) => {
+        const visitNumber = Number.parseInt(visits, 10);
+        const uniqueNumber = Number.parseInt(unique, 10);
+        if (!counter || !Number.isFinite(visitNumber) || !Number.isFinite(uniqueNumber)) return;
+        counter.textContent = `방문자수/유니크수 : ${visitNumber}/${uniqueNumber}`;
+      };
+
+      const hasCounted = () => {
+        try {
+          return window.localStorage.getItem(storageKey) === "1";
+        } catch {
+          return false;
+        }
+      };
+
+      const markCounted = () => {
+        try {
+          window.localStorage.setItem(storageKey, "1");
+        } catch {
+          /* Ignore private-mode storage failures. */
+        }
+      };
+
+      const fetchCount = (endpoint, key) =>
+        fetch(`${apiBase}/${endpoint}/${key}`, { cache: "no-store" })
+          .then((response) => response.ok ? response.json() : null)
+          .then((data) => data ? data.value : 0);
+
+      const uniqueEndpoint = hasCounted() ? "get" : "hit";
+
+      Promise.all([
+        fetchCount("hit", visitKey),
+        fetchCount(uniqueEndpoint, uniqueKey),
+      ])
+        .then(([visits, unique]) => {
+          if (uniqueEndpoint === "hit") markCounted();
+          writeCount(visits, unique);
+        })
+        .catch(() => {});
+    })();
+  </script>
 </body>
 </html>
