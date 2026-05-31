@@ -310,5 +310,13 @@
     "last_kind": "redeploy",
     "last_sha256": "e806483d7740a2c31cd8f1e6695c8c1d8a842a70d0ccf506a5d2b7511becb378",
     "timestamp": "2026-05-29T15:42:31.133210Z"
+  },
+  "cre8orclub-planner": {
+    "slug": "cre8orclub-planner",
+    "mode": "choi",
+    "url": "https://works.choi.build/cre8orclub-planner/",
+    "last_kind": "new",
+    "last_sha256": "4bdb466e78a7955e4fdf6005004297cb4d171e123b1151b049b6c9a6989825ff",
+    "timestamp": "2026-05-31T14:00:25.436266Z"
   }
 }
