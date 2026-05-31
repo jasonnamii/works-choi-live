@@ -331,8 +331,8 @@
     "slug": "planning-intern-recruitment",
     "mode": "choi",
     "url": "https://works.choi.build/planning-intern-recruitment/",
-    "last_kind": "new",
-    "last_sha256": "a2158120e6de3b0d77373c62ab97c0554f05aed4fe2d3afaa9c7d194f4f5424b",
-    "timestamp": "2026-05-31T16:25:33.932244Z"
+    "last_kind": "redeploy",
+    "last_sha256": "70b17a55a4d9ca1250b0fde0e4e72f33618392b3b97c280ca3dadbfa96c3f74c",
+    "timestamp": "2026-05-31T16:33:21.985587Z"
   }
 }
