@@ -326,5 +326,13 @@
     "last_kind": "new",
     "last_sha256": "4bdb466e78a7955e4fdf6005004297cb4d171e123b1151b049b6c9a6989825ff",
     "timestamp": "2026-05-31T14:01:09.351918Z"
+  },
+  "planning-intern-recruitment": {
+    "slug": "planning-intern-recruitment",
+    "mode": "choi",
+    "url": "https://works.choi.build/planning-intern-recruitment/",
+    "last_kind": "new",
+    "last_sha256": "a2158120e6de3b0d77373c62ab97c0554f05aed4fe2d3afaa9c7d194f4f5424b",
+    "timestamp": "2026-05-31T16:25:33.932244Z"
   }
 }
