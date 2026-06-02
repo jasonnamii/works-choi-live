@@ -90,10 +90,11 @@ ul.plain li{margin:5px 0}
 .steps{counter-reset:s;display:grid;gap:10px}
 .steps .step{display:flex;gap:12px;align-items:flex-start}
 .steps .step::before{counter-increment:s;content:counter(s);flex:0 0 26px;height:26px;border-radius:0;background:var(--ink);color:#fff;font-size:13px;font-weight:800;display:grid;place-items:center}
-.doclist{margin-top:16px;display:grid;gap:8px}
-.doclink{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid var(--line);border-radius:0;padding:11px 14px}
+.doclist{display:grid;gap:8px}
+.doclink{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:10px;border:1px solid var(--line);border-radius:0;padding:14px}
 .doclink .dl-no{font-size:13px;font-weight:850;color:var(--soft);min-width:30px}
-.doclink .dl-t{font-size:14px;font-weight:700;flex:1;min-width:150px}
+.doclink .dl-title{font-size:15px;font-weight:850;margin:0}
+.doclink .dl-desc{font-size:13.5px;color:var(--muted);margin:3px 0 0}
 .btn{font-size:13px;font-weight:800;padding:9px 14px;border-radius:0;border:1px solid var(--ink);min-height:44px;display:inline-flex;align-items:center;color:var(--ink)}
 .btn.dark{background:var(--ink);color:#fff}
 .btn:hover{opacity:.82}
@@ -114,8 +115,8 @@ ul.plain li{margin:5px 0}
   .hero h1 br{display:none}
   .sec-h h2{font-size:28px;word-break:keep-all;line-height:1.18}
   section{padding:28px 0}
-  .doclink{gap:8px}
-  .doclink .dl-t{min-width:100%}
+  .doclink{grid-template-columns:auto minmax(0,1fr);gap:8px}
+  .doclink .btn{justify-content:center}
   table{font-size:13.5px}
 }
 @media print{
@@ -260,19 +261,12 @@ ul.plain li{margin:5px 0}
 
   <section id="docs">
     <div class="sec-h"><span class="no">04</span><h2>중국 송부 문서 5종</h2></div>
-    <div class="grid g4">
-      <div class="card"><span class="pill">01</span><h3>커버레터</h3><p>중국 측에 협업 의지, 문서 구성, 서명 전 확인 자료, 회신 요청을 설명합니다.</p></div>
-      <div class="card"><span class="pill">02</span><h3>마스터 텀시트</h3><p>디렉터 계약, IP 라이선스, 지분계약의 핵심 조건을 한 문서로 연결합니다.</p></div>
-      <div class="card"><span class="pill">03</span><h3>크리에이티브 디렉터 계약</h3><p>김형석 PD님의 역할, 보수, 명칭 사용, 추가 업무 기준을 정합니다.</p></div>
-      <div class="card"><span class="pill">04</span><h3>사공이호 IP 라이선스 계약</h3><p>중국 사업 활용 범위, 사용료, 승인 절차, 종료 조건을 정합니다.</p></div>
-      <div class="card"><span class="pill">05</span><h3>지분계약 풀버전</h3><p>30% 지분, 정보권, 감사권, 주요사항 동의권, 풋옵션을 정합니다.</p></div>
-    </div>
     <div class="doclist" aria-label="문서 링크">
-      <div class="doclink"><span class="dl-no">01</span><span class="dl-t">커버레터</span><a class="btn dark" href="PDF/01_커버레터.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="01_커버레터.md" target="_blank" rel="noopener">원문</a></div>
-      <div class="doclink"><span class="dl-no">02</span><span class="dl-t">마스터 텀시트</span><a class="btn dark" href="PDF/02_마스터_텀시트.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="02_마스터_텀시트.md" target="_blank" rel="noopener">원문</a></div>
-      <div class="doclink"><span class="dl-no">03</span><span class="dl-t">크리에이티브 디렉터 계약</span><a class="btn dark" href="PDF/03_크리에이티브_디렉터_계약.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="03_크리에이티브_디렉터_계약.md" target="_blank" rel="noopener">원문</a></div>
-      <div class="doclink"><span class="dl-no">04</span><span class="dl-t">사공이호 IP 라이선스 계약</span><a class="btn dark" href="PDF/04_사공이호_IP_라이선스_계약.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="04_사공이호_IP_라이선스_계약.md" target="_blank" rel="noopener">원문</a></div>
-      <div class="doclink"><span class="dl-no">05</span><span class="dl-t">지분계약 풀버전</span><a class="btn dark" href="PDF/05_지분계약_풀버전.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="05_지분계약_풀버전.md" target="_blank" rel="noopener">원문</a></div>
+      <div class="doclink"><span class="dl-no">01</span><div><p class="dl-title">커버레터</p><p class="dl-desc">협업 의지, 문서 구성, 서명 전 확인 자료, 회신 요청을 설명합니다.</p></div><a class="btn dark" href="PDF/01_커버레터.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="01_커버레터.md" target="_blank" rel="noopener">원문</a></div>
+      <div class="doclink"><span class="dl-no">02</span><div><p class="dl-title">마스터 텀시트</p><p class="dl-desc">디렉터 계약, IP 라이선스, 지분계약의 핵심 조건을 한 문서로 연결합니다.</p></div><a class="btn dark" href="PDF/02_마스터_텀시트.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="02_마스터_텀시트.md" target="_blank" rel="noopener">원문</a></div>
+      <div class="doclink"><span class="dl-no">03</span><div><p class="dl-title">크리에이티브 디렉터 계약</p><p class="dl-desc">김형석 PD님의 역할, 보수, 명칭 사용, 추가 업무 기준을 정합니다.</p></div><a class="btn dark" href="PDF/03_크리에이티브_디렉터_계약.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="03_크리에이티브_디렉터_계약.md" target="_blank" rel="noopener">원문</a></div>
+      <div class="doclink"><span class="dl-no">04</span><div><p class="dl-title">사공이호 IP 라이선스 계약</p><p class="dl-desc">중국 사업 활용 범위, 사용료, 승인 절차, 종료 조건을 정합니다.</p></div><a class="btn dark" href="PDF/04_사공이호_IP_라이선스_계약.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="04_사공이호_IP_라이선스_계약.md" target="_blank" rel="noopener">원문</a></div>
+      <div class="doclink"><span class="dl-no">05</span><div><p class="dl-title">지분계약 풀버전</p><p class="dl-desc">30% 지분, 정보권, 감사권, 주요사항 동의권, 풋옵션을 정합니다.</p></div><a class="btn dark" href="PDF/05_지분계약_풀버전.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="05_지분계약_풀버전.md" target="_blank" rel="noopener">원문</a></div>
     </div>
   </section>
 
