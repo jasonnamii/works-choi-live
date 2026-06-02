@@ -342,5 +342,13 @@
     "last_kind": "new",
     "last_sha256": "02093373554605fbf3f0b313e99176253cc6cca99fe7393a6e21b72d89cc11f0",
     "timestamp": "2026-06-02T12:56:14.123855Z"
+  },
+  "madpop-contract-v3": {
+    "slug": "madpop-contract-v3",
+    "mode": "choi",
+    "url": "https://works.choi.build/madpop-contract-v3/",
+    "last_kind": "new",
+    "last_sha256": "1058be051d5c7a896c21b62e016210e417081e5e344ddb361ad60ed2c5029543",
+    "timestamp": "2026-06-02T16:34:17.098951Z"
   }
 }
