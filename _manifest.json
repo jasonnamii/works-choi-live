@@ -334,5 +334,13 @@
     "last_kind": "redeploy",
     "last_sha256": "bf9c471e9306f84c7d1c712fcbc3dd04578e6a0e4d7a40dd8586c9409f15c1ef",
     "timestamp": "2026-06-01T00:24:15.778006Z"
+  },
+  "kisas-global-kpop-camp-igc": {
+    "slug": "kisas-global-kpop-camp-igc",
+    "mode": "choi",
+    "url": "https://works.choi.build/kisas-global-kpop-camp-igc/",
+    "last_kind": "new",
+    "last_sha256": "02093373554605fbf3f0b313e99176253cc6cca99fe7393a6e21b72d89cc11f0",
+    "timestamp": "2026-06-02T12:56:14.123855Z"
   }
 }

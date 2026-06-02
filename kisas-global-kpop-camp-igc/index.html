@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>KISAS Global K-pop Camp @ Incheon Global Campus — 제안서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Gaegu:wght@400;700&family=Pretendard:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===========================================================
+   KISAS Global K-pop Camp @ Incheon Global Campus
+   Proposal v1.0 · 2026
+   Palette: Oxford Navy (authority) × Young Playful accent
+   20 slides · self-contained · print-ready
+   =========================================================== */
+
+:root {
+  --oxford: #002147;
+  --oxford-soft: #0a2e5c;
+  --oxford-ink: #001330;
+
+  --hl-pink:   #ff5e8a;
+  --hl-yellow: #ffd93d;
+  --hl-mint:   #4ecdc4;
+  --hl-coral:  #ff8a5b;
+  --hl-lilac:  #b980f0;
+
+  --bg-cream:   #fff9e6;
+  --bg-rose:    #ffe9ef;
+  --bg-mint:    #e6faf6;
+  --bg-sky:     #e6f0fc;
+  --bg-lilac:   #f1eaff;
+
+  --ink: #0a1020;
+  --ink-soft: #3b4a6b;
+  --line: #e7ecf3;
+  --paper: #ffffff;
+  --paper-off: #f7f9fc;
+
+  --t-display: clamp(2.6rem, 6.5vw, 5.2rem);
+  --t-heading: clamp(1.7rem, 4vw, 3rem);
+  --t-sub:     clamp(1.2rem, 2.3vw, 2rem);
+  --t-body:    clamp(1rem, 1.45vw, 1.35rem);
+  --t-small:   clamp(0.85rem, 1.05vw, 1rem);
+
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --shadow-1: 0 4px 16px rgba(0,33,71,0.06);
+  --shadow-2: 0 12px 40px rgba(0,33,71,0.10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: var(--t-body);
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: clamp(1rem, 3vw, 2rem); width: 100%; }
+
+/* ==== Slide = one PPT page ==== */
+.slide {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(2.5rem, 6vw, 5rem) 0;
+  position: relative;
+}
+.slide > .wrap { width: 100%; }
+
+h1, h2, h3, h4 { font-weight: 900; letter-spacing: -0.02em; line-height: 1.12; color: var(--oxford-ink); }
+h1 { font-size: var(--t-display); }
+h2 { font-size: var(--t-heading); }
+h3 { font-size: var(--t-sub); }
+h4 { font-size: calc(var(--t-body) * 1.1); }
+p { font-weight: 400; }
+strong { font-weight: 700; color: var(--oxford); }
+
+.hl-pink   { background: linear-gradient(180deg, transparent 55%, var(--hl-pink) 55%); padding: 0 .12em; }
+.hl-yellow { background: linear-gradient(180deg, transparent 55%, var(--hl-yellow) 55%); padding: 0 .12em; }
+.hl-mint   { background: linear-gradient(180deg, transparent 55%, var(--hl-mint) 55%); padding: 0 .12em; }
+.hl-coral  { background: linear-gradient(180deg, transparent 55%, var(--hl-coral) 55%); padding: 0 .12em; }
+.hl-lilac  { background: linear-gradient(180deg, transparent 55%, var(--hl-lilac) 55%); padding: 0 .12em; }
+
+/* ==== HERO / Cover ==== */
+.hero {
+  background: radial-gradient(ellipse at 30% 20%, #0a2e5c 0%, #002147 55%, #001330 100%);
+  color: #fff;
+  overflow: hidden;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(255,217,61,0.16) 0%, transparent 42%),
+    radial-gradient(circle at 8% 88%, rgba(255,94,138,0.14) 0%, transparent 42%),
+    radial-gradient(circle at 90% 90%, rgba(78,205,196,0.10) 0%, transparent 40%);
+  pointer-events: none;
+}
+.hero .wrap { position: relative; z-index: 1; }
+.hero .eyebrow {
+  display: inline-block; font-size: var(--t-small); font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--hl-yellow); margin-bottom: 1.4rem;
+}
+.hero h1 { color: #fff; margin: 0 0 1.2rem; }
+.hero h1 .playful { font-family: 'Gaegu','Pretendard',cursive; font-weight: 700; color: var(--hl-yellow); display: inline-block; transform: rotate(-2deg); }
+.hero .tagline { font-size: var(--t-sub); font-weight: 300; color: rgba(255,255,255,0.9); max-width: 760px; margin: 0 0 2rem; line-height: 1.5; }
+.hero .meta { font-size: var(--t-small); color: rgba(255,255,255,0.62); letter-spacing: 0.03em; }
+.chips { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1.6rem 0 0; }
+.chips .c {
+  font-size: var(--t-small); font-weight: 700; letter-spacing: .03em;
+  padding: .5rem 1rem; border-radius: 99px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #fff;
+}
+
+/* ==== Big numbers ==== */
+.bignum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 3vw, 2rem); margin-top: clamp(2rem, 4vw, 3.2rem); }
+.bignum { text-align: center; padding: 1.6rem 1rem; border-radius: var(--r-md); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
+.bignum .n { font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 900; line-height: 1; color: var(--hl-yellow); display: block; letter-spacing: -0.04em; }
+.bignum .u { font-size: var(--t-small); color: rgba(255,255,255,0.7); margin-top: .35rem; display: block; font-weight: 500; }
+.bignum .l { font-size: var(--t-small); color: rgba(255,255,255,0.92); margin-top: .8rem; display: block; font-weight: 600; }
+
+/* big numbers on light bg */
+.bignum-grid.light .bignum { background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow-1); }
+.bignum-grid.light .bignum .n { color: var(--oxford); }
+.bignum-grid.light .bignum .u { color: var(--ink-soft); }
+.bignum-grid.light .bignum .l { color: var(--oxford-ink); }
+
+/* ==== Section header ==== */
+.sec-num { font-family: 'Gaegu', cursive; font-size: clamp(2.4rem, 6vw, 4rem); color: var(--hl-pink); font-weight: 700; line-height: 1; display: block; margin-bottom: .4rem; }
+.sec-title { margin: 0 0 1rem; }
+.sec-lead { font-size: var(--t-sub); color: var(--ink-soft); font-weight: 300; max-width: 820px; margin: 0 0 clamp(1.6rem, 3.5vw, 2.6rem); line-height: 1.5; }
+
+/* ==== Backgrounds ==== */
+.bg-cream { background: var(--bg-cream); }
+.bg-rose  { background: var(--bg-rose); }
+.bg-mint  { background: var(--bg-mint); }
+.bg-sky   { background: var(--bg-sky); }
+.bg-lilac { background: var(--bg-lilac); }
+.bg-oxford { background: radial-gradient(ellipse at 25% 15%, #0a2e5c 0%, #002147 60%, #001330 100%); color: #fff; }
+.bg-oxford .sec-title, .bg-oxford h2, .bg-oxford h3, .bg-oxford h4 { color: #fff; }
+.bg-oxford .sec-lead { color: rgba(255,255,255,0.82); }
+.bg-oxford .sec-num { color: var(--hl-yellow); }
+
+/* ==== Generic card grid ==== */
+.cards { display: grid; gap: clamp(1rem, 2.4vw, 1.6rem); }
+.cards.c2 { grid-template-columns: repeat(2, 1fr); }
+.cards.c3 { grid-template-columns: repeat(3, 1fr); }
+.cards.cauto { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.card {
+  background: var(--paper); border-radius: var(--r-md); padding: clamp(1.3rem, 2.6vw, 2rem);
+  box-shadow: var(--shadow-1); border-top: 4px solid var(--oxford);
+}
+.card .role { font-size: var(--t-small); color: var(--hl-pink); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .4rem; }
+.card h4 { margin: 0 0 .5rem; color: var(--oxford-ink); }
+.card p { margin: .4rem 0 0; font-size: var(--t-body); line-height: 1.55; color: var(--ink-soft); }
+.card p strong, .card li strong { color: var(--oxford-ink); }
+.card:nth-child(5n+1) { border-top-color: var(--hl-pink); }
+.card:nth-child(5n+2) { border-top-color: var(--hl-yellow); }
+.card:nth-child(5n+3) { border-top-color: var(--hl-mint); }
+.card:nth-child(5n+4) { border-top-color: var(--hl-coral); }
+.card:nth-child(5n+5) { border-top-color: var(--hl-lilac); }
+
+/* icon card */
+.icon-card .ic { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: .9rem; background: var(--bg-sky); }
+.icon-card:nth-child(5n+1) .ic { background: var(--bg-rose); }
+.icon-card:nth-child(5n+2) .ic { background: var(--bg-cream); }
+.icon-card:nth-child(5n+3) .ic { background: var(--bg-mint); }
+.icon-card:nth-child(5n+4) .ic { background: var(--bg-sky); }
+.icon-card:nth-child(5n+5) .ic { background: var(--bg-lilac); }
+.icon-card h4 { font-size: calc(var(--t-body) * 1.05); }
+
+/* ==== Pullquote ==== */
+.pullquote {
+  font-family: 'Gaegu', cursive; font-size: var(--t-sub); font-weight: 700; color: var(--oxford);
+  padding: 1.4rem 1.8rem; margin: 1.8rem 0 0; border-left: 6px solid var(--hl-pink);
+  background: rgba(255,255,255,0.6); border-radius: 0 var(--r-md) var(--r-md) 0; line-height: 1.5;
+}
+.bg-oxford .pullquote { color: var(--hl-yellow); background: rgba(255,255,255,0.06); border-left-color: var(--hl-yellow); }
+
+/* ==== Image placeholder ==== */
+.img-ph {
+  background: repeating-linear-gradient(45deg, var(--paper-off), var(--paper-off) 10px, var(--bg-sky) 10px, var(--bg-sky) 20px);
+  border: 2px dashed var(--oxford); border-radius: var(--r-md);
+  padding: 1.6rem 1.2rem; text-align: center; color: var(--oxford);
+  font-family: monospace; font-size: var(--t-small); margin: 0 0 1.6rem; line-height: 1.5;
+}
+.img-ph .tag { display: inline-block; background: var(--oxford); color: #fff; padding: .2em .6em; border-radius: 4px; font-size: .72rem; font-weight: 700; margin-bottom: .5rem; letter-spacing: .05em; }
+
+/* ==== Tables / scenario ==== */
+.tbl { width: 100%; border-collapse: collapse; background: var(--paper); border-radius: var(--r-md); overflow: hidden; box-shadow: var(--shadow-1); font-size: var(--t-body); }
+.tbl th, .tbl td { padding: .9rem 1.1rem; text-align: left; border-bottom: 1px solid var(--line); }
+.tbl th { background: var(--oxford); color: #fff; font-weight: 700; font-size: var(--t-small); letter-spacing: .03em; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl td.num { font-weight: 700; color: var(--oxford); text-align: right; white-space: nowrap; }
+.tbl tr.total td { background: var(--bg-cream); font-weight: 700; }
+
+/* ==== Flow / journey ==== */
+.flow { display: flex; flex-wrap: wrap; gap: .6rem; align-items: stretch; }
+.flow .step {
+  flex: 1 1 150px; background: var(--paper); border-radius: var(--r-sm); box-shadow: var(--shadow-1);
+  padding: .9rem 1rem; position: relative; border-left: 4px solid var(--hl-mint);
+}
+.flow .step .k { font-family: 'Gaegu', cursive; font-size: 1.2rem; color: var(--hl-pink); font-weight: 700; line-height: 1; }
+.flow .step .t { font-size: var(--t-small); font-weight: 700; color: var(--oxford-ink); margin-top: .25rem; line-height: 1.35; }
+
+/* ==== Horizontal timeline ==== */
+.timeline-wrap { position: relative; margin: 0 calc(-1 * clamp(1rem, 3vw, 2rem)); padding: 0 clamp(1rem, 3vw, 2rem); }
+.timeline { display: grid; grid-auto-flow: column; grid-auto-columns: min(330px, 82vw); gap: 1.1rem; overflow-x: auto; padding: .5rem 0 1.6rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.timeline::-webkit-scrollbar { height: 8px; }
+.timeline::-webkit-scrollbar-thumb { background: var(--oxford); border-radius: 4px; }
+.phase-card { background: var(--paper); border-radius: var(--r-md); padding: 1.6rem; box-shadow: var(--shadow-1); scroll-snap-align: start; display: flex; flex-direction: column; border-top: 6px solid; }
+.phase-card:nth-child(1){ border-color: var(--hl-pink);} .phase-card:nth-child(2){ border-color: var(--hl-yellow);} .phase-card:nth-child(3){ border-color: var(--hl-mint);} .phase-card:nth-child(4){ border-color: var(--hl-coral);}
+.phase-card .ph { font-family:'Gaegu',cursive; font-size: var(--t-sub); font-weight: 700; color: var(--oxford); line-height: 1; margin-bottom: .3rem; }
+.phase-card h4 { margin: 0 0 .8rem; }
+.phase-card ul { margin: 0; padding: 0; list-style: none; }
+.phase-card li { padding: .35rem 0; font-size: var(--t-small); line-height: 1.45; border-bottom: 1px dashed rgba(0,33,71,0.12); color: var(--ink-soft); }
+.phase-card li:last-child { border: none; }
+.scroll-hint { font-size: var(--t-small); color: var(--ink-soft); text-align: center; margin-top: .2rem; }
+.bg-oxford .scroll-hint { color: rgba(255,255,255,0.65); }
+
+/* ==== Two-column week ==== */
+.weeks { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2.4vw, 1.6rem); }
+.week { background: var(--paper); border-radius: var(--r-md); box-shadow: var(--shadow-1); overflow: hidden; }
+.week .h { padding: 1rem 1.4rem; color: #fff; font-weight: 900; font-size: var(--t-sub); }
+.week:nth-child(1) .h { background: var(--oxford); }
+.week:nth-child(2) .h { background: var(--hl-pink); }
+.week ul { margin: 0; padding: 1.2rem 1.4rem; list-style: none; }
+.week li { padding: .5rem 0; font-size: var(--t-body); line-height: 1.45; border-bottom: 1px dashed var(--line); color: var(--ink-soft); }
+.week li:last-child { border: none; }
+.week li strong { color: var(--oxford-ink); }
+
+/* ==== Check / verify pill ==== */
+.check { display: inline-block; font-size: var(--t-small); padding: .12em .65em; background: var(--hl-yellow); color: var(--oxford-ink); border-radius: 99px; font-weight: 700; letter-spacing: .02em; }
+.bg-oxford .check { background: var(--hl-yellow); color: var(--oxford-ink); }
+
+/* ==== Lead statement ==== */
+.lead-statement { font-size: var(--t-sub); font-weight: 700; color: var(--oxford-ink); line-height: 1.45; margin: 0 0 1.4rem; }
+.bg-oxford .lead-statement { color: #fff; }
+
+/* ==== Checklist ==== */
+.checklist { display: grid; grid-template-columns: repeat(2, 1fr); gap: .55rem; }
+.checklist .item { background: var(--paper); border-radius: var(--r-sm); box-shadow: var(--shadow-1); padding: .85rem 1.1rem; font-size: var(--t-small); line-height: 1.45; display: flex; gap: .6rem; align-items: flex-start; }
+.checklist .item::before { content: "□"; color: var(--hl-pink); font-weight: 900; font-size: 1.1rem; line-height: 1.2; flex-shrink: 0; }
+
+/* ==== Final CTA ==== */
+.final-cta { text-align: center; }
+.final-cta .closing { font-family: 'Gaegu', cursive; font-size: clamp(1.4rem, 3vw, 2.3rem); font-weight: 700; color: var(--hl-yellow); margin: 1.6rem auto 0; line-height: 1.4; max-width: 820px; }
+
+/* ==== Source note ==== */
+.source-note { margin-top: 2rem; font-size: var(--t-small); color: var(--ink-soft); line-height: 1.6; background: var(--paper); border-radius: var(--r-md); padding: 1.2rem 1.4rem; box-shadow: var(--shadow-1); }
+.source-note h4 { font-size: var(--t-small); letter-spacing: .08em; text-transform: uppercase; color: var(--oxford); margin: 0 0 .6rem; }
+.source-note ul { margin: 0; padding-left: 1.1rem; }
+.source-note li { margin: .2rem 0; }
+
+/* ==== Footer ==== */
+footer { background: var(--oxford-ink); color: rgba(255,255,255,0.7); padding: 2.4rem 0; text-align: center; font-size: var(--t-small); }
+footer .quote { font-family: 'Gaegu', cursive; color: var(--hl-yellow); font-size: var(--t-sub); margin-bottom: .8rem; font-weight: 700; }
+
+/* ==== Responsive ==== */
+@media (max-width: 760px) {
+  .bignum-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .cards.c2, .cards.c3, .weeks { grid-template-columns: 1fr; }
+  .checklist { grid-template-columns: 1fr; }
+  .slide { min-height: auto; }
+}
+
+/* ==== Print / PDF ==== */
+@media print {
+  @page { size: A4 landscape; margin: 10mm; }
+  html, body { background: #fff; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  .slide { min-height: auto; page-break-inside: avoid; break-inside: avoid; break-after: page; page-break-after: always; padding: 1.2rem 0; display: block; }
+  .slide:last-of-type { break-after: auto; page-break-after: auto; }
+  .timeline { overflow: visible; grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: repeat(2, 1fr); }
+  .scroll-hint { display: none; }
+  footer { page-break-before: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ 01 · COVER ============================================================ -->
+<section class="slide hero" id="cover">
+  <div class="wrap">
+    <div class="eyebrow">Proposal for Incheon Global Campus · 2026</div>
+    <h1><span class="playful">KISAS Global K-pop Camp</span><br>@ Incheon Global Campus</h1>
+    <p class="tagline">외국인 학생과 가족을 인천으로 유입하는<br>K-pop 기반 글로벌 캠프 제안</p>
+
+    <div class="chips">
+      <span class="c">K-pop</span>
+      <span class="c">Global Youth Camp</span>
+      <span class="c">Incheon Global Campus</span>
+      <span class="c">Summer / Winter Season</span>
+      <span class="c">2-Week Residential</span>
+    </div>
+
+    <div class="bignum-grid">
+      <div class="bignum"><span class="n">2</span><span class="u">WEEKS</span><span class="l">2주 체류형 글로벌 캠프</span></div>
+      <div class="bignum"><span class="n">150~200</span><span class="u">STUDENTS / ROUND</span><span class="l">회차당 외국인 학생 규모</span></div>
+      <div class="bignum"><span class="n">8</span><span class="u">ROUNDS / YEAR</span><span class="l">여름 4회 · 겨울 4회</span></div>
+    </div>
+
+    <p class="meta" style="margin-top:2rem;">주관 · KISAS &nbsp;|&nbsp; 제안 대상 · 인천글로벌캠퍼스 · 인천광역시 · 인천경제자유구역청(송도)</p>
+  </div>
+</section>
+
+<!-- ============================================================ 02 · EXECUTIVE SUMMARY ============================================================ -->
+<section class="slide bg-cream">
+  <div class="wrap">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Executive Summary</h2>
+    <p class="lead-statement">KISAS Global K-pop Camp는 <span class="hl-pink">인천글로벌캠퍼스를 글로벌 K-pop 교육 캠프의 거점</span>으로 만들고, 방학 시즌마다 외국인 학생과 가족을 유입해 교육·숙박·공연·전시·관광·상업시설을 함께 활성화하는 프로그램입니다.</p>
+
+    <div class="cards c2" style="margin-bottom:1.6rem;">
+      <div class="card">
+        <div class="role">For IGC</div>
+        <h4>캠퍼스가 얻는 효과</h4>
+        <p>방학 시즌 유휴 시설을 활용해 <strong>기숙사·강의실·공연장·전시관·상업시설</strong>의 체류 수요를 만들고, 외국인 학생에게 한국 캠퍼스 체류 경험을 제공해 <strong>입학 관심도와 글로벌 교육도시 이미지</strong>를 높입니다.</p>
+      </div>
+      <div class="card">
+        <div class="role">For Incheon</div>
+        <h4>지역이 얻는 효과</h4>
+        <p>가족 동반 방문으로 <strong>인천 관광과 지역 소비</strong>가 확장되고, 캠프 영상·쇼케이스·포트폴리오가 <strong>인천시의 글로벌 K-culture 교육관광 홍보 자산</strong>으로 남습니다.</p>
+      </div>
+    </div>
+
+    <ul style="font-size:var(--t-body); line-height:1.65; color:var(--ink-soft); margin:0; padding-left:1.2rem;">
+      <li>여름·겨울 방학마다 <strong>2주 체류형 캠프를 반복 운영</strong>합니다. 회차당 150~200명, 연간 최대 8회를 가정합니다.</li>
+      <li>K-pop을 진입점으로 하되, 창작·쇼케이스·포트폴리오로 완성되는 <strong>교육 프로그램</strong>으로 설계합니다.</li>
+      <li>수익 배분 구조는 이후 협의하며, 본 제안서는 <strong>캠퍼스 활성화 효과와 협력 가능성</strong>을 먼저 제시합니다.</li>
+    </ul>
+
+    <div class="pullquote">학생은 K-pop을 배우러 오지만, 떠날 때는 인천에서 보낸 2주의 경험과 자신이 만든 무대를 가지고 돌아갑니다.</div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 · WHY IGC ============================================================ -->
+<section class="slide bg-sky">
+  <div class="wrap">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Why Incheon Global Campus</h2>
+    <p class="sec-lead">인천글로벌캠퍼스는 외국인 학생에게 <strong>한국의 대학 캠퍼스 생활을 먼저 경험하게 할 수 있는 장소</strong>입니다. 이 캠프는 그 강점을 방학 시즌 콘텐츠로 바꿉니다.</p>
+
+    <div class="cards c3">
+      <div class="card icon-card"><div class="ic">🏛️</div><h4>캠퍼스 체류 경험</h4><p>외국인 학생이 송도 국제도시의 글로벌 캠퍼스에서 <strong>먹고, 자고, 배우는 2주</strong>를 경험합니다.</p></div>
+      <div class="card icon-card"><div class="ic">🗓️</div><h4>유휴 시설 활용</h4><p>방학 시즌은 캠퍼스 시설을 <strong>가장 여유 있게 활용</strong>할 수 있는 기간입니다.</p></div>
+      <div class="card icon-card"><div class="ic">🌏</div><h4>글로벌 도시 이미지</h4><p>외국인 청소년을 정기적으로 맞이하며 <strong>글로벌 교육도시 이미지</strong>를 강화합니다.</p></div>
+      <div class="card icon-card"><div class="ic">🎓</div><h4>입학 관심도 제고</h4><p>캠퍼스에 머문 경험은 <strong>향후 IGC 입학 관심</strong>으로 이어질 수 있습니다.</p></div>
+      <div class="card icon-card"><div class="ic">🚍</div><h4>인천·송도 연결</h4><p>인천공항·송도와 가까워 <strong>관광·체류와 자연스럽게 연결</strong>됩니다.</p></div>
+      <div class="card icon-card"><div class="ic">📈</div><h4>장기 수요로 확장</h4><p>단기 캠프에서 <strong>주말·학기중 프로그램, 장기 교육 수요</strong>로 확장 가능합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 · OPPORTUNITY: K-POP GLOBAL DEMAND ============================================================ -->
+<section class="slide bg-rose">
+  <div class="wrap">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Opportunity<br><span class="hl-mint">K-pop Global Demand</span></h2>
+    <p class="sec-lead">K-pop은 단순한 음악 소비가 아니라 <strong>한국 방문 동기, 문화 경험, 자기표현 욕구</strong>와 연결됩니다. 외국인 청소년에게 K-pop은 한국을 배우는 가장 강한 진입점입니다.</p>
+
+    <div class="bignum-grid light">
+      <div class="bignum"><span class="n">63.3%</span><span class="u">방한 동기</span><span class="l">한국 관광 선택 이유로 한류(대중문화·음식·전통문화)를 꼽은 응답</span></div>
+      <div class="bignum"><span class="n">1위</span><span class="u">국가 연상 이미지</span><span class="l">해외 한류 팬이 한국 하면 떠올리는 이미지 — K-pop</span></div>
+      <div class="bignum"><span class="n">반복</span><span class="u">교육관광 결합</span><span class="l">교육·공연·관광·콘텐츠 제작을 함께 묶을 수 있는 체류형 수요</span></div>
+    </div>
+
+    <p style="margin-top:1.6rem; font-size:var(--t-body); color:var(--ink-soft); line-height:1.6;">
+      K-pop 교육 캠프는 <strong>학습·공연·관광·콘텐츠 제작</strong>을 하나의 체류 경험으로 묶을 수 있습니다. 외국인 청소년이 한국에 와서 직접 배우고 무대에 서는 경험은 단발성 관광보다 길게 머물고, 가족 동반과 재방문으로 이어질 여지가 큽니다.
+      <span class="check">수치 출처: Source / Research Note 참고</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 05 · PROPOSAL CONCEPT ============================================================ -->
+<section class="slide bg-mint">
+  <div class="wrap">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Proposal Concept</h2>
+    <p class="sec-lead">외국인 청소년을 대상으로 한 <strong>2주 체류형 글로벌 K-pop 캠프</strong>입니다. K-pop 보컬·댄스·무대를 중심에 두고, 창작과 스토리텔링, AI 워크숍, 팀 프로젝트, 쇼케이스로 완성합니다.</p>
+
+    <div class="cards c3">
+      <div class="card icon-card"><div class="ic">🎤</div><h4>K-pop 중심</h4><p>보컬 · 댄스 · 무대 퍼포먼스를 캠프의 <strong>가장 앞</strong>에 둡니다.</p></div>
+      <div class="card icon-card"><div class="ic">✍️</div><h4>창작 · 스토리텔링</h4><p>가사와 자기 이야기를 만들어 <strong>팀의 메시지</strong>로 완성합니다.</p></div>
+      <div class="card icon-card"><div class="ic">🤖</div><h4>AI 창작 워크숍</h4><p>아이디어 확장과 결과물 개선에 <strong>AI 도구</strong>를 활용합니다.</p></div>
+      <div class="card icon-card"><div class="ic">🧩</div><h4>팀 프로젝트</h4><p>역할 분담과 협업으로 <strong>하나의 무대</strong>를 함께 만듭니다.</p></div>
+      <div class="card icon-card"><div class="ic">🎬</div><h4>쇼케이스</h4><p>2주의 마무리는 <strong>무대 위 쇼케이스</strong>입니다.</p></div>
+      <div class="card icon-card"><div class="ic">📁</div><h4>포트폴리오 · 리포트</h4><p>결과물을 <strong>포트폴리오와 학부모 리포트</strong>로 남깁니다.</p></div>
+    </div>
+
+    <div class="pullquote">단순 댄스·보컬 체험으로 끝내지 않습니다. 학생이 자기 무대를 만들고, 그 과정을 기록으로 남기는 교육 프로그램입니다.</div>
+  </div>
+</section>
+
+<!-- ============================================================ 06 · TARGET & ANNUAL SCALE ============================================================ -->
+<section class="slide bg-lilac">
+  <div class="wrap">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">Target & Annual Scale</h2>
+    <p class="sec-lead">해외 청소년 가운데 <strong>K-pop·K-culture에 관심 있는 학생</strong>이 대상입니다. 아래는 운영 가정과 시나리오이며, 실제 규모는 현장 실사 후 확정합니다.</p>
+
+    <div style="display:grid; grid-template-columns: 1.1fr 1fr; gap: clamp(1rem,2.4vw,1.6rem); align-items:start;">
+      <table class="tbl">
+        <thead><tr><th>운영 가정</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>대상</td><td>해외 청소년 (K-pop·K-culture 관심 학생)</td></tr>
+          <tr><td>기간</td><td>2주 체류형</td></tr>
+          <tr><td>회차당 규모</td><td>150~200명</td></tr>
+          <tr><td>여름방학</td><td>4회</td></tr>
+          <tr><td>겨울방학</td><td>4회</td></tr>
+          <tr class="total"><td>연간 총</td><td>최대 8회 운영 가능성</td></tr>
+        </tbody>
+      </table>
+
+      <table class="tbl">
+        <thead><tr><th>연간 인원 시나리오</th><th class="num">학생 수</th></tr></thead>
+        <tbody>
+          <tr><td>보수적 (150명 × 8회)</td><td class="num">약 1,200명</td></tr>
+          <tr><td>성장형 (200명 × 8회)</td><td class="num">약 1,600명</td></tr>
+          <tr class="total"><td>가족 동반 시</td><td class="num">추가 방문 수요</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:1.4rem; font-size:var(--t-small); color:var(--ink-soft);">
+      ※ 가족 동반 비율은 단정하지 않고 <strong>추가 방문 수요 가능성</strong>으로 봅니다. 학생 수보다 실제 방문객 수가 커질 여지가 있습니다. <span class="check">확인 필요 · 모집 규모/채널</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 07 · STUDENT & FAMILY JOURNEY ============================================================ -->
+<section class="slide bg-cream">
+  <div class="wrap">
+    <span class="sec-num">07</span>
+    <h2 class="sec-title">Student & Family Journey</h2>
+    <p class="sec-lead">캠프는 단순한 수업이 아니라 <strong>인천 체류 경험 전체</strong>입니다. 도착부터 입학 관심까지, 학생과 가족이 지나는 흐름입니다.</p>
+
+    <div class="flow">
+      <div class="step"><span class="k">01</span><span class="t">✈️ 공항 도착<br>Airport Arrival</span></div>
+      <div class="step"><span class="k">02</span><span class="t">🚍 인천·송도 이동<br>Transfer</span></div>
+      <div class="step"><span class="k">03</span><span class="t">🏠 기숙사 체크인<br>Dorm Check-in</span></div>
+      <div class="step"><span class="k">04</span><span class="t">🧭 캠퍼스 오리엔테이션</span></div>
+      <div class="step"><span class="k">05</span><span class="t">🎤 K-pop 트레이닝</span></div>
+      <div class="step"><span class="k">06</span><span class="t">🇰🇷 K-culture 워크숍</span></div>
+      <div class="step"><span class="k">07</span><span class="t">🤖 AI 창작 프로젝트</span></div>
+      <div class="step"><span class="k">08</span><span class="t">🗺️ 인천 투어</span></div>
+      <div class="step"><span class="k">09</span><span class="t">🧩 팀 리허설</span></div>
+      <div class="step"><span class="k">10</span><span class="t">🎬 쇼케이스<br>Showcase</span></div>
+      <div class="step"><span class="k">11</span><span class="t">📁 포트폴리오 · 리포트</span></div>
+      <div class="step"><span class="k">12</span><span class="t">🎓 향후 IGC 입학 관심</span></div>
+    </div>
+
+    <p style="margin-top:1.6rem; font-size:var(--t-sub); font-weight:700; color:var(--oxford-ink); line-height:1.4;">
+      학생은 <span class="hl-yellow">배우러 왔다가</span>, 가족은 <span class="hl-mint">함께 머무르며</span>, 둘 다 인천을 기억하고 돌아갑니다.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 08 · 2-WEEK CAMP STRUCTURE ============================================================ -->
+<section class="slide bg-sky">
+  <div class="wrap">
+    <span class="sec-num">08</span>
+    <h2 class="sec-title">2-Week Camp Structure</h2>
+    <p class="sec-lead">국내 캠프의 단기 일정을 그대로 가져오지 않고, 이번 글로벌 캠프는 <strong>2주 체류형</strong>으로 별도 설계합니다. Week 1은 기초와 팀 빌딩, Week 2는 제작과 무대입니다.</p>
+
+    <div class="weeks">
+      <div class="week">
+        <div class="h">Week 1 · Foundation</div>
+        <ul>
+          <li><strong>오리엔테이션</strong> · 캠퍼스 적응</li>
+          <li><strong>K-pop 기초</strong> — 보컬 · 댄스 · 무대 기본</li>
+          <li><strong>K-culture 커뮤니케이션</strong></li>
+          <li><strong>팀 구성</strong> · 역할 분담</li>
+          <li><strong>AI 창작 아이디어</strong> 워크숍</li>
+        </ul>
+      </div>
+      <div class="week">
+        <div class="h">Week 2 · Production & Stage</div>
+        <ul>
+          <li><strong>프로젝트 제작</strong> · 곡·무대 다듬기</li>
+          <li><strong>리허설</strong> · 동선·포메이션</li>
+          <li><strong>스토리텔링 · 발표</strong></li>
+          <li><strong>인천 문화 체험</strong></li>
+          <li><strong>최종 쇼케이스</strong> · 포트폴리오 · 학부모 리포트</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:1.4rem; font-size:var(--t-small); color:var(--ink-soft);">※ 세부 일자별 일정은 현장 시설·수용 규모 확정 후 구체화합니다. <span class="check">확인 필요 · 일정</span></p>
+  </div>
+</section>
+
+<!-- ============================================================ 09 · CURRICULUM OVERVIEW ============================================================ -->
+<section class="slide bg-rose">
+  <div class="wrap">
+    <span class="sec-num">09</span>
+    <h2 class="sec-title">Curriculum Overview</h2>
+    <p class="sec-lead">여섯 개 모듈로 구성합니다. K-pop 퍼포먼스를 중심에 두고, 창작·소통·AI·협업·기록이 하나의 흐름으로 연결됩니다.</p>
+
+    <div class="cards c3">
+      <div class="card"><div class="role">Module 1</div><h4>K-pop Performance</h4><p>Vocal · Dance · Stage Expression — 무대 위 표현의 기본기.</p></div>
+      <div class="card"><div class="role">Module 2</div><h4>Lyrics & Storytelling</h4><p>가사 이해 · 자기 이야기 만들기 · 팀 메시지 구성.</p></div>
+      <div class="card"><div class="role">Module 3</div><h4>K-culture Communication</h4><p>한국 문화 맥락 · 영어 기반 토론·발표 · 글로벌 커뮤니케이션.</p></div>
+      <div class="card"><div class="role">Module 4</div><h4>AI Creative Workshop</h4><p>아이디어 확장 · 이미지·음악·영상 보조 창작 · 결과물 개선.</p></div>
+      <div class="card"><div class="role">Module 5</div><h4>Team Project</h4><p>역할 분담 · 협업 · 리허설로 하나의 무대 완성.</p></div>
+      <div class="card"><div class="role">Module 6</div><h4>Showcase & Portfolio</h4><p>최종 발표 · 무대 경험 · 포트폴리오 기록.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 10 · SHOWCASE & PORTFOLIO ============================================================ -->
+<section class="slide bg-mint">
+  <div class="wrap">
+    <span class="sec-num">10</span>
+    <h2 class="sec-title">Showcase & Portfolio</h2>
+    <p class="sec-lead">외국인 학생과 가족에게 가장 강한 기억은 <strong>마지막 쇼케이스</strong>입니다. IGC 입장에서는 공연장·대관·영상·홍보 자산으로 연결됩니다.</p>
+
+    <div class="img-ph">
+      <span class="tag">IMG · FINAL SHOWCASE</span><br>
+      쇼케이스 무대 — 조명·의상을 갖춘 팀 퍼포먼스, 객석의 가족 (대표 이미지 자리)
+    </div>
+
+    <div class="cards c3">
+      <div class="card icon-card"><div class="ic">🎬</div><h4>팀 퍼포먼스</h4><p>2주의 결과를 무대 위에서 공연합니다.</p></div>
+      <div class="card icon-card"><div class="ic">📹</div><h4>소개·하이라이트 영상</h4><p>개인·팀 영상과 캠프 하이라이트 영상.</p></div>
+      <div class="card icon-card"><div class="ic">📁</div><h4>포트폴리오 페이지</h4><p>학생이 만든 작업을 정리한 기록물.</p></div>
+      <div class="card icon-card"><div class="ic">📝</div><h4>학부모 리포트</h4><p>성장 과정과 결과를 가족에게 전달.</p></div>
+      <div class="card icon-card"><div class="ic">⭐</div><h4>후기·만족도 데이터</h4><p>다음 모집과 운영 개선의 근거.</p></div>
+      <div class="card icon-card"><div class="ic">📣</div><h4>IGC 홍보 자산</h4><p>쇼케이스 영상은 <strong>캠퍼스·인천 홍보</strong>로 재활용됩니다.</p></div>
+    </div>
+
+    <p style="margin-top:1.4rem; font-size:var(--t-body); color:var(--ink-soft);">학생은 “한국에서 만든 나의 K-pop 프로젝트”를 가지고 돌아가고, 그 기록은 IGC와 인천의 다음 홍보로 남습니다.</p>
+  </div>
+</section>
+
+<!-- ============================================================ 11 · WHY KISAS ============================================================ -->
+<section class="slide bg-lilac">
+  <div class="wrap">
+    <span class="sec-num">11</span>
+    <h2 class="sec-title">Why KISAS</h2>
+    <p class="sec-lead">KISAS는 K-culture를 <strong>교육 자산으로 바꾸는 커리큘럼</strong>을 갖추고 있습니다. 단순 체험이 아니라 창작 결과물 중심으로 설계합니다.</p>
+
+    <div class="cards c2">
+      <div class="card"><div class="role">Curriculum</div><h4>결과물 중심 설계</h4><p>체험으로 끝나지 않고 <strong>쇼케이스·포트폴리오</strong>로 결과를 남기는 구조입니다.</p></div>
+      <div class="card"><div class="role">AI × Expression</div><h4>AI와 표현 교육 결합</h4><p>창작과 자기표현 교육에 <strong>AI 도구</strong>를 결합합니다.</p></div>
+      <div class="card"><div class="role">Track Record</div><h4>캠프 운영·교육 설계 경험</h4><p>국내 캠프 운영과 커리큘럼 설계, 교사·안전·생활관리 운영 경험을 보유합니다.</p></div>
+      <div class="card"><div class="role">Global Fit</div><h4>K-pop 중심 재구성</h4><p>이번 글로벌 캠프에 맞춰 <strong>K-pop 비중을 높여</strong> 재구성합니다.</p></div>
+    </div>
+
+    <p style="margin-top:1.4rem; font-size:var(--t-small); color:var(--ink-soft);">※ 본 제안서의 초점은 KISAS 소개가 아니라 IGC가 얻는 효과입니다. KISAS의 강점은 그 효과를 뒷받침하는 근거로만 제시합니다.</p>
+  </div>
+</section>
+
+<!-- ============================================================ 12 · LEADERSHIP & ACADEMIC CREDIBILITY ============================================================ -->
+<section class="slide bg-oxford">
+  <div class="wrap">
+    <span class="sec-num">12</span>
+    <h2 class="sec-title">Leadership &<br>Academic Credibility</h2>
+    <p class="sec-lead">프로그램의 신뢰는 <strong>K-pop 창작 역량</strong>과 <strong>국제교육 설계 역량</strong>이 함께 받칩니다.</p>
+
+    <div class="cards c2">
+      <div class="card" style="border-top-color:var(--hl-pink);">
+        <div class="role">Creative Direction</div>
+        <h4>김형석 PD</h4>
+        <p>K-pop 창작·프로듀싱 분야의 신뢰도를 바탕으로 캠프의 <strong>음악·무대 콘텐츠 방향</strong>을 설계합니다.</p>
+      </div>
+      <div class="card" style="border-top-color:var(--hl-yellow);">
+        <div class="role">Education Design</div>
+        <h4>김선 박사 <span style="font-weight:400; font-size:var(--t-small); color:var(--ink-soft);">(Dr. Sun Kim, D.Phil. Oxford)</span></h4>
+        <p>옥스퍼드 교육학 박사로 국제교육·영어교육 전문가입니다. KAIST·한국교육개발원(KEDI)·서울대 프로젝트 수행, <strong>국제교육 설계 역량</strong>으로 커리큘럼의 깊이를 더합니다.</p>
+      </div>
+    </div>
+
+    <div class="cards c2" style="margin-top:1.2rem;">
+      <div class="card" style="border-top-color:var(--hl-mint);">
+        <div class="role">Program Asset</div>
+        <h4>KISAS 교육 설계</h4>
+        <p>K-culture × AI × 창작 × 인문학을 결합한 교육 설계 자산을 보유합니다.</p>
+      </div>
+      <div class="card" style="border-top-color:var(--hl-lilac);">
+        <div class="role">Framing</div>
+        <h4>교육적 깊이와 리더십</h4>
+        <p>인성·리더십 요소는 전면 주제가 아니라, 프리미엄 교육의 <strong>신뢰도와 깊이</strong>를 보조하는 프레임으로 다룹니다.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:1.2rem; font-size:var(--t-small); color:rgba(255,255,255,0.7);">
+      ※ Oxford는 공식 인증·제휴가 아니라 <strong>국제교육 설계 배경</strong>을 설명하는 범위에서만 사용합니다. 구체 명칭·권리는 확인된 범위 내에서만 표기합니다. <span class="check">확인 필요 · 표기 범위</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 13 · IGC FACILITY ACTIVATION ============================================================ -->
+<section class="slide bg-cream">
+  <div class="wrap">
+    <span class="sec-num">13</span>
+    <h2 class="sec-title">IGC Facility Activation</h2>
+    <p class="lead-statement">캠프는 학생을 데려오는 프로그램이 아니라, <span class="hl-pink">방학 시즌 캠퍼스의 여러 시설을 동시에 움직이게 하는 운영 콘텐츠</span>입니다.</p>
+
+    <div class="cards c3">
+      <div class="card icon-card"><div class="ic">🏠</div><h4>기숙사</h4><p>2주 체류 수요 발생.</p></div>
+      <div class="card icon-card"><div class="ic">📚</div><h4>강의실 · 세미나실</h4><p>수업·워크숍 사용.</p></div>
+      <div class="card icon-card"><div class="ic">🎤</div><h4>공연장</h4><p>쇼케이스·리허설 대관.</p></div>
+      <div class="card icon-card"><div class="ic">🖼️</div><h4>전시관 · 지하 공간</h4><p>결과물 전시·캠프 히스토리.</p></div>
+      <div class="card icon-card"><div class="ic">☕</div><h4>카페 · 식음</h4><p>학생·가족·운영진 소비.</p></div>
+      <div class="card icon-card"><div class="ic">🛍️</div><h4>상업·편의시설</h4><p>활용 여지가 있는 시설의 체류 수요.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 14 · DORMITORY / VENUE / RETAIL IMPACT ============================================================ -->
+<section class="slide bg-sky">
+  <div class="wrap">
+    <span class="sec-num">14</span>
+    <h2 class="sec-title">Dormitory / Venue / Retail Impact</h2>
+    <p class="sec-lead">시설별로 어떤 수요가 생기는지 구체화합니다. 각 항목의 실제 규모·조건은 현장 실사 후 확정합니다.</p>
+
+    <table class="tbl">
+      <thead><tr><th>시설</th><th>발생하는 수요</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Dormitory</strong></td><td>2주 체류형 숙박 수요 · 식음 동반</td></tr>
+        <tr><td><strong>Classrooms</strong></td><td>수업·워크숍 공간 사용</td></tr>
+        <tr><td><strong>Performance Venue</strong></td><td>쇼케이스·리허설 대관 수요</td></tr>
+        <tr><td><strong>Exhibition Space</strong></td><td>K-pop 결과물 전시 · 캠프 히스토리 월</td></tr>
+        <tr><td><strong>Retail / F&amp;B</strong></td><td>학생·가족·운영진 소비</td></tr>
+        <tr><td><strong>Common Spaces</strong></td><td>캠퍼스 체류 경험 강화</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:1.4rem; font-size:var(--t-body); color:var(--ink-soft); line-height:1.6;">
+      현재 활용 여지가 있는 상업·편의시설에도 학생과 가족, 운영진의 <strong>체류 수요</strong>를 만들 수 있습니다. 캠프 기간 동안 여러 시설이 동시에 사용되어, 방학 시즌 캠퍼스 전체의 활력으로 이어집니다.
+      <span class="check">확인 필요 · 수용 규모/대관 조건</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 15 · INCHEON TOURISM LINKAGE ============================================================ -->
+<section class="slide bg-rose">
+  <div class="wrap">
+    <span class="sec-num">15</span>
+    <h2 class="sec-title">Incheon Tourism Linkage</h2>
+    <p class="sec-lead">외국인 학생의 가족 동반 가능성은 <strong>인천 관광과 지역 소비</strong>로 확장됩니다. 송도는 인천공항과 인천대교로 직결되어 접근성이 좋습니다.</p>
+
+    <div class="cards c2" style="margin-bottom:1.4rem;">
+      <div class="card icon-card"><div class="ic">🎒</div><h4>Student Program</h4><p>캠프 참여 — 캠퍼스 중심 일정.</p></div>
+      <div class="card icon-card"><div class="ic">👪</div><h4>Parent Program</h4><p>인천·송도·서울 관광 코스 연계.</p></div>
+      <div class="card icon-card"><div class="ic">📅</div><h4>Weekend Program</h4><p>가족 합류형 주말 투어.</p></div>
+      <div class="card icon-card"><div class="ic">🏙️</div><h4>City Branding</h4><p>인천을 K-culture 교육관광 도시로 노출.</p></div>
+    </div>
+
+    <p style="font-size:var(--t-small); color:var(--ink-soft);">
+      ※ 인천공항–송도는 <strong>인천대교(약 12km)로 직결</strong>됩니다. 구체 관광지·코스는 실재 가능한 곳만 포함하며, 관광 효과 금액은 단정하지 않습니다.
+      <span class="check">확인 필요 · 관광 연계 파트너</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 16 · ECONOMIC & PROMOTIONAL VALUE ============================================================ -->
+<section class="slide bg-mint">
+  <div class="wrap">
+    <span class="sec-num">16</span>
+    <h2 class="sec-title">Economic & Promotional Value</h2>
+    <p class="sec-lead">정량 효과는 가볍게, 그리고 신중하게 봅니다. 금액은 임의로 키우지 않고, 확인 후 별도 시뮬레이션으로 다룹니다.</p>
+
+    <div class="bignum-grid light">
+      <div class="bignum"><span class="n">1,200<span style="font-size:.5em;">~</span>1,600</span><span class="u">STUDENTS / YEAR</span><span class="l">연 8회 기준 학생 수 시나리오</span></div>
+      <div class="bignum"><span class="n">2주</span><span class="u">RESIDENTIAL</span><span class="l">숙박·식음·대관·운영 인력 소비 발생</span></div>
+      <div class="bignum"><span class="n">+α</span><span class="u">FAMILY</span><span class="l">가족 동반 시 추가 방문·지역 소비 가능성</span></div>
+    </div>
+
+    <p style="margin-top:1.4rem; font-size:var(--t-body); color:var(--ink-soft); line-height:1.6;">
+      2주 체류형 프로그램은 <strong>숙박·식음·대관·운영 인력·관광·상업시설 소비</strong>를 만듭니다. 캠프 후기, 쇼케이스 영상, 학생 포트폴리오는 다음 모집과 <strong>IGC·인천시 홍보 자산</strong>이 됩니다.
+      <span class="check">경제효과 금액 = 별도 시뮬레이션</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 17 · PARTNERSHIP MODEL ============================================================ -->
+<section class="slide bg-lilac">
+  <div class="wrap">
+    <span class="sec-num">17</span>
+    <h2 class="sec-title">Partnership Model</h2>
+    <p class="sec-lead">역할을 명확히 나눕니다. 캠퍼스·교육·운영이 각자 강한 영역을 맡는 구조입니다.</p>
+
+    <div class="cards c3">
+      <div class="card" style="border-top-color:var(--oxford);">
+        <div class="role">IGC · 인천</div>
+        <h4>캠퍼스 · 지역 협력</h4>
+        <p>캠퍼스 공간 · 기숙사 · 식음 · 시설 협력 · 지역 관광 연계 · 행정·홍보 협력 · 안전 운영 협의 · 학교/캠퍼스 홍보 협력</p>
+      </div>
+      <div class="card" style="border-top-color:var(--hl-pink);">
+        <div class="role">KISAS</div>
+        <h4>교육 콘텐츠 · 품질</h4>
+        <p>캠프 콘셉트 · 커리큘럼 설계 · K-pop 교육 콘텐츠 · 강사진·트레이닝 · AI 창작 워크숍 · 쇼케이스·포트폴리오 설계 · 학부모 리포트 · 글로벌 모집 파트너 협의</p>
+      </div>
+      <div class="card" style="border-top-color:var(--hl-mint);">
+        <div class="role">운영 파트너</div>
+        <h4>현장 운영 · 안전</h4>
+        <p>참가자 등록 · 현장 운영 · CS · 보험·안전 · 생활지도 · 일정 관리 · 차량·관광 운영</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 18 · REVENUE STRUCTURE DIRECTION ============================================================ -->
+<section class="slide bg-cream">
+  <div class="wrap">
+    <span class="sec-num">18</span>
+    <h2 class="sec-title">Revenue Structure Direction</h2>
+    <p class="sec-lead">수익구조는 확정하지 않고 <strong>방향만</strong> 제시합니다. 가능한 수익 항목을 함께 검토하고, 배분은 추후 협의합니다.</p>
+
+    <div class="cards cauto" style="margin-bottom:1.4rem;">
+      <div class="card icon-card"><div class="ic">🎫</div><h4>참가비</h4></div>
+      <div class="card icon-card"><div class="ic">🏠</div><h4>기숙사 · 식비</h4></div>
+      <div class="card icon-card"><div class="ic">🎤</div><h4>시설 대관</h4></div>
+      <div class="card icon-card"><div class="ic">🗺️</div><h4>관광 패키지</h4></div>
+      <div class="card icon-card"><div class="ic">🎬</div><h4>쇼케이스 · 공연 연계</h4></div>
+      <div class="card icon-card"><div class="ic">🛍️</div><h4>굿즈 · 콘텐츠</h4></div>
+      <div class="card icon-card"><div class="ic">🤝</div><h4>파트너십 · 스폰서십</h4></div>
+      <div class="card icon-card"><div class="ic">📘</div><h4>커리큘럼 · 운영 fee</h4></div>
+    </div>
+
+    <div class="pullquote" style="border-left-color:var(--hl-mint); background:rgba(255,255,255,0.6); color:var(--oxford);">
+      수익 배분은 참여 주체·시설 제공 범위·운영 책임·모집 책임에 따라 별도 협의합니다. 본 제안서는 배분보다 <strong>캠퍼스 활성화 가능성과 운영 구조</strong>를 우선 제안합니다.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 19 · EXECUTION ROADMAP ============================================================ -->
+<section class="slide bg-oxford">
+  <div class="wrap">
+    <span class="sec-num">19</span>
+    <h2 class="sec-title">Execution Roadmap</h2>
+    <p class="sec-lead">현장 실사에서 출발해, 파일럿을 거쳐 시즌 운영, 연간 허브로 확장합니다.</p>
+
+    <div class="timeline-wrap">
+      <div class="timeline">
+        <div class="phase-card">
+          <span class="ph">Phase 1</span>
+          <h4>Site Visit & Feasibility</h4>
+          <ul>
+            <li>IGC 현장 방문</li>
+            <li>기숙사·강의실·공연장·전시관·상업시설 확인</li>
+            <li>운영 가능 일정 확인</li>
+            <li>수용 규모 확인</li>
+          </ul>
+        </div>
+        <div class="phase-card">
+          <span class="ph">Phase 2</span>
+          <h4>Pilot Design</h4>
+          <ul>
+            <li>1개 시즌 파일럿 설계</li>
+            <li>회차당 150~200명 규모 검토</li>
+            <li>모집 국가·채널 확정</li>
+            <li>관광·숙박·안전 구조 협의</li>
+          </ul>
+        </div>
+        <div class="phase-card">
+          <span class="ph">Phase 3</span>
+          <h4>Summer / Winter Launch</h4>
+          <ul>
+            <li>여름 4회 · 겨울 4회 반복 운영 검토</li>
+            <li>후기·영상·성과 자료 확보</li>
+          </ul>
+        </div>
+        <div class="phase-card">
+          <span class="ph">Phase 4</span>
+          <h4>Annual Global Camp Hub</h4>
+          <ul>
+            <li>매년 반복되는 글로벌 캠프 허브로 확장</li>
+            <li>IGC·인천의 대표 교육관광 프로그램으로 발전</li>
+          </ul>
+        </div>
+      </div>
+      <p class="scroll-hint">← 좌우로 스크롤하여 전체 단계 보기 →</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 20 · RISK CHECKPOINTS & NEXT STEP ============================================================ -->
+<section class="slide bg-sky">
+  <div class="wrap">
+    <span class="sec-num">20</span>
+    <h2 class="sec-title">Risk Checkpoints & Next Step</h2>
+    <p class="sec-lead">리스크는 숨기지 않습니다. 아래는 함께 확인할 항목이며, 모두 현장 미팅과 실사에서 구체화합니다.</p>
+
+    <div class="checklist" style="margin-bottom:1.6rem;">
+      <div class="item">외국인 모집 채널 검증</div>
+      <div class="item">안전·보험·비자·보호자 동의 체계</div>
+      <div class="item">기숙사 수용 가능 인원</div>
+      <div class="item">시설 대관 가능 일정</div>
+      <div class="item">공연장·쇼케이스 운영 조건</div>
+      <div class="item">관광 연계 파트너</div>
+      <div class="item">K-pop 강사진 품질관리</div>
+      <div class="item">IGC 브랜드 사용 범위</div>
+      <div class="item">인천시·송도경제청 협력 범위</div>
+      <div class="item">수익 배분 구조</div>
+    </div>
+
+    <div class="cards c2">
+      <div class="card" style="border-top-color:var(--hl-pink);">
+        <div class="role">Next Step</div>
+        <h4>현장 미팅 → 공동 설계</h4>
+        <p>① 인천글로벌캠퍼스 현장 미팅 → ② 시설·일정·수용규모 확인 → ③ 1차 파일럿 운영안 공동 설계 → ④ 모집 국가·채널 검토 → ⑤ 수익구조·역할분담 협의 → ⑥ 여름/겨울 시즌 론칭 검토</p>
+      </div>
+      <div class="card" style="border-top-color:var(--hl-yellow);">
+        <div class="role">Context</div>
+        <h4>송도경제청 발굴 · 추후 협력</h4>
+        <p>본 건은 송도(인천경제자유구역청) 측에서 발굴한 협력 가능성에서 출발했으며, <strong>추후 협력 방안이 열려 있습니다.</strong></p>
+      </div>
+    </div>
+
+    <p class="closing" style="font-family:'Gaegu',cursive; color:var(--oxford); font-size:clamp(1.4rem,3vw,2.2rem); font-weight:700; text-align:center; margin:1.8rem auto 0; max-width:860px; line-height:1.4;">
+      먼저 인천글로벌캠퍼스 현장을 함께 확인하고,<br>실제 운영 가능한 2주 글로벌 K-pop 캠프 모델로 구체화하겠습니다.
+    </p>
+
+    <div class="source-note">
+      <h4>Source / Research Note</h4>
+      <ul>
+        <li>한류·K-pop 방한 동기 및 국가 연상 이미지 — 한국국제문화교류진흥원(KOFICE) 한류백서, 한국여행업협회 방한 동기 조사. 인용 수치는 발표 시점·표본에 따라 달라질 수 있어 <strong>참고 근거</strong>로만 사용.</li>
+        <li>인천공항–송도 접근성 — 송도국제도시는 인천국제공항과 <strong>인천대교(약 12.3km)로 직결</strong>. 차량 소요시간은 <span class="check">확인 필요</span>.</li>
+        <li>인천글로벌캠퍼스 개요 — 한국 정부·인천광역시가 설립한 국가사업, 송도 인천경제자유구역 소재, 해외 대학 공동 캠퍼스(igc.or.kr). <strong>기숙사 수용 인원·대관 조건·전시관·근린생활시설 현황은 확인 필요.</strong></li>
+        <li>인원·경제효과 수치는 <strong>가정 시나리오</strong>이며 확정값이 아님. 금액 효과는 현장 실사 후 별도 시뮬레이션으로 산출.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="quote">K-pop으로 모이고, 인천에서 자랍니다.</p>
+    <p>KISAS Global K-pop Camp @ Incheon Global Campus · Proposal v1.0 · 2026<br>
+    주관 KISAS · 본 자료는 협의용 제안서이며 모든 수치·조건은 현장 실사 후 확정합니다.</p>
+  </div>
+</footer>
+
+</body>
+</html>
