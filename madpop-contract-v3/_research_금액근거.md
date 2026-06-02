@@ -24,9 +24,9 @@
 ### 산출 (선급 MG = 연 단위, non-refundable·러닝에서 recoup)
 | 구간 | 선급 MG/년 | 직접사용 | 상품화 | 서브라이선스(순수령) |
 |---|---|---|---|---|
-| **A(깐깐)** | **USD 1.5M (약 21억)** | 6% | 12% | 35% |
-| B(중간) | USD 1.0M (약 14억) | 5% | 10% | 30% |
-| C(덜 깐깐) | USD 0.6M (약 8억) | 4% | 8% | 25% |
+| **A(깐깐)** | **USD 1.5M (약 21억 원)** | 6% | 12% | 35% |
+| B(중간) | USD 1.0M (약 14억 원) | 5% | 10% | 30% |
+| C(덜 깐깐) | USD 0.6M (약 8억 원) | 4% | 8% | 25% |
 
 확신도 70(추론: 산업 로열티 레인지 + 중국 MG 관행). 로열티율은 모두 5~20%(머천)·25~35%(서브) 업계대 안.
 
@@ -37,15 +37,15 @@
 ### 유사사례(본문 인용)
 - **프로듀서 포인트**: "earning from two to five percentage points of a record is common… two points for a newcomer and four to five for a well-established, in-demand producer." — Billboard/Sapling. 김형석=established → **4~5 포인트**. 확신도 80
 - **정액 + 포인트 병용**: "Many executive producers receive a flat fee up front… in addition to a portion of the royalties." — Sapling. 확신도 80
-- **리테이너 레인지**: 엔터 서비스 리테이너 월 USD 5k~90k. — Whatagraph. 확신도 60(참고)
-- **스케일 앵커**: Tencent-SM 파트너십·JYP/CJ ENM-TME ONECEAD 합작 등 중국 K-pop 합작은 수천만~억 달러대 거래. 단 이는 지분·합작 규모이며 개인 디렉터료와 구분. 확신도 70
+- **리테이너 레인지**: 엔터 서비스 리테이너 월 USD 5k~90k(약 690만~1.24억 원). — Whatagraph. 확신도 60(참고)
+- **스케일 앵커**: Tencent-SM 파트너십·JYP/CJ ENM-TME ONECEAD 합작 등 중국 K-pop 합작은 수천만~억 달러대(원화 기준 수백억~수천억 원대) 거래. 단 이는 지분·합작 규모이며 개인 디렉터료와 구분. 확신도 70
 
 ### 산출 (초기 계약기간 정액 + 단계지급 + 포인트)
 | 구간 | 기간 정액 | 프로듀서 포인트 | 단계지급 |
 |---|---|---|---|
-| **A(깐깐)** | **USD 3.5M (약 48억)** | 5 points | 체결 40 / 창작방향 30 / 현지화·개시 20 / 런칭검토 10 |
-| B(중간) | USD 2.5M (약 35억) | 4 points | 동일 |
-| C(덜 깐깐) | USD 1.5M (약 21억) | 3 points | 동일 |
+| **A(깐깐)** | **USD 3.5M (약 48억 원)** | 5 points | 체결 40 / 창작방향 30 / 현지화·개시 20 / 런칭검토 10 |
+| B(중간) | USD 2.5M (약 35억 원) | 4 points | 동일 |
+| C(덜 깐깐) | USD 1.5M (약 21억 원) | 3 points | 동일 |
 
 확신도 65(추론: 포인트는 업계대, 정액은 마퀴 PD 희소성·중국측 강한 영입의지(레버리지) 반영한 프리미엄).
 
