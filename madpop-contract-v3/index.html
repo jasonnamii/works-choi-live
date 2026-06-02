@@ -148,7 +148,7 @@ ul.plain li{margin:5px 0}
 <header class="topbar"><div class="wrap">
   <div class="brand">MAD POP · 계약전략 V3</div>
   <nav class="nav">
-    <a href="#premise">구조</a><a href="#lawyer">확인자료</a><a href="#matrix">조건</a><a href="#risk-control">리스크</a><a href="#docs">문서</a><a href="#next">다음</a>
+    <a href="#premise">구조</a><a href="#lawyer">확인자료</a><a href="#matrix">조건</a><a href="#strict-terms">협상표</a><a href="#risk-control">리스크</a><a href="#docs">문서</a><a href="#next">다음</a>
   </nav>
 </div></header>
 
@@ -209,8 +209,8 @@ ul.plain li{margin:5px 0}
       </table>
     </div>
     <p class="note">※ 위 조건은 중국 측에 보낼 문서 5종에 반영된 현재 송부 조건입니다.</p>
-    <details class="research-details" open>
-      <summary>깐깐·중간·덜 깐깐 금액 테이블</summary>
+    <details class="research-details">
+      <summary>금액 산정 근거 보기</summary>
       <div class="research-body">
         <h3>산정 기준</h3>
         <p>본 수치는 감정평가액이 아니라 유사사례 기반 협상 레인지입니다. 단정값이 아니라 A/B/C 구간으로 제시하고, 현재 송부 조건은 A안(깐깐한 조건)을 기준으로 잡았습니다.</p>
@@ -269,8 +269,33 @@ ul.plain li{margin:5px 0}
     </details>
   </section>
 
+  <section id="strict-terms">
+    <div class="sec-h"><span class="no">04</span><h2>협상 조건 깐깐 테이블</h2></div>
+    <p style="margin:-6px 0 16px;color:var(--muted);font-size:14.5px">현재 송부안은 A안, 즉 깐깐한 조건을 기준으로 합니다. 금액은 높게 잡고, 권리 이전·기간 확장·지급 지연·집행장치 누락은 양보하지 않는 구조입니다.</p>
+    <div class="matrix-scroll">
+      <table aria-label="협상 조건 깐깐 테이블">
+        <thead><tr>
+          <th>항목</th><th class="colA">A안 · 깐깐한 송부안</th><th>B안 · 조정 가능</th><th>C안 · 최저선</th>
+        </tr></thead>
+        <tbody>
+          <tr><th>총 현금 기준</th><td class="colA"><b>USD 5.0M</b><br><span class="note">디렉터 USD 3.5M + IP MG USD 1.5M</span></td><td>USD 3.5M 수준까지 조정 가능</td><td>USD 2.1M 아래로는 구조 재검토</td></tr>
+          <tr><th>사공이호 IP MG / 년</th><td class="colA"><b>USD 1.5M</b></td><td>USD 1.0M</td><td>USD 0.6M + 로열티 유지</td></tr>
+          <tr><th>디렉터 기간 정액</th><td class="colA"><b>USD 3.5M</b></td><td>USD 2.5M</td><td>USD 1.5M + 업무범위 축소</td></tr>
+          <tr><th>러닝로열티</th><td class="colA">직접사용 6% / 상품화 12% / 서브라이선스 순수령 35%</td><td>직접사용 5% / 상품화 10% / 순수령 30%</td><td>직접사용 4% / 상품화 8% / 순수령 25%</td></tr>
+          <tr><th>프로듀서 포인트</th><td class="colA">대상 매출 5 points</td><td>4 points</td><td>3 points</td></tr>
+          <tr><th>지역·기간</th><td class="colA">중국 한정 / 1년 / 연장은 별도 서면 합의</td><td>성과 조건 충족 시 단기 연장 협의</td><td>전세계·영구·취소불가 사용권은 불가</td></tr>
+          <tr><th>IP 권리</th><td class="colA">소유권·공동저작권·2차적저작물 작성권 이전 없음</td><td>승인된 범위의 현지화 사용만 허용</td><td>권리 이전 또는 선점 등록은 불가</td></tr>
+          <tr><th>지분</th><td class="colA">합자회사 30% + 정보권·감사권·주요사항 동의권·풋옵션</td><td>직접 지분이 어려우면 옵션·팬텀·현금정산형으로 구조화</td><td>30% 경제적 권리와 풋옵션 보호는 유지</td></tr>
+          <tr><th>집행장치</th><td class="colA">지급보증·에스크로·연대책임·지분질권 중 핵심 장치 포함</td><td>상대 구조에 맞춰 보증 또는 에스크로 중 선택</td><td>빈껍데기 법인 단독 서명은 불가</td></tr>
+          <tr><th>서명 전 확인</th><td class="colA">계약법인·대표권·UBO·재무·AI·플랫폼·cap table 확인 후 서명</td><td>자료 제출 일정은 조정 가능</td><td>실제 계약법인 확인 전 효력 개시 불가</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">※ 중국 측에 처음 보내는 기준은 A안입니다. B/C안은 내부 협상 레인지이며, 권리 이전·무담보 지급·AI 학습·제3자 우회 사용은 양보 항목이 아닙니다.</p>
+  </section>
+
   <section id="risk-control">
-    <div class="sec-h"><span class="no">04</span><h2>중국 리스크 회피 구조</h2></div>
+    <div class="sec-h"><span class="no">05</span><h2>중국 리스크 회피 구조</h2></div>
     <p style="margin:-6px 0 16px;color:var(--muted);font-size:14.5px">중국 거래에서 자주 발생하는 우회 방식은 금지 문구만으로는 부족합니다. 이번 V3는 지급, IP, AI, 지분 집행을 바로 묶을 수 있는 장치를 본계약에 추가했습니다.</p>
     <div class="riskgrid">
       <div class="riskrow"><div class="attack"><span class="level">높음</span><b>빈껍데기 계약법인 지정</b><p>자산 없는 SPV를 세워 위반해도 회수할 돈이 없게 만드는 방식입니다.</p></div><div class="defense"><b>지급보증·에스크로·연대책임</b><p>MADVERSE 또는 UBO/모회사 보증, 착수금·MG 에스크로, 회사·다수주주 연대책임을 본계약 조건으로 둡니다.</p></div></div>
@@ -284,7 +309,7 @@ ul.plain li{margin:5px 0}
   </section>
 
   <section id="docs">
-    <div class="sec-h"><span class="no">05</span><h2>중국 송부 문서 5종</h2></div>
+    <div class="sec-h"><span class="no">06</span><h2>중국 송부 문서 5종</h2></div>
     <div class="doclist" aria-label="문서 링크">
       <div class="doclink"><span class="dl-no">01</span><div><p class="dl-title">커버레터</p><p class="dl-desc">협업 의지, 문서 구성, 서명 전 확인 자료, 회신 요청을 설명합니다.</p></div><a class="btn dark" href="PDF/01_커버레터.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="01_커버레터.md" target="_blank" rel="noopener">원문</a></div>
       <div class="doclink"><span class="dl-no">02</span><div><p class="dl-title">마스터 텀시트</p><p class="dl-desc">디렉터 계약, IP 라이선스, 지분계약의 핵심 조건을 한 문서로 연결합니다.</p></div><a class="btn dark" href="PDF/02_마스터_텀시트.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="02_마스터_텀시트.md" target="_blank" rel="noopener">원문</a></div>
@@ -295,7 +320,7 @@ ul.plain li{margin:5px 0}
   </section>
 
   <section id="next">
-    <div class="sec-h"><span class="no">06</span><h2>다음 행동</h2></div>
+    <div class="sec-h"><span class="no">07</span><h2>다음 행동</h2></div>
     <div class="steps">
       <div class="step">김형석 PD님 확인 후, 중국 측에는 문서 5종을 한 번에 보냅니다.</div>
       <div class="step">중국 측 회신은 조항별 의견, 확인 자료 제출 일정, 서명 일정으로 받습니다.</div>
