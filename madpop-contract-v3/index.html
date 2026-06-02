@@ -35,7 +35,7 @@ a{color:inherit;text-decoration:none}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
 .brand{font-size:13px;font-weight:850;letter-spacing:.04em;text-transform:uppercase}
 .nav{display:flex;gap:4px;flex-wrap:wrap}
-.nav a{padding:6px 9px;font-size:13px;font-weight:700;color:var(--muted);border:1px solid transparent;border-radius:0}
+.nav a{padding:6px 8px;font-size:13px;font-weight:700;color:var(--muted);border:1px solid transparent;border-radius:0}
 .nav a:hover{color:var(--ink);border-color:var(--ink)}
 .hero{padding:48px 0 32px}
 .kicker{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
@@ -71,6 +71,14 @@ ul.plain{margin:0;padding-left:18px;font-size:14.5px;color:var(--muted)}
 ul.plain li{margin:5px 0}
 .risk{border:1px solid var(--line);border-radius:0;padding:18px;background:var(--surface)}
 .risk li{font-size:14px;margin:6px 0}
+.riskgrid{display:grid;gap:8px}
+.riskrow{display:grid;grid-template-columns:1.05fr 1.45fr;gap:0;border:1px solid var(--line);background:#fff}
+.riskrow b{display:block;font-size:14px;font-weight:850;margin:0 0 4px}
+.riskrow p{margin:0;font-size:13.5px;color:var(--muted)}
+.riskrow .attack,.riskrow .defense{padding:13px 14px}
+.riskrow .attack{border-right:1px solid var(--line);background:var(--surface)}
+.riskrow .defense{background:#fff}
+.riskrow .level{display:inline-block;font-size:12px;font-weight:850;margin-bottom:7px;padding:2px 7px;background:var(--ink);color:#fff}
 .research-details{margin-top:16px;border:1px solid var(--line);background:#fff}
 .research-details summary{cursor:pointer;list-style:none;padding:14px 16px;font-size:14px;font-weight:850;border-bottom:1px solid transparent}
 .research-details summary::-webkit-details-marker{display:none}
@@ -104,6 +112,8 @@ ul.plain li{margin:5px 0}
 }
 @media(max-width:680px){
   .g3,.g4,.princ{grid-template-columns:1fr}
+  .riskrow{grid-template-columns:1fr}
+  .riskrow .attack{border-right:0;border-bottom:1px solid var(--line)}
   .nav{display:none}
   .hero{padding:34px 0 24px}
 }
@@ -138,7 +148,7 @@ ul.plain li{margin:5px 0}
 <header class="topbar"><div class="wrap">
   <div class="brand">MAD POP · 계약전략 V3</div>
   <nav class="nav">
-    <a href="#premise">구조</a><a href="#lawyer">확인자료</a><a href="#matrix">조건</a><a href="#docs">문서</a><a href="#next">다음</a>
+    <a href="#premise">구조</a><a href="#lawyer">확인자료</a><a href="#matrix">조건</a><a href="#risk-control">리스크</a><a href="#docs">문서</a><a href="#next">다음</a>
   </nav>
 </div></header>
 
@@ -146,7 +156,7 @@ ul.plain li{margin:5px 0}
 
   <div class="hero" id="top">
     <div class="kicker">김형석 PD님 검토용 · 2026.06</div>
-    <h1>수익극대화,<br>조건 깐깐하게,<br><mark>리스크 0%</mark></h1>
+    <h1>수익극대화,<br>조건은 깐깐하게,<br><mark>핵심 리스크 선제 차단</mark></h1>
     <p class="lead">이번 발송본은 커버레터, 마스터 텀시트, 크리에이티브 디렉터 계약, 사공이호 IP 라이선스 계약, 지분계약으로 구성됩니다. 메시지는 긍정적인 파트너십 제안으로 잡고, 권리·금액·사용 범위·확인 자료는 문서 안에서 명확히 정리했습니다.</p>
   </div>
 
@@ -259,8 +269,22 @@ ul.plain li{margin:5px 0}
     </details>
   </section>
 
+  <section id="risk-control">
+    <div class="sec-h"><span class="no">04</span><h2>중국 리스크 회피 구조</h2></div>
+    <p style="margin:-6px 0 16px;color:var(--muted);font-size:14.5px">중국 거래에서 자주 발생하는 우회 방식은 금지 문구만으로는 부족합니다. 이번 V3는 지급, IP, AI, 지분 집행을 바로 묶을 수 있는 장치를 본계약에 추가했습니다.</p>
+    <div class="riskgrid">
+      <div class="riskrow"><div class="attack"><span class="level">높음</span><b>빈껍데기 계약법인 지정</b><p>자산 없는 SPV를 세워 위반해도 회수할 돈이 없게 만드는 방식입니다.</p></div><div class="defense"><b>지급보증·에스크로·연대책임</b><p>MADVERSE 또는 UBO/모회사 보증, 착수금·MG 에스크로, 회사·다수주주 연대책임을 본계약 조건으로 둡니다.</p></div></div>
+      <div class="riskrow"><div class="attack"><span class="level">높음</span><b>IP·중문명·계정 선점</b><p>계열사, 대행사, 플랫폼 파트너가 상표·도메인·SNS·앱명을 먼저 잡는 방식입니다.</p></div><div class="defense"><b>선출원·제3자 선점 금지</b><p>사공이호 한글·영문·중문명, 캐릭터, 로고, 주요 계정을 권리자 기준으로 관리하고 제3자 우회 출원을 금지합니다.</p></div></div>
+      <div class="riskrow"><div class="attack"><span class="level">중상</span><b>송금·세무·SAFE 지연</b><p>은행, 세무, 외환, SAFE 절차를 이유로 지급을 늦추는 방식입니다.</p></div><div class="defense"><b>중국 측 단독 책임·순수령 보전</b><p>행정절차 지연은 지급 면제·연기·감액 사유가 아니며, 세금·수수료는 중국 측이 부담하도록 둡니다.</p></div></div>
+      <div class="riskrow"><div class="attack"><span class="level">중상</span><b>AI 학습 흡수</b><p>자료를 모델, 데이터셋, 임베딩 DB, 합성음성·영상 모델에 넣은 뒤 회수가 어려워지는 방식입니다.</p></div><div class="defense"><b>학습 금지·로그 보관·외주사 관리</b><p>AI 입력·업로드·학습·저장을 금지하고 접근 로그와 외주사 사용내역을 3년 보관하게 합니다.</p></div></div>
+      <div class="riskrow"><div class="attack"><span class="level">중</span><b>플랫폼·MCN 우회 사용</b><p>계약 상대가 아니라 파트너, 배급사, 행사 대행사가 썼다고 빠지는 방식입니다.</p></div><div class="defense"><b>승인 목록 한정</b><p>Approved Users, Channels, Materials 별첨에 없는 계열사·제작사·플랫폼·MCN 사용은 모두 사전 승인 대상으로 둡니다.</p></div></div>
+      <div class="riskrow"><div class="attack"><span class="level">중</span><b>순수령액 축소</b><p>관계사 수수료, 마케팅비, 제작비, 자문료를 공제해 로열티 기준액을 줄이는 방식입니다.</p></div><div class="defense"><b>공제 항목 제한</b><p>공제 가능 항목을 부가세, 환불액, 실제 플랫폼 결제수수료로 제한합니다.</p></div></div>
+      <div class="riskrow"><div class="attack"><span class="level">중</span><b>지분·풋옵션 종이화</b><p>30% 지분과 풋옵션은 인정하지만 cap table 반영이나 대금 지급을 늦추는 방식입니다.</p></div><div class="defense"><b>지분질권·보증·closing 증빙</b><p>지분질권, 에스크로, 모회사 보증 중 하나를 붙이고 cap table·정관·주주명부 반영을 선행조건으로 둡니다.</p></div></div>
+    </div>
+  </section>
+
   <section id="docs">
-    <div class="sec-h"><span class="no">04</span><h2>중국 송부 문서 5종</h2></div>
+    <div class="sec-h"><span class="no">05</span><h2>중국 송부 문서 5종</h2></div>
     <div class="doclist" aria-label="문서 링크">
       <div class="doclink"><span class="dl-no">01</span><div><p class="dl-title">커버레터</p><p class="dl-desc">협업 의지, 문서 구성, 서명 전 확인 자료, 회신 요청을 설명합니다.</p></div><a class="btn dark" href="PDF/01_커버레터.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="01_커버레터.md" target="_blank" rel="noopener">원문</a></div>
       <div class="doclink"><span class="dl-no">02</span><div><p class="dl-title">마스터 텀시트</p><p class="dl-desc">디렉터 계약, IP 라이선스, 지분계약의 핵심 조건을 한 문서로 연결합니다.</p></div><a class="btn dark" href="PDF/02_마스터_텀시트.pdf" target="_blank" rel="noopener">PDF</a><a class="btn" href="02_마스터_텀시트.md" target="_blank" rel="noopener">원문</a></div>
@@ -271,7 +295,7 @@ ul.plain li{margin:5px 0}
   </section>
 
   <section id="next">
-    <div class="sec-h"><span class="no">05</span><h2>다음 행동</h2></div>
+    <div class="sec-h"><span class="no">06</span><h2>다음 행동</h2></div>
     <div class="steps">
       <div class="step">김형석 PD님 확인 후, 중국 측에는 문서 5종을 한 번에 보냅니다.</div>
       <div class="step">중국 측 회신은 조항별 의견, 확인 자료 제출 일정, 서명 일정으로 받습니다.</div>
