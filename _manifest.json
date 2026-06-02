@@ -308,8 +308,8 @@
     "mode": "choi",
     "url": "https://works.choi.build/cre8orclub-chris-product-design-lead/",
     "last_kind": "redeploy",
-    "last_sha256": "e806483d7740a2c31cd8f1e6695c8c1d8a842a70d0ccf506a5d2b7511becb378",
-    "timestamp": "2026-05-29T15:42:31.133210Z"
+    "last_sha256": "fcd56b0ec2d79a11b440dd1aa19d08e5218d11433e616806e199438557d54e1c",
+    "timestamp": "2026-06-02T04:18:52.287309Z"
   },
   "cre8orclub-planner": {
     "slug": "cre8orclub-planner",
@@ -332,7 +332,7 @@
     "mode": "choi",
     "url": "https://works.choi.build/planning-intern-recruitment/",
     "last_kind": "redeploy",
-    "last_sha256": "f04b0bbb8e8152cc31d5c85a75b8e20cc12db02caf73c7b64b10614cfe642093",
-    "timestamp": "2026-06-01T06:45:47.346458Z"
+    "last_sha256": "bf9c471e9306f84c7d1c712fcbc3dd04578e6a0e4d7a40dd8586c9409f15c1ef",
+    "timestamp": "2026-06-01T00:24:15.778006Z"
   }
 }
