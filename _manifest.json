@@ -350,5 +350,13 @@
     "last_kind": "redeploy",
     "last_sha256": "0b27392336dfdeb1c0958aeef5143207a1a2a579e06cccf1ce56b6672ada60ca",
     "timestamp": "2026-06-02T17:42:32.584105Z"
+  },
+  "oxford-ai-concept-5": {
+    "slug": "oxford-ai-concept-5",
+    "mode": "choi",
+    "url": "https://works.choi.build/oxford-ai-concept-5/",
+    "last_kind": "new",
+    "last_sha256": "0c3d878df14d00c412a247752be60167ebac51c212cff1eea3e2aac51f04347f",
+    "timestamp": "2026-06-03T17:53:53.126718Z"
   }
 }
