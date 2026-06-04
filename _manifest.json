@@ -339,9 +339,9 @@
     "slug": "kisas-global-kpop-camp-igc",
     "mode": "choi",
     "url": "https://works.choi.build/kisas-global-kpop-camp-igc/",
-    "last_kind": "new",
-    "last_sha256": "02093373554605fbf3f0b313e99176253cc6cca99fe7393a6e21b72d89cc11f0",
-    "timestamp": "2026-06-02T12:56:14.123855Z"
+    "last_kind": "redeploy",
+    "last_sha256": "c69ec13956f127784ade2ef210bf038695fc01d083ed7cd1cb3820e3dfe445e2",
+    "timestamp": "2026-06-04T06:16:08.862444Z"
   },
   "madpop-contract-v3": {
     "slug": "madpop-contract-v3",
