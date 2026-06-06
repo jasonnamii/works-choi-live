@@ -358,13 +358,5 @@
     "last_kind": "new",
     "last_sha256": "0c3d878df14d00c412a247752be60167ebac51c212cff1eea3e2aac51f04347f",
     "timestamp": "2026-06-03T17:53:53.126718Z"
-  },
-  "ai-shift-2026": {
-    "slug": "ai-shift-2026",
-    "mode": "choi",
-    "url": "https://works.choi.build/ai-shift-2026/",
-    "last_kind": "new",
-    "last_sha256": "5d19a67ce6e4c5611b587cd1848ddeae0be44dde34ff5677de08860fb93c3a1d",
-    "timestamp": "2026-06-06T13:38:11.883993Z"
   }
 }
