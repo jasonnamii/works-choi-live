@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta name="robots" content="noindex, nofollow"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>기획허브 — 기획 초안을 Handoff 수준으로 끌어올려 주는 스킬</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{background:#FFF;color:#000;font-family:"Pretendard";font-weight:700;letter-spacing:0;
+  word-break:keep-all;line-break:strict;overflow-wrap:break-word;line-height:1.5;orphans:2;widows:2;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #000;padding:16px 0 12px;
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;flex-wrap:wrap;gap:8px;}
+.mono{font-variant-numeric:tabular-nums;}
+
+/* hero */
+.hero{padding:56px 0 40px;border-bottom:4px solid #000;}
+.hero .kick{font-size:11px;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:20px;}
+.hero h1{font-size:clamp(38px,8vw,82px);font-weight:900;line-height:1.16;letter-spacing:0;}
+.hero h1 mark{background:#000;color:#FFF;padding:0.02em 10px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+.hero .sub{font-size:clamp(15px,2.4vw,19px);font-weight:700;line-height:1.45;max-width:640px;margin-top:28px;}
+
+/* band */
+.band{background:#000;color:#FFF;margin:0 -24px;padding:14px 24px;font-size:12px;letter-spacing:0.18em;
+  text-align:center;text-transform:uppercase;}
+.band.plain{letter-spacing:0.05em;text-transform:none;font-size:13px;line-height:1.5;}
+
+/* section head */
+.sec{border-top:2px solid #000;padding:40px 0 8px;}
+.sec-h{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;}
+.sec-n{font-size:13px;letter-spacing:0.15em;font-weight:900;}
+.sec-t{font-size:clamp(22px,4vw,34px);font-weight:900;line-height:1.05;}
+.sec-d{font-size:14px;font-weight:700;line-height:1.5;max-width:680px;margin:-12px 0 24px;}
+
+/* input grid */
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#000;border:1px solid #000;}
+.cell{background:#FFF;padding:18px 16px;min-height:104px;display:flex;flex-direction:column;justify-content:space-between;}
+.cell .c-n{font-size:10px;letter-spacing:0.18em;}
+.cell .c-t{font-size:17px;font-weight:900;margin-top:8px;}
+.cell .c-s{font-size:11px;font-weight:700;line-height:1.4;margin-top:6px;}
+.note{font-size:12px;font-weight:700;margin-top:14px;border:1px solid #000;padding:10px 12px;}
+.note b{background:#000;color:#FFF;padding:1px 6px;}
+
+/* flow strip */
+.flow{display:grid;grid-template-columns:1fr auto 1.4fr auto 1fr;align-items:stretch;gap:0;border:2px solid #000;}
+.flow .f{padding:16px;display:flex;flex-direction:column;justify-content:center;}
+.flow .arr{display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;border-left:1px solid #000;border-right:1px solid #000;padding:0 10px;}
+.flow .dark{background:#000;color:#FFF;}
+.flow .f-k{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:6px;}
+.flow .f-t{font-size:15px;font-weight:900;line-height:1.2;}
+.flow .f-s{font-size:11px;font-weight:700;line-height:1.4;margin-top:6px;}
+
+/* pipeline */
+.pipe{border:2px solid #000;}
+.row{display:grid;grid-template-columns:54px 1fr 76px;border-top:1px solid #000;}
+.pipe .row:first-child{border-top:none;}
+.row .r-n{font-size:22px;font-weight:900;padding:16px;border-right:1px solid #000;display:flex;align-items:center;justify-content:center;}
+.row .r-b{padding:14px 16px;}
+.row .r-t{font-size:16px;font-weight:900;}
+.row .r-s{font-size:12px;font-weight:700;line-height:1.45;margin-top:5px;color:#000;}
+.row .r-tag{border-left:1px solid #000;display:flex;align-items:center;justify-content:center;font-size:10px;
+  letter-spacing:0.12em;text-align:center;text-transform:uppercase;font-weight:900;}
+.tag-auto{background:#FFF;color:#000;}
+.tag-human{background:#000;color:#FFF;}
+.row.hrow{background:#000;color:#FFF;}
+.row.hrow .r-n{border-right-color:#FFF;}
+.row.hrow .r-tag{border-left-color:#FFF;}
+.row.hrow .tag-human{background:#FFF;color:#000;}
+
+/* 4-way split */
+.split4{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#000;border:1px solid #000;}
+.s4{padding:18px 14px;min-height:130px;display:flex;flex-direction:column;}
+.s4.dark{background:#000;color:#FFF;}
+.s4.light{background:#FFF;color:#000;}
+.s4 .q{font-size:32px;font-weight:900;line-height:0.9;}
+.s4 .l{font-size:14px;font-weight:900;margin-top:12px;}
+.s4 .d{font-size:11px;font-weight:700;line-height:1.4;margin-top:6px;}
+
+/* output files */
+.files{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#000;border:1px solid #000;}
+.file{background:#FFF;padding:16px;}
+.file .fn{font-size:15px;font-weight:900;}
+.file .fd{font-size:12px;font-weight:700;line-height:1.45;margin-top:6px;}
+.file .fb{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;display:inline-block;
+  border:1px solid #000;padding:2px 7px;margin-top:10px;}
+
+/* human zone cards */
+.hcards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#000;border:2px solid #000;}
+.hc{background:#FFF;padding:18px 16px;}
+.hc .hn{font-size:10px;letter-spacing:0.18em;}
+.hc .ht{font-size:17px;font-weight:900;margin-top:10px;line-height:1.1;}
+.hc .hd{font-size:12px;font-weight:700;line-height:1.5;margin-top:8px;}
+
+/* master diagram */
+.master{border:2px solid #000;}
+.m-top{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#000;}
+.pk{background:#FFF;padding:14px;}
+.pk .pkt{font-size:13px;font-weight:900;}
+.pk .pks{font-size:10px;font-weight:700;line-height:1.4;margin-top:5px;}
+.pk .pkid{font-size:10px;letter-spacing:0.12em;margin-top:8px;border-top:1px solid #000;padding-top:6px;}
+.m-arrow{background:#000;color:#FFF;text-align:center;padding:8px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;}
+.m-bot{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#000;}
+.mb{padding:16px;}
+.mb.dark{background:#000;color:#FFF;}
+.mb.light{background:#FFF;color:#000;}
+.mb .mbt{font-size:15px;font-weight:900;}
+.mb .mbs{font-size:11px;font-weight:700;line-height:1.5;margin-top:8px;}
+
+ul.tight{list-style:none;margin-top:10px;}
+ul.tight li{font-size:12px;font-weight:700;line-height:1.5;padding-left:16px;position:relative;margin-bottom:4px;}
+ul.tight li::before{content:"/";position:absolute;left:0;font-weight:900;}
+
+/* footer */
+.foot{border-top:4px solid #000;margin-top:48px;padding:20px 0 40px;display:flex;justify-content:space-between;
+  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;flex-wrap:wrap;gap:8px;}
+
+.legend{display:flex;gap:18px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:18px;flex-wrap:wrap;}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.sw{width:24px;height:12px;border:1px solid #000;display:inline-block;}
+.sw.b{background:#000;}
+
+@media (max-width:768px){
+  .grid6{grid-template-columns:repeat(2,1fr);}
+  .split4{grid-template-columns:repeat(2,1fr);}
+  .files{grid-template-columns:1fr;}
+  .hcards{grid-template-columns:1fr;}
+  .flow{grid-template-columns:1fr;}
+  .flow .arr{border:none;border-top:1px solid #000;border-bottom:1px solid #000;transform:rotate(90deg);padding:6px 0;}
+  .m-top{grid-template-columns:1fr;}
+  .m-bot{grid-template-columns:1fr;}
+}
+/* 소형폰 전용 — hero 재정의 + 여백·파이프라인 압축 (모바일 별도 세팅) */
+@media (max-width:480px){
+  .wrap{padding:0 16px;}
+  .hero{padding:36px 0 28px;}
+  .hero h1{font-size:clamp(30px,9vw,46px);line-height:1.18;word-break:keep-all;}
+  .hero .kick{letter-spacing:0.15em;}
+  .band{margin:0 -16px;padding:13px 16px;}
+  .sec{padding:32px 0 8px;}
+  .sec-h{gap:10px;}
+  .grid6{grid-template-columns:1fr;}
+  .row{grid-template-columns:42px 1fr 58px;}
+  .row .r-n{font-size:18px;padding:10px;}
+  .row .r-b{padding:12px 12px;}
+  .row .r-tag{font-size:10px;}
+  .foot{flex-direction:column;gap:6px;}
+}
+@media print{
+  html,body{background:#FFF;}
+  .wrap{max-width:none;padding:0;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .band,.flow,.pipe,.split4,.files,.hcards,.master,.sec{break-inside:avoid;page-break-inside:avoid;}
+  .foot{margin-top:24px;}
+}
+:focus-visible{outline:2px solid #000;outline-offset:2px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;}}
+</style></head><body>
+
+<div class="wrap">
+
+  <div class="top">
+    <span>"PLANNING HUB"</span>
+    <span class="mono">v1.1.0 / 06 FILES</span>
+    <span>기획 핸드오프 엔진</span>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="kick">"무엇을 넣으면 / 무슨 일이 일어나고 / 무엇이 나오는가"</div>
+    <h1>기획 초안을<br><mark>Handoff 수준</mark>으로<br>끌어올려 주는 스킬</h1>
+    <p class="sub">컨셉 한 줄·와이어프레임·피그마 URL·PDF·기존 기획서 — 어떤 입력이든 받아,
+    개발자·기획자·디자이너가 Git에서 바로 찾아보는 <strong>기획 패키지(PRD + 기능정의 리스트)</strong>로 닫는 단일 원장.</p>
+  </header>
+
+  <div class="band plain">PRD만 만들면 실패 · 기능 리스트만 만들면 반쪽 · <b style="background:#FFF;color:#000;padding:1px 6px;">둘을 ID로 묶어야 핸드오프</b></div>
+
+  <!-- 0. 전체 그림 -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">00 /</span><h2 class="sec-t">한눈에 — 입력 ▸ 엔진 ▸ 출력</h2></div>
+    <div class="legend">
+      <span><i class="sw" aria-hidden="true"></i> 기계가 자동으로 (멈추지 않음)</span>
+      <span><i class="sw b" aria-hidden="true"></i> 사람이 신경 써야 하는 구간</span>
+    </div>
+    <div class="flow">
+      <div class="f">
+        <div class="f-k">"INPUT"</div>
+        <div class="f-t">아무거나 1개</div>
+        <div class="f-s">컨셉·이미지·피그마·PDF·문서·혼합</div>
+      </div>
+      <div class="arr" aria-hidden="true">▶</div>
+      <div class="f dark">
+        <div class="f-k">"ENGINE"</div>
+        <div class="f-t">5엔진 한 흐름</div>
+        <div class="f-s">로드 · 추출 · 검증 · 결정 · 패키징 — 자동 연결</div>
+      </div>
+      <div class="arr" aria-hidden="true">▶</div>
+      <div class="f">
+        <div class="f-k">"OUTPUT"</div>
+        <div class="f-t">6파일 패키지</div>
+        <div class="f-s">PRD + 기능정의 동시, ID로 연결</div>
+      </div>
+    </div>
+    <div class="note">엔진은 입력이 부족해도 <b>멈추지 않습니다</b>. 빈 곳은 지어내지 않고 "미정"으로 남겨 사람에게 넘깁니다.</div>
+  </section>
+
+  <!-- 1. INPUT -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">01 /</span><h2 class="sec-t">무엇을 넣는가</h2></div>
+    <p class="sec-d">여섯 유형 중 하나만 있으면 시작합니다. 입력이 강할수록 근거가 강해지고 미결정이 줄어듭니다.</p>
+    <div class="grid6">
+      <div class="cell"><div class="c-n">01 / 약함</div><div><div class="c-t">컨셉 한 줄</div><div class="c-s">"이런 걸 만들고 싶다" → 기능 후보 초안</div></div></div>
+      <div class="cell"><div class="c-n">02 / 중간</div><div><div class="c-t">와이어프레임·이미지</div><div class="c-s">화면에서 기능 역추출</div></div></div>
+      <div class="cell"><div class="c-n">03 / 강함</div><div><div class="c-t">피그마 URL</div><div class="c-s">화면·플로우 반영, 근거 가장 강함</div></div></div>
+      <div class="cell"><div class="c-n">04 / 중간</div><div><div class="c-t">PDF</div><div class="c-s">기존 문서 보강·추출</div></div></div>
+      <div class="cell"><div class="c-n">05 / 중간</div><div><div class="c-t">기존 기획서</div><div class="c-s">문서 기반 정리</div></div></div>
+      <div class="cell"><div class="c-n">06 / 최상</div><div><div class="c-t">혼합 (피그마+컨셉)</div><div class="c-s">화면=근거, 컨셉=의도 → 가장 좋음</div></div></div>
+    </div>
+    <div class="note"><b>사람이 정할 1가지</b> &nbsp;패키지 폴더명(feature-name) — 안 정하면 입력에서 유추해 영문으로 가정합니다.</div>
+  </section>
+
+  <!-- 2. PROCESS -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">02 /</span><h2 class="sec-t">무슨 일이 일어나는가 — 8단계</h2></div>
+    <p class="sec-d">Phase 0부터 7까지 한 번에, 멈추지 않고 흐릅니다. 대부분 자동이고, 사람 손이 필요한 곳은 검정 줄로 표시했습니다.</p>
+    <div class="pipe">
+      <div class="row"><div class="r-n">0</div><div class="r-b"><div class="r-t">입력 해석</div><div class="r-s">입력 유형 판별·정규화, 폴더명·대상 앱·GitHub 레포 확정</div></div><div class="r-tag tag-auto">자동</div></div>
+      <div class="row"><div class="r-n">1</div><div class="r-b"><div class="r-t">컨텍스트 로드 — 고립 금지</div><div class="r-s">산출 전, 조직이 GitHub에 올린 최신 기획 문서를 읽어 용어·정책·ID를 맞춥니다 (원격 기준)</div></div><div class="r-tag tag-auto">자동</div></div>
+      <div class="row"><div class="r-n">2</div><div class="r-b"><div class="r-t">제품·기능 모델 정리</div><div class="r-s">목적·사용자·핵심 객체·행동·성공 상태를 한 줄 본질로 규정</div></div><div class="r-tag tag-auto">자동</div></div>
+      <div class="row"><div class="r-n">3</div><div class="r-b"><div class="r-t">기능 추출 (15컬럼)</div><div class="r-s">화면·컨셉에서 기능 후보 역추출. 확인됨 / 추정 / 미정 3등급으로 분리</div></div><div class="r-tag tag-auto">자동</div></div>
+      <div class="row"><div class="r-n">4</div><div class="r-b"><div class="r-t">정책·예외·상태 검증</div><div class="r-s">레드플래그·4축 역검증·법무 감지 + 기존 문서와 모순 점검. 근거 없으면 확정 안 함</div></div><div class="r-tag tag-auto">자동</div></div>
+      <div class="row"><div class="r-n">5</div><div class="r-b"><div class="r-t">PRD 작성 (16섹션)</div><div class="r-s">배경·목표·시나리오·요구사항·정책·예외·상태·미결정까지 골격 고정</div></div><div class="r-tag tag-auto">자동</div></div>
+      <div class="row"><div class="r-n">6</div><div class="r-b"><div class="r-t">동시 산출 + ID 연결</div><div class="r-s">6파일 생성, 기능(F) ↔ 요구사항(FR) 상호 연결, 통합 마스터 갱신</div></div><div class="r-tag tag-auto">자동</div></div>
+      <div class="row"><div class="r-n">7</div><div class="r-b"><div class="r-t">사후검토 (Git 대조)</div><div class="r-s">기존 문서와 모순·중복·끊긴 참조 점검 → 정합성 리포트 + 커밋 명령어 출력(실행은 안 함)</div></div><div class="r-tag tag-auto">자동</div></div>
+    </div>
+    <div class="note">5단계로 보면 — <b>로드</b> → <b>추출</b> → <b>검증</b> → <b>결정 분리</b> → <b>패키징·사후검토</b>. 두 참고 스킬(기능인벤토리·플래닝리뷰)을 따로 부르지 않고 내부 엔진으로 흡수했습니다.</div>
+  </section>
+
+  <!-- 3. CORE RULE -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">03 /</span><h2 class="sec-t">엔진의 핵심 — 네 가지를 섞지 않습니다</h2></div>
+    <p class="sec-d">가치는 "문서를 많이 만드는 것"이 아니라, 다음 넷을 절대 섞지 않는 데 있습니다. 섞이면 개발자가 추정을 확정으로 오해해 사고가 납니다.</p>
+    <div class="split4">
+      <div class="s4 dark"><div class="q" aria-hidden="true">"</div><div class="l">근거</div><div class="d">화면에서 직접 본 것</div></div>
+      <div class="s4 light"><div class="q" aria-hidden="true">"</div><div class="l">의도</div><div class="d">컨셉에서 온 것</div></div>
+      <div class="s4 dark"><div class="q" aria-hidden="true">"</div><div class="l">제안</div><div class="d">AI가 보강한 것</div></div>
+      <div class="s4 light"><div class="q" aria-hidden="true">"</div><div class="l">미결정</div><div class="d">사람이 정할 것</div></div>
+    </div>
+    <div class="note">정책·예외·상태는 근거가 없으면 <b>지어내지 않습니다</b> — "미정 / 결정 필요"로 남깁니다.</div>
+  </section>
+
+  <!-- 4. OUTPUT -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">04 /</span><h2 class="sec-t">무엇이 나오는가 — 6파일</h2></div>
+    <p class="sec-d">한 패키지 폴더 <span class="mono">/docs/planning/{feature}/</span> 에 6개가 동시에. Markdown이 정본, CSV는 보조, 엑셀은 요청 시 옵션.</p>
+    <div class="files">
+      <div class="file"><div class="fn">README.md</div><div class="fd">패키지 첫 화면 — 무엇부터 보면 되는지</div><span class="fb">길잡이</span></div>
+      <div class="file"><div class="fn">PRD.md</div><div class="fd">제품 요구서 16섹션 — 왜·무엇을·어떻게</div><span class="fb">정본</span></div>
+      <div class="file"><div class="fn">features.md</div><div class="fd">기능정의 리스트 15컬럼 — 사람이 읽는 표</div><span class="fb">정본</span></div>
+      <div class="file"><div class="fn">features.csv</div><div class="fd">필터·자동화용 데이터</div><span class="fb">보조</span></div>
+      <div class="file"><div class="fn">decisions.md</div><div class="fd">사람이 결정할 미결정만 모아둠</div><span class="fb">사람 몫</span></div>
+      <div class="file"><div class="fn">changelog.md</div><div class="fd">변경 이력</div><span class="fb">기록</span></div>
+    </div>
+  </section>
+
+  <!-- 5. HUMAN ZONE -->
+  <div class="band">"여기서부터 사람" — 엔진이 끝낸 뒤 사람이 손대는 세 곳</div>
+  <section class="sec" style="border-top:none;">
+    <div class="sec-h"><span class="sec-n">05 /</span><h2 class="sec-t">사람은 어디서 일하는가</h2></div>
+    <p class="sec-d">엔진은 초안을 완성해 멈추지 않고 넘깁니다. 판단·승인·반영은 사람의 몫입니다.</p>
+    <div class="hcards">
+      <div class="hc"><div class="hn">01 / decisions.md</div><div class="ht">미결정 닫기</div><div class="hd">못감-정보부족 / 못감-결정부족 / 기획 확인 필요 — 빈 정책·예외·자격·과금을 사람이 채웁니다.</div></div>
+      <div class="hc"><div class="hn">02 / PRD 상태</div><div class="ht">Approved 승인</div><div class="hd">스킬은 임의로 승인하지 않습니다. Draft → Review까지만 자동, "개발 착수 가능"은 사람 확인 후입니다.</div></div>
+      <div class="hc"><div class="hn">03 / Git</div><div class="ht">커밋·정합 반영</div><div class="hd">스킬은 파일만 만들고 커밋 명령어만 출력합니다. 실제 커밋과 "다른 문서 갱신 필요" 반영은 사람이 합니다.</div></div>
+    </div>
+    <div class="note">사후검토가 "다른 패키지를 고쳐야 한다"를 찾아도 <b>표시만</b> 합니다 — 남의 문서를 직접 수정하지 않습니다.</div>
+  </section>
+
+  <!-- 6. MASTER -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">06 /</span><h2 class="sec-t">통합 기능정의서는 어떻게 관리되는가</h2></div>
+    <p class="sec-d">PRD는 기능·메뉴 단위로 <strong>독립</strong>입니다. 하지만 기능정의는 부분부분 올린 패키지들을 <strong>플랫폼 전체 마스터 하나</strong>로 통합합니다 — 그게 <span class="mono">_features.csv</span>입니다.</p>
+    <div class="master">
+      <div class="m-top">
+        <div class="pk"><div class="pkt">profile</div><div class="pks">PRD.md · features.md (독립)</div><div class="pkid mono">F-001 · F-002 …</div></div>
+        <div class="pk"><div class="pkt">portfolio</div><div class="pks">PRD.md · features.md (독립)</div><div class="pkid mono">F-001 · F-002 …</div></div>
+        <div class="pk"><div class="pkt">feed</div><div class="pks">PRD.md · features.md (독립)</div><div class="pkid mono">F-001 · F-002 …</div></div>
+      </div>
+      <div class="m-arrow">scan — 모든 패키지를 한 마스터로 통합 ▼</div>
+      <div class="m-bot">
+        <div class="mb dark">
+          <div class="mbt">_features.csv</div>
+          <div class="mbs">플랫폼 전체 통합 마스터. 맨 앞에 <b>패키지·전역ID</b> 컬럼을 붙여 부분 패키지들을 한 표로.</div>
+        </div>
+        <div class="mb light">
+          <div class="mbt">_registry.md · _index.md</div>
+          <div class="mbs">공유 엔티티·횡단 정책·용어·ID 색인(registry) + 패키지 목록 한 줄(index).</div>
+        </div>
+      </div>
+    </div>
+    <ul class="tight">
+      <li>ID는 패키지별로 유지 — 새 패키지도 F-001부터가 정상. 다른 패키지를 가리킬 땐 전역ID <span class="mono">feature#F-001</span>.</li>
+      <li>새 기능은 혼자 살지 않습니다 — 기존 문서의 횡단 정책(삭제 유예·차단·세션·권한)과 모순되면 안 됩니다.</li>
+      <li>최종본 기준은 항상 <b style="background:#000;color:#FFF;padding:1px 6px;">GitHub 원격</b>입니다 — 로컬 작업본은 최종이 아닙니다.</li>
+    </ul>
+  </section>
+
+  <!-- 7. NOT -->
+  <section class="sec">
+    <div class="sec-h"><span class="sec-n">07 /</span><h2 class="sec-t">이건 하지 않습니다</h2></div>
+    <ul class="tight">
+      <li>화면 보고 기능 후보만 빠르게 뽑기 → feature-inventory</li>
+      <li>이미 있는 기획의 정책·예외 설계 검증만 → planning-review</li>
+      <li>아이디어 발산 단계 → planning-skill</li>
+      <li>약관·개인정보·UGC·계약 등 법무 문서 생성 → 감지·라우팅만 하고 생성은 app-and-jang · ip-skill · contract-consulting</li>
+      <li>화면 UI 비주얼 디자인 → ui-designer · apple-canvas</li>
+    </ul>
+  </section>
+
+  <div class="foot">
+    <span>c/o PLANNING HUB</span>
+    <span>입력 → PRD + 기능정의 → GIT 패키지</span>
+    <span class="mono">"멈추지 않습니다 / 섞지 않습니다"</span>
+  </div>
+
+</div>
+</body></html>
