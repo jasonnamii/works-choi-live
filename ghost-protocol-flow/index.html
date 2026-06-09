@@ -299,13 +299,13 @@ footer .f b{color:var(--fg-1);}
     <div class="eyebrow">skill flow · handoff engine · <b>v2.4.0</b></div>
     <h1>ghost<span class="accent">·</span>protocol<br><span class="kr accent">고스트프로토콜 플로우</span></h1>
     <div class="sub">input → prd + feature list → git package</div>
-    <p class="lede kr">컨셉 한 줄, 와이어프레임, 피그마, PDF처럼 입력 형태가 달라도 흐름은 하나로 정리합니다. 입력을 해석해 개발 착수 기준이 되는 <b>PRD와 기능정의 리스트</b>로 전환하고, 근거·제안·미결정을 분리해 Git에 올릴 수 있는 <b>기획 핸드오프 패키지</b>로 묶습니다. 핵심은 문서를 많이 만드는 것이 아니라 <span class="hl hl-c8">개발자가 바로 이어받을 수 있게 매듭짓는 것</span>입니다.</p>
+    <p class="lede kr">컨셉 한 줄, 와이어프레임, 피그마, PDF처럼 입력 형태는 달라도 흐름은 하나입니다. 입력을 읽고 <b>PRD와 기능정의 리스트</b>로 바꿉니다. 근거·제안·미결정은 분리합니다. 마지막에는 Git에 올릴 수 있는 <b>기획 핸드오프 패키지</b>로 묶습니다. 핵심은 문서 수가 아닙니다. <span class="hl hl-c8">개발자가 바로 이어받을 수 있는 상태</span>를 만드는 것입니다.</p>
 
     <div class="brief">
       <div class="b"><div class="n">누가 쓰나</div><div class="t kr">컨셉이나 화면을 가진 기획자</div></div>
       <div class="b"><div class="n">무엇을 넣나</div><div class="t kr">컨셉 한 줄·와이어프레임·피그마·PDF·기존 기획서</div></div>
-      <div class="b"><div class="n">무엇이 나오나</div><div class="t kr">개발자·디자이너가 바로 착수할 PRD와 기능정의 리스트</div></div>
-      <div class="b"><div class="n">어떻게 시작</div><div class="t kr">"고스트프로토콜 실행"으로 발동</div></div>
+      <div class="b"><div class="n">무엇이 나오나</div><div class="t kr">개발자·디자이너가 바로 볼 수 있는 PRD와 기능정의 리스트</div></div>
+      <div class="b"><div class="n">어떻게 시작</div><div class="t kr">"고스트프로토콜 실행"으로 시작</div></div>
     </div>
 
     <div class="engines">
@@ -323,8 +323,8 @@ footer .f b{color:var(--fg-1);}
 <section id="main">
   <div class="wrap">
     <div class="eyebrow">how to read</div>
-    <h2 class="sec-title kr">전체 흐름은 두 구간으로 봅니다 — 최초 생성과 반복 갱신</h2>
-    <p class="sec-desc kr">이 문서는 <b>처음 실행할 때 한 번 통과하는 생성 파이프라인(Zone A)</b>과, 이후 결정을 채워 패키지를 갱신하는 <b>반복 운영 루프(Zone B)</b>로 나뉩니다. 분기, 루프, 피드백은 모두 선으로 표시해 실행 흐름을 한눈에 따라가도록 구성했습니다.</p>
+    <h2 class="sec-title kr">전체 흐름은 두 구간입니다 — 최초 생성과 반복 갱신</h2>
+    <p class="sec-desc kr">이 흐름은 두 부분으로 나뉩니다. <b>Zone A</b>는 처음 실행할 때 한 번 통과하는 생성 구간입니다. <b>Zone B</b>는 이후 결정을 채우며 패키지를 갱신하는 반복 구간입니다. 분기, 루프, 피드백은 선으로 표시했습니다.</p>
 
     <div class="legend">
       <div class="li"><span class="swatch sw-step"></span>일반 단계</div>
@@ -343,32 +343,32 @@ footer .f b{color:var(--fg-1);}
   <div class="wrap">
     <div class="eyebrow">always on · 절대 규칙</div>
     <h2 class="sec-title kr">모든 단계에 적용되는 다섯 가지 기준</h2>
-    <p class="sec-desc kr">이 다섯 가지는 특정 Phase의 세부 규칙이 아니라, 전체 파이프라인을 관통하는 운영 기준입니다. 각 단계의 판단과 산출물은 결국 이 기준을 지키기 위해 설계됩니다.</p>
+    <p class="sec-desc kr">이 다섯 가지는 특정 Phase만의 규칙이 아닙니다. 전체 파이프라인에 항상 적용되는 기준입니다. 각 단계의 판단과 산출물은 이 기준을 지키기 위해 설계됩니다.</p>
     <div class="rules">
       <div class="r g">
         <div class="k">rule 4 · 핵심</div>
         <div class="h kr">근거·의도·제안·미결정 분리</div>
-        <div class="d kr">화면에서 본 것=근거, 컨셉=의도, AI 보강=제안, 사람이 정할 것=미결정. 섞이면 개발자가 확정으로 오해합니다.</div>
+        <div class="d kr">화면에서 본 것은 근거입니다. 컨셉은 의도입니다. AI 보강은 제안입니다. 사람이 정할 것은 미결정입니다. 이 넷이 섞이면 개발자가 확정으로 오해합니다.</div>
       </div>
       <div class="r">
         <div class="k">rule 1·6</div>
         <div class="h kr">PRD와 기능정의는 항상 함께·ID로 연결</div>
-        <div class="d kr">하나만 만들면 실패. F-ID ↔ FR-ID가 서로를 가리켜야 핸드오프가 완성됩니다.</div>
+        <div class="d kr">둘 중 하나만 만들면 부족합니다. F-ID와 FR-ID가 서로 연결되어야 핸드오프가 완성됩니다.</div>
       </div>
       <div class="r">
         <div class="k">rule 2</div>
         <div class="h kr">구현 지시서가 아닌 착수 기준 문서</div>
-        <div class="d kr">DB 구조·API 엔드포인트·픽셀 UI 금지. 목표는 긴 문서가 아니라 최소 완결성입니다.</div>
+        <div class="d kr">DB 구조, API 엔드포인트, 픽셀 단위 UI는 쓰지 않습니다. 목표는 긴 문서가 아닙니다. 개발 착수에 필요한 최소 완결성입니다.</div>
       </div>
       <div class="r">
         <div class="k">rule · 멈춤 없음</div>
         <div class="h kr">입력이 부족해도 멈추지 않음</div>
-        <div class="d kr">컨셉 한 줄이라도 진행하고, 빈 곳은 미결정으로 남깁니다. "정보 더 달라"로 멈추지 않습니다.</div>
+        <div class="d kr">컨셉 한 줄만 있어도 진행합니다. 부족한 부분은 미결정으로 남깁니다. "정보 더 달라"로 멈추지 않습니다.</div>
       </div>
       <div class="r">
         <div class="k">rule 9 · 루프</div>
         <div class="h kr">미결정은 정해질 때까지 추적</div>
-        <div class="d kr">올렸다고 끝이 아니라 정해져야 끝. 📅 올린 날짜를 달고 세션마다 다시 환기합니다.</div>
+        <div class="d kr">Git에 올렸다고 끝난 것이 아닙니다. 미결정이 정해져야 끝입니다. 📅 올린 날짜를 남기고 세션마다 다시 확인합니다.</div>
       </div>
     </div>
   </div>
@@ -381,10 +381,10 @@ footer .f b{color:var(--fg-1);}
       <span class="zone">zone a</span>
       <h2 class="sec-title kr">첫 실행 — 입력에서 Git 패키지까지 한 번에</h2>
     </div>
-    <p class="sec-desc kr">처음 겪는 흐름은 Phase 0부터 7까지 <span class="hl">멈추지 않고</span> 한 번에 잇습니다. 기능 추출부터 정책·예외 점검까지 단계를 따로 떼지 않고 하나의 흐름으로 묶습니다.</p>
+    <p class="sec-desc kr">첫 실행은 Phase 0부터 7까지 <span class="hl">멈추지 않고</span> 이어집니다. 기능 추출, 정책 점검, 예외 점검을 한 흐름으로 묶습니다.</p>
 
     <div class="diagram">
-      <div class="dcap">phase 0 → 7 · 마스터 파이프라인 (오른쪽 점선 = 미결 추적 피드백 · 주황 = 조건 분기)</div>
+      <div class="dcap">phase 0 → 7 · 마스터 파이프라인 (오른쪽 점선 = 미결 추적 · 주황 = 조건 분기)</div>
       <svg viewBox="0 0 760 760" role="img" aria-label="Phase 0 to 7 master pipeline">
         <defs>
           <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3a3a3a"/></marker>
@@ -403,7 +403,7 @@ footer .f b{color:var(--fg-1);}
         <rect x="200" y="30" width="360" height="58" class="frame"/>
         <text x="218" y="55" class="big" style="font-size:24px">0</text>
         <text x="256" y="50" class="lbl">phase 0 · input engine</text>
-        <text x="256" y="72" class="ttl">입력 해석 · GNB 선제시 · 코퍼스 판단</text>
+        <text x="256" y="72" class="ttl">입력 해석 · GNB 제시 · 코퍼스 판단</text>
 
         <!-- conn 0->1 -->
         <line x1="380" y1="88" x2="380" y2="116" class="conn" marker-end="url(#ah)"/>
@@ -427,7 +427,7 @@ footer .f b{color:var(--fg-1);}
         <rect x="200" y="202" width="360" height="58" class="frame"/>
         <text x="218" y="227" class="big" style="font-size:24px">2</text>
         <text x="256" y="222" class="lbl">phase 2 · model</text>
-        <text x="256" y="244" class="ttl">제품·기능 모델 정리 (본질 한 줄)</text>
+        <text x="256" y="244" class="ttl">제품·기능 모델 정리</text>
 
         <line x1="380" y1="260" x2="380" y2="288" class="conn" marker-end="url(#ah)"/>
 
@@ -443,7 +443,7 @@ footer .f b{color:var(--fg-1);}
         <rect x="200" y="374" width="360" height="58" class="frame"/>
         <text x="218" y="399" class="big" style="font-size:24px">4</text>
         <text x="256" y="394" class="lbl">phase 4 · policy check</text>
-        <text x="256" y="416" class="ttl">정책·예외·상태 내부 점검 (R·C 스캔)</text>
+        <text x="256" y="416" class="ttl">정책·예외·상태 점검</text>
 
         <line x1="380" y1="432" x2="380" y2="460" class="conn" marker-end="url(#ah)"/>
 
@@ -459,7 +459,7 @@ footer .f b{color:var(--fg-1);}
         <rect x="200" y="546" width="360" height="58" class="frame-key"/>
         <text x="218" y="571" class="big" style="font-size:24px;fill:#04140a">6</text>
         <text x="256" y="566" class="lbl" fill="#04140a">phase 6 · emit 7 files + id link</text>
-        <text x="256" y="588" class="ttl-k">동시 산출 7파일 · F↔FR 연결</text>
+        <text x="256" y="588" class="ttl-k">7파일 동시 산출 · F↔FR 연결</text>
 
         <line x1="380" y1="604" x2="380" y2="632" class="conn" marker-end="url(#ah)"/>
 
@@ -467,11 +467,11 @@ footer .f b{color:var(--fg-1);}
         <rect x="200" y="632" width="360" height="58" class="frame-dark"/>
         <text x="218" y="657" class="big-w" style="font-size:24px">7</text>
         <text x="256" y="652" class="lbl" fill="#07ED21">phase 7 · review + package</text>
-        <text x="256" y="674" class="ttl-w">사후검토 · validate · 커밋 명령</text>
+        <text x="256" y="674" class="ttl-w">사후검토 · 검증 · 커밋 명령</text>
 
         <!-- right feedback loop : 미결추적 -->
         <path d="M560,661 L710,661 L710,59 L560,59" class="conn-loop" marker-end="url(#ah-c8)"/>
-        <text x="724" y="365" class="sm" transform="rotate(-90 724 365)" fill="#06b81a" style="font-size:11px">미결 추적 · 다음 세션 자동 환기 (rule 9)</text>
+        <text x="724" y="365" class="sm" transform="rotate(-90 724 365)" fill="#06b81a" style="font-size:11px">미결 추적 · 다음 세션에서 다시 확인</text>
       </svg>
     </div>
   </div>
@@ -481,7 +481,7 @@ footer .f b{color:var(--fg-1);}
 <section>
   <div class="wrap">
     <div class="eyebrow">zone a · 단계별 상세 · 누락 없음</div>
-    <h2 class="sec-title kr">각 Phase가 실제로 하는 일</h2>
+    <h2 class="sec-title kr">각 Phase의 역할</h2>
 
     <!-- PHASE 0 -->
     <div class="phase">
@@ -490,13 +490,13 @@ footer .f b{color:var(--fg-1);}
         <div class="ph-t kr">입력 해석</div>
         <div class="ph-eng">input-normalization.md · nav-anchor.md · track_open.py</div>
         <div class="steps">
-          <div class="st"><div class="si">1</div><div><div class="sh kr">입력 유형 판별</div><div class="sd kr">컨셉 / 이미지 / 피그마 URL / PDF / 기존 문서 / 혼합 중 무엇인지 가립니다.</div></div></div>
-          <div class="st"><div class="si">1b</div><div><div class="sh kr">GNB·유틸 메뉴를 먼저 제시 <span class="tagk">IA 앵커</span></div><div class="sd kr">기능을 뽑기 전에 앱의 정보구조를 먼저 세웁니다. <code>_nav.md</code>가 있으면 기준을 확인하고, 없으면 후보를 제안한 뒤 가정값으로 진행합니다. 이후 모든 패키지의 <code>메뉴</code> 값은 이 구조에 매핑됩니다.</div></div></div>
-          <div class="st"><div class="si">2</div><div><div class="sh kr">피그마 URL 열기 시도 <span class="tagr">fallback</span></div><div class="sd kr">못 열면 멈추지 않고 이미지·PDF 업로드 대체를 안내하고 가능한 구조로 진행합니다.</div></div></div>
-          <div class="st"><div class="si">3</div><div><div class="sh kr">feature-name 확정</div><div class="sd kr">패키지 폴더명(영문 kebab-case). 미응답 시 가정합니다.</div></div></div>
-          <div class="st"><div class="si">4</div><div><div class="sh kr">대상 앱·프로파일·플랫폼·파트 확정</div><div class="sd kr">디폴트 C8 6파트(iOS·AOS·BE·FE·디자인·기획).</div></div></div>
-          <div class="st"><div class="si">5</div><div><div class="sh kr">Git 코퍼스 활성화 판단 <span class="tagr">분기</span></div><div class="sd kr">"Git 구조로 / 레포 기준 / 기존 기획과 맞춰줘" 요청이 있을 때만 코퍼스를 읽습니다. Git 첫 진입이면 개인 로그인 1회 개별화(<code>personalize.py</code>).</div></div></div>
-          <div class="st"><div class="si">6</div><div><div class="sh kr">묵힌 미결 환기 <span class="tagk">피드백</span></div><div class="sd kr">기존 패키지가 있으면 <code>track_open.py</code>로 3일+ 안 정해진 미결을 응답 맨 위에 먼저 띄우고, <code>nav_check.py</code>로 월초·메뉴 변경도 환기합니다.</div></div></div>
+          <div class="st"><div class="si">1</div><div><div class="sh kr">입력 유형 판별</div><div class="sd kr">입력이 컨셉, 이미지, 피그마 URL, PDF, 기존 문서, 혼합 중 무엇인지 구분합니다.</div></div></div>
+          <div class="st"><div class="si">1b</div><div><div class="sh kr">GNB·유틸 메뉴를 먼저 잡음 <span class="tagk">IA 앵커</span></div><div class="sd kr">기능을 뽑기 전에 앱의 정보구조를 먼저 잡습니다. <code>_nav.md</code>가 있으면 그 기준을 따릅니다. 없으면 후보를 제안하고 가정값으로 진행합니다. 이후 모든 패키지의 <code>메뉴</code> 값은 이 구조에 맞춥니다.</div></div></div>
+          <div class="st"><div class="si">2</div><div><div class="sh kr">피그마 URL 열기 시도 <span class="tagr">fallback</span></div><div class="sd kr">열 수 없으면 멈추지 않습니다. 이미지나 PDF 업로드를 안내하고, 가능한 구조로 진행합니다.</div></div></div>
+          <div class="st"><div class="si">3</div><div><div class="sh kr">feature-name 확정</div><div class="sd kr">패키지 폴더명을 정합니다. 형식은 영문 kebab-case입니다. 답이 없으면 가정값으로 진행합니다.</div></div></div>
+          <div class="st"><div class="si">4</div><div><div class="sh kr">대상 앱·프로파일·플랫폼·파트 확정</div><div class="sd kr">기본값은 C8 6파트입니다. iOS, AOS, BE, FE, 디자인, 기획입니다.</div></div></div>
+          <div class="st"><div class="si">5</div><div><div class="sh kr">Git 코퍼스 활성화 판단 <span class="tagr">분기</span></div><div class="sd kr">"Git 구조로", "레포 기준", "기존 기획과 맞춰줘" 같은 요청이 있을 때만 코퍼스를 읽습니다. Git 첫 진입이면 개인 로그인을 1회 설정합니다(<code>personalize.py</code>).</div></div></div>
+          <div class="st"><div class="si">6</div><div><div class="sh kr">묵힌 미결 환기 <span class="tagk">피드백</span></div><div class="sd kr">기존 패키지가 있으면 <code>track_open.py</code>로 3일 이상 열린 미결정을 먼저 보여줍니다. <code>nav_check.py</code>로 월초 변경과 메뉴 변경도 함께 확인합니다.</div></div></div>
         </div>
       </div>
     </div>
@@ -507,12 +507,12 @@ footer .f b{color:var(--fg-1);}
       <div class="pbody">
         <div class="ph-t kr">플랫폼 컨텍스트 로드</div>
         <div class="ph-eng">platform-context.md · corpus_tools.py</div>
-        <div class="ph-note kr">▶ 조건부 — 코퍼스 활성(요청) 시에만 실행. 요청 없으면 통째로 건너뜁니다.</div>
+        <div class="ph-note kr">▶ 조건부 — 코퍼스 요청이 있을 때만 실행합니다. 요청이 없으면 건너뜁니다.</div>
         <div class="steps">
-          <div class="st"><div class="si">1</div><div><div class="sh kr">원격 코퍼스 fetch</div><div class="sd kr"><code>corpus_tools.py fetch</code>로 <b>원격 기본 브랜치</b>의 최신 기획 문서를 가져옵니다(로컬 아님).</div></div></div>
-          <div class="st"><div class="si">2</div><div><div class="sh kr">색인·레지스트리·형제 패키지 직접 읽기</div><div class="sd kr"><code>_index.md</code>·<code>_registry.md</code>·형제 <code>PRD.md</code>·<code>features.md</code>로 맥락 파악.</div></div></div>
-          <div class="st"><div class="si">3</div><div><div class="sh kr">레지스트리 구성</div><div class="sd kr"><code>scan</code>으로 F/FR ID 색인·상태·공유 엔티티·횡단 정책·용어 정리.</div></div></div>
-          <div class="st"><div class="si">4</div><div><div class="sh kr">fallback <span class="tagr">no-stop</span></div><div class="sd kr"><code>gh</code> 미설치·미인증·접근 불가 → 멈추지 않고 빈 코퍼스로 진행 + decisions.md에 "⚠️ 최신 코퍼스 미확인" 경고.</div></div></div>
+          <div class="st"><div class="si">1</div><div><div class="sh kr">원격 코퍼스 fetch</div><div class="sd kr"><code>corpus_tools.py fetch</code>로 <b>원격 기본 브랜치</b>의 최신 기획 문서를 가져옵니다. 로컬 파일은 기준으로 보지 않습니다.</div></div></div>
+          <div class="st"><div class="si">2</div><div><div class="sh kr">색인·레지스트리·형제 패키지 직접 읽기</div><div class="sd kr"><code>_index.md</code>, <code>_registry.md</code>, 형제 <code>PRD.md</code>, <code>features.md</code>를 읽고 맥락을 파악합니다.</div></div></div>
+          <div class="st"><div class="si">3</div><div><div class="sh kr">레지스트리 구성</div><div class="sd kr"><code>scan</code>으로 F/FR ID, 상태, 공유 엔티티, 횡단 정책, 용어를 정리합니다.</div></div></div>
+          <div class="st"><div class="si">4</div><div><div class="sh kr">fallback <span class="tagr">no-stop</span></div><div class="sd kr"><code>gh</code>가 없거나 인증되지 않아도 멈추지 않습니다. 빈 코퍼스로 진행합니다. decisions.md에는 "⚠️ 최신 코퍼스 미확인"을 남깁니다.</div></div></div>
         </div>
       </div>
     </div>
@@ -524,8 +524,8 @@ footer .f b{color:var(--fg-1);}
         <div class="ph-t kr">제품·기능 모델 정리</div>
         <div class="ph-eng">policy-exception-checklist.md §0</div>
         <div class="steps">
-          <div class="st"><div class="si">1</div><div><div class="sh kr">의미 모델로 재구성</div><div class="sd kr">제품 목적 / 사용자(행위자) / 핵심 객체 / 핵심 행동 / 성공하면 되는 상태(불변식)를 잡습니다. 채우기 전에 이해부터.</div></div></div>
-          <div class="st"><div class="si">2</div><div><div class="sh kr">본질을 한 줄로 규정</div><div class="sd kr">"경합 자원 배분 / 양면 신뢰 거래 / 공개 범위 제어" 식으로. 이후 모든 점검·사례가 이 모델 위에서 작동합니다.</div></div></div>
+          <div class="st"><div class="si">1</div><div><div class="sh kr">의미 모델로 재구성</div><div class="sd kr">제품 목적, 사용자, 핵심 객체, 핵심 행동, 성공 상태를 잡습니다. 먼저 이해하고, 그다음 채웁니다.</div></div></div>
+          <div class="st"><div class="si">2</div><div><div class="sh kr">본질을 한 줄로 규정</div><div class="sd kr">예를 들면 "경합 자원 배분", "양면 신뢰 거래", "공개 범위 제어"입니다. 이후 점검과 사례는 이 모델을 기준으로 봅니다.</div></div></div>
         </div>
       </div>
     </div>
@@ -537,7 +537,7 @@ footer .f b{color:var(--fg-1);}
         <div class="ph-t kr">기능 추출 — 15컬럼</div>
         <div class="ph-eng">extraction-rules.md · feature-column-spec.md</div>
         <div class="diagram" style="margin-top:18px">
-          <div class="dcap">입력에 따라 추출 경로가 갈립니다 (분기)</div>
+          <div class="dcap">입력에 따라 추출 경로가 달라집니다</div>
           <svg viewBox="0 0 760 230" role="img" aria-label="phase 3 branch">
             <defs><marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3a3a3a"/></marker></defs>
             <!-- decision diamond -->
@@ -552,14 +552,14 @@ footer .f b{color:var(--fg-1);}
             <text x="250" y="46" class="lbl" fill="#06b81a">화면 有</text>
             <rect x="320" y="28" width="220" height="54" class="frame"/>
             <text x="334" y="50" class="lbl">screen reverse-extract</text>
-            <text x="334" y="69" class="ttl">화면 기반 역추출 (근거 강함)</text>
+            <text x="334" y="69" class="ttl">화면 기반 역추출</text>
 
             <!-- no : 컨셉 초안 -->
             <path d="M230,115 L270,115 L270,175 L320,175" class="conn" marker-end="url(#ah3)"/>
             <text x="250" y="200" class="lbl" fill="#ff5722">컨셉만</text>
             <rect x="320" y="148" width="220" height="54" class="frame"/>
             <text x="334" y="170" class="lbl">concept draft</text>
-            <text x="334" y="189" class="ttl">컨셉 기반 초안 (미결정 多)</text>
+            <text x="334" y="189" class="ttl">컨셉 기반 초안</text>
 
             <!-- merge -->
             <path d="M540,55 L580,55 L580,115 L620,115" class="conn" marker-end="url(#ah3)"/>
@@ -570,10 +570,10 @@ footer .f b{color:var(--fg-1);}
           </svg>
         </div>
         <div class="steps">
-          <div class="st"><div class="si">a</div><div><div class="sh kr">근거·의도·제안·미결정 분리 <span class="tagk">rule 4</span></div><div class="sd kr">화면=근거 / 컨셉=의도 / AI 추정=제안 / 정할 것=미정. 한 칸도 섞지 않습니다.</div></div></div>
-          <div class="st"><div class="si">b</div><div><div class="sh kr">행 1개는 행동 1개 <span class="tagk">rule 3</span></div><div class="sd kr">사용자 행동은 동사형으로, 기능명은 명사형으로 적습니다. 알림, 자동 저장, 신고 접수처럼 시스템이 반드시 수행해야 하는 동작도 별도 행으로 둡니다. 버튼, 아이콘, 텍스트 자체는 기능 행이 아닙니다.</div></div></div>
-          <div class="st"><div class="si">c</div><div><div class="sh kr">근거 없는 정책·예외·상태는 미정 <span class="tagk">rule 5</span></div><div class="sd kr">화면·문서에 없으면 <code>미정</code>·<code>결정 필요</code>로 둡니다.</div></div></div>
-          <div class="st"><div class="si">d</div><div><div class="sh kr">레지스트리 대조 (코퍼스 활성 시)</div><div class="sd kr">ID는 패키지별 <code>F-001</code>부터. 다른 패키지 참조는 전역ID <code>feature#F-001</code>. 이미 있는 기능은 다시 만들지 않고 참조.</div></div></div>
+          <div class="st"><div class="si">a</div><div><div class="sh kr">근거·의도·제안·미결정 분리 <span class="tagk">rule 4</span></div><div class="sd kr">화면은 근거입니다. 컨셉은 의도입니다. AI 추정은 제안입니다. 정할 것은 미정으로 둡니다. 한 칸에 섞지 않습니다.</div></div></div>
+          <div class="st"><div class="si">b</div><div><div class="sh kr">행 1개는 행동 1개 <span class="tagk">rule 3</span></div><div class="sd kr">사용자 행동은 동사형으로 씁니다. 기능명은 명사형으로 씁니다. 알림, 자동 저장, 신고 접수처럼 시스템 동작도 별도 행으로 둡니다. 버튼, 아이콘, 텍스트 자체는 기능 행이 아닙니다.</div></div></div>
+          <div class="st"><div class="si">c</div><div><div class="sh kr">근거 없는 정책·예외·상태는 미정 <span class="tagk">rule 5</span></div><div class="sd kr">화면이나 문서에 없으면 <code>미정</code> 또는 <code>결정 필요</code>로 둡니다.</div></div></div>
+          <div class="st"><div class="si">d</div><div><div class="sh kr">레지스트리 대조 (코퍼스 활성 시)</div><div class="sd kr">ID는 패키지별로 <code>F-001</code>부터 시작합니다. 다른 패키지를 참조할 때는 전역 ID <code>feature#F-001</code>를 씁니다. 이미 있는 기능은 새로 만들지 않고 참조합니다.</div></div></div>
         </div>
       </div>
     </div>
@@ -583,9 +583,9 @@ footer .f b{color:var(--fg-1);}
       <div class="pnum"><div class="p">phase</div><div class="big">4</div></div>
       <div class="pbody">
         <div class="ph-t kr">정책·예외·상태 내부 점검</div>
-        <div class="ph-eng">policy-exception-checklist.md · 내부 도구 (산출물 길게 만들기용 아님)</div>
+        <div class="ph-eng">policy-exception-checklist.md · 내부 점검 도구</div>
         <div class="diagram" style="margin-top:18px">
-          <div class="dcap">4단 점검 + 위험 기능이면 헤비 검토로 분기</div>
+          <div class="dcap">4단 점검 후 위험 기능은 추가 검토로 보냅니다</div>
           <svg viewBox="0 0 760 200" role="img" aria-label="phase 4 sequence">
             <defs><marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3a3a3a"/></marker>
             <marker id="ah4o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff5722"/></marker></defs>
@@ -611,18 +611,18 @@ footer .f b{color:var(--fg-1);}
 
             <!-- compliance -> 법무 라우팅 -->
             <path d="M474,96 L474,150 L620,150" class="conn-branch" marker-end="url(#ah4o)"/>
-            <text x="484" y="168" class="sm" fill="#ff5722" style="font-size:10px">법무 라우팅 (생성 ✗) → decisions.md "변호사 검토 필요"</text>
+            <text x="484" y="168" class="sm" fill="#ff5722" style="font-size:10px">법무 확인 필요 → decisions.md에 기록</text>
 
             <!-- redflag -> heavy note -->
             <path d="M94,96 L94,150 L300,150" class="conn-branch" marker-end="url(#ah4o)"/>
-            <text x="104" y="168" class="sm" fill="#ff5722" style="font-size:10px">위험 기능 → "헤비 검토 권장" 1줄</text>
+            <text x="104" y="168" class="sm" fill="#ff5722" style="font-size:10px">위험 기능 → 추가 검토 권장</text>
           </svg>
         </div>
         <div class="steps">
-          <div class="st"><div class="si">1</div><div><div class="sh kr">레드플래그 선행 스캔 (R1–R18)</div><div class="sd kr">이중결제·권한 우회·즉시영구삭제·다크패턴 등 치명 패턴을 먼저 잡습니다. <b>PRD 본문에 R번호 금지</b> — "꼭 정해야 할 것"으로 번역, 기능당 1~3개만.</div></div></div>
-          <div class="st"><div class="si">2</div><div><div class="sh kr">정책·예외·경계·상태 점검</div><div class="sd kr">기본 시나리오의 각 문장을 정책, 예외, 경계, 상태 기준으로 다시 확인합니다. 답이 없는 자리는 확정하지 않고 미결정으로 남깁니다.</div></div></div>
-          <div class="st"><div class="si">3</div><div><div class="sh kr">컴플라이언스·IP 점검 (C1–C14) <span class="tagr">라우팅</span></div><div class="sd kr">개인정보·UGC·미성년·결제·위치 등 법적 필수요구를 감지해 미결정·법무로 라우팅(생성 ✗). decisions.md의 법무 확인으로 모읍니다.</div></div></div>
-          <div class="st"><div class="si">4</div><div><div class="sh kr">시스템 파급 (위험·공통 기능일 때만)</div><div class="sd kr">상류·하류·미래·횡단을 봅니다. 코퍼스 활성이면 기존 횡단 정책과 모순 금지·용어 통일.</div></div></div>
+          <div class="st"><div class="si">1</div><div><div class="sh kr">레드플래그 선행 스캔 (R1–R18)</div><div class="sd kr">이중결제, 권한 우회, 즉시 영구 삭제, 다크패턴 같은 위험 패턴을 먼저 확인합니다. <b>PRD 본문에는 R번호를 쓰지 않습니다.</b> "꼭 정해야 할 것"으로 바꿔 씁니다. 기능당 1~3개만 남깁니다.</div></div></div>
+          <div class="st"><div class="si">2</div><div><div class="sh kr">정책·예외·경계·상태 점검</div><div class="sd kr">기본 시나리오를 정책, 예외, 경계, 상태 기준으로 다시 봅니다. 답이 없는 부분은 확정하지 않습니다. 미결정으로 남깁니다.</div></div></div>
+          <div class="st"><div class="si">3</div><div><div class="sh kr">컴플라이언스·IP 점검 (C1–C14) <span class="tagr">라우팅</span></div><div class="sd kr">개인정보, UGC, 미성년, 결제, 위치처럼 법적 확인이 필요한 항목을 감지합니다. 해당 항목은 미결정 또는 법무 확인으로 보냅니다. decisions.md에 모아 둡니다.</div></div></div>
+          <div class="st"><div class="si">4</div><div><div class="sh kr">시스템 파급 (위험·공통 기능일 때만)</div><div class="sd kr">상류, 하류, 미래 확장, 횡단 정책을 봅니다. 코퍼스가 켜져 있으면 기존 정책과 모순되지 않게 맞춥니다. 용어도 통일합니다.</div></div></div>
         </div>
       </div>
     </div>
@@ -632,9 +632,9 @@ footer .f b{color:var(--fg-1);}
       <div class="pnum"><div class="p">phase</div><div class="big">5</div></div>
       <div class="pbody">
         <div class="ph-t kr">PRD 작성 — 기본 12섹션</div>
-        <div class="ph-eng">prd-template.md · 목표 = 최소 완결성 (긴 문서 아님)</div>
+        <div class="ph-eng">prd-template.md · 목표 = 최소 완결성</div>
         <div class="diagram" style="margin-top:18px">
-          <div class="dcap">기본 12섹션 (선택 섹션은 위험·복합 기능에만)</div>
+          <div class="dcap">기본 12섹션 · 선택 섹션은 필요한 경우만</div>
           <svg viewBox="0 0 760 150" role="img" aria-label="prd 12 sections">
             <defs><marker id="ah5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#aaa"/></marker></defs>
             <g font-family="var(--font-mono)">
@@ -660,8 +660,8 @@ footer .f b{color:var(--fg-1);}
           </svg>
         </div>
         <div class="steps">
-          <div class="st"><div class="si">·</div><div><div class="sh kr">§8 정책·§9 상태/예외는 점검표를 검증 도구로만</div><div class="sd kr">근거 없는 것은 확정하지 않고 §12 미결정과 decisions.md로 분리합니다.</div></div></div>
-          <div class="st"><div class="si">·</div><div><div class="sh kr">선택 섹션은 해당될 때만</div><div class="sd kr">컴플라이언스/IP(원칙은 decisions.md) · 시스템 파급 · 추후 확장.</div></div></div>
+          <div class="st"><div class="si">·</div><div><div class="sh kr">§8 정책과 §9 상태/예외는 점검표로 확인</div><div class="sd kr">근거 없는 내용은 확정하지 않습니다. §12 미결정과 decisions.md로 분리합니다.</div></div></div>
+          <div class="st"><div class="si">·</div><div><div class="sh kr">선택 섹션은 해당될 때만</div><div class="sd kr">컴플라이언스/IP, 시스템 파급, 추후 확장처럼 필요한 경우에만 추가합니다.</div></div></div>
         </div>
       </div>
     </div>
@@ -670,10 +670,10 @@ footer .f b{color:var(--fg-1);}
     <div class="phase">
       <div class="pnum"><div class="p">phase</div><div class="big">6</div></div>
       <div class="pbody">
-        <div class="ph-t kr">동시 산출 + ID 연결 + 레지스트리 <span class="tagk">핵심</span></div>
+        <div class="ph-t kr">동시 산출 · ID 연결 · 레지스트리 <span class="tagk">핵심</span></div>
         <div class="ph-eng">git-output-rules.md · decision-log-template.md · qa-template.md</div>
         <div class="diagram" style="margin-top:18px">
-          <div class="dcap">하나의 입력에서 7파일을 동시에 — F↔FR로 묶어 마무리합니다</div>
+          <div class="dcap">하나의 입력에서 7파일을 동시에 만듭니다. F↔FR로 묶어 마무리합니다</div>
           <svg viewBox="0 0 760 300" role="img" aria-label="phase 6 fan-out 7 files">
             <defs><marker id="ah6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#06b81a"/></marker></defs>
             <rect x="14" y="120" width="150" height="60" class="frame-dark"/>
@@ -716,10 +716,10 @@ footer .f b{color:var(--fg-1);}
           </svg>
         </div>
         <div class="steps">
-          <div class="st"><div class="si">1</div><div><div class="sh kr">F↔FR 연결 <span class="tagk">rule 6</span></div><div class="sd kr">features의 연결 ID와 PRD §7 ID가 서로를 가리킵니다(<code>F-001 ↔ FR-001</code>). 다른 패키지는 <code>feature#FR-001</code>.</div></div></div>
-          <div class="st"><div class="si">4</div><div><div class="sh kr">decisions.md = 답안지형 <span class="tagr">갱신 입력칸</span></div><div class="sd kr">못감-정보부족 / 못감-결정부족 / 기획 확인 필요. 열린 항목 아래 <code>📅 opened</code>를 박습니다(추적 근거). 객관식 슬롯 + ➕ 빈칸 + ✅ 결정됨 표 — 이게 곧 Update Mode 입력.</div></div></div>
-          <div class="st"><div class="si">5</div><div><div class="sh kr">qa.md = 8차원 합격 기준</div><div class="sd kr">기능·정책·상태/예외·<b>디자인 완성도·UX/모션</b>·접근성·성능·정합성. FR마다 최소 1행, 화면 미확정(I-n)은 보류(확정되면 풀림).</div></div></div>
-          <div class="st"><div class="si">7</div><div><div class="sh kr">레지스트리 갱신 (코퍼스 활성 시) · 엑셀 옵션</div><div class="sd kr"><code>_registry.md</code> + <code>_features.csv</code>(통합 마스터). "엑셀로 줘"일 때만 <code>features.xlsx</code>.</div></div></div>
+          <div class="st"><div class="si">1</div><div><div class="sh kr">F↔FR 연결 <span class="tagk">rule 6</span></div><div class="sd kr">features의 연결 ID와 PRD §7 ID가 서로 연결됩니다(<code>F-001 ↔ FR-001</code>). 다른 패키지를 참조할 때는 <code>feature#FR-001</code>를 씁니다.</div></div></div>
+          <div class="st"><div class="si">4</div><div><div class="sh kr">decisions.md = 답안지형 <span class="tagr">갱신 입력칸</span></div><div class="sd kr">상태는 못감-정보부족, 못감-결정부족, 기획 확인 필요로 나눕니다. 열린 항목에는 <code>📅 opened</code>를 남깁니다. 객관식 슬롯, ➕ 빈칸, ✅ 결정됨 표가 Update Mode의 입력값입니다.</div></div></div>
+          <div class="st"><div class="si">5</div><div><div class="sh kr">qa.md = 8차원 합격 기준</div><div class="sd kr">기능, 정책, 상태/예외, <b>디자인 완성도·UX/모션</b>, 접근성, 성능, 정합성을 봅니다. FR마다 최소 1행을 둡니다. 화면 미확정(I-n)은 보류로 둡니다. 화면이 확정되면 보류를 풉니다.</div></div></div>
+          <div class="st"><div class="si">7</div><div><div class="sh kr">레지스트리 갱신 (코퍼스 활성 시) · 엑셀 옵션</div><div class="sd kr"><code>_registry.md</code>와 <code>_features.csv</code>를 갱신합니다. 둘은 통합 마스터입니다. "엑셀로 줘"라고 요청할 때만 <code>features.xlsx</code>를 만듭니다.</div></div></div>
         </div>
       </div>
     </div>
@@ -728,16 +728,16 @@ footer .f b{color:var(--fg-1);}
     <div class="phase">
       <div class="pnum"><div class="p">phase</div><div class="big">7</div></div>
       <div class="pbody">
-        <div class="ph-t kr">사후검토 + 패키징</div>
+        <div class="ph-t kr">사후검토 · 패키징</div>
         <div class="ph-eng">validate_planning_package.py · track_open.py · git-output-rules.md §0·§4</div>
         <div class="diagram" style="margin-top:18px">
-          <div class="dcap">결정적 검증 → 맥락 정합 → 미결 추적 → 커밋 명령 (실행은 사람)</div>
+          <div class="dcap">검증 → 맥락 정합 → 미결 추적 → 커밋 명령</div>
           <svg viewBox="0 0 760 180" role="img" aria-label="phase 7 review">
             <defs><marker id="ah7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3a3a3a"/></marker>
             <marker id="ah7c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#06b81a"/></marker></defs>
             <rect x="14"  y="20" width="168" height="56" class="frame"/>
             <text x="26" y="42" class="lbl">deterministic</text>
-            <text x="26" y="61" class="ttl">validate (7파일·12·15)</text>
+            <text x="26" y="61" class="ttl">validate · 7파일·12섹션·15컬럼</text>
 
             <rect x="206" y="20" width="168" height="56" class="frame"/>
             <text x="218" y="42" class="lbl">contextual · corpus</text>
@@ -758,16 +758,16 @@ footer .f b{color:var(--fg-1);}
             <!-- feedback to decisions -->
             <path d="M482,76 L482,120 L240,120 L240,120" class="conn-loop"/>
             <path d="M240,120 L240,76" class="conn-loop" marker-end="url(#ah7c)"/>
-            <text x="250" y="138" class="sm" fill="#06b81a" style="font-size:10px">발견 → decisions.md "플랫폼 정합성 / 다른 문서 갱신 필요" (표시만, 수정 ✗)</text>
-            <text x="602" y="100" class="sm" fill="#ff5722" style="font-size:10px">실행 ✗ — 사람이</text>
+            <text x="250" y="138" class="sm" fill="#06b81a" style="font-size:10px">발견 사항 → decisions.md에 기록</text>
+            <text x="602" y="100" class="sm" fill="#ff5722" style="font-size:10px">실행은 사람</text>
           </svg>
         </div>
         <div class="steps">
-          <div class="st"><div class="si">1</div><div><div class="sh kr">결정적 검증</div><div class="sd kr"><code>validate_planning_package.py</code> → 7파일·12섹션·15컬럼·상태값·F↔FR·미결정 연결·금지어. 코퍼스 활성 시 끊긴 교차참조·누락도.</div></div></div>
-          <div class="st"><div class="si">2</div><div><div class="sh kr">맥락 정합 (코퍼스 활성 시)</div><div class="sd kr">기존 문서와 모순? 기능 중복? 교차참조 실재? 다른 패키지가 갱신돼야 하나?</div></div></div>
-          <div class="st"><div class="si">3</div><div><div class="sh kr">인라인 정합성 리포트</div><div class="sd kr">발견을 decisions.md "플랫폼 정합성" 섹션 + 사용자에게 리포트. <b>다른 패키지 문서는 표시만</b>, 수정안 생성 ✗.</div></div></div>
-          <div class="st"><div class="si">3b</div><div><div class="sh kr">미결 추적 <span class="tagk">피드백</span></div><div class="sd kr"><code>track_open.py</code>로 이번·형제 패키지 열린 미결을 날짜와 함께 리포트, 3일+ 묵힌 건 환기. 미결 남으면 "일정 걸까요?" 한 줄.</div></div></div>
-          <div class="st"><div class="si">4</div><div><div class="sh kr">커밋·푸시·PR 명령어 출력만 <span class="tagr">실행 ✗</span></div><div class="sd kr">정본 레포 <code>cre8orclub/planning</code> 고정, <code>docs/planning/{feature}/</code>. 항상 본인 cre8orclub 계정으로. 실행은 사용자가.</div></div></div>
+          <div class="st"><div class="si">1</div><div><div class="sh kr">결정적 검증</div><div class="sd kr"><code>validate_planning_package.py</code>로 7파일, 12섹션, 15컬럼, 상태값, F↔FR, 미결정 연결, 금지어를 확인합니다. 코퍼스가 켜져 있으면 끊긴 교차참조와 누락도 확인합니다.</div></div></div>
+          <div class="st"><div class="si">2</div><div><div class="sh kr">맥락 정합 (코퍼스 활성 시)</div><div class="sd kr">기존 문서와 모순되는지 확인합니다. 기능 중복이 있는지 봅니다. 교차참조가 실제로 있는지도 확인합니다. 다른 패키지 갱신이 필요한지도 봅니다.</div></div></div>
+          <div class="st"><div class="si">3</div><div><div class="sh kr">인라인 정합성 리포트</div><div class="sd kr">발견 사항은 decisions.md의 "플랫폼 정합성" 섹션에 남깁니다. 사용자에게도 함께 보고합니다. <b>다른 패키지 문서는 표시만 합니다.</b> 수정안은 만들지 않습니다.</div></div></div>
+          <div class="st"><div class="si">3b</div><div><div class="sh kr">미결 추적 <span class="tagk">피드백</span></div><div class="sd kr"><code>track_open.py</code>로 이번 패키지와 형제 패키지의 열린 미결정을 확인합니다. 날짜도 함께 보여줍니다. 3일 이상 지난 미결정은 다시 알립니다. 미결정이 남으면 "일정 걸까요?"라고 한 줄만 묻습니다.</div></div></div>
+          <div class="st"><div class="si">4</div><div><div class="sh kr">커밋·푸시·PR 명령어 출력만 <span class="tagr">실행 ✗</span></div><div class="sd kr">정본 레포는 <code>cre8orclub/planning</code>입니다. 경로는 <code>docs/planning/{feature}/</code>입니다. 항상 본인 cre8orclub 계정으로 실행합니다. 실행은 사용자가 합니다.</div></div></div>
         </div>
       </div>
     </div>
@@ -778,8 +778,8 @@ footer .f b{color:var(--fg-1);}
 <section>
   <div class="wrap">
     <div class="eyebrow">branches · 자동 조절</div>
-    <h2 class="sec-title kr">입력에 따라 흐름이 달라집니다 — 묻지 않고 자동으로</h2>
-    <p class="sec-desc kr">입력 수준에 따라 산출 깊이가 자동으로 갈립니다. 웨이트도 PRD 상태도 중간에 묻지 않고, 입력이 약할수록 미결정을 더 많이 남깁니다.</p>
+    <h2 class="sec-title kr">입력에 따라 흐름이 달라집니다</h2>
+    <p class="sec-desc kr">입력 수준에 따라 산출 깊이가 달라집니다. 입력이 충분하면 더 구체적으로 씁니다. 입력이 약하면 미결정을 더 많이 남깁니다.</p>
 
     <table class="btable">
       <thead><tr><th>입력</th><th>동작 유형</th><th>PRD</th><th>기능정의</th><th>decisions</th></tr></thead>
@@ -788,15 +788,15 @@ footer .f b{color:var(--fg-1);}
         <tr><td>와이어프레임·이미지</td><td class="m">기능 역추출형</td><td>화면 흐름 포함</td><td>근거 강함</td><td>중간</td></tr>
         <tr><td>피그마 URL</td><td class="m">기능 역추출형</td><td>화면·플로우 반영</td><td><b>가장 강함</b></td><td>중간</td></tr>
         <tr><td>PDF·기존 기획서</td><td class="m">기획 보강형</td><td>기존 문서 보강</td><td>문서 기반 추출</td><td>중간</td></tr>
-        <tr><td>혼합 (피그마+컨셉)</td><td class="m">통합 핸드오프형</td><td><b>가장 좋음</b> (의도+근거)</td><td><b>가장 좋음</b></td><td class="mark">적음</td></tr>
+        <tr><td>혼합 입력 (피그마+컨셉)</td><td class="m">통합 핸드오프형</td><td><b>가장 좋음</b> (의도+근거)</td><td><b>가장 좋음</b></td><td class="mark">적음</td></tr>
       </tbody>
     </table>
 
     <div class="eyebrow" style="margin-top:40px">prd status · 자동 판정 (사람 확인 전엔 approved 금지)</div>
     <div class="statline">
-      <div class="s d1"><div class="k">draft</div><div class="d kr">입력 부족(컨셉만 등), 미결정 많음. 그래도 PRD는 나옵니다.</div></div>
-      <div class="s d2"><div class="k">review</div><div class="d kr">골격은 섰으나 주요 정책·예외 확인 필요.</div></div>
-      <div class="s d3"><div class="k">approved</div><div class="d kr">사람이 미결정을 정해 개발 착수 가능. 스킬이 임의로 부여 ✗.</div></div>
+      <div class="s d1"><div class="k">draft</div><div class="d kr">입력이 부족한 상태입니다. 미결정이 많습니다. 그래도 PRD는 만듭니다.</div></div>
+      <div class="s d2"><div class="k">review</div><div class="d kr">골격은 잡혔습니다. 주요 정책과 예외 확인이 필요합니다.</div></div>
+      <div class="s d3"><div class="k">approved</div><div class="d kr">사람이 미결정을 정한 상태입니다. 개발 착수가 가능합니다. 스킬이 임의로 부여하지 않습니다.</div></div>
     </div>
   </div>
 </section>
@@ -806,12 +806,12 @@ footer .f b{color:var(--fg-1);}
   <div class="wrap">
     <div class="sec-head">
       <span class="zone b">zone b</span>
-      <h2 class="sec-title kr">핵심 반복 액션 — 결정을 채우며 매듭지어 가는 루프</h2>
+      <h2 class="sec-title kr">반복 갱신 — 결정을 채우는 루프</h2>
     </div>
-    <p class="sec-desc kr">이 패키지는 한 번 생성하고 끝나는 문서가 아닙니다. 사람이 <b>미결정을 확정하고 기능을 추가하면서</b> 여러 번 갱신됩니다. 특히 컨셉 초안에서 시작한 경우에는 미결정이 많기 때문에 갱신 루프가 중요합니다. 갱신의 입구는 별도 파일이 아니라 <b>decisions.md 답안지</b>입니다. 결정을 적는 칸이 곧 다음 업데이트의 입력값이 됩니다.</p>
+    <p class="sec-desc kr">이 패키지는 한 번 만들고 끝나는 문서가 아닙니다. 사람이 <b>미결정을 확정하고 기능을 추가하면서</b> 계속 갱신합니다. 컨셉 초안에서 시작하면 미결정이 많습니다. 그래서 갱신 루프가 중요합니다. 갱신의 입구는 <b>decisions.md 답안지</b>입니다. 결정을 적는 칸이 다음 업데이트의 입력값이 됩니다.</p>
 
     <div class="diagram">
-      <div class="dcap">update mode · "올렸다고 끝이 아니라 정해져야 끝" — 미결이 0이 될 때까지 반복</div>
+      <div class="dcap">update mode · 미결정이 0이 될 때까지 반복</div>
       <svg viewBox="0 0 900 440" role="img" aria-label="update mode loop">
         <defs>
           <marker id="ahu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3a3a3a"/></marker>
@@ -823,7 +823,7 @@ footer .f b{color:var(--fg-1);}
         <rect x="40" y="36" width="180" height="80" class="frame-risk"/>
         <text x="54" y="60" class="lbl" fill="#ff5722">사람 · entry</text>
         <text x="54" y="82" class="ttl">decisions.md 답안</text>
-        <text x="54" y="102" class="sm" fill="#ff5722" style="font-size:10.5px">▶ 내 결정 A/B · ➕ 빈칸 채움</text>
+        <text x="54" y="102" class="sm" fill="#ff5722" style="font-size:10.5px">▶ 결정 A/B 선택 · ➕ 빈칸 입력</text>
 
         <!-- B : trigger -->
         <rect x="250" y="36" width="150" height="80" class="frame"/>
@@ -840,8 +840,8 @@ footer .f b{color:var(--fg-1);}
         <!-- 1 : read & pick -->
         <rect x="635" y="36" width="245" height="80" class="frame"/>
         <text x="649" y="60" class="lbl">step 1</text>
-        <text x="649" y="82" class="ttl">7파일 읽고 답한 항목만 추림</text>
-        <text x="649" y="102" class="sm" style="font-size:10px">없으면 "무엇을 갱신할지" 1줄 확인</text>
+        <text x="649" y="82" class="ttl">7파일을 읽고 답변 항목만 추림</text>
+        <text x="649" y="102" class="sm" style="font-size:10px">없으면 갱신할 내용을 1줄로 확인</text>
 
         <!-- top connectors -->
         <line x1="220" y1="76" x2="250" y2="76" class="conn" marker-end="url(#ahu)"/>
@@ -856,13 +856,13 @@ footer .f b{color:var(--fg-1);}
         <rect x="671" y="280" width="209" height="80" class="frame-key"/>
         <text x="685" y="304" class="lbl" fill="#04140a">step 2·3 · 핵심</text>
         <text x="685" y="326" class="ttl-k">종류별 반영 · 분리 유지</text>
-        <text x="685" y="345" class="sm" fill="#04140a" style="font-size:10px">결정/추가/수정/범위 · F↔FR · decisions 통해서만</text>
+        <text x="685" y="345" class="sm" fill="#04140a" style="font-size:10px">결정·추가·수정·범위 변경은 decisions 기준으로 반영</text>
 
         <!-- 4 -->
         <rect x="489" y="280" width="150" height="80" class="frame"/>
         <text x="503" y="304" class="lbl">step 4</text>
         <text x="503" y="326" class="ttl">changelog · version</text>
-        <text x="503" y="345" class="sm" style="font-size:10px">status 재판정 (draft→review)</text>
+        <text x="503" y="345" class="sm" style="font-size:10px">status 재판정</text>
 
         <!-- 5 -->
         <rect x="262" y="280" width="195" height="80" class="frame-risk"/>
@@ -887,22 +887,22 @@ footer .f b{color:var(--fg-1);}
         <!-- center loop label -->
         <text x="450" y="190" class="big" style="font-size:24px;fill:#06b81a" text-anchor="middle">반복 loop</text>
         <text x="450" y="214" class="sm" style="font-size:12px;fill:#06b81a" text-anchor="middle">미결이 0 될 때까지</text>
-        <text x="450" y="232" class="sm" style="font-size:10px;fill:#6a6a6a" text-anchor="middle">올렸다고 끝이 아니라 정해져야 끝</text>
+        <text x="450" y="232" class="sm" style="font-size:10px;fill:#6a6a6a" text-anchor="middle">정해져야 끝납니다</text>
 
         <!-- external persistent feedback into A -->
         <path d="M130,420 L130,116" class="conn-loop" marker-end="url(#ahuc)"/>
-        <text x="146" y="412" class="sm" style="font-size:10.5px;fill:#06b81a">세션 시작마다 track_open · nav_check 자동 환기 — 3일+ 미결 · 월초·메뉴 변경</text>
+        <text x="146" y="412" class="sm" style="font-size:10.5px;fill:#06b81a">세션 시작마다 track_open · nav_check 확인 — 3일+ 미결정 · 월초 변경 · 메뉴 변경</text>
       </svg>
     </div>
 
     <div class="steps" style="margin-top:24px;border-top:2px solid var(--ink)">
-      <div class="st"><div class="si">0</div><div><div class="sh kr">묵힌 미결 환기 <span class="tagk">피드백</span></div><div class="sd kr"><code>track_open.py</code> 1회 → 3일+ 안 정해진 미결을 응답 맨 위에. 이 패키지뿐 아니라 형제 패키지 것도.</div></div></div>
-      <div class="st"><div class="si">1</div><div><div class="sh kr">7파일 읽고 답 채운 항목만 추림</div><div class="sd kr">없으면 무엇을 갱신할지 1줄 확인.</div></div></div>
-      <div class="st"><div class="si">2</div><div><div class="sh kr">종류별 반영</div><div class="sd kr">결정(D-n→안)은 PRD §8/§9·features 정책을 미정→확정, decisions는 ✅로 이동. 기능 추가는 새 F/FR ID(기존 최대+1, 재사용 금지). 수정·범위변경·새입력은 해당 위치만.</div></div></div>
-      <div class="st"><div class="si">3</div><div><div class="sh kr">분리·F↔FR 유지 <span class="tagk">절대</span></div><div class="sd kr">PRD·features를 직접 손대지 말고 <b>decisions.md 답안을 통해서만</b> 반영(직접 편집은 ID·분리가 깨짐).</div></div></div>
-      <div class="st"><div class="si">4</div><div><div class="sh kr">changelog · 버전 · 상태</div><div class="sd kr">새 버전 항목(날짜+변경+영향 ID), <code>version</code>·<code>updated</code> 올림, <code>status</code> 재판정(미결 정해지면 draft→review).</div></div></div>
-      <div class="st"><div class="si">5</div><div><div class="sh kr">decisions 정리 · 새 미결 📅</div><div class="sd kr">✅ 결정됨 정리(열린 목록에서 제거), ➕ 처리분 비움, 새로 연 미결엔 <code>📅 opened={오늘}</code>. 영향 큰 결정·범위변경은 반영 전 한 줄로 영향 짚고 확인.</div></div></div>
-      <div class="st"><div class="si">6</div><div><div class="sh kr">qa 재생성 + 재검증</div><div class="sd kr">정해진 결정·확정 화면이면 보류 QA를 미검증으로 풀고 합격선 확정, 새 FR엔 QA 추가. validate + (코퍼스 활성 시) 정합성 재대조 + (요청 시) 커밋/푸시 명령.</div></div></div>
+      <div class="st"><div class="si">0</div><div><div class="sh kr">묵힌 미결 환기 <span class="tagk">피드백</span></div><div class="sd kr"><code>track_open.py</code>를 1회 실행합니다. 3일 이상 열린 미결정을 응답 맨 위에 보여줍니다. 이 패키지와 형제 패키지를 함께 봅니다.</div></div></div>
+      <div class="st"><div class="si">1</div><div><div class="sh kr">7파일 읽고 답 채운 항목만 추림</div><div class="sd kr">답변 항목이 없으면 갱신할 내용을 1줄로 확인합니다.</div></div></div>
+      <div class="st"><div class="si">2</div><div><div class="sh kr">종류별 반영</div><div class="sd kr">결정(D-n→안)은 PRD §8/§9와 features 정책에 반영합니다. 미정을 확정으로 바꾸고 decisions는 ✅로 옮깁니다. 기능 추가는 새 F/FR ID를 씁니다. 기존 ID는 재사용하지 않습니다. 수정, 범위 변경, 새 입력은 해당 위치만 바꿉니다.</div></div></div>
+      <div class="st"><div class="si">3</div><div><div class="sh kr">분리·F↔FR 유지 <span class="tagk">절대</span></div><div class="sd kr">PRD와 features를 직접 고치지 않습니다. <b>decisions.md 답안을 통해서만</b> 반영합니다. 직접 편집하면 ID와 분리 기준이 깨질 수 있습니다.</div></div></div>
+      <div class="st"><div class="si">4</div><div><div class="sh kr">changelog · 버전 · 상태</div><div class="sd kr">새 버전 항목을 남깁니다. 날짜, 변경 내용, 영향 ID를 적습니다. <code>version</code>과 <code>updated</code>를 올립니다. <code>status</code>도 다시 판단합니다.</div></div></div>
+      <div class="st"><div class="si">5</div><div><div class="sh kr">decisions 정리 · 새 미결 📅</div><div class="sd kr">✅ 결정됨은 열린 목록에서 제거합니다. ➕ 처리분은 비웁니다. 새 미결정에는 <code>📅 opened={오늘}</code>을 남깁니다. 영향이 큰 결정과 범위 변경은 반영 전에 영향을 한 줄로 확인합니다.</div></div></div>
+      <div class="st"><div class="si">6</div><div><div class="sh kr">qa 재생성 + 재검증</div><div class="sd kr">결정이 확정되었거나 화면이 확정되면 보류 QA를 미검증으로 바꿉니다. 합격선도 확정합니다. 새 FR에는 QA를 추가합니다. 이후 validate를 실행합니다. 코퍼스가 켜져 있으면 정합성을 다시 대조합니다. 요청이 있으면 커밋/푸시 명령을 만듭니다.</div></div></div>
     </div>
   </div>
 </section>
@@ -912,19 +912,19 @@ footer .f b{color:var(--fg-1);}
   <div class="wrap">
     <div class="eyebrow">output · mnt/outputs/planning/{feature}/</div>
     <h2 class="sec-title kr">한 번에 매듭짓는 7파일 패키지</h2>
-    <p class="sec-desc kr">PRD는 무엇을 만드는지, qa.md는 무엇으로 합격을 판정하는지, decisions.md는 사람이 정할 것을 담는 갱신 입구입니다. 초록 테두리를 두른 PRD와 features가 핸드오프의 중심입니다.</p>
+    <p class="sec-desc kr">PRD는 무엇을 만들지 설명합니다. qa.md는 합격 기준을 담습니다. decisions.md는 사람이 정할 내용을 모으는 갱신 입구입니다. 초록 테두리의 PRD와 features가 핸드오프의 중심입니다.</p>
     <div class="files">
-      <div class="file key"><div class="pin">prd ↔ feat</div><div class="fn">PRD.md</div><div class="fd kr">제품 요구서 기본 12섹션 (+ 선택 섹션). 착수 기준 문서.</div></div>
-      <div class="file key"><div class="pin">15 cols</div><div class="fn">features.md</div><div class="fd kr">기능정의 리스트 15컬럼, 사람이 읽는 표.</div></div>
-      <div class="file"><div class="pin">data</div><div class="fn">features.csv</div><div class="fd kr">필터·자동화용 데이터(보조 정본, UTF-8 BOM).</div></div>
-      <div class="file"><div class="pin">first view</div><div class="fn">README.md</div><div class="fd kr">패키지 첫 화면 — 무엇을 보면 되는지.</div></div>
-      <div class="file" style="border:2px solid var(--accent-ko)"><div class="pin">📅 추적</div><div class="fn" style="color:var(--accent-ko)">decisions.md</div><div class="fd kr">결정 답안지(A/B·➕빈칸) + 열린 미결 📅 올린 날짜. Update Mode 입구.</div></div>
-      <div class="file"><div class="pin">8 dim</div><div class="fn">qa.md</div><div class="fd kr">합격 기준 — 기능 + 디자인 완성도 + UX/모션. 별도 검증 문서.</div></div>
+      <div class="file key"><div class="pin">prd ↔ feat</div><div class="fn">PRD.md</div><div class="fd kr">제품 요구서 기본 12섹션입니다. 선택 섹션은 필요한 경우만 둡니다. 개발 착수 기준 문서입니다.</div></div>
+      <div class="file key"><div class="pin">15 cols</div><div class="fn">features.md</div><div class="fd kr">기능정의 리스트입니다. 15컬럼 표로 정리합니다.</div></div>
+      <div class="file"><div class="pin">data</div><div class="fn">features.csv</div><div class="fd kr">필터와 자동화에 쓰는 데이터입니다. UTF-8 BOM 기준입니다.</div></div>
+      <div class="file"><div class="pin">first view</div><div class="fn">README.md</div><div class="fd kr">패키지 첫 화면입니다. 무엇부터 보면 되는지 안내합니다.</div></div>
+      <div class="file" style="border:2px solid var(--accent-ko)"><div class="pin">📅 추적</div><div class="fn" style="color:var(--accent-ko)">decisions.md</div><div class="fd kr">결정 답안지입니다. A/B 선택과 ➕ 빈칸을 둡니다. 열린 미결정에는 📅 올린 날짜를 남깁니다. Update Mode의 입구입니다.</div></div>
+      <div class="file"><div class="pin">8 dim</div><div class="fn">qa.md</div><div class="fd kr">합격 기준 문서입니다. 기능, 디자인 완성도, UX/모션을 함께 봅니다.</div></div>
       <div class="file"><div class="pin">history</div><div class="fn">changelog.md</div><div class="fd kr">변경 이력.</div></div>
-      <div class="file dark"><div class="pin">option</div><div class="fn">features.xlsx</div><div class="fd kr">"엑셀로 줘" 요청 시에만. 상태·근거 수준 색상코딩.</div></div>
+      <div class="file dark"><div class="pin">option</div><div class="fn">features.xlsx</div><div class="fd kr">"엑셀로 줘"라고 요청할 때만 만듭니다. 상태와 근거 수준을 색상으로 구분합니다.</div></div>
     </div>
-    <p class="sec-desc kr" style="margin-top:24px">상위 <code style="font-family:var(--font-mono);font-size:13px">mnt/outputs/planning/</code>에는 항상 <b>_nav.md</b>(앱 GNB·유틸 IA 앵커, 코퍼스 비의존)를 두고, 코퍼스 활성일 때만 <b>_index.md · _registry.md · _features.csv</b>(전 패키지 통합 마스터)를 둡니다.</p>
-    <p class="sec-desc kr" style="margin-top:12px">커밋과 푸시는 스킬이 명령만 만들고, 실행은 사람이 합니다.</p>
+    <p class="sec-desc kr" style="margin-top:24px">상위 <code style="font-family:var(--font-mono);font-size:13px">mnt/outputs/planning/</code>에는 항상 <b>_nav.md</b>를 둡니다. 이 파일은 앱 GNB와 유틸 IA 앵커입니다. 코퍼스와 무관하게 둡니다. 코퍼스가 켜져 있을 때만 <b>_index.md · _registry.md · _features.csv</b>를 둡니다. 이 파일들은 전 패키지 통합 마스터입니다.</p>
+    <p class="sec-desc kr" style="margin-top:12px">커밋과 푸시는 명령만 만듭니다. 실행은 사람이 합니다.</p>
   </div>
 </section>
 
@@ -932,18 +932,18 @@ footer .f b{color:var(--fg-1);}
 <section>
   <div class="wrap">
     <div class="eyebrow">failure modes · 빠지기 쉬운 함정</div>
-    <h2 class="sec-title kr">이 흐름이 막아주는 함정 열 가지</h2>
+    <h2 class="sec-title kr">이 흐름이 막는 함정 열 가지</h2>
     <div class="gotchas">
-      <div class="gotcha"><div class="gt"><span class="x">✗</span>반쪽 산출</div><div class="gd kr">PRD만 또는 기능 리스트만. <span class="ok">→ 항상 둘 다 + ID 연결</span></div></div>
-      <div class="gotcha"><div class="gt"><span class="x">✗</span>오버스펙</div><div class="gd kr">DB·API·픽셀까지 지시해 구현 지시서로 변질. <span class="ok">→ 착수 기준에 머물고 후보 수준만</span></div></div>
-      <div class="gotcha"><div class="gt"><span class="x">✗</span>검증 엔진 욕심</div><div class="gd kr">모든 기능을 위험 검토 문서처럼 길게. <span class="ok">→ 점검표는 내부 도구, 산출물엔 쉬운 말만</span></div></div>
-      <div class="gotcha"><div class="gt"><span class="x">✗</span>요소 나열</div><div class="gd kr">버튼·아이콘·텍스트를 행으로. <span class="ok">→ 행 1개 = 행동/시스템 동작 1개</span></div></div>
-      <div class="gotcha"><div class="gt"><span class="x">✗</span>멈춤</div><div class="gd kr">입력 부족하다고 "정보 더 달라"로 정지. <span class="ok">→ 한 줄이라도 실행, 미결정으로</span></div></div>
-      <div class="gotcha"><div class="gt"><span class="x">✗</span>근거 혼동</div><div class="gd kr">화면과 AI 추정을 섞음. <span class="ok">→ 근거·의도·제안·미결정 분리</span></div></div>
-      <div class="gotcha"><div class="gt"><span class="x">✗</span>정책 임의 확정</div><div class="gd kr">화면이나 문서에 없는 한도, 과금, 정책을 확정처럼 쓰는 상태입니다. <span class="ok">→ 미정 또는 제안으로 분리</span></div></div>
-      <div class="gotcha"><div class="gt"><span class="x">✗</span>R번호 누출</div><div class="gd kr">레드플래그 R번호·엔진어가 본문에. <span class="ok">→ "꼭 정할 것"으로 번역, 1~3개만</span></div></div>
-      <div class="gotcha"><div class="gt"><span class="x">✗</span>미결정 흩뿌림</div><div class="gd kr">미정을 PRD 곳곳에 단정처럼. <span class="ok">→ §12·decisions.md에 모으고 ID</span></div></div>
-      <div class="gotcha"><div class="gt"><span class="x">✗</span>코퍼스 강제</div><div class="gd kr">요청도 없는데 매번 레포를 물음. <span class="ok">→ 요청 시 활성화하는 선택 레이어</span></div></div>
+      <div class="gotcha"><div class="gt"><span class="x">✗</span>반쪽 산출</div><div class="gd kr">PRD만 만들거나 기능 리스트만 만드는 경우입니다. <span class="ok">→ 항상 둘 다 만들고 ID를 연결</span></div></div>
+      <div class="gotcha"><div class="gt"><span class="x">✗</span>오버스펙</div><div class="gd kr">DB, API, 픽셀 단위 UI까지 지시하는 경우입니다. <span class="ok">→ 착수 기준에 머물고 후보 수준으로 표시</span></div></div>
+      <div class="gotcha"><div class="gt"><span class="x">✗</span>검증 엔진 욕심</div><div class="gd kr">모든 기능을 위험 검토 문서처럼 길게 쓰는 경우입니다. <span class="ok">→ 점검표는 내부 도구로만 쓰고 산출물은 쉬운 말로 작성</span></div></div>
+      <div class="gotcha"><div class="gt"><span class="x">✗</span>요소 나열</div><div class="gd kr">버튼, 아이콘, 텍스트를 기능 행으로 쓰는 경우입니다. <span class="ok">→ 행 1개는 행동 또는 시스템 동작 1개로 작성</span></div></div>
+      <div class="gotcha"><div class="gt"><span class="x">✗</span>멈춤</div><div class="gd kr">입력이 부족하다고 멈추는 경우입니다. <span class="ok">→ 한 줄이라도 진행하고 부족한 부분은 미결정으로 분리</span></div></div>
+      <div class="gotcha"><div class="gt"><span class="x">✗</span>근거 혼동</div><div class="gd kr">화면 근거와 AI 추정을 섞는 경우입니다. <span class="ok">→ 근거, 의도, 제안, 미결정을 분리</span></div></div>
+      <div class="gotcha"><div class="gt"><span class="x">✗</span>정책 임의 확정</div><div class="gd kr">화면이나 문서에 없는 한도, 과금, 정책을 확정처럼 쓰는 경우입니다. <span class="ok">→ 미정 또는 제안으로 분리</span></div></div>
+      <div class="gotcha"><div class="gt"><span class="x">✗</span>R번호 누출</div><div class="gd kr">레드플래그 R번호나 엔진 용어가 본문에 들어가는 경우입니다. <span class="ok">→ "꼭 정할 것"으로 바꾸고 1~3개만 남김</span></div></div>
+      <div class="gotcha"><div class="gt"><span class="x">✗</span>미결정 흩뿌림</div><div class="gd kr">미정 내용을 PRD 곳곳에 단정처럼 쓰는 경우입니다. <span class="ok">→ §12와 decisions.md에 모으고 ID를 연결</span></div></div>
+      <div class="gotcha"><div class="gt"><span class="x">✗</span>코퍼스 강제</div><div class="gd kr">요청이 없는데 매번 레포를 확인하는 경우입니다. <span class="ok">→ 요청이 있을 때만 켜는 선택 레이어로 운영</span></div></div>
     </div>
   </div>
 </section>
@@ -954,12 +954,12 @@ footer .f b{color:var(--fg-1);}
     <div class="eyebrow">glossary · 용어</div>
     <h2 class="sec-title kr">처음 보는 용어</h2>
     <div class="glossary">
-      <div class="g"><dt>C8 · Cre8orClub</dt><dd>이 스킬이 기본으로 상정하는 대상 앱·플랫폼입니다.</dd></div>
-      <div class="g"><dt>코퍼스</dt><dd>GitHub에 올라간 기존 기획 문서 묶음입니다. 새 기획을 기존과 맞출 때 참조합니다.</dd></div>
-      <div class="g"><dt>F-ID · FR-ID</dt><dd>기능정의 리스트의 기능 번호와 PRD 요구사항 번호입니다. 둘을 서로 연결해 묶습니다.</dd></div>
-      <div class="g"><dt>GNB</dt><dd>앱 상단의 전역 내비게이션입니다. 모든 기능이 이 메뉴 트리에 매핑됩니다.</dd></div>
-      <div class="g"><dt>decisions.md 답안지</dt><dd>사람이 결정을 채워 넣는 칸입니다. 다음 갱신의 입력이 됩니다.</dd></div>
-      <div class="g"><dt>미결 추적</dt><dd>아직 정해지지 않은 항목을 경과일과 함께 다시 띄워 주는 장치입니다.</dd></div>
+      <div class="g"><dt>C8 · Cre8orClub</dt><dd>이 스킬이 기본값으로 보는 대상 앱·플랫폼입니다.</dd></div>
+      <div class="g"><dt>코퍼스</dt><dd>GitHub에 올라간 기존 기획 문서 묶음입니다. 새 기획을 기존 문서와 맞출 때 참고합니다.</dd></div>
+      <div class="g"><dt>F-ID · FR-ID</dt><dd>기능정의 리스트의 기능 번호와 PRD 요구사항 번호입니다. 둘은 서로 연결합니다.</dd></div>
+      <div class="g"><dt>GNB</dt><dd>앱 상단의 전역 내비게이션입니다. 모든 기능은 이 메뉴 트리에 맞춥니다.</dd></div>
+      <div class="g"><dt>decisions.md 답안지</dt><dd>사람이 결정을 채우는 칸입니다. 다음 갱신의 입력값이 됩니다.</dd></div>
+      <div class="g"><dt>미결 추적</dt><dd>아직 정해지지 않은 항목을 경과일과 함께 다시 보여주는 장치입니다.</dd></div>
     </div>
   </div>
 </section>
@@ -968,7 +968,7 @@ footer .f b{color:var(--fg-1);}
   <div class="wrap">
     <div class="f">
       <b>ghost-protocol</b> v2.4.0 · planning handoff engine<br>
-      flow 시각화 · teenage-design 시스템 · 포인트 컬러 = c8 neon green / 사람결정·위험 = orange<br>
+      flow 시각화 · teenage-design 시스템 · 포인트 컬러 = c8 neon green / 사람 결정·위험 = orange<br>
       source — SKILL.md (phase 0–7 · update mode · 절대 규칙 8 + rule 9 · 7파일 패키지)
     </div>
   </div>
