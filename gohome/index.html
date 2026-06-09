@@ -123,7 +123,7 @@
     <div class="phase"><span class="num">1</span><h3>생성</h3></div>
     <div class="step me"><span class="who">나</span><p class="t">컨셉·화면·문서 입력</p><p class="d">컨셉 한 줄 / 와이어프레임 / 피그마 / PDF / 기존 기획서 — 무엇이든 하나.</p></div>
     <div class="arrow"><svg viewBox="0 0 15 24"><line x1="7.5" y1="0" x2="7.5" y2="17" stroke="currentColor" stroke-width="2"/><path d="M3 15l4.5 6 4.5-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
-    <div class="step sk"><span class="who">고홈</span><p class="t">스킬 적용 → 6파일 패키지 생성</p><p class="d">아래 6개 문서를 한 폴더에 동시 생성. 근거·의도·제안·미결정 분리, <b>F↔FR ID 연결</b>.</p></div>
+    <div class="step sk"><span class="who">고홈</span><p class="t">스킬 적용 → 7파일 패키지 생성</p><p class="d">아래 7개 문서를 한 폴더에 동시 생성. 근거·의도·제안·미결정 분리, <b>F↔FR ID 연결</b>, <b>qa.md(합격 기준)</b>와 열린 미결 <b>📅 올린 날짜</b>까지.</p></div>
 
     <div class="phase"><span class="num">2</span><h3>답변 · 로컬 전파 (핑퐁)</h3></div>
     <div class="step me"><span class="who">나</span><p class="t">decisions.md에 답한다</p><p class="d">열린 결정은 객관식(<b>▶ 내 결정: A/B</b>), 새 기능·수정는 <b>➕ 빈칸</b>. PRD·features는 직접 안 고침.</p></div>
@@ -151,8 +151,9 @@ mnt/outputs/planning/
    ├─ PRD.md              <span class="c">제품 요구서 (12섹션)</span>
    ├─ features.md         <span class="c">기능정의 표 (15컬럼, 사람용)</span>
    ├─ features.csv        <span class="c">기능정의 데이터 (필터·엑셀용)</span>
-   ├─ <span class="hot">decisions.md</span>         <span class="c">결정 답안지 + 이력  ← 내가 답을 쓰는 곳</span>
+   ├─ <span class="hot">decisions.md</span>         <span class="c">결정 답안지 + 이력 + 열린 미결 📅날짜  ← 내가 답을 쓰는 곳</span>
    ├─ decisions.empty.md  <span class="c">(빈 답안지 예시)</span>
+   ├─ <span class="hot">qa.md</span>                <span class="c">합격 기준 (기능·디자인 완성도·UX/모션) — 별도 검증</span>
    └─ changelog.md        <span class="c">변경 이력</span>
 
 <span class="c"># 기능이 여러 개면 ── 같은 레벨에 패키지가 늘어남</span>
@@ -161,7 +162,7 @@ mnt/outputs/planning/
 └─ <span class="c">(코퍼스 정합 시) _index.md · _registry.md · _features.csv 가 상위에 추가</span>
 
 <span class="c"># 깃 정본 (배포 후)</span>
-cre8orclub/planning  →  docs/planning/gallery/  (위 6파일 그대로)</div>
+cre8orclub/planning  →  docs/planning/gallery/  (위 7파일 그대로)</div>
     <p class="note">정본은 조직 레포 <span class="mono">cre8orclub/planning</span> 한 곳. 모든 기능 패키지가 <span class="mono">docs/planning/</span> 아래 모입니다.</p>
   </section>
 
@@ -183,10 +184,11 @@ cre8orclub/planning  →  docs/planning/gallery/  (위 6파일 그대로)</div>
           <tr><th>파일</th><th>무엇</th></tr>
           <tr><td>PRD.md</td><td>제품 요구서(12섹션)</td></tr>
           <tr><td>features.md / .csv</td><td>기능정의 리스트(F↔FR 연결)</td></tr>
-          <tr><td>decisions.md</td><td>결정 답안지 + 이력</td></tr>
+          <tr><td>decisions.md</td><td>결정 답안지 + 이력 + 열린 미결 📅 올린 날짜</td></tr>
+          <tr><td>qa.md</td><td>합격 기준(기능·디자인·UX/모션) — 별도 검증</td></tr>
           <tr><td>changelog.md</td><td>변경 이력</td></tr>
         </table>
-        <p class="sub" style="margin-top:8px">읽는 순서: ① PRD(왜·무엇·어떻게) → ② features(누가 무엇을 개발) → ③ decisions(정해야 할 것).</p>
+        <p class="sub" style="margin-top:8px">읽는 순서: ① PRD(왜·무엇·어떻게) → ② features(누가 무엇을 개발) → ③ decisions(정해야 할 것) → ④ qa(합격 판정).</p>
       </div>
     </div>
 
@@ -299,6 +301,31 @@ cre8orclub/planning  →  docs/planning/gallery/  (위 6파일 그대로)</div>
           <tr><td>06-09</td><td>D-10 방영 알림</td><td><b>A 제공</b></td><td>신규 F-010/FR-010</td></tr>
         </table>
         <p class="sub" style="margin-top:8px">실제론 D-1~D-10·C-1·C-2 총 12건이 이렇게 ✅로 내려가 있습니다.</p>
+        <p class="prev" style="margin-top:14px">📅 미결 추적 — 닫힐 때까지 따라감</p>
+        <p style="font-size:12.5px;color:var(--mut);margin:0">열린 미결엔 <span class="mono">📅 opened</span>(올린 날짜)가 붙습니다. 세션을 새로 열거나 고홈을 부르면 <b>3일+ 안 닫힌 미결</b>이 맨 위에 자동으로 다시 뜹니다 — "3일 전에 정하기로 해놓고 잊은 것"을 환기. <span class="mono">track_open.py</span>가 깃의 형제 패키지까지 함께 봅니다.</p>
+      </div>
+    </div>
+
+    <!-- qa -->
+    <div class="doc">
+      <div class="doc-h">
+        <span class="fn">qa.md</span><span class="role">· 합격 기준 (별도 검증 문서)</span>
+        <p class="ex">PRD·features는 <b>무엇을 만드나</b>, qa.md는 <b>무엇으로 합격을 판정하나</b>. 최종 PRD(FR·정책·예외)와 깃의 다른 기능까지 보고 만들며, <b>디자인 완성도와 사용자 경험(모션·전환·로딩·빈/실패·접근성)</b>을 별도 축으로 봅니다. 화면 미확정 항목은 보류로 두고 decisions와 묶어 추적합니다.</p>
+      </div>
+      <div class="doc-b">
+        <p class="prev">8차원 (FR마다 합격 1행 + 디자인·UX 별도 축)</p>
+        <table>
+          <tr><th>축</th><th>무엇을 본다</th><th>예 (gallery)</th></tr>
+          <tr><td>A 기능</td><td>FR별 동작</td><td>중간 진입 시 현재 지점부터(QA-A03)</td></tr>
+          <tr><td>B 정책</td><td>권한·한도·소멸</td><td>관람 비로그인·작성 로그인(QA-B01)</td></tr>
+          <tr><td>C 상태·예외</td><td>로딩/빈/실패/종료</td><td>오류 시 현재 지점 복구(QA-C03)</td></tr>
+          <tr><td><b>D 디자인 완성도</b></td><td>레이아웃·타이포·다크모드·반응형</td><td>작품 위 글자 가독성(QA-D03)</td></tr>
+          <tr><td><b>E UX·모션</b></td><td>전환·애니메이션·마이크로인터랙션·로딩·동작 줄이기</td><td>메뉴 떠도 작품 계속 재생(QA-E02)</td></tr>
+          <tr><td>F 접근성</td><td>대비·낭독·터치 영역</td><td>버튼 대비(QA-F01)</td></tr>
+          <tr><td>G 성능</td><td>진입 속도·라이브 동기·네트워크</td><td>동기 오차 2초 이내(QA-G02)</td></tr>
+          <tr><td>H 정합성</td><td>다른 메뉴와 일관(코퍼스 시)</td><td>알림·신고가 기존과 같은 결(보류)</td></tr>
+        </table>
+        <p class="sub" style="margin-top:8px">상태 <span class="tag ok">미검증</span> / <span class="tag done">통과</span> / 실패 / <span class="tag wait">보류</span>. 화면 미확정(I-1~3)에 묶인 디자인·모션 QA는 보류 → 결정 닫히면 자동으로 풀립니다.</p>
       </div>
     </div>
 
