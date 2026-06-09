@@ -13,273 +13,168 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>고스트프로토콜(ghost-protocol) — 작업 흐름 관계도</title>
+<title>고스트프로토콜(ghost-protocol) — 한눈에 보는 작업 흐름</title>
 <style>
   :root{
-    --me:#2563eb;  --me-bg:#eff6ff;  --me-bd:#bfdbfe;
-    --sk:#16a34a;  --sk-bg:#f0fdf4;  --sk-bd:#bbf7d0;
-    --git:#0f172a; --git-bg:#f1f5f9; --git-bd:#cbd5e1;
-    --dec:#d97706; --dec-bg:#fffbeb; --dec-bd:#fde68a;
-    --ink:#0f172a; --mut:#64748b; --line:#94a3b8;
+    --blue:#2563eb; --violet:#6d28d9; --green:#059669; --ink:#0b1220;
+    --mut:#6b7280; --soft:#eef1f4; --line:#e4e7ec; --paper:#f6f7f9;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:#f8fafc;color:var(--ink);
+  body{margin:0;background:var(--paper);color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",sans-serif;
-    line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:660px;margin:0 auto;padding:36px 18px 100px}
-  header h1{font-size:24px;font-weight:800;margin:0 0 5px}
-  header p{margin:0;color:var(--mut);font-size:13.5px}
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:560px;margin:0 auto;padding:40px 18px 80px}
 
-  .legend{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 8px}
-  .lg{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;
-    padding:4px 9px;border-radius:999px;border:1px solid}
-  .lg .d{width:8px;height:8px;border-radius:50%}
-  .lg.me{color:var(--me);background:var(--me-bg);border-color:var(--me-bd)} .lg.me .d{background:var(--me)}
-  .lg.sk{color:var(--sk);background:var(--sk-bg);border-color:var(--sk-bd)} .lg.sk .d{background:var(--sk)}
-  .lg.git{color:var(--git);background:var(--git-bg);border-color:var(--git-bd)} .lg.git .d{background:var(--git)}
-  .lg.dec{color:var(--dec);background:var(--dec-bg);border-color:var(--dec-bd)} .lg.dec .d{background:var(--dec)}
+  header h1{font-size:25px;font-weight:800;margin:0 0 6px;letter-spacing:-.3px}
+  header p{margin:0;color:var(--mut);font-size:14px}
 
-  /* flow column */
-  .flow{display:flex;flex-direction:column;align-items:center;margin-top:8px}
+  /* one-line formula */
+  .formula{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;
+    margin:24px 0 32px;padding:14px 12px;background:#fff;border:1px solid var(--line);border-radius:14px}
+  .formula b{font-size:14.5px;font-weight:800}
+  .formula .x{color:var(--mut);font-size:14px}
+  .formula .a{color:#cbd2da;font-weight:800;font-size:16px}
+  .formula .hit{color:var(--violet)}
 
-  /* band chip */
-  .band{margin:26px 0 4px;align-self:center;font-size:11.5px;font-weight:800;letter-spacing:.4px;
-    color:#fff;background:var(--ink);padding:4px 14px;border-radius:999px}
+  /* ===== MAIN SPINE — big, bold, vivid ===== */
+  .step{color:#fff;border-radius:18px;padding:20px 22px}
+  .step.s1{background:var(--blue)}
+  .step.s2{background:var(--violet)}
+  .step.s3{background:var(--green)}
+  .step .tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.3px;
+    background:rgba(255,255,255,.22);padding:4px 11px;border-radius:999px;margin-bottom:11px}
+  .step h2{margin:0 0 7px;font-size:22px;font-weight:800;letter-spacing:-.3px}
+  .step .sub{margin:0;font-size:14px;color:rgba(255,255,255,.92)}
 
-  /* node */
-  .node{width:min(100%,460px);border:2px solid;border-radius:14px;background:#fff;
-    padding:12px 15px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
-  .node.me{border-color:var(--me-bd)} .node.sk{border-color:var(--sk-bd)} .node.git{border-color:var(--git-bd)}
-  .node .who{display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px;margin-bottom:6px}
-  .node.me .who{color:var(--me);background:var(--me-bg)}
-  .node.sk .who{color:var(--sk);background:var(--sk-bg)}
-  .node.git .who{color:#fff;background:var(--git)}
-  .node .t{font-size:14.5px;font-weight:700;margin:0 0 3px}
-  .node .d{font-size:12.5px;color:var(--mut);margin:0}
-  .node .d b{color:var(--ink)}
-  .node .files{margin-top:7px;display:flex;flex-wrap:wrap;gap:5px}
-  .node .files span{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:var(--ink);
-    background:#f1f5f9;border-radius:5px;padding:2px 7px}
-  .node .files span.hot{background:#fef3c7;color:#92400e;font-weight:700}
-  .mono{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:#f1f5f9;padding:1px 5px;border-radius:4px}
+  /* engine sub-steps inside block 2 */
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+  .chips span{font-size:12.5px;font-weight:700;background:rgba(255,255,255,.18);
+    color:#fff;padding:6px 12px;border-radius:9px}
+  .chips .ar{align-self:center;color:rgba(255,255,255,.6);font-weight:800}
 
-  /* connector (line + arrowhead) */
-  .arrow{width:2px;height:30px;background:var(--line);position:relative;margin:0 auto}
-  .arrow::after{content:"";position:absolute;bottom:-1px;left:-4px;
-    border:5px solid transparent;border-top-color:var(--line)}
-  .arrow.short{height:18px}
+  /* output tiles inside block 3 */
+  .out{display:flex;gap:9px;margin-top:14px}
+  .out .tile{flex:1;background:#fff;color:var(--green);border-radius:11px;
+    padding:12px;text-align:center;font-weight:800;font-size:15.5px}
+  .out .tile small{display:block;font-size:11px;font-weight:700;color:var(--mut);margin-top:2px}
+  .out .plus{align-self:center;color:rgba(255,255,255,.75);font-weight:800;font-size:18px}
+  .out-note{margin:11px 0 0;font-size:12px;color:rgba(255,255,255,.85)}
 
-  /* decision (hexagon) */
-  .dec{width:min(100%,460px);background:var(--dec-bg);border:2px solid var(--dec-bd);
-    clip-path:polygon(6% 0,94% 0,100% 50%,94% 100%,6% 100%,0 50%);
-    padding:13px 30px;text-align:center}
-  .dec .q{font-size:13.5px;font-weight:800;color:#92400e}
-  .dec .q::before{content:"◇ "}
+  /* connector */
+  .down{height:30px;display:flex;align-items:center;justify-content:center;
+    font-size:24px;font-weight:800;color:#c3cad3}
 
-  /* branch pair */
-  .branches{width:min(100%,480px);display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
-  .br{border:1.5px solid var(--soft,#e2e8f0);border-radius:12px;background:#fff;padding:10px 12px}
-  .br .lab{font-size:10.5px;font-weight:800;color:var(--dec);margin-bottom:4px}
-  .br .lab::before{content:"↳ "}
-  .br .x{font-size:12px;color:var(--mut)} .br .x b{color:var(--ink)}
-  .merge{font-size:11px;color:var(--mut);margin:6px 0 0;text-align:center}
+  /* ===== SUPPORTING LAYER — muted, smaller ===== */
+  .more{margin-top:38px}
+  .more .h{font-size:12.5px;font-weight:800;color:var(--mut);letter-spacing:.2px;
+    margin:0 0 4px;text-transform:none}
+  .more .lead{font-size:12.5px;color:#9aa1ab;margin:0 0 14px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+  .card .ct{font-size:13px;font-weight:700;color:#334155;margin:0 0 3px}
+  .card .cd{font-size:11.5px;color:var(--mut);margin:0;line-height:1.5}
+  .card .opt{display:inline-block;font-size:9.5px;font-weight:800;color:#94a3b8;
+    border:1px solid var(--line);border-radius:6px;padding:1px 6px;margin-left:5px;vertical-align:1px}
+  .card.wide{grid-column:1 / -1}
 
-  /* loopback callout */
-  .loop{width:min(100%,460px);border:1.5px dashed var(--dec-bd);background:var(--dec-bg);
-    border-radius:13px;padding:10px 14px 10px 40px;position:relative;font-size:12.5px;color:#92400e}
-  .loop .ic{position:absolute;left:13px;top:9px;font-size:16px}
-  .loop b{color:var(--dec)}
-  .loop .up{display:block;margin-top:3px;font-weight:800}
-  .loop .up::before{content:"↑ "}
-
-  /* terminal */
-  .term{width:min(100%,300px);text-align:center;border:2px solid var(--git-bd);background:var(--git-bg);
-    border-radius:999px;padding:9px;font-weight:800;font-size:13px;color:var(--git)}
-
-  footer{margin-top:40px;padding-top:18px;border-top:1px solid #e2e8f0;font-size:12.5px;color:var(--mut)}
-  footer b{color:var(--ink)} footer .mono{font-size:11px}
+  footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--mut);line-height:1.65}
+  footer b{color:var(--ink)}
+  @media(max-width:420px){ .grid{grid-template-columns:1fr} .out{flex-direction:column} }
 </style>
 </head>
 <body>
 <div class="wrap">
+
   <header>
-    <h1>고스트프로토콜 작업 흐름 관계도</h1>
-    <p><b>GNB·유틸 메뉴(대전제)</b> → 입력 → 7파일 생성 → 결정 답변·전파(핑퐁) → 미결 추적 → 깃 배포 → 정합(핑퐁). 모든 패키지는 먼저 선 GNB 트리 아래 끼워 맞춰집니다.</p>
+    <h1>고스트프로토콜 — 작업 흐름</h1>
+    <p>어떤 입력이든 받아 <b>PRD + 기능정의 리스트</b>로 바꿔 개발자에게 그대로 넘기는 기획 핸드오프 스킬입니다.</p>
   </header>
 
-  <div class="legend">
-    <span class="lg me"><span class="d"></span>나 (작업자)</span>
-    <span class="lg sk"><span class="d"></span>고스트프로토콜 (자동)</span>
-    <span class="lg git"><span class="d"></span>Git</span>
-    <span class="lg dec"><span class="d"></span>분기 · 핑퐁 루프</span>
+  <!-- 한 줄 공식 -->
+  <div class="formula">
+    <b>입력 무엇이든</b>
+    <span class="a">→</span>
+    <b class="hit">PRD + 기능정의</b>
+    <span class="a">→</span>
+    <b>바로 개발 착수</b>
   </div>
 
-  <div class="flow">
+  <!-- ===== 메인 흐름 (핵심 3단계) ===== -->
 
-    <!-- ===== BAND 0 — 대전제 ===== -->
-    <div class="band">⓪ IA 앵커 (대전제 · 가장 먼저)</div>
+  <div class="step s1">
+    <span class="tag">1 · 내가 준다</span>
+    <h2>입력 하나</h2>
+    <p class="sub">컨셉 한 줄 · 와이어프레임 · 피그마 URL · PDF · 기존 기획서 — 무엇이든 하나면 시작합니다.</p>
+  </div>
 
-    <div class="node sk">
-      <span class="who">고스트프로토콜 · Phase 0 (맨 먼저)</span>
-      <p class="t">현재 GNB·유틸 메뉴를 선(先)제시</p>
-      <p class="d">기능을 뽑기 전에 앱 IA부터. <span class="mono">_nav.md</span>의 GNB를 한 줄로 보여주고 "이 메뉴 구성 맞나요? 수정할 곳?"을 먼저 묻는다. 없으면 후보를 제안. <b>모든 패키지의 `메뉴`가 이 GNB에 매핑된다.</b></p>
+  <div class="down">↓</div>
+
+  <div class="step s2">
+    <span class="tag">2 · 고스트프로토콜 (자동)</span>
+    <h2>PRD·기능정의로 변환</h2>
+    <p class="sub">멈추지 않고 한 번에 돌립니다. 화면이 있으면 화면에서 역추출, 컨셉만 있으면 기능 후보로 구조화합니다.</p>
+    <div class="chips">
+      <span>기능 추출</span><span class="ar">→</span>
+      <span>PRD 작성</span><span class="ar">→</span>
+      <span>결정 분리</span>
     </div>
-    <div class="arrow short"></div>
-    <div class="dec"><span class="q">이 GNB·유틸 구성 맞나요?</span></div>
-    <div class="arrow short"></div>
-    <div class="branches">
-      <div class="br"><div class="lab">맞음</div><div class="x"><b>나</b> · 확인 → status confirmed·reviewed 갱신, 그대로 진행</div></div>
-      <div class="br"><div class="lab">아니오</div><div class="x"><b>나</b> · 수정할 곳 알려줌 → <span class="mono">_nav.md</span> 갱신 후 진행</div></div>
-    </div>
-    <div class="arrow short"></div>
-    <div class="loop">
-      <span class="ic">🔔</span>
-      <b>GNB 점검 루프</b> — <span class="mono">nav_check.py</span>가 <b>월초(달 바뀜)</b>·<b>메뉴 변경</b>(features 메뉴 ≠ GNB)을 세션 시작 때 환기.
-      <span class="up">달이 바뀌거나 메뉴가 바뀌면 다시 이 확인으로</span>
-    </div>
-    <div class="arrow"></div>
+  </div>
 
-    <!-- ===== BAND 1 ===== -->
-    <div class="band">① 생성 (GNB 트리 아래)</div>
+  <div class="down">↓</div>
 
-    <div class="node me">
-      <span class="who">나</span>
-      <p class="t">입력을 준다</p>
-      <p class="d">컨셉 한 줄 · 와이어프레임 · 피그마 URL · PDF · 기존 기획서 — 무엇이든 하나. (어느 GNB 메뉴 아래인지와 함께)</p>
+  <div class="step s3">
+    <span class="tag">3 · 결과물</span>
+    <h2>한 패키지로 핸드오프</h2>
+    <p class="sub">두 핵심 문서를 F-ID ↔ FR-ID로 묶어 Git에 올리면, 개발자가 받아 바로 착수합니다.</p>
+    <div class="out">
+      <div class="tile">PRD<small>제품 의도 · 범위</small></div>
+      <span class="plus">+</span>
+      <div class="tile">기능정의 리스트<small>개발 작업 단위</small></div>
     </div>
-    <div class="arrow"></div>
+    <p class="out-note">+ README · features.csv · decisions · qa · changelog (보조 5파일까지 한 폴더에)</p>
+  </div>
 
-    <div class="node sk">
-      <span class="who">고스트프로토콜 · Phase 0</span>
-      <p class="t">입력 해석 + 묵힌 미결 환기</p>
-      <p class="d">입력 유형 판별 · feature 이름 확정. 같은 기능·코퍼스에 기존 패키지가 있으면 <b>3일+ 안 닫힌 미결을 맨 위에 먼저 띄운다</b>(track_open).</p>
-    </div>
-    <div class="arrow"></div>
+  <!-- ===== 받쳐주는 레이어 (메인 아님 · 약하게) ===== -->
+  <div class="more">
+    <p class="h">받쳐주는 레이어</p>
+    <p class="lead">메인 흐름은 위 세 단계입니다. 아래는 “빠짐없이 닫기” 위해 그 위에 얹는 받침대입니다.</p>
+    <div class="grid">
 
-    <div class="dec"><span class="q">깃 레포 정합(코퍼스)까지 맞출까?</span></div>
-    <div class="arrow short"></div>
-    <div class="branches">
-      <div class="br">
-        <div class="lab">예 (요청 시)</div>
-        <div class="x"><b>고스트프로토콜</b> · <span class="mono">cre8orclub/planning</span> 최신 fetch → 레지스트리·공유 정책 읽기</div>
+      <div class="card">
+        <p class="ct">미결은 닫힐 때까지 추적</p>
+        <p class="cd">정할 것은 decisions.md 한 곳에. 📅 올린 날짜를 달아, 며칠 지나도 안 닫히면 다음 작업 때 다시 띄웁니다.</p>
       </div>
-      <div class="br">
-        <div class="lab">아니오 (기본)</div>
-        <div class="x"><b>고스트프로토콜</b> · 로컬만 산출 + "정합 미확인" 경고</div>
+
+      <div class="card">
+        <p class="ct">합격 기준은 따로</p>
+        <p class="cd">qa.md에 기능 합격 + 디자인 완성도 + 사용자 경험(모션·전환)을 별도 축으로 둡니다.</p>
       </div>
-    </div>
-    <p class="merge">— 두 길 합류 ▼ —</p>
-    <div class="arrow short"></div>
 
-    <div class="node sk">
-      <span class="who">고스트프로토콜 · Phase 2~5</span>
-      <p class="t">기능 추출 → PRD 작성 → 결정 분리</p>
-      <p class="d">의미 모델 → 기능 후보(15컬럼) → 정책·예외·상태 점검 → PRD 12섹션. <b>근거(화면)·의도(컨셉)·제안(AI)·미결정</b>을 절대 섞지 않는다.</p>
-    </div>
-    <div class="arrow"></div>
-
-    <div class="node sk">
-      <span class="who">고스트프로토콜 · Phase 6</span>
-      <p class="t">7파일 동시 산출 · F↔FR↔QA 연결</p>
-      <p class="d">한 폴더에 동시 생성. 열린 미결엔 <b>📅 올린 날짜</b>를, FR마다 QA 한 줄을 단다.</p>
-      <div class="files">
-        <span>README</span><span>PRD</span><span>features.md</span><span>features.csv</span>
-        <span class="hot">decisions 📅</span><span class="hot">qa.md</span><span>changelog</span>
+      <div class="card">
+        <p class="ct">답하면 다시 반영 <span class="opt">반복</span></p>
+        <p class="cd">decisions에 결정을 적고 “업데이트”라고 하면 PRD·features·qa로 전파됩니다.</p>
       </div>
-    </div>
-    <div class="arrow"></div>
 
-    <div class="node sk">
-      <span class="who">고스트프로토콜 · Phase 7</span>
-      <p class="t">검증 + 미결 추적 + 커밋 안내</p>
-      <p class="d"><span class="mono">validate</span>(7파일·12섹션·F↔FR·금지어) + 열린 미결 리포트 + 깃 커밋 명령 출력.</p>
-    </div>
+      <div class="card">
+        <p class="ct">레포 정합 <span class="opt">요청 시</span></p>
+        <p class="cd">cre8orclub/planning의 다른 기획과 모순·중복을 대조해 리포트합니다.</p>
+      </div>
 
-    <!-- ===== BAND 2 ===== -->
-    <div class="band">② 답변 · 로컬 전파 (핑퐁)</div>
+      <div class="card wide">
+        <p class="ct">메뉴(GNB) 기준선 <span class="opt">선행</span></p>
+        <p class="cd">모든 패키지의 대전제는 앱 메뉴 구조입니다. 실행 때 현재 GNB를 먼저 확인하고, 각 기능을 그 아래 매핑합니다.</p>
+      </div>
 
-    <div class="arrow"></div>
-    <div class="node me">
-      <span class="who">나</span>
-      <p class="t">decisions.md 한 곳에 답한다</p>
-      <p class="d">열린 결정은 객관식 <b>▶ 내 결정: A/B</b>, 새 기능·수정·뺄 것·새 입력은 <b>➕ 빈칸</b>. PRD·features·qa는 직접 안 고친다.</p>
     </div>
-    <div class="arrow"></div>
-
-    <div class="node sk">
-      <span class="who">고스트프로토콜 · "고스트프로토콜 업데이트"</span>
-      <p class="t">답을 PRD·features·qa에 전파</p>
-      <p class="d">결정 → 정책 <b>미정→확정</b>, 새 기능 → ID 이어서, 화면 확정 → 묶인 <b>QA 보류 해제</b>. 답한 결정은 <b>✅ 결정됨</b>으로 내려가고 changelog·버전·상태 갱신.</p>
-    </div>
-    <div class="arrow short"></div>
-    <div class="dec"><span class="q">영향 큰 결정·도출 모델인가?</span></div>
-    <div class="arrow short"></div>
-    <div class="loop">
-      <span class="ic">🔁</span>
-      <b>확인 핑퐁</b> — 고스트프로토콜이 영향 범위·도출 모델(예: "라이브 동시 방영")을 한 줄로 짚어 확인받는다.
-      <span class="up">어긋나면 decisions.md로 돌아가 다시 답한다</span>
-    </div>
-
-    <!-- ===== BAND 3 ===== -->
-    <div class="band">③ 미결 추적 (가로지르는 루프)</div>
-
-    <div class="arrow"></div>
-    <div class="node sk">
-      <span class="who">고스트프로토콜 · track_open</span>
-      <p class="t">📅 올린 날짜로 경과일 계산</p>
-      <p class="d">decisions의 열린 D/I/C를 날짜 기준으로 본다. <b>3일+ 안 닫힌 미결</b>을 담당·기한과 함께 추린다(닫히면 자동으로 빠짐). 코퍼스 활성이면 <b>다른 패키지의 묵은 미결까지</b> 함께.</p>
-    </div>
-    <div class="arrow short"></div>
-    <div class="loop">
-      <span class="ic">🔔</span>
-      <b>리마인드 루프</b> — 다음 세션을 열거나 고스트프로토콜을 부르면 묵은 미결이 응답 맨 위로 다시 뜬다("3일 전에 정하기로 해놓고 잊은 것"). 기한이 있으면 <span class="mono">/schedule</span>로 며칠 전 알림도.
-      <span class="up">Phase 0(세션 시작)으로 되돌아 자동 환기</span>
-    </div>
-
-    <!-- ===== BAND 4 ===== -->
-    <div class="band">④ 깃 배포</div>
-
-    <div class="arrow"></div>
-    <div class="node git">
-      <span class="who">Git</span>
-      <p class="t">cre8orclub/planning 에 올린다</p>
-      <p class="d">staging → <span class="mono">docs/planning/{기능}/</span> 복사 후 push. 커밋·푸시는 <b>본인 계정(choinamhee)</b> — SSH alias로 계정 전환 없이, 개인(jasonnamii)은 안 건드림.</p>
-    </div>
-
-    <!-- ===== BAND 5 ===== -->
-    <div class="band">⑤ 깃 정합 (핑퐁 · 요청 시)</div>
-
-    <div class="arrow"></div>
-    <div class="dec"><span class="q">레포의 다른 기능과 정합성 점검?</span></div>
-    <div class="arrow short"></div>
-    <div class="node sk">
-      <span class="who">고스트프로토콜</span>
-      <p class="t">다른 패키지와 대조 → 리포트</p>
-      <p class="d">모순·기능 중복·끊긴 교차참조·모션/용어 일관을 점검. <b>다른 패키지 문서는 표시만</b>(수정안 생성 ✗).</p>
-    </div>
-    <div class="arrow short"></div>
-    <div class="node me">
-      <span class="who">나</span>
-      <p class="t">로컬 문서를 수정</p>
-      <p class="d">리포트를 보고 내 패키지를 고친다(decisions·PRD·qa).</p>
-    </div>
-    <div class="arrow short"></div>
-    <div class="loop">
-      <span class="ic">🔁</span>
-      <b>정합 핑퐁</b> — 수정 후 다시 배포한다.
-      <span class="up">④ 깃 배포로 되돌아간다</span>
-    </div>
-    <div class="arrow"></div>
-    <div class="term">✅ 배포 완료</div>
-    <div class="arrow short"></div>
-    <p class="merge">이후 변경은 다시 <b>②</b>부터 같은 루프</p>
-
   </div>
 
   <footer>
-먼저 <b>GNB·유틸(`_nav.md`)</b>이라는 IA 트리를 세우고 · 한 곳에 쓰고(<span class="mono">decisions.md</span>) · 고스트프로토콜이 PRD·features·<b>qa.md</b>로 전파하고 · <b>📅 미결</b>은 닫힐 때까지 따라가고 · 깃이 <span class="mono">cre8orclub/planning</span>에 담는다.
-    QA는 기능 합격뿐 아니라 <b>디자인 완성도·사용자 경험(모션·전환)</b>까지 본다.
+    핵심은 문서를 많이 만드는 게 아니라 <b>빠짐없이 닫는 것</b>입니다.
+    어떤 입력이든 받아 <b>PRD와 기능정의 리스트</b>로 바꾸고, 둘을 ID로 묶어 Git 패키지로 넘깁니다.
+    미결·QA·정합은 그 위에 얹는 받침대일 뿐입니다.
   </footer>
+
 </div>
 </body>
 </html>
