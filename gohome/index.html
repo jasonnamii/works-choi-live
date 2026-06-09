@@ -104,7 +104,7 @@
 <div class="wrap">
   <header>
     <h1>고홈 작업 흐름 관계도</h1>
-    <p>입력 → 7파일 생성 → 결정 답변·전파(핑퐁) → 미결 추적 → 깃 배포 → 정합(핑퐁). 작업자가 하는 일과 고홈이 자동으로 하는 일을 위에서 아래로 따라가세요.</p>
+    <p><b>GNB·유틸 메뉴(대전제)</b> → 입력 → 7파일 생성 → 결정 답변·전파(핑퐁) → 미결 추적 → 깃 배포 → 정합(핑퐁). 모든 패키지는 먼저 선 GNB 트리 아래 끼워 맞춰집니다.</p>
   </header>
 
   <div class="legend">
@@ -116,13 +116,36 @@
 
   <div class="flow">
 
+    <!-- ===== BAND 0 — 대전제 ===== -->
+    <div class="band">⓪ IA 앵커 (대전제 · 가장 먼저)</div>
+
+    <div class="node sk">
+      <span class="who">고홈 · Phase 0 (맨 먼저)</span>
+      <p class="t">현재 GNB·유틸 메뉴를 선(先)제시</p>
+      <p class="d">기능을 뽑기 전에 앱 IA부터. <span class="mono">_nav.md</span>의 GNB를 한 줄로 보여주고 "이 메뉴 구성 맞나요? 수정할 곳?"을 먼저 묻는다. 없으면 후보를 제안. <b>모든 패키지의 `메뉴`가 이 GNB에 매핑된다.</b></p>
+    </div>
+    <div class="arrow short"></div>
+    <div class="dec"><span class="q">이 GNB·유틸 구성 맞나요?</span></div>
+    <div class="arrow short"></div>
+    <div class="branches">
+      <div class="br"><div class="lab">맞음</div><div class="x"><b>나</b> · 확인 → status confirmed·reviewed 갱신, 그대로 진행</div></div>
+      <div class="br"><div class="lab">아니오</div><div class="x"><b>나</b> · 수정할 곳 알려줌 → <span class="mono">_nav.md</span> 갱신 후 진행</div></div>
+    </div>
+    <div class="arrow short"></div>
+    <div class="loop">
+      <span class="ic">🔔</span>
+      <b>GNB 점검 루프</b> — <span class="mono">nav_check.py</span>가 <b>월초(달 바뀜)</b>·<b>메뉴 변경</b>(features 메뉴 ≠ GNB)을 세션 시작 때 환기.
+      <span class="up">달이 바뀌거나 메뉴가 바뀌면 다시 이 확인으로</span>
+    </div>
+    <div class="arrow"></div>
+
     <!-- ===== BAND 1 ===== -->
-    <div class="band">① 생성</div>
+    <div class="band">① 생성 (GNB 트리 아래)</div>
 
     <div class="node me">
       <span class="who">나</span>
       <p class="t">입력을 준다</p>
-      <p class="d">컨셉 한 줄 · 와이어프레임 · 피그마 URL · PDF · 기존 기획서 — 무엇이든 하나.</p>
+      <p class="d">컨셉 한 줄 · 와이어프레임 · 피그마 URL · PDF · 기존 기획서 — 무엇이든 하나. (어느 GNB 메뉴 아래인지와 함께)</p>
     </div>
     <div class="arrow"></div>
 
@@ -254,7 +277,7 @@
   </div>
 
   <footer>
-    한 곳에 쓰고(<span class="mono">decisions.md</span>) · 고홈이 PRD·features·<b>qa.md</b>로 전파하고 · <b>📅 미결</b>은 닫힐 때까지 따라가고 · 깃이 <span class="mono">cre8orclub/planning</span>에 담는다.
+먼저 <b>GNB·유틸(`_nav.md`)</b>이라는 IA 트리를 세우고 · 한 곳에 쓰고(<span class="mono">decisions.md</span>) · 고홈이 PRD·features·<b>qa.md</b>로 전파하고 · <b>📅 미결</b>은 닫힐 때까지 따라가고 · 깃이 <span class="mono">cre8orclub/planning</span>에 담는다.
     QA는 기능 합격뿐 아니라 <b>디자인 완성도·사용자 경험(모션·전환)</b>까지 본다.
   </footer>
 </div>
