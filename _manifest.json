@@ -375,12 +375,12 @@
     "last_sha256": "2d3828973607b2e6fe21355a14dea5a09f2008e30d6f37b57d52b7f7fedad2e0",
     "timestamp": "2026-06-08T12:26:24.553926Z"
   },
-  "gohome": {
-    "slug": "gohome",
+  "ghost-protocol-mechanism": {
+    "slug": "ghost-protocol-mechanism",
     "mode": "choi",
-    "url": "https://works.choi.build/gohome/",
-    "last_kind": "redeploy",
-    "last_sha256": "3603831c9326250ec841df1e01117071a9c64d30b1e5c5ba6376863f78114d66",
-    "timestamp": "2026-06-09T07:46:37.127703Z"
+    "url": "https://works.choi.build/ghost-protocol-mechanism/",
+    "last_kind": "new",
+    "last_sha256": "992d85ec80799ce9c193c3da7a9d184211738024a231d988d2a41406bc41029f",
+    "timestamp": "2026-06-09T13:43:23.893658Z"
   }
 }
