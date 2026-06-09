@@ -24,74 +24,114 @@
   body{margin:0;background:var(--paper);color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",sans-serif;
     line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:620px;margin:0 auto;padding:38px 16px 84px}
+  .wrap{max-width:640px;margin:0 auto;padding:38px 16px 84px}
 
   header h1{font-size:24px;font-weight:800;margin:0 0 6px;letter-spacing:-.3px}
   header p{margin:0;color:var(--mut);font-size:14px}
 
-  /* how-to-read hint */
-  .read{display:flex;gap:14px;margin:18px 0 4px;padding:12px 14px;background:#fff;
-    border:1px solid var(--line);border-radius:12px;font-size:12.5px;color:var(--gray)}
-  .read div{flex:1}
+  /* how-to-read */
+  .read{margin:18px 0 4px;padding:12px 14px;background:#fff;border:1px solid var(--line);
+    border-radius:12px;font-size:12.5px;color:var(--gray);display:grid;gap:5px}
   .read b{font-weight:800}
-  .read .k1 b{color:var(--a)} .read .k2 b{color:var(--mut)}
+  .read .k1 b{color:var(--a)} .read .k3 b{color:var(--loop)}
 
-  /* ===== TOP MINI-MAP — 핵심 한 줄(위 레이어만) ===== */
-  .map{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:18px 0 30px}
+  /* mini-map */
+  .map{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:18px 0 26px}
   .map .pill{display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:800;
     font-size:13px;padding:7px 13px;border-radius:999px}
-  .map .pill i{font-style:normal;font-weight:800;opacity:.85;font-size:12px}
+  .map .pill i{font-style:normal;opacity:.85;font-size:12px}
   .map .sep{color:#c4ccd5;font-weight:800}
   .p-gnb{background:var(--gnb)} .p-a{background:var(--a)} .p-b{background:var(--b)}
   .p-c{background:var(--c)} .p-d{background:var(--d)} .p-loop{background:var(--loop)}
 
-  /* ===== SPINE ===== */
+  /* ===== loop wrap (nested return rails) ===== */
+  .lwrap{display:flex;align-items:stretch;gap:6px}
+  .lstack{flex:1;min-width:0}
+  .lrail{flex:none;width:30px;border:2px solid;border-left:none;border-radius:0 14px 14px 0;
+    position:relative;display:flex;align-items:center;justify-content:center}
+  .lrail span{writing-mode:vertical-rl;font-size:10px;font-weight:800;line-height:1.35;
+    letter-spacing:.3px}
+  .lrail::before{content:"▲";position:absolute;top:5px;left:50%;transform:translateX(-50%);font-size:10px}
+  .lrail::after{content:"";position:absolute;top:-2px;left:-7px;width:7px;border-top:2px solid currentColor}
+  .lrail.work{border-color:var(--loop);color:var(--loop);background:#fffaf0}
+  .lrail.session{border-color:var(--gnb);color:var(--gnb);background:#f3f5f8}
+
+  /* ===== milestone ===== */
   .ms{margin:0}
-  .bar{display:flex;align-items:center;gap:11px;color:#fff;border-radius:13px 13px 0 0;
-    padding:13px 16px}
-  .bar .badge{flex:none;width:30px;height:30px;border-radius:8px;background:#fff;
+  .bar{display:flex;align-items:center;gap:11px;color:#fff;border-radius:13px 13px 0 0;padding:13px 15px}
+  .bar .badge{flex:none;width:29px;height:29px;border-radius:8px;background:#fff;
     display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
-  .bar .ttl{font-size:19px;font-weight:800;letter-spacing:-.3px}
+  .bar .ttl{font-size:18px;font-weight:800;letter-spacing:-.3px}
   .bar .meta{margin-left:auto;font-size:11px;font-weight:800;background:rgba(255,255,255,.22);
     padding:3px 9px;border-radius:999px}
-
   .ms.gnb .bar{background:var(--gnb)} .ms.gnb .badge{color:var(--gnb)}
   .ms.a .bar{background:var(--a)} .ms.a .badge{color:var(--a)}
   .ms.b .bar{background:var(--b)} .ms.b .badge{color:var(--b)}
   .ms.c .bar{background:var(--c)} .ms.c .badge{color:var(--c)}
   .ms.d .bar{background:var(--d)} .ms.d .badge{color:var(--d)}
-  .ms.loop .bar{background:var(--loop)} .ms.loop .badge{color:var(--loop)}
 
-  .subs{margin:0;padding:11px 16px 14px 16px;list-style:none;background:#fff;
+  .subs{margin:0;padding:10px 15px 13px;list-style:none;background:#fff;
     border:1px solid var(--line);border-top:none;border-radius:0 0 13px 13px}
-  .subs li{position:relative;padding:6px 0 6px 22px;font-size:13px;color:var(--gray);
+  .subs li{position:relative;padding:6px 0 6px 21px;font-size:12.8px;color:var(--gray);
     border-top:1px solid #f1f3f5;line-height:1.55}
   .subs li:first-child{border-top:none}
-  .subs li::before{content:"";position:absolute;left:6px;top:13px;width:6px;height:6px;
-    border-radius:50%;background:#cdd3da}
+  .subs li::before{content:"";position:absolute;left:5px;top:13px;width:6px;height:6px;border-radius:50%}
   .ms.gnb .subs li::before{background:var(--gnb)} .ms.a .subs li::before{background:var(--a)}
   .ms.b .subs li::before{background:var(--b)} .ms.c .subs li::before{background:var(--c)}
-  .ms.d .subs li::before{background:var(--d)} .ms.loop .subs li::before{background:var(--loop)}
+  .ms.d .subs li::before{background:var(--d)}
   .subs b{color:var(--ink);font-weight:700}
   .subs em{font-style:normal;color:var(--faint)}
-  .tag{display:inline-block;font-size:10px;font-weight:800;border-radius:6px;
-    padding:1px 6px;margin-right:5px;vertical-align:1px}
+  .tag{display:inline-block;font-size:10px;font-weight:800;border-radius:6px;padding:1px 6px;
+    margin-right:4px;vertical-align:1px}
   .tag.opt{color:var(--loop);background:#fef3c7}
-  .tag.first{color:var(--gnb);background:#e8edf2}
   .mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#475569;
     background:#f1f3f5;border-radius:4px;padding:0 4px}
-  .br{color:var(--mut)} .br b{color:var(--ink)}
 
-  .down{height:24px;display:flex;align-items:center;justify-content:center;
-    font-size:20px;color:#c3cad3;font-weight:800}
+  /* ===== branch fork ===== */
+  .li-fork{list-style:none}
+  .fork .h{font-size:12.5px;font-weight:800;color:#475569;display:flex;align-items:center;gap:6px}
+  .fork .h .di{color:#b0b8c1}
+  .paths{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px;position:relative}
+  .paths::before{content:"";position:absolute;top:-7px;left:26%;right:26%;height:7px;
+    border:2px solid #cbd5e1;border-bottom:none;border-radius:7px 7px 0 0}
+  .path{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;font-size:11.8px;
+    color:var(--gray);background:#fff}
+  .path .lab{font-weight:800;font-size:11px;margin-bottom:2px}
+  .paths.a .path{border-color:#cfe0fb} .paths.a .path .lab{color:var(--a)}
+  .paths.gnb .path{border-color:#d6dde5} .paths.gnb .path .lab{color:var(--gnb)}
+  .merge{text-align:center;font-size:11px;color:var(--mut);margin-top:7px}
+  .merge::before{content:"▽ "}
 
-  .loopline{font-size:13px;color:var(--gray)}
-  .loopline .back{color:var(--loop);font-weight:800}
+  /* ===== connection link ===== */
+  .link{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:3px 0}
+  .link .n{font-weight:800;font-size:12px;color:var(--c);background:#ccfbf1;border-radius:7px;padding:3px 9px}
+  .link i{color:#9aa6b2;font-weight:800;font-style:normal}
+  .link em{font-style:normal;color:var(--faint);font-size:11.5px}
 
-  footer{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
+  /* connectors + handoff */
+  .down{height:22px;display:flex;align-items:center;justify-content:center;font-size:19px;color:#c3cad3;font-weight:800}
+  .handoff{text-align:center;background:var(--d);color:#fff;font-weight:800;font-size:15px;border-radius:12px;padding:13px}
+
+  /* ===== loop legend ===== */
+  .legend{margin-top:26px;border:1px solid var(--line);border-radius:13px;background:#fff;overflow:hidden}
+  .legend .lh{background:var(--loop);color:#fff;font-weight:800;font-size:14px;padding:12px 15px;
+    display:flex;align-items:center;gap:8px}
+  .legend .row{padding:11px 15px;border-top:1px solid #f1f3f5;font-size:12.5px;color:var(--gray)}
+  .legend .row .rt{font-weight:800;color:var(--ink)}
+  .legend .row .back{color:var(--loop);font-weight:800;white-space:nowrap}
+  .fan{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .fan .src{font-weight:800;font-size:11.5px;color:var(--loop);background:#fef3c7;border-radius:7px;padding:3px 9px}
+  .fan .dst{font-size:11px;color:var(--gray);background:#f1f3f5;border-radius:6px;padding:2px 8px}
+  .fan i{color:#9aa6b2;font-style:normal;font-weight:800}
+
+  footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);
     font-size:13px;color:var(--mut);line-height:1.7}
   footer b{color:var(--ink)}
-  @media(max-width:430px){ .read{flex-direction:column;gap:6px} .bar .meta{display:none} }
+
+  @media(max-width:440px){
+    .bar .meta{display:none}
+    .lrail{width:24px} .lrail span{font-size:9px} .lwrap{gap:4px}
+  }
 </style>
 </head>
 <body>
@@ -99,106 +139,154 @@
 
   <header>
     <h1>고스트프로토콜 — 작업 메커니즘</h1>
-    <p>어떤 입력이든 받아 PRD와 기능정의 리스트로 바꿔 개발자에게 그대로 넘기는 기획 핸드오프 스킬. 절차는 하나도 생략하지 않았습니다.</p>
+    <p>어떤 입력이든 받아 PRD와 기능정의 리스트로 바꿔 개발자에게 그대로 넘기는 기획 핸드오프 스킬. 절차·분기·반복을 하나도 생략하지 않았습니다.</p>
   </header>
 
   <div class="read">
-    <div class="k1"><b>색 막대만 읽으면</b> — 핵심 흐름(0 → A → B → C → D → ↺)이 드러납니다.</div>
-    <div class="k2"><b>회색 줄까지 보면</b> — 빠진 절차 없이 전체 메커니즘이 보입니다.</div>
+    <div class="k1"><b>색 막대만</b> 따라가면 핵심 흐름(0 → A → B → C → D)이 드러납니다.</div>
+    <div class="k2"><b>회색 줄까지</b> 보면 단계별 세부 절차가 빠짐없이 보입니다.</div>
+    <div class="k3"><b>갈림길·↔·오른쪽 루프 레일</b>이 분기·연결·반복의 실제 흐름을 보여줍니다.</div>
   </div>
 
-  <!-- ===== 위 레이어: 핵심 한 줄 ===== -->
+  <!-- 핵심 한 줄 -->
   <div class="map">
     <span class="pill p-gnb"><i>0</i> 메뉴 기준선</span><span class="sep">→</span>
     <span class="pill p-a"><i>A</i> 입력</span><span class="sep">→</span>
     <span class="pill p-b"><i>B</i> 변환</span><span class="sep">→</span>
     <span class="pill p-c"><i>C</i> 7파일 패키지</span><span class="sep">→</span>
-    <span class="pill p-d"><i>D</i> 검증·배포</span><span class="sep">→</span>
+    <span class="pill p-d"><i>D</i> 검증·배포</span><span class="sep">↺</span>
     <span class="pill p-loop"><i>↺</i> 반복</span>
   </div>
 
-  <!-- ===== 0. 메뉴(GNB) 기준선 ===== -->
-  <section class="ms gnb">
-    <div class="bar"><span class="badge">0</span><span class="ttl">메뉴(GNB) 기준선</span><span class="meta">먼저</span></div>
-    <ul class="subs">
-      <li><b>현재 GNB·유틸 메뉴를 먼저 제시</b> — <span class="mono">_nav.md</span>로 한 줄 보여주고 “이 구성 맞나요?” 확인 <em>(없으면 입력·코퍼스에서 후보 제안)</em></li>
-      <li>모든 패키지의 <b>메뉴</b> 값은 이 GNB 항목에 매핑됨</li>
-      <li><span class="mono">nav_check</span> — 월초(달 바뀜)·메뉴 변경이면 세션 시작 때 다시 환기</li>
-    </ul>
-  </section>
+  <!-- ===== 세션 루프(바깥) ===== -->
+  <div class="lwrap">
+    <div class="lstack">
 
-  <div class="down">↓</div>
+      <!-- 0 -->
+      <section class="ms gnb">
+        <div class="bar"><span class="badge">0</span><span class="ttl">메뉴(GNB) 기준선</span><span class="meta">먼저</span></div>
+        <ul class="subs">
+          <li><b>현재 GNB·유틸 메뉴를 먼저 제시</b> — <span class="mono">_nav.md</span>로 한 줄 보여줌 <em>(없으면 입력·코퍼스에서 후보 제안)</em></li>
+          <li class="li-fork">
+            <div class="fork">
+              <div class="h">갈림길 <span class="di">— 이 메뉴 구성 맞나요?</span></div>
+              <div class="paths gnb">
+                <div class="path"><div class="lab">맞음</div>그대로 진행 · status 갱신</div>
+                <div class="path"><div class="lab">아니오</div>수정할 곳 받아 <span class="mono">_nav.md</span> 갱신 후 진행</div>
+              </div>
+              <div class="merge">두 길 합류 → 다음으로</div>
+            </div>
+          </li>
+          <li>모든 패키지의 <b>메뉴</b> 값이 이 GNB 항목에 매핑됨 · <span class="mono">nav_check</span>가 월초·메뉴 변경을 환기</li>
+        </ul>
+      </section>
 
-  <!-- ===== A. 입력 → 해석 ===== -->
-  <section class="ms a">
-    <div class="bar"><span class="badge">A</span><span class="ttl">입력 받아 해석</span><span class="meta">Phase 0~1</span></div>
-    <ul class="subs">
-      <li><b>입력 하나</b> — 컨셉 한 줄 · 와이어프레임 · 피그마 URL · PDF · 기존 기획서 <em>(어느 메뉴 아래인지 함께)</em></li>
-      <li>입력 유형 판별 · <b>feature 이름</b> 확정 · 대상 앱·파트 확정 <em>(디폴트 C8 6파트)</em></li>
-      <li>피그마 못 열어도 멈추지 않음 — 이미지·PDF로 대체</li>
-      <li><b>묵힌 미결 환기</b> — 3일+ 안 닫힌 결정을 맨 위로 <span class="mono">track_open</span></li>
-      <li><span class="tag opt">요청 시</span> 코퍼스 정합 — <span class="br"><b>예:</b> <span class="mono">cre8orclub/planning</span> 최신 fetch·레지스트리 읽기 <em>(처음이면 로그인 1회)</em> / <b>기본:</b> 로컬만 + “미확인” 경고</span></li>
-    </ul>
-  </section>
+      <div class="down">↓</div>
 
-  <div class="down">↓</div>
+      <!-- A -->
+      <section class="ms a">
+        <div class="bar"><span class="badge">A</span><span class="ttl">입력 받아 해석</span><span class="meta">Phase 0~1</span></div>
+        <ul class="subs">
+          <li><b>입력 하나</b> — 컨셉 한 줄 · 와이어프레임 · 피그마 URL · PDF · 기존 기획서 <em>(어느 메뉴 아래인지 함께)</em></li>
+          <li>입력 유형 판별 · <b>feature 이름</b> 확정 · 대상 앱·파트 확정 <em>(디폴트 C8 6파트)</em></li>
+          <li>피그마 못 열어도 멈추지 않음 — 이미지·PDF로 대체</li>
+          <li><b>묵힌 미결 환기</b> — 3일+ 안 닫힌 결정을 맨 위로 <span class="mono">track_open</span></li>
+          <li class="li-fork">
+            <div class="fork">
+              <div class="h">갈림길 <span class="tag opt">요청 시</span><span class="di">코퍼스 정합?</span></div>
+              <div class="paths a">
+                <div class="path"><div class="lab">예</div><span class="mono">cre8orclub/planning</span> 최신 fetch · 레지스트리 읽기 <em>(처음이면 로그인 1회)</em></div>
+                <div class="path"><div class="lab">기본(아니오)</div>로컬만 산출 + “정합 미확인” 경고</div>
+              </div>
+              <div class="merge">두 길 합류 → 변환으로</div>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-  <!-- ===== B. 변환 ===== -->
-  <section class="ms b">
-    <div class="bar"><span class="badge">B</span><span class="ttl">PRD·기능정의로 변환</span><span class="meta">Phase 2~5</span></div>
-    <ul class="subs">
-      <li><b>제품·기능 모델 정리</b> — 목적 · 사용자 · 핵심 객체·행동 · 성공 상태. 본질을 한 줄로</li>
-      <li><b>기능 추출(15컬럼)</b> — 화면 있으면 역추출, 컨셉만이면 구조화. <em>행 1개 = 행동 1개</em></li>
-      <li><b>정책·예외·상태 점검</b> — 레드플래그 → 정책·예외·경계·상태 4갈래 → 컴플라이언스·IP(법무 라우팅) → 시스템 파급</li>
-      <li><b>PRD 12섹션 작성</b> — 근거 없는 정책·예외는 확정 않고 <span class="mono">decisions</span>·미결정으로</li>
-      <li><b>4가지를 절대 안 섞음</b> — 근거(화면) · 의도(컨셉) · 제안(AI) · 미결정(사람이 정할 것)</li>
-    </ul>
-  </section>
+      <div class="down">↓</div>
 
-  <div class="down">↓</div>
+      <!-- ===== 작업 루프(안쪽) — B·C·D ===== -->
+      <div class="lwrap">
+        <div class="lstack">
 
-  <!-- ===== C. 7파일 패키지 ===== -->
-  <section class="ms c">
-    <div class="bar"><span class="badge">C</span><span class="ttl">7파일 패키지 · ID 연결</span><span class="meta">Phase 6</span></div>
-    <ul class="subs">
-      <li><b>한 폴더에 동시 산출</b> — PRD · features.md · features.csv · decisions · qa · changelog · README</li>
-      <li><b>F-ID ↔ FR-ID ↔ QA</b> 서로 연결 <em>(끊기면 핸드오프 실패)</em></li>
-      <li><span class="mono">decisions</span> — 답안지형(객관식 A/B · ➕빈칸), 열린 미결엔 <b>📅 올린 날짜</b></li>
-      <li><span class="mono">qa</span> — 8차원: 기능 · 정책 · 상태/예외 · <b>디자인 완성도 · 사용자 경험(모션)</b> · 접근성 · 성능 · 정합</li>
-      <li><span class="mono">_nav</span> 매핑 점검 · <span class="tag opt">코퍼스</span> <span class="mono">_registry</span>·통합 CSV 갱신 · <span class="tag opt">옵션</span> 엑셀</li>
-    </ul>
-  </section>
+          <!-- B -->
+          <section class="ms b">
+            <div class="bar"><span class="badge">B</span><span class="ttl">PRD·기능정의로 변환</span><span class="meta">Phase 2~5</span></div>
+            <ul class="subs">
+              <li><b>제품·기능 모델 정리</b> — 목적 · 사용자 · 핵심 객체·행동 · 성공 상태. 본질을 한 줄로</li>
+              <li><b>기능 추출(15컬럼)</b> — 화면 있으면 역추출, 컨셉만이면 구조화. <em>행 1개 = 행동 1개</em></li>
+              <li><b>정책·예외·상태 점검</b> — 레드플래그 → 정책·예외·경계·상태 4갈래 → 컴플라이언스·IP(법무 라우팅) → 시스템 파급</li>
+              <li><b>PRD 12섹션 작성</b> — 근거 없는 정책·예외는 확정 않고 <span class="mono">decisions</span>·미결정으로</li>
+              <li><b>4가지를 절대 안 섞음</b> — 근거(화면) · 의도(컨셉) · 제안(AI) · 미결정(사람)</li>
+            </ul>
+          </section>
 
-  <div class="down">↓</div>
+          <div class="down">↓</div>
 
-  <!-- ===== D. 검증 → 배포 ===== -->
-  <section class="ms d">
-    <div class="bar"><span class="badge">D</span><span class="ttl">검증 → Git 배포</span><span class="meta">Phase 7</span></div>
-    <ul class="subs">
-      <li><b>검증(validate)</b> — 7파일 · 12섹션 · F↔FR · 금지어 결정적 점검</li>
-      <li><span class="tag opt">코퍼스</span> 사후 정합 리포트 — 모순·중복·끊긴 교차참조·다른 패키지 갱신 필요? <em>(다른 패키지는 표시만)</em></li>
-      <li><b>미결 추적 리포트</b> + “일정 걸까요?” 한 줄 제안</li>
-      <li><b>커밋·푸시·PR 명령 출력</b> → <span class="mono">cre8orclub/planning</span>, 본인 계정 <b>choinamhee</b> <em>(SSH alias — 개인 계정 안 건드림)</em></li>
-      <li>개발자·디자이너가 받아 <b>바로 착수</b></li>
-    </ul>
-  </section>
+          <!-- C -->
+          <section class="ms c">
+            <div class="bar"><span class="badge">C</span><span class="ttl">7파일 패키지 · ID 연결</span><span class="meta">Phase 6</span></div>
+            <ul class="subs">
+              <li><b>한 폴더에 동시 산출</b> — PRD · features.md · features.csv · decisions · qa · changelog · README</li>
+              <li>
+                <div class="link"><span class="n">F-ID</span><i>↔</i><span class="n">FR-ID</span><i>↔</i><span class="n">QA</span><em>서로 가리킴 — 끊기면 핸드오프 실패</em></div>
+              </li>
+              <li><span class="mono">decisions</span> — 답안지형(객관식 A/B · ➕빈칸), 열린 미결엔 <b>📅 올린 날짜</b></li>
+              <li><span class="mono">qa</span> — 8차원: 기능 · 정책 · 상태/예외 · <b>디자인 완성도 · 사용자 경험(모션)</b> · 접근성 · 성능 · 정합</li>
+              <li><span class="mono">_nav</span> 매핑 점검 · <span class="tag opt">코퍼스</span> <span class="mono">_registry</span>·통합 CSV 갱신 · <span class="tag opt">옵션</span> 엑셀</li>
+            </ul>
+          </section>
 
-  <div class="down">↓</div>
+          <div class="down">↓</div>
 
-  <!-- ===== ↺ 닫힐 때까지 반복 ===== -->
-  <section class="ms loop">
-    <div class="bar"><span class="badge">↺</span><span class="ttl">닫힐 때까지 반복</span><span class="meta">핸드오프 후</span></div>
-    <ul class="subs">
-      <li class="loopline"><b>갱신</b> — <span class="mono">decisions</span>에 답(객관식·➕) → “업데이트” → PRD·features·qa로 전파 → 다시 배포 <em>(영향 큰 결정은 1줄 확인)</em> <span class="back">→ B·C·D 다시</span></li>
-      <li class="loopline"><b>미결 추적</b> — 다음 세션을 열면 <span class="mono">track_open</span>이 3일+ 묵은 미결을 맨 위로 다시 띄움 <span class="back">→ 0·A로</span></li>
-      <li class="loopline"><b>정합</b> <span class="tag opt">요청 시</span> — 레포 다른 기획과 대조 → 로컬 수정 → 재배포 <span class="back">→ D로</span></li>
-    </ul>
-  </section>
+          <!-- D -->
+          <section class="ms d">
+            <div class="bar"><span class="badge">D</span><span class="ttl">검증 → Git 배포</span><span class="meta">Phase 7</span></div>
+            <ul class="subs">
+              <li><b>검증(validate)</b> — 7파일 · 12섹션 · F↔FR · 금지어 결정적 점검</li>
+              <li><span class="tag opt">코퍼스</span> 사후 정합 리포트 — 모순·중복·끊긴 교차참조·다른 패키지 갱신 필요? <em>(다른 패키지는 표시만)</em></li>
+              <li><b>미결 추적 리포트</b> + “일정 걸까요?” 한 줄 제안</li>
+              <li><b>커밋·푸시·PR 명령 출력</b> → <span class="mono">cre8orclub/planning</span>, 본인 계정 <b>choinamhee</b> <em>(SSH alias — 개인 계정 안 건드림)</em></li>
+            </ul>
+          </section>
+
+          <div class="down">↓</div>
+          <div class="handoff">✅ 개발자·디자이너가 받아 바로 착수</div>
+
+        </div>
+        <div class="lrail work"><span>↺ 갱신 · 정합 → 다시</span></div>
+      </div>
+
+    </div>
+    <div class="lrail session"><span>↺ 다음 세션 → 묵은 미결 · 월초 환기</span></div>
+  </div>
+
+  <!-- ===== 반복 3종 (레일의 세부) ===== -->
+  <div class="legend">
+    <div class="lh">↺ 닫힐 때까지 — 되돌아가는 3개 루프</div>
+
+    <div class="row">
+      <span class="rt">갱신 핑퐁</span> <span class="back">→ B·C·D 다시</span><br>
+      <span class="mono">decisions</span>에 답(객관식 A/B·➕빈칸) → “업데이트” → 전파. <em>영향 큰 결정은 1줄 확인 후 반영.</em>
+      <div class="fan"><span class="src">decisions 답</span><i>→</i><span class="dst">PRD</span><span class="dst">features</span><span class="dst">qa</span></div>
+    </div>
+
+    <div class="row">
+      <span class="rt">미결 추적</span> <span class="back">→ 0·A로</span><br>
+      다음 세션을 열면 <span class="mono">track_open</span>이 3일+ 묵은 미결을 응답 맨 위로 다시 띄움. 닫혀야 끝.
+    </div>
+
+    <div class="row">
+      <span class="rt">정합 핑퐁</span> <span class="tag opt">요청 시</span> <span class="back">→ D로</span><br>
+      레포의 다른 기획과 모순·중복 대조 → 로컬 수정 → 재배포.
+    </div>
+  </div>
 
   <footer>
     핵심은 문서를 많이 만드는 게 아니라 <b>빠짐없이 닫는 것</b>입니다.
     그래서 입력부터 배포·반복까지 어느 절차도 생략하지 않되,
-    위 <b>색 막대</b>만 따라 읽으면 핵심 흐름이, <b>회색 줄</b>까지 보면 전체 메커니즘이 한눈에 들어오도록 두 층으로 정리했습니다.
+    <b>색 막대</b>로 핵심을, <b>회색 줄</b>로 세부를, <b>갈림길·↔·루프 레일</b>로 분기·연결·반복의 흐름을 한 화면에 담았습니다.
   </footer>
 
 </div>
