@@ -382,5 +382,13 @@
     "last_kind": "redeploy",
     "last_sha256": "b66854fdbd0bc6d6b6d4579505284ca3517dafdbcc28294222d880fbb93dbc9a",
     "timestamp": "2026-06-09T13:59:42.953062Z"
+  },
+  "ghost-protocol-flow": {
+    "slug": "ghost-protocol-flow",
+    "mode": "choi",
+    "url": "https://works.choi.build/ghost-protocol-flow/",
+    "last_kind": "new",
+    "last_sha256": "95eae9b9ad77cdcb51cd9ed955ef483f4421b16b6cde66e291f4d780950bfe8a",
+    "timestamp": "2026-06-09T14:22:06.564564Z"
   }
 }
