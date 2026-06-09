@@ -387,8 +387,8 @@
     "slug": "ghost-protocol-flow",
     "mode": "choi",
     "url": "https://works.choi.build/ghost-protocol-flow/",
-    "last_kind": "new",
-    "last_sha256": "95eae9b9ad77cdcb51cd9ed955ef483f4421b16b6cde66e291f4d780950bfe8a",
-    "timestamp": "2026-06-09T14:22:06.564564Z"
+    "last_kind": "redeploy",
+    "last_sha256": "798f3c6e4237deee0306a57fcb73f6c3871f1ff2b19cd866fd917653bb882648",
+    "timestamp": "2026-06-09T14:36:39.466005Z"
   }
 }
