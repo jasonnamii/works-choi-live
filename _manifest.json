@@ -374,5 +374,13 @@
     "last_kind": "new",
     "last_sha256": "2d3828973607b2e6fe21355a14dea5a09f2008e30d6f37b57d52b7f7fedad2e0",
     "timestamp": "2026-06-08T12:26:24.553926Z"
+  },
+  "gohome": {
+    "slug": "gohome",
+    "mode": "choi",
+    "url": "https://works.choi.build/gohome/",
+    "last_kind": "new",
+    "last_sha256": "fab2154b36b5209c08ef432863ab5b6ca22465ba728fd5a454e2a4c2d8d69832",
+    "timestamp": "2026-06-09T06:48:29.957439Z"
   }
 }

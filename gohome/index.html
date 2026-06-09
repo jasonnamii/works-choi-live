@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>고홈(gohome) — 작업 흐름 관계도</title>
+<style>
+  :root{
+    --me:#2563eb; --me-bg:#eff6ff; --me-bd:#bfdbfe;
+    --sk:#16a34a; --sk-bg:#f0fdf4; --sk-bd:#bbf7d0;
+    --git:#111827; --git-bg:#f3f4f6; --git-bd:#d1d5db;
+    --loop:#d97706; --loop-bg:#fffbeb; --loop-bd:#fde68a;
+    --ink:#111827; --mut:#6b7280; --line:#cbd5e1;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fafafa;color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+  header h1{font-size:26px;font-weight:800;margin:0 0 6px}
+  header p{margin:0;color:var(--mut);font-size:14px}
+
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 30px}
+  .lg{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;
+    padding:5px 10px;border-radius:999px;border:1px solid}
+  .lg .dot{width:9px;height:9px;border-radius:50%}
+  .lg.me{color:var(--me);background:var(--me-bg);border-color:var(--me-bd)} .lg.me .dot{background:var(--me)}
+  .lg.sk{color:var(--sk);background:var(--sk-bg);border-color:var(--sk-bd)} .lg.sk .dot{background:var(--sk)}
+  .lg.git{color:var(--git);background:var(--git-bg);border-color:var(--git-bd)} .lg.git .dot{background:var(--git)}
+  .lg.loop{color:var(--loop);background:var(--loop-bg);border-color:var(--loop-bd)} .lg.loop .dot{background:var(--loop)}
+
+  .phase{margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  .phase .num{font-size:12px;font-weight:800;color:#fff;background:var(--ink);
+    width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex:none}
+  .phase h2{font-size:15px;margin:0;font-weight:800;letter-spacing:.2px}
+
+  .step{position:relative;border:1px solid;border-radius:14px;padding:14px 16px;background:#fff}
+  .step.me{border-color:var(--me-bd)} .step.sk{border-color:var(--sk-bd)} .step.git{border-color:var(--git-bd)}
+  .step .who{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;margin-bottom:7px}
+  .step.me .who{color:var(--me);background:var(--me-bg)}
+  .step.sk .who{color:var(--sk);background:var(--sk-bg)}
+  .step.git .who{color:#fff;background:var(--git)}
+  .step .t{font-size:15px;font-weight:700;margin:0 0 3px}
+  .step .d{font-size:13px;color:var(--mut);margin:0}
+  .step .d b{color:var(--ink)}
+  .step .file{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--ink);
+    background:#f4f4f5;border-radius:5px;padding:1px 6px}
+
+  .arrow{display:flex;justify-content:center;align-items:center;height:30px;color:var(--line)}
+  .arrow svg{width:16px;height:30px}
+
+  .loop{position:relative;margin:8px 0;border:1.5px dashed var(--loop-bd);background:var(--loop-bg);
+    border-radius:12px;padding:11px 14px 11px 40px;font-size:13px;color:#92400e}
+  .loop b{color:var(--loop)}
+  .loop .ic{position:absolute;left:13px;top:11px;font-size:16px}
+  .loop .back{font-weight:700;display:block;margin-top:3px}
+
+  footer{margin-top:36px;padding-top:18px;border-top:1px solid #e5e7eb;
+    font-size:12.5px;color:var(--mut)}
+  footer b{color:var(--ink)}
+  footer code{font-family:ui-monospace,Menlo,monospace;background:#f4f4f5;padding:1px 5px;border-radius:4px}
+
+  .examples{margin-top:40px;padding-top:24px;border-top:1px solid #e5e7eb}
+  .examples h3{font-size:14px;font-weight:800;margin:0 0 4px}
+  .examples .sub{font-size:12px;color:var(--mut);margin:0 0 14px}
+  .exgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px}
+  a.ex{display:block;text-decoration:none;border:1px solid #e5e7eb;border-radius:11px;
+    padding:11px 13px;background:#fff;transition:.15s}
+  a.ex:hover{border-color:var(--ink);transform:translateY(-1px)}
+  a.ex .exn{font-size:13.5px;font-weight:700;color:var(--ink)}
+  a.ex .exd{font-size:11.5px;color:var(--mut);margin-top:2px}
+  a.ex.key{border-color:var(--loop-bd);background:var(--loop-bg)}
+  a.ex.key .exn{color:#92400e}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>고홈 작업 흐름 관계도</h1>
+    <p>컨셉 → 생성 → 답변·전파 핑퐁 → 깃 배포 → 정합 핑퐁 → 완료. 작업자가 하는 행동과 관찰하는 결과만 정리했습니다.</p>
+  </header>
+
+  <div class="legend">
+    <span class="lg me"><span class="dot"></span>나 (작업자)</span>
+    <span class="lg sk"><span class="dot"></span>고홈 (스킬·자동)</span>
+    <span class="lg git"><span class="dot"></span>Git (cre8orclub/planning)</span>
+    <span class="lg loop"><span class="dot"></span>핑퐁 (주고받기 루프)</span>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="phase"><span class="num">1</span><h2>생성</h2></div>
+
+  <div class="step me">
+    <span class="who">나</span>
+    <p class="t">컨셉·화면·문서 입력</p>
+    <p class="d">컨셉 한 줄 / 와이어프레임 / 피그마 URL / PDF / 기존 기획서 — 무엇이든 하나.</p>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 16 30"><line x1="8" y1="0" x2="8" y2="22" stroke="currentColor" stroke-width="2"/><path d="M3 20l5 7 5-7" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+
+  <div class="step sk">
+    <span class="who">고홈</span>
+    <p class="t">스킬 적용 → 6파일 패키지 생성</p>
+    <p class="d">PRD·features.md·features.csv·decisions·changelog·README 를 <span class="file">mnt/outputs/planning/{기능}/</span> 에 동시 생성. 근거·의도·제안·미결정을 분리, <b>F↔FR ID 연결</b>.</p>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase"><span class="num">2</span><h2>답변 · 로컬 전파 (핑퐁)</h2></div>
+
+  <div class="step me">
+    <span class="who">나</span>
+    <p class="t">decisions.md에 답한다</p>
+    <p class="d">열린 결정은 객관식(<b>▶ 내 결정: A/B</b>), 새 기능·수정·뺄 것·새 입력은 <b>➕ 빈칸</b>. PRD·features는 직접 안 고침.</p>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 16 30"><line x1="8" y1="0" x2="8" y2="22" stroke="currentColor" stroke-width="2"/><path d="M3 20l5 7 5-7" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+
+  <div class="step sk">
+    <span class="who">고홈</span>
+    <p class="t">"고홈 업데이트 {기능}" → 로컬 전파</p>
+    <p class="d">답한 결정이 <b>PRD §8·§9·features 정책칸</b>에 자동 반영(미정→확정), 새 기능은 ID 이어서, decisions는 <b>✅ 결정됨</b>으로, changelog·버전·상태 갱신, 재검증.</p>
+  </div>
+
+  <div class="loop">
+    <span class="ic">🔁</span>
+    <b>확인 핑퐁</b> — 영향 큰 결정·도출 모델(예: "라이브 동시 방영")을 고홈이 한 줄로 짚어 확인받음.
+    <span class="back">↺ 어긋나면 decisions.md로 되돌아가 다시 답함.</span>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase"><span class="num">3</span><h2>깃 배포</h2></div>
+
+  <div class="step git">
+    <span class="who">Git</span>
+    <p class="t">cre8orclub/planning 에 올림</p>
+    <p class="d">staging → <span class="file">docs/planning/{기능}/</span> 복사 후 commit·push. 커밋은 자동으로 본인 계정(<span class="file">choinamhee</span>), 푸시는 SSH alias로 — <b>계정 전환 없이</b> 조직으로.</p>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase"><span class="num">4</span><h2>깃 정합 (요청 시) · 정합 핑퐁</h2></div>
+
+  <div class="step sk">
+    <span class="who">고홈</span>
+    <p class="t">깃 데이터와 정합 점검</p>
+    <p class="d">"레포 기준으로 맞춰줘" 요청 시, 깃 최신 코퍼스를 읽어 다른 패키지와 <b>모순·중복·끊긴 교차참조</b>를 대조하고 <span class="file">_registry·_features.csv</span> 통합.</p>
+  </div>
+
+  <div class="loop">
+    <span class="ic">🔁</span>
+    <b>정합 핑퐁</b> — 고홈이 정합성 리포트를 내고, 나는 <b>로컬 문서를 수정</b>한다(다른 패키지는 표시만).
+    <span class="back">↺ 수정 후 다시 깃 배포(3단계)로.</span>
+  </div>
+  <div class="arrow"><svg viewBox="0 0 16 30"><line x1="8" y1="0" x2="8" y2="22" stroke="currentColor" stroke-width="2"/><path d="M3 20l5 7 5-7" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+
+  <div class="step git">
+    <span class="who">Git</span>
+    <p class="t">깃 배포 완료</p>
+    <p class="d">정합까지 맞은 패키지가 정본 레포에 반영됨. 이후 변경은 다시 <b>2단계(decisions 답변)</b>부터 같은 루프.</p>
+  </div>
+
+  <div class="examples">
+    <h3>예시 문서 — gallery 패키지</h3>
+    <p class="sub">실제로 산출된 6파일입니다. (.md·.csv는 클릭 시 원문 — 깃에서는 표로 렌더됩니다)</p>
+    <div class="exgrid">
+      <a class="ex" href="gallery/README.md"><div class="exn">README.md</div><div class="exd">패키지 첫 화면·읽는 순서</div></a>
+      <a class="ex" href="gallery/PRD.md"><div class="exn">PRD.md</div><div class="exd">제품 요구서 12섹션 (v0.2)</div></a>
+      <a class="ex" href="gallery/features.md"><div class="exn">features.md</div><div class="exd">기능정의 15컬럼 (F-001~F-010)</div></a>
+      <a class="ex" href="gallery/features.csv"><div class="exn">features.csv</div><div class="exd">필터·엑셀용 데이터</div></a>
+      <a class="ex" href="gallery/changelog.md"><div class="exn">changelog.md</div><div class="exd">변경 이력 (0.1 → 0.2)</div></a>
+    </div>
+
+    <h3 style="margin-top:20px">decisions.md — 두 가지 상태</h3>
+    <p class="sub">작업자가 답을 쓰는 단 하나의 입력칸. "빈 답안지"로 받아서 "편집·반영본"이 됩니다.</p>
+    <div class="exgrid">
+      <a class="ex key" href="gallery/decisions.empty.md"><div class="exn">① decisions.empty.md — 빈 답안지</div><div class="exd">생성 직후·답하기 전. 객관식 슬롯(▶ 내 결정)이 빈칸</div></a>
+      <a class="ex key" href="gallery/decisions.md"><div class="exn">② decisions.md — 편집·반영본</div><div class="exd">결정 12건 답·반영 후. ✅ 결정됨 이력 포함</div></a>
+    </div>
+  </div>
+
+  <footer>
+    핵심 루프 둘 — <b>② 답변→전파 핑퐁</b>(로컬에서 기획을 닫는다) · <b>④ 정합 핑퐁</b>(깃에서 다른 기획과 맞춘다).
+    내가 글을 쓰는 곳은 항상 <code>decisions.md</code> 한 곳, 반영은 고홈이, 배포는 깃이.
+  </footer>
+</div>
+</body>
+</html>
