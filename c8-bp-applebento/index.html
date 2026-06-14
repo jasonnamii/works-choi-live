@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
 <meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cre8orClub — The Creative Network</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/[email protected]/dist/web/static/pretendard.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
 <style>
 :root{
   --bg:#000000;
@@ -634,9 +643,9 @@ details.fold > .fold-body{
 .flow .arr{color:#c7c7cc;font-size:14px;font-weight:600}
 
 /* dot list */
-ul.clean{margin:0;padding:0;list-style:none}
-ul.clean li{padding:6px 0;display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.55}
-ul.clean li::before{content:"•";color:var(--ink-deco);font-weight:900;line-height:1.55}
+ul.clean, ol.clean{margin:0;padding:0;list-style:none}
+ul.clean li, ol.clean li{padding:6px 0;display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.55}
+ul.clean li::before, ol.clean li::before{content:"•";color:var(--ink-deco);font-weight:900;line-height:1.55}
 ul.clean.checks li::before{content:"✓";color:#30d158;font-weight:900}
 
 /* matrix grid generic */
@@ -782,9 +791,352 @@ ul.clean.invert li::before{color:#1d1d1f}
 .cell.tone-pink-vivid .cell.tone-white, .cell.tone-pink-vivid .cell.tone-white *{
   color:#ffffff !important;
 }
+
+/* viz-kit injected */
+/* =========================================================================
+   viz-kit.css — C8 Apple Bento 공용 뷰키트 (ADD-ONLY)
+   - 기존 head CSS 클래스 재정의 금지. 모든 신규 클래스는 .v- 접두어.
+   - 팔레트: 기존 캔디 비비드 변수만(--pink·--yellow·--lime·--sky·--lavender
+     ·--peach·--mint·--coral·--grape·--pink-vivid). color-mix(white)·신규
+     그라디언트 금지. 컬러셀 안 텍스트/획=블랙(#1d1d1f), 다크·tone-white 안=화이트.
+   - 반응형: clamp()·%·container query. 900px·560px 무파손, 한글 keep-all.
+   ========================================================================= */
+
+/* RGB 페어 — 히트맵 alpha 스텝용(시스템색 금지, 캔디 hue만) */
+:root{
+  --v-rgb-pink:255,77,143;        /* #FF4D8F */
+  --v-rgb-pink-vivid:255,31,111;  /* #FF1F6F */
+  --v-rgb-yellow:255,203,5;       /* #FFCB05 */
+  --v-rgb-lime:77,217,100;        /* #4DD964 */
+  --v-rgb-sky:61,179,255;         /* #3DB3FF */
+  --v-rgb-lavender:168,85,247;    /* #A855F7 */
+  --v-rgb-peach:255,122,26;       /* #FF7A1A */
+  --v-rgb-mint:34,211,164;        /* #22D3A4 */
+  --v-rgb-coral:255,107,107;      /* #FF6B6B */
+  --v-rgb-grape:132,94,194;       /* #845EC2 */
+  --v-silver:#4a4a52;             /* hairline on light/color */
+  --v-silver-dark:#3a3a3c;        /* hairline on dark */
+}
+
+/* =========================================================================
+   0. SVG 공통 — 반응형 자기완결
+   ========================================================================= */
+.v-svg{display:block;width:100%;height:auto;max-width:100%}
+.v-svg text{font-family:inherit}
+/* 다크/tone-white 셀 안 노드에만 은은한 글로우(드롭섀도, blur 필터 미사용) */
+.cell.dark .v-node-glow,
+.cell.tone-white .v-node-glow{filter:drop-shadow(0 0 10px rgba(255,255,255,0.10))}
+@media (prefers-reduced-motion:reduce){.v-node-glow{filter:none}}
+
+/* =========================================================================
+   1. 빅넘버 히어로 — METRIC big-number-stack
+   ========================================================================= */
+.v-hero-num{
+  font-size:clamp(48px,12cqi,180px);
+  font-weight:900;
+  line-height:0.92;
+  letter-spacing:-0.045em;
+  margin:0;
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum";
+  white-space:nowrap;
+  max-width:100%;
+  display:block;
+  word-break:keep-all;
+}
+@supports not (font-size:1cqi){.v-hero-num{font-size:clamp(48px,11vw,180px)}}
+/* 다열(row-*) 안의 빅넘버는 좁은 컬럼 폭에 맞춰 축소 — 가로 잘림 방지(솔로 카드는 영향 없음) */
+.row-2 .v-hero-num,.row-3 .v-hero-num,.row-4 .v-hero-num{font-size:clamp(22px,13cqi,76px)}
+.v-hero-num .v-hero-unit{font-size:0.4em;font-weight:800;opacity:0.7;letter-spacing:-0.02em}
+.v-hero-num .v-hero-range{font-size:0.78em} /* "44~68" 같은 범위값은 살짝만 축소 */
+.v-hero-cap{
+  font-size:clamp(12px,1.1vw,15px);
+  font-weight:800;
+  letter-spacing:0.04em;
+  margin-top:10px;
+  line-height:1.4;
+}
+/* 색상은 부모 셀 규칙이 강제(컬러셀=블랙, 다크=화이트). 액센트만 옵션 */
+.cell.dark .v-hero-num,.cell.tone-white .v-hero-num{color:#fff}
+.v-hero-num.v-acc-pink{color:var(--pink)}
+.v-hero-num.v-acc-lime{color:var(--lime)}
+.v-hero-num.v-acc-sky{color:var(--sky)}
+.v-hero-num.v-acc-yellow{color:var(--yellow)}
+.v-hero-num.v-acc-mint{color:var(--mint)}
+/* 컬러셀 안에서는 액센트 무력화(색-위-색 가독성) */
+.cell.tone-pink .v-hero-num,.cell.tone-peach .v-hero-num,.cell.tone-yellow .v-hero-num,
+.cell.tone-lime .v-hero-num,.cell.tone-sky .v-hero-num,.cell.tone-mint .v-hero-num,
+.cell.tone-lavender .v-hero-num,.cell.tone-pink-vivid .v-hero-num{color:#1d1d1f}
+
+/* =========================================================================
+   2. 동심원 / 네스티드 퍼널 — HIERARCHY nested-containment (TAM⊃SAM⊃SOM)
+      SVG 동심원이 본체. 래퍼·라벨만 CSS.
+   ========================================================================= */
+.v-nest{max-width:clamp(260px,80cqi,360px);margin:0 auto;display:block;width:100%}
+.v-nest-legend{
+  display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;
+  margin-top:14px;font-size:clamp(12px,1.1vw,14px);font-weight:700;
+}
+.v-nest-legend .v-key{display:inline-flex;align-items:center;gap:7px;line-height:1.3}
+.v-nest-legend .v-swatch{width:13px;height:13px;border-radius:4px;flex:0 0 auto;display:inline-block}
+
+/* =========================================================================
+   3. 벤다이어그램 — RELATION venn (교집합)
+   ========================================================================= */
+.v-venn{max-width:clamp(280px,90cqi,460px);margin:0 auto;display:block;width:100%}
+.v-venn-cap{
+  text-align:center;margin-top:12px;
+  font-size:clamp(13px,1.3vw,16px);font-weight:800;line-height:1.4;
+}
+
+/* =========================================================================
+   4. 허브-스포크 노드그래프 — RELATION hub-spoke
+      엣지=hairline, 중심=풀필, 스포크=stroke. 글로우는 .v-node-glow(다크 한정).
+   ========================================================================= */
+.v-hub{max-width:clamp(300px,92cqi,460px);margin:0 auto;display:block;width:100%}
+/* 엣지 hairline — 컬러셀/다크 자동 대응 */
+.v-edge{stroke:var(--v-silver);stroke-width:1.6;fill:none}
+.cell.dark .v-edge,.cell.tone-white .v-edge{stroke:var(--v-silver-dark)}
+.v-edge-dash{stroke-dasharray:3 5}
+
+/* =========================================================================
+   5. 여정 파이프라인 / 레일 — FLOW sequence-pipeline
+      가로 레일 + 번호 노드. SVG 본체 + (옵션) HTML 미니 스텝.
+   ========================================================================= */
+.v-pipe{max-width:clamp(320px,98cqi,820px);margin:0 auto 4px;display:block;width:100%}
+.v-rail{stroke-width:3;stroke-linecap:round;fill:none}
+/* HTML 보조 스텝(인라인 화살) — 카드 안 아웃컴용 */
+.v-steps{display:flex;align-items:center;gap:clamp(6px,1.2vw,12px);flex-wrap:wrap}
+.v-step{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:clamp(13px,1.3vw,15px);font-weight:800;line-height:1.3;
+}
+.v-step-num{
+  width:26px;height:26px;border-radius:50%;flex:0 0 auto;
+  display:inline-grid;place-items:center;
+  font-size:13px;font-weight:900;
+  background:var(--lime);color:#1d1d1f;
+}
+.v-step .v-arr{font-size:14px;font-weight:900;opacity:0.7}
+/* 다크/tone-white 셀: 화살표만 밝게, 번호칩 색은 인라인 지정 우선 */
+.cell.dark .v-step .v-arr,.cell.tone-white .v-step .v-arr{color:#c7c7cc}
+
+/* =========================================================================
+   6. 히트맵 그리드 — DISTRIBUTION heatmap (단일 hue alpha 스텝)
+      회색 농도·시스템색 금지. --v-hm-hue로 캔디 RGB 주입.
+   ========================================================================= */
+.v-heatmap{
+  display:grid;gap:6px;max-width:100%;margin:0;
+  grid-template-columns:repeat(var(--v-cols,5),minmax(0,1fr));
+}
+.v-hm-cell{
+  aspect-ratio:1.6;border-radius:8px;min-width:0;
+  display:grid;place-items:center;text-align:center;
+  font-size:clamp(11px,2.2cqi,14px);font-weight:800;line-height:1.15;padding:4px;
+  background:rgba(var(--v-hm-hue,255,31,111),var(--v-a,0.2));
+  color:#1d1d1f;word-break:keep-all;
+}
+/* 진한 셀(>=0.62)은 흰 텍스트 */
+.v-hm-cell.v-hot{color:#fff}
+/* 행/열 라벨 */
+.v-hm-axis{font-size:clamp(10px,1.6cqi,12px);font-weight:700;line-height:1.2}
+.cell.dark .v-hm-axis,.cell.tone-white .v-hm-axis{color:#c7c7cc}
+
+/* =========================================================================
+   7. 커버리지 스택바 강화 — 기존 .bar 보완(.v-bar는 라벨·세그 위계 추가)
+      기존 .bar는 그대로. .v-bar는 IKEA식 2층(굵은 막대 + 세부 라벨 줄).
+   ========================================================================= */
+.v-bar{
+  display:flex;height:clamp(44px,9cqi,56px);border-radius:14px;overflow:hidden;
+  margin:14px 0 8px;border:1px solid var(--v-silver);
+}
+.cell.dark .v-bar,.cell.tone-white .v-bar{border-color:var(--v-silver-dark)}
+.v-bar-seg{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:#1d1d1f;font-weight:900;font-size:clamp(13px,2.4cqi,16px);line-height:1.05;
+  padding:0 8px;text-align:center;min-width:0;
+}
+.v-bar-seg .v-seg-sub{font-size:0.62em;font-weight:700;opacity:0.78;margin-top:2px}
+/* 비어있는 잔여 세그(78%) — 다크 트랙, 화이트 텍스트 */
+.v-bar-seg.v-seg-rest{background:#2c2c2e;color:#fff}
+.v-bar-seg.v-seg-rest .v-seg-sub{opacity:0.6}
+/* 세부 줄(막대 아래 캡션 행) */
+.v-bar-legend{
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-size:clamp(11px,1.1vw,13px);font-weight:700;line-height:1.4;margin-top:4px;
+}
+
+/* =========================================================================
+   8. 레이어 스택 — HIERARCHY layered-architecture (Creative 5: L1~L5)
+   ========================================================================= */
+.v-layers{display:flex;flex-direction:column;gap:8px;max-width:820px;margin:0}
+.v-layer{
+  display:flex;align-items:center;gap:clamp(12px,2vw,22px);
+  padding:clamp(12px,1.8vw,18px) clamp(14px,2.2vw,24px);
+  border-radius:16px;
+  background:#1d1d1f;
+  border-left:6px solid var(--v-lay,var(--sky));
+  min-width:0;
+}
+/* 컬러셀 안 레이어는 흰 카드+컬러 보더로 위계 */
+.cell.tone-pink .v-layer,.cell.tone-peach .v-layer,.cell.tone-yellow .v-layer,
+.cell.tone-lime .v-layer,.cell.tone-sky .v-layer,.cell.tone-mint .v-layer,
+.cell.tone-lavender .v-layer,.cell.tone-pink-vivid .v-layer{
+  background:rgba(29,29,31,0.06);
+}
+.v-layer-tag{
+  flex:0 0 auto;padding:7px 16px;border-radius:999px;
+  background:var(--v-lay,var(--sky));color:#1d1d1f;
+  font-size:clamp(11px,1.1vw,13px);font-weight:900;letter-spacing:0.02em;
+  white-space:nowrap;
+}
+.v-layer-text{
+  font-size:clamp(13px,1.4vw,16px);font-weight:600;line-height:1.45;margin:0;min-width:0;
+}
+.cell.dark .v-layer-text,.cell.tone-white .v-layer-text{color:#fff}
+
+/* =========================================================================
+   9. before/after COMPARE — 2열 대비(옛 vs C8)
+      옛=opacity 낮춤, C8=풀비비드. 가운데 변화 화살.
+   ========================================================================= */
+.v-compare{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;
+  gap:clamp(10px,2vw,20px);margin:0;
+}
+.v-cmp-col{
+  display:flex;flex-direction:column;gap:8px;min-width:0;
+  padding:clamp(14px,2vw,20px);border-radius:16px;
+}
+.v-cmp-before{background:rgba(255,255,255,0.04);opacity:0.62}
+.cell.tone-pink .v-cmp-before,.cell.tone-peach .v-cmp-before,.cell.tone-yellow .v-cmp-before,
+.cell.tone-lime .v-cmp-before,.cell.tone-sky .v-cmp-before,.cell.tone-mint .v-cmp-before,
+.cell.tone-lavender .v-cmp-before,.cell.tone-pink-vivid .v-cmp-before{background:rgba(29,29,31,0.08)}
+.v-cmp-after{background:rgba(77,217,100,0.10);border:1.5px solid var(--lime)}
+.v-cmp-tag{font-size:clamp(11px,1.1vw,13px);font-weight:900;letter-spacing:0.04em}
+.v-cmp-arrow{
+  display:grid;place-items:center;font-size:clamp(20px,3vw,30px);font-weight:900;
+  align-self:center;opacity:0.85;
+}
+.cell.dark .v-cmp-arrow,.cell.tone-white .v-cmp-arrow{color:#fff}
+@media (max-width:560px){
+  .v-compare{grid-template-columns:1fr;gap:10px}
+  .v-cmp-arrow{transform:rotate(90deg);padding:4px 0}
+}
+
+/* =========================================================================
+   10. 수렴 다이어그램 래퍼 — RELATION convergence(다수→1)
+   ========================================================================= */
+.v-converge{max-width:clamp(360px,98cqi,640px);margin:18px auto;display:block;width:100%}
+
+/* =========================================================================
+   11. 모자이크 위계 TOC 보조 — HIERARCHY(표지)
+       기존 .toc-cell 재정의 금지. .v-toc-major/.v-toc-minor는 크기 변주만.
+   ========================================================================= */
+.v-toc-major{min-height:clamp(180px,26vw,240px)}
+.v-toc-major .toc-title{font-size:clamp(24px,3vw,34px)}
+.v-toc-minor{min-height:clamp(120px,16vw,150px)}
+.v-toc-minor .toc-title{font-size:clamp(17px,1.9vw,21px)}
+.v-toc-minor .toc-sub{font-size:12px}
+
+/* =========================================================================
+   12. 폰 하단내비 모티프 — product(#6) 5탭
+   ========================================================================= */
+.v-tabbar{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:clamp(6px,1.4vw,14px);
+  padding:clamp(10px,1.6vw,16px) clamp(12px,2.2vw,22px);
+  border-radius:20px;background:#000;border:1.5px solid var(--v-silver-dark);
+  max-width:520px;margin:0;
+}
+.v-tab{
+  display:flex;flex-direction:column;align-items:center;gap:6px;flex:1 1 0;min-width:0;
+  font-size:clamp(11px,1.1vw,13px);font-weight:700;color:#c7c7cc;text-align:center;line-height:1.2;
+}
+.v-tab .v-tab-dot{width:8px;height:8px;border-radius:50%;background:#5a5a62}
+/* 중앙 + 탭 강조 */
+.v-tab-plus .v-tab-dot{
+  width:clamp(40px,8vw,52px);height:clamp(40px,8vw,52px);border-radius:50%;
+  background:var(--lime);color:#1d1d1f;display:grid;place-items:center;
+  font-size:clamp(22px,4vw,30px);font-weight:900;line-height:1;margin-bottom:2px;
+}
+.v-tab-plus{color:#fff;font-weight:900}
+
+/* =========================================================================
+   13. 반응형 안전 — 900 / 560 가드
+   ========================================================================= */
+@media (max-width:900px){
+  .v-compare{gap:12px}
+  .v-heatmap{gap:5px}
+}
+@media (max-width:560px){
+  .v-hero-num{line-height:0.96}
+  .v-steps{gap:8px}
+  .v-tabbar{padding:10px 12px}
+  .v-bar{height:clamp(48px,16vw,56px)}
+}
+
+/* =========================================================================
+   모바일 하드닝 (html-finisher P5/A16 — 수리 사다리: 근본→분기→안전망, 마스킹 금지)
+   ========================================================================= */
+@media (max-width:600px){
+  /* 형광펜 긴 문구: 좁은 폭에서 nowrap 잘림 → 다중행 알약으로 줄바꿈(콘텐츠 보존) */
+  .hl{white-space:normal;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  /* always-visible/긴 표: 셀 폭 초과 시 가로 스크롤 안전망(콘텐츠 잘라 숨기지 않음) */
+  .wide-table,.src-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+  /* 다열 빅넘버는 모바일 1열 전환 시 더 키울 수 있게 상한만 완화 */
+  .row-2 .v-hero-num,.row-3 .v-hero-num,.row-4 .v-hero-num{font-size:clamp(28px,11vw,72px)}
+}
+
 </style>
 </head>
 <body>
+<!-- viz-defs injected -->
+<!-- =========================================================================
+     viz-defs.html — 문서에 1회만 삽입하는 공용 SVG defs
+     - 위치: <body> 최상단(topnav 직전) 권장. 화면에 안 보임(width/height 0).
+     - 그라디언트 defs 금지. blur 글로우(feGaussianBlur) 금지 — forbidden.md 준수.
+     - filter#nodeGlow는 '식별자 보존용' 무해 패스스루입니다(blur 없음). 실제 은은한
+       글로우는 viz-kit.css의 .v-node-glow(드롭섀도, 다크셀 한정)가 담당합니다.
+       기존·스니펫의 filter="url(#nodeGlow)" 참조가 깨지지 않게 정의만 유지합니다.
+     - 화살표 marker 4종: 흰(arrW)·검정(arrK)·캔디 옐로(arrC)·라임(arrLime)입니다. 각
+       스니펫은 refX=10·markerWidth/Height 7로 노드 침범을 막습니다.
+     - clipPath: 동심원/도넛 라운드 클립 1종(필요 시).
+     ========================================================================= -->
+<svg width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- 노드 식별자 보존용 무해 필터(blur 미사용·패스스루). 실제 글로우는 CSS. -->
+    <filter id="nodeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feComponentTransfer>
+        <feFuncA type="identity"/>
+      </feComponentTransfer>
+    </filter>
+
+    <!-- 화살표 marker — 흰색(다크/tone-white 셀 위) -->
+    <marker id="arrW" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L11,6 L0,11 z" fill="#ffffff"/>
+    </marker>
+
+    <!-- 화살표 marker — 검정(컬러셀 위) -->
+    <marker id="arrK" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L11,6 L0,11 z" fill="#1d1d1f"/>
+    </marker>
+
+    <!-- 화살표 marker — 캔디 옐로(수렴·강조 흐름) -->
+    <marker id="arrC" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L11,6 L0,11 z" fill="#FFCB05"/>
+    </marker>
+
+    <!-- 화살표 marker — 라임(여정·완료 흐름) -->
+    <marker id="arrLime" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L11,6 L0,11 z" fill="#4DD964"/>
+    </marker>
+
+    <!-- 동심원/도넛 라운드 클립(옵션) -->
+    <clipPath id="vRoundClip"><rect x="0" y="0" width="360" height="360" rx="24"/></clipPath>
+  </defs>
+</svg>
+
+
 
 <!-- TOP NAV -->
 <header class="topnav">
@@ -804,44 +1156,67 @@ ul.clean.invert li::before{color:#1d1d1f}
 
 <!-- ============ COVER ============ -->
 <section id="cover" class="full hero-section">
-  <div class="inner">
+  <div class="inner" style="position:relative">
+
+    <!-- 연결 인프라 모티프 — 중심1+스포크5 점선 -->
+    <svg class="v-svg" viewBox="0 0 360 360" width="300"
+         style="position:absolute;right:4vw;top:8%;opacity:0.22;pointer-events:none;max-width:34vw" aria-hidden="true">
+      <g class="v-edge v-edge-dash">
+        <line x1="180" y1="180" x2="180" y2="60"/>
+        <line x1="180" y1="180" x2="290" y2="130"/>
+        <line x1="180" y1="180" x2="290" y2="250"/>
+        <line x1="180" y1="180" x2="70" y2="250"/>
+        <line x1="180" y1="180" x2="70" y2="130"/>
+      </g>
+      <circle cx="180" cy="180" r="30" fill="#4DD964"/>
+      <g fill="none" stroke-width="2">
+        <circle cx="180" cy="60" r="16" stroke="#FF4D8F"/>
+        <circle cx="290" cy="130" r="16" stroke="#3DB3FF"/>
+        <circle cx="290" cy="250" r="16" stroke="#FFCB05"/>
+        <circle cx="70" cy="250" r="16" stroke="#845EC2"/>
+        <circle cx="70" cy="130" r="16" stroke="#22D3A4"/>
+      </g>
+    </svg>
+
     <div class="cap">United in Crazy</div>
-    <h1 class="hero">크리에이티브 산업의 <span class="accent-lime">LinkedIn</span>.</h1>
-    <p class="lead">만드는 쪽도, 맡기는 쪽도, 굴리는 쪽도 다른 통증을 호소하지만, 뿌리는 하나다. <strong>같이 일한 기록을 담는 그릇이 없다.</strong> Cre8orClub이 그 그릇을 만든다.</p>
+    <h1 class="hero" style="font-size:clamp(40px,9vw,124px);line-height:0.96;letter-spacing:-0.03em">크리에이티브 산업의 <span class="accent-lime">LinkedIn</span>.</h1>
+    <p class="lead">크리에이티브 산업은 사람을 찾고, 검증하고, 다시 함께 일하는 과정을 아직 인맥과 카톡에 맡깁니다. <strong>협업 이력·평판·관계 데이터가 쌓이는 시스템이 없습니다.</strong> Cre8orClub은 이 데이터를 구조화해 크리에이티브 산업의 연결 인프라를 만듭니다.</p>
+    <p class="body mt-m" style="font-size:clamp(17px,1.9vw,24px);font-weight:800;max-width:820px">지금 시장이라 부르는 건 전체의 <span class="hl hl-mint">22%</span>뿐입니다. 나머지 78%는 아직 시장 밖에 있습니다.</p>
     <div class="hero-tag">
       <span class="chip">Cre8orClub</span>
       <span class="chip outline">The Creative Network</span>
       <span class="chip outline">United in Crazy</span>
+      <span class="chip outline">문화와 콘텐츠에 미친 사람들</span>
     </div>
 
     <!-- TOC bento -->
     <div class="bento mt-xl" style="margin-top:clamp(48px,8vw,96px)">
-      <a class="toc-cell span4 toc-color" href="#problem" style="background:var(--pink)">
+      <a class="toc-cell span6 toc-color v-toc-major" href="#problem" style="background:var(--pink)">
         <div><div class="toc-num">#2</div><div class="toc-sub mt-s">Problem</div></div>
         <div class="toc-title">셋의 고통, 같은 뿌리.</div>
       </a>
-      <a class="toc-cell span4 toc-color" href="#solution" style="background:var(--lime)">
+      <a class="toc-cell span6 toc-color v-toc-major" href="#solution" style="background:var(--lime)">
         <div><div class="toc-num">#3</div><div class="toc-sub mt-s">Solution</div></div>
-        <div class="toc-title">여덟 기능. 그게 전부.</div>
+        <div class="toc-title">20개 Pain, 8개 기능으로 수렴.</div>
       </a>
       <a class="toc-cell span4 toc-color" href="#whynow" style="background:var(--yellow)">
         <div><div class="toc-num">#4</div><div class="toc-sub mt-s">Why Now</div></div>
         <div class="toc-title">가능, 긴급, 공백.</div>
       </a>
-      <a class="toc-cell span3 toc-color" href="#market" style="background:var(--mint)">
+      <a class="toc-cell span4 toc-color" href="#market" style="background:var(--mint)">
         <div><div class="toc-num">#5</div><div class="toc-sub mt-s">Market</div></div>
         <div class="toc-title">₩7.65조 매칭 경제.</div>
       </a>
-      <a class="toc-cell span3 toc-color" href="#product" style="background:var(--sky)">
+      <a class="toc-cell span4 toc-color" href="#product" style="background:var(--sky)">
         <div><div class="toc-num">#6</div><div class="toc-sub mt-s">Product</div></div>
         <div class="toc-title">작동 중인 앱.</div>
       </a>
-      <a class="toc-cell span3 toc-color" href="#bm" style="background:var(--grape)">
+      <a class="toc-cell span6 toc-color" href="#bm" style="background:var(--grape)">
         <div><div class="toc-num">#7</div><div class="toc-sub mt-s">Business Model</div></div>
-        <div class="toc-title">Advanced 기능에 과금.</div>
+        <div class="toc-title">찾는 쪽이 도구를 구독.</div>
       </a>
-      <div class="toc-cell span3 dark" style="background:#000000;color:#ffffff">
-        <div><div class="toc-num" style="color:#c7c7cc">#8 — #14</div><div class="toc-sub mt-s" style="color:#c7c7cc">Drafting</div></div>
+      <div class="toc-cell span6 dark v-toc-minor" style="background:#000000;color:#ffffff">
+        <div><div class="toc-num" style="color:#c7c7cc">#8 — #14</div><div class="toc-sub mt-s" style="color:#c7c7cc">다음 편</div></div>
         <div class="toc-title">Traction · UE · GTM · Team · Ask.</div>
       </div>
     </div>
@@ -852,15 +1227,15 @@ ul.clean.invert li::before{color:#1d1d1f}
 <section id="problem">
   <div class="cap">#2 · Problem</div>
   <h2 class="section-head">세 쪽 다 문제. <br>원인은 <span class="accent-pink">하나.</span></h2>
-  <p class="lead">만드는 쪽은 다음 일을 못 찾고, 맡기는 쪽은 검증된 사람을 못 부르고, 굴리는 쪽은 풀을 관리할 도구가 없다. <strong>누적되지 않는 산업. 그래서 셋 다 매번 처음부터 시작한다.</strong></p>
+  <p class="lead">만드는 쪽은 다음 일을 못 찾고, 맡기는 쪽은 검증된 사람을 다시 부르지 못하고, 운영하는 쪽은 프리랜서 풀을 조직 자산으로 만들지 못합니다. <strong>협업 데이터가 누적되지 않기 때문에 셋 모두 매번 처음부터 시작합니다.</strong></p>
 
   <div class="bento mt-xl">
     <!-- Three pain panels -->
     <div class="cell span4 tone-pink">
       <div class="cap">Creator</div>
-      <div class="big med">28%</div>
+      <p class="v-hero-num">28<span class="v-hero-unit">%</span></p>
       <div class="big-cap">연간 일 찾는 시간</div>
-      <p class="body mt-m">같이 일해본 적 없는 사람이 같이 잘 일할지 알 길이 없다. 1년 중 70일을 탐색에 쓰고, 끝나면 인연도 흩어진다.</p>
+      <p class="body mt-m">같이 일해본 적 없는 사람과 잘 맞을지 미리 알 길이 없습니다. 1년 중 70일을 탐색에 쓰고, 프로젝트가 끝나면 인연도 흩어집니다.</p>
       <details class="fold">
         <summary>크리에이터가 겪는 여섯 가지 — 펼치기</summary>
         <div class="fold-body">
@@ -873,16 +1248,16 @@ ul.clean.invert li::before{color:#1d1d1f}
             <tr><td>⑤</td><td>소득 불안정 — Feast or Famine</td><td>예술인 월 134만원, 일 부족 66%</td></tr>
             <tr><td>⑥</td><td>성장 경로 부재 — 솔로→팀→법인 인프라 0</td><td>자영업 5년 생존 ~40%, 65% 스킬업</td></tr>
           </table>
-          <p class="body mt-m muted">②신뢰 부재가 ①탐색 비효율의 뿌리. ③관계 소멸이 매번 ①을 반복시킨다.</p>
+          <p class="body mt-m muted">②신뢰 부재가 ①탐색 비효율의 뿌리입니다. ③관계 소멸이 ①을 매번 반복시킵니다.</p>
         </div>
       </details>
     </div>
 
     <div class="cell span4 tone-peach">
       <div class="cap">Hiring Side</div>
-      <div class="big med">44~68일</div>
+      <p class="v-hero-num"><span class="v-hero-range">44~68</span><span class="v-hero-unit">일</span></p>
       <div class="big-cap">1명 채용 리드타임 · 건당 ₩310만</div>
-      <p class="body mt-m">검증된 사람을 다시 쓸 길이 없다. 채용 실패의 89%는 소프트스킬 때문, 잘못된 채용 한 건에 ₩2,350만.</p>
+      <p class="body mt-m">검증된 사람을 다시 쓸 길이 없습니다. 채용 실패의 89%는 소프트스킬에서 비롯되고, 잘못된 채용 한 건에 ₩2,350만이 듭니다.</p>
       <details class="fold">
         <summary>맡기는 쪽이 겪는 일곱 가지 — 펼치기</summary>
         <div class="fold-body">
@@ -903,9 +1278,9 @@ ul.clean.invert li::before{color:#1d1d1f}
 
     <div class="cell span4 tone-lavender">
       <div class="cap">Studio &amp; Enterprise</div>
-      <div class="big med">75%</div>
+      <p class="v-hero-num">75<span class="v-hero-unit">%</span></p>
       <div class="big-cap">인재부족 (10년 최고)</div>
-      <p class="body mt-m">관리할 도구가 없으니 품질도 들쭉날쭉. 프로젝트 비용 초과 45%, 핵심 인력 한 명 빠지면 연봉의 93~200%가 든다. 크리에이티브 전용 조직 조달 플랫폼은 한 곳도 없다.</p>
+      <p class="body mt-m">관리할 도구가 없어 품질도 들쭉날쭉합니다. 프로젝트 비용은 45% 초과하고, 핵심 인력 한 명이 빠지면 연봉의 93~200%가 듭니다. 크리에이티브 전용 조직 조달 플랫폼은 한 곳도 없습니다.</p>
       <details class="fold">
         <summary>조직이 겪는 일곱 가지 — 펼치기</summary>
         <div class="fold-body">
@@ -927,19 +1302,44 @@ ul.clean.invert li::before{color:#1d1d1f}
     <!-- Convergence -->
     <div class="cell span12 dark">
       <div class="cap" style="color:#a1a1a6">근본 원인 — 한 점으로 수렴</div>
-      <h3 class="head lg">스무 가지 문제, 한 곳으로 — "<span class="hl hl-yellow">같이 일한 기록을 담는 그릇이 없다.</span>"</h3>
+      <h3 class="head lg">스무 가지 문제, 한 곳으로 — <span class="hl hl-yellow">협업 이력·평판·관계 데이터가 쌓이는 시스템의 부재.</span></h3>
+      <svg class="v-svg v-converge" viewBox="0 0 640 300" role="img" aria-label="스무 가지 문제가 한 곳으로 수렴">
+        <defs>
+          <marker id="arrC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#FFCB05"/>
+          </marker>
+        </defs>
+        <g fill="none" stroke-width="2.5" stroke="#FFCB05">
+          <path d="M170,52 C340,64 380,132 470,150" marker-end="url(#arrC)"/>
+          <path d="M170,150 C320,150 380,151 470,152" marker-end="url(#arrC)"/>
+          <path d="M170,248 C340,236 380,172 470,154" marker-end="url(#arrC)"/>
+        </g>
+        <g fill="none" stroke-width="2">
+          <rect x="10" y="32" width="160" height="40" rx="20" stroke="#FF4D8F"/>
+          <rect x="10" y="130" width="160" height="40" rx="20" stroke="#FF7A1A"/>
+          <rect x="10" y="228" width="160" height="40" rx="20" stroke="#A855F7"/>
+        </g>
+        <g fill="#fff" font-size="15" font-weight="700" text-anchor="middle">
+          <text x="90" y="57">② 신뢰 부재</text>
+          <text x="90" y="155">① 탐색 비효율</text>
+          <text x="90" y="253">③ 관계 소멸</text>
+        </g>
+        <circle cx="544" cy="152" r="76" fill="#FFCB05"/>
+        <text x="544" y="146" text-anchor="middle" fill="#1d1d1f" font-size="16" font-weight="800">데이터가</text>
+        <text x="544" y="168" text-anchor="middle" fill="#1d1d1f" font-size="16" font-weight="800">안 쌓인다</text>
+      </svg>
       <div class="row-3 mt-l">
         <div>
           <div class="kicker">② 신뢰 부재</div>
-          <p class="body soft mt-s">소프트스킬·협업 적합성을 미리 알 길이 없다.</p>
+          <p class="body soft mt-s">소프트스킬과 협업 적합성을 미리 알 길이 없습니다.</p>
         </div>
         <div>
           <div class="kicker">① 탐색 비효율</div>
-          <p class="body soft mt-s">매번 처음부터. 입소문·카톡·인맥에 묶인다.</p>
+          <p class="body soft mt-s">매번 처음부터 시작하고, 입소문·카톡·인맥에 묶입니다.</p>
         </div>
         <div>
           <div class="kicker">③ 관계 소멸</div>
-          <p class="body soft mt-s">프로젝트가 끝나면 흩어진다. 이력은 어디에도 남지 않는다.</p>
+          <p class="body soft mt-s">프로젝트가 끝나면 흩어지고, 이력은 어디에도 남지 않습니다.</p>
         </div>
       </div>
     </div>
@@ -948,11 +1348,18 @@ ul.clean.invert li::before{color:#1d1d1f}
     <div class="cell span6 tone-mint">
       <div class="cap">유일하게 플랫폼화된 영역</div>
       <h3 class="head">Commission 한 가지뿐.</h3>
-      <p class="body">크몽·Fiverr가 다루는 "일을 맡긴다(의뢰인↔수행자)" 한 종류. <strong>크리에이티브 산업 매칭 경제의 22%</strong>뿐.</p>
+      <svg class="v-svg" viewBox="0 0 200 200" style="max-width:200px;margin:14px auto 6px" role="img" aria-label="크리에이티브 산업 매칭 경제의 22퍼센트">
+        <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(29,29,31,0.18)" stroke-width="24"/>
+        <circle cx="100" cy="100" r="80" fill="none" stroke="#1d1d1f" stroke-width="24" stroke-linecap="round"
+                transform="rotate(-90 100 100)" stroke-dasharray="502" stroke-dashoffset="392"/>
+        <text x="100" y="94" text-anchor="middle" font-size="42" font-weight="900" fill="#1d1d1f">22<tspan font-size="20" dy="-2">%</tspan></text>
+        <text x="100" y="124" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1d1f">Commission</text>
+      </svg>
+      <p class="body">크몽·Fiverr가 다루는 건 "일을 맡긴다(의뢰인↔수행자)" 한 종류입니다. <strong>크리에이티브 산업 매칭 경제의 22%</strong>뿐입니다.</p>
     </div>
     <div class="cell span6 tone-pink-vivid invert">
-      <div class="cap" style="color:rgba(255,255,255,0.85)">플랫폼 0건 — 인맥·카톡·우연에 방치</div>
-      <h3 class="head invert">나머지 다섯, 78%.</h3>
+      <div class="cap" style="color:rgba(255,255,255,0.85)">전용 구조 공백 — 인맥·카톡·우연에 방치</div>
+      <h3 class="head invert">나머지 다섯 연결은 아직 구조 밖.</h3>
       <ul class="clean invert">
         <li><strong>Co-Create</strong> — 함께 만든다 · 공동 소유권</li>
         <li><strong>Augment</strong> — 사람을 넣는다 · 빠진 역할 채움</li>
@@ -960,13 +1367,14 @@ ul.clean.invert li::before{color:#1d1d1f}
         <li><strong>Learn</strong> — 배우고 가르친다 · 경험 이전</li>
         <li><strong>Patronage</strong> — 후원한다 · 존재 자체 투자</li>
       </ul>
+      <p class="tiny mt-m">범위: 협업이력·평판·팀 재소집·조직 풀 관리를 함께 다루는 크리에이티브 전용 연결 인프라.</p>
     </div>
 
     <!-- Korea vs Global -->
     <div class="cell span12">
       <div class="cap">한국 vs 해외</div>
-      <h3 class="head">종류가 아니라 <span class="hl hl-yellow">규모만 다르다.</span></h3>
-      <p class="body muted">스무 가지 문제는 한국만의 현상이 아니다. 해외도 같은 구조로 무너진다. 한국의 ₩7.65조 매칭 경제가 해외에선 ×15 규모로 반복된다.</p>
+      <h3 class="head">종류가 아니라 <span class="hl hl-yellow">규모의 차이.</span></h3>
+      <p class="body muted">스무 가지 문제는 한국만의 현상이 아닙니다. 해외도 같은 구조로 무너집니다. 한국의 ₩7.65조 매칭 경제가 해외에서는 ×15 규모로 반복됩니다.</p>
 
       <details class="fold">
         <summary>크리에이터·맡기는 쪽·조직, 한국·해외 비교 — 펼치기</summary>
@@ -974,7 +1382,7 @@ ul.clean.invert li::before{color:#1d1d1f}
           <p class="kicker mt-m">크리에이터 — 한국 vs 해외</p>
           <table class="wide-table">
             <tr><th>문제</th><th>한국</th><th>해외</th></tr>
-            <tr><td>소득 불안정</td><td>예술인 월 88만원, 평균의 41%</td><td>66% 일 구하기 어려움, 55% 연 $50K 미만</td></tr>
+            <tr><td>소득 불안정</td><td>예술인형 월소득 134만원</td><td>66% 일 구하기 어려움, 55% 연 $50K 미만</td></tr>
             <tr><td>레퍼럴 의존</td><td>크몽·위시켓=카탈로그형, 나머지 인맥</td><td>67% WOM·레퍼럴, 플랫폼 29%</td></tr>
             <tr><td>AI 단가 붕괴</td><td>웹툰 회당 −₩19만 YoY</td><td>Writing −32%, 번역 −30%</td></tr>
             <tr><td>생존율</td><td>자영업 5년 26.9% (OECD −18.5pp)</td><td>소기업 5년 29~34%</td></tr>
@@ -995,7 +1403,7 @@ ul.clean.invert li::before{color:#1d1d1f}
             <tr><td>프리랜서 의존 vs 관리 부재</td><td>91.6%가 10인 미만 소기업, 대대행 외주 일반화</td><td>크리에이티브 프리랜서 75%+, 채용 +40% YoY</td></tr>
             <tr><td>조직 조달 플랫폼</td><td>사람인 "무대감독" = 0건</td><td>Upwork Enterprise=범용, 전용 0건</td></tr>
           </table>
-          <p class="body mt-m"><strong>결론:</strong> 한국·해외 모두 같은 구조로 무너진다 — 신뢰·이력 시스템이 없어 인맥에 묶이고, 매칭이 비효율로 흐른다. 한국에서 검증된 모델을 글로벌로 가져갈 근거.</p>
+          <p class="body mt-m"><strong>결론:</strong> 한국과 해외 모두 신뢰·이력 시스템이 없어 인맥에 묶이고, 매칭이 비효율로 흐릅니다. 한국에서 검증한 모델을 글로벌로 가져갈 근거입니다.</p>
         </div>
       </details>
     </div>
@@ -1003,7 +1411,7 @@ ul.clean.invert li::before{color:#1d1d1f}
     <!-- Sources -->
     <div class="cell span12 tone-white">
       <details class="fold">
-        <summary>출처 — 마흔 곳 (Problem)</summary>
+        <summary>주요 출처 33곳 (Problem)</summary>
         <div class="fold-body">
           <table class="src-table">
             <tr><th>#</th><th>출처</th><th>데이터</th></tr>
@@ -1051,56 +1459,163 @@ ul.clean.invert li::before{color:#1d1d1f}
 
 <!-- ============ #3 SOLUTION ============ -->
 <section id="solution">
+  <style>
+    #solution .v-svg{display:block;width:100%;height:auto;max-width:100%}
+    #solution .v-pipe{max-width:820px;margin-left:auto;margin-right:auto}
+    #solution .v-map{max-width:820px}
+    #solution .v-steps{display:flex;flex-wrap:wrap;align-items:center;gap:8px;word-break:keep-all}
+    #solution .v-steps .cap{margin:0 4px 0 0}
+    #solution .v-step{display:inline-flex}
+    #solution .v-step-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#3DB3FF;color:#1d1d1f;font-weight:800;font-size:15px;line-height:1}
+    #solution .v-arr{color:#1d1d1f;font-weight:700;font-size:15px}
+    #solution .dark .v-arr,#solution .tone-pink .v-arr,#solution .tone-peach .v-arr,#solution .tone-lavender .v-arr{color:#1d1d1f}
+  </style>
   <div class="cap">#3 · Solution</div>
-  <h2 class="section-head">찾고, 연결되고, <br><span class="accent-lime">기록된다.</span></h2>
-  <p class="lead">프로필을 만들고, 사람을 찾고, 일하고, 그 기록이 다음 프로젝트로 이어진다. <strong>여덟 기능이 이 여정 하나를 만든다.</strong></p>
+  <h2 class="section-head">찾고, 연결되고, <br><span class="accent-lime">기록되는 여정.</span></h2>
+  <p class="lead">프로필을 만들고, 사람을 찾고, 함께 일하고, 그 기록이 다음 프로젝트로 이어집니다. <strong>여덟 기능이 이 여정 하나를 이룹니다.</strong></p>
 
-  <div class="bento mt-xl">
+  <!-- FLOW: 여정 파이프라인 레일 (프로필→검색→매칭→관계) -->
+  <svg class="v-svg v-pipe mt-xl" viewBox="0 0 820 96" preserveAspectRatio="xMidYMid meet" role="img" aria-label="솔루션 여정 파이프라인">
+    <defs>
+      <marker id="arrLime" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+        <path d="M0,0 L9,4.5 L0,9 Z" fill="#4DD964"/>
+      </marker>
+    </defs>
+    <line class="v-rail" x1="60" y1="42" x2="760" y2="42" stroke="#4DD964" marker-end="url(#arrLime)"/>
+    <g>
+      <circle cx="60" cy="42" r="23" fill="#4DD964"/>
+      <circle cx="294" cy="42" r="23" fill="#3DB3FF"/>
+      <circle cx="526" cy="42" r="23" fill="#3DB3FF"/>
+      <circle cx="760" cy="42" r="23" fill="#22D3A4"/>
+    </g>
+    <g fill="#1d1d1f" font-size="19" font-weight="800" text-anchor="middle">
+      <text x="60" y="49">①</text>
+      <text x="294" y="49">③</text>
+      <text x="526" y="49">④</text>
+      <text x="760" y="49" font-size="13" font-weight="900">관계</text>
+    </g>
+    <g fill="#fff" font-size="14" font-weight="700" text-anchor="middle">
+      <text x="60" y="86">프로필</text>
+      <text x="294" y="86">검색</text>
+      <text x="526" y="86">매칭·팀</text>
+      <text x="760" y="86">관계 축적</text>
+    </g>
+  </svg>
+
+  <div class="bento mt-l">
     <div class="cell span4 tone-lime">
       <div class="cap">①</div>
       <h3 class="head">프로필 + 협업이력</h3>
-      <p class="body">포트폴리오(실력) 위에 협업이력·평판·관계가 쌓인다. "한번 해봐야 안다" → "프로필에서 미리 본다."</p>
+      <p class="body">포트폴리오(실력) 위에 협업이력·평판·관계가 쌓입니다. "한번 해봐야 안다"가 "프로필에서 미리 본다"로 바뀝니다.</p>
     </div>
     <div class="cell span4 tone-lime">
       <div class="cap">②</div>
       <h3 class="head">홍보 / 브랜딩</h3>
-      <p class="body">프로필을 만든 순간부터 맡기는 쪽·조직에 노출. 기다리는 게 아니라, 기회가 찾아온다.</p>
+      <p class="body">프로필을 만든 순간부터 맡기는 쪽과 조직에 노출됩니다. 기다리지 않아도 기회가 찾아옵니다.</p>
     </div>
     <div class="cell span4 tone-sky">
       <div class="cap">③</div>
       <h3 class="head">검색</h3>
-      <p class="body">검색이 안 되던 정보(음색·연출력·케미)가 검색되는 데이터로.</p>
+      <p class="body">이전에는 찾기 어려웠던 정보(음색·연출력·케미)를 검색 가능한 데이터로 바꿉니다.</p>
     </div>
     <div class="cell span6 tone-sky">
       <div class="cap">④</div>
       <h3 class="head">추천 / 매칭 + 팀</h3>
-      <p class="body">한 사람 매칭에서 팀 조합 저장·재소집까지. 혼자 → 팀 → 스튜디오, 성장의 토대.</p>
+      <p class="body">한 사람 매칭에서 팀 조합 저장·재소집까지 이어집니다. 혼자에서 팀으로, 팀에서 스튜디오로 성장하는 토대입니다.</p>
     </div>
     <div class="cell span6 tone-yellow">
       <div class="cap">⑤</div>
       <h3 class="head">프로젝트 공고</h3>
-      <p class="body">62% 이상이 카톡·인맥에 묶여 있던 기회를 플랫폼 위로. 한 번 쓰고 끝이 아니라, 다음으로 이어지는 협업.</p>
+      <p class="body">62% 이상이 카톡·인맥에 묶여 있던 기회를 플랫폼 위로 올립니다. 한 번 쓰고 끝나지 않고 다음으로 이어지는 협업입니다.</p>
     </div>
     <div class="cell span4 tone-yellow">
       <div class="cap">⑥</div>
       <h3 class="head">접촉 도구</h3>
-      <p class="body">카톡 번호 없이, 지인 없이, 플랫폼 안에서 연결 완결.</p>
+      <p class="body">카톡 번호도 지인도 없이, 플랫폼 안에서 연결을 끝냅니다.</p>
     </div>
     <div class="cell span4 tone-mint">
       <div class="cap">⑦</div>
       <h3 class="head">단가 레퍼런스</h3>
-      <p class="body">직군×경력×지역별 시세. 크리에이티브 전 직군 커버하는 시세 기준 현재 <strong>0건</strong>.</p>
+      <p class="body">직군×경력×지역별 시세를 제공합니다. 크리에이티브 전 직군을 아우르는 시세 기준은 현재 <strong>0건</strong>입니다.</p>
     </div>
     <div class="cell span4 dark">
       <div class="cap" style="color:#a1a1a6">⑧</div>
       <h3 class="head">풀 관리</h3>
-      <p class="body">62%가 엑셀로 관리하던 프리랜서 풀을 한 곳에. 개인 인맥이 조직 자산으로.</p>
+      <p class="body">62%가 엑셀로 관리하던 프리랜서 풀을 한 곳에 모읍니다. 개인 인맥이 조직 자산이 됩니다.</p>
     </div>
 
     <!-- Convergence map -->
     <div class="cell span12">
       <div class="cap">문제 → 기능 수렴</div>
       <h3 class="head">여덟 가지 원인 → 여덟 기능. <span class="hl hl-yellow">하나씩 대응.</span></h3>
+
+      <!-- RELATION: 원인 ↔ 기능 라인 커넥터 매핑 (좌 원인·우 기능을 선으로 잇기) -->
+      <svg class="v-svg v-map mt-l" viewBox="0 0 820 470" preserveAspectRatio="xMidYMid meet" role="img" aria-label="여덟 원인과 여덟 기능 라인 커넥터 매핑">
+        <defs>
+          <marker id="arrC" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#FFCB05"/>
+          </marker>
+        </defs>
+        <!-- 매핑 라인: 좌측 원인 → 우측 기능, 옐로 connector -->
+        <g fill="none" stroke="#FFCB05" stroke-width="2.2">
+          <line x1="338" y1="42"  x2="482" y2="42"  marker-end="url(#arrC)"/>
+          <line x1="338" y1="94"  x2="482" y2="94"  marker-end="url(#arrC)"/>
+          <line x1="338" y1="146" x2="482" y2="146" marker-end="url(#arrC)"/>
+          <line x1="338" y1="198" x2="482" y2="198" marker-end="url(#arrC)"/>
+          <line x1="338" y1="250" x2="482" y2="250" marker-end="url(#arrC)"/>
+          <line x1="338" y1="302" x2="482" y2="302" marker-end="url(#arrC)"/>
+          <line x1="338" y1="354" x2="482" y2="354" marker-end="url(#arrC)"/>
+          <line x1="338" y1="406" x2="482" y2="406" marker-end="url(#arrC)"/>
+        </g>
+        <!-- 열 머리 -->
+        <g fill="#c7c7cc" font-size="13" font-weight="800" letter-spacing="0.04em">
+          <text x="14" y="14">근본 원인</text>
+          <text x="490" y="14">대응 기능</text>
+        </g>
+        <!-- 좌열: 근본 원인 (stroke pill, 화이트 라벨) -->
+        <g fill="none" stroke-width="2">
+          <rect x="14" y="22"  width="324" height="40" rx="20" stroke="#FF4D8F"/>
+          <rect x="14" y="74"  width="324" height="40" rx="20" stroke="#FF7A1A"/>
+          <rect x="14" y="126" width="324" height="40" rx="20" stroke="#3DB3FF"/>
+          <rect x="14" y="178" width="324" height="40" rx="20" stroke="#A855F7"/>
+          <rect x="14" y="230" width="324" height="40" rx="20" stroke="#FFCB05"/>
+          <rect x="14" y="282" width="324" height="40" rx="20" stroke="#22D3A4"/>
+          <rect x="14" y="334" width="324" height="40" rx="20" stroke="#FF1F6F"/>
+          <rect x="14" y="386" width="324" height="40" rx="20" stroke="#4DD964"/>
+        </g>
+        <g fill="#fff" font-size="14.5" font-weight="700" text-anchor="middle">
+          <text x="176" y="47">구조화된 프로필이 없다</text>
+          <text x="176" y="99">발견되는 구조가 없다</text>
+          <text x="176" y="151">찾을 수가 없다</text>
+          <text x="176" y="203">적합한 연결 시스템이 없다</text>
+          <text x="176" y="255">기회가 비공식 채널에 갇혀 있다</text>
+          <text x="176" y="307">접촉 수단이 카톡뿐이다</text>
+          <text x="176" y="359">시세 기준이 없다</text>
+          <text x="176" y="411">관리 체계가 없다</text>
+        </g>
+        <!-- 우열: 대응 기능 (풀필 캔디, 블랙 라벨) -->
+        <g>
+          <rect x="482" y="22"  width="324" height="40" rx="20" fill="#FF4D8F"/>
+          <rect x="482" y="74"  width="324" height="40" rx="20" fill="#FF7A1A"/>
+          <rect x="482" y="126" width="324" height="40" rx="20" fill="#3DB3FF"/>
+          <rect x="482" y="178" width="324" height="40" rx="20" fill="#A855F7"/>
+          <rect x="482" y="230" width="324" height="40" rx="20" fill="#FFCB05"/>
+          <rect x="482" y="282" width="324" height="40" rx="20" fill="#22D3A4"/>
+          <rect x="482" y="334" width="324" height="40" rx="20" fill="#FF1F6F"/>
+          <rect x="482" y="386" width="324" height="40" rx="20" fill="#4DD964"/>
+        </g>
+        <g fill="#1d1d1f" font-size="14.5" font-weight="800" text-anchor="middle">
+          <text x="644" y="47">① 프로필+협업이력</text>
+          <text x="644" y="99">② 홍보/브랜딩</text>
+          <text x="644" y="151">③ 검색</text>
+          <text x="644" y="203">④ 추천/매칭 + 팀</text>
+          <text x="644" y="255">⑤ 프로젝트 공고</text>
+          <text x="644" y="307">⑥ 접촉 도구</text>
+          <text x="644" y="359">⑦ 단가 레퍼런스</text>
+          <text x="644" y="411">⑧ 풀 관리</text>
+        </g>
+      </svg>
+
       <details class="fold">
         <summary>스무 가지 문제 → 여덟 기능 매핑 — 펼치기</summary>
         <div class="fold-body">
@@ -1109,7 +1624,7 @@ ul.clean.invert li::before{color:#1d1d1f}
             <tr><td>구조화된 프로필이 없다</td><td>C②③④ H②③ S⑤</td><td>① 프로필+협업이력</td></tr>
             <tr><td>발견되는 구조가 없다</td><td>C①④ H① S①</td><td>② 홍보/브랜딩</td></tr>
             <tr><td>찾을 수가 없다</td><td>C① H①⑤ S①⑦</td><td>③ 검색</td></tr>
-            <tr><td>적합한 연결 시스템이 없다</td><td>C①③⑤⑥ H①④⑤ S①③⑦</td><td>④ 추천/매칭 + 팀</td></tr>
+            <tr><td>적합한 연결 시스템이 없다</td><td>C①③⑤⑥ H①④⑤ S①③⑥⑦</td><td>④ 추천/매칭 + 팀</td></tr>
             <tr><td>기회가 비공식 채널에 갇혀 있다</td><td>C⑤</td><td>⑤ 프로젝트 공고</td></tr>
             <tr><td>접촉 수단이 카톡뿐이다</td><td>셋 모두</td><td>⑥ 접촉 도구</td></tr>
             <tr><td>시세 기준이 없다</td><td>H⑦ S④</td><td>⑦ 단가 레퍼런스</td></tr>
@@ -1121,22 +1636,53 @@ ul.clean.invert li::before{color:#1d1d1f}
 
     <!-- 3-side outcomes -->
     <div class="cell span4 tone-pink">
-      <div class="cap">Creator ~560만</div>
-      <h3 class="head">기회가 찾아온다.</h3>
-      <p class="body">구조화된 프로필로 발견. 탐색 28% → 단축, 신뢰 구조화, 소득 다변화.</p>
-      <p class="tiny mt-m">여정: ① → ② → ⑤ → ⑥</p>
+      <div class="cap">Creator ~587만</div>
+      <h3 class="head">찾아오는 기회.</h3>
+      <p class="body">구조화된 프로필로 발견됩니다. 일 찾기에 쓰던 28%를 줄이고, 신뢰를 구조화하고, 소득을 다변화합니다.</p>
+      <div class="v-steps mt-m" role="img" aria-label="여정 ① → ② → ⑤ → ⑥">
+        <span class="cap" style="opacity:0.8">여정</span>
+        <span class="v-step"><span class="v-step-num" style="background:#4DD964">①</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num" style="background:#4DD964">②</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num" style="background:#FFCB05">⑤</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num" style="background:#FFCB05">⑥</span></span>
+      </div>
     </div>
     <div class="cell span4 tone-peach">
       <div class="cap">Hiring Side</div>
-      <h3 class="head">팀을 다시 부른다.</h3>
-      <p class="body">검증된 사람을 빠르게. 탐색 44~68일 → 단축, 잘못된 채용 ₩2,350만 → 감소.</p>
-      <p class="tiny mt-m">여정: ③ → ④ → ⑥ → ⑦ → ⑧</p>
+      <h3 class="head">다시 부르는 팀.</h3>
+      <p class="body">검증된 사람을 빠르게 찾습니다. 탐색 44~68일을 줄이고, 잘못된 채용 ₩2,350만을 줄입니다.</p>
+      <div class="v-steps mt-m" role="img" aria-label="여정 ③ → ④ → ⑥ → ⑦ → ⑧">
+        <span class="cap" style="opacity:0.8">여정</span>
+        <span class="v-step"><span class="v-step-num" style="background:#3DB3FF">③</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num" style="background:#3DB3FF">④</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num" style="background:#FFCB05">⑥</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num" style="background:#22D3A4">⑦</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num">⑧</span></span>
+      </div>
     </div>
     <div class="cell span4 tone-lavender">
       <div class="cap">Studio &amp; Enterprise</div>
       <h3 class="head">조직 단위 조달.</h3>
-      <p class="body">크리에이티브 인력을 조직 단위로 들이고 관리하는 첫 플랫폼. 인재부족 75% → 풀 확장, 비용 초과 45% → 시세 기준.</p>
-      <p class="tiny mt-m">여정: ③ → ④ → ⑥ → ⑦ → ⑧</p>
+      <p class="body">크리에이티브 인력을 조직 단위로 들이고 관리하는 첫 플랫폼입니다. 인재부족 75%는 풀 확장으로, 비용 초과 45%는 시세 기준으로 풉니다.</p>
+      <div class="v-steps mt-m" role="img" aria-label="여정 ③ → ④ → ⑥ → ⑦ → ⑧">
+        <span class="cap" style="opacity:0.8">여정</span>
+        <span class="v-step"><span class="v-step-num" style="background:#3DB3FF">③</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num" style="background:#3DB3FF">④</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num" style="background:#FFCB05">⑥</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num" style="background:#22D3A4">⑦</span></span>
+        <span class="v-arr">→</span>
+        <span class="v-step"><span class="v-step-num">⑧</span></span>
+      </div>
     </div>
 
     <div class="cell span12 dark">
@@ -1149,9 +1695,27 @@ ul.clean.invert li::before{color:#1d1d1f}
 
 <!-- ============ #4 WHY NOW ============ -->
 <section id="whynow">
+  <style>
+    /* Why Now 전용 시각화 헬퍼 — 빅넘버 히어로·SVG 반응형. 부모 .big/.big-cap 스케일과 동일 */
+    #whynow .v-svg{display:block;width:100%;height:auto}
+    #whynow .v-venn{max-width:300px;margin:0 auto}
+    #whynow .v-hero-num{
+      font-size:clamp(40px,9cqi,84px);
+      font-weight:900;line-height:1.0;letter-spacing:-0.03em;
+      margin:8px 0 0;font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+      word-break:keep-all;
+    }
+    #whynow .v-hero-range{white-space:nowrap}
+    #whynow .v-hero-unit{font-size:0.56em;font-weight:800;margin-left:0.04em}
+    #whynow .cell.dark .v-acc-lime{color:#4DD964 !important}
+    #whynow .v-hero-cap{
+      font-size:clamp(12px,1.1vw,14px);font-weight:800;letter-spacing:0.06em;
+      text-transform:uppercase;margin-top:12px;
+    }
+  </style>
   <div class="cap">#4 · Why Now</div>
-  <h2 class="section-head">왜 아무도 이걸 <br><span class="accent-yellow">안 했을까.</span></h2>
-  <p class="lead">셋 중 하나도 없었으니까 — 기술도, 산업의 절박함도, 비어 있는 자리도. <strong>셋이 처음 겹치는 순간, 그게 지금이다.</strong></p>
+  <h2 class="section-head">가능해진 기술, 급해진 산업, <br><span class="accent-yellow">비어 있는 자리.</span></h2>
+  <p class="lead">멀티모달 AI가 포트폴리오를 읽고, 기업은 프리랜서 운영 도구에 돈을 내기 시작했으며, 크리에이티브 전용 협업 데이터 플랫폼은 아직 지배자가 없습니다. <strong>지금 시작해야 Creative Graph가 방어벽이 됩니다.</strong></p>
 
   <div class="bento mt-xl">
     <!-- 3 buckets -->
@@ -1171,7 +1735,7 @@ ul.clean.invert li::before{color:#1d1d1f}
       <ol class="clean mt-m">
         <li>① 갭 가속 — E&amp;M $3T CAGR 3.7%</li>
         <li>② 데이터 방어벽 윈도우 (2026)</li>
-        <li>③ AI 범용화 데드라인 (MMLU 17.5pp→0pp)</li>
+        <li>③ AI 범용화 압박 (모델 격차 빠르게 축소)</li>
         <li>④ 경쟁자 진입 윈도우</li>
         <li>⑤ 공급측 이탈 리스크 (66% 일 부족)</li>
       </ol>
@@ -1179,45 +1743,85 @@ ul.clean.invert li::before{color:#1d1d1f}
     <div class="cell span4 tone-mint">
       <div class="cap">공백 — 왜 아무도 안 했나</div>
       <ol class="clean mt-m">
-        <li>① LinkedIn Creator Mode 폐지(2024)</li>
-        <li>② Fiverr 구매자 −23% (2년)</li>
-        <li>③ Upwork — 범용 IT 중심, 크리에이티브 데이터 ✗</li>
-        <li>④ 국내 — 사람인·크몽·위시켓, 전용 0건</li>
-        <li>⑤ 과거 시도 실패 (Flagship·Spring·Buzzer)</li>
+        <li>① LinkedIn — 텍스트 이력 중심, 멀티모달 협업 데이터 ✗</li>
+        <li>② Fiverr — 단건 수수료 모델, 반복 협업엔 역인센티브</li>
+        <li>③ Upwork — 범용 IT 중심, 크리에이티브 전용 ✗</li>
+        <li>④ 국내 — 정규직·1인 외주 중심, 조직 풀 ✗</li>
+        <li>⑤ 과거 시도 — 타깃을 유튜버로 좁히거나 수수료 모델에 머묾</li>
       </ol>
     </div>
 
-    <!-- Big quote -->
+    <!-- Big quote — 교집합을 3원 벤다이어그램으로 시각화(RELATION venn) -->
     <div class="cell span12 dark">
       <div class="big-cap" style="color:#a1a1a6">교집합</div>
-      <h3 class="head xxl">타이밍 ∩ 긴급 ∩ 공백 = <span class="hl hl-yellow">지금뿐.</span></h3>
+      <div class="bento" style="align-items:center;gap:clamp(20px,3vw,40px)">
+        <div class="cell span7" style="padding:0;background:none;min-width:0">
+          <h3 class="head xxl">타이밍 ∩ 긴급 ∩ 공백 = <span class="hl hl-yellow">지금뿐.</span></h3>
+        </div>
+        <div class="cell span5" style="padding:0;background:none;min-width:0">
+          <svg class="v-svg v-venn" viewBox="0 0 460 320" role="img" aria-label="타이밍 긴급 공백 교집합">
+            <circle cx="200" cy="130" r="110" fill="#FF4D8F" fill-opacity="0.9"/>
+            <circle cx="260" cy="130" r="110" fill="#FFCB05" fill-opacity="0.9"/>
+            <circle cx="230" cy="200" r="110" fill="#22D3A4" fill-opacity="0.9"/>
+            <text x="150" y="100" text-anchor="middle" fill="#1d1d1f" font-size="15" font-weight="800">타이밍</text>
+            <text x="320" y="100" text-anchor="middle" fill="#1d1d1f" font-size="15" font-weight="800">긴급</text>
+            <text x="230" y="285" text-anchor="middle" fill="#1d1d1f" font-size="15" font-weight="800">공백</text>
+            <circle cx="230" cy="155" r="34" fill="#4DD964"/>
+            <text x="230" y="161" text-anchor="middle" fill="#1d1d1f" font-size="17" font-weight="900">지금</text>
+          </svg>
+        </div>
+      </div>
     </div>
 
-    <!-- Big numbers row -->
+    <!-- Big numbers row — 핵심 수치를 빅넘버 히어로로 승격(METRIC) -->
     <div class="cell span4 tone-yellow">
       <div class="cap">기술로 벌리는 격차의 수명</div>
-      <div class="big">12~18</div>
-      <div class="big-cap">개월 — MMLU 격차 17.5pp → 0pp</div>
+      <p class="v-hero-num"><span class="v-hero-range">12~18</span></p>
+      <p class="v-hero-cap">개월 — 기술만의 우위가 지속되는 한계</p>
     </div>
     <div class="cell span4 tone-mint">
       <div class="cap">방어벽</div>
       <div class="big brand-logo">Creative<br>Graph</div>
-      <p class="body mt-m">기술은 따라 만들 수 있지만, 협업 데이터는 못 베낀다. 시간이 쌓는 자산.</p>
+      <p class="body mt-m">기술은 따라 만들 수 있지만, 협업 데이터는 베낄 수 없습니다. 시간이 쌓아 올리는 자산입니다.</p>
     </div>
     <div class="cell span4 dark">
       <div class="cap">관리 SW 시장</div>
-      <div class="big">$14.8B</div>
-      <div class="big-cap">2025E (₩20.5조) — 2024 $5.9B 대비 ×2.5</div>
+      <p class="v-hero-num v-acc-lime">$14.8<span class="v-hero-unit">B</span></p>
+      <p class="v-hero-cap">2025E (₩20.5조) — 2024 $5.9B 대비 ×2.5</p>
+      <p class="tiny mt-s">USD→KRW 환산은 덱 전체 ₩1,385 기준.</p>
     </div>
 
-    <!-- Timeline -->
+    <!-- Timeline — wide-table 데이터를 가로 타임라인(TIME)으로 승격, '지금' 창을 라임 하이라이트 -->
     <div class="cell span12 tone-white">
       <div class="cap">시간축 — 어제·오늘·내일</div>
-      <h3 class="head">이 창은 곧 닫힌다.</h3>
+      <h3 class="head">곧 사라지는 기회의 창.</h3>
+
+      <svg class="v-svg" viewBox="0 0 900 150" style="margin:18px 0 4px" role="img" aria-label="2023 이전·지금·2028 이후 기회의 창">
+        <!-- 축 레일 -->
+        <line x1="70" y1="46" x2="830" y2="46" stroke="#c7c7cc" stroke-width="3" stroke-linecap="round"/>
+        <!-- '지금' 창 라임 하이라이트 밴드 -->
+        <rect x="340" y="20" width="220" height="52" rx="14" fill="#4DD964"/>
+        <!-- 노드 -->
+        <circle cx="120" cy="46" r="13" fill="#fff" stroke="#c7c7cc" stroke-width="3"/>
+        <circle cx="790" cy="46" r="13" fill="#fff" stroke="#FF6B6B" stroke-width="3"/>
+        <!-- 구간 라벨(원문 컬럼 헤더 verbatim) -->
+        <g fill="#fff" font-weight="900" text-anchor="middle">
+          <text x="120" y="100" font-size="16">2023 이전</text>
+          <text x="450" y="103" font-size="17">2024~2026 (지금)</text>
+          <text x="790" y="100" font-size="16">2028 이후</text>
+        </g>
+        <!-- 상태 캡션(원문 결론 행 verbatim) -->
+        <g font-weight="700" text-anchor="middle">
+          <text x="120" y="124" font-size="12.5" fill="#FF6B6B">만들 수 없던 때</text>
+          <text x="450" y="38" font-size="13.5" fill="#1d1d1f" font-weight="900">가능, 긴급, 공백 — 지금</text>
+          <text x="790" y="124" font-size="12.5" fill="#FF6B6B">늦는다</text>
+        </g>
+      </svg>
+
       <table class="wide-table mt-m">
         <tr><th></th><th>2023 이전</th><th>2024~2026 (지금)</th><th>2028 이후</th></tr>
         <tr><td><strong>타이밍</strong></td><td style="color:var(--coral)">×</td><td style="background:var(--lime);color:#1d1d1f;font-weight:700">✓ 6개 전부 충족</td><td>✓</td></tr>
-        <tr><td><strong>긴급</strong></td><td>격차 작음</td><td style="background:var(--lime);color:#1d1d1f;font-weight:700">격차 가속 + 데이터 창</td><td style="color:var(--coral)">창 닫힘</td></tr>
+        <tr><td><strong>긴급</strong></td><td>격차 작음</td><td style="background:var(--lime);color:#1d1d1f;font-weight:700">격차 가속 + 데이터 창</td><td style="color:var(--coral)">진입 기회 축소</td></tr>
         <tr><td><strong>공백</strong></td><td>비어 있음</td><td style="background:var(--lime);color:#1d1d1f;font-weight:700">비어 있음 (0건)</td><td style="color:var(--coral)">누군가 들어옴</td></tr>
         <tr><td><strong>결론</strong></td><td>만들 수 없던 때</td><td style="background:#000000;color:#ffffff;font-weight:800">가능, 긴급, 공백 — 지금</td><td style="color:var(--coral);font-weight:700">늦는다</td></tr>
       </table>
@@ -1230,9 +1834,9 @@ ul.clean.invert li::before{color:#1d1d1f}
         <div class="fold-body">
           <table class="wide-table">
             <tr><th>#</th><th>전제조건</th><th>변곡점</th><th>C8 적용</th></tr>
-            <tr><td>❶</td><td>멀티모달 AI</td><td>Gemini Embedding 2 (2026.3) — 텍스트·이미지·영상·음성·문서를 단일 3,072차원 벡터에. Gemini 3.1 Pro 16개 벤치마크 13개 1위</td><td>③검색 ④매칭</td></tr>
-            <tr><td>❷</td><td>비용 1,000×↓</td><td>GPT-3급 $60/MTok(2021) → $0.06/MTok(2026). 성능별 연 9~900× 하락</td><td>① Creative 5 ~560만 전수 분석 경제성</td></tr>
-            <tr><td>❸</td><td>10M 토큰 컨텍스트</td><td>8K(2022) → 1M(2024) → 10M(2026). Llama 4 Scout 10M, Gemini·GPT 1M</td><td>커리어 단위 이해 (포폴+이력+Respect)</td></tr>
+            <tr><td>❶</td><td>멀티모달 AI</td><td>Gemini Embedding 2는 텍스트·이미지·영상·음성·문서를 하나의 임베딩 공간에 올립니다. C8는 포트폴리오 조각을 같은 검색 공간에 색인해 직업·스타일·성향 검색을 만듭니다.</td><td>③검색 ④매칭</td></tr>
+            <tr><td>❷</td><td>비용 1,000×↓</td><td>GPT-3급 $60/MTok(2021) → $0.06/MTok(2026). 성능별 연 9~900× 하락</td><td>① Creative 5 ~587만 전수 분석 경제성</td></tr>
+            <tr><td>❸</td><td>긴 컨텍스트 모델</td><td>Llama 4 Scout 10M, Gemini 3.1 Pro 1M, GPT-5.4 1M처럼 긴 컨텍스트 모델이 등장했습니다. C8는 이를 ‘프로필·포트폴리오·협업이력 요약/검증’에 단계적으로 씁니다.</td><td>①프로필 ④매칭</td></tr>
             <tr><td>❹</td><td>공급 임계점</td><td>US 프리랜서 7,000만(2024), 풀타임 독립 ×2. Arts/Design 75% 프리랜서</td><td>⑤공고 ⑥접촉</td></tr>
             <tr><td>❺</td><td>수요측 지불의사</td><td>관리 SW $5.9B(2024) → $14.8B(2025E). 69% 레이오프 후 프리랜서 채용</td><td>⑦단가 ⑧풀 관리</td></tr>
             <tr><td>❻</td><td>제도 인프라</td><td>FIFA NY $800↑·CA $250↑·NJ $600↑ 서면계약 의무화</td><td>⑤공고 ⑧관리 — 디지털 계약·정산 법적 정당성</td></tr>
@@ -1245,9 +1849,9 @@ ul.clean.invert li::before{color:#1d1d1f}
         <div class="fold-body">
           <p class="kicker mt-m">긴급</p>
           <ul class="clean">
-            <li><strong>① 격차 가속</strong> — E&amp;M ~$3T(2024) → $3.5T(2029E), CAGR 3.7%. 산업이 커질수록 카톡·인맥에 묶이는 거래량도 같이 늘어난다.</li>
+            <li><strong>① 격차 가속</strong> — E&amp;M ~$3T(2024) → $3.5T(2029E), CAGR 3.7%. 산업이 커질수록 카톡·인맥에 묶이는 거래량도 함께 늘어납니다.</li>
             <li><strong>② 데이터 방어벽의 창</strong> — "2026년에 데이터 방어벽을 쌓는 조직이 수년간 복리 우위를 가진다" (AI Ireland 2026.3).</li>
-            <li><strong>③ AI 범용화 마감</strong> — DeepSeek-V3.2가 94.2%로 폐쇄형과 동률. 기술로만 벌리는 격차는 12~18개월.</li>
+            <li><strong>③ AI 범용화 압박</strong> — 오픈웨이트 모델은 폐쇄형 프론티어를 빠르게 추격하지만, 2026년 기준 여전히 평균 4개월·8 ECI 뒤처집니다. 모델 성능 자체는 장기 방어벽이 아니며, C8의 방어벽은 Creative Graph입니다.</li>
             <li><strong>④ 경쟁자 진입의 창</strong> — 네트워크 효과 시장은 승자독식.</li>
             <li><strong>⑤ 공급측 이탈</strong> — 66%가 일 부족, 퇴직연금 16%, 저축 불가 38%.</li>
           </ul>
@@ -1257,9 +1861,9 @@ ul.clean.invert li::before{color:#1d1d1f}
             <tr><th>플레이어</th><th>핵심 사실</th><th>못 들어오는 이유</th></tr>
             <tr><td>LinkedIn</td><td>Creator Mode 2024.2 폐지</td><td>크리에이티브가 10억 이용자 중 ~2%, 우선순위 밖. 텍스트 중심 토대</td></tr>
             <tr><td>Fiverr</td><td>구매자 4.0M→3.1M (2년 −23%)</td><td>단건 거래에 수수료 부과 → 반복 협업이 일어나면 매출이 줄어드는 구조</td></tr>
-            <tr><td>Upwork</td><td>매출 $769M, GSV $4B, 웹·SW 34%</td><td>IT 중심 데이터, 크리에이티브 전용(음색·연출력)이 없다</td></tr>
-            <tr><td>국내</td><td>사람인 "무대감독" 0건, 크몽·위시켓 = 한 사람 외주</td><td>정규직·IT·제조에 맞춰져 있어 조직 단위 조달이 안 된다</td></tr>
-            <tr><td>과거 시도</td><td>Flagship·Spring·Buzzer (2022~2023 폐업·피벗)</td><td>타이밍❶이 풀리기 전. "크리에이터=유튜버"로 좁혔다</td></tr>
+            <tr><td>Upwork</td><td>매출 $769M, GSV $4B, 웹·SW 34%</td><td>IT 중심 데이터, 크리에이티브 전용(음색·연출력)이 없습니다</td></tr>
+            <tr><td>국내</td><td>사람인 "무대감독" 0건, 크몽·위시켓 = 한 사람 외주</td><td>정규직·IT·제조에 맞춰져 있어 조직 단위 조달이 어렵습니다</td></tr>
+            <tr><td>과거 시도</td><td>Flagship·Spring·Buzzer (2022~2023 폐업·피벗)</td><td>타이밍❶이 풀리기 전. "크리에이터=유튜버"로 타깃이 좁았습니다</td></tr>
           </table>
         </div>
       </details>
@@ -1288,7 +1892,7 @@ ul.clean.invert li::before{color:#1d1d1f}
             <tr><td>17</td><td>Grand View Research 2025</td><td>프리랜서 플랫폼 $6.4B(2025) → $24.2B(2033E)</td></tr>
             <tr><td>18</td><td>AI Ireland 2026.3</td><td>"데이터 방어벽 2026년 복리 우위"</td></tr>
             <tr><td>19</td><td>Insight Partners 2026</td><td>워크플로 깊이+독점 데이터=방어벽</td></tr>
-            <tr><td>20</td><td>Epoch AI Open vs Closed 2026</td><td>MMLU 17.5pp→0pp, DeepSeek-V3.2 94.2%</td></tr>
+            <tr><td>20</td><td>Epoch AI Open vs Closed 2026</td><td>오픈웨이트 모델은 2026년 1~5월 기준 폐쇄형 프론티어보다 평균 4개월·8 ECI 뒤처짐</td></tr>
             <tr><td>21</td><td>CMR Berkeley 2026.1</td><td>오픈소스 AI 도전</td></tr>
             <tr><td>22</td><td>Marketing Brew 2023</td><td>크리에이터 이코노미 "심판의 날"</td></tr>
             <tr><td>23</td><td>Carry 2025</td><td>퇴직연금 16%, 38% 저축 불가</td></tr>
@@ -1313,51 +1917,109 @@ ul.clean.invert li::before{color:#1d1d1f}
 <!-- ============ #5 MARKET ============ -->
 <section id="market">
   <div class="cap">#5 · Market</div>
-  <h2 class="section-head">22%만 보였다. <br>나머지 78%는 <span class="hl hl-mint">여기.</span></h2>
-  <p class="lead">일 맡기기 하나에만 플랫폼이 있었다. Cre8orClub은 흩어져 있던 다섯 종류를 합쳐 <strong>₩7.65조 시장을 처음 정의한다.</strong></p>
+  <h2 class="section-head">보이던 시장은 22%. <br>나머지 78%는 <span class="hl hl-mint">여기.</span></h2>
+  <p class="lead">기존 플랫폼은 ‘일 맡기기’ 한 종류만 시장으로 봤습니다. Cre8orClub은 Creative 5와 연결 6종류를 교차해 <strong>₩7.65조 규모의 크리에이티브 매칭 경제를 추정합니다.</strong> 이 숫자는 누락된 연결을 드러내는 시장 정의 모델입니다. 공식 통계는 아닙니다.</p>
 
   <div class="bento mt-xl">
-    <!-- TAM SAM SOM big numbers -->
-    <div class="cell span4 tone-sky">
-      <div class="cap">TAM</div>
-      <div class="big">₩12.4조</div>
-      <div class="big-cap">크리에이티브 매칭 경제 전체</div>
-      <p class="body mt-m">전체 거래 ₩7.65조 + 플랫폼이 만들어내는 추가분(연결 종류별 1.3~2.0배, 그림자→화폐 전환 15~25%).</p>
-    </div>
-    <div class="cell span4 tone-mint">
-      <div class="cap">SAM</div>
-      <div class="big">₩5.12조</div>
-      <div class="big-cap">플랫폼이 담을 수 있는 영역 (41%)</div>
-      <p class="body mt-m">연결 종류별 침투율을 다르게 잡았다. Commission 60%, Co-Create 30%, Augment 50% 등.</p>
-    </div>
-    <div class="cell span4 tone-lime">
-      <div class="cap">SOM</div>
-      <div class="big">₩5,800억</div>
-      <div class="big-cap">5년 내 거래 규모 (11.3%)</div>
-      <p class="body mt-m">SAM × 점유율 7~20%. SOM의 38%가 Co-Create — 경쟁 0건.</p>
+    <!-- TAM SAM SOM nested-containment (HIERARCHY) -->
+    <div class="cell span6 dark">
+      <div class="cap" style="color:#a1a1a6">TAM · SAM · SOM</div>
+      <h3 class="head">크리에이티브 매칭 경제 <span class="hl hl-mint">전체</span> · 담을 수 있는 영역 · 5년 내 거래 규모</h3>
+      <svg class="v-svg v-nest" viewBox="0 0 360 360" role="img" aria-label="TAM SAM SOM 포함관계">
+        <circle cx="180" cy="180" r="170" fill="none" stroke="#3DB3FF" stroke-width="2"/>
+        <circle cx="180" cy="180" r="118" fill="#22D3A4" fill-opacity="0.25" stroke="#22D3A4" stroke-width="2"/>
+        <circle cx="180" cy="180" r="58" fill="#4DD964"/>
+        <text x="180" y="34" text-anchor="middle" fill="#3DB3FF" font-size="13" font-weight="800">TAM ₩12.4조</text>
+        <text x="180" y="86" text-anchor="middle" fill="#22D3A4" font-size="13" font-weight="800">SAM ₩5.12조</text>
+        <text x="180" y="176" text-anchor="middle" fill="#1d1d1f" font-size="13" font-weight="900">SOM</text>
+        <text x="180" y="194" text-anchor="middle" fill="#1d1d1f" font-size="12" font-weight="800">₩5,800억</text>
+      </svg>
+      <div class="v-nest-legend">
+        <span class="v-key"><span class="v-swatch" style="background:#3DB3FF"></span>TAM</span>
+        <span class="v-key"><span class="v-swatch" style="background:#22D3A4"></span>SAM</span>
+        <span class="v-key"><span class="v-swatch" style="background:#4DD964"></span>SOM</span>
+      </div>
     </div>
 
-    <!-- Coverage bar -->
+    <div class="cell span6">
+      <div class="row-3">
+        <div class="cell tone-sky" style="margin:0">
+          <div class="cap">TAM</div>
+          <p class="v-hero-num">₩12.4<span class="v-hero-unit">조</span></p>
+          <div class="big-cap">크리에이티브 매칭 경제 전체</div>
+          <p class="body mt-m">전체 거래 ₩7.65조에 플랫폼이 만들어내는 추가분을 더한 규모입니다(연결 종류별 1.3~2.0배, 가중평균 1.62배, 그림자→화폐 전환 15~25%).</p>
+        </div>
+        <div class="cell tone-mint" style="margin:0">
+          <div class="cap">SAM</div>
+          <p class="v-hero-num">₩5.12<span class="v-hero-unit">조</span></p>
+          <div class="big-cap">플랫폼이 담을 수 있는 영역 (41%)</div>
+          <p class="body mt-m">연결 종류별 침투율을 다르게 잡았습니다. Commission 60%, Co-Create 30%, Augment 50% 등입니다.</p>
+        </div>
+        <div class="cell tone-lime" style="margin:0">
+          <div class="cap">SOM</div>
+          <p class="v-hero-num">₩5,800<span class="v-hero-unit">억</span></p>
+          <div class="big-cap">5년 내 거래 규모 (11.3%)</div>
+          <p class="body mt-m">SAM에 점유율 7~20%를 적용했습니다. SOM의 38%가 Co-Create에서 나오고, 이 영역은 경쟁 0건입니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cell span12 dark">
+      <div class="cap" style="color:#a1a1a6">시장 산출 방식</div>
+      <h3 class="head">누락된 시장을 드러내는 추정모형.</h3>
+      <p class="body soft">Creative 5 인구에 연결 6종류와 보상구조를 곱해, 드러난 거래와 보이지 않는 그림자 거래를 나눠 추정했습니다. 기존 플랫폼이 Commission 한 종류만 시장으로 보는 사이, 나머지 다섯 연결은 어떤 통계에도 잡히지 않았습니다.</p>
+    </div>
+
+    <!-- Coverage bar (enhanced .v-bar, IKEA 2-tier) -->
     <div class="cell span12">
       <div class="cap">기존 플랫폼이 보는 시장 vs 진짜 시장</div>
-      <h3 class="head">기존 플랫폼 ₩1.7조의 <span class="hl hl-pink">3.5배(₩5.95조)</span>가 카톡·인맥에 흩어져 있다.</h3>
-      <div class="bar">
-        <div style="flex:22;background:var(--lime)">₩1.7조 · 22%</div>
-        <div style="flex:45;background:var(--peach)">₩3.45조 · 45%</div>
-        <div style="flex:33;background:var(--pink-vivid);color:#1d1d1f">₩2.5조 · 33%</div>
+      <h3 class="head">카톡·인맥에 흩어진 <span class="hl hl-pink">₩5.95조</span> — 기존 플랫폼 ₩1.7조의 3.5배.</h3>
+      <div class="v-bar">
+        <div class="v-bar-seg" style="flex:22;background:var(--lime)">
+          ₩1.7조 · 22%<span class="v-seg-sub">기존 플랫폼 커버</span>
+        </div>
+        <div class="v-bar-seg" style="flex:45;background:var(--peach)">
+          ₩3.45조 · 45%<span class="v-seg-sub">미커버 화폐 경제</span>
+        </div>
+        <div class="v-bar-seg" style="flex:33;background:var(--pink-vivid);color:#1d1d1f">
+          ₩2.5조 · 33%<span class="v-seg-sub">그림자 경제 (Unpaid)</span>
+        </div>
       </div>
       <div class="row-3 tiny">
         <div><strong>기존 플랫폼 커버</strong><br>크몽·위시켓·숨고·탈잉</div>
         <div><strong>미커버 화폐 경제</strong><br>Co-Create+Augment+Patronage+Team-Up+Hybrid</div>
         <div><strong>그림자 경제 (Unpaid)</strong><br>무보수 협업·도제·크루·스펙워크</div>
       </div>
+      <p class="tiny mt-m">Commission 연결 시장 전체는 ₩1.80조이고, 그중 기존 플랫폼이 실제 커버하는 건 ₩1.7조(전체 ₩7.65조의 22%)입니다.</p>
     </div>
 
-    <!-- Creative 5 -->
+    <!-- Creative 5 (with L1~L5 layered-architecture teaser) -->
     <div class="cell span6">
       <div class="cap">❶ 사람 — 누가 있는가</div>
-      <h3 class="head">Creative 5 ~560만</h3>
-      <p class="body">"포트폴리오를 올릴 수 있는 사람"을 전부 짚었다. 한국인 10명 중 1명. 기존 통계가 놓친 N잡러·루키·아티스트까지 포함.</p>
+      <h3 class="head">Creative 5 ~587만</h3>
+      <p class="body">"포트폴리오를 올릴 수 있는 사람"을 전부 짚었습니다. 한국인 10명 중 1명꼴이며, 기존 통계가 놓친 N잡러·루키·아티스트까지 포함합니다.</p>
+      <div class="v-layers mt-m">
+        <div class="v-layer" style="--v-lay:#3DB3FF">
+          <span class="v-layer-tag">L1</span>
+          <p class="v-layer-text">프로·스텝·직장인 ~218만</p>
+        </div>
+        <div class="v-layer" style="--v-lay:#22D3A4">
+          <span class="v-layer-tag">L2</span>
+          <p class="v-layer-text">아티스트 ~60만</p>
+        </div>
+        <div class="v-layer" style="--v-lay:#FFCB05">
+          <span class="v-layer-tag">L3</span>
+          <p class="v-layer-text">1인미디어 ~48만</p>
+        </div>
+        <div class="v-layer" style="--v-lay:#FF7A1A">
+          <span class="v-layer-tag">L4</span>
+          <p class="v-layer-text">N잡러 ~171만</p>
+        </div>
+        <div class="v-layer" style="--v-lay:#FF4D8F">
+          <span class="v-layer-tag">L5</span>
+          <p class="v-layer-text">루키 ~90만</p>
+        </div>
+      </div>
       <details class="fold">
         <summary>다섯 갈래 — 펼치기</summary>
         <div class="fold-body">
@@ -1384,11 +2046,24 @@ ul.clean.invert li::before{color:#1d1d1f}
         <li><strong>Learn</strong> — 배우고 가르친다 (₩0.95조)</li>
         <li><strong>Patronage</strong> — 후원한다 (₩1.00조)</li>
       </ul>
-      <p class="tiny mt-m">기존 플랫폼은 Commission만. C8는 여섯 모두.</p>
+      <p class="tiny mt-m">기존 플랫폼은 Commission만 다루고, C8는 여섯 모두 다룹니다.</p>
     </div>
 
     <!-- GSV detail -->
     <div class="cell span12 tone-white">
+      <!-- 6연결 × 5보상 mini-heatmap 티저 (DISTRIBUTION) -->
+      <div class="cap">전체 시장 산출 — 연결 여섯 × 보상 다섯</div>
+      <h3 class="head">연결 여섯 가지 — <span class="hl hl-mint">₩7.65조</span></h3>
+      <div class="v-heatmap" style="--v-hm-hue:34,211,164;--v-cols:6" role="img" aria-label="연결 여섯 시장 규모">
+        <div class="v-hm-cell v-hot" style="--v-a:0.97">① Commission<br>₩1.80조</div>
+        <div class="v-hm-cell v-hot" style="--v-a:1.00">② Co-Create<br>₩1.85조</div>
+        <div class="v-hm-cell v-hot" style="--v-a:0.81">③ Augment<br>₩1.50조</div>
+        <div class="v-hm-cell" style="--v-a:0.51">④ Learn<br>₩0.95조</div>
+        <div class="v-hm-cell" style="--v-a:0.30">⑤ Team-Up<br>₩0.55조</div>
+        <div class="v-hm-cell" style="--v-a:0.54">⑥ Patronage<br>₩1.00조</div>
+      </div>
+      <p class="tiny mt-m">기존 플랫폼은 Commission만 다루고, C8는 여섯 모두 다룹니다.</p>
+
       <details class="fold">
         <summary>전체 시장 산출 — 연결 여섯 × 보상 다섯 — 펼치기</summary>
         <div class="fold-body">
@@ -1420,13 +2095,25 @@ ul.clean.invert li::before{color:#1d1d1f}
             <tr><td>Patronage</td><td>₩0.58조</td><td>7%</td><td>₩406억</td><td>간접 인프라 효과</td></tr>
             <tr><td><strong>합계</strong></td><td><strong>₩5.12조</strong></td><td><strong>11.3%</strong></td><td><strong>₩5,790억</strong></td><td></td></tr>
           </table>
-          <p class="body mt-m"><strong>SOM/SAM 11.3%</strong> 비교: Series A 마켓플레이스 VC 기대치 5~10%, DoorDash 6년차 27.6%, Airbnb 5년차 &lt;5%. 네트워크 효과 + 경쟁 공백을 더하면 상단도 무리 없다.</p>
-          <p class="body"><strong>매출 ₩2,201억 / SOM ₩5,790억 = 매출화율 38%</strong> — 구독·광고·솔루션 세 갈래로 SOM의 38%를 매출로 가져온다 (#14에서 상세).</p>
+          <p class="body mt-m"><strong>SOM/SAM 11.3%</strong> 비교: Series A 마켓플레이스 VC 기대치 5~10%, DoorDash 6년차 27.6%, Airbnb 5년차 &lt;5%. 네트워크 효과와 경쟁 공백을 고려한 Base 가정입니다.</p>
+          <p class="body"><strong>매출 ₩2,201억 / SOM ₩5,790억 = 매출화율 38%</strong> — 구독·광고·솔루션 세 갈래로 SOM의 38%를 매출로 가져옵니다 (재무 편에서 상세).</p>
         </div>
       </details>
 
       <details class="fold">
-        <summary>왜 11% 점유가 보수적인가 — 펼치기</summary>
+        <summary>SOM 민감도 — Downside / Base / Upside — 펼치기</summary>
+        <div class="fold-body">
+          <table class="wide-table">
+            <tr><th>시나리오</th><th>SAM 점유율</th><th>SOM</th><th>해석</th></tr>
+            <tr><td>Downside</td><td>5%</td><td>₩2,560억</td><td>마켓플레이스 평균 진입. 경쟁 공백을 보수적으로 반영</td></tr>
+            <tr><td>Base</td><td>11.3%</td><td>₩5,790억</td><td>Co-Create·Augment에서 선점 효과 발생</td></tr>
+            <tr><td>Upside</td><td>18%</td><td>₩9,216억</td><td>Creative Graph가 팀 재소집·조직 풀 관리까지 확장</td></tr>
+          </table>
+        </div>
+      </details>
+
+      <details class="fold">
+        <summary>왜 11%를 Base 시나리오로 두는가 — 펼치기</summary>
         <div class="fold-body">
           <table class="wide-table">
             <tr><th>근거</th><th>수치</th></tr>
@@ -1434,10 +2121,10 @@ ul.clean.invert li::before{color:#1d1d1f}
             <tr><td>DoorDash 6년차 점유율</td><td>27.6% — 교외 미서비스 공략</td></tr>
             <tr><td>Airbnb 10년차 점유율</td><td>19% (5년차 &lt;5%)</td></tr>
             <tr><td>크리에이티브 전용 플랫폼</td><td>0건 (한국·글로벌)</td></tr>
-            <tr><td>기존 플랫폼 커버 범위</td><td>SAM의 22%만 — 78%가 플랫폼 밖</td></tr>
+            <tr><td>기존 플랫폼 커버 범위</td><td>전체 거래(₩7.65조)의 22%만 — 78%가 플랫폼 밖</td></tr>
             <tr><td>한국 프리랜서 플랫폼 CAGR</td><td>17.1% (₩3,877억→₩1.17조, 2023~2030E)</td></tr>
           </table>
-          <p class="body mt-m">SOM의 38%가 Co-Create(경쟁 0건)에서 나온다. 11%는 이 공백에 처음 들어가는 5년차 점유율로, 보수적인 숫자다.</p>
+          <p class="body mt-m">SOM의 38%가 Co-Create(경쟁 0건)에서 나옵니다. 11.3%는 이 공백에 처음 들어가는 5년차 Base 시나리오이며, Downside·Upside는 위 민감도 표로 함께 봅니다.</p>
         </div>
       </details>
 
@@ -1453,10 +2140,10 @@ ul.clean.invert li::before{color:#1d1d1f}
             <tr><td>비공식 채널 의존</td><td>62%+</td><td>62%+ (Upwork 2024)</td></tr>
             <tr><td>배율</td><td>Entry Market</td><td>US ×4 / 글로벌 ×15</td></tr>
           </table>
-          <p class="body mt-m">한국에서 검증된 모델을 같은 구조의 글로벌 시장에 그대로 가져간다. 도시 단위(서울 → LA → 런던 → 도쿄).</p>
+          <p class="body mt-m">한국에서 검증한 모델을 같은 구조의 글로벌 시장에 그대로 가져갑니다. 도시 단위로 확장합니다(서울 → LA → 런던 → 도쿄).</p>
 
           <p class="kicker mt-l">❷ 기능 — 매칭 → 토대</p>
-          <p class="body">매칭 → 프로젝트 관리 → 정산·결제 → 크리에이티브 토대로 (Shopify 경로). 인접 시장: 글로벌 스태핑 $620B(₩857조, SIA 2025).</p>
+          <p class="body">매칭에서 프로젝트 관리, 정산·결제를 거쳐 크리에이티브 토대로 확장합니다(Shopify 경로). 인접 시장은 글로벌 스태핑 $620B입니다(₩857조, SIA 2025).</p>
         </div>
       </details>
     </div>
@@ -1468,26 +2155,60 @@ ul.clean.invert li::before{color:#1d1d1f}
 <!-- ============ #6 PRODUCT ============ -->
 <section id="product">
   <div class="cap">#6 · Product</div>
-  <h2 class="section-head">앱은 지금 <br><span class="hl hl-sky">운영 중.</span></h2>
-  <p class="lead">프로필을 만들고 → Finder에서 찾고 → 제안하고 → 관계가 쌓인다. <strong>이 여정이 앱으로 존재하고, 지금 돌아가고 있다.</strong></p>
+  <h2 class="section-head">앱은 지금 <br><span class="hl hl-sky">작동 중.</span></h2>
+  <p class="lead">프로필을 만들고 → Finder에서 찾고 → 제안하고 → 관계가 쌓입니다. <strong>이 여정은 실제 앱에서 이미 작동합니다.</strong></p>
 
-  <div class="bento mt-xl">
+  <!-- 여정 파이프라인 FLOW — 프로필 → Finder → 제안 → 관계 -->
+  <div class="cell span12 dark mt-xl">
+    <div class="cap" style="color:#a1a1a6">앱 여정 — 프로필 → Finder → 제안 → 관계</div>
+    <svg class="v-svg v-pipe mt-m" viewBox="0 0 820 96" preserveAspectRatio="xMidYMid meet" role="img" aria-label="앱 여정 프로필 Finder 제안 관계 파이프라인">
+      <line class="v-rail" x1="60" y1="46" x2="760" y2="46" stroke="#4DD964"/>
+      <g>
+        <circle cx="60" cy="46" r="23" fill="#3DB3FF"/>
+        <circle cx="293" cy="46" r="23" fill="#3DB3FF"/>
+        <circle cx="527" cy="46" r="23" fill="#FFCB05"/>
+        <circle class="v-node-glow" cx="760" cy="46" r="23" fill="#22D3A4"/>
+      </g>
+      <g fill="#1d1d1f" font-size="18" font-weight="900" text-anchor="middle">
+        <text x="60" y="53">①</text>
+        <text x="293" y="53">②</text>
+        <text x="527" y="53">③</text>
+        <text x="760" y="53">④</text>
+      </g>
+      <g fill="#fff" font-size="14" font-weight="800" text-anchor="middle">
+        <text x="60" y="90">프로필</text>
+        <text x="293" y="90">Finder</text>
+        <text x="527" y="90">제안</text>
+        <text x="760" y="90">관계</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="bento mt-l">
     <!-- 5 tabs -->
     <div class="cell span12">
-      <div class="cap">앱 구조 — 다섯 탭, 하나의 여정</div>
+      <div class="cap">앱 구조 — 다섯 탭(등록 탭 포함), 하나의 여정</div>
       <div class="row-4 mt-m">
         <div class="cell tone-white" style="padding:18px;border-radius:18px"><div class="kicker">Home</div><p class="tiny mt-s">피드 · 프로젝트 공고 · 인터뷰 · 작품 · 영감</p></div>
         <div class="cell tone-sky" style="padding:18px;border-radius:18px"><div class="kicker">Finder</div><p class="tiny mt-s">통합 검색 · 카드형 브라우징</p></div>
         <div class="cell tone-white" style="padding:18px;border-radius:18px"><div class="kicker">Inbox</div><p class="tiny mt-s">소셜 알림 · 협업 제안</p></div>
         <div class="cell tone-white" style="padding:18px;border-radius:18px"><div class="kicker">My</div><p class="tiny mt-s">프로필 · 포트폴리오 · 연락처</p></div>
       </div>
-      <p class="tiny mt-m">하단 네비 다섯 탭 (Home / Finder / + / Inbox / My). + 탭에서 포트폴리오 등록·프로젝트 카드·영감 게시.</p>
+      <!-- 폰 하단내비 모티프 — 다섯 탭, + 탭 중앙 강조 -->
+      <div class="v-tabbar mt-m">
+        <span class="v-tab"><span class="v-tab-dot"></span>Home</span>
+        <span class="v-tab"><span class="v-tab-dot"></span>Finder</span>
+        <span class="v-tab v-tab-plus"><span class="v-tab-dot">+</span></span>
+        <span class="v-tab"><span class="v-tab-dot"></span>Inbox</span>
+        <span class="v-tab"><span class="v-tab-dot"></span>My</span>
+      </div>
+      <p class="tiny mt-m">하단 네비는 다섯 탭(Home / Finder / + / Inbox / My)이며, + 탭에서 포트폴리오 등록·프로젝트 카드·영감을 올립니다.</p>
     </div>
 
     <!-- ① Profile -->
     <div class="cell span8 tone-sky">
       <div class="cap">①</div>
-      <h3 class="head">프로필 — 산업의 명함이 없었다.</h3>
+      <h3 class="head">프로필 — 산업에 없던 명함.</h3>
       <p class="body"><strong>비주얼</strong> 대형 이미지 카드. <strong>직업·역할</strong> 라이브커머스·보컬·사진작가·연출 등. <strong>성향 태그</strong> #직관적 #감각적 #유연형. <strong>Respect</strong> 같이 일한 뒤 쌓이는 신뢰 수치. <strong>관계</strong> 일촌·팔로워·카드교환. <strong>여러 형태의 작품</strong> 글·사진·영상·오디오·PDF·유튜브.</p>
       <details class="fold">
         <summary>어떤 문제를 푸는가 — 펼치기</summary>
@@ -1495,7 +2216,7 @@ ul.clean.invert li::before{color:#1d1d1f}
           <ul class="clean">
             <li>Creator ②신뢰 부재 → 성향+Respect로 구조화</li>
             <li>Creator ③관계 소멸 → 일촌·카드교환으로 누적</li>
-            <li>Hiring Side ②검증 불가 → 카드에서 미리 본다</li>
+            <li>Hiring Side ②검증 불가 → 카드에서 미리 봅니다</li>
             <li>기능 실체: ①프로필+협업이력 + ②홍보/브랜딩</li>
           </ul>
         </div>
@@ -1503,35 +2224,60 @@ ul.clean.invert li::before{color:#1d1d1f}
     </div>
     <div class="cell span4 dark">
       <div class="cap" style="color:#a1a1a6">Day 1 가치</div>
-      <h3 class="head">가입자 0명이어도 쓸모 있다.</h3>
-      <p class="body soft">"내 프로필" 한 장이 명함·포트폴리오·이력서를 대신한다. NFC로 부딪혀 바로 교환.</p>
+      <h3 class="head">네트워크 효과 전에도 생기는 첫 효용.</h3>
+      <p class="body soft">프로필 한 장이 명함·포트폴리오·이력서를 대신하고, NFC 카드교환으로 오프라인 관계를 바로 디지털 자산으로 바꿉니다.</p>
     </div>
 
     <!-- ② Finder -->
     <div class="cell span8 tone-sky">
       <div class="cap">②</div>
-      <h3 class="head">Finder — "찾을 수 없다"가 뒤집힌다.</h3>
-      <p class="body">검색바("크리에이터, 포트폴리오 통합 검색") → 카드 결과(직업+성향+Respect+제안 상태) → 제안 상태 표시 → 일촌이 아니어도 제안 가능. 카톡 번호 없이, 지인 없이, 앱 안에서 연결까지 끝낸다.</p>
+      <h3 class="head">Finder — 못 찾던 산업이 검색되는 곳.</h3>
+      <p class="body">검색바("크리에이터, 포트폴리오 통합 검색") → 카드 결과(직업+성향+Respect+제안 상태) → 제안 상태 표시 → 일촌이 아니어도 제안할 수 있습니다. 카톡 번호도 지인도 없이, 앱 안에서 연결까지 끝냅니다.</p>
     </div>
     <div class="cell span4 tone-lime">
       <div class="cap">세 쪽이 얻는 것</div>
       <ul class="clean">
-        <li><strong>Creator</strong> — 바로 노출되고, 기회가 찾아온다</li>
-        <li><strong>Hiring Side</strong> — 카드에서 미리 본다</li>
-        <li><strong>S&amp;E</strong> — "무대감독" 검색 결과 없는 산업, C8는 검색됨</li>
+        <li><strong>Creator</strong> — 바로 노출되고 기회가 찾아옵니다</li>
+        <li><strong>Hiring Side</strong> — 카드에서 미리 봅니다</li>
+        <li><strong>Studio &amp; Enterprise</strong> — "무대감독" 검색 결과가 없던 산업, C8에서는 검색됩니다</li>
       </ul>
     </div>
 
     <!-- ③ Relationship -->
     <div class="cell span12 tone-mint">
       <div class="cap">③</div>
-      <h3 class="head">관계는 남는다 — 프로젝트가 끝나도.</h3>
+      <h3 class="head">프로젝트가 끝나도 남는 관계.</h3>
       <div class="row-3 mt-m">
-        <div class="cell tone-white" style="padding:18px;border-radius:16px"><div class="kicker">Respect</div><p class="body mt-s">같이 일한 뒤 주는 신뢰 수치. Finder 카드에 보이고, 다음 매칭의 근거가 된다.</p></div>
+        <div class="cell tone-white" style="padding:18px;border-radius:16px"><div class="kicker">Respect</div><p class="body mt-s">같이 일한 뒤 주는 신뢰 수치입니다. Finder 카드에 보이고, 다음 매칭의 근거가 됩니다.</p></div>
         <div class="cell tone-white" style="padding:18px;border-radius:16px"><div class="kicker">관계 — 네 갈래</div><p class="body mt-s"><strong>일촌</strong>(상호 승인) · <strong>팔로워/팔로잉</strong>(비대칭) · <strong>카드교환</strong>(오프라인을 디지털로).</p></div>
-        <div class="cell tone-white" style="padding:18px;border-radius:16px"><div class="kicker">Inbox 소셜</div><p class="body mt-s">포폴 댓글 · 리스펙트 · 새 포폴 알림. 관계가 끊기지 않는다.</p></div>
+        <div class="cell tone-white" style="padding:18px;border-radius:16px"><div class="kicker">Inbox 소셜</div><p class="body mt-s">포폴 댓글·리스펙트·새 포폴 알림이 오갑니다. 관계가 끊기지 않습니다.</p></div>
       </div>
-      <p class="body mt-m"><strong>이것이 #3 ⑧풀 관리의 실체이자 Creative Graph의 출발점.</strong> 프로필(누구) + Respect(얼마나 신뢰) + 관계(누구와 일했는가) = "누가 누구와 어떻게 일했는가"가 데이터로 남는다.</p>
+      <p class="body mt-m"><strong>이것이 #3 ⑧풀 관리의 실체이자 Creative Graph의 출발점입니다.</strong> 프로필(누구)·Respect(얼마나 신뢰)·관계(누구와 일했는가)가 합쳐져, "누가 누구와 어떻게 일했는가"가 데이터로 남습니다.</p>
+    </div>
+
+    <!-- Creative Graph 허브-스포크 노드그래프 -->
+    <div class="cell span12 dark">
+      <div class="cap" style="color:#a1a1a6">Creative Graph — 프로필 · Respect · 관계가 합쳐지는 곳</div>
+      <svg class="v-svg v-hub mt-m" viewBox="0 0 420 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Creative Graph 허브 스포크">
+        <g class="v-edge">
+          <line x1="210" y1="210" x2="210" y2="80"/>
+          <line x1="210" y1="210" x2="340" y2="285"/>
+          <line x1="210" y1="210" x2="80" y2="285"/>
+        </g>
+        <circle class="v-node-glow" cx="210" cy="210" r="66" fill="#3DB3FF"/>
+        <text x="210" y="205" text-anchor="middle" fill="#1d1d1f" font-size="14" font-weight="900">Creative</text>
+        <text x="210" y="223" text-anchor="middle" fill="#1d1d1f" font-size="14" font-weight="900">Graph</text>
+        <g fill="none" stroke-width="2.5">
+          <rect x="140" y="50" width="140" height="54" rx="27" stroke="#FF4D8F"/>
+          <rect x="280" y="258" width="130" height="54" rx="27" stroke="#FFCB05"/>
+          <rect x="10" y="258" width="140" height="54" rx="27" stroke="#22D3A4"/>
+        </g>
+        <g fill="#fff" font-size="15" font-weight="700" text-anchor="middle">
+          <text x="210" y="83">프로필 (누구)</text>
+          <text x="345" y="290">Respect (신뢰)</text>
+          <text x="80" y="290">관계 (누구와)</text>
+        </g>
+      </svg>
     </div>
 
     <!-- Tech bridge -->
@@ -1541,10 +2287,10 @@ ul.clean.invert li::before{color:#1d1d1f}
       <table class="wide-table mt-m">
         <tr><th>#4 전제조건</th><th>앱 안에서</th><th>어느 화면</th></tr>
         <tr><td>❶ 멀티모달 AI</td><td>포트폴리오 여섯 가지(글·사진·영상·오디오·PDF·유튜브)가 검색되는 데이터로</td><td>+ 탭 → Finder 결과</td></tr>
-        <tr><td>❷ 비용 1,000×↓ (₩55/건)</td><td>Creative 5 ~560만을 전부 분석할 만한 경제성</td><td>프로필 자동 생성</td></tr>
+        <tr><td>❷ 비용 1,000×↓ (₩55/건)</td><td>Creative 5 ~587만을 전부 분석할 만한 경제성</td><td>프로필 자동 생성</td></tr>
         <tr><td>❸ 10M 컨텍스트</td><td>커리어 전체(포폴+이력+Respect)를 한 번에 이해</td><td>Finder 매칭 정밀도</td></tr>
       </table>
-      <p class="body mt-m"><strong>현재 단계:</strong> 설계·R&amp;D 완료. 초기엔 사람이 큐레이팅 → 데이터가 쌓이면 → 룰 → AI → 자동화로 넘어간다. 검증된 큐레이팅 데이터로 학습해야 정밀도가 올라간다.</p>
+      <p class="body mt-m"><strong>현재 단계는 설계·R&amp;D를 마친 상태입니다.</strong> 초기에는 사람이 큐레이팅하고, 데이터가 쌓이면 룰에서 AI, 자동화로 넘어갑니다. 검증된 큐레이팅 데이터로 학습해야 정밀도가 올라갑니다.</p>
     </div>
 
     <!-- 3-side journeys -->
@@ -1571,7 +2317,7 @@ ul.clean.invert li::before{color:#1d1d1f}
       <p class="tiny mt-m">44~68일 → 단축 · 잘못된 채용 ₩2,350만 → 사전 검증</p>
     </div>
     <div class="cell span4 tone-lavender">
-      <div class="cap">S&amp;E 여정</div>
+      <div class="cap">Studio &amp; Enterprise 여정</div>
       <ul class="clean">
         <li><strong>Finder</strong> 팀 단위 검색</li>
         <li><strong>프로젝트 카드</strong> 대규모 모집</li>
@@ -1584,7 +2330,7 @@ ul.clean.invert li::before{color:#1d1d1f}
 
     <div class="cell span12 dark">
       <h3 class="head xl">프로필 → Finder → 제안 → <span class="hl hl-mint">관계.</span></h3>
-      <p class="body soft mt-s">이 여정은 앱으로 존재하고, 지금 돌아가고 있다.</p>
+      <p class="body soft mt-s">이 여정은 실제 앱에서 이미 작동합니다.</p>
     </div>
   </div>
 </section>
@@ -1594,53 +2340,113 @@ ul.clean.invert li::before{color:#1d1d1f}
 <!-- ============ #7 BUSINESS MODEL ============ -->
 <section id="bm">
   <div class="cap">#7 · Business Model</div>
-  <h2 class="section-head"><span class="hl hl-grape">Advanced 기능에</span> 과금.</h2>
-  <p class="lead">기본 기능은 무료. 더 빨리·더 깊이 찾는 쪽이 Advanced 기능을 산다. 거래에 손대지 않으니, 반복 협업이 매출로 돌아온다. <strong>구독 + 광고 + 솔루션, 세 엔진.</strong></p>
+  <h2 class="section-head">Creator는 무료, <br><span class="hl hl-grape">찾는 쪽이 도구를 구독.</span></h2>
+  <p class="lead">C8는 거래 성사 수수료를 떼지 않고, 검색·검증·재소집 도구에 과금합니다. 반복 협업이 늘어날수록 플랫폼 우회 대신 도구 사용이 늘어납니다. <strong>구독·광고·솔루션, 세 엔진입니다.</strong></p>
 
   <div class="bento mt-xl">
-    <!-- Why tool fee -->
-    <div class="cell span12 tone-white">
-      <div class="cap">왜 Advanced 기능에 과금하는가</div>
-      <h3 class="head">반복 협업이 매출을 갉아먹지 않으려면.</h3>
-      <div class="row-2 mt-m">
-        <div class="cell dark" style="border-radius:18px;padding:22px">
-          <div class="kicker" style="color:#a1a1a6">거래마다 과금 (옛 모델)</div>
-          <p class="body mt-s" style="text-decoration:line-through;color:#c7c7cc">Fiverr 27.6% · Upwork 18.5%</p>
-          <p class="tiny mt-s" style="color:#c7c7cc">반복 협업이 일어나면 → 플랫폼을 우회한다 → 매출이 줄어든다</p>
+    <!-- Why tool fee — before/after COMPARE -->
+    <div class="cell span12 dark">
+      <div class="cap" style="color:#a1a1a6">왜 거래가 아니라 도구에 과금하는가</div>
+      <h3 class="head lg">반복 협업이 매출을 갉아먹지 않는 구조.</h3>
+
+      <!-- before/after 매출 방향 대비 SVG -->
+      <svg class="v-svg" viewBox="0 0 480 230" style="max-width:560px;margin:18px auto 6px" role="img" aria-label="거래 과금 대 도구 과금 매출 방향 대비">
+        <text x="120" y="24" text-anchor="middle" fill="#c7c7cc" font-size="13" font-weight="800">거래마다 과금 (옛 모델)</text>
+        <text x="360" y="24" text-anchor="middle" fill="#4DD964" font-size="13" font-weight="800">도구 사용에 과금 (C8)</text>
+        <!-- 옛: 줄어드는 막대, 눌린 채도 -->
+        <g opacity="0.45">
+          <rect x="60" y="100" width="40" height="100" fill="#FF6B6B"/>
+          <rect x="110" y="130" width="40" height="70" fill="#FF6B6B"/>
+          <rect x="160" y="160" width="40" height="40" fill="#FF6B6B"/>
+        </g>
+        <text x="130" y="218" text-anchor="middle" fill="#c7c7cc" font-size="12">반복 협업 ↑ → 매출 ↓</text>
+        <!-- C8: 자라는 막대, 풀비비드 -->
+        <g>
+          <rect x="290" y="150" width="40" height="50" fill="#4DD964"/>
+          <rect x="340" y="110" width="40" height="90" fill="#4DD964"/>
+          <rect x="390" y="60" width="40" height="140" fill="#4DD964"/>
+        </g>
+        <text x="360" y="218" text-anchor="middle" fill="#4DD964" font-size="12" font-weight="700">네트워크 ↑ → 매출 ↑</text>
+        <!-- 변화 화살표 -->
+        <path d="M214,124 L266,124" stroke="#fff" stroke-width="2.5" marker-end="url(#arrW)"/>
+      </svg>
+
+      <div class="v-compare mt-m">
+        <div class="v-cmp-col v-cmp-before">
+          <span class="v-cmp-tag" style="color:#FF6B6B">거래마다 과금 (옛 모델)</span>
+          <p class="body" style="text-decoration:line-through;color:#c7c7cc">Fiverr take rate 27.7% · Upwork 2025 revenue $787.8M</p>
+          <p class="tiny" style="color:#c7c7cc">반복 협업이 일어나면 → 플랫폼을 우회하고 → 매출이 줄어듭니다</p>
         </div>
-        <div class="cell tone-lime" style="border-radius:18px;padding:22px">
-          <div class="kicker">Advanced 기능에 과금 (C8)</div>
-          <p class="body mt-s"><strong>LinkedIn $17.8B(₩24.6조)</strong> 매출</p>
-          <p class="tiny mt-s">반복 협업 = 도구 사용 ↑ = 매출 ↑</p>
+        <div class="v-cmp-arrow">→</div>
+        <div class="v-cmp-col v-cmp-after">
+          <span class="v-cmp-tag" style="color:#4DD964">도구 사용에 과금 (C8)</span>
+          <p class="body"><strong>LinkedIn은 약 $18B급 직업 네트워크</strong>로 Premium·Marketing·Talent/Sales 계열 수익을 만듭니다.</p>
+          <p class="tiny" style="color:#c7c7cc">C8는 같은 수익 원리를 크리에이티브 협업 데이터에 적용합니다.</p>
         </div>
       </div>
-      <p class="body muted mt-m">크리에이티브 산업은 한 번 쓰고 끝나지 않는다, 반복해서 만난다. 거래마다 과금하면 관계가 쌓일수록 매출이 줄어든다(#6 ③). Advanced 기능에 과금해야 네트워크가 커질수록 매출이 같이 자란다.</p>
+
+      <p class="body soft mt-m">크리에이티브 산업은 한 번 쓰고 끝나지 않고 반복해서 만납니다. 거래마다 과금하면 관계가 쌓일수록 매출이 줄어듭니다(#6 ③). 도구에 과금해야 네트워크가 커질수록 매출이 함께 자랍니다.</p>
     </div>
 
     <!-- Pricing ladder -->
     <div class="cell span12 tone-white">
       <div class="cap">세 쪽 × 가격 계단</div>
-      <h3 class="head">Free → Premium → Talent Solution.</h3>
+      <h3 class="head">Free → Premium → Hiring Tool.</h3>
       <table class="wide-table mt-m">
-        <tr><th></th><th>Creator ~560만</th><th>Hiring Side</th><th>Studio &amp; Enterprise</th></tr>
+        <tr><th></th><th>Creator ~587만</th><th>Hiring Side</th><th>Studio &amp; Enterprise</th></tr>
         <tr><td><strong>Free</strong></td><td>프로필카드 + 검색 노출<br><span class="tiny">발견 자체가 가치</span></td><td>기본 검색 + 프로필 열람<br><span class="tiny">찾을 수 있다는 경험</span></td><td>기업 프로필 + 프로젝트 공고<br><span class="tiny">채용 브랜딩 시작</span></td></tr>
         <tr style="background:var(--bg-soft)"><td><strong>Premium</strong><br><span class="tiny">더 많이</span></td><td>₩9,900/월<br><span class="tiny">강화 노출 + 프로필 분석</span></td><td>₩9,900/월<br><span class="tiny">확장 열람 + 필터</span></td><td>₩150,000~/월<br><span class="tiny">브랜드 페이지 + 인재 검색</span></td></tr>
-        <tr style="background:var(--sky);color:#1d1d1f"><td style="color:#1d1d1f"><strong>Talent Solution</strong><br><span class="tiny" style="color:#1d1d1f">더 깊이</span></td><td style="color:#1d1d1f">—<br><span class="tiny" style="color:#1d1d1f">공급측 확장 예정</span></td><td style="color:#1d1d1f">₩99,000/월<br><span class="tiny" style="color:#1d1d1f">AI 매칭 + 인재 파이프라인</span></td><td style="color:#1d1d1f">₩150K~₩1M/월<br><span class="tiny" style="color:#1d1d1f">3-Tier · 전담 매칭 + 대시보드</span></td></tr>
+        <tr style="background:var(--sky);color:#1d1d1f;box-shadow:inset 5px 0 0 var(--grape)"><td style="color:#1d1d1f"><strong>Hiring Tool</strong><br><span class="tiny" style="color:#1d1d1f">더 깊이 찾고 관리</span></td><td style="color:#1d1d1f">—<br><span class="tiny" style="color:#1d1d1f">공급측 확장 예정</span></td><td style="color:#1d1d1f">₩99,000/월<br><span class="tiny" style="color:#1d1d1f">AI 매칭 + 인재 파이프라인</span></td><td style="color:#1d1d1f">₩150K~₩1M/월<br><span class="tiny" style="color:#1d1d1f">3-Tier · 전담 매칭 + 대시보드</span></td></tr>
         <tr><td><strong>Ads</strong></td><td colspan="3" style="text-align:center"><strong>₩10,000 CPM</strong> — 인재에게 도달하는 브랜드 도구 <span class="tiny">(LinkedIn ₩27K~88K 대비 11~37%)</span></td></tr>
       </table>
-      <p class="tiny mt-m"><strong>원칙:</strong> Creator는 무료로도 충분히 발견된다. Premium은 "더 빨리, 더 많이" 발견되려는 사람을 위한 도구. 맡기는 쪽·조직에게 C8는 <strong>업무 도구</strong>다.</p>
+      <p class="tiny mt-m"><strong>원칙:</strong> Creator는 무료 플랜에서도 검색 노출을 받습니다. Premium은 "더 빨리, 더 많이" 발견되려는 사람을 위한 도구입니다. 맡기는 쪽과 조직에게 C8는 <strong>업무 도구</strong>입니다.</p>
     </div>
 
-    <!-- Revenue Mix bar -->
-    <div class="cell span12 tone-white">
-      <div class="cap">수익 구성 — 세 엔진의 비중</div>
-      <h3 class="head">소액×다수 → 중액×중수 → <span class="hl hl-yellow">고액×소수</span>로 자연스레 올라간다.</h3>
-      <div class="bar">
-        <div style="flex:12;background:var(--sky)">구독 10–15%</div>
-        <div style="flex:30;background:var(--peach)">Ads 25–35%</div>
-        <div style="flex:58;background:var(--lime)">솔루션 50–65%</div>
+    <!-- Revenue Mix — 도넛 + IKEA 2층 스택바 -->
+    <div class="cell span12 dark">
+      <div class="cap" style="color:#a1a1a6">수익 구성 — 세 엔진의 비중</div>
+      <h3 class="head lg">소액×다수에서 중액·중수를 거쳐 <span class="hl hl-yellow">고액×소수</span>로.</h3>
+
+      <div class="row-2 mt-m" style="align-items:center">
+        <!-- 도넛: 세 엔진 비중 -->
+        <div>
+          <svg class="v-svg" viewBox="0 0 220 220" style="max-width:240px;margin:0 auto" role="img" aria-label="수익 구성 도넛 — 구독 광고 솔루션 비중">
+            <circle cx="110" cy="110" r="84" fill="none" stroke="#2c2c2e" stroke-width="26"/>
+            <!-- 둘레 = 2π·84 ≈ 528. 솔루션 58% → 306, Ads 30% → 158, 구독 12% → 63 -->
+            <!-- 솔루션 50–65% (라임), 0° 시작 -->
+            <circle cx="110" cy="110" r="84" fill="none" stroke="#4DD964" stroke-width="26"
+                    transform="rotate(-90 110 110)" stroke-dasharray="306 222"/>
+            <!-- Ads 25–35% (peach), 솔루션 뒤에서 시작 (-90+208.8=118.8°) -->
+            <circle cx="110" cy="110" r="84" fill="none" stroke="#FF7A1A" stroke-width="26"
+                    transform="rotate(118.8 110 110)" stroke-dasharray="158 370"/>
+            <!-- 구독 10–15% (sky), Ads 뒤에서 시작 (118.8+108=226.8°) -->
+            <circle cx="110" cy="110" r="84" fill="none" stroke="#3DB3FF" stroke-width="26"
+                    transform="rotate(226.8 110 110)" stroke-dasharray="63 465"/>
+            <text x="110" y="104" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">세 엔진</text>
+            <text x="110" y="126" text-anchor="middle" font-size="12" fill="#c7c7cc">수익 비중</text>
+          </svg>
+          <div class="v-nest-legend" style="margin-top:10px">
+            <span class="v-key" style="color:#fff"><span class="v-swatch" style="background:#3DB3FF"></span>구독 10–15%</span>
+            <span class="v-key" style="color:#fff"><span class="v-swatch" style="background:#FF7A1A"></span>Ads 25–35%</span>
+            <span class="v-key" style="color:#fff"><span class="v-swatch" style="background:#4DD964"></span>솔루션 50–65%</span>
+          </div>
+        </div>
+
+        <!-- IKEA 2층 스택바 -->
+        <div>
+          <div class="v-bar">
+            <div class="v-bar-seg" style="flex:12;background:#3DB3FF">구독<span class="v-seg-sub">10–15%</span></div>
+            <div class="v-bar-seg" style="flex:30;background:#FF7A1A">Ads<span class="v-seg-sub">25–35%</span></div>
+            <div class="v-bar-seg" style="flex:58;background:#4DD964">솔루션<span class="v-seg-sub">50–65%</span></div>
+          </div>
+          <div class="v-bar-legend">
+            <span style="color:#c7c7cc">소액×다수</span>
+            <span style="color:#c7c7cc">고액×소수</span>
+          </div>
+        </div>
       </div>
-      <p class="tiny mt-m"><strong>LinkedIn 실적과 같은 구조:</strong> Premium ~12% + Ads ~25% + Talent Solutions ~63% = $17.8B(₩24.6조). 같은 모델, 다른 산업.</p>
+
+      <p class="tiny soft mt-m"><strong>LinkedIn식 3엔진을 벤치마크:</strong> Premium·Marketing·Talent/Sales 계열로 확장되는 직업 네트워크의 수익 원리를 참고합니다. 단, 위 비중은 LinkedIn 공식 세부 믹스가 아니라 C8의 목표 매출 구조입니다.</p>
     </div>
 
     <!-- 6 connection x revenue -->
@@ -1650,14 +2456,14 @@ ul.clean.invert li::before{color:#1d1d1f}
         <div class="fold-body">
           <table class="wide-table">
             <tr><th>연결</th><th>전체 거래</th><th>주 과금 경로</th><th>왜 그쪽이 내는가</th></tr>
-            <tr><td><strong>Commission</strong></td><td>₩1.80조</td><td>Sol + Ads</td><td>의뢰인이 검색·매칭 도구로 사람을 찾는다</td></tr>
-            <tr><td><strong>Co-Create</strong></td><td>₩1.85조</td><td>Premium + Sol</td><td>파트너를 찾는 양쪽 모두 프로필 강화·매칭 도구가 필요하다</td></tr>
-            <tr><td><strong>Augment</strong></td><td>₩1.50조</td><td>Sol (기업)</td><td>조직이 팀 단위 조달 대시보드를 쓴다</td></tr>
-            <tr><td><strong>Team-Up</strong></td><td>₩0.55조</td><td>Premium</td><td>팀을 짤 때 프로필 노출·검색이 핵심</td></tr>
+            <tr><td><strong>Commission</strong></td><td>₩1.80조</td><td>Solution + Ads</td><td>의뢰인이 검색·매칭 도구로 사람을 찾습니다</td></tr>
+            <tr><td><strong>Co-Create</strong></td><td>₩1.85조</td><td>Premium + Solution</td><td>파트너를 찾는 양쪽 모두 프로필 강화·매칭 도구가 필요합니다</td></tr>
+            <tr><td><strong>Augment</strong></td><td>₩1.50조</td><td>Solution (기업)</td><td>조직이 팀 단위 조달 대시보드를 씁니다</td></tr>
+            <tr><td><strong>Team-Up</strong></td><td>₩0.55조</td><td>Premium</td><td>팀을 짤 때 프로필 노출·검색이 핵심입니다</td></tr>
             <tr><td><strong>Learn</strong></td><td>₩0.95조</td><td>Premium + Ads</td><td>멘토 검색 + 교육 브랜드 광고 수요</td></tr>
             <tr><td><strong>Patronage</strong></td><td>₩1.00조</td><td>Ads + Premium</td><td>후원 대상 발견은 노출 가치, 브랜드 후원은 광고</td></tr>
           </table>
-          <p class="body mt-m"><strong>기존 플랫폼은 Commission(₩1.80조)에만 과금한다.</strong> C8는 여섯 모두(₩7.65조)에서 도구 가치가 생긴다 — #5 "기존 커버 22%, 78%가 플랫폼 밖"이 수익 기회.</p>
+          <p class="body mt-m"><strong>기존 플랫폼은 Commission(₩1.80조)에만 과금합니다.</strong> C8는 여섯 연결 모두(₩7.65조)에서 도구 가치를 만듭니다. #5 "기존 커버 22%, 78%가 플랫폼 밖"이 곧 수익 기회입니다.</p>
         </div>
       </details>
 
@@ -1666,11 +2472,11 @@ ul.clean.invert li::before{color:#1d1d1f}
         <div class="fold-body">
           <table class="src-table">
             <tr><th>#</th><th>출처</th><th>데이터</th></tr>
-            <tr><td>1</td><td>LinkedIn/Microsoft FY25 IR</td><td>Revenue $17.8B, Talent ~63%, Premium ~12%, Ads ~25%</td></tr>
+            <tr><td>1</td><td>LinkedIn/Microsoft IR (TTM)</td><td>매출 약 $18B, Premium 연 $2B+ — 세부 믹스는 비공식 추정</td></tr>
             <tr><td>2</td><td>LinkedIn IR (가격)</td><td>Career Premium $30/월, Recruiter Lite $170, Corp $750-900, CPM $20-65</td></tr>
-            <tr><td>3</td><td>Fiverr 2024 IR</td><td>Take Rate 27.6%</td></tr>
-            <tr><td>4</td><td>Upwork 2025 IR</td><td>Take Rate 18.5%, Revenue ~$740M</td></tr>
-            <tr><td>5</td><td>C8 3x3 수익모델 매트릭스 v3.0</td><td>가격, 배율, Revenue Mix 목표</td></tr>
+            <tr><td>3</td><td>Fiverr 2025 IR</td><td>Take Rate 27.7%, 활성 구매자 3.1M</td></tr>
+            <tr><td>4</td><td>Upwork 2025 IR</td><td>매출 $787.8M, 활성 고객 785K</td></tr>
+            <tr><td>5</td><td>C8 수익모델 매트릭스</td><td>가격, 배율, Revenue Mix 목표</td></tr>
             <tr><td>6</td><td>Gupta Media 2025</td><td>LinkedIn Ads CPM $20-65(₩27K-88K)</td></tr>
             <tr><td>7</td><td>#2 Problem</td><td>셋의 문제 스무 가지, 연결 여섯 가지 정의</td></tr>
             <tr><td>8</td><td>#5 Market</td><td>전체 시장 ₩7.65조, 연결 여섯 규모, 커버 22%</td></tr>
@@ -1680,8 +2486,8 @@ ul.clean.invert li::before{color:#1d1d1f}
     </div>
 
     <div class="cell span12 dark">
-      <h3 class="head xl">Creator는 무료, 찾는 쪽은 <span class="hl hl-grape">Advanced 기능</span>에 과금.</h3>
-      <p class="body soft">여섯 연결 모두가 수익이 된다.</p>
+      <h3 class="head xl">Creator는 무료, 찾는 쪽은 <span class="hl hl-grape">도구</span>에 과금.</h3>
+      <p class="body soft">여섯 연결 모두가 수익이 됩니다.</p>
     </div>
   </div>
 </section>
@@ -1816,6 +2622,13 @@ ul.clean.invert li::before{color:#1d1d1f}
 })();
 </script>
 
+<!-- ============ CLOSING ============ -->
+<section id="closing">
+  <div class="cap">United in Crazy</div>
+  <h3 class="head xxl">창작자 셋 중 둘은 "다음 일"을 걱정합니다.<br>그 걱정을 없애는 일을 합니다.</h3>
+  <p class="lead mt-m">66%가 충분한 일을 구하지 못하고(DemandSage 2026), 예술인형 월소득은 ₩134만원입니다. 숫자 뒤에는 매달 다음 일을 걱정하는 사람이 있습니다. Cre8orClub은 그 사람이 다시 발견되는 시스템입니다.</p>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="inner">
@@ -1824,7 +2637,7 @@ ul.clean.invert li::before{color:#1d1d1f}
       <p style="color:#a1a1a6;margin:4px 0 0">The Creative Network · United in Crazy</p>
     </div>
     <div class="meta">
-      <p>BP v6.0 · Drafted 2026<br>#1~#7 Complete · #8~#14 In Progress</p>
+      <p>The Creative Network<br>2026</p>
     </div>
   </div>
 </footer>

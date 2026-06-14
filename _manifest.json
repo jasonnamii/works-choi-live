@@ -59,9 +59,9 @@
     "slug": "c8-bp-applebento",
     "mode": "choi",
     "url": "https://works.choi.build/c8-bp-applebento/",
-    "last_kind": "backfill",
-    "last_sha256": "",
-    "timestamp": "2026-05-23T02:32:12Z"
+    "last_kind": "redeploy",
+    "last_sha256": "af540318f90a967da3787c52611b33951a82ccd36cbf3d66c8a567347989dd05",
+    "timestamp": "2026-06-14T13:27:06.045744Z"
   },
   "c8-bp": {
     "slug": "c8-bp",
