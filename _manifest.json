@@ -395,8 +395,8 @@
     "slug": "tokyo-tour",
     "mode": "choi",
     "url": "https://works.choi.build/tokyo-tour/",
-    "last_kind": "new",
-    "last_sha256": "b7177c9ffd6a5ad1c3b9863963aed4579358b6a18f0f003cfea68fecfa6424a2",
-    "timestamp": "2026-06-14T13:01:23.062372Z"
+    "last_kind": "redeploy",
+    "last_sha256": "67cac708b8d3366f0c1342fe446ee2bebd195915aeb6c1d53843ea2829dc2d75",
+    "timestamp": "2026-06-14T13:08:46.155331Z"
   }
 }
