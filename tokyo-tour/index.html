@@ -149,6 +149,28 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 .bar .bt:hover{border-color:var(--ink);color:var(--ink);}
 .bar .bt-name{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-right:auto;}
 
+/* ---- hamburger + drawer ---- */
+.ham{margin-left:auto;display:inline-flex;flex-direction:column;justify-content:center;gap:4px;
+ width:44px;height:44px;padding:0 11px;border:1px solid var(--line2);border-radius:8px;background:var(--paper);cursor:pointer;}
+.ham span{display:block;height:2px;width:100%;background:var(--ink);transition:transform .25s,opacity .2s;}
+.ham[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.ham[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.ham[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+.scrim{position:fixed;inset:0;background:rgba(10,10,12,.42);z-index:40;opacity:0;transition:opacity .25s;}
+.scrim.open{opacity:1;}
+.drawer{position:fixed;top:0;right:0;height:100dvh;width:min(86vw,360px);z-index:50;background:var(--paper);
+ border-left:1px solid var(--line2);box-shadow:-12px 0 40px rgba(0,0,0,.12);transform:translateX(101%);
+ transition:transform .28s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;}
+.drawer.open{transform:translateX(0);}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px calc(16px + env(safe-area-inset-top));border-bottom:2px solid var(--ink);}
+.drawer-title{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);}
+.drawer-x{width:40px;height:40px;border:1px solid var(--line2);border-radius:8px;background:var(--paper);font-size:22px;line-height:1;color:var(--ink);cursor:pointer;}
+.drawer-actions{display:flex;gap:8px;padding:14px 20px;border-bottom:1px solid var(--line);}
+.drawer-actions .bt{flex:1;justify-content:center;min-height:42px;}
+.nav-list{list-style:none;margin:0;padding:8px 0 calc(24px + env(safe-area-inset-bottom));overflow-y:auto;}
+.nav-link{display:block;padding:12px 20px;font-size:14.5px;color:var(--ink2);border-left:3px solid transparent;}
+.nav-link:hover{background:var(--paper2);border-left-color:var(--ink);color:var(--ink);}
+
 /* ---- footer ---- */
 .foot{padding:40px 0 80px;color:var(--ink3);font-size:12.5px;font-family:var(--mono);letter-spacing:.02em;}
 .foot .wrap{border-top:1px solid var(--line);padding-top:22px;}
@@ -176,7 +198,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
  .raw-body{padding:8px 13px 18px;}
 }
 @media print{
- .bar{display:none;} details.raw{break-inside:avoid;} details.raw>.raw-body{display:block!important;}
+ .bar,.scrim,.drawer{display:none!important;} details.raw{break-inside:avoid;} details.raw>.raw-body{display:block!important;}
  .sec{break-inside:avoid;} body{font-size:12px;}
 }
 </style>
@@ -184,9 +206,14 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <body>
 <div class="bar">
   <span class="bt-name">Tokyo 2N3D · Shibuya Base</span>
-  <button class="bt" id="exp">원자료 모두 펼치기</button>
-  <button class="bt" id="col">모두 접기</button>
+  <button class="ham" id="ham" aria-label="메뉴 열기" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
 </div>
+<div class="scrim" id="scrim" hidden></div>
+<nav class="drawer" id="drawer" aria-hidden="true" aria-label="목차">
+  <div class="drawer-head"><span class="drawer-title">목차 · Tokyo 2N3D</span><button class="drawer-x" id="drawerx" aria-label="메뉴 닫기">×</button></div>
+  <div class="drawer-actions"><button class="bt" id="exp">원자료 모두 펼치기</button><button class="bt" id="col">모두 접기</button></div>
+  <ul class="nav-list"><li><a class="nav-link" href="#index">구체 인덱스</a></li><li><a class="nav-link" href="#sec-0">00 · 여행 전 지금 처리할 일 — 예약·타이밍</a></li><li><a class="nav-link" href="#sec-1">01 · 즉답 인덱스 — 뭐 사지? 어디 가지?</a></li><li><a class="nav-link" href="#sec-2">02 · 편의점 — 지금 뜨는 상품</a></li><li><a class="nav-link" href="#sec-3">03 · 돈키호테 — 지금 뜨는 상품</a></li><li><a class="nav-link" href="#sec-4">04 · 부드러운 소고기·와규</a></li><li><a class="nav-link" href="#sec-5">05 · 커피투어</a></li><li><a class="nav-link" href="#sec-6">06 · 패션 쇼핑·로컬 브랜드</a></li><li><a class="nav-link" href="#sec-7">07 · 캐릭터·특이 쇼핑</a></li><li><a class="nav-link" href="#sec-8">08 · 꼭 사야 할 제품·로컬 브랜드</a></li><li><a class="nav-link" href="#sec-9">09 · 한국과 다른 쇼핑거리</a></li><li><a class="nav-link" href="#sec-10">10 · 관광 — 스테디 + 2026 화제</a></li><li><a class="nav-link" href="#sec-11">11 · 2026 최신 스팟</a></li><li><a class="nav-link" href="#sec-12">12 · 동선 — 시부야 70/30, 2박3일 시안 (선택지)</a></li><li><a class="nav-link" href="#access">MAP · 셀룰리언 접근·구글지도</a></li><li><a class="nav-link" href="#sec-13">13 · 인스타 함정 — 정직하게 거른 곳</a></li><li><a class="nav-link" href="#sec-14">14 · 미검증·주의</a></li></ul>
+</nav>
 
 <header class="cover">
   <div class="wrap">
@@ -1977,6 +2004,14 @@ document.querySelectorAll('.raw-body code').forEach(function(c){
 function setAll(open){document.querySelectorAll('details.raw').forEach(function(d){d.open=open;});}
 document.getElementById('exp').addEventListener('click',function(){setAll(true);});
 document.getElementById('col').addEventListener('click',function(){setAll(false);});
+var _dr=document.getElementById('drawer'),_sc=document.getElementById('scrim'),_hb=document.getElementById('ham');
+function openDr(){_dr.classList.add('open');_sc.hidden=false;requestAnimationFrame(function(){_sc.classList.add('open');});_hb.setAttribute('aria-expanded','true');_dr.setAttribute('aria-hidden','false');}
+function closeDr(){_dr.classList.remove('open');_sc.classList.remove('open');_hb.setAttribute('aria-expanded','false');_dr.setAttribute('aria-hidden','true');setTimeout(function(){_sc.hidden=true;},260);}
+_hb.addEventListener('click',function(){_dr.classList.contains('open')?closeDr():openDr();});
+_sc.addEventListener('click',closeDr);
+document.getElementById('drawerx').addEventListener('click',closeDr);
+document.querySelectorAll('.nav-link').forEach(function(a){a.addEventListener('click',closeDr);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDr();});
 </script>
 </body>
 </html>
