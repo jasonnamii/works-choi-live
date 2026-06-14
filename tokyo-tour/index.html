@@ -31,7 +31,8 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
 a{color:inherit;text-decoration:none;}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);}
-.hl{background:#ffe600;color:#0a0a0c;padding:0 .14em;border-radius:.28em;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:700;}
+.hl{background:#ffe600;color:#0a0a0c;padding:0 .14em;border-radius:.28em;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:700;cursor:pointer;transition:background .12s;}
+.hl:hover{background:#ffd000;}
 .caption{font-size:12.5px;color:var(--ink3);margin:12px 0 0;line-height:1.6;}
 .map-cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:12px 18px;border-radius:6px;margin:2px 0 22px;min-height:44px;}
 .map-cta:hover{background:#000;}
@@ -203,7 +204,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
  .sec{break-inside:avoid;} body{font-size:12px;}
 }
 </style>
-</head>
+<style>.jp{font-size:.8em;color:#5a5a62;font-weight:400;margin:0 1px;white-space:nowrap;}.hl .jp{color:#6b5f00;}</style></head>
 <body>
 <div class="bar">
   <span class="bt-name">Tokyo 2N3D · Shibuya Base</span>
@@ -240,7 +241,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
     </div>
     <p class="index-lead">"뭐 사지? 어디 가지?"에 바로 답하는 카테고리별 핵심 스팟·상품입니다. 카드를 누르면 해당 섹션으로 이동하고, <span class="hl">노란 형광펜</span>은 돈 들여 살·갈 추천 타깃, ✗ 표시는 인스타 유행으로 거른 곳입니다.</p>
     <a class="map-cta" href="#access">🗺 셀룰리언 타워 기준 · 모든 장소 교통·구글지도 →</a>
-    <div class="ix-grid"><a class="ix-card" href="#sec-0"><div class="ix-head"><span class="ix-no">00</span><span class="ix-title">예약·타이밍 먼저</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">지금 예약</span><span class="ix-v"><span class="hl">Koffee Mameya Kakeru</span>(예약제·당일불가) · <span class="hl">炭火焼 유지</span>(일휴, 금/토) · 蕃YORONIKU·우시고로칸(에비스) · <span class="hl">도리바야시</span> · <span class="hl">시부야 스카이</span></span></div><div class="ix-row"><span class="ix-k">운 좋게 열림</span><span class="ix-v">로손 증량 3주차(6/15~) · <span class="hl">굿스마일 팝업</span>(6/11~7/5) · <span class="hl">RAWROW</span> 롯폰기(~7/26) · <span class="hl">피카소×폴 스미스</span> 전(6/10~)</span></div></a><a class="ix-card" href="#sec-2"><div class="ix-head"><span class="ix-no">02</span><span class="ix-title">편의점</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">로손</span><span class="ix-v"><span class="hl">초하피스기</span> 3주차 증량(ふわ濃치즈케이크·대형초코슈·<span class="hl">バスチー</span> 319엔) · <span class="hl">森半</span> 우지말차(297엔) · MACHI café 미즈다시(320엔)</span></div><div class="ix-row"><span class="ix-k">세븐</span><span class="ix-v"><span class="hl">かじるNYチーズケーキ</span>(291엔) · <span class="hl">チョコ生サンド</span>(모구나비 최상위)</span></div><div class="ix-row"><span class="ix-k">패미마</span><span class="ix-v"><span class="hl">食べマスモッチ</span> 산리오(378엔) · 농후치즈in파미치키(258엔) · 모리나가 生엔젤파이(298엔)</span></div><div class="ix-row"><span class="ix-k">사올 것</span><span class="ix-v"><span class="hl">食べマスモッチ</span> · <span class="hl">森半</span> 말차 · 모리나가/블랙썬더 콜라보</span></div></a><a class="ix-card" href="#sec-3"><div class="ix-head"><span class="ix-no">03</span><span class="ix-title">돈키호테</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">情熱価格 식품</span><span class="ix-v"><span class="hl">ごまにんにく</span>(430엔) · <span class="hl">焼き芋 타르트</span>(646엔) · <span class="hl">きのこ三昧</span>(322엔) · 업무용 비엔나(861엔)</span></div><div class="ix-row"><span class="ix-k">한정 굿즈</span><span class="ix-v"><span class="hl">nyuu</span> PB 메이크업(660엔) · <span class="hl">치이카와×돈펜</span>(6/6 발매) · 산리오 스튜디오 하누루</span></div><div class="ix-row"><span class="ix-k">체험·거점</span><span class="ix-v">TKG 소스(647엔, 1개만) · MEGA돈키 본점(식품)+별관(코스메·캐릭터)</span></div></a><a class="ix-card" href="#sec-4"><div class="ix-head"><span class="ix-no">04</span><span class="ix-title">부드러운 소고기·와규</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야·에비스</span><span class="ix-v"><span class="hl">炭火焼 유지</span>(금/토, 1.2~1.8만) · 蕃YORONIKU(에비스 1분, 11,800~) · <span class="hl">우시고로 칸</span></span></div><div class="ix-row"><span class="ix-k">결이 다른 부드러움</span><span class="ix-v"><span class="hl">아사쿠사 이마한</span> 스키야키 · <span class="hl">피터 루거</span>(에비스, 드라이에이징) · 슌주쿠세이 샤토브리앙</span></div><div class="ix-row"><span class="ix-k">닭 전환 / 거름</span><span class="ix-v"><span class="hl">도리바야시</span>(야키토리 4.12) · ✗ 시부야 A5와규 식べ放題 체인</span></div></a><a class="ix-card" href="#sec-5"><div class="ix-head"><span class="ix-no">05</span><span class="ix-title">커피투어</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야 도보권</span><span class="ix-v"><span class="hl">About Life</span>(도겐자카) · <span class="hl">Fuglen</span>(<span class="hl">오쿠시부</span>) · Little Nap · <span class="hl">ROAST WORKS</span></span></div><div class="ix-row"><span class="ix-k">1~2정거장</span><span class="ix-v"><span class="hl">Onibus</span> 나카메구로 · <span class="hl">Switch 메구로</span></span></div><div class="ix-row"><span class="ix-k">정점·원두·키사텐</span><span class="ix-v"><span class="hl">Koffee Mameya Kakeru</span>(예약 5,000~) · <span class="hl">Koffee Mameya</span> 표참도(원두) · 名曲喫茶 라이온(100주년) · <span class="hl">茶亭 羽當</span> / ✗ Bear Pond</span></div></a><a class="ix-card" href="#sec-6"><div class="ix-head"><span class="ix-no">06</span><span class="ix-title">패션 쇼핑·로컬 브랜드</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">오모테산도 디자이너</span><span class="ix-v"><span class="hl">visvim</span>(GYRE) · <span class="hl">AURALEE</span> · <span class="hl">NEPENTHES</span>/<span class="hl">Needles</span> · Mame 쿠로고우치(여성) · <span class="hl">KEISUKEYOSHIDA</span>(2026.4)</span></div><div class="ix-row"><span class="ix-k">에비스·빈티지·셀렉트</span><span class="ix-v"><span class="hl">KAPITAL</span> 3점 · 시모키타 <span class="hl">MONK</span> 또는 코엔지(택1) · <span class="hl">DSM 긴자</span> · <span class="hl">GR8</span></span></div></a><a class="ix-card" href="#sec-7"><div class="ix-head"><span class="ix-no">07</span><span class="ix-title">캐릭터·특이 쇼핑</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야 파르코 6F</span><span class="ix-v">닌텐도·포켓몬·점프숍 · <span class="hl">굿스마일 팝업</span>(6/11~7/5)</span></div><div class="ix-row"><span class="ix-k">마니아·특이템</span><span class="ix-v">나카노 <span class="hl">만다라케</span> 30관·<span class="hl">타코셰</span> ZINE · <span class="hl">헤이즈 진주 가챠</span>(1,000엔) · 빌리지 뱅가드 · MAGNET 가챠</span></div></a><a class="ix-card" href="#sec-8"><div class="ix-head"><span class="ix-no">08</span><span class="ix-title">꼭 사야 할 제품</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">드럭스토어·문구</span><span class="ix-v"><span class="hl">메라노CC</span> 화장수+미용액 · <span class="hl">오타이산</span> · <span class="hl">로이히츠보코</span> · <span class="hl">미도리 MD노트</span> · <span class="hl">트래블러스 노트</span></span></div><div class="ix-row"><span class="ix-k">주방·식품·거점</span><span class="ix-v"><span class="hl">야나기 소리</span> · <span class="hl">노다호로</span> 법랑 · <span class="hl">스와다</span> 손톱깎이 · <span class="hl">야마모토야마</span> 녹차 · <span class="hl">야와타야</span> 시치미 / 거점: 로프트+핸즈</span></div></a><a class="ix-card" href="#sec-9"><div class="ix-head"><span class="ix-no">09</span><span class="ix-title">한국과 다른 쇼핑거리</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">데파치카</span><span class="ix-v"><span class="hl">도큐 푸드쇼</span> 엣지(역 직결) · <span class="hl">이세탄 신주쿠</span>(데파치카 정점)</span></div><div class="ix-row"><span class="ix-k">전문상가·상점가</span><span class="ix-v"><span class="hl">갓파바시</span> 칼·<span class="hl">진보초</span> 헌책·나카노(택1) · <span class="hl">야나카긴자</span> · 스가모 / ✗ 요코초 금·토 저녁</span></div></a><a class="ix-card" href="#sec-10"><div class="ix-head"><span class="ix-no">10</span><span class="ix-title">관광</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야 도보권</span><span class="ix-v"><span class="hl">오쿠시부</span> 산책 · <span class="hl">시부야 스카이</span> · <span class="hl">메이지신궁</span>+하라주쿠 · <span class="hl">다이칸야마</span>·나카메구로</span></div><div class="ix-row"><span class="ix-k">아침·2026·거름</span><span class="ix-v"><span class="hl">센소지</span>(8시 전) · <span class="hl">피카소×폴 스미스</span> 전(6/10) / ✗ 메가복합시설·teamLab</span></div></a><a class="ix-card" href="#sec-11"><div class="ix-head"><span class="ix-no">11</span><span class="ix-title">2026 최신 스팟</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">진짜 화제</span><span class="ix-v"><span class="hl">아나 밀러스</span> 부활 · <span class="hl">RAWROW</span> 롯폰기(~7/26) · <span class="hl">imperfect</span> 로스터리 · <span class="hl">도리바야시</span> · <span class="hl">MoN Takanawa</span></span></div><div class="ix-row"><span class="ix-k">거름</span><span class="ix-v">✗ KAWAII MONSTER LAND(체험 콘텐츠)</span></div></a><a class="ix-card" href="#sec-12"><div class="ix-head"><span class="ix-no">12</span><span class="ix-title">동선 — 시부야 70/30</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">코어 70%</span><span class="ix-v"><span class="hl">오쿠시부</span> 커피산보 · 캣스트리트 패션회유 · <span class="hl">다이칸야마</span>→나카메구로 강변</span></div><div class="ix-row"><span class="ix-k">여유분 30%</span><span class="ix-v">키요스미시라카와(커피성지) · 나카노/<span class="hl">진보초</span>/<span class="hl">갓파바시</span> · 아사쿠사(아침) · 시모키타/기치조지(택1)</span></div></a></div>
+    <div class="ix-grid"><a class="ix-card" href="#sec-0"><div class="ix-head"><span class="ix-no">00</span><span class="ix-title">예약·타이밍 먼저</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">지금 예약</span><span class="ix-v"><span class="hl">Koffee Mameya Kakeru</span>(예약제·당일불가) · <span class="hl">炭火焼<span class="jp">(스미비야키·숯불구이)</span> 유지</span>(일휴, 금/토) · 蕃<span class="jp">(반·가게명(蕃 YORONIKU))</span>YORONIKU·우시고로칸(에비스) · <span class="hl">도리바야시</span> · <span class="hl">시부야 스카이</span></span></div><div class="ix-row"><span class="ix-k">운 좋게 열림</span><span class="ix-v">로손 증량 3주차(6/15~) · <span class="hl">굿스마일 팝업</span>(6/11~7/5) · <span class="hl">RAWROW</span> 롯폰기(~7/26) · <span class="hl">피카소×폴 스미스</span> 전(6/10~)</span></div></a><a class="ix-card" href="#sec-2"><div class="ix-head"><span class="ix-no">02</span><span class="ix-title">편의점</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">로손</span><span class="ix-v"><span class="hl">초하피스기</span> 3주차 증량(ふわ濃<span class="jp">(후와코이·폭신하고 진한)</span>치즈케이크·대형초코슈·<span class="hl">バスチー<span class="jp">(바스치·바스크 치즈케이크(로손))</span></span> 319엔) · <span class="hl">森半<span class="jp">(모리한·교토 우지 말차 노포)</span></span> 우지말차(297엔) · MACHI café 미즈다시(320엔)</span></div><div class="ix-row"><span class="ix-k">세븐</span><span class="ix-v"><span class="hl">かじる<span class="jp">(카지루·베어물다)</span>NYチーズケーキ<span class="jp">(치즈케키·치즈케이크)</span></span>(291엔) · <span class="hl">チョコ生サンド<span class="jp">(초코나마산도·초코 생크림 샌드)</span></span>(모구나비 최상위)</span></div><div class="ix-row"><span class="ix-k">패미마</span><span class="ix-v"><span class="hl">食べマスモッチ<span class="jp">(타베마스못치·먹는 마스코트 모찌(캐릭터 화과자))</span></span> 산리오(378엔) · 농후치즈in파미치키(258엔) · 모리나가 生<span class="jp">(나마·생(生))</span>엔젤파이(298엔)</span></div><div class="ix-row"><span class="ix-k">사올 것</span><span class="ix-v"><span class="hl">食べマスモッチ</span> · <span class="hl">森半</span> 말차 · 모리나가/블랙썬더 콜라보</span></div></a><a class="ix-card" href="#sec-3"><div class="ix-head"><span class="ix-no">03</span><span class="ix-title">돈키호테</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">情熱価格<span class="jp">(조네쓰카카쿠·정열가격(돈키 PB))</span> 식품</span><span class="ix-v"><span class="hl">ごまにんにく<span class="jp">(고마닌니쿠·참깨마늘)</span></span>(430엔) · <span class="hl">焼き芋<span class="jp">(야키이모·군고구마)</span> 타르트</span>(646엔) · <span class="hl">きのこ三昧<span class="jp">(키노코잔마이·버섯 듬뿍)</span></span>(322엔) · 업무용 비엔나(861엔)</span></div><div class="ix-row"><span class="ix-k">한정 굿즈</span><span class="ix-v"><span class="hl">nyuu</span> PB 메이크업(660엔) · <span class="hl">치이카와×돈펜</span>(6/6 발매) · 산리오 스튜디오 하누루</span></div><div class="ix-row"><span class="ix-k">체험·거점</span><span class="ix-v">TKG 소스(647엔, 1개만) · MEGA돈키 본점(식품)+별관(코스메·캐릭터)</span></div></a><a class="ix-card" href="#sec-4"><div class="ix-head"><span class="ix-no">04</span><span class="ix-title">부드러운 소고기·와규</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야·에비스</span><span class="ix-v"><span class="hl">炭火焼 유지</span>(금/토, 1.2~1.8만) · 蕃YORONIKU(에비스 1분, 11,800~) · <span class="hl">우시고로 칸</span></span></div><div class="ix-row"><span class="ix-k">결이 다른 부드러움</span><span class="ix-v"><span class="hl">아사쿠사 이마한</span> 스키야키 · <span class="hl">피터 루거</span>(에비스, 드라이에이징) · 슌주쿠세이 샤토브리앙</span></div><div class="ix-row"><span class="ix-k">닭 전환 / 거름</span><span class="ix-v"><span class="hl">도리바야시</span>(야키토리 4.12) · ✗ 시부야 A5와규 식べ放題<span class="jp">(食べ放題 타베호다이·무한리필)</span> 체인</span></div></a><a class="ix-card" href="#sec-5"><div class="ix-head"><span class="ix-no">05</span><span class="ix-title">커피투어</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야 도보권</span><span class="ix-v"><span class="hl">About Life</span>(도겐자카) · <span class="hl">Fuglen</span>(<span class="hl">오쿠시부</span>) · Little Nap · <span class="hl">ROAST WORKS</span></span></div><div class="ix-row"><span class="ix-k">1~2정거장</span><span class="ix-v"><span class="hl">Onibus</span> 나카메구로 · <span class="hl">Switch 메구로</span></span></div><div class="ix-row"><span class="ix-k">정점·원두·키사텐</span><span class="ix-v"><span class="hl">Koffee Mameya Kakeru</span>(예약 5,000~) · <span class="hl">Koffee Mameya</span> 표참도(원두) · 名曲喫茶<span class="jp">(메이쿄쿠킷사·명곡(클래식) 다방)</span> 라이온(100주년) · <span class="hl">茶亭<span class="jp">(사테이·찻집)</span> 羽當<span class="jp">(하토우·가게명(茶亭 羽當))</span></span> / ✗ Bear Pond</span></div></a><a class="ix-card" href="#sec-6"><div class="ix-head"><span class="ix-no">06</span><span class="ix-title">패션 쇼핑·로컬 브랜드</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">오모테산도 디자이너</span><span class="ix-v"><span class="hl">visvim</span>(GYRE) · <span class="hl">AURALEE</span> · <span class="hl">NEPENTHES</span>/<span class="hl">Needles</span> · Mame 쿠로고우치(여성) · <span class="hl">KEISUKEYOSHIDA</span>(2026.4)</span></div><div class="ix-row"><span class="ix-k">에비스·빈티지·셀렉트</span><span class="ix-v"><span class="hl">KAPITAL</span> 3점 · 시모키타 <span class="hl">MONK</span> 또는 코엔지(택1) · <span class="hl">DSM 긴자</span> · <span class="hl">GR8</span></span></div></a><a class="ix-card" href="#sec-7"><div class="ix-head"><span class="ix-no">07</span><span class="ix-title">캐릭터·특이 쇼핑</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야 파르코 6F</span><span class="ix-v">닌텐도·포켓몬·점프숍 · <span class="hl">굿스마일 팝업</span>(6/11~7/5)</span></div><div class="ix-row"><span class="ix-k">마니아·특이템</span><span class="ix-v">나카노 <span class="hl">만다라케</span> 30관·<span class="hl">타코셰</span> ZINE · <span class="hl">헤이즈 진주 가챠</span>(1,000엔) · 빌리지 뱅가드 · MAGNET 가챠</span></div></a><a class="ix-card" href="#sec-8"><div class="ix-head"><span class="ix-no">08</span><span class="ix-title">꼭 사야 할 제품</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">드럭스토어·문구</span><span class="ix-v"><span class="hl">메라노CC</span> 화장수+미용액 · <span class="hl">오타이산</span> · <span class="hl">로이히츠보코</span> · <span class="hl">미도리 MD노트</span> · <span class="hl">트래블러스 노트</span></span></div><div class="ix-row"><span class="ix-k">주방·식품·거점</span><span class="ix-v"><span class="hl">야나기 소리</span> · <span class="hl">노다호로</span> 법랑 · <span class="hl">스와다</span> 손톱깎이 · <span class="hl">야마모토야마</span> 녹차 · <span class="hl">야와타야</span> 시치미 / 거점: 로프트+핸즈</span></div></a><a class="ix-card" href="#sec-9"><div class="ix-head"><span class="ix-no">09</span><span class="ix-title">한국과 다른 쇼핑거리</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">데파치카</span><span class="ix-v"><span class="hl">도큐 푸드쇼</span> 엣지(역 직결) · <span class="hl">이세탄 신주쿠</span>(데파치카 정점)</span></div><div class="ix-row"><span class="ix-k">전문상가·상점가</span><span class="ix-v"><span class="hl">갓파바시</span> 칼·<span class="hl">진보초</span> 헌책·나카노(택1) · <span class="hl">야나카긴자</span> · 스가모 / ✗ 요코초 금·토 저녁</span></div></a><a class="ix-card" href="#sec-10"><div class="ix-head"><span class="ix-no">10</span><span class="ix-title">관광</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야 도보권</span><span class="ix-v"><span class="hl">오쿠시부</span> 산책 · <span class="hl">시부야 스카이</span> · <span class="hl">메이지신궁</span>+하라주쿠 · <span class="hl">다이칸야마</span>·나카메구로</span></div><div class="ix-row"><span class="ix-k">아침·2026·거름</span><span class="ix-v"><span class="hl">센소지</span>(8시 전) · <span class="hl">피카소×폴 스미스</span> 전(6/10) / ✗ 메가복합시설·teamLab</span></div></a><a class="ix-card" href="#sec-11"><div class="ix-head"><span class="ix-no">11</span><span class="ix-title">2026 최신 스팟</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">진짜 화제</span><span class="ix-v"><span class="hl">아나 밀러스</span> 부활 · <span class="hl">RAWROW</span> 롯폰기(~7/26) · <span class="hl">imperfect</span> 로스터리 · <span class="hl">도리바야시</span> · <span class="hl">MoN Takanawa</span></span></div><div class="ix-row"><span class="ix-k">거름</span><span class="ix-v">✗ KAWAII MONSTER LAND(체험 콘텐츠)</span></div></a><a class="ix-card" href="#sec-12"><div class="ix-head"><span class="ix-no">12</span><span class="ix-title">동선 — 시부야 70/30</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">코어 70%</span><span class="ix-v"><span class="hl">오쿠시부</span> 커피산보 · 캣스트리트 패션회유 · <span class="hl">다이칸야마</span>→나카메구로 강변</span></div><div class="ix-row"><span class="ix-k">여유분 30%</span><span class="ix-v">키요스미시라카와(커피성지) · 나카노/<span class="hl">진보초</span>/<span class="hl">갓파바시</span> · 아사쿠사(아침) · 시모키타/기치조지(택1)</span></div></a></div>
   </div>
 </section>
 
@@ -268,13 +269,13 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 </tr>
 <tr>
 <td>예약 필수</td>
-<td><strong><span class="hl">炭火焼 유지</span></strong>(시부야 와규 야키니쿠)</td>
+<td><strong><span class="hl">炭火焼<span class="jp">(스미비야키·숯불구이)</span> 유지</span></strong>(시부야 와규 야키니쿠)</td>
 <td>코스 예약 전용 + <strong>일요일·공휴일 휴무</strong>라 6/21(일) 불가. 6/19(금)·20(토) 중 1회로 전화 예약</td>
 </tr>
 <tr>
 <td>예약 권장</td>
-<td><strong><span class="hl">蕃 YORONIKU</span></strong>(에비스)·<strong><span class="hl">우시고로 칸</span></strong>(에비스)</td>
-<td>이큐(一休) 네트 예약. 주말 디너 조기 마감</td>
+<td><strong><span class="hl">蕃<span class="jp">(반·가게명(蕃 YORONIKU))</span> YORONIKU</span></strong>(에비스)·<strong><span class="hl">우시고로 칸</span></strong>(에비스)</td>
+<td>이큐(一休<span class="jp">(잇큐·예약 사이트(Ikyu))</span>) 네트 예약. 주말 디너 조기 마감</td>
 </tr>
 <tr>
 <td>예약 권장</td>
@@ -317,22 +318,22 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
     <div class="prose"><p>현장에서 바로 펴 보는 용도입니다. 상세는 각 장에서 풀었습니다.</p>
 <h3>편의점 가면 뭐 사지?</h3>
 <ul>
-<li><strong>로손</strong> — <span class="hl">초하피스기</span>! 챌린지 3주차(6/15~ 출시) 증량품: 盛りすぎ ふわ濃 치즈케이크, 대형 초코슈, 51% 증량 <span class="hl">バスチー</span>(319엔) / <span class="hl">森半</span> 우지말차 시리즈(비스킷샌드 297엔) / MACHI café 미즈다시 콜드브루(320엔)</li>
-<li><strong>세븐</strong> — <span class="hl">かじるNYチーズケーキ</span>(291엔), <span class="hl">チョコ生サンド</span>(모구나비 디저트 랭킹 최상위)</li>
-<li><strong>패미마</strong> — <span class="hl">食べマスモッチ</span> 산리오 시나모롤·쿠로미(378엔, 한국에 없는 얼굴 화과자), 농후치즈in파미치키(258엔), 모리나가 生엔젤파이(298엔)</li>
+<li><strong>로손</strong> — <span class="hl">초하피스기</span>! 챌린지 3주차(6/15~ 출시) 증량품: 盛りすぎ<span class="jp">(모리스기·과하게 담음(로손 증량))</span> ふわ濃<span class="jp">(후와코이·폭신하고 진한)</span> 치즈케이크, 대형 초코슈, 51% 증량 <span class="hl">バスチー<span class="jp">(바스치·바스크 치즈케이크(로손))</span></span>(319엔) / <span class="hl">森半<span class="jp">(모리한·교토 우지 말차 노포)</span></span> 우지말차 시리즈(비스킷샌드 297엔) / MACHI café 미즈다시 콜드브루(320엔)</li>
+<li><strong>세븐</strong> — <span class="hl">かじる<span class="jp">(카지루·베어물다)</span>NYチーズケーキ<span class="jp">(치즈케키·치즈케이크)</span></span>(291엔), <span class="hl">チョコ生サンド<span class="jp">(초코나마산도·초코 생크림 샌드)</span></span>(모구나비 디저트 랭킹 최상위)</li>
+<li><strong>패미마</strong> — <span class="hl">食べマスモッチ<span class="jp">(타베마스못치·먹는 마스코트 모찌(캐릭터 화과자))</span></span> 산리오 시나모롤·쿠로미(378엔, 한국에 없는 얼굴 화과자), 농후치즈in파미치키(258엔), 모리나가 生<span class="jp">(나마·생(生))</span>엔젤파이(298엔)</li>
 <li><strong>사올 것</strong> — 산리오 <span class="hl">食べマスモッチ</span>, <span class="hl">森半</span> 말차, 모리나가/블랙썬더 콜라보 과자</li>
 </ul>
 <h3>돈키 가면 뭐 사지?</h3>
 <ul>
-<li><strong>식품 PB(情熱価格)</strong> — <span class="hl">ごまにんにく</span> 후리카케(약 430엔, 1순위), <span class="hl">焼き芋 타르트</span>(646엔)·2색 고구마칩(539엔), <span class="hl">きのこ三昧</span>(322엔, 나메타케 상위호환), 업무용 비엔나(861엔)</li>
+<li><strong>식품 PB(情熱価格<span class="jp">(조네쓰카카쿠·정열가격(돈키 PB))</span>)</strong> — <span class="hl">ごまにんにく<span class="jp">(고마닌니쿠·참깨마늘)</span></span> 후리카케(약 430엔, 1순위), <span class="hl">焼き芋<span class="jp">(야키이모·군고구마)</span> 타르트</span>(646엔)·2색 고구마칩(539엔), <span class="hl">きのこ三昧<span class="jp">(키노코잔마이·버섯 듬뿍)</span></span>(322엔, 나메타케 상위호환), 업무용 비엔나(861엔)</li>
 <li><strong>한정 굿즈</strong> — PB 메이크업 <span class="hl">nyuu</span>(각 660엔, 돈키에서만), <span class="hl">치이카와×돈펜</span> 한정(6/6 발매), 산리오×스튜디오 하누루</li>
-<li><strong>체험템(1개만)</strong> — 秒でどこでもTKG 소스(647엔, 화제작이나 호불호)</li>
+<li><strong>체험템(1개만)</strong> — 秒でどこでも<span class="jp">(뵤데도코데모·'몇 초면 어디서나'(돈키 소스명))</span>TKG 소스(647엔, 화제작이나 호불호)</li>
 <li><strong>거점</strong> — 시부야 MEGA돈키 본점(식품·군고구마) + 길 건너 별관(코스메·캐릭터)</li>
 </ul>
 <h3>부드러운 소고기, 어디?</h3>
 <ul>
-<li><strong>시부야 도보권</strong> — <span class="hl">炭火焼 유지</span>(금/토만, 호르몬·와규, 예약 필수)</li>
-<li><strong>에비스 1정거장</strong> — <span class="hl">蕃 YORONIKU</span>(역 1분, '실크로스'), <span class="hl">우시고로 칸</span>(A5 흑모와규 개실)</li>
+<li><strong>시부야 도보권</strong> — <span class="hl">炭火焼<span class="jp">(스미비야키·숯불구이)</span> 유지</span>(금/토만, 호르몬·와규, 예약 필수)</li>
+<li><strong>에비스 1정거장</strong> — <span class="hl">蕃<span class="jp">(반·가게명(蕃 YORONIKU))</span> YORONIKU</span>(역 1분, '실크로스'), <span class="hl">우시고로 칸</span>(A5 흑모와규 개실)</li>
 <li><strong>결이 다른 부드러움</strong> — <span class="hl">아사쿠사 이마한</span> 스키야키(암소만), <span class="hl">피터 루거</span>(에비스, 드라이에이징), 슌주쿠세이(아자부주반, 샤토브리앙)</li>
 <li><strong>닭으로 전환</strong> — <span class="hl">도리바야시</span>(아자부주반, 백명점 즉시 선정)</li>
 </ul>
@@ -342,7 +343,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <li><strong>1~2정거장</strong> — <span class="hl">Onibus</span> 나카메구로(전차 뷰 본점), <span class="hl">Switch 메구로</span>(원두 구매)</li>
 <li><strong>정점(예약)</strong> — <span class="hl">Koffee Mameya Kakeru</span>(키요스미, 커피 오마카세 5,000엔~)</li>
 <li><strong>원두 사올 곳</strong> — <span class="hl">Koffee Mameya</span> 표참도(취향 처방), <span class="hl">ROAST WORKS</span> 드립백</li>
-<li><strong>대비축(키사텐)</strong> — <span class="hl">茶亭 羽當</span>(시부야), <span class="hl">名曲喫茶 ライオン</span>(2026년 100주년·사진/대화 금지)</li>
+<li><strong>대비축(키사텐)</strong> — <span class="hl">茶亭<span class="jp">(사테이·찻집)</span> 羽當<span class="jp">(하토우·가게명(茶亭 羽當))</span></span>(시부야), <span class="hl">名曲喫茶<span class="jp">(메이쿄쿠킷사·명곡(클래식) 다방)</span> ライオン<span class="jp">(라이온·가게명(名曲喫茶 라이온))</span></span>(2026년 100주년·사진/대화 금지)</li>
 </ul>
 <h3>패션, 어디?</h3>
 <ul>
@@ -391,20 +392,20 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
       <span class="sec-num">02</span>
       <h2 class="sec-title">편의점 — 지금 뜨는 상품</h2>
     </div>
-    <div class="prose"><p><strong>이번 여행의 편의점 핵심은 타이밍입니다.</strong> 여행일(6/19~21)이 로손 <strong><span class="hl">초하피스기</span>! 챌린지</strong>(超ハッピーすぎ！チャレンジ) 3주차에 정확히 들어갑니다.</p>
+    <div class="prose"><p><strong>이번 여행의 편의점 핵심은 타이밍입니다.</strong> 여행일(6/19~21)이 로손 <strong><span class="hl">초하피스기</span>! 챌린지</strong>(超ハッピーすぎ<span class="jp">(초핫피스기·'너무 행복해'(로손 캠페인))</span>！チャレンジ<span class="jp">(챌린지·challenge)</span>) 3주차에 정확히 들어갑니다.</p>
 <ul>
 <li>가격은 그대로 두고 내용물만 51~63% 늘린 50개 품목을 4주에 걸쳐 푸는 창업 51주년 캠페인입니다.</li>
-<li>3주차 대상품은 6/15~16 출시분입니다 — 盛りすぎ ふわ濃 치즈케이크, 대형 초코슈, 타카나 명란 주먹밥 등.</li>
+<li>3주차 대상품은 6/15~16 출시분입니다 — 盛りすぎ<span class="jp">(모리스기·과하게 담음(로손 증량))</span> ふわ濃<span class="jp">(후와코이·폭신하고 진한)</span> 치즈케이크, 대형 초코슈, 타카나 명란 주먹밥 등.</li>
 <li>'소진 시 종료'라 보이면 바로 집어야 하고, 4주차 신상은 여행 뒤라 못 봅니다.</li>
-<li>정석인 51% 증량 <span class="hl">バスチー</span>(바스크 치즈케이크, 319엔)도 회차마다 등장합니다.</li>
+<li>정석인 51% 증량 <span class="hl">バスチー<span class="jp">(바스치·바스크 치즈케이크(로손))</span></span>(바스크 치즈케이크, 319엔)도 회차마다 등장합니다.</li>
 </ul>
 <p>증량 캠페인 말고도 두 갈래가 이 부부에게 맞습니다.</p>
 <ul>
-<li><strong>모구나비(もぐナビ) 평점 상위 데일리 픽</strong> — 세븐 <span class="hl">かじるNYチーズケーキ</span>(291엔)는 콘비니 디저트 랭킹 1위급이고, <span class="hl">チョコ生サンド</span>·ふわっと生どら焼은 실제로 먹어보고 매긴 평점이 가장 높은 축입니다. 인스타 행렬이 아니라 재구매가 만든 순위라 신뢰가 됩니다.</li>
-<li><strong>한국에 없는 콜라보</strong> — 패미마 <span class="hl">食べマスモッチ</span> 산리오(시나모롤·쿠로미, 378엔)는 표정이 7종 랜덤인 캐릭터 화과자라 사올거리로 강하고, 로손 <span class="hl">森半</span> 우지말차 시리즈(비스킷샌드 297엔)와 사루타히코 커피 콜라보 라테는 한국 편의점에 없는 결입니다.</li>
+<li><strong>모구나비(もぐナビ<span class="jp">(모구나비·편의점 음식 평점 사이트)</span>) 평점 상위 데일리 픽</strong> — 세븐 <span class="hl">かじる<span class="jp">(카지루·베어물다)</span>NYチーズケーキ<span class="jp">(치즈케키·치즈케이크)</span></span>(291엔)는 콘비니 디저트 랭킹 1위급이고, <span class="hl">チョコ生サンド<span class="jp">(초코나마산도·초코 생크림 샌드)</span></span>·ふわっと生どら焼<span class="jp">(후왓토 나마도라야키·폭신 생도라야키)</span>은 실제로 먹어보고 매긴 평점이 가장 높은 축입니다. 인스타 행렬이 아니라 재구매가 만든 순위라 신뢰가 됩니다.</li>
+<li><strong>한국에 없는 콜라보</strong> — 패미마 <span class="hl">食べマスモッチ<span class="jp">(타베마스못치·먹는 마스코트 모찌(캐릭터 화과자))</span></span> 산리오(시나모롤·쿠로미, 378엔)는 표정이 7종 랜덤인 캐릭터 화과자라 사올거리로 강하고, 로손 <span class="hl">森半<span class="jp">(모리한·교토 우지 말차 노포)</span></span> 우지말차 시리즈(비스킷샌드 297엔)와 사루타히코 커피 콜라보 라테는 한국 편의점에 없는 결입니다.</li>
 <li><strong>카운터 즉석품</strong> — 농후치즈in파미치키(258엔)와 로손 MACHI café 미즈다시 콜드브루(320엔)는 행렬·포토존과 무관한 정석 루트입니다.</li>
 </ul>
-<p><strong>거를 것</strong> — 솜사탕 넣은 エンゼルヘアーチョコ 같은 SNS 바이럴 식품은 비주얼 주도라 품질 기준엔 미달일 수 있습니다. 재미로만 보세요.</p>
+<p><strong>거를 것</strong> — 솜사탕 넣은 エンゼルヘアーチョコ<span class="jp">(엔젤헤어초코·솜사탕 넣은 판초콜릿)</span> 같은 SNS 바이럴 식품은 비주얼 주도라 품질 기준엔 미달일 수 있습니다. 재미로만 보세요.</p>
 <hr /></div>
     <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">편의점 — 리서치 원본 11건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
 <p>도메인: 일본 편의점(세븐일레븐·로손·패밀리마트) 2026년 6월 화제 상품 — SKU 단위
@@ -546,12 +547,12 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
       <h2 class="sec-title">돈키호테 — 지금 뜨는 상품</h2>
     </div>
     <div class="prose"><p>가성비 흔한 약·대용량 김 같은 건 빼고, <strong>한국에 없는 진짜·한정</strong>으로 좁혔습니다. 베이스는 시부야 MEGA돈키 본점(우다가와초 28-6, 하치코 출구 도보 5분, 24시간)과 길 건너 별관(코스메·캐릭터 특화)을 묶어 도는 동선입니다 — 본점은 식품·군고구마·잡화, 별관은 뷰티·캐릭터로 나누면 효율적입니다.</p>
-<p><strong>식품 PB(情熱価格)가 1순위입니다.</strong></p>
+<p><strong>식품 PB(情熱価格<span class="jp">(조네쓰카카쿠·정열가격(돈키 PB))</span>)가 1순위입니다.</strong></p>
 <ul>
-<li><span class="hl">ごまにんにく</span> 후리카케(약 430엔)는 연 12만 본 팔리는 殿堂入り 마스트바이로, 가볍고 한국에 없는 맛이라 여러 개 사기 좋습니다.</li>
-<li><span class="hl">焼き芋 타르트</span>(646엔)·2색 고구마칩(539엔, 품절 잦음)은 돈키 간판 군고구마 라인의 캐리용입니다.</li>
-<li><span class="hl">きのこ三昧</span>(322엔)는 '나메타케 상위호환'으로 마니아가 미는 변형템입니다.</li>
-<li>이 PB들의 근거는 인스타가 아니라 majica 앱 사용자 평가('いいよ!' 누적 5,624건 1위)와 tokubai 마니아 엄선이라 유행 함정을 비켜갑니다.</li>
+<li><span class="hl">ごまにんにく<span class="jp">(고마닌니쿠·참깨마늘)</span></span> 후리카케(약 430엔)는 연 12만 본 팔리는 殿堂入り<span class="jp">(덴도이리·명예의 전당 입성)</span> 마스트바이로, 가볍고 한국에 없는 맛이라 여러 개 사기 좋습니다.</li>
+<li><span class="hl">焼き芋<span class="jp">(야키이모·군고구마)</span> 타르트</span>(646엔)·2색 고구마칩(539엔, 품절 잦음)은 돈키 간판 군고구마 라인의 캐리용입니다.</li>
+<li><span class="hl">きのこ三昧<span class="jp">(키노코잔마이·버섯 듬뿍)</span></span>(322엔)는 '나메타케 상위호환'으로 마니아가 미는 변형템입니다.</li>
+<li>이 PB들의 근거는 인스타가 아니라 majica 앱 사용자 평가('いいよ<span class="jp">(이이요·'좋아'(앱 평가))</span>!' 누적 5,624건 1위)와 tokubai 마니아 엄선이라 유행 함정을 비켜갑니다.</li>
 </ul>
 <p><strong>한정 굿즈는 돈키에서만 사는 가치가 있습니다.</strong></p>
 <ul>
@@ -559,7 +560,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <li><strong><span class="hl">치이카와×돈펜</span> 한정 굿즈</strong>(6/6 발매)는 부부가 이미 좋아하는 돈키호테와 캐릭터 취향이 겹치는 지점입니다 — 단 발매 2주 전이라 6/19~21 재고는 본점·별관 둘 다 확인이 필요합니다.</li>
 <li>산리오×스튜디오 하누루 콜라보도 별관에 있습니다.</li>
 </ul>
-<p><strong>체험템은 1개만</strong> — 틱톡 1,100만 뷰의 秒でどこでもTKG 소스(계란밥풍, 647엔)는 화제작이지만 화제성이 곧 입맛은 아니라 한 개만 권합니다.</p>
+<p><strong>체험템은 1개만</strong> — 틱톡 1,100만 뷰의 秒でどこでも<span class="jp">(뵤데도코데모·'몇 초면 어디서나'(돈키 소스명))</span>TKG 소스(계란밥풍, 647엔)는 화제작이지만 화제성이 곧 입맛은 아니라 한 개만 권합니다.</p>
 <p><strong>면세</strong> — 세전 5,000엔↑ 10%에 더해 사전 발급 쿠폰으로 최대 17%까지, 여권은 결제 전 제시. 인기품 품절을 피하려면 낮 시간 방문이 유리합니다.</p>
 <hr /></div>
     <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">돈키호테 — 리서치 원본 11건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
@@ -701,8 +702,8 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
       <span class="sec-num">04</span>
       <h2 class="sec-title">부드러운 소고기·와규</h2>
     </div>
-    <div class="prose"><p>현지 마니아(타베로그 焼肉 백명점·5ch·식통 블로그)가 미는 축은 두 갈래입니다. <strong>와규 야키니쿠 하이엔드</strong>는 焼肉ジャンボ → よろにく/蕃YORONIKU → うしごろ로 이어지는 '잠보 계보'가 신뢰의 중심이고, 한입밥 고기말이·실크로스·트러플 스키야키 같은 지금의 야키니쿠 표준이 여기서 나왔습니다.</p>
-<p><strong>시부야 도보권 정석은 사실상 <span class="hl">炭火焼 유지</span> 하나입니다.</strong></p>
+    <div class="prose"><p>현지 마니아(타베로그 焼肉<span class="jp">(야키니쿠·고기구이)</span> 백명점·5ch·식통 블로그)가 미는 축은 두 갈래입니다. <strong>와규 야키니쿠 하이엔드</strong>는 焼肉ジャンボ<span class="jp">(야키니쿠 잠보·야키니쿠 명점)</span> → よろにく<span class="jp">(요로니쿠·와규 야키니쿠 명점)</span>/蕃<span class="jp">(반·가게명(蕃 YORONIKU))</span>YORONIKU → うしごろ<span class="jp">(우시고로·와규 브랜드(うしごろ貫))</span>로 이어지는 '잠보 계보'가 신뢰의 중심이고, 한입밥 고기말이·실크로스·트러플 스키야키 같은 지금의 야키니쿠 표준이 여기서 나왔습니다.</p>
+<p><strong>시부야 도보권 정석은 사실상 <span class="hl">炭火焼<span class="jp">(스미비야키·숯불구이)</span> 유지</span> 하나입니다.</strong></p>
 <ul>
 <li>예약 한정 오마카세에서 입에 녹는 호르몬과 카르비 생고기 질이 시부야 최상위이고, 부드러운 소고기와 도보권을 동시에 만족하는 거의 유일한 집입니다(디너 1.2만~1.8만엔).</li>
 <li>다만 <strong>일요일·공휴일 휴무</strong>라 6/21(일)엔 못 가니, 6/19(금)·20(토) 중 한 끼로 전화 예약을 잡으세요.</li>
@@ -710,8 +711,8 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <p><strong>동선이 편한 대안은 에비스(시부야 1~2정거장)입니다.</strong></p>
 <ul>
 <li><span class="hl">蕃 YORONIKU</span>는 에비스역 도보 1분에 요로니쿠 계열 고급 라인('실크로스' 코스 11,800엔~)이라 표참도 본점보다 부부 디너에 낫습니다.</li>
-<li><span class="hl">우시고로 칸</span>은 A5 흑모와규 살코기에 반개실·호리고타츠라 차분합니다(샤토브리앙 코스는 수량 한정 예약). 둘 다 이큐(一休) 네트 예약입니다.</li>
-<li>전국에서 가장 예약이 어려운 焼肉ジャンボ はなれ(혼고산초메)는 '성지'지만 1개월 전부터 도전해야 잡혀 2박3일 단기엔 비현실적이니, 다음을 위한 떡밥으로만 둡니다.</li>
+<li><span class="hl">우시고로 칸</span>은 A5 흑모와규 살코기에 반개실·호리고타츠라 차분합니다(샤토브리앙 코스는 수량 한정 예약). 둘 다 이큐(一休<span class="jp">(잇큐·예약 사이트(Ikyu))</span>) 네트 예약입니다.</li>
+<li>전국에서 가장 예약이 어려운 焼肉ジャンボ はなれ<span class="jp">(하나레·별관/분점)</span>(혼고산초메)는 '성지'지만 1개월 전부터 도전해야 잡혀 2박3일 단기엔 비현실적이니, 다음을 위한 떡밥으로만 둡니다.</li>
 </ul>
 <p><strong>사시(마블링) 와규에 물릴 때를 위한 결이 다른 부드러움</strong>도 한 끼 배치하면 좋습니다.</p>
 <ul>
@@ -719,7 +720,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <li><span class="hl">피터 루거</span> 도쿄(에비스, 드라이에이징 포터하우스 2인 통주문)는 '숙성 살코기+씹는 맛'이라 와규와 정반대 경험입니다.</li>
 <li>슌주쿠세이(아자부주반)·폰드(긴자)는 숙성 와규 스테이크입니다.</li>
 </ul>
-<p><strong>거를 것</strong> — 시부야역 앞 'A5 와규 식べ放題' 체인(炭治郎·太樹苑 등)은 예약사이트 상단을 점유하지만 타베로그 식통 리뷰엔 '고평점인데 육즙도 맛도 없었다'는 혹평이 따로 쌓여 있습니다. 품질·진정성 기준이면 권하지 않습니다.</p>
+<p><strong>거를 것</strong> — 시부야역 앞 'A5 와규 식べ放題<span class="jp">(食べ放題 타베호다이·무한리필)</span>' 체인(炭治郎<span class="jp">(탄지로·와규 식당명)</span>·太樹苑<span class="jp">(타이주엔·와규 식당명)</span> 등)은 예약사이트 상단을 점유하지만 타베로그 식통 리뷰엔 '고평점인데 육즙도 맛도 없었다'는 혹평이 따로 쌓여 있습니다. 품질·진정성 기준이면 권하지 않습니다.</p>
 <hr /></div>
     <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">소고기·와규 — 리서치 원본 10건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
 <p>도메인: 도쿄 "부드러운 소고기" — 와규 야키니쿠·스테이크·스키야키·니쿠캇포 (시부야 베이스, 2026.6 현재)
@@ -862,7 +863,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <li>가는 김에 키요스미 블루보틀 1호점·Allpress와 묶으면 반나절 '커피의 거리'가 됩니다.</li>
 </ul>
 <p><strong>원두 사올 곳</strong> — <span class="hl">Koffee Mameya</span> 표참도(12종 이상을 약국처럼 진열, 바리스타가 취향을 물어 '내 원두'를 처방), <span class="hl">ROAST WORKS</span>·Switch·<span class="hl">Rokumei</span>(스크램블스퀘어 2026.3 신상) 드립백.</p>
-<p><strong>대비축으로 키사텐 한 곳</strong>을 끼우면 '한국과 다른 일본 커피문화'가 살아납니다. <span class="hl">茶亭 羽當</span>(시부야 미야마스자카, 1989년, 넬드립·도자기 잔)이나 <span class="hl">名曲喫茶 ライオン</span>(도겐자카, 1926년 창업으로 <strong>2026년 100주년</strong>, 거대 스피커로 클래식만 감상, 촬영·대화 금지)을 권합니다.</p>
+<p><strong>대비축으로 키사텐 한 곳</strong>을 끼우면 '한국과 다른 일본 커피문화'가 살아납니다. <span class="hl">茶亭<span class="jp">(사테이·찻집)</span> 羽當<span class="jp">(하토우·가게명(茶亭 羽當))</span></span>(시부야 미야마스자카, 1989년, 넬드립·도자기 잔)이나 <span class="hl">名曲喫茶<span class="jp">(메이쿄쿠킷사·명곡(클래식) 다방)</span> ライオン<span class="jp">(라이온·가게명(名曲喫茶 라이온))</span></span>(도겐자카, 1926년 창업으로 <strong>2026년 100주년</strong>, 거대 스피커로 클래식만 감상, 촬영·대화 금지)을 권합니다.</p>
 <p><strong>거를 것</strong> — Bear Pond Espresso(시모키타)는 품질은 인정되나 사진금지·14시 이후 에스프레소 중단·응대 기복·행렬로 '경험 소비' 성격이 강합니다. 느긋한 카페를 원하면 비추, 컬트 경험을 원할 때만 14시 이전에.</p>
 <hr /></div>
     <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">커피투어 — 리서치 원본 13건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
@@ -1038,14 +1039,14 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <li><strong>빈티지는 시모키타자와와 코엔지 중 하루만</strong> 고르길 권합니다 — 시모키타 <span class="hl">MONK</span>는 헬무트 랭·A.P.C. 아카이브를 큐레이션하는 셀렉트형(데이트 분위기), 코엔지는 물량·발굴·가격의 발굴형입니다.</li>
 <li><strong>셀렉트숍</strong>은 <span class="hl">DSM 긴자</span>(매장 한정·익스클루시브, 7F 카페로 쉬어감)와 <span class="hl">GR8</span>(하라주쿠 라포레, 한국에서 보기 힘든 라인업)이 양축입니다.</li>
 </ul>
-<p><strong>타이밍 주의</strong> — HUMAN MADE의 사상 최대 플래그십(메이지도리)은 2026년 8~9월 오픈이라 이번엔 못 보고, Blue Bottle 카페가 붙은 Offline Store로 가면 됩니다(커피투어와 연결). hara주쿠 kinji류 관광 古着는 '비싸고 발굴 적음'으로 평가가 갈려 뺐습니다.</p>
+<p><strong>타이밍 주의</strong> — HUMAN MADE의 사상 최대 플래그십(메이지도리)은 2026년 8~9월 오픈이라 이번엔 못 보고, Blue Bottle 카페가 붙은 Offline Store로 가면 됩니다(커피투어와 연결). hara주쿠 kinji류 관광 古着<span class="jp">(후루기·구제/빈티지 의류)</span>는 '비싸고 발굴 적음'으로 평가가 갈려 뺐습니다.</p>
 <p><strong>데님 쇼핑은 한 동네가 아니라 패션 거리 구역별로 잡습니다.</strong></p>
 <ul>
-<li><strong>오모테산도·아오야마(정통 셀비지 본진)</strong> — <span class="hl">Momotaro Jeans</span>(桃太郎ジーンズ) 아오야마점(기타아오야마 3-11-7, 핑크 라인 셀비지, 2025년 9월 리뉴얼)이 <span class="hl">visvim</span>·<span class="hl">AURALEE</span>·<span class="hl">NEPENTHES</span> 디자이너 코스와 같은 권역이라 함께 돕니다.</li>
+<li><strong>오모테산도·아오야마(정통 셀비지 본진)</strong> — <span class="hl">Momotaro Jeans</span>(桃太郎ジーンズ<span class="jp">(모모타로 진즈·데님 브랜드)</span>) 아오야마점(기타아오야마 3-11-7, 핑크 라인 셀비지, 2025년 9월 리뉴얼)이 <span class="hl">visvim</span>·<span class="hl">AURALEE</span>·<span class="hl">NEPENTHES</span> 디자이너 코스와 같은 권역이라 함께 돕니다.</li>
 <li><strong>시부야 도보권</strong> — <span class="hl">Japan Blue Jeans</span> 시부야가 <span class="hl">모모타로</span> 모회사(재팬블루) 직영이라 바로 봅니다.</li>
-<li><strong><span class="hl">다이칸야마</span></strong> — <span class="hl">okura</span>(オクラ, 사루가쿠초 20-11)가 천연 인디고 브랜드 <span class="hl">BLUE BLUE JAPAN</span>의 본점으로 전통 아이조메(藍染) 데님을 보여주고(11:00~19:00, 주말·공휴일 20:00까지), 옆 Hollywood Ranch Market과 묶입니다.</li>
+<li><strong><span class="hl">다이칸야마</span></strong> — <span class="hl">okura</span>(オクラ<span class="jp">(오쿠라·다이칸야마 데님숍(okura))</span>, 사루가쿠초 20-11)가 천연 인디고 브랜드 <span class="hl">BLUE BLUE JAPAN</span>의 본점으로 전통 아이조메(藍染<span class="jp">(아이조메·쪽 염색(천연 인디고))</span>) 데님을 보여주고(11:00~19:00, 주말·공휴일 20:00까지), 옆 Hollywood Ranch Market과 묶입니다.</li>
 <li><strong>에비스 <span class="hl">KAPITAL</span></strong> — 데님·보로(BORO) 패치워크의 정점입니다.</li>
-<li><strong>우에노 <span class="hl">HINOYA</span>(ヒノヤ, 1949년~)</strong> — 퓨어블루재팬·스튜디오 다티잔·아이언하트·ONI·빅존 등 셀비지 브랜드를 한곳에 모은 멀티숍이라 끝판입니다(우에노라 30% 여유분).</li>
+<li><strong>우에노 <span class="hl">HINOYA</span>(ヒノヤ<span class="jp">(히노야·우에노 데님 멀티숍(HINOYA))</span>, 1949년~)</strong> — 퓨어블루재팬·스튜디오 다티잔·아이언하트·ONI·빅존 등 셀비지 브랜드를 한곳에 모은 멀티숍이라 끝판입니다(우에노라 30% 여유분).</li>
 <li><strong>기억할 일본 데님 브랜드</strong> — <span class="hl">모모타로</span>·재팬블루·퓨어블루재팬·스튜디오 다티잔·아이언하트·사무라이·풀카운트·웨어하우스·ONI·에비스.</li>
 </ul>
 <hr /></div>
@@ -1330,7 +1331,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <p><strong>일본 위스키는 신주쿠에서 삽니다.</strong> 시부야에서 야마노테선 7분의 신주쿠가 도쿄 위스키 쇼핑 허브로, 야마자키·히비키·하쿠슈처럼 구하기 힘든 일본 위스키가 공항 면세점보다 매대에 남아 있습니다.</p>
 <ul>
 <li><strong><span class="hl">야마야</span>(<span class="hl">리커마운틴</span>, 가부키초)</strong> — 히비키·야마자키·하쿠슈·다케쓰루를 선물용 박스로 갖추고 2층 'R Whisky Collection'에서 500엔부터 시음됩니다.</li>
-<li><strong><span class="hl">시나노야</span>(信濃屋)</strong> — 스카치·일본 위스키 셀렉션이 도쿄 최고 수준이고, 빅카메라·<span class="hl">이세탄 신주쿠</span> 주류 매장도 함께 봅니다.</li>
+<li><strong><span class="hl">시나노야</span>(信濃屋<span class="jp">(시나노야·신주쿠 위스키 상점)</span>)</strong> — 스카치·일본 위스키 셀렉션이 도쿄 최고 수준이고, 빅카메라·<span class="hl">이세탄 신주쿠</span> 주류 매장도 함께 봅니다.</li>
 <li><strong>시부야 도보권</strong> — <span class="hl">도큐 푸드쇼</span> B1(스크램블스퀘어)와 MEGA 돈키호테 시부야에서 소량 취급합니다.</li>
 <li><strong>희귀병 팁</strong> — 연식 표기(18년 등) 희귀병은 수량이 적어, 개점 30분 전 줄 서서 묻고 사두면 출국 시 공항에서 받는 방법이 정석입니다.</li>
 <li><strong>면세</strong> — 여권 지참 시 면세이고, 신주쿠 매장은 추가 할인 쿠폰도 있습니다(가격은 최근 크게 올라 미검증).</li>
@@ -1848,13 +1849,13 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <td><strong>금(6/19)</strong></td>
 <td>도착·체크인, <span class="hl">오쿠시부</span> 커피 산보(<span class="hl">About Life</span>→<span class="hl">Fuglen</span>→Little Nap)</td>
 <td>시부야→캣스트리트→하라주쿠·오모테산도 디자이너 코스(<span class="hl">visvim</span>·<span class="hl">AURALEE</span>·<span class="hl">NEPENTHES</span>)</td>
-<td><strong><span class="hl">炭火焼 유지</span></strong> 와규(예약) → 논베이요코초 한두 집</td>
+<td><strong><span class="hl">炭火焼<span class="jp">(스미비야키·숯불구이)</span> 유지</span></strong> 와규(예약) → 논베이요코초 한두 집</td>
 </tr>
 <tr>
 <td><strong>토(6/20)</strong></td>
 <td><span class="hl">시부야 파르코</span> 6F 캐릭터·<span class="hl">굿스마일 팝업</span> / 로프트·핸즈 쇼핑</td>
 <td><span class="hl">다이칸야마</span> 츠타야→메구로강→나카메구로(<span class="hl">Onibus</span>·<span class="hl">KAPITAL</span>·트래블러스)</td>
-<td>에비스 <strong><span class="hl">蕃 YORONIKU</span></strong> 또는 <strong><span class="hl">우시고로 칸</span></strong>(예약)</td>
+<td>에비스 <strong><span class="hl">蕃<span class="jp">(반·가게명(蕃 YORONIKU))</span> YORONIKU</span></strong> 또는 <strong><span class="hl">우시고로 칸</span></strong>(예약)</td>
 </tr>
 <tr>
 <td><strong>일(6/21)</strong></td>
@@ -1998,7 +1999,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <li><strong>실전 팁</strong>: 일요일 호코텐(보행자천국) 시간대 산책 추천. 시부야역 긴자선 홈은 재개발로 이동 — 히카리에 1·2 개찰 경유. 고품질 소고기·노포 미식과 묶기 좋음</li>
 </ul></div></details>
   </div>
-</section><section id="access" class="sec alt"><div class="wrap"><div class="sec-head"><h2 class="sec-title">셀룰리언 타워 기준 · 장소별 접근·구글지도</h2></div><div class="prose"><p><strong>베이스</strong> — 셀룰리언 타워 도큐 호텔(시부야 사쿠라가오카초, 시부야역 남측 도보 약 5분) <a href="https://www.google.com/maps/search/?api=1&query=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo" target="_blank" rel="noopener">[구글지도]</a> · 호텔 인근 편의점(도보 약 1~3분) <a href="https://www.google.com/maps/search/?api=1&query=convenience%20store%20near%20Cerulean%20Tower%20Tokyu%20Hotel%20Shibuya" target="_blank" rel="noopener">[구글지도]</a></p><div class="tbl-scroll"><table class="access-table"><thead><tr><th>구역</th><th>셀룰리언 → 교통·소요(약)</th><th>추천 장소 · 탭하면 구글 길찾기</th></tr></thead><tbody><tr><td><strong>시부야 도보권 (core)</strong></td><td>호텔에서 도보 약 5~15분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Shibuya%20Sky%2C%20Tokyo" target="_blank" rel="noopener">시부야 스카이</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Shibuya%20PARCO" target="_blank" rel="noopener">시부야 파르코(닌텐도·포켓몬·점프·굿스마일)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=About%20Life%20Coffee%20Brewers%2C%20Dogenzaka%2C%20Shibuya" target="_blank" rel="noopener">About Life Coffee</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E5%90%8D%E6%9B%B2%E5%96%AB%E8%8C%B6%E3%83%A9%E3%82%A4%E3%82%AA%E3%83%B3%2C%20%E6%B8%8B%E8%B0%B7" target="_blank" rel="noopener">名曲喫茶 라이온</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E8%8C%B6%E4%BA%AD%20%E7%BE%BD%E7%95%B6%2C%20%E6%B8%8B%E8%B0%B7" target="_blank" rel="noopener">茶亭 羽當</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E7%82%AD%E7%81%AB%E7%84%BC%20%E3%82%86%E3%81%86%E3%81%98%2C%20%E6%B8%8B%E8%B0%B7" target="_blank" rel="noopener">炭火焼 유지(와규)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E3%83%8F%E3%83%B3%E3%82%BA%20%E6%B8%8B%E8%B0%B7%E5%BA%97" target="_blank" rel="noopener">헤이즈 시부야(진주 가챠)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E6%9D%B1%E6%80%A5%E3%83%95%E3%83%BC%E3%83%89%E3%82%B7%E3%83%A7%E3%83%BC%E3%82%A8%E3%83%83%E3%82%B8%2C%20%E6%B8%8B%E8%B0%B7%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%B3%E3%83%96%E3%83%AB%E3%82%B9%E3%82%AF%E3%82%A8%E3%82%A2" target="_blank" rel="noopener">도큐 푸드쇼 엣지(데파치카·위스키)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=MEGA%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AD%E3%83%9B%E3%83%BC%E3%83%86%E6%B8%8B%E8%B0%B7%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">MEGA 돈키호테 시부야</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Japan%20Blue%20Jeans%20Shibuya" target="_blank" rel="noopener">Japan Blue Jeans 시부야(데님)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E6%B8%8B%E8%B0%B7%E3%83%AD%E3%83%95%E3%83%88" target="_blank" rel="noopener">시부야 로프트</a></td></tr><tr><td><strong>오쿠시부·도미가야 (core·도보)</strong></td><td>호텔에서 도보 약 12~20분 (요요기공원역 인근)</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Fuglen%20Tokyo" target="_blank" rel="noopener">Fuglen Tokyo</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Little%20Nap%20Coffee%20Stand%2C%20Tokyo" target="_blank" rel="noopener">Little Nap Coffee Stand</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=The%20Coffeeshop%20Roast%20Works%2C%20Tomigaya%2C%20Tokyo" target="_blank" rel="noopener">ROAST WORKS</a></td></tr><tr><td><strong>다이칸야마 (core~near)</strong></td><td>도요코선 1정거장 약 2분 / 도보 약 15~20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=OKURA%20Hollywood%20Ranch%20Market%2C%20Sarugakucho%2C%20Shibuya" target="_blank" rel="noopener">okura(BLUE BLUE JAPAN 본점·데님)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Hollywood%20Ranch%20Market%2C%20Daikanyama" target="_blank" rel="noopener">Hollywood Ranch Market</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Daikanyama%20Tsutaya%20Books" target="_blank" rel="noopener">다이칸야마 츠타야서점</a></td></tr><tr><td><strong>하라주쿠·오모테산도·아오야마 (near)</strong></td><td>야마노테선 1정거장 약 2분 / 캣스트리트 도보 약 15~20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=visvim%20FIL%20Tokyo%2C%20GYRE%20Omotesando" target="_blank" rel="noopener">visvim F.I.L.(GYRE)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=AURALEE%20Tokyo%2C%20Minami-Aoyama" target="_blank" rel="noopener">AURALEE 아오야마</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Nepenthes%20Tokyo%2C%20Harajuku" target="_blank" rel="noopener">NEPENTHES / Needles</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=GR8%2C%20Laforet%20Harajuku" target="_blank" rel="noopener">GR8(라포레)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Mame%20Kurogouchi%2C%20Aoyama" target="_blank" rel="noopener">Mame Kurogouchi</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=KEISUKEYOSHIDA%2C%20Jingumae%2C%20Tokyo" target="_blank" rel="noopener">KEISUKEYOSHIDA</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Momotaro%20Jeans%20Aoyama%2C%20Kita-Aoyama" target="_blank" rel="noopener">Momotaro Jeans 아오야마(데님)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Kiddy%20Land%20Harajuku" target="_blank" rel="noopener">키디랜드 하라주쿠</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Meiji%20Jingu" target="_blank" rel="noopener">메이지신궁</a></td></tr><tr><td><strong>나카메구로 (core~near)</strong></td><td>도요코선 급행 1정거장 약 3~5분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Onibus%20Coffee%2C%20Nakameguro" target="_blank" rel="noopener">Onibus Coffee 나카메구로</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=TRAVELER%27S%20FACTORY%2C%20Nakameguro" target="_blank" rel="noopener">트래블러스 노트 본점</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Meguro%20River%2C%20Nakameguro" target="_blank" rel="noopener">메구로강 산책로</a></td></tr><tr><td><strong>에비스 (near)</strong></td><td>야마노테선 1정거장 약 2~3분 + 도보</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E8%95%83YORONIKU%2C%20%E6%81%B5%E6%AF%94%E5%AF%BF" target="_blank" rel="noopener">蕃 YORONIKU</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E3%81%86%E3%81%97%E3%81%94%E3%82%8D%E8%B2%AB%20%E6%81%B5%E6%AF%94%E5%AF%BF%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">우시고로 칸 에비스</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Peter%20Luger%20Tokyo%2C%20Ebisu" target="_blank" rel="noopener">피터 루거 도쿄</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Kapital%2C%20Ebisu%2C%20Tokyo" target="_blank" rel="noopener">KAPITAL 에비스(데님·보로)</a></td></tr><tr><td><strong>메구로 (near)</strong></td><td>야마노테선 2정거장 약 5분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Switch%20Coffee%2C%20Meguro" target="_blank" rel="noopener">Switch Coffee 메구로</a></td></tr><tr><td><strong>시모키타자와 (near)</strong></td><td>이노카시라선 직통 급행 약 4분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=MONK%2C%20Shimokitazawa" target="_blank" rel="noopener">MONK(빈티지·아카이브)</a></td></tr><tr><td><strong>신주쿠 (near) · 위스키 허브</strong></td><td>야마노테선 약 7분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Yamaya%20Liquor%20Mountain%20Kabukicho%2C%20Shinjuku" target="_blank" rel="noopener">야마야(리커마운틴, 가부키초·위스키)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Shinanoya%20Shinjuku" target="_blank" rel="noopener">시나노야 신주쿠(위스키)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Bic%20Camera%20Shinjuku%20East" target="_blank" rel="noopener">빅카메라 신주쿠(위스키 면세)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Isetan%20Shinjuku" target="_blank" rel="noopener">이세탄 신주쿠 데파치카</a></td></tr><tr><td><strong>긴자 (near)</strong></td><td>긴자선 직통 약 16분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Dover%20Street%20Market%20Ginza" target="_blank" rel="noopener">DSM 긴자</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E3%82%B9%E3%83%86%E3%83%BC%E3%82%AD%E3%83%8F%E3%82%A6%E3%82%B9%20%E5%90%AC%20%E9%8A%80%E5%BA%A7" target="_blank" rel="noopener">폰드(听) 긴자</a></td></tr><tr><td><strong>진보초 (near·여유분)</strong></td><td>한조몬선 직통 약 15분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Jimbocho%20Book%20Town%2C%20Tokyo" target="_blank" rel="noopener">진보초 헌책거리</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Glitch%20Coffee%20Roasters%2C%20Jimbocho" target="_blank" rel="noopener">Glitch Coffee 진보초</a></td></tr><tr><td><strong>키요스미시라카와 (far·여유분)</strong></td><td>한조몬선 직통 약 20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Koffee%20Mameya%20Kakeru%2C%20Kiyosumi" target="_blank" rel="noopener">Koffee Mameya Kakeru(예약)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Blue%20Bottle%20Coffee%2C%20Kiyosumi-Shirakawa" target="_blank" rel="noopener">블루보틀 1호점</a></td></tr><tr><td><strong>나카노 (far)</strong></td><td>신주쿠 환승 약 20~30분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Nakano%20Broadway" target="_blank" rel="noopener">나카노 브로드웨이·만다라케</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Taco%20che%2C%20Nakano%20Broadway" target="_blank" rel="noopener">타코셰(ZINE)</a></td></tr><tr><td><strong>기치조지 (far)</strong></td><td>이노카시라선 직통 약 20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Harmonica%20Yokocho%2C%20Kichijoji" target="_blank" rel="noopener">하모니카 요코초</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Inokashira%20Park" target="_blank" rel="noopener">이노카시라 공원</a></td></tr><tr><td><strong>우에노 (far·데님 마니아)</strong></td><td>야마노테선 약 25분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=HINOYA%20Ueno" target="_blank" rel="noopener">HINOYA(셀비지 데님 멀티숍)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Ameyoko%2C%20Ueno" target="_blank" rel="noopener">아메요코 상점가</a></td></tr><tr><td><strong>아사쿠사 (far·아침)</strong></td><td>긴자선 약 35~40분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Senso-ji%2C%20Asakusa" target="_blank" rel="noopener">센소지·나카미세</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E6%B5%85%E8%8D%89%E4%BB%8A%E5%8D%8A%20%E5%9B%BD%E9%9A%9B%E9%80%9A%E3%82%8A%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">아사쿠사 이마한(스키야키)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Kappabashi%20Dougu%20Street" target="_blank" rel="noopener">갓파바시 도구거리</a></td></tr><tr><td><strong>롯폰기·아자부·다카나와 (near~far)</strong></td><td>긴자선·히비야선 등 약 7~20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E9%85%89%E5%9B%83%E5%AD%90%2C%20%E9%BA%BB%E5%B8%83%E5%8D%81%E7%95%AA" target="_blank" rel="noopener">도리바야시(야키토리, 아자부주반)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Roppongi%20Hills" target="_blank" rel="noopener">RAWROW 롯폰기힐스(~7/26)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=The%20National%20Art%20Center%2C%20Tokyo" target="_blank" rel="noopener">피카소×폴 스미스 전(국립신미술관)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=MoN%20Takanawa%2C%20Tokyo" target="_blank" rel="noopener">MoN Takanawa</a></td></tr><tr><td><strong>마루노우치·미나미아오야마 (near~far)</strong></td><td>긴자선·환승 약 5~20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Anna%20Miller%27s%20Minami-Aoyama" target="_blank" rel="noopener">아나 밀러스 미나미아오야마</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=imperfect%20Marunouchi%20Roastery" target="_blank" rel="noopener">imperfect 마루노우치 로스터리</a></td></tr><tr><td><strong>야나카 (far)</strong></td><td>야마노테선 약 25분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Yanaka%20Ginza" target="_blank" rel="noopener">야나카긴자 상점가</a></td></tr></tbody></table></div><p class="caption">소요시간은 동선 리서치 기반 구역별 근사치(약)입니다. 정확한 실시간 경로·소요·요금은 각 장소의 구글 길찾기 링크(셀룰리언 타워 출발)에서 확인하세요. 장소 링크는 새 탭에서 구글지도 길찾기로 열립니다.</p></div></div></section>
+</section><section id="access" class="sec alt"><div class="wrap"><div class="sec-head"><h2 class="sec-title">셀룰리언 타워 기준 · 장소별 접근·구글지도</h2></div><div class="prose"><p><strong>베이스</strong> — 셀룰리언 타워 도큐 호텔(시부야 사쿠라가오카초, 시부야역 남측 도보 약 5분) <a href="https://www.google.com/maps/search/?api=1&query=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo" target="_blank" rel="noopener">[구글지도]</a> · 호텔 인근 편의점(도보 약 1~3분) <a href="https://www.google.com/maps/search/?api=1&query=convenience%20store%20near%20Cerulean%20Tower%20Tokyu%20Hotel%20Shibuya" target="_blank" rel="noopener">[구글지도]</a></p><div class="tbl-scroll"><table class="access-table"><thead><tr><th>구역</th><th>셀룰리언 → 교통·소요(약)</th><th>추천 장소 · 탭하면 구글 길찾기</th></tr></thead><tbody><tr><td><strong>시부야 도보권 (core)</strong></td><td>호텔에서 도보 약 5~15분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Shibuya%20Sky%2C%20Tokyo" target="_blank" rel="noopener">시부야 스카이</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Shibuya%20PARCO" target="_blank" rel="noopener">시부야 파르코(닌텐도·포켓몬·점프·굿스마일)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=About%20Life%20Coffee%20Brewers%2C%20Dogenzaka%2C%20Shibuya" target="_blank" rel="noopener">About Life Coffee</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E5%90%8D%E6%9B%B2%E5%96%AB%E8%8C%B6%E3%83%A9%E3%82%A4%E3%82%AA%E3%83%B3%2C%20%E6%B8%8B%E8%B0%B7" target="_blank" rel="noopener">名曲喫茶<span class="jp">(메이쿄쿠킷사·명곡(클래식) 다방)</span> 라이온</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E8%8C%B6%E4%BA%AD%20%E7%BE%BD%E7%95%B6%2C%20%E6%B8%8B%E8%B0%B7" target="_blank" rel="noopener">茶亭<span class="jp">(사테이·찻집)</span> 羽當<span class="jp">(하토우·가게명(茶亭 羽當))</span></a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E7%82%AD%E7%81%AB%E7%84%BC%20%E3%82%86%E3%81%86%E3%81%98%2C%20%E6%B8%8B%E8%B0%B7" target="_blank" rel="noopener">炭火焼<span class="jp">(스미비야키·숯불구이)</span> 유지(와규)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E3%83%8F%E3%83%B3%E3%82%BA%20%E6%B8%8B%E8%B0%B7%E5%BA%97" target="_blank" rel="noopener">헤이즈 시부야(진주 가챠)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E6%9D%B1%E6%80%A5%E3%83%95%E3%83%BC%E3%83%89%E3%82%B7%E3%83%A7%E3%83%BC%E3%82%A8%E3%83%83%E3%82%B8%2C%20%E6%B8%8B%E8%B0%B7%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%B3%E3%83%96%E3%83%AB%E3%82%B9%E3%82%AF%E3%82%A8%E3%82%A2" target="_blank" rel="noopener">도큐 푸드쇼 엣지(데파치카·위스키)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=MEGA%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AD%E3%83%9B%E3%83%BC%E3%83%86%E6%B8%8B%E8%B0%B7%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">MEGA 돈키호테 시부야</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Japan%20Blue%20Jeans%20Shibuya" target="_blank" rel="noopener">Japan Blue Jeans 시부야(데님)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E6%B8%8B%E8%B0%B7%E3%83%AD%E3%83%95%E3%83%88" target="_blank" rel="noopener">시부야 로프트</a></td></tr><tr><td><strong>오쿠시부·도미가야 (core·도보)</strong></td><td>호텔에서 도보 약 12~20분 (요요기공원역 인근)</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Fuglen%20Tokyo" target="_blank" rel="noopener">Fuglen Tokyo</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Little%20Nap%20Coffee%20Stand%2C%20Tokyo" target="_blank" rel="noopener">Little Nap Coffee Stand</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=The%20Coffeeshop%20Roast%20Works%2C%20Tomigaya%2C%20Tokyo" target="_blank" rel="noopener">ROAST WORKS</a></td></tr><tr><td><strong>다이칸야마 (core~near)</strong></td><td>도요코선 1정거장 약 2분 / 도보 약 15~20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=OKURA%20Hollywood%20Ranch%20Market%2C%20Sarugakucho%2C%20Shibuya" target="_blank" rel="noopener">okura(BLUE BLUE JAPAN 본점·데님)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Hollywood%20Ranch%20Market%2C%20Daikanyama" target="_blank" rel="noopener">Hollywood Ranch Market</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Daikanyama%20Tsutaya%20Books" target="_blank" rel="noopener">다이칸야마 츠타야서점</a></td></tr><tr><td><strong>하라주쿠·오모테산도·아오야마 (near)</strong></td><td>야마노테선 1정거장 약 2분 / 캣스트리트 도보 약 15~20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=visvim%20FIL%20Tokyo%2C%20GYRE%20Omotesando" target="_blank" rel="noopener">visvim F.I.L.(GYRE)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=AURALEE%20Tokyo%2C%20Minami-Aoyama" target="_blank" rel="noopener">AURALEE 아오야마</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Nepenthes%20Tokyo%2C%20Harajuku" target="_blank" rel="noopener">NEPENTHES / Needles</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=GR8%2C%20Laforet%20Harajuku" target="_blank" rel="noopener">GR8(라포레)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Mame%20Kurogouchi%2C%20Aoyama" target="_blank" rel="noopener">Mame Kurogouchi</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=KEISUKEYOSHIDA%2C%20Jingumae%2C%20Tokyo" target="_blank" rel="noopener">KEISUKEYOSHIDA</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Momotaro%20Jeans%20Aoyama%2C%20Kita-Aoyama" target="_blank" rel="noopener">Momotaro Jeans 아오야마(데님)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Kiddy%20Land%20Harajuku" target="_blank" rel="noopener">키디랜드 하라주쿠</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Meiji%20Jingu" target="_blank" rel="noopener">메이지신궁</a></td></tr><tr><td><strong>나카메구로 (core~near)</strong></td><td>도요코선 급행 1정거장 약 3~5분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Onibus%20Coffee%2C%20Nakameguro" target="_blank" rel="noopener">Onibus Coffee 나카메구로</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=TRAVELER%27S%20FACTORY%2C%20Nakameguro" target="_blank" rel="noopener">트래블러스 노트 본점</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Meguro%20River%2C%20Nakameguro" target="_blank" rel="noopener">메구로강 산책로</a></td></tr><tr><td><strong>에비스 (near)</strong></td><td>야마노테선 1정거장 약 2~3분 + 도보</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E8%95%83YORONIKU%2C%20%E6%81%B5%E6%AF%94%E5%AF%BF" target="_blank" rel="noopener">蕃<span class="jp">(반·가게명(蕃 YORONIKU))</span> YORONIKU</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E3%81%86%E3%81%97%E3%81%94%E3%82%8D%E8%B2%AB%20%E6%81%B5%E6%AF%94%E5%AF%BF%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">우시고로 칸 에비스</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Peter%20Luger%20Tokyo%2C%20Ebisu" target="_blank" rel="noopener">피터 루거 도쿄</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Kapital%2C%20Ebisu%2C%20Tokyo" target="_blank" rel="noopener">KAPITAL 에비스(데님·보로)</a></td></tr><tr><td><strong>메구로 (near)</strong></td><td>야마노테선 2정거장 약 5분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Switch%20Coffee%2C%20Meguro" target="_blank" rel="noopener">Switch Coffee 메구로</a></td></tr><tr><td><strong>시모키타자와 (near)</strong></td><td>이노카시라선 직통 급행 약 4분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=MONK%2C%20Shimokitazawa" target="_blank" rel="noopener">MONK(빈티지·아카이브)</a></td></tr><tr><td><strong>신주쿠 (near) · 위스키 허브</strong></td><td>야마노테선 약 7분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Yamaya%20Liquor%20Mountain%20Kabukicho%2C%20Shinjuku" target="_blank" rel="noopener">야마야(리커마운틴, 가부키초·위스키)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Shinanoya%20Shinjuku" target="_blank" rel="noopener">시나노야 신주쿠(위스키)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Bic%20Camera%20Shinjuku%20East" target="_blank" rel="noopener">빅카메라 신주쿠(위스키 면세)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Isetan%20Shinjuku" target="_blank" rel="noopener">이세탄 신주쿠 데파치카</a></td></tr><tr><td><strong>긴자 (near)</strong></td><td>긴자선 직통 약 16분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Dover%20Street%20Market%20Ginza" target="_blank" rel="noopener">DSM 긴자</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E3%82%B9%E3%83%86%E3%83%BC%E3%82%AD%E3%83%8F%E3%82%A6%E3%82%B9%20%E5%90%AC%20%E9%8A%80%E5%BA%A7" target="_blank" rel="noopener">폰드(听<span class="jp">(폰드·긴자 스테이크하우스(Pound))</span>) 긴자</a></td></tr><tr><td><strong>진보초 (near·여유분)</strong></td><td>한조몬선 직통 약 15분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Jimbocho%20Book%20Town%2C%20Tokyo" target="_blank" rel="noopener">진보초 헌책거리</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Glitch%20Coffee%20Roasters%2C%20Jimbocho" target="_blank" rel="noopener">Glitch Coffee 진보초</a></td></tr><tr><td><strong>키요스미시라카와 (far·여유분)</strong></td><td>한조몬선 직통 약 20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Koffee%20Mameya%20Kakeru%2C%20Kiyosumi" target="_blank" rel="noopener">Koffee Mameya Kakeru(예약)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Blue%20Bottle%20Coffee%2C%20Kiyosumi-Shirakawa" target="_blank" rel="noopener">블루보틀 1호점</a></td></tr><tr><td><strong>나카노 (far)</strong></td><td>신주쿠 환승 약 20~30분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Nakano%20Broadway" target="_blank" rel="noopener">나카노 브로드웨이·만다라케</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Taco%20che%2C%20Nakano%20Broadway" target="_blank" rel="noopener">타코셰(ZINE)</a></td></tr><tr><td><strong>기치조지 (far)</strong></td><td>이노카시라선 직통 약 20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Harmonica%20Yokocho%2C%20Kichijoji" target="_blank" rel="noopener">하모니카 요코초</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Inokashira%20Park" target="_blank" rel="noopener">이노카시라 공원</a></td></tr><tr><td><strong>우에노 (far·데님 마니아)</strong></td><td>야마노테선 약 25분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=HINOYA%20Ueno" target="_blank" rel="noopener">HINOYA(셀비지 데님 멀티숍)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Ameyoko%2C%20Ueno" target="_blank" rel="noopener">아메요코 상점가</a></td></tr><tr><td><strong>아사쿠사 (far·아침)</strong></td><td>긴자선 약 35~40분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Senso-ji%2C%20Asakusa" target="_blank" rel="noopener">센소지·나카미세</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E6%B5%85%E8%8D%89%E4%BB%8A%E5%8D%8A%20%E5%9B%BD%E9%9A%9B%E9%80%9A%E3%82%8A%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">아사쿠사 이마한(스키야키)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Kappabashi%20Dougu%20Street" target="_blank" rel="noopener">갓파바시 도구거리</a></td></tr><tr><td><strong>롯폰기·아자부·다카나와 (near~far)</strong></td><td>긴자선·히비야선 등 약 7~20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=%E9%85%89%E5%9B%83%E5%AD%90%2C%20%E9%BA%BB%E5%B8%83%E5%8D%81%E7%95%AA" target="_blank" rel="noopener">도리바야시(야키토리, 아자부주반)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Roppongi%20Hills" target="_blank" rel="noopener">RAWROW 롯폰기힐스(~7/26)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=The%20National%20Art%20Center%2C%20Tokyo" target="_blank" rel="noopener">피카소×폴 스미스 전(국립신미술관)</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=MoN%20Takanawa%2C%20Tokyo" target="_blank" rel="noopener">MoN Takanawa</a></td></tr><tr><td><strong>마루노우치·미나미아오야마 (near~far)</strong></td><td>긴자선·환승 약 5~20분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Anna%20Miller%27s%20Minami-Aoyama" target="_blank" rel="noopener">아나 밀러스 미나미아오야마</a> · <a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=imperfect%20Marunouchi%20Roastery" target="_blank" rel="noopener">imperfect 마루노우치 로스터리</a></td></tr><tr><td><strong>야나카 (far)</strong></td><td>야마노테선 약 25분</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=Cerulean%20Tower%20Tokyu%20Hotel%2C%20Shibuya%2C%20Tokyo&destination=Yanaka%20Ginza" target="_blank" rel="noopener">야나카긴자 상점가</a></td></tr></tbody></table></div><p class="caption">소요시간은 동선 리서치 기반 구역별 근사치(약)입니다. 정확한 실시간 경로·소요·요금은 각 장소의 구글 길찾기 링크(셀룰리언 타워 출발)에서 확인하세요. 장소 링크는 새 탭에서 구글지도 길찾기로 열립니다.</p></div></div></section>
 <section id="sec-13" class="sec alt">
   <div class="wrap">
     <div class="sec-head">
@@ -2016,9 +2017,9 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 </thead>
 <tbody>
 <tr>
-<td>高</td>
-<td>시부야역 앞 A5 와규 식べ放題(炭治郎·太樹苑)</td>
-<td>예약사이트 상단이지만 식통 혹평 별도. → <span class="hl">炭火焼 유지</span></td>
+<td>高<span class="jp">(高=높음(이 표에선 고위험))</span></td>
+<td>시부야역 앞 A5 와규 식べ放題<span class="jp">(食べ放題 타베호다이·무한리필)</span>(炭治郎<span class="jp">(탄지로·와규 식당명)</span>·太樹苑<span class="jp">(타이주엔·와규 식당명)</span>)</td>
+<td>예약사이트 상단이지만 식통 혹평 별도. → <span class="hl">炭火焼<span class="jp">(스미비야키·숯불구이)</span> 유지</span></td>
 </tr>
 <tr>
 <td>高</td>
@@ -2032,7 +2033,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 </tr>
 <tr>
 <td>高</td>
-<td>편의점 エンゼルヘアーチョコ류 SNS 바이럴</td>
+<td>편의점 エンゼルヘアーチョコ<span class="jp">(엔젤헤어초코·솜사탕 넣은 판초콜릿)</span>류 SNS 바이럴</td>
 <td>비주얼 주도. → 모구나비 고평점·콜라보</td>
 </tr>
 <tr>
@@ -2041,7 +2042,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
 <td>'인생샷' 동기 큼. → 체험 자체에 끌릴 때만</td>
 </tr>
 <tr>
-<td>中</td>
+<td>中<span class="jp">(中=가운데(이 표에선 중위험))</span></td>
 <td>다케시타도리 바이럴 디저트</td>
 <td>관광 포화. → 우라하라·캣스트리트 뒷골목</td>
 </tr>
@@ -2059,7 +2060,7 @@ details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
     </div>
     <div class="prose"><p>확인 못 했거나 변동 가능한 항목입니다. 방문 전 공식 채널로 최종 확인하세요.</p>
 <ul>
-<li><strong>영업·휴무·예약 슬롯</strong> — 6/19~21 정확한 영업 여부는 점포 공식 SNS/구글맵으로 재확인이 필요합니다. 개인 카페·구제숍의 정기휴무는 무휴·부정기·특정요일·매월 마지막 수요일 등 제각각이라 일괄 패턴이 없습니다. 특히 <span class="hl">Koffee Mameya Kakeru</span> 예약 슬롯, <span class="hl">炭火焼 유지</span> 일요일 휴무, <span class="hl">Mame Kurogouchi</span> 영업일(출처 간 정보 엇갈림).</li>
+<li><strong>영업·휴무·예약 슬롯</strong> — 6/19~21 정확한 영업 여부는 점포 공식 SNS/구글맵으로 재확인이 필요합니다. 개인 카페·구제숍의 정기휴무는 무휴·부정기·특정요일·매월 마지막 수요일 등 제각각이라 일괄 패턴이 없습니다. 특히 <span class="hl">Koffee Mameya Kakeru</span> 예약 슬롯, <span class="hl">炭火焼<span class="jp">(스미비야키·숯불구이)</span> 유지</span> 일요일 휴무, <span class="hl">Mame Kurogouchi</span> 영업일(출처 간 정보 엇갈림).</li>
 <li><strong>가격</strong> — 모든 가격은 2026년 6월 기준 대략치로, 면세·점포·시기에 따라 변동합니다.</li>
 <li><strong>한정 굿즈 재고</strong> — 돈키 <span class="hl">치이카와</span> 한정(6/6 발매)·<span class="hl">굿스마일 팝업</span> 인기품은 조기 품절·재판 변수가 있습니다.</li>
 <li><strong><span class="hl">헤이즈 진주 가챠</span> 설치 층</strong> — 2021년 정보 기반이라 방문 전 akoya-gacha.jp로 설치 확인 권장.</li>
@@ -2094,6 +2095,115 @@ _sc.addEventListener('click',closeDr);
 document.getElementById('drawerx').addEventListener('click',closeDr);
 document.querySelectorAll('.nav-link').forEach(function(a){a.addEventListener('click',closeDr);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDr();});
+
+(function() {
+  var searchMap = {
+    "Koffee Mameya Kakeru": "Koffee Mameya Kakeru Tokyo",
+    "炭火焼 유지": "炭火焼 ゆうじ Shibuya",
+    "蕃 YORONIKU": "蕃 YORONIKU Ebisu",
+    "우시고로 칸": "우시고로 칸 에비스",
+    "도리바야시": "酉囃子 麻布十番",
+    "시부야 스카이": "SHIBUYA SKY",
+    "굿스마일 팝업": "Good Smile Company POP UP Shibuya PARCO",
+    "치이카와": "ちい카와 도쿄",
+    "RAWROW": "RAWROW Roppongi Hills",
+    "피카소×폴 스미스": "Picasso Paul Smith Exhibition Tokyo",
+    "초하피스기": "로손 超ハッピーすぎ",
+    "盛りすぎ ふわ濃 치즈케이크": "Lawson 盛りすぎ ふわ濃チーズ케이크",
+    "대형 초코슈": "Lawson 盛りすぎ 큰 초코슈",
+    "バス치": "Lawson バス치",
+    "バスチー": "Lawson バスチー",
+    "森半": "로손 森한",
+    "MACHI café 미즈다시": "Lawson MACHI café 미즈다시",
+    "かじるNY치즈케이크": "세븐일레븐 かじるNY치즈케이크",
+    "かじるNYチーズ케이크": "세븐일레븐 かじるNY치즈케이크",
+    "チョコ生샌드": "세븐일레븐 チョコ生샌드",
+    "チョコ生サンド": "세븐일레븐 チョコ生샌드",
+    "食べ마스모치": "패밀리마트 食べ마스모치",
+    "食べ마스모찌": "FamilyMart 食べ마스모찌",
+    "농후치즈in파미치키": "FamilyMart 濃厚치즈in파미치키",
+    "모리나가 生엔젤파이": "FamilyMart 모리나가 生엔젤파이",
+    "ご마에닌니쿠": "돈키호테 ご마에닌니쿠",
+    "ご마닌니쿠": "돈키호테 ご마닌니쿠",
+    "焼き芋 타르트": "돈키호테 焼き芋타르트",
+    "きの코三昧": "돈키호테 きの코三昧",
+    "nyuu": "돈키호테 nyuu",
+    "치이카와×돈펜": "치이카와 돈키호테 콜라보",
+    "About Life": "About Life Coffee Shibuya",
+    "Fuglen": "Fuglen Tokyo Shibuya",
+    "Onibus": "Onibus Coffee Nakameguro",
+    "Switch 메구로": "Switch Coffee Meguro",
+    "ROAST WORKS": "The Coffeeshop ROAST WORKS Shibuya",
+    "茶亭 羽當": "茶亭 羽當 Shibuya",
+    "名곡喫차 라이온": "名곡喫차 라이온 Shibuya",
+    "visvim": "visvim Tokyo F.I.L.",
+    "AURALEE": "AURALEE Tokyo Aoyama",
+    "NEPENTHES": "NEPENTHES Tokyo",
+    "Needles": "Needles Japan brand",
+    "Mame Kurogouchi": "Mame Kurogouchi Tokyo Aoyama",
+    "KEISUKEYOSHIDA": "KEISUKEYOSHIDA Tokyo",
+    "KAPITAL": "KAPITAL Ebisu",
+    "MONK": "MONK Shimokitazawa Vintage",
+    "DSM 긴자": "Dover Street Market Ginza",
+    "GR8": "GR8 Harajuku",
+    "시부야 파르코": "Shibuya PARCO",
+    "Nintendo TOKYO": "Nintendo TOKYO Shibuya",
+    "포켓몬센터": "Pokémon Center Shibuya",
+    "점프숍": "Jump Shop Shibuya PARCO",
+    "나카노 브로드웨이": "Nakano Broadway",
+    "만다라케": "Mandarake Nakano",
+    "타코셰": "TACO ché Nakano",
+    "헤이즈 진주 가챠": "Hands Shibuya Akoya Pearl Gacha",
+    "빌리지 뱅가드": "Village Vanguard Shibuya",
+    "MAGNET 가챠": "MAGNET by SHIBUYA109 Gacha",
+    "메라노CC": "Melano CC skincare",
+    "오타이산": "Ohta's Isan",
+    "로이히츠보코": "Roihi-Tsuboko",
+    "미도리 MD노트": "Midori MD Notebook",
+    "트래블러스 노트": "Traveler's Notebook Nakameguro",
+    "야나기 소리": "Yanagi Sori kitchen",
+    "노다호로": "Noda Horo enamel",
+    "스와다": "SUWADA nail nipper",
+    "야마모토야마": "Yamamotoyama tea",
+    "야와타야": "Yawataya Isogoro",
+    "도큐 푸드쇼": "Tokyu Food Show Shibuya",
+    "이세탄 신주쿠": "Isetan Shinjuku Depachika",
+    "갓파바시": "Kappabashi Kitchen Street",
+    "진보초": "Jimbocho Book Town",
+    "야나카긴자": "Yanaka Ginza shopping street",
+    "오쿠시부": "오쿠시부야",
+    "오쿠시부야 산책": "오쿠시부야 산책 코스",
+    "메이지신궁": "Meiji Jingu Shrine",
+    "다이칸야마": "Daikanyama T-SITE",
+    "나카메구로": "Nakameguro walking guide",
+    "센소지": "Senso-ji Asakusa",
+    "아나 밀러스": "Anna Miller's Japan",
+    "imperfect": "imperfect Marunouchi",
+    "MoN Takanawa": "MoN Takanawa museum",
+    "아사쿠사 이마한": "Asakusa Imahan Sukiyaki",
+    "피터 루거": "Peter Luger Steak House Tokyo",
+    "Little Nap Coffee Stand": "Little Nap Coffee Stand Yoyogi",
+    "Rokumei": "Rokumei Coffee Shibuya",
+    "Koffee Mameya": "Koffee Mameya Omotesando",
+    "Momotaro Jeans": "Momotaro Jeans Aoyama",
+    "Japan Blue Jeans": "Japan Blue Jeans Shibuya",
+    "okura": "okura Daikanyama Blue Blue Japan",
+    "BLUE BLUE JAPAN": "BLUE BLUE JAPAN brand",
+    "HINOYA": "HINOYA Ueno Ameyoko",
+    "야마야": "Yamaya Shinjuku Whisky",
+    "리커마운틴": "Liquor Mountain Shinjuku Whisky",
+    "시나노야": "Shinanoya Shinjuku Whisky",
+    "노란 형광펜": "도쿄 여행 추천"
+  };
+  document.querySelectorAll('.hl').forEach(function(el) {
+    el.title = '클릭하면 구글 검색';
+    el.onclick = function() {
+      var c = el.cloneNode(true); c.querySelectorAll('.jp').forEach(function(j){j.remove();}); var t = (c.textContent||'').replace(/\s+/g,' ').trim();
+      var q = searchMap[t] || (t + " 도쿄 도쿄2박3일");
+      window.open('https://www.google.com/search?q=' + encodeURIComponent(q), '_blank');
+    };
+  });
+})();
 </script>
 </body>
 </html>
