@@ -1,0 +1,1962 @@
+<!doctype html>
+<html lang="ko" data-theme="light" data-volume="standard">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>도쿄 2박3일 — 시부야 베이스 종합 리포트</title>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+:root{
+ --ink:#0a0a0c; --ink2:#33333a; --ink3:#62626b; --line:#e3e3e6; --line2:#cfcfd4; --line3:#a8a8af;
+ --paper:#ffffff; --paper2:#f6f6f7; --paper3:#ececed;
+ --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+ --sans:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+ --wrap:940px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+ font-size:17px;line-height:1.68;-webkit-font-smoothing:antialiased;
+ word-break:keep-all;line-break:strict;overflow-wrap:break-word;}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+a{color:inherit;text-decoration:none;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);}
+
+/* ---- COVER ---- */
+.cover{border-bottom:2px solid var(--ink);padding:84px 0 52px;}
+.cover .wrap{max-width:var(--wrap);}
+.cover h1{font-size:clamp(40px,6.4vw,84px);line-height:1.04;font-weight:800;letter-spacing:-.01em;margin:14px 0 8px;}
+.cover .sub{font-size:clamp(15px,1.6vw,18px);color:var(--ink3);font-family:var(--mono);letter-spacing:.02em;margin-bottom:30px;}
+.cover .meta{display:grid;gap:14px;border-top:1px solid var(--line);padding-top:24px;}
+.cover .meta .row{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:baseline;}
+.cover .meta .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);}
+.cover .meta .val{font-size:15.5px;color:var(--ink2);line-height:1.55;}
+.cover .meta .val strong{color:var(--ink);font-weight:700;}
+.cover .build{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+.cover .build span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink3);
+ border:1px solid var(--line2);border-radius:999px;padding:4px 11px;}
+
+/* ---- INDEX BOARD ---- */
+.index{background:var(--paper2);border-bottom:1px solid var(--line);padding:64px 0 72px;}
+.index-h{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:8px;}
+.index-h h2{font-size:clamp(26px,3.2vw,40px);font-weight:800;letter-spacing:-.01em;margin:6px 0 0;}
+.index-lead{color:var(--ink3);font-size:14.5px;margin:0 0 26px;max-width:640px;}
+.ix-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.ix-card{display:block;background:var(--paper);border:1px solid var(--line2);border-radius:4px;
+ padding:18px 18px 14px;transition:border-color .18s,transform .18s;}
+.ix-card:hover{border-color:var(--ink);transform:translateY(-2px);}
+.ix-head{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:10px;}
+.ix-no{font-family:var(--mono);font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+ border-radius:3px;padding:2px 6px;letter-spacing:.04em;}
+.ix-title{font-weight:700;font-size:16px;flex:1;}
+.ix-go{font-family:var(--mono);color:var(--ink3);font-size:13px;}
+.ix-row{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:5px 0;border-top:1px dashed var(--line);}
+.ix-row:first-of-type{border-top:0;}
+.ix-k{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink3);text-transform:uppercase;padding-top:2px;}
+.ix-v{font-size:13.5px;color:var(--ink2);line-height:1.55;}
+
+/* ---- SECTIONS ---- */
+.sec{padding:72px 0;border-bottom:1px solid var(--line);}
+.sec.alt{background:var(--paper2);}
+.sec-head{display:flex;align-items:flex-start;gap:18px;margin-bottom:26px;
+ border-bottom:2px solid var(--ink);padding-bottom:16px;}
+.sec-num{font-family:var(--mono);font-size:clamp(34px,5vw,58px);font-weight:800;line-height:.9;
+ color:var(--line3);letter-spacing:-.02em;}
+.sec-title{font-size:clamp(23px,3vw,36px);font-weight:800;letter-spacing:-.01em;margin:0;align-self:center;}
+
+/* ---- PROSE ---- */
+.prose{font-size:16.5px;line-height:1.72;color:var(--ink2);max-width:780px;}
+.prose>*:first-child{margin-top:0;}
+.prose p{margin:0 0 16px;}
+.prose strong{color:var(--ink);font-weight:700;}
+.prose h3{font-size:18px;font-weight:700;color:var(--ink);margin:30px 0 10px;
+ padding-left:12px;border-left:3px solid var(--ink);}
+.prose ul,.prose ol{margin:0 0 18px;padding-left:4px;list-style:none;}
+.prose ul li{position:relative;padding-left:18px;margin:7px 0;}
+.prose ul li::before{content:"—";position:absolute;left:0;color:var(--line3);}
+.prose ol{counter-reset:li;}
+.prose ol li{position:relative;padding-left:24px;margin:7px 0;counter-increment:li;}
+.prose ol li::before{content:counter(li);position:absolute;left:0;font-family:var(--mono);
+ font-size:12px;color:var(--ink3);top:2px;}
+.prose blockquote{margin:18px 0;padding:12px 18px;border-left:3px solid var(--line3);
+ background:var(--paper3);color:var(--ink2);border-radius:0 4px 4px 0;font-size:15px;}
+.prose a{border-bottom:1px solid var(--line2);}
+.prose code{font-family:var(--mono);font-size:.82em;background:var(--paper3);
+ border:1px solid var(--line);border-radius:3px;padding:1px 5px;color:var(--ink);}
+
+/* tables (Scorecard / Timeline tone) */
+.tbl-scroll{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;margin:18px 0;}
+.tbl-scroll table{margin:0;}
+.prose table,.raw-body table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;min-width:520px;}
+.prose th,.raw-body th{background:var(--ink);color:#fff;font-family:var(--mono);font-size:11px;
+ letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:10px 12px;font-weight:600;}
+.prose td,.raw-body td{border:1px solid var(--line2);padding:10px 12px;vertical-align:top;color:var(--ink2);line-height:1.55;}
+.prose tr:nth-child(even) td,.raw-body tr:nth-child(even) td{background:var(--paper2);}
+
+/* ---- COLLAPSIBLE 원자료 ---- */
+details.raw{margin:30px 0 0;border:1px solid var(--line2);border-radius:5px;background:var(--paper);overflow:hidden;}
+.sec.alt details.raw{background:var(--paper);}
+details.raw>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;
+ padding:15px 18px;background:var(--paper3);border-left:4px solid var(--ink);user-select:none;}
+details.raw>summary::-webkit-details-marker{display:none;}
+.raw-tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+ color:#fff;background:var(--ink);border-radius:3px;padding:3px 7px;}
+.raw-sum{font-weight:700;font-size:14.5px;color:var(--ink);flex:1;}
+.raw-chev{width:9px;height:9px;border-right:2px solid var(--ink3);border-bottom:2px solid var(--ink3);
+ transform:rotate(45deg);transition:transform .2s;}
+details.raw[open]>summary .raw-chev{transform:rotate(225deg);}
+.raw-body{padding:8px 20px 22px;border-top:1px solid var(--line);}
+.raw-body{font-size:14.5px;color:var(--ink2);}
+.raw-body h2{font-size:13px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;
+ color:var(--ink3);margin:24px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+.raw-body h3{font-size:16px;font-weight:700;color:var(--ink);margin:22px 0 8px;
+ padding:7px 0 7px 12px;border-left:3px solid var(--line3);background:var(--paper2);}
+.raw-body blockquote{margin:0 0 14px;padding:8px 14px;background:var(--paper2);
+ border-left:2px solid var(--line2);font-size:12.5px;color:var(--ink3);font-family:var(--mono);line-height:1.5;border-radius:0 3px 3px 0;}
+.raw-body ul{list-style:none;padding-left:0;margin:0 0 14px;}
+.raw-body ul li{position:relative;padding-left:14px;margin:5px 0;line-height:1.6;}
+.raw-body ul li::before{content:"·";position:absolute;left:2px;color:var(--line3);font-weight:700;}
+.raw-body strong{color:var(--ink);font-weight:700;}
+.raw-body p{margin:0 0 12px;}
+.raw-body code{font-family:var(--mono);font-size:.8em;background:var(--paper3);border:1px solid var(--line2);
+ border-radius:999px;padding:1px 8px;color:var(--ink);text-transform:uppercase;letter-spacing:.04em;}
+/* 인스타 위험·거리 칩 명도 인코딩 */
+.raw-body code.r-high{background:var(--ink);color:#fff;border-color:var(--ink);}
+.raw-body code.r-mid{background:var(--line3);color:#fff;border-color:var(--line3);}
+.raw-body code.r-low{background:var(--paper);color:var(--ink3);}
+
+/* ---- toolbar ---- */
+.bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);
+ border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:10px 24px;}
+.bar .bt{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+ color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:5px 13px;background:var(--paper);cursor:pointer;}
+.bar .bt:hover{border-color:var(--ink);color:var(--ink);}
+.bar .bt-name{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-right:auto;}
+
+/* ---- footer ---- */
+.foot{padding:40px 0 80px;color:var(--ink3);font-size:12.5px;font-family:var(--mono);letter-spacing:.02em;}
+.foot .wrap{border-top:1px solid var(--line);padding-top:22px;}
+
+@media(max-width:720px){
+ body{font-size:16px;}
+ .ix-grid{grid-template-columns:1fr;}
+ .cover .meta .row{grid-template-columns:1fr;gap:4px;}
+ .ix-row{grid-template-columns:1fr;gap:2px;}
+ .sec-head{gap:12px;}
+ .prose{font-size:15.5px;}
+ .prose table,.raw-body table{font-size:12.5px;min-width:480px;}
+ .prose td,.raw-body td{padding:7px 9px;}
+ .prose th,.raw-body th{padding:8px 9px;}
+}
+@media print{
+ .bar{display:none;} details.raw{break-inside:avoid;} details.raw>.raw-body{display:block!important;}
+ .sec{break-inside:avoid;} body{font-size:12px;}
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <span class="bt-name">Tokyo 2N3D · Shibuya Base</span>
+  <button class="bt" id="exp">원자료 모두 펼치기</button>
+  <button class="bt" id="col">모두 접기</button>
+</div>
+
+<header class="cover">
+  <div class="wrap">
+    <div class="eyebrow">Travel Research Report · 2026.06</div>
+    <h1>도쿄 2박3일<br>시부야 베이스 큐레이션</h1>
+    <div class="sub">2026.06.19(금) – 06.21(일) · 부부 2인 · 시부야 호텔 베이스</div>
+    <div class="meta">
+      <div class="row"><span class="lbl">여행 조건</span><span class="val"><p>2026년 6월 19일(금)~21일(일) · 2박3일 · 시부야 호텔 베이스 · 부부 2인 · 가성비 무시(고가 허용) · 인스타 유행보다 진짜·품질·현지 커뮤니티 검증 우선</p></span></div>
+      <div class="row"><span class="lbl">리포트 기준</span><span class="val"><p>추천 한 곳마다 출처를 타베로그 백명점·모구나비 평점·5ch·Reddit·note·일본 매체 같은 커뮤니티/실판매 신호에 두었고, 인스타 유행만 있는 곳은 본문에서 빼거나 13장에 위험도와 함께 따로 모았습니다. 동선은 시부야 도보권을 70%, 살짝 멀리 가는 곳을 30%로 잡았습니다.</p></span></div>
+      <div class="row"><span class="lbl">구성</span><span class="val"><strong>본문 15섹션</strong> + 도메인 원자료 <strong>11건</strong>(해당 섹션 접기 내장, 112항목 무손실)</span></div>
+    </div>
+    <div class="build">
+      <span>커뮤니티성 추출</span><span>인스타 유행 self-flag</span><span>2026.6 현재성</span>
+      <span>흑백 · 라이트모드</span><span>prism-design</span>
+    </div>
+  </div>
+</header>
+
+<section class="index" id="index">
+  <div class="wrap">
+    <div class="index-h">
+      <div><div class="eyebrow">Quick Index</div><h2>구체 인덱스</h2></div>
+    </div>
+    <p class="index-lead">"뭐 사지? 어디 가지?"에 바로 답하는 카테고리별 핵심 스팟·상품입니다. 카드를 누르면 해당 섹션으로 이동하고, ✗ 표시는 인스타 유행으로 정직하게 거른 곳입니다.</p>
+    <div class="ix-grid"><a class="ix-card" href="#sec-0"><div class="ix-head"><span class="ix-no">00</span><span class="ix-title">예약·타이밍 먼저</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">지금 예약</span><span class="ix-v">Koffee Mameya Kakeru(예약제·당일불가) · 炭火焼 유지(일휴, 금/토) · 蕃YORONIKU·우시고로칸(에비스) · 도리바야시 · 시부야 스카이</span></div><div class="ix-row"><span class="ix-k">운 좋게 열림</span><span class="ix-v">로손 증량 3주차(6/15~) · 굿스마일 팝업(6/11~7/5) · RAWROW 롯폰기(~7/26) · 피카소×폴 스미스 전(6/10~)</span></div></a><a class="ix-card" href="#sec-2"><div class="ix-head"><span class="ix-no">02</span><span class="ix-title">편의점</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">로손</span><span class="ix-v">초하피스기 3주차 증량(ふわ濃치즈케이크·대형초코슈·バスチー 319엔) · 森半 우지말차(297엔) · MACHI café 미즈다시(320엔)</span></div><div class="ix-row"><span class="ix-k">세븐</span><span class="ix-v">かじるNYチーズケーキ(291엔) · チョコ生サンド(모구나비 최상위)</span></div><div class="ix-row"><span class="ix-k">패미마</span><span class="ix-v">食べマスモッチ 산리오(378엔) · 농후치즈in파미치키(258엔) · 모리나가 生엔젤파이(298엔)</span></div><div class="ix-row"><span class="ix-k">사올 것</span><span class="ix-v">食べマスモッチ · 森半 말차 · 모리나가/블랙썬더 콜라보</span></div></a><a class="ix-card" href="#sec-3"><div class="ix-head"><span class="ix-no">03</span><span class="ix-title">돈키호테</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">情熱価格 식품</span><span class="ix-v">ごまにんにく(430엔) · 焼き芋 타르트(646엔) · きのこ三昧(322엔) · 업무용 비엔나(861엔)</span></div><div class="ix-row"><span class="ix-k">한정 굿즈</span><span class="ix-v">nyuu PB 메이크업(660엔) · 치이카와×돈펜(6/6 발매) · 산리오 스튜디오 하누루</span></div><div class="ix-row"><span class="ix-k">체험·거점</span><span class="ix-v">TKG 소스(647엔, 1개만) · MEGA돈키 본점(식품)+별관(코스메·캐릭터)</span></div></a><a class="ix-card" href="#sec-4"><div class="ix-head"><span class="ix-no">04</span><span class="ix-title">부드러운 소고기·와규</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야·에비스</span><span class="ix-v">炭火焼 유지(금/토, 1.2~1.8만) · 蕃YORONIKU(에비스 1분, 11,800~) · 우시고로 칸</span></div><div class="ix-row"><span class="ix-k">결이 다른 부드러움</span><span class="ix-v">아사쿠사 이마한 스키야키 · 피터 루거(에비스, 드라이에이징) · 슌주쿠세이 샤토브리앙</span></div><div class="ix-row"><span class="ix-k">닭 전환 / 거름</span><span class="ix-v">도리바야시(야키토리 4.12) · ✗ 시부야 A5와규 식べ放題 체인</span></div></a><a class="ix-card" href="#sec-5"><div class="ix-head"><span class="ix-no">05</span><span class="ix-title">커피투어</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야 도보권</span><span class="ix-v">About Life(도겐자카) · Fuglen(오쿠시부) · Little Nap · ROAST WORKS</span></div><div class="ix-row"><span class="ix-k">1~2정거장</span><span class="ix-v">Onibus 나카메구로 · Switch 메구로</span></div><div class="ix-row"><span class="ix-k">정점·원두·키사텐</span><span class="ix-v">Koffee Mameya Kakeru(예약 5,000~) · Koffee Mameya 표참도(원두) · 名曲喫茶 라이온(100주년) · 茶亭 羽當 / ✗ Bear Pond</span></div></a><a class="ix-card" href="#sec-6"><div class="ix-head"><span class="ix-no">06</span><span class="ix-title">패션 쇼핑·로컬 브랜드</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">오모테산도 디자이너</span><span class="ix-v">visvim(GYRE) · AURALEE · NEPENTHES/Needles · Mame 쿠로고우치(여성) · KEISUKEYOSHIDA(2026.4)</span></div><div class="ix-row"><span class="ix-k">에비스·빈티지·셀렉트</span><span class="ix-v">KAPITAL 3점 · 시모키타 MONK 또는 코엔지(택1) · DSM 긴자 · GR8</span></div></a><a class="ix-card" href="#sec-7"><div class="ix-head"><span class="ix-no">07</span><span class="ix-title">캐릭터·특이 쇼핑</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야 파르코 6F</span><span class="ix-v">닌텐도·포켓몬·점프숍 · 굿스마일 팝업(6/11~7/5)</span></div><div class="ix-row"><span class="ix-k">마니아·특이템</span><span class="ix-v">나카노 만다라케 30관·타코셰 ZINE · 헤이즈 진주 가챠(1,000엔) · 빌리지 뱅가드 · MAGNET 가챠</span></div></a><a class="ix-card" href="#sec-8"><div class="ix-head"><span class="ix-no">08</span><span class="ix-title">꼭 사야 할 제품</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">드럭스토어·문구</span><span class="ix-v">메라노CC 화장수+미용액 · 오타이산 · 로이히츠보코 · 미도리 MD노트 · 트래블러스 노트</span></div><div class="ix-row"><span class="ix-k">주방·식품·거점</span><span class="ix-v">야나기 소리 · 노다호로 법랑 · 스와다 손톱깎이 · 야마모토야마 녹차 · 야와타야 시치미 / 거점: 로프트+핸즈</span></div></a><a class="ix-card" href="#sec-9"><div class="ix-head"><span class="ix-no">09</span><span class="ix-title">한국과 다른 쇼핑거리</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">데파치카</span><span class="ix-v">도큐 푸드쇼 엣지(역 직결) · 이세탄 신주쿠(데파치카 정점)</span></div><div class="ix-row"><span class="ix-k">전문상가·상점가</span><span class="ix-v">갓파바시 칼·진보초 헌책·나카노(택1) · 야나카긴자 · 스가모 / ✗ 요코초 금·토 저녁</span></div></a><a class="ix-card" href="#sec-10"><div class="ix-head"><span class="ix-no">10</span><span class="ix-title">관광</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">시부야 도보권</span><span class="ix-v">오쿠시부 산책 · 시부야 스카이 · 메이지신궁+하라주쿠 · 다이칸야마·나카메구로</span></div><div class="ix-row"><span class="ix-k">아침·2026·거름</span><span class="ix-v">센소지(8시 전) · 피카소×폴 스미스 전(6/10) / ✗ 메가복합시설·teamLab</span></div></a><a class="ix-card" href="#sec-11"><div class="ix-head"><span class="ix-no">11</span><span class="ix-title">2026 최신 스팟</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">진짜 화제</span><span class="ix-v">아나 밀러스 부활 · RAWROW 롯폰기(~7/26) · imperfect 로스터리 · 도리바야시 · MoN Takanawa</span></div><div class="ix-row"><span class="ix-k">거름</span><span class="ix-v">✗ KAWAII MONSTER LAND(체험 콘텐츠)</span></div></a><a class="ix-card" href="#sec-12"><div class="ix-head"><span class="ix-no">12</span><span class="ix-title">동선 — 시부야 70/30</span><span class="ix-go">↓</span></div><div class="ix-row"><span class="ix-k">코어 70%</span><span class="ix-v">오쿠시부 커피산보 · 캣스트리트 패션회유 · 다이칸야마→나카메구로 강변</span></div><div class="ix-row"><span class="ix-k">여유분 30%</span><span class="ix-v">키요스미시라카와(커피성지) · 나카노/진보초/갓파바시 · 아사쿠사(아침) · 시모키타/기치조지(택1)</span></div></a></div>
+  </div>
+</section>
+
+
+<section id="sec-0" class="sec ">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">00</span>
+      <h2 class="sec-title">여행 전 지금 처리할 일 — 예약·타이밍</h2>
+    </div>
+    <div class="prose"><p>날짜에 걸린 것부터 정리합니다. 아래는 6/19~21에 맞춰 <strong>지금(6월 중순)</strong> 움직여야 하는 항목입니다.</p>
+<div class="tbl-scroll"><table>
+<thead>
+<tr>
+<th>우선</th>
+<th>항목</th>
+<th>왜 지금인가</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>예약 필수</td>
+<td><strong>Koffee Mameya Kakeru</strong>(키요스미, 커피 오마카세)</td>
+<td>완전 예약제·당일 불가, 최대 2개월 전 오픈. 6/19~21 슬롯을 지금 잡지 않으면 못 갑니다</td>
+</tr>
+<tr>
+<td>예약 필수</td>
+<td><strong>炭火焼 유지</strong>(시부야 와규 야키니쿠)</td>
+<td>코스 예약 전용 + <strong>일요일·공휴일 휴무</strong>라 6/21(일) 불가. 6/19(금)·20(토) 중 1회로 전화 예약</td>
+</tr>
+<tr>
+<td>예약 권장</td>
+<td><strong>蕃 YORONIKU</strong>(에비스)·<strong>우시고로 칸</strong>(에비스)</td>
+<td>이큐(一休) 네트 예약. 주말 디너 조기 마감</td>
+</tr>
+<tr>
+<td>예약 권장</td>
+<td><strong>도리바야시</strong>(아자부주반 야키토리, 타베로그 4.12)</td>
+<td>카운터 소규모, 며칠~몇 주 전 예약</td>
+</tr>
+<tr>
+<td>예약 권장</td>
+<td><strong>시부야 스카이</strong></td>
+<td>사전예약제, 일몰 시간대 절경이자 최대 혼잡</td>
+</tr>
+<tr>
+<td>타이밍 확인</td>
+<td><strong>굿스마일 팝업</strong>(시부야 파르코 6F, 6/11~7/5)</td>
+<td>여행과 겹침 — 인기 한정은 회기 초 품절, 토요일 오전 권장</td>
+</tr>
+<tr>
+<td>타이밍 확인</td>
+<td><strong>돈키 한정 치이카와</strong>(6/6 발매)</td>
+<td>발매 2주 전이라 6/19~21 재고·재판 변수, 본점+별관 둘 다 확인</td>
+</tr>
+<tr>
+<td>영업일 확인</td>
+<td><strong>Mame Kurogouchi</strong>(아오야마, 여성 디자이너)</td>
+<td>주 후반만 영업(휴무일 정보가 출처마다 엇갈려 방문 전 공식 확인 필요)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>여행 기간에 마침 열려 있어 운이 좋은 것</strong>: 로손 초하피스기 증량 캠페인 3주차(6/15~), 굿스마일 팝업, RAWROW 롯폰기 팝업(4/3~7/26), 피카소×폴 스미스 전(6/10 개막).</p>
+<hr /></div>
+    
+  </div>
+</section>
+<section id="sec-1" class="sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">즉답 인덱스 — 뭐 사지? 어디 가지?</h2>
+    </div>
+    <div class="prose"><p>현장에서 바로 펴 보는 용도입니다. 상세는 각 장에서 풀었습니다.</p>
+<h3>편의점 가면 뭐 사지?</h3>
+<ul>
+<li><strong>로손</strong> — 초하피스기! 챌린지 3주차(6/15~ 출시) 증량품: 盛りすぎ ふわ濃 치즈케이크, 대형 초코슈, 51% 증량 バスチー(319엔) / 森半 우지말차 시리즈(비스킷샌드 297엔) / MACHI café 미즈다시 콜드브루(320엔)</li>
+<li><strong>세븐</strong> — かじるNYチーズケーキ(291엔), チョコ生サンド(모구나비 디저트 랭킹 최상위)</li>
+<li><strong>패미마</strong> — 食べマスモッチ 산리오 시나모롤·쿠로미(378엔, 한국에 없는 얼굴 화과자), 농후치즈in파미치키(258엔), 모리나가 生엔젤파이(298엔)</li>
+<li><strong>사올 것</strong> — 산리오 食べマスモッチ, 森半 말차, 모리나가/블랙썬더 콜라보 과자</li>
+</ul>
+<h3>돈키 가면 뭐 사지?</h3>
+<ul>
+<li><strong>식품 PB(情熱価格)</strong> — ごまにんにく 후리카케(약 430엔, 1순위), 焼き芋 타르트(646엔)·2색 고구마칩(539엔), きのこ三昧(322엔, 나메타케 상위호환), 업무용 비엔나(861엔)</li>
+<li><strong>한정 굿즈</strong> — PB 메이크업 nyuu(각 660엔, 돈키에서만), 치이카와×돈펜 한정(6/6 발매), 산리오×스튜디오 하누루</li>
+<li><strong>체험템(1개만)</strong> — 秒でどこでもTKG 소스(647엔, 화제작이나 호불호)</li>
+<li><strong>거점</strong> — 시부야 MEGA돈키 본점(식품·군고구마) + 길 건너 별관(코스메·캐릭터)</li>
+</ul>
+<h3>부드러운 소고기, 어디?</h3>
+<ul>
+<li><strong>시부야 도보권</strong> — 炭火焼 유지(금/토만, 호르몬·와규, 예약 필수)</li>
+<li><strong>에비스 1정거장</strong> — 蕃 YORONIKU(역 1분, '실크로스'), 우시고로 칸(A5 흑모와규 개실)</li>
+<li><strong>결이 다른 부드러움</strong> — 아사쿠사 이마한 스키야키(암소만), 피터 루거(에비스, 드라이에이징), 슌주쿠세이(아자부주반, 샤토브리앙)</li>
+<li><strong>닭으로 전환</strong> — 도리바야시(아자부주반, 백명점 즉시 선정)</li>
+</ul>
+<h3>커피 한 잔, 어디?</h3>
+<ul>
+<li><strong>시부야 도보권</strong> — About Life Coffee(도겐자카, 오니바스 계열), Fuglen(오쿠시부, 노르딕)</li>
+<li><strong>1~2정거장</strong> — Onibus 나카메구로(전차 뷰 본점), Switch 메구로(원두 구매)</li>
+<li><strong>정점(예약)</strong> — Koffee Mameya Kakeru(키요스미, 커피 오마카세 5,000엔~)</li>
+<li><strong>원두 사올 곳</strong> — Koffee Mameya 표참도(취향 처방), ROAST WORKS 드립백</li>
+<li><strong>대비축(키사텐)</strong> — 茶亭 羽當(시부야), 名曲喫茶 ライオン(2026년 100주년·사진/대화 금지)</li>
+</ul>
+<h3>패션, 어디?</h3>
+<ul>
+<li><strong>오모테산도 디자이너 묶음</strong> — visvim(GYRE), AURALEE, NEPENTHES/Needles, Mame Kurogouchi(여성), KEISUKEYOSHIDA(2026.4 신상)</li>
+<li><strong>에비스</strong> — KAPITAL 3점 클러스터(보로 패치워크)</li>
+<li><strong>빈티지(택1)</strong> — 시모키타자와 MONK(아카이브) / 코엔지(발굴형)</li>
+<li><strong>셀렉트</strong> — DSM 긴자, GR8(하라주쿠)</li>
+</ul>
+<h3>캐릭터·특이 쇼핑, 어디?</h3>
+<ul>
+<li><strong>시부야 파르코 6F 한 층</strong> — Nintendo TOKYO·포켓몬센터·점프숍·굿스마일 팝업(6/11~7/5)</li>
+<li><strong>나카노 브로드웨이(반나절)</strong> — 만다라케 30개 전문관, 타코셰(인디 ZINE)</li>
+<li><strong>시부야 도보권 특이템</strong> — 헤이즈 진주 가챠(1,000엔, 진짜 아코야 진주), 빌리지 뱅가드, MAGNET 가챠</li>
+</ul>
+<h3>일본 가면 꼭 사올 것?</h3>
+<ul>
+<li><strong>드럭스토어</strong> — 메라노CC 화장수+미용액(2025.8 리뉴얼), 오타이산(소화제), 로이히츠보코 동전파스</li>
+<li><strong>문구</strong> — 미도리 MD노트·2026 다이어리, 트래블러스 노트(나카메구로 본점)</li>
+<li><strong>주방·생활</strong> — 야나기 소리 커틀러리·볼, 노다호로 법랑, 스와다/키야 손톱깎이</li>
+<li><strong>식품 선물</strong> — 야마모토야마 녹차, 야와타야 이소고로 시치미</li>
+<li><strong>거점</strong> — 시부야 로프트 + 핸즈 스크램블스퀘어 두 곳에서 대부분 해결</li>
+</ul>
+<h3>한국과 다른 쇼핑거리, 어디?</h3>
+<ul>
+<li><strong>데파치카</strong> — 도큐 푸드쇼 엣지(시부야역 직결), 이세탄 신주쿠(데파치카의 정점)</li>
+<li><strong>전문상가(택1)</strong> — 갓파바시 칼거리, 진보초 헌책거리, 나카노 만다라케</li>
+<li><strong>상점가</strong> — 야나카긴자(쇼와 레트로), 스가모(관광객 가장 적은 로컬)</li>
+</ul>
+<h3>관광, 어디?</h3>
+<ul>
+<li><strong>시부야 도보권</strong> — 오쿠시부 산책, 시부야 스카이, 메이지신궁+하라주쿠, 다이칸야마·나카메구로</li>
+<li><strong>아침 한 타임</strong> — 센소지(아사쿠사, 오전 8시 전 필수)</li>
+<li><strong>2026 신상</strong> — 피카소×폴 스미스 전(롯폰기, 6/10 개막)</li>
+</ul>
+<h3>2026 최신 스팟?</h3>
+<ul>
+<li>아나 밀러스 부활점(미나미아오야마, 홈메이드 파이), RAWROW 롯폰기(한국 브랜드 첫 진출, ~7/26), imperfect 마루노우치 로스터리, MoN Takanawa(구마 겐고 미술관)</li>
+</ul>
+<hr /></div>
+    
+  </div>
+</section>
+<section id="sec-2" class="sec ">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">편의점 — 지금 뜨는 상품</h2>
+    </div>
+    <div class="prose"><p><strong>이번 여행의 편의점 핵심은 타이밍입니다.</strong> 여행일(6/19~21)이 로손 <strong>초하피스기! 챌린지</strong>(超ハッピーすぎ！チャレンジ) 3주차에 정확히 들어갑니다. 가격은 그대로 두고 내용물만 51~63% 늘린 50개 품목을 4주에 걸쳐 푸는 창업 51주년 캠페인이고, 3주차 대상품은 6/15~16 출시분(盛りすぎ ふわ濃 치즈케이크, 대형 초코슈, 타카나 명란 주먹밥 등)입니다. '소진 시 종료'라 보이면 바로 집어야 하고, 4주차 신상은 여행 뒤라 못 봅니다. 정석인 51% 증량 バスチー(바스크 치즈케이크, 319엔)도 회차마다 등장합니다.</p>
+<p>증량 캠페인 말고도 두 갈래가 이 부부에게 맞습니다. <strong>첫째, 모구나비(もぐナビ) 평점 상위의 데일리 픽</strong> — 세븐 かじるNYチーズケーキ(291엔)는 콘비니 디저트 랭킹 1위급이고, チョコ生サンド·ふわっと生どら焼은 실제로 먹어보고 매긴 평점이 가장 높은 축입니다. 인스타 행렬이 아니라 재구매가 만든 순위라 신뢰가 됩니다. <strong>둘째, 한국에 없는 콜라보</strong> — 패미마 食べマスモッチ 산리오(시나모롤·쿠로미, 378엔)는 표정이 7종 랜덤인 캐릭터 화과자라 사올거리로 강하고, 로손 森半 우지말차 시리즈(비스킷샌드 297엔)와 사루타히코 커피 콜라보 라테는 한국 편의점에 없는 결입니다. 카운터 즉석품인 농후치즈in파미치키(258엔)와 로손 MACHI café 미즈다시 콜드브루(320엔)는 행렬·포토존과 무관한 정석 루트입니다.</p>
+<p><strong>거를 것</strong> — 솜사탕 넣은 エンゼルヘアーチョコ 같은 SNS 바이럴 식품은 비주얼 주도라 품질 기준엔 미달일 수 있습니다. 재미로만 보세요.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">편의점 — 리서치 원본 11건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 일본 편의점(세븐일레븐·로손·패밀리마트) 2026년 6월 화제 상품 — SKU 단위
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>현지 커뮤니티 분위기: 일본 편의점 화제의 정본 소스는 모구나비(もぐナビ) 평점 랭킹·토쿠바이·각 사 공식 + 5ch/X의 '재고 추적'입니다. 인스타 큐레이션이 아니라 실제 먹어보고 매기는 점수형 인기(모구나비)와, 카운터 즉석품(파미치키·마치카페 콜드브루)처럼 행렬·포토존과 무관한 데일리 픽이 이 부부에게 맞습니다.</p>
+<p>타이밍이 핵심 인사이트입니다. 여행일(6/19~21)이 로손 '초하피스기! 챌린지' 3주차(6/15~16 출시) 구간에 정확히 들어갑니다 — 가격 그대로 51~63% 증량 50품이 이 편의점 마니아 부부에게 이번 여행 최고의 편의점 이벤트입니다. 단 '소진 시 종료'라 보이면 바로 집어야 하고, 4주차(6/22~) 신상은 여행 후라 못 봅니다.</p>
+<p>인스타 함정 주의: エンゼルヘアーチョコ류 SNS 바이럴 식품은 비주얼 주도라 insta_risk=high로 정직하게 분리했습니다. 부부 기준(품질·진정성)엔 미달일 수 있으니 재미용이고, 우선순위는 ① 로손 증량 캠페인 ② 모구나비 고평점(かじるNYチーズ·チョコ生サンド) ③ 한국에 없는 콜라보(산리오 食べマスモッチ·모리나가 生엔젤파이·森半 말차·사루타히코 라테)입니다.</p>
+<p>사올거리(한국 미상륙) 추천: 산리오 食べマスモッチ(얼굴 랜덤 화과자), 모리나가/블랙썬더 콜라보 과자, 森半 말차 시리즈. 별도로 돈키호테에선 '불닭볶음면 야키소바맛'(일본 한정 역수입)·산토리 카쿠빈 위스키가 한국인 단골 픽이지만 편의점 외 품목이라 참고만 합니다.</p>
+<h2>항목 (11건)</h2>
+<h3>1. 로손 초하피스기! 챌린지 (超ハッピーすぎ！チャレンジ) — 51~63% 증량 50품 캠페인</h3>
+<ul>
+<li><strong>분류</strong>: 기간한정 증량 캠페인 (창업 51주년 기념)</li>
+<li><strong>위치/거리</strong>: 전국 로손 매장 / 시부야 도보권에 다수 (Lawson) · <code>core</code></li>
+<li><strong>시그니처</strong>: 가격 그대로 내용물만 51~63% 늘리는 '모리스기(盛りすぎ)' 시리즈. 부부 여행일(6/19~21)은 3주차 구간 — 3주차 대상품은 6/15~16 출시분으로, 盛りすぎ!ふわ濃チーズケーキ(농후 치즈케이크), 盛りすぎ!大きなチョコシュー(대형 초코슈), 盛りすぎ!高菜明太おにぎ리(타카나 명란 주먹밥), 盛りすぎ!BLTEサンド 등. 정석 인기품 プレミアムロールケーキ도 51% 증량으로 회차마다 등장.</li>
+<li><strong>가격</strong>: 기존가 동일 (품목별 상이, 대개 200~360엔)</li>
+<li><strong>2026 현재성</strong>: 2026 올해 최대 화제 — 6/2 시작·4주간 전 50품, '로손의 날'(6/3) 연계. 2023년 첫 개최 이후 7회째 로손 간판 캠페인이라 정석성+현재성 동시</li>
+<li><strong>커뮤니티 근거</strong>: 동경바겐마니아·전격온라인·Lmaga·그루메Watch 등 매체가 주차별 대상품 리스트를 상세 보도, 5ch·X에서 '어느 점포에 뭐가 남았나' 실시간 공유. 캠페인 기간 1점포 평균 내점객 전년비 +5% (로손 자체 발표)</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 'なくなり次第終了(소진 시 종료)' — 3주차 재고는 6/19~21이면 빠질 수 있으니 보이면 바로. 4주차(6/22~) 신상은 여행 후라 못 봄. 매장·지역별 라인업 차이 있음</li>
+</ul>
+<h3>2. 세븐 かじるニューヨークチーズケーキ (가지루 뉴욕 치즈케이크)</h3>
+<ul>
+<li><strong>분류</strong>: 스테디 베스트셀러 디저트 (NY 바스크풍 치즈케이크)</li>
+<li><strong>위치/거리</strong>: 전국 세븐일레븐 (7-Eleven) · <code>core</code></li>
+<li><strong>시그니처</strong>: 크림치즈 농후 생지 + 바닥의 자크자크(바삭) 비스킷 이중 식감. 모구나비(もぐナビ) 콘비니 스위츠 종합 랭킹 6/12 기준 1위(평점 5.5).</li>
+<li><strong>가격</strong>: 291엔(통상) / 감사제 2.5배판은 종료</li>
+<li><strong>2026 현재성</strong>: 정석 정본(연중 판매) + 5/19~6/1 창업감사제 '2.5배 증량'판이 SNS 폭발했던 화제작. 여행일엔 통상 사이즈(291엔) 판매</li>
+<li><strong>커뮤니티 근거</strong>: 모구나비 콘비니 디저트 랭킹 1위, 暮らしニスタ·진격의그루메 등 실식 리뷰 다수. 호불호 정직 존재 — '바닥 비스킷이 달고 가루져 치즈를 망친다'는 소수 불호평도 리뷰사이트에 병존</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 이름은 '가지루(베어먹는)'지만 한 손 사이즈. 2.5배 증량판은 6/1 종료라 여행 땐 통상판</li>
+</ul>
+<h3>3. 세븐 チョコ生サンド / ふわっと生どら焼 つぶあん＆ホイップ</h3>
+<ul>
+<li><strong>분류</strong>: 커뮤니티 고평점 화제 디저트 (생크림 샌드·생도라야키)</li>
+<li><strong>위치/거리</strong>: 전국 세븐일레븐 (7-Eleven) · <code>core</code></li>
+<li><strong>시그니처</strong>: チョコ生サンド는 모구나비 콘비니 디저트 랭킹 평점 5.8로 표 안 최고점. ふわっと生どら焼(통팥+휘핑)은 같은 랭킹 3위권. 둘 다 인스타용이 아니라 '실제 먹어보고 높게 준' 점수형 인기품.</li>
+<li><strong>가격</strong>: 대략 200~280엔대</li>
+<li><strong>2026 현재성</strong>: 2026 6월 현재 모구나비 실시간 랭킹 상위 — 매체 보도가 아니라 커뮤니티 평점 기반이라 진정성 높음</li>
+<li><strong>커뮤니티 근거</strong>: 모구나비(もぐナビ) 액세스수·크치코미(口コミ)수 집계 랭킹에서 평점 5.8·4.6 등 최상위. 行列 맛집형이 아닌 데일리 픽이라 현지인 재구매율 시그널</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 세븐 디저트 매대 상단. 생크림계라 구입 후 빨리 먹는 게 정석</li>
+</ul>
+<h3>4. 로손 ウチカフェ 盛りすぎ！バスチー -바스크풍 치즈케이크- (51% 증량판)</h3>
+<ul>
+<li><strong>분류</strong>: 스테디 인기 바스크치즈케이크의 한정 증량판</li>
+<li><strong>위치/거리</strong>: 전국 로손 (Lawson Uchi Cafe') · <code>core</code></li>
+<li><strong>시그니처</strong>: 로손 정석 히트 'バスチー'를 통중량 약 51% 키운 모리스기 버전. 6/8~9 출시(2주차). 바스크 특유의 까맣게 그을린 윗면 + 진한 농후 단면.</li>
+<li><strong>가격</strong>: 319엔</li>
+<li><strong>2026 현재성</strong>: 2026 6월 한정 증량판 — バスチー 자체는 2018년 출시 후 로손 대표 정석이라 정석성+증량 화제성 결합</li>
+<li><strong>커뮤니티 근거</strong>: 그루메Watch·特選街web 등 매체가 51% 증량 대상품으로 보도, 로손 모리스기 시리즈는 회차마다 5ch/X에서 '増量 가성비' 화제. バスチー 본체는 누계 판매 실적이 검증된 스테디</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 2주차(6/8~9) 품이라 6/19~21엔 재고 소진 가능 — 보이면 바로. 통상 バスチー라도 로손 정석이라 추천</li>
+</ul>
+<h3>5. 로손 ウチカフェ×森半 농후 우지 말차 시리즈 (濃い抹茶 비스킷샌드·쇼콜라돔·모치롤)</h3>
+<ul>
+<li><strong>분류</strong>: 말차 명가 콜라보 디저트 시리즈</li>
+<li><strong>위치/거리</strong>: 전국 로손 (Lawson Uchi Cafe' × 森半) · <code>core</code></li>
+<li><strong>시그니처</strong>: 교토 우지 말차 노포 모리한(森半)과 콜라보. 濃い抹茶しっとりビスケットサンド(297엔), ショコラドーム 抹茶(322엔), お餅で巻いた濃い抹茶もち食感ロール 등. 진한 말차의 떫은맛까지 살린 본격파.</li>
+<li><strong>가격</strong>: 246~322엔</li>
+<li><strong>2026 현재성</strong>: 2026 5~6월 로손 말차 페어의 핵심 화제작 — 한국 편의점엔 이 급의 본격 말차 콜라보가 드물어 차별점 큼</li>
+<li><strong>커뮤니티 근거</strong>: 모구나비 콘비니 디저트 랭킹에 濃い抹茶クッキーシュー·濃い抹茶サンド 등 다수 진입(평점 5.0~5.1), 特選街web 보도. 말차 마니아 사이 '편의점 말차의 진짜'로 통함</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 냉장(チルド) 디저트 매대. 自然解凍/레인지 양용 품목도 있음. 말차 좋아하면 시리즈 통째로 비교 추천</li>
+</ul>
+<h3>6. 패밀리마트 食べマスモッチ シナモロール&amp;クロミ (산리오 콜라보 화과자)</h3>
+<ul>
+<li><strong>분류</strong>: 캐릭터 콜라보 화과자 (산리오 시나모롤·쿠로미)</li>
+<li><strong>위치/거리</strong>: 전국 패밀리마트 한정 (FamilyMart) · <code>core</code></li>
+<li><strong>시그니처</strong>: 산리오 인기 캐릭터를 모찌(求肥) 화과자로 빚은 패미마 한정품. 시나모롤은 밀크티 맛 앙금, 쿠로미는 초코 맛 앙금. 표정이 각 7종씩이라 어떤 얼굴이 걸릴지 랜덤. 캐릭터·특이 쇼핑 좋아하는 부부에 직격.</li>
+<li><strong>가격</strong>: 378엔</li>
+<li><strong>2026 현재성</strong>: 2026 6월 패미마 한정 화제품 — 한국에 없는 '캐릭터 얼굴 화과자' 포맷이라 사올거리로도 강함</li>
+<li><strong>커뮤니티 근거</strong>: 토쿠바이·매체 신상 정리에 패미마 한정 화제품으로 등재. 食べマス 시리즈 자체가 X에서 '얼굴 뽑기' 콘텐츠로 꾸준히 회자되는 캐릭터 굿즈성 식품</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 패미마 한정 — 세븐·로손엔 없음. 화과자라 식감은 모찌. 표정 랜덤이라 매대에서 골라 집기</li>
+</ul>
+<h3>7. 패밀리마트 濃厚チーズinファミチキ (농후 치즈인 파미치키)</h3>
+<ul>
+<li><strong>분류</strong>: 간판 핫스낵 한정 부활 플레이버</li>
+<li><strong>위치/거리</strong>: 전국 패밀리마트 핫스낵 카운터 (FamilyMart) · <code>core</code></li>
+<li><strong>시그니처</strong>: 파미마 간판 '파미치키' 역대 최다 판매 플레이버의 농후 리뉴얼 부활. 숙성 체다 비율을 높여 첫 입부터 끝까지 치즈 농후. 카운터에서 갓 튀긴 걸 받는 핫스낵이라 편의점 마니아의 정석 루트.</li>
+<li><strong>가격</strong>: 258엔(税込)</li>
+<li><strong>2026 현재성</strong>: 2026 2/10 부활·리뉴얼 — '올해도 절대 맛있잖아'를 카피로 내건 화제작, 2026 파미마 45주년 '이치반 챌린지'의 일환</li>
+<li><strong>커뮤니티 근거</strong>: 마이베스트가 료리연구가 가치 랭킹으로 4종 비교 리뷰, 파미마 공식 X의 'ファミチキたまごサンド' 어레인지가 'え、天才?' 반응으로 확산. 行列이 아닌 카운터 즉석품이라 인스타 함정과 무관</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 핫스낵 카운터에서 주문. ファミペイ 앱 결제 시 무료 교환 쿠폰 캠페인 붙는 시기 있음. 갓 튀긴 거라 매장에서 바로 먹는 게 정석</li>
+</ul>
+<h3>8. 로손 MACHI café 水出しコーヒー (미즈다시·콜드브루)</h3>
+<ul>
+<li><strong>분류</strong>: 신작 카운터 커피 (8시간 저온 추출 콜드브루)</li>
+<li><strong>위치/거리</strong>: 전국 로손 마치카페 (Lawson MACHI café) · <code>core</code></li>
+<li><strong>시그니처</strong>: 점내에서 8시간 저온 추출한 미즈다시(워터드립) 콜드브루. 고온 일괄 추출 대신 저온으로 마무리해 쓴맛·잡미를 누른 '부드럽게 마시는 한 잔'. 커피투어 확장하려는 부부의 편의점 커피 입구로 적합.</li>
+<li><strong>가격</strong>: 320엔(税込)</li>
+<li><strong>2026 현재성</strong>: 2026 6/9 신발매 — 여름 대비 각 사 미즈다시·수출계 커피 화제의 로손판</li>
+<li><strong>커뮤니티 근거</strong>: 로손 공식 마치카페 통신·모구나비 콘비니 드링크 랭킹 추적. 카운터 즉석 추출이라 바이럴 행렬과 무관, 커피 커뮤니티에선 '편의점 콜드브루 진화' 맥락으로 거론</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 마치카페 카운터 주문. 일부 점포는 카페인레스 시리즈도 2026/5/26 재개(오키나와·MACHI café+ 점포 등 한정)라 취급 점포 확인 필요</li>
+</ul>
+<h3>9. 로손 ウチカフェ×猿田彦珈琲 塩キャラメルラテ (사루타히코 커피 콜라보 컵음료)</h3>
+<ul>
+<li><strong>분류</strong>: 스페셜티 로스터 콜라보 칠드 라테</li>
+<li><strong>위치/거리</strong>: 전국 로손 칠드 컵음료 매대 (Lawson Uchi Cafe' × 猿田彦珈琲) · <code>core</code></li>
+<li><strong>시그니처</strong>: 도쿄 스페셜티 로스터 사루타히코 커피(猿田彦珈琲)와 공동개발한 소금 카라멜 라테. 카라멜 단맛과 소금이 녹아들어 카페라테의 쌉쌀함을 받쳐주는 여름용 컵음료. 카운터 안 가고 매대에서 집는 칠드 버전.</li>
+<li><strong>가격</strong>: 대략 200엔대</li>
+<li><strong>2026 현재성</strong>: 2026 6월 로손 칠드 컵음료 화제 콜라보 — 사루타히코는 도쿄 커피씬 유명 로스터라 진정성 담보</li>
+<li><strong>커뮤니티 근거</strong>: 모구나비 우치카페 콘비니 드링크 랭킹 추적, 사루타히코는 에비스·시부야권에 실점포 있는 실재 스페셜티 브랜드라 인스타 큐레이션이 아닌 실체 있는 콜라보</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 로손 냉장 음료 매대(칠드). 사루타히코 실점포(시부야권)에서 본격 커피투어로 이어가도 좋음</li>
+</ul>
+<h3>10. 패밀리마트 森永 生エンゼルパ이 / 森永ミルクキャラメル 콜라보 (모리나가 콜라보 페어)</h3>
+<ul>
+<li><strong>분류</strong>: 노포 과자 브랜드 콜라보 디저트 페어</li>
+<li><strong>위치/거리</strong>: 전국 패밀리마트 한정 (FamilyMart × 森永) · <code>core</code></li>
+<li><strong>시그니처</strong>: 모리나가 정석 과자를 편의점 디저트로 재해석. 生エンゼルパイ(엔젤파이 모티프, 마시멜로+비스킷+초코 코팅, 298엔), 窯出しとろける森永ミルクキャラメルプリン(밀크캬라멜 푸딩), 森永ミルクキャラメルマドレーヌ 등. 한국에 없는 '추억 과자×편의점' 콜라보 포맷.</li>
+<li><strong>가격</strong>: 298엔(生エンゼルパイ) 외</li>
+<li><strong>2026 현재성</strong>: 2026 6월 패미마 최대 화제 페어 — 모리나가 콜라보가 6월 핵심으로 매체 일제 보도</li>
+<li><strong>커뮤니티 근거</strong>: 토쿠바이·라이브도어·매체 신상 정리가 6월 패미마 대표 페어로 등재. 모리나가는 일본 국민 과자 브랜드라 콜라보 자체가 화제성+신뢰성</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 패미마 한정. ブラックサンダー 콜라보(大阪ブラックサンダー チョコクッキーサンド)도 같은 시기 병행 — 한국에 없는 콜라보라 사올거리로도 좋음</li>
+</ul>
+<h3>11. SNS 바이럴 화제품 — エンゼルヘアーチョコ(솜사탕 초코)·대형 증량 아이스류</h3>
+<ul>
+<li><strong>분류</strong>: SNS 발 바이럴 식품 (정직하게 유행 구분)</li>
+<li><strong>위치/거리</strong>: 각 사 편의점·돈키호테 등 (chain varies) · <code>core</code></li>
+<li><strong>시그니처</strong>: 板チョコ 안에 솜사탕(綿菓子)을 넣은 エンゼルヘアーチョコレート가 '비주얼+독특 식감'으로 X에서 바이럴. 컬러 스프링클(カラーチョコ) 쓴 레트로 디저트도 매진 점포 속출. 편의점 아이스는 300엔+ '고급 디저트' 가격대로 이동 중.</li>
+<li><strong>가격</strong>: 품목별 상이</li>
+<li><strong>2026 현재성</strong>: 2026 SNS 유행 — 매체가 '바즈루 과자 2026'로 추적</li>
+<li><strong>커뮤니티 근거</strong>: 카우나라·@DIME 등 SNS 유행 식품 트렌드 기사 기반. 다만 비주얼 주도 바이럴이라 '진짜 맛집' 신호와는 결이 다름 — 부부 기준(품질·진정성)엔 미달일 수 있어 참고용</li>
+<li><strong>인스타 유행 위험</strong>: <code>high</code></li>
+<li><strong>실전 팁</strong>: 정직 경고 — 이 카테고리는 인스타·SNS 비주얼 유행이 본질. 부부가 추구하는 '진짜'와 다를 수 있으니 재미 삼아만. 우선순위는 위 정석·콜라보·증량 캠페인 품목</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-3" class="sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">돈키호테 — 지금 뜨는 상품</h2>
+    </div>
+    <div class="prose"><p>가성비 흔한 약·대용량 김 같은 건 빼고, <strong>한국에 없는 진짜·한정</strong>으로 좁혔습니다. 베이스는 시부야 MEGA돈키 본점(우다가와초 28-6, 하치코 출구 도보 5분, 24시간)과 길 건너 별관(코스메·캐릭터 특화)을 묶어 도는 동선입니다 — 본점은 식품·군고구마·잡화, 별관은 뷰티·캐릭터로 나누면 효율적입니다.</p>
+<p><strong>식품 PB(情熱価格)가 1순위입니다.</strong> ごまにんにく 후리카케(약 430엔)는 연 12만 본 팔리는 殿堂入り 마스트바이로, 가볍고 한국에 없는 맛이라 여러 개 사기 좋습니다. 焼き芋 타르트(646엔)·2색 고구마칩(539엔, 품절 잦음)은 돈키 간판 군고구마 라인의 캐리용이고, きのこ三昧(322엔)는 '나메타케 상위호환'으로 마니아가 미는 변형템입니다. 이 PB들의 근거는 인스타가 아니라 majica 앱 사용자 평가('いいよ!' 누적 5,624건 1위)와 tokubai 마니아 엄선이라 유행 함정을 비켜갑니다.</p>
+<p><strong>한정 굿즈는 돈키에서만 사는 가치가 있습니다.</strong> 2026년 데뷔한 PB 메이크업 <strong>nyuu</strong>(립&amp;치크·아이섀도 각 660엔, 하트 참 장식)는 다른 채널에 없고, <strong>치이카와×돈펜 한정 굿즈</strong>(6/6 발매)는 부부가 이미 좋아하는 돈키호테와 캐릭터 취향이 겹치는 지점입니다 — 단 발매 2주 전이라 6/19~21 재고는 본점·별관 둘 다 확인이 필요합니다. 산리오×스튜디오 하누루 콜라보도 별관에 있습니다.</p>
+<p><strong>체험템은 1개만</strong> — 틱톡 1,100만 뷰의 秒でどこでもTKG 소스(계란밥풍, 647엔)는 화제작이지만 화제성이 곧 입맛은 아니라 한 개만 권합니다. <strong>면세</strong> — 세전 5,000엔↑ 10%에 더해 사전 발급 쿠폰으로 최대 17%까지, 여권은 결제 전 제시. 인기품 품절을 피하려면 낮 시간 방문이 유리합니다.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">돈키호테 — 리서치 원본 11건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 돈키호테(ドン・キホーテ)에서 지금 뜨는 상품 — 시부야 MEGA돈키 베이스
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>핵심 인사이트: 이 부부는 가성비가 아니라 '한국엔 없는 진짜·한정'이 기준이므로, 돈키의 약 추천(아리나민 등)·한국김 대용량 같은 흔한 가성비템은 의도적으로 후순위로 뺐습니다. 진짜 가치는 ① 돈키 PB 情熱価格(JONETZ)의 한정·변형 식품·조미료(ごまにんにく·変わり種 스낵·焼き芋 계열)와 ② 돈키에서만 사는 한정 굿즈(2026/6/6 발매 ちいかわ 콜라보·산리오 스튜디오하누루·PB 메이크업 nyuu)입니다. 특히 ちいかわ 콜라보는 6/6 발매라 6/19~21 방문 타이밍에 딱 맞으나 초기 품절·재판 변수가 있어 본점+별관 둘 다 확인이 필요합니다.</p>
+<p>커뮤니티 검증의 결: 인스타 행렬·포토존을 피하려고 의도적으로 '돈키 히트상품대상 2025'(실판매 점수+majica 앱 사용자 'いいよ!' 평가+직원 투표)와 tokubai·macaroni·maquia의 매출·마니아 엄선 랭킹을 1차 소스로 썼습니다. 이건 인스타 노출이 아니라 자사 앱 실사용자/실판매 집계라 '유행이지만 질 낮은 곳' 함정을 비켜갑니다. 인스타 과열 위험이 있는 'TKG 소스'·'CA미스트'·K뷰티 한정은 insta_risk=medium으로 정직 표기했습니다.</p>
+<p>인스타 함정 주의: 돈키 자체가 '바즈り 지수'를 마케팅에 쓰기 때문에, 틱톡 1,100만뷰 같은 화제작(TKG 소스)은 화제성≠품질일 수 있습니다. 부부 입맛엔 검증된 ごまにんにく·焼き芋·きのこ三昧가 더 안전한 선물이고, 화제작은 '체험템'으로 1개씩만 권합니다.</p>
+<p>매장·면세 실전: 베이스인 시부야 MEGA돈키 본점(우다가와초 28-6, JR 시부야역 하치코출구 도보 5분, 24시간, B1~7F)과 길 건너 별관(코스메·카라콘·캐릭터 특화)을 묶어 도는 게 정석입니다. 본점은 식품·군고구마·잡화, 별관은 뷰티·캐릭터로 동선을 나누면 효율적입니다. 면세는 세전 5,000엔↑ 10%, 추가로 1만엔↑ 5%·3만엔↑ 7% 쿠폰(LIVE JAPAN 등 사전 발급)으로 최대 17%까지. 여권은 결제 전 미리 제시해야 하고, 24시간점이라 인기품 품절·면세 대기를 피하려면 낮 시간 방문이 유리합니다. 가격은 2026년 매체 기준 참고치로 매장·시기 변동은 미검증입니다.</p>
+<h2>항목 (11건)</h2>
+<h3>1. 情熱価格 ごまにんにく (고마닌니쿠 / 참깨마늘 후리카케) 100g</h3>
+<ul>
+<li><strong>분류</strong>: PB 情熱価格 조미료·후리카케 (밥반찬 자국 스테디셀러)</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 본점 식품층 B1~1F · 우다가와초 28-6, JR 시부야역 하치코출구 도보 5분 · <code>core</code></li>
+<li><strong>시그니처</strong>: 로스트 참깨에 갈릭·조미료를 섞은 밥도둑 후리카케. 연 매출 1억엔·연 12만본 돌파, 밥에 뿌리기·고기·라멘 토핑까지 무한확장. 한국에 없는 맛이라 짐 안 무겁게 사오기 좋은 1순위 PB템.</li>
+<li><strong>가격</strong>: 약 430엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(2026 기준 여전히 PB 殿堂入り 마스트바이로 매체·돈키 공식 모두 상위 고정)</li>
+<li><strong>커뮤니티 근거</strong>: macaroni·tokubai 마니아 엄선 기사 殿堂入り 표기, '年間1億円突破' 공식 매출 수치. 인스타 포토존이 아니라 실판매·재구매로 검증된 PB.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 100g판이 표준. 같은 라인 '고마닌니쿠센(전병)' 322엔도 있음. 무게·가격 부담 없어 여러 개 사기 좋음.</li>
+</ul>
+<h3>2. 情熱価格 秒でどこでもTKG!? 卵かけ風ご飯のたれ (계란밥풍 소스)</h3>
+<ul>
+<li><strong>분류</strong>: PB 情熱価格 조미료 (2026 SNS 1위 화제작)</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 본점 식품층 · 도겐자카 · <code>core</code></li>
+<li><strong>시그니처</strong>: 파키 하고 부러뜨려 밥에 뿌리면 계란 없이 계란밥 맛이 나는 1인분 소분 소스. 도시락·여행용으로 챙기기 좋은 변형템.</li>
+<li><strong>가격</strong>: 647엔</li>
+<li><strong>2026 현재성</strong>: 2026 화제 — 돈키 히트상품대상 2025 'SNS 바즈' 부문 1위, 공식 틱톡 2개월 1,100만뷰</li>
+<li><strong>커뮤니티 근거</strong>: 돈키 공식 히트상품대상 바즈 지수 1위(영상 재생·검색·리액션 집계). 바이럴이긴 하나 돈키 자체 PB·실구매 연동이라 행렬맛집형 바이럴과 결이 다름. 그래도 화제 과열은 medium으로 정직 표기.</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 맛은 호불호 있으니 '체험템' 성격으로 1개만. 한국인 입맛엔 ごまにんにく가 더 안전한 선물.</li>
+</ul>
+<h3>3. 情熱価格 焼き芋 / 焼き芋タルト (군고구마·군고구마 타르트) 및 안다요시 계열</h3>
+<ul>
+<li><strong>분류</strong>: PB 情熱価格 군고구마(베니하루카) 디저트군</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 본점 — '自慢の焼き芋' 매대 상시 운영 · <code>core</code></li>
+<li><strong>시그니처</strong>: 돈키 간판 군고구마. 焼き芋タルト(646엔)가 전국 전개로 승격, '2색 고구마칩'(539엔)은 품절 잦음. 매장에서 갓 구운 군고구마 자체가 시부야점 명물.</li>
+<li><strong>가격</strong>: 군고구마 매대가 변동 / 타르트 646엔 / 2색칩 539엔(150g)</li>
+<li><strong>2026 현재성</strong>: 스테디+2026 화제 — 군고구마는 majica '마지보이스 いいよ!' 부문 1위(2023.11~2025.2, 'いいよ!' 5,624건), 타르트는 2026 전국 전개 신화제</li>
+<li><strong>커뮤니티 근거</strong>: majica 앱 사용자 평가 누적 5,624건 1위 — 인스타 노출이 아니라 자사 앱 실사용자 만족도 집계. 돈키 '看板商品' 공식 표현.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 갓 구운 군고구마는 즉석 취식용. 선물·캐리는 타르트·칩·'まるでほしいも'(538엔, 말린고구마풍) 추천.</li>
+</ul>
+<h3>4. 情熱価格 韓国のり大容量 / 業務用ウィンナー / きのこ三昧</h3>
+<ul>
+<li><strong>분류</strong>: PB 情熱価格 대용량 식품(외국인 폭매·매출 상위)</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 본점 식품·냉장 매대 · <code>core</code></li>
+<li><strong>시그니처</strong>: 한국김 대용량은 외국인 폭매 부문 단골, 업무용 비엔나(861엔/800g)는 연매출 10억엔 돌파, きのこ三昧(322엔)는 '나메타케 상위호환'으로 마니아 추천. 부드러운 고기·집밥 좋아하는 부부 취향에 맞는 냉장 PB.</li>
+<li><strong>가격</strong>: 비엔나 약 861엔(800g) / きのこ三昧 322엔(370g)</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — '韓国のり大容量' majica 부문 2위, ウィンナー 매출 10억엔(2026 기사 유지)</li>
+<li><strong>커뮤니티 근거</strong>: majica 마지보이스 부문 랭킹 + tokubai 마니아 엄선. 실판매·앱평가 기반.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 냉장·대용량이라 캐리보다 호텔 취식·당일 소비용. 한국김은 굳이 비추(한국이 더 쌈), 비엔나·버섯이 진짜 추천.</li>
+</ul>
+<h3>5. ダルバ ホワイトトリュフ ファーストスプレーセラム ('CA미스트') 50ml</h3>
+<ul>
+<li><strong>분류</strong>: 뷰티·스킨케어 — 돈키 코스메 판매 1위(한국 브랜드)</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 본점 코스메층 + 시부야 별관(別館, 코스메·뷰티 특화) · <code>core</code></li>
+<li><strong>시그니처</strong>: 오일+수분 2층식 보습 미스트. 기내 건조에 CA들이 쓴다고 '機内ミスト(CA미스트)'로 불리며 돈키 코스메 매출 1위. 한국 브랜드(달바)지만 일본 돈키 가격·구성이 화제.</li>
+<li><strong>가격</strong>: 1,430엔</li>
+<li><strong>2026 현재성</strong>: 2026 화제 + 스테디 — 2025.8~2026.1 돈키 코스메 매출 랭킹 1위</li>
+<li><strong>커뮤니티 근거</strong>: maquia(슈에이샤 뷰티 매체) 돈키 매출 기반 랭킹 1위. 인스타 분위기샷이 아닌 매출 집계.</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 달바는 한국 브랜드라 가격차 확인 필수 — '돈키 1위'라서 적어두되 한국 면세 대비 메리트는 미검증. 부부가 진짜 노릴 건 아래 일본 한정 신상.</li>
+</ul>
+<h3>6. nyuu (뉴) — 돈키 PB 신규 메이크업 브랜드: CarryHeart 립&amp;치크 / 아이섀도</h3>
+<ul>
+<li><strong>분류</strong>: 뷰티 — 돈키 PB 자체 메이크업 브랜드(돈키에서만 구매)</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 별관(別館) 코스메 특화층 · <code>core</code></li>
+<li><strong>시그니처</strong>: 2026년 돈키가 새로 론칭한 PB 메이크업 'nyuu'. 하트×실버 참 장식 미니 팔레트, 살결 어울림 4색 세트로 '오늘의 나를 업데이트' 컨셉. 일본 돈키에서만 사는 한정 PB라 진정성·희소성 둘 다 충족.</li>
+<li><strong>가격</strong>: 각 660엔</li>
+<li><strong>2026 현재성</strong>: 2026 신상 — 2/21 데뷔(립&amp;치크·아이섀도 각 660엔), 이후 라인 확장</li>
+<li><strong>커뮤니티 근거</strong>: maquia 돈키 한정 코스메 신상 정리·돈코스 히트어워드 보도. PB라 타 채널 노출 자체가 적어 인스타 유행과 무관.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 한국 못 사는 일본 돈키 한정 PB — 캐릭터/특이 쇼핑 취향에 적중. 별관이 코스메·캐릭터 특화라 별관부터 도는 동선 추천.</li>
+</ul>
+<h3>7. ドンキ限定 한국·일본 K뷰티 한정 신상 (VT 글레이즈 립시럽 / 메디큐브 아젤라산 / 바닐라코 립플럼퍼)</h3>
+<ul>
+<li><strong>분류</strong>: 뷰티 — 돈키 한정 발매 K뷰티(2026 2~4월 신상)</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 별관(別館) 코스메층 · <code>core</code></li>
+<li><strong>시그니처</strong>: 돈키 한정 컬러·세트로 나온 K뷰티 신상 모음. VT 글레이즈 립시럽(피치토스트/베리솔벳, 1,320엔), 메디큐브 아젤라산 세트(2,090엔), 바닐라코 맥시블랙 립플럼퍼(1,790엔) 등 '돈키 한정' 라벨이 붙은 것 위주.</li>
+<li><strong>가격</strong>: 1,320~2,200엔대</li>
+<li><strong>2026 현재성</strong>: 2026 신상 — 2~4월 돈키 한정 순차 발매(발매일 명시)</li>
+<li><strong>커뮤니티 근거</strong>: maquia '돈키 한정 코스메 2026' 발매 캘린더. 한정 SKU라 실물 매장 한정.</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 한국 브랜드는 한정 컬러·세트만 노릴 것(일반 제품은 한국이 쌈). 'ドンキ限定' 라벨 확인이 핵심.</li>
+</ul>
+<h3>8. ドンキ限定 ちいかわ (치이카와) × ドンペン 콜라보 굿즈</h3>
+<ul>
+<li><strong>분류</strong>: 캐릭터·특이 쇼핑 — 돈키 한정 콜라보(여행 일정과 타이밍 일치)</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 본점/별관 캐릭터 잡화 코너 · <code>core</code></li>
+<li><strong>시그니처</strong>: 치이카와×돈키 마스코트 '돈펜' 한정 굿즈. 표범무늬 착장 치이카와, 돈펜 모자 코스튬 등 돈키에서만 사는 한정 라인. 7/24 극장판 개봉 시즌이라 화제 정점.</li>
+<li><strong>가격</strong>: 품목별 상이</li>
+<li><strong>2026 현재성</strong>: 2026 초신상 — 2026/6/6 발매(여행 2주 전), 초일 정리권 랜덤배포 쟁탈전</li>
+<li><strong>커뮤니티 근거</strong>: 돈키 공식 상품 페이지 + 캐릭터 콜라보 정리 매체. X발 만화 원작의 실수요 팬덤 — 인스타 포토존이 아닌 IP 팬 구매.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 6/6 발매라 6/19~21 방문 시 재고·재판 여부 매장 확인 필수. 인기품은 조기 품절 가능 — 본점·별관 둘 다 체크.</li>
+</ul>
+<h3>9. ドンキ限定 サンリオ 콜라보 (스튜디오 하누루 마스코트 / 시크릿 드레서하우스)</h3>
+<ul>
+<li><strong>분류</strong>: 캐릭터·특이 쇼핑 — 돈키 한정 산리오 콜라보</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 별관(別館) 캐릭터 특화층 · <code>core</code></li>
+<li><strong>시그니처</strong>: 산리오×스튜디오 하누루(한국 크리에이티브팀) 마스코트 세트, 캐릭터 랜덤 '시크릿 드레서하우스'(전 8종) 등 돈키 한정 산리오 굿즈. 부부의 캐릭터·특이 쇼핑 취향에 직격.</li>
+<li><strong>가격</strong>: 세트·랜덤 품목별 상이</li>
+<li><strong>2026 현재성</strong>: 2026 화제 — 1/1 해피백 발매, 시크릿 드레서하우스 2025.12~ 전개</li>
+<li><strong>커뮤니티 근거</strong>: 산리오 공식 뉴스 + 돈키 콜라보 정리. 한정 SKU 실구매.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 별관이 카라콘·코스메·캐릭터 잡화 특화라 캐릭터템은 별관 위주. 랜덤 박스는 '뽑기' 재미 요소.</li>
+</ul>
+<h3>10. 情熱価格 さつまいも·変わり種 PB군 (皮だけのフライドチキン / 2色さつまいもチップス / きのこ三昧)</h3>
+<ul>
+<li><strong>분류</strong>: PB 情熱価格 변형·마니아 스낵(他 채널 없음)</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 본점 식품층 · <code>core</code></li>
+<li><strong>시그니처</strong>: '편애메시(偏愛めし)' 시리즈의 변형템 모음 — 껍질만 튀긴 프라이드치킨(321엔), 매진 잦은 2색 고구마칩(539엔), 나메타케 상위호환 きのこ三昧(322엔). 돈키 아니면 못 사는 변형 PB.</li>
+<li><strong>가격</strong>: 321~539엔</li>
+<li><strong>2026 현재성</strong>: 스테디+2026 — tokubai '2026 64선' 마니아 엄선 변형템</li>
+<li><strong>커뮤니티 근거</strong>: tokubai 마니아 엄선 64선. 인스타가 아니라 식품 리뷰·실구매 기반.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 가벼운 봉지 스낵이라 선물·캐리 최적. '변형/희한템'으로 골라 담으면 부부 취향(특이 쇼핑)과 맞음.</li>
+</ul>
+<h3>11. 情熱価格 VALX/MJB 커피·프로틴 (드립모카블렌드 / 농축커피포션 / VALX 프로틴)</h3>
+<ul>
+<li><strong>분류</strong>: PB 情熱価格 음료·커피(부부 커피투어 연계)</li>
+<li><strong>위치/거리</strong>: MEGA돈키 시부야 본점 식품·음료층 · <code>core</code></li>
+<li><strong>시그니처</strong>: 돈키 PB 커피군 — 드립모카블렌드(755엔), 농축커피포션 50잔분(1,079엔), 우유에 타먹는 군고구마 포션(324엔). 프로틴은 VALX 호에이(2,980엔)가 돈키 프로틴 1위. 시부야 커피투어 후 집에서 잇는 '돈키 커피' 보완재.</li>
+<li><strong>가격</strong>: 755~2,980엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — tokubai 음료·프로틴 부문 상위 고정</li>
+<li><strong>커뮤니티 근거</strong>: tokubai 부문별 매출 1위(VALX) 표기. 실판매 기반.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 커피투어가 메인이면 이건 보조템. 농축포션·군고구마오레 포션이 집에서 재현하기 좋은 변형 음료.</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-4" class="sec ">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">부드러운 소고기·와규</h2>
+    </div>
+    <div class="prose"><p>현지 마니아(타베로그 焼肉 백명점·5ch·식통 블로그)가 미는 축은 두 갈래입니다. <strong>와규 야키니쿠 하이엔드</strong>는 焼肉ジャンボ → よろにく/蕃YORONIKU → うしごろ로 이어지는 '잠보 계보'가 신뢰의 중심이고, 한입밥 고기말이·실크로스·트러플 스키야키 같은 지금의 야키니쿠 표준이 여기서 나왔습니다.</p>
+<p><strong>시부야 도보권 정석은 사실상 炭火焼 유지 하나입니다.</strong> 예약 한정 오마카세에서 입에 녹는 호르몬과 카르비 생고기 질이 시부야 최상위이고, 부드러운 소고기와 도보권을 동시에 만족하는 거의 유일한 집입니다(디너 1.2만~1.8만엔). 다만 <strong>일요일·공휴일 휴무</strong>라 6/21(일)엔 못 가니, 6/19(금)·20(토) 중 한 끼로 전화 예약을 잡으세요.</p>
+<p>동선이 편한 대안은 <strong>에비스(시부야 1~2정거장)</strong> 입니다. 蕃 YORONIKU는 에비스역 도보 1분에 요로니쿠 계열 고급 라인('실크로스' 코스 11,800엔~)이라 표참도 본점보다 부부 디너에 낫고, 우시고로 칸은 A5 흑모와규 살코기에 반개실·호리고타츠라 차분합니다(샤토브리앙 코스는 수량 한정 예약). 둘 다 이큐(一休) 네트 예약입니다. 전국에서 가장 예약이 어려운 焼肉ジャンボ はなれ(혼고산초메)는 '성지'지만 1개월 전부터 도전해야 잡혀 2박3일 단기엔 비현실적이니, 다음을 위한 떡밥으로만 둡니다.</p>
+<p><strong>사시(마블링) 와규에 물릴 때를 위한 결이 다른 부드러움</strong>도 한 끼 배치하면 좋습니다. 아사쿠사 이마한(스키야키, 암소만 엄선 — 융점이 낮아 체온에 녹음)은 아침 센소지 관광과 묶고, 피터 루거 도쿄(에비스, 드라이에이징 포터하우스 2인 통주문)는 '숙성 살코기+씹는 맛'이라 와규와 정반대 경험입니다. 슌주쿠세이(아자부주반)·폰드(긴자)는 숙성 와규 스테이크입니다.</p>
+<p><strong>거를 것</strong> — 시부야역 앞 'A5 와규 식べ放題' 체인(炭治郎·太樹苑 등)은 예약사이트 상단을 점유하지만 타베로그 식통 리뷰엔 '고평점인데 육즙도 맛도 없었다'는 혹평이 따로 쌓여 있습니다. 품질·진정성 기준이면 권하지 않습니다.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">소고기·와규 — 리서치 원본 10건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 도쿄 "부드러운 소고기" — 와규 야키니쿠·스테이크·스키야키·니쿠캇포 (시부야 베이스, 2026.6 현재)
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>현지 마니아 커뮤니티(타베로그 焼肉 百名店 2025·5ch·식통 블로그)가 실제로 미는 '부드러운 소고기'의 축은 두 갈래입니다. ① 와규 야키니쿠 하이엔드: 焼肉ジャン보 → よろにく/蕃YORONIKU → うしごろ貫으로 이어지는 '잠보 계보'가 식통 신뢰의 중심이고, 한입밥 고기말이·실크로스·트러플 스키야키 같은 지금의 야키니쿠 스탠다드가 여기서 나왔습니다. ② 시부야 도보권 정석은 사실상 '炭火焼 유지' 하나 — 단 일·공휴일 휴무라 6/21(일)엔 못 갑니다(부부 일정 핵심 변수). </p>
+<p>인스타 함정 경고: 시부야역 바로 앞 'A5 와규 식べ放題' 체인(炭治郎·太樹苑 등)은 접근성·가격 퍼포먼스로 예약사이트 상단을 점유하지만, 타베로그 식통 리뷰엔 '고평점인데 육즙도 맛도 없었다'는 辛口가 별도로 쌓여 있습니다. 이 부부 기준(품질·진정성 우선)엔 insta_risk=high로 정직하게 배제 권고했습니다. note.com의 한 현직 CA 블로거는 '세계를 다녀보니 도쿄 야키니쿠만 유독 이상하게 진화(작게 잘라 굽는 방식)했다'는 비평까지 남겼는데, 이는 도쿄 야키니쿠가 '유행 마케팅'에 취약하다는 커뮤니티 자각의 방증입니다. </p>
+<p>실전 인사이트: 진짜 명점(요로니쿠 계열·잠보 하나레)은 예약이 도쿄行 확정 즉시 '1개월 전'부터 움직여야 잡히는 구조라, 2박3일 단기 부부는 (a) 시부야 core의 '炭火焼 유지'를 6/19(금)·20(토) 중 1회로 노리고(전화 예약), (b) 동선 좋은 蕃 YORONIKU(에비스역 1분)·うしごろ貫을 이큐 네트 예약으로 잡고, (c) 와규 사시에 물릴 때를 대비해 결이 다른 '부드러움'으로 浅草今半 스키야키(아사쿠사 관광과 묶음) 또는 피터 루거 숙성 스테이크(에비스)를 한 끼 배치하는 3-끼 구성이 가장 현실적입니다.</p>
+<h2>항목 (10건)</h2>
+<h3>1. 炭火焼 유지 (炭火焼 ゆうじ / Sumibiyaki Yuji)</h3>
+<ul>
+<li><strong>분류</strong>: 와규 야키니쿠·호르몬 (마니아 정석)</li>
+<li><strong>위치/거리</strong>: JR 시부야역 도보 7~8분, 센터가이 옆 골목 (神泉 방면). 시부야 core · <code>core</code></li>
+<li><strong>시그니처</strong>: 예약 한정 오마카세 코스. 호르몬이 입에 넣자마자 녹는 신선도가 핵심이고, 부위마다 양념·굽기를 바꿔 끝까지 안 질리게 냅니다. 카르비·로스 생고기 질도 시부야 최상위. 부드러운 소고기 + 시부야 도보권을 동시에 만족하는 거의 유일한 정석집</li>
+<li><strong>가격</strong>: 디너 코스 1.2만~1.8만엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 식통 사이에서 '도쿄 호르몬 하면 제일 먼저 나오는 이름'으로 수년째 고정. 食べログ 焼肉 TOKYO 百名店 2025 선정점</li>
+<li><strong>커뮤니티 근거</strong>: 타베로그 焼肉 백명점 2025 공식 선정(시부야역). 食通 블로그(美味ごはん 등)에서 '예약 필수 인기점'으로 일관 언급, 인스타 큐레이션이 아니라 육식 마니아 커뮤니티 평판 기반</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 예약 필수(코스는 예약 전용). 일요일·공휴일 휴무 — 부부 일정이 6/19(금)·20(토)면 가능, 21(일)은 휴무라 불가. 전화 예약 권장, 인기 시간대는 조기 마감</li>
+</ul>
+<h3>2. よろにく (요로니쿠 / Yoroniku) 표참도 본점</h3>
+<ul>
+<li><strong>분류</strong>: 하이엔드 와규 야키니쿠 코스 (焼肉ジャンボ 계보)</li>
+<li><strong>위치/거리</strong>: 표참도역(B1 출구) 도보 약 10분, 골동거리 안쪽 지하. 시부야에서 2정거장권 near · <code>near</code></li>
+<li><strong>시그니처</strong>: 간판 '실크로스(シルクロース)' — 노포 정육점 '히야마(日山)'에서 받은 사로인을 몇 초만 살짝 구워 라이스볼에 싸 먹는 한입 코스. 한입밥 고기말이·노른자 찍먹·트러플 스키야키의 '발상지'로, 후발 명점들이 따라 하는 원조. 전채부터 마무리(빙수)까지 계산된 코스</li>
+<li><strong>가격</strong>: 코스 약 1만엔~(음료 별도 1.5만~2만엔), 상위 코스에 샤토브리앙·자부톤 스키야키 포함</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(2007 개업) + 2026 현재성 둘 다 — 트러플 붓카케 스키야키는 '전 세계 미식가가 이걸 노리고 방일'하는 화제 메뉴로 여전히 회자. 百名店 2025 선정</li>
+<li><strong>커뮤니티 근거</strong>: 타베로그 4점대(시리즈 상위는 4.2대)·百名店 단골, 創業者가 명점 '焼肉ジャン보' 출신이라는 계보가 마니아 커뮤니티의 신뢰 근거. 品川イッコー 등 육식 전문 블로거 '예약 난리나는 초유명점'으로 검증</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 예약 난이도 높음 — 이큐(一休) 레스토랑/식べ로그로 오픈 시각에 맞춰 미리 로그인·정보 입력 후 즉시 잡아야 함. 비교적 대형점이라 시간대를 비키면 가능성 있음. 외국인 관광객 비중이 늘어 'medium' 표기지만 질은 진짜</li>
+</ul>
+<h3>3. 蕃 YORONIKU (반 요로니쿠 / Ebisu Yoroniku)</h3>
+<ul>
+<li><strong>분류</strong>: 요로니쿠 계열 최상위 럭셔리 라인</li>
+<li><strong>위치/거리</strong>: 에비스역 동쪽 출구 도보 약 1분, GEMS에비스 8F. 시부야 2정거장 near (요로니쿠 계열 중 접근성 최고) · <code>near</code></li>
+<li><strong>시그니처</strong>: 남청산 요로니쿠의 흐름을 잇는 고급 라인. 같은 간판 '실크로스'에 더 럭셔리한 코스 구성. 역 도보 1분이라 시부야 호텔 베이스 부부에게 표참도 본점보다 동선이 편함</li>
+<li><strong>가격</strong>: 코스 약 11,800엔~(서비스료·오토시 별도)</li>
+<li><strong>2026 현재성</strong>: 스테디 상위 라인 — 食べログ 4.2대(실버 메달급)·百名店 入. 赤坂 みすじ·末広町 生粋(나마이키)와 함께 요로니쿠 계열 고급 라인으로 분류되는 '진짜'</li>
+<li><strong>커뮤니티 근거</strong>: 타베로그 4.2대 백명점, 타케마슐랭(タケマシュラン) 등 육식 전문 리뷰어가 계열 고급 라인으로 상세 평가. 인스타 큐레이션이 아닌 미식 블로그 기반</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 예약 필수, 이큐(一休) 레스토랑 네트 예약. 본점보다 자리·접근성 면에서 부부 2인 디너에 추천. 카운터·테이블·소인원 개실 옵션</li>
+</ul>
+<h3>4. うしごろ貫 恵比寿本店 (우시고로 칸 / Ushigoro Kan)</h3>
+<ul>
+<li><strong>분류</strong>: A5 흑모와규 야키니쿠 (개실·코스 강점)</li>
+<li><strong>위치/거리</strong>: 에비스역 도보권. 시부야 2정거장 near · <code>near</code></li>
+<li><strong>시그니처</strong>: A5 국산 흑모와규 赤身(살코기) 위주, 미야자키산 어린 암소 고집. 예약 한정 코스에서만 나오는 샤토브리앙·특상 아부리(살짝 구운) 스시·최상 사로인 스키야키. 호리고타츠 테이블·반개실로 부부가 차분히 즐기기 좋음</li>
+<li><strong>가격</strong>: 코스 약 1만~1.5만엔대, 샤토브리앙 포함 코스는 예약 수량 한정</li>
+<li><strong>2026 현재성</strong>: 스테디 — 'うしごろ' 브랜드 자체가 도쿄 야키니쿠 손꼽히는 간판으로 자리 잡음. 百名店 2025(에비스) 선정</li>
+<li><strong>커뮤니티 근거</strong>: 타베로그 百名店 2025 공식 선정(에비스역). うしごろ 계열은 식通 사이 '리즈너블하게 우시고로 퀄을 맛보는 라인'으로 평가, 핫페퍼·식べ로그 리뷰 다수에서 '와규 시오 하라미 매우 부드럽다' 확인</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 샤토브리앙·아부리 스시는 코스 예약 한정·수량 제한이라 예약 시 코스 지정 필수. 접대·기념일 수요가 많아 주말 디너는 조기 예약 권장</li>
+</ul>
+<h3>5. 焼肉ジャンボ はなれ (야키니쿠 잠보 하나레 / Yakiniku Jumbo Hanare)</h3>
+<ul>
+<li><strong>분류</strong>: 전국 굴지 예약난점 와규 야키니쿠 (요로니쿠 원류 계보)</li>
+<li><strong>위치/거리</strong>: 혼고산초메(本郷三丁目)역 도보 5분. 시부야에서 멀어 far (예약 난이도 최상, 진짜 마니아 목적지) · <code>far</code></li>
+<li><strong>시그니처</strong>: 엄선 A5 흑모와규 + 그날만 들어오는 희소부위. 요로니쿠 창업자의 수련처이자 '잠보 계보'의 본류 — 부드러운 와규 야키니쿠의 원점을 보고 싶은 부부에게 '성지순례'급. 흑모와규 규동(소고기덮밥)도 명물</li>
+<li><strong>가격</strong>: 디너 1.5만엔 안팎~</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — '전국에서 가장 예약 어려운 야키니쿠' 타이틀을 수년째 유지. 百名店 단골</li>
+<li><strong>커뮤니티 근거</strong>: Retty·구르나비·개인 블로그(모토료코 등)에서 '常時 1~2개월 대기'로 일관 보고. 예약 난이도 자체가 실력의 방증으로 커뮤니티가 인정하는 케이스</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 예약 필수·난이도 최상. Tablecheck로 희망일 '1개월+1일 전 0:00' 해제 — 23:55경 로그인·정보 입력 끝내고 0시에 즉시 잡아야 함. 1팀 2시간제, 20분 노쇼 시 취소. 6/19~21 단기 체류로는 사실상 당일 자리 어려움 → 도쿄行 확정 즉시 1개월 전부터 도전해야 현실적</li>
+</ul>
+<h3>6. 浅草今半 国際通り本店 (아사쿠사 이마한 / Asakusa Imahan)</h3>
+<ul>
+<li><strong>분류</strong>: 스키야키·샤브샤브 노포 (메이지 28년 창업)</li>
+<li><strong>위치/거리</strong>: 아사쿠사, 고쿠사이도리 본점. 시부야에서 멀어 far (관광 아사쿠사와 묶기 좋음) · <code>far</code></li>
+<li><strong>시그니처</strong>: 전국에서 고른 최상급 흑모와규 '암소만(メス牛のみ)' 엄선. 고베규 암소는 융점이 낮아 체온에 녹을 만큼 부드러움 — '부드러운 소고기' 도메인에 정확히 부합하는 스키야키/샤브 정석. 차분한 좌식 공간</li>
+<li><strong>가격</strong>: 스키야키 코스 점심 합리·디너 1만엔 안팎~ (부위·코스별 변동)</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(1세기+) — 유행과 무관하게 '일본의 맛'으로 검증된 스키야키 노포. 야키니쿠와 다른 결의 부드러운 소고기 경험을 원하면 1순위</li>
+<li><strong>커뮤니티 근거</strong>: VOKKA 명점 특집·식べ로그 마토메에서 '특상 클래스는 부드럽고 지방이 입에서 바로 녹는다'는 구체 후기 다수. 노포 평판 기반이라 인스타 유행과 무관</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 아사쿠사 관광(센소지)과 묶어 점심 코스로 즐기면 가성비·동선 모두 유리. 주말 점심 예약 권장. ※ 같은 '이마한'이라도 닌교초今半 본점은 2026년 신축공사 휴업 공지 있으니 닌교초점은 영업 확인 필수</li>
+</ul>
+<h3>7. ピーター・ルーガー 東京 (피터 루거 / Peter Luger Tokyo)</h3>
+<ul>
+<li><strong>분류</strong>: 뉴욕 노포 드라이에이징 스테이크 (서양식·赤身)</li>
+<li><strong>위치/거리</strong>: 에비스(에비스 가든플레이스 인근). 시부야 2~3정거장 near~far 경계 · <code>near</code></li>
+<li><strong>시그니처</strong>: 뉴욕 본점 직계 드라이에이징 USDA 프라임 포터하우스. 표면은 바삭·향, 씹을수록 旨味가 올라오는 '숙성 살코기' 스타일 — 와규 사시(마블링)와 정반대 결의 '부드러움 + 씹는 맛'을 원하는 부부에게 대비 경험. 2021 상륙 이후 식통 주목 지속</li>
+<li><strong>가격</strong>: 포터하우스 디너 2인 2만~3만엔대(부위·인원별)</li>
+<li><strong>2026 현재성</strong>: 2021 상륙 후 '지금도 화제'인 현재성 — 2014 우루프강 붐, 2021 피터 루거 상륙으로 도쿄 스테이크씬 재점화의 중심</li>
+<li><strong>커뮤니티 근거</strong>: Time Out Tokyo '주목 스테이크 12선' 등 매체 + 식통 리뷰. 사시 위주 와규에 물린 미식가가 '赤身·숙성'으로 갈아타는 흐름의 대표격으로 커뮤니티 언급</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 예약 강력 권장(주말 디너 혼잡). 본점 방식대로 포터하우스를 2인분 통으로 주문 후 잘라 나눠 먹는 구성 — 부부 2인에 최적. 마블링 와규를 기대하면 결이 다르니 '숙성 살코기'임을 인지하고 선택</li>
+</ul>
+<h3>8. ステーキハウス 听 (폰드 / Pound) 긴자점</h3>
+<ul>
+<li><strong>분류</strong>: 교토 본점 숙성 와규 스테이크 전문</li>
+<li><strong>위치/거리</strong>: 긴자역 도보 2분. 시부야에서 멀어 far (관광·쇼핑과 묶기) · <code>far</code></li>
+<li><strong>시그니처</strong>: 약 45일 숙성고에서 숙성시킨 본격 와규. 赤身과 시모후리(마블링)의 균형·旨味가 고르게 높은 뼈붙은 리브로스가 간판. 와인셀러·숙성고를 보며 먹는 와모던 공간. 100g 약 1,600엔으로 먹을 양만큼 선택</li>
+<li><strong>가격</strong>: 리브로스 100g 약 1,600엔(양 조절 가능), 1인 1만~1.5만엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 — 교토 본점 명성의 긴자 분점으로 숙성 와규 스테이크 정석. 사시 와규와 서양 드라이에이징의 중간 결</li>
+<li><strong>커뮤니티 근거</strong>: VOKKA·식べ로그 키워드(熟成肉/A5) 특집에서 '모든 요소가 고품질로 정리됨'이라는 구체 평가. 매체·블로그 기반, 인스타 행렬집 아님</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 양을 100g 단위로 고를 수 있어 2인 조절 편함. 예약 권장. 긴자 쇼핑·관광 동선과 묶으면 효율적</li>
+</ul>
+<h3>9. 旬熟成 六本木店 (슌주쿠세이 / Shunjuku-sei)</h3>
+<ul>
+<li><strong>분류</strong>: 숙성육 명점 (니쿠캇포 결)</li>
+<li><strong>위치/거리</strong>: 롯폰기역 도보 10분, 아자부주반 인근. 시부야에서 멀어 far · <code>far</code></li>
+<li><strong>시그니처</strong>: 흑모와규 샤토브리앙이 1순위 인기. 고기·와인·조미료 모두 국산 고집('재팬 퀄리티'). 40~50대 미들 세대 중심의 시크한 공간 — 차분한 부부 디너에 적합</li>
+<li><strong>가격</strong>: 샤토브리앙 포함 코스 1.5만엔 안팎~</li>
+<li><strong>2026 현재성</strong>: 스테디 — 아자부주반 격전지에서 '압도적 평가'를 받는 숙성육 명점으로 정착</li>
+<li><strong>커뮤니티 근거</strong>: 식べ로그 熟成肉 특집·VOKKA에서 '아자부주반에서 압도적 평가'로 명시. 매체·리뷰 기반 평판</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 샤토브리앙은 인기·한정이라 예약 시 지정 권장. 롯폰기·아자부 야경 산책과 묶기 좋음</li>
+</ul>
+<h3>10. [주의·대비용] 和牛食べ放題 체인 — 炭治郎 渋谷·太樹苑 渋谷 등</h3>
+<ul>
+<li><strong>분류</strong>: 와규 무한리필(食べ放題) 체인 — 인스타·관광객 유입형</li>
+<li><strong>위치/거리</strong>: 시부야역 도보 2~5분 core (접근성만 좋음) · <code>core</code></li>
+<li><strong>시그니처</strong>: 'A5 와규 식べ放題' 'OO품 무한' 마케팅으로 SNS·예약사이트 상단 노출. 접근성과 가격 퍼포먼스는 좋지만, 사용자가 경계하는 '유행·싸고 질은 그저 그런' 전형. 진짜 부드러운 와규 경험과는 결이 다름</li>
+<li><strong>가격</strong>: 무한 코스 6,000~8,000엔대</li>
+<li><strong>2026 현재성</strong>: 2026 현재 예약사이트(핫페퍼·OZmall) 상단에 계속 노출되는 유행형 — 신상 아님, 마케팅 노출형</li>
+<li><strong>커뮤니티 근거</strong>: 핫페퍼·favy·OZmall 등 '예약 유도형 큐레이션'이 주 노출원. 타베로그 식通 리뷰에는 '高評価店인데 고기 맛·육즙 없었다'는 辛口 후기가 별도로 존재 — 노출 채널과 실평이 갈리는 전형</li>
+<li><strong>인스타 유행 위험</strong>: <code>high</code></li>
+<li><strong>실전 팁</strong>: 이 부부 기준(품질·진정성 우선, 가성비 무시)에는 비추천 — 정직하게 high로 표기해 배제 권고. 시부야 도보권 진짜는 위의 '炭火焼 유지'를 1순위로. 무한리필이 목적이 아니라면 굳이 갈 이유 없음</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-5" class="sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">커피투어</h2>
+    </div>
+    <div class="prose"><p>시부야 호텔 베이스에 가장 잘 맞는 구성은 <strong>'오쿠시부 도보 커피 클러스터'를 베이스로 깔고, 정점 한 곳을 예약 방문</strong>하는 방식입니다.</p>
+<p><strong>시부야 도보권</strong> — About Life Coffee Brewers(도겐자카, 시부야역 도보 5분)는 오니바스가 운영하는 작은 스탠드라 원두는 본점급인데 한복판에서 한 잔 들고 출발하기 좋습니다(같은 부지에 크래프트맥주 미켈러). 오쿠시부(요요기공원 옆 도미가야)로 올라가면 Fuglen Tokyo(노르웨이 본점의 해외 1호, 라이트로스트, 낮 커피·밤 칵테일), Little Nap Coffee Stand(공원 옆 동네 명물), The Coffeeshop ROAST WORKS(자가배전, 드립백 선물용)가 한 산책으로 묶입니다.</p>
+<p><strong>1~2정거장</strong> — Onibus Coffee 나카메구로 본점(나카메구로역 도보 1분, 전차 지나가는 2층 창가)은 '동네 단골이 사랑하는 따뜻한 한 잔', Switch Coffee 메구로는 '좋은 원두만 있으면 집에서도 맛있다'는 철학의 원두 판매 순수파입니다.</p>
+<p><strong>정점(예약)</strong> — Koffee Mameya Kakeru(키요스미시라카와, 시부야서 30~40분)는 2026 World's 100 Best 세계 28위로, 같은 원두를 콜드브루·드립·에스프레소·커피 칵테일로 변주해 내주는 '커피 오마카세'(코스 5,000엔~, 1시간 45분, 카운터 4석)입니다. 가성비 무관·품질 기준인 부부에게 이번 투어의 정점이지만 <strong>완전 예약제·당일 불가</strong>라 지금 슬롯을 잡아야 합니다. 가는 김에 키요스미 블루보틀 1호점·Allpress와 묶으면 반나절 '커피의 거리'가 됩니다.</p>
+<p><strong>원두 사올 곳</strong> — Koffee Mameya 표참도(12종 이상을 약국처럼 진열, 바리스타가 취향을 물어 '내 원두'를 처방), ROAST WORKS·Switch·Rokumei(스크램블스퀘어 2026.3 신상) 드립백.</p>
+<p><strong>대비축으로 키사텐 한 곳</strong>을 끼우면 '한국과 다른 일본 커피문화'가 살아납니다. 茶亭 羽當(시부야 미야마스자카, 1989년, 넬드립·도자기 잔)이나 名曲喫茶 ライオン(도겐자카, 1926년 창업으로 <strong>2026년 100주년</strong>, 거대 스피커로 클래식만 감상, 촬영·대화 금지)을 권합니다.</p>
+<p><strong>거를 것</strong> — Bear Pond Espresso(시모키타)는 품질은 인정되나 사진금지·14시 이후 에스프레소 중단·응대 기복·행렬로 '경험 소비' 성격이 강합니다. 느긋한 카페를 원하면 비추, 컬트 경험을 원할 때만 14시 이전에.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">커피투어 — 리서치 원본 13건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 도쿄 스페셜티 커피 투어 (시부야 클러스터 + 키요스미시라카와·메구로·시모키타 far)
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>현지 커뮤니티(타베로그·Reddit·note·일본 커피 블로그·BRUTUS/Time Out)가 실제로 미는 축은 '레어 원두 극장(Glitch) vs 동네 단골이 사랑하는 실력(Onibus·Switch·About Life)'의 두 갈래입니다. 이 부부는 가성비가 아니라 품질·진정성 기준이므로, 시부야 도보권에서 손쉽게 마시는 진짜 한 잔(About Life·Fuglen·Little Nap·ROAST WORKS, 모두 오쿠시부 산책 한 코스로 묶임)을 베이스로 깔고, 도쿄 커피 투어의 정점으로 키요스미 Koffee Mameya Kakeru(2026 세계 28위, 예약 오마카세 5,000엔~)를 1회 예약 방문으로 박는 구성을 추천합니다. Kakeru는 당일·워크인 불가·2개월 전 예약이라 지금(6월 중순) 19~21일 슬롯을 즉시 잡아야 합니다. 원두 구매처는 Koffee Mameya 표참도(셀렉트숍·내 취향 처방)와 Switch·ROAST WORKS·Rokumei 신상이 강합니다. 인스타 함정 경고: Bear Pond(시모키타)는 품질은 인정되나 사진금지·14시 에스프레소 중단·응대 기복·행렬로 '경험 소비' 성격이 강해 insta_risk=high로 정직히 표기했습니다 — 느긋한 카페를 원하면 비추, 컬트 경험을 원할 때만. Glitch·Fuglen·Onibus는 사진 수요는 있으나 평판은 실력 기반이라 medium입니다. 스페셜티만 돌면 단조로우니 정통 키사텐 1곳(茶亭羽當=넬드립 분위기, 名曲喫茶ライオン=2026년 100주년·사진/대화 금지 클래식)을 대비축으로 끼우면 '한국과 다른 일본 커피문화'를 부부가 함께 체감할 수 있습니다. 미검증: 각 점포의 2026년 6월 19~21일 정확한 영업·휴무는 방문 전 공식 인스타/구글맵으로 최종 확인 필요(특히 Kakeru 예약 슬롯, Bear Pond 영업일).</p>
+<h2>항목 (13건)</h2>
+<h3>1. About Life Coffee Brewers 도겐자카 본점 (アバウトライフコーヒーブリュワーズ / About Life Coffee Brewers Dogenzaka)</h3>
+<ul>
+<li><strong>분류</strong>: 스페셜티 에스프레소·핸드드립 스탠드 (오니바스 ONIBUS 계열 운영)</li>
+<li><strong>위치/거리</strong>: 시부야 도겐자카, JR·각선 시부야역 도보 5분 (호텔에서 가장 가까운 진짜 한 잔) · <code>core</code></li>
+<li><strong>시그니처</strong>: 오니바스가 운영하는 작은 스탠드라 원두 퀄리티는 오니바스 본점급인데 시부야 한복판에서 서서 마실 수 있는 게 핵심입니다. 좌석 거의 없는 테이크아웃 위주, 라떼/플랫화이트 한 잔의 밸런스가 정석. 둘이서 산책 시작점으로 한 잔씩 들고 출발하기 좋습니다.</li>
+<li><strong>가격</strong>: 라떼 약 500~600엔, 드립 약 500엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 (2016~), 오니바스 계열 신뢰도로 꾸준히 마니아 추천</li>
+<li><strong>커뮤니티 근거</strong>: 오니바스(ONIBUS) 직영 — 일본 커피 블로그·food blog에서 '시부야에서 가장 손쉽게 마시는 진짜 한 잔'으로 반복 언급. 트립어드바이저 4.5(시부야 5400곳 중 상위권)지만 인스타 포토존이 아니라 원두 평판으로 큰 곳</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 좌석 없다시피 하니 테이크아웃 전제로. 같은 부지에 덴마크 크래프트맥주 Mikkeller(미켈러)가 붙어 있어 낮 커피·밤 맥주 동선이 됩니다. 오전에 호텔 나와 첫 잔으로 추천.</li>
+</ul>
+<h3>2. Fuglen Tokyo (フグレン トウキョウ / Fuglen Tokyo)</h3>
+<ul>
+<li><strong>분류</strong>: 노르웨이 오슬로 본점의 해외 1호점, 북유럽식 얕은 로스팅(라이트로스트) + 낮 카페·밤 칵테일바</li>
+<li><strong>위치/거리</strong>: 시부야 도미가야(富ヶ谷)·요요기공원 옆, 도쿄메트로 요요기코엔역 도보 4분 / 시부야역 도보 약 20분 (오쿠시부 '안쪽 시부야') · <code>core</code></li>
+<li><strong>시그니처</strong>: 단독주택을 개조한 북유럽 빈티지 공간에서 마시는 노르딕 라이트로스트. 과일향·산미가 살아있고 묵직하지 않은 투명한 한 잔이 시그니처입니다. '빨간 새' 로고가 간판. 낮(DAY LIFE 커피)과 밤(NIGHT LIFE 칵테일바)으로 나뉘어, 부부가 산책 후 햇볕 쬐며 커피 또는 저녁 칵테일까지 한 곳에서 가능합니다.</li>
+<li><strong>가격</strong>: 커피 약 410엔, 카푸치노 약 520엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 (2012 진출), 오쿠시부 커피·관광 동선의 앵커</li>
+<li><strong>커뮤니티 근거</strong>: 타베로그 약 3.6, goodcoffee.me 등 일본 커피 미디어 고정 등재. 노르딕 빈티지 가구도 판매하는 진성 북유럽 브랜드라 인테리어 포토 수요는 있으나 라이트로스트 평판이 본체</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 오쿠시부(요요기공원·도미가야) 도보 커피 클러스터의 출발점으로 잡으세요. 외국인 단골 많아 영어 가능. 햇 좋은 날 오픈에어/창가 카운터석 노립니다. 밤엔 에일맥주·칵테일.</li>
+</ul>
+<h3>3. The Coffeeshop ROAST WORKS (ザ・コーヒーショップ ロースト ワークス)</h3>
+<ul>
+<li><strong>분류</strong>: 자가배전(自家焙煎) 스페셜티 로스터리, 개별포장 드립백이 화제</li>
+<li><strong>위치/거리</strong>: 시부야 도미가야(富ヶ谷), 요요기코엔역 도보권 — 오쿠시부 클러스터 · <code>core</code></li>
+<li><strong>시그니처</strong>: 도미가야에서 직접 로스팅하는 최고급 스페셜티. 최근 일본 커피 소믈리에가 야후뉴스 전문가 칼럼에서 '개별포장 드립코감리 코코아가 너무 맛있다'며 프로 해설을 붙여 화제가 된 곳. 부부 선물·기념품용 드립백 구매처로 특히 강합니다.</li>
+<li><strong>가격</strong>: 드립 한 잔 약 500엔대, 드립백 선물용 다수</li>
+<li><strong>2026 현재성</strong>: 스테디+2026 재조명 (소믈리에 칼럼으로 드립백이 다시 화제)</li>
+<li><strong>커뮤니티 근거</strong>: Yahoo!뉴스 전문가(커피 소믈리에 Kazu) 칼럼 추천, coffee-labo 등 원두 전문 블로그 시부야 추천 리스트 상위. 인스타보다 '원두·드립백 품질'로 언급됨</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 마시는 것보다 '집·선물용 드립백·원두 구매처'로 동선에 넣으면 가성비 높습니다. 오쿠시부 산책 중 Fuglen·Little Nap과 묶어서.</li>
+</ul>
+<h3>4. Little Nap COFFEE STAND (リトルナップ コーヒースタンド)</h3>
+<ul>
+<li><strong>분류</strong>: 동네 커피 스탠드 (도미가야에 자가배전 로스터스 별도 운영)</li>
+<li><strong>위치/거리</strong>: 시부야 도미가야, 오다큐선 요요기하치만역 도보 5분 — 공원과 선로 사이 작은 스탠드 · <code>core</code></li>
+<li><strong>시그니처</strong>: 공원 옆 작은 스탠드에서 자가배전 원두로 내리는 동네 명물. 관광지 느낌 없이 현지 동네 커피 분위기를 그대로 경험할 수 있는 곳입니다. 오쿠시부 산책 루트의 자연스러운 한 정거장.</li>
+<li><strong>가격</strong>: 드립·라떼 약 450~600엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석, 현지인·외국인 단골 혼재 동네 명소</li>
+<li><strong>커뮤니티 근거</strong>: non-no·코트립 등 일본 매체 오쿠시부 산책 코스 단골, 자가배전 평판. 인스타 행렬 맛집이 아니라 '동네에서 사랑받는' 포지션</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 좌석 적으니 테이크아웃 전제. Fuglen→Little Nap→ROAST WORKS를 한 산책으로 묶으면 오쿠시부 커피 3연속이 됩니다.</li>
+</ul>
+<h3>5. KOFFEE MAMEYA 표참도 (コーヒー マメヤ / Koffee Mameya Omotesando)</h3>
+<ul>
+<li><strong>분류</strong>: 원두 셀렉트숍형 스페셜티 (자가배전 아님 — 국내외 로스터 엄선) — '커피 약국'</li>
+<li><strong>위치/거리</strong>: 시부야구 진구마에, 도쿄메트로 오모테산도역 도보권 / 시부야역 2정거장 (오모테산도 코히 자리) · <code>core</code></li>
+<li><strong>시그니처</strong>: 12종 이상의 엄선 원두를 약국처럼 진열하고, 바리스타가 한 팀당 15~20분씩 취향을 물어 추천·시음시켜 내 원두를 찾아주는 곳. 카운터만 있고 의자가 없는 진성 빈 셀렉트숍. 도쿄 원두 구매처 최고봉 중 하나로, 부부가 '내 취향 원두'를 처방받아 사 오기에 최적입니다.</li>
+<li><strong>가격</strong>: 테이스팅 후 한 잔 약 1,000~1,999엔대, 원두 봉지 구매 가능</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 (오모테산도 코히 후신), 수년째 주말 행렬 유지</li>
+<li><strong>커뮤니티 근거</strong>: 타베로그 약 3.52(192리뷰), Retty·CafeSnap 등 등재. World's 100 Best 운영사(Mameya 브랜드)로 마니아 신뢰 두터움. 행렬은 있으나 포토존이 아닌 '원두 상담' 때문</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 바리스타 3명뿐이라 회전이 느립니다. 주말은 오픈 직후 또는 평일 방문 권장. 원두 사 올 거면 여기. 더 깊은 체험을 원하면 아래 키요스미의 Kakeru(예약제)로.</li>
+</ul>
+<h3>6. Onibus Coffee 나카메구로 본점 (オニバスコーヒー 中目黒 / Onibus Coffee Nakameguro)</h3>
+<ul>
+<li><strong>분류</strong>: 스페셜티 로스터리 본점(2층 목조 개조 가옥) — 도쿄 3세대 커피 대표주자</li>
+<li><strong>위치/거리</strong>: 나카메구로(中目黒), 도큐 도요코선 나카메구로역 도보 1분 — 시부야에서 1정거장 · <code>near</code></li>
+<li><strong>시그니처</strong>: About Life·도쿄 곳곳 스탠드의 원두를 굽는 로스팅 본점. 오래된 목조 가옥 2층, 전차가 지나가는 창가 자리가 명물. '글릿치가 레어 원두 극장이라면 오니바스는 동네 단골이 사랑하는 따뜻한 한 잔'이라는 평이 정확합니다. 반려동물 동반 가능, 베이킹도 좋음.</li>
+<li><strong>가격</strong>: 드립·라떼 약 500~650엔, 원두 판매</li>
+<li><strong>2026 현재성</strong>: 스테디 정석, 마니아 커뮤니티의 '안전한 정답'</li>
+<li><strong>커뮤니티 근거</strong>: Reddit·영어권에서도 '글릿치보다 분위기·접근성으로 사랑받는 동네 favorite'로 반복 평가. 자가배전 본점이라 원두 신뢰도 높음. 인스타 사진은 많지만 행렬 유행이 아닌 실력 기반</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 시부야에서 도요코선 1정거장이라 부담 없음. 나카메구로 운하 산책·쇼핑과 묶기 좋습니다. 작아서 자리 경쟁 있음 — 창가 2층석 노립니다.</li>
+</ul>
+<h3>7. Switch Coffee Tokyo 메구로 본점 (スイッチコーヒー目黒 / Switch Coffee Meguro)</h3>
+<ul>
+<li><strong>분류</strong>: 순수파 자가배전 로스터리 (호주 트레이닝 출신 오너 오니시 마사히로, 2013~)</li>
+<li><strong>위치/거리</strong>: 메구로(目黒), JR·메트로 메구로역 도보권 — 시부야에서 2정거장. 별도 시부야 분점·니혼바시 K5점도 있음 · <code>near</code></li>
+<li><strong>시그니처</strong>: 좌석 거의 없이 바깥 벤치뿐인 미니멀 로스터리. '좋은 원두만 있으면 집에서 내려도 맛있다'는 철학으로 원두 판매에 진심인 순수파. 깔끔한 맛·아름다운 코르타도로 마니아 사이 평판이 두터운, 자랑할 것 없는 듯 자랑스러운 한 잔입니다.</li>
+<li><strong>가격</strong>: 코르타도·드립 약 500~600엔, 원두 판매 강함</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 (2013~), 진성 커피인의 underrated 추천 단골</li>
+<li><strong>커뮤니티 근거</strong>: Time Out·Reddit·일본 블로그에서 '작고 숨어있지만 enthusiast가 찾는 곳'으로 평가. 인스타 큐레이션보다 원두·로스팅 실력 기반</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 앉을 데 거의 없으니 테이크아웃 또는 원두 구매 중심. 편하게 앉고 싶으면 니혼바시 K5점(보태니컬 분위기)이 대안. 원두 사 오기 좋습니다. 시부야 분점도 있어 동선 유연.</li>
+</ul>
+<h3>8. KOFFEE MAMEYA -Kakeru- (コーヒー マメヤ カケル / Koffee Mameya Kakeru)</h3>
+<ul>
+<li><strong>분류</strong>: 예약제 커피 오마카세 코스 (콜드브루·푸어오버·커피 칵테일/목테일)</li>
+<li><strong>위치/거리</strong>: 키요스미시라카와(清澄白河), 고토구 히라노 — 도쿄메트로/도에이 키요스미시라카와역. 시부야에서 약 30~40분 (far) · <code>far</code></li>
+<li><strong>시그니처</strong>: 2026년 World's 100 Best Coffee Shops 세계 28위·일본 2곳 중 하나. 바리스타가 1:1로 와인 테이스팅처럼 같은 원두를 콜드브루·드립·에스프레소·커피 칵테일·논알콜로 변주해 내주는 '커피 오마카세'의 선구자. 가성비 안 따지고 품질·진정성 기준인 이 부부에게 도쿄 커피 투어의 정점입니다.</li>
+<li><strong>가격</strong>: 코스 3종, 5,000엔~ (1시간 45분, 카운터 4인 한정)</li>
+<li><strong>2026 현재성</strong>: 2026 세계 인증·올해 화제 (CoffeeFest Madrid 2026 발표)</li>
+<li><strong>커뮤니티 근거</strong>: World's 100 Best 2026 #28, Sprudge 'coffee omakase' 심층 기사, note 상세 후기 다수. 전문가 패널 70%+공중투표 30% 기반 — 인스타 유행이 아닌 업계 인증</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 완전 예약제 — TableCheck로 최대 2개월 전부터 예약, 당일·워크인 불가. 2박3일 일정이면 지금(6월 중순) 19~21일 슬롯을 미리 확보해야 합니다. 카운터 전석, 1팀 최대 4인. 가는 김에 키요스미 Blue Bottle 플래그십·Allpress와 묶으면 '커피의 거리' 반나절.</li>
+</ul>
+<h3>9. GLITCH COFFEE &amp; ROASTERS 진보초 본점 (グリッチコーヒー / Glitch Coffee)</h3>
+<ul>
+<li><strong>분류</strong>: 초(超)얕은 로스팅 싱글오리진·게이샤 등 레어 원두 전문 자가배전</li>
+<li><strong>위치/거리</strong>: 진보초(神保町), 도쿄메트로 진보초역 도보권 — 시부야에서 약 20~25분 (긴자·시부야 분점도 있음) · <code>near</code></li>
+<li><strong>시그니처</strong>: 배전사 스즈키 키요카즈의 과일미·산미 극한 추구로 '홍차 같은 투명함'을 내는 도쿄 라이트로스트 아이콘. 선택한 원두의 향미 맵을 그려주는 등 레어 원두 극장. 묵직한 다크로스트나 밀크음료가 취향이면 안 맞고, 레어 싱글오리진의 놀라운 향을 블랙으로 즐길 사람용입니다.</li>
+<li><strong>가격</strong>: 한 잔 약 700~1,000엔+, 게이샤 등 레어로트는 더 높음(언급상 3,000엔대도)</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 + 확장(긴자·나고야·오사카), 호불호 논쟁의 중심</li>
+<li><strong>커뮤니티 근거</strong>: BRUTUS·Time Out 고정, Reddit '오버레이티드/언더레이티드' 논쟁 단골 — 원두·추출은 인정받되 직원 응대 기복·고가가 비판점. 인스타 사진 많으나 평판은 실력 기반</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 밀크음료 시키면 향이 묻히니 라이트로스트는 블랙으로. 응대가 갈린다는 후기 감안. 부부 중 한 명이라도 산미·플로럴 라이트로스트를 좋아해야 만족도 높습니다.</li>
+</ul>
+<h3>10. BEAR POND ESPRESSO (ベアポンドエスプレッソ)</h3>
+<ul>
+<li><strong>분류</strong>: 컬트 에스프레소 (Gibraltar·Dirty Latte) — 사진금지·14시 이후 에스프레소 중단 등 기행 규칙</li>
+<li><strong>위치/거리</strong>: 시모키타자와(下北沢), 오다큐·게이오 시모키타자와역 도보 — 시부야에서 1~2정거장 (far 감성·근거리) · <code>far</code></li>
+<li><strong>시그니처</strong>: 2009년 오픈 후 '도쿄 커피 메카'로 불린 전설. 오너 타나카가 14시 이후엔 '제대로 못 만든다'며 에스프레소를 안 내리고, 사진 촬영 전면 금지인 컬트 스폿. 카페라떼·Gibraltar는 탁월하다는 평. 단, 분위기·서비스가 친절~퉁명 사이를 오가 호불호가 큽니다.</li>
+<li><strong>가격</strong>: 에스프레소·라떼 약 600~900엔대</li>
+<li><strong>2026 현재성</strong>: 스테디(전설)지만 호불호 극단 — 신중 추천</li>
+<li><strong>커뮤니티 근거</strong>: Time Out·Reddit 모두 'mixed reviews'로 정직하게 기록 — 품질 옹호 vs 가격·약한 샷·응대 비판 공존. 사진금지라 인스타 바이럴은 아니나, 행렬·기행 규칙으로 '경험 소비' 성격이 강함</li>
+<li><strong>인스타 유행 위험</strong>: <code>high</code></li>
+<li><strong>실전 팁</strong>: 반드시 14시 이전 방문(이후 에스프레소 안 함). 사진 금지·작은 매장·주말 행렬·응대 기복을 감수할 사람만. 느긋하게 앉아 쉬는 카페를 원하면 비추 — '경험'을 원할 때만. 시모키타 쇼핑과 묶으면 동선은 효율적.</li>
+</ul>
+<h3>11. 茶亭 羽當 하토우 (さてい はとう / Sa-tei Hatou)</h3>
+<ul>
+<li><strong>분류</strong>: 정통 키사텐 — 핸드드립(넬드립 계열)·중후한 분위기, 1989년 창업</li>
+<li><strong>위치/거리</strong>: 시부야 미야마스자카(宮益坂) 옆 골목, 시부야역 도보 5분 — core 키사텐(옛 다방) · <code>core</code></li>
+<li><strong>시그니처</strong>: 시부야 한복판에 숨은, 긴 카운터와 묵직한 분위기의 정통 다방. 스페셜티 3세대와 대비되는 '일본식 다방 커피 문화'를 부부가 함께 경험하기 좋은 곳입니다. 한 잔 한 잔 정성껏 내리는 본격 커피와 도자기 잔의 격식이 핵심.</li>
+<li><strong>가격</strong>: 커피 약 800~1,000엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(1989~), 스페셜티 투어의 대비축으로 강력 추천</li>
+<li><strong>커뮤니티 근거</strong>: note '梯子喫茶' 기사·Hanako·旅色 등 키사텐 마니아 매체 고정 추천(난바 리나 등 키사텐 전문가 선정). 인스타 유행이 아닌 '시부야에 남은 진짜 다방'으로 언급</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 스페셜티만 돌면 단조로우니 키사텐 1곳을 끼워 '일본 커피문화 대비'를 만드세요. 입구가 눈에 안 띄니 미야마스자카 골목 확인. 근처 喫茶サテ라(사테라)와 '사다리 다방'으로 묶는 코스도 있음.</li>
+</ul>
+<h3>12. 名曲喫茶 ライオン 메이쿄쿠킷사 라이온 (Meikyoku Kissa Lion)</h3>
+<ul>
+<li><strong>분류</strong>: 명곡(클래식) 키사텐 — 거대 빈티지 스피커·사진금지·대화금지, 1926년 창업</li>
+<li><strong>위치/거리</strong>: 시부야 도겐자카(道玄坂) 2-19-13, 시부야역 도보 — core 명곡(클래식) 다방 · <code>core</code></li>
+<li><strong>시그니처</strong>: 1926년(쇼와 원년) 창업으로 2026년에 100주년을 맞는 도쿄 최고(最古)급 명곡다방. 1층 정면 거대 파이오니아 스피커를 향해 전 좌석이 배치되어 모두 클래식만 감상하는 공간 — 촬영·대화 금지. 커피보다 '소리와 시간'을 마시는 곳으로, 시부야의 다른 얼굴을 보여줍니다.</li>
+<li><strong>가격</strong>: 핫커피·크림소다·밀크셰이크 약 600~800엔대</li>
+<li><strong>2026 현재성</strong>: 2026 100주년 — 올해 화제이자 시간이 검증한 정석</li>
+<li><strong>커뮤니티 근거</strong>: Harumari TOKYO·junkissa.jp 등 키사텐 전문 미디어 100주년 특집. 사진금지 정책상 인스타 바이럴 불가 — 정반대의 '아날로그 진정성'으로 마니아층 두터움</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 촬영·대화 금지이니 '조용히 음악 감상'을 받아들일 때만. 영업 11:00~22:30, 연말연시 휴무. 커피 자체보다 분위기가 목적 — 부부가 말없이 한 시간 쉬어가는 경험. 도겐자카라 호텔에서 도보권.</li>
+</ul>
+<h3>13. ロクメイコーヒー 시부야 스크램블스퀘어점 (Rokumei Coffee Shibuya Scramble Square)</h3>
+<ul>
+<li><strong>분류</strong>: 나라(奈良) 발상 스페셜티 전문점, JCRC 배전 챔피언 감수 — 2026년 3월 신규 오픈</li>
+<li><strong>위치/거리</strong>: 시부야 스크램블스퀘어(渋谷スクランブルスクエア) 빌딩 내, 시부야역 직결 — core · <code>core</code></li>
+<li><strong>시그니처</strong>: 1974년 나라에서 시작한 스페셜티 전문점의 도쿄 2호점이 2026년 3월 5일 시부야역 직결 빌딩에 오픈. 일본 배전대회(JCRC) 우승 배전사 감수로 품질이 검증된 신상입니다. 역 직결이라 비·더위에도 접근 0분 — 부부 선물용 드립백 구매처로도 강합니다.</li>
+<li><strong>가격</strong>: 드립·라떼 약 500~700엔대, 드립백·원두 선물 다수</li>
+<li><strong>2026 현재성</strong>: 2026 신상 (2026년 3월 5일 오픈)</li>
+<li><strong>커뮤니티 근거</strong>: PR TIMES 공식 릴리스(2026.3) — 나라 본점은 JCRC 우승 이력의 진성 로스터. 신규 인스타 노출은 있으나 대회 우승 배전이라는 실력 기반</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 역 직결이라 '도착 직후/출발 직전' 한 잔과 원두·드립백 쇼핑에 최적. 신상이라 초반 혼잡 가능 — 평일·오픈 직후 권장. 가성비 안 따지는 부부라면 선물용 원두를 여기서 정리해도 좋습니다.</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-6" class="sec ">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">패션 쇼핑·로컬 브랜드</h2>
+    </div>
+    <div class="prose"><p>한국에서 사기 힘든 결로 좁혔습니다. <strong>오모테산도·진구마에에 일본 디자이너·셀렉트가 도보권으로 몰려 있어</strong> 하루 코스가 깔끔하게 나옵니다.</p>
+<ul>
+<li><strong>visvim F.I.L.</strong>(GYRE, 2024 리뉴얼) — 천연염색·핸드크래프트 아메리카나. 한국 정식 매장이 없어 실물·디테일을 보는 것 자체가 목적입니다(다운 20만엔+).</li>
+<li><strong>AURALEE</strong>(아오야마) — 자체 개발 원단의 미니멀 실루엣, 남녀 컬렉션이 한 매장이라 부부 동반에 최적.</li>
+<li><strong>NEPENTHES / Engineered Garments TOKYO</strong>(하라주쿠) — Needles 'Papillon' 트랙팬츠(2.5~3만엔)는 한국 셀렉트보다 색·소재가 압도적으로 넓습니다.</li>
+<li><strong>Mame Kurogouchi</strong>(아오야마, 여성) — 일본 여성 디자이너 정점급 플래그십. 부인 대상 한국 미입점.</li>
+<li><strong>KEISUKEYOSHIDA</strong>(신구마에, 2026.4 첫 직영) — 한국에 거의 안 들어온 도쿄 신진, 여행 타이밍과 딱 맞습니다.</li>
+</ul>
+<p><strong>에비스</strong>의 KAPITAL은 본점·LEGS·Duffle 3점이 도보 수분 거리라 한 번에 순례하고(보로 패치워크·데님, 나카메구로 커피와 묶음), <strong>빈티지는 시모키타자와와 코엔지 중 하루만</strong> 고르길 권합니다. 시모키타 MONK는 헬무트 랭·A.P.C. 아카이브를 큐레이션하는 셀렉트형(데이트 분위기), 코엔지는 물량·발굴·가격의 발굴형입니다. <strong>셀렉트숍</strong>은 DSM 긴자(매장 한정·익스클루시브, 7F 카페로 쉬어감)와 GR8(하라주쿠 라포레, 한국에서 보기 힘든 라인업)이 양축입니다.</p>
+<p><strong>타이밍 주의</strong> — HUMAN MADE의 사상 최대 플래그십(메이지도리)은 2026년 8~9월 오픈이라 이번엔 못 보고, Blue Bottle 카페가 붙은 Offline Store로 가면 됩니다(커피투어와 연결). hara주쿠 kinji류 관광 古着는 '비싸고 발굴 적음'으로 평가가 갈려 뺐습니다.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">패션쇼핑 — 리서치 원본 11건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 도쿄 패션 쇼핑 — 일본 로컬·디자이너 브랜드, 셀렉트샵, 빈티지·아카이브, 우라하라 (한국과 다른 결, 한국에서 사기 힘든 것 위주)
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>현지 커뮤니티 기준 '진짜'는 매체·전문가가 반복해 미는 곳(visvim GYRE, MONK, KAPITAL 에비스, NEPENTHES/Needles)이고, 이들은 인스타 행렬형이 아니라 빌더·마니아 레퍼런스라 insta_risk=low가 정직합니다. 한국과 다른 결·한국 미입점 기준으로는 KEISUKEYOSHIDA(2026.4 오픈 신상)와 Mame Kurogouchi(여성)가 부부 여행 타이밍·구성에 가장 잘 맞습니다.</p>
+<p>타이밍 주의 둘. ① HUMAN MADE의 史上 최대 旗艦 'HUMAN MADE TOKYO'(메이지도리)는 2026년 8~9월 오픈이라 6/19~21 여행엔 못 봅니다 — 이번엔 Blue Bottle 카페 병설 Offline Store로 가고(커피투어와 묶임), 대형점은 다음 방문 떡밥. ② Mame Kurogouchi 아오야마는 월~수 휴무라 토·일만 방문 가능(금요일 휴무).</p>
+<p>인스타 함정 구분. 하라주쿠 kinji류 관광 古着는 '비싸고 발굴 적음'으로 현지 평가가 갈리니 빈티지는 시모키타(MONK·BIG TIME)·코엔지로 보냈습니다. DSMG·HUMAN MADE·GR8 권의 NUBIAN은 인스타에도 많이 뜨지만 셀렉트·한정의 실체가 있어 medium/low로 정직하게 표기했습니다.</p>
+<p>동선 한 줄. 오모테산도·진구마에에 visvim·AURALEE·NEPENTHES·Mame·KEISUKEYOSHIDA·HUMAN MADE가 도보권으로 몰려 있어 하루 '디자이너+셀렉트' 코스, 에비스 KAPITAL은 나카메구로 커피투어와 묶고, 시모키타 또는 코엔지 중 하루 택일로 빈티지를 잡으면 2박3일에 깔끔합니다. 가격대는 전반적으로 고가지만 부부 기준이 품질·진정성이라 부합합니다(미검증: 영업시간·정기휴무는 시즌·연말연시 변동 가능, 방문 전 공식 확인 권장).</p>
+<h2>항목 (11건)</h2>
+<h3>1. visvim F.I.L. (비즈빔, F.I.L. TOKYO / GYRE 旗艦店)</h3>
+<ul>
+<li><strong>분류</strong>: 일본 디자이너 브랜드 플래그십 — 나카무라 히로키, 천연염색·핸드크래프트 아메리카나</li>
+<li><strong>위치/거리</strong>: 오모테산도 GYRE 빌딩 (東京都渋谷区神宮前5-10-1). 도쿄메트로 오모테산도역 도보 5분 · <code>core</code></li>
+<li><strong>시그니처</strong>: FBT 모카신·아이리스 다운·Social Sculpture 데님. 2024년 나카무라 히로키 직접 감수로 인테리어 전면 리뉴얼(홈랜드 무드·라이트 팔레트). 매장 자체가 작품이라 구경만 해도 가치</li>
+<li><strong>가격</strong>: 다운 20만엔+, 모카신 8만엔~, 티셔츠 2만엔대 — 고가</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(2006년 오픈) + 2024 리뉴얼로 현재성 갱신. 비즈빔 헤드는 일본에 직영 8개뿐이고 GYRE가 본진</li>
+<li><strong>커뮤니티 근거</strong>: superfuture(슈퍼퓨처)·Fashion Press 매장 가이드, r/japanesestreetwear에서 비즈빔 성지순례 1순위로 꾸준히 거론. 인스타 포토존이 아니라 빌더·마니아층 레퍼런스</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: GYRE 건물 안. 가격대 높으니 구매보다 실물·디테일 확인 위주여도 충분. 한국 정식 매장 없어 직구·리셀로만 접하던 브랜드라 부부가 실물 보는 것 자체가 목적</li>
+</ul>
+<h3>2. MONK (몽크 / モンク 下北沢)</h3>
+<ul>
+<li><strong>분류</strong>: 빈티지 &amp; 하이브랜드 아카이브 셀렉트 — A.P.C.·HELMUT LANG 등 디자이너 아카이브</li>
+<li><strong>위치/거리</strong>: 시모키타자와 (下北沢, 키타자와 2~3초메). 시부야에서 케이오이노카시라선 직통 5분권이나 빈티지 성지라 far로 분류 · <code>far</code></li>
+<li><strong>시그니처</strong>: 'Vintage &amp; Archive' 간판 그대로 일반 빈티지 + 헬무트 랭·A.P.C. 등 하이브랜드 과거 컬렉션을 아카이브로 큐레이션. 한 점 한 점 밀도가 높아 보는 것만으로 충실감</li>
+<li><strong>가격</strong>: 아카이브 디자이너 중심이라 빈티지치고 고가</li>
+<li><strong>2026 현재성</strong>: 스테디 명점이나 인스타가 아닌 잡지 추천으로 2026까지 살아남은 곳. 멘즈논노·MAP and SWATCH 등 패션 프로가 미는 '진짜'</li>
+<li><strong>커뮤니티 근거</strong>: MEN'S NON-NO('服のプロが通う本当は教えたくない'), mapandswatch.net 단독 소개. 행렬 맛집형이 아니라 안목 있는 셀렉트로 평가</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 인스타로 입고 공지하니 방문 전 계정 체크. 시모키타는 키타자와 2~3초메에 古着 250+ 점포 밀집 — MONK를 코어로 BIG TIME(남녀 모두 즐기기 좋아 커플 추천)·DESERT SNOW를 묶어 도보 반나절 코스</li>
+</ul>
+<h3>3. KAPITAL 에비스 (キャピタル 恵比寿 — 본점·LEGS·Duffle 3점 클러스터)</h3>
+<ul>
+<li><strong>분류</strong>: 일본 디자이너 데님·패치워크 — 오카야마 쿠라시키 본사, 부로·사시코·BORO 공예</li>
+<li><strong>위치/거리</strong>: 에비스 (恵比寿南2초메, JR 에비스역 서구 도보 9분). 나카메구로 인접 · <code>near</code></li>
+<li><strong>시그니처</strong>: 보로(BORO) 패치워크·사시코·켄델·스마일 모티프. LEGS점은 데님 100종+ 특화. 에비스미나미에 본점·LEGS·Duffle 3개가 도보 수분 거리에 몰려 있어 한 번에 순례</li>
+<li><strong>가격</strong>: 데님 3~5만엔, 보로 아우터 10만엔+ — 고가지만 공예값</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(1985 창업, 도쿄 13개점) — 해외 셀럽·아메카지 마니아가 일본 와서 꼭 들르는 브랜드. 유행이 아니라 공예 기반이라 시즌 무관</li>
+<li><strong>커뮤니티 근거</strong>: Wikipedia 브랜드 항목·Time Out Tokyo·Foursquare 다수 리뷰. r/japanesestreetwear·r/visiblemending에서 보로 디테일로 컬트적 지지</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 본점(恵比寿南2-20-2)→LEGS(2-23-12)→Duffle 순으로 도보 동선. 11:00-20:00 연중무휴(공식 변동 가능, 방문 전 확인). 한국 매장 없음·직구 비싸서 현지 가격·재고가 메리트</li>
+</ul>
+<h3>4. NEPENTHES TOKYO / ENGINEERED GARMENTS TOKYO (네펜테스 — Needles·EG 직영)</h3>
+<ul>
+<li><strong>분류</strong>: 일본 셀렉트·자체 브랜드 — Needles(나비나비 자수 트랙팬츠)·Engineered Garments</li>
+<li><strong>위치/거리</strong>: 하라주쿠·오모테산도 (神宮前5-44-1 / 5-45-12). 오모테산도역 도보 5분 · <code>core</code></li>
+<li><strong>시그니처</strong>: Needles 'Papillon(나비)' 트랙팬츠·모헤어 카디건, EG 워크웨어. 네펜테스가 전개하는 브랜드를 직영에서 풀 라인업으로. Needles는 한국 셀렉트에서도 품번·색이 한정적이라 본진이 압도적</li>
+<li><strong>가격</strong>: 트랙팬츠 2.5~3만엔, EG 셔츠 2만엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 + 꾸준한 신상. 트랙팬츠는 수년째 스트리트 스테디셀러라 색·소재 변주가 매 시즌 화제</li>
+<li><strong>커뮤니티 근거</strong>: NEPENTHES 공식·Fashion Press, r/japanesestreetwear에서 Needles 트랙팬츠는 입문 그레일로 반복 언급. 인스타 유행이 아니라 커뮤니티 정석템</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 11:30-20:00 연중무휴(공식 변동 가능). 본점과 EG TOKYO가 신구마에 한 블록 차이라 같이 도는 동선. 사이즈·색이 한국보다 폭넓어 실착 후 고르기 좋음</li>
+</ul>
+<h3>5. KEISUKEYOSHIDA Tokyo (케이스케 요시다 — 첫 직영 旗艦店, 2026 신상)</h3>
+<ul>
+<li><strong>분류</strong>: 일본 신진 디자이너 — 요시다 케이스케, 페미닌·스트리트 믹스의 유니섹스</li>
+<li><strong>위치/거리</strong>: 하라주쿠 인근 신구마에 (神宮前3-30-12 VORT神宮前三丁目 B1-A). 메이지진구마에역 도보 10분 · <code>core</code></li>
+<li><strong>시그니처</strong>: 2015 데뷔한 도쿄 디자이너의 브랜드 첫 직영점이 2026년 4월 17일 오픈. 데뷔 2015FW~최신 2026FW 아카이브 전시(~5/10), 앤트워프 그래픽 디자이너 Tom Tosseyn 콜라보 한정 티(16,500엔)</li>
+<li><strong>가격</strong>: 콜라보 티 16,500엔, SS26 컬렉션 중심</li>
+<li><strong>2026 현재성</strong>: 2026 신상 — 올해 화제. 6월 부부 여행 시점에 막 오픈한 따끈한 직영점이라 타이밍이 딱 맞음</li>
+<li><strong>커뮤니티 근거</strong>: WWD JAPAN·FASHIONSNAP·装苑ONLINE·honeyee 등 일본 패션 전문매체가 일제히 단독 보도. 인스타 큐레이션이 아니라 업계 매체 기준 신상</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 12:00-20:00, 수·목 휴무. 한국에 거의 안 들어온 도쿄 신진이라 '한국과 다른 결' 정확히 부합. 메이지도리에서 살짝 안쪽 VORT 빌딩 지하 — 구글맵 핀 필수</li>
+</ul>
+<h3>6. DOVER STREET MARKET GINZA (도버 스트리트 마켓 긴자 / DSMG)</h3>
+<ul>
+<li><strong>분류</strong>: 콘셉트 셀렉트 백화점 — 코무데가르송 카와쿠보 레이 디렉션, 7개 층</li>
+<li><strong>위치/거리</strong>: 긴자 (銀座). 시부야에서 긴자선으로 직결, 약 20~25분 · <code>near</code></li>
+<li><strong>시그니처</strong>: 3~4F 디자이너스, 5F 발렌시아가·프라다, 6F 나이키·이솝, 7F 카페·북숍. 매장 한정·익스클루시브가 핵심. 2026년 2월 NEIGHBORHOOD x DSMG 한정 컬렉션 발매 등 콜라보가 상시</li>
+<li><strong>가격</strong>: 층마다 천차만별 — 디자이너스~럭셔리</li>
+<li><strong>2026 현재성</strong>: 스테디 랜드마크(2012 오픈) + 상시 갱신되는 한정 콜라보로 현재성 유지</li>
+<li><strong>커뮤니티 근거</strong>: Numero·Fashion Map Tokyo·Trip Moments 가이드, 패션 커뮤니티 공통 '긴자 가면 필수' 코스. 공간 자체가 인스타에도 많이 뜨나 셀렉트·한정의 실체가 있어 유행만은 아님</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 한정템은 매장에서만 풀려 온라인 못 구하는 게 진짜 메리트. 7F 로즈 베이커리 카페로 쉬어가기 좋아 커플 동선에 적합. 시부야 베이스면 마지막 날 긴자 묶어서</li>
+</ul>
+<h3>7. GR8 (그레이트 / ラフォーレ原宿 2.5F)</h3>
+<ul>
+<li><strong>분류</strong>: 하이엔드+스트리트 믹스 셀렉트 — Kiko Kostadinov·Martine Rose·sacai·NEIGHBORHOOD 등</li>
+<li><strong>위치/거리</strong>: 하라주쿠 라포레 (神宮前). 메이지진구마에역 인접 · <code>core</code></li>
+<li><strong>시그니처</strong>: 카니예 웨스트도 애용했다는 명 셀렉트. 키코 코스타디노프·마틴 로즈·자크뮈스·리메이드·세인트 마이클 등 한국에서 보기 힘든 라인업 + GR8 익스클루시브. 와풍 외관</li>
+<li><strong>가격</strong>: 디자이너스 중심 고가</li>
+<li><strong>2026 현재성</strong>: 최근 확장 리뉴얼로 신규 브랜드·익스클루시브 대폭 추가 — 2026 갱신</li>
+<li><strong>커뮤니티 근거</strong>: 스니커덕·Fashion Press·Esquire HK 도쿄 스트리트 가이드 단골. 인스타보다 스트리트 마니아 레퍼런스로 거론</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 라포레 하라주쿠 2.5F. NUBIAN(누비안, 폭음·하이센스 점원의 원조 하라주쿠 스트리트 셀렉트, 시부야 PARCO에도 입점)과 함께 하라주쿠 스트리트 셀렉트 양대 축으로 묶어 돌기</li>
+</ul>
+<h3>8. AURALEE TOKYO (오라리 / 青山 旗艦店)</h3>
+<ul>
+<li><strong>분류</strong>: 일본 미니멀 디자이너 — 이와이 류타로, 남녀 컬렉션·원단 자체개발</li>
+<li><strong>위치/거리</strong>: 미나미아오야마 (南青山). 오모테산도역 도보권 · <code>core</code></li>
+<li><strong>시그니처</strong>: 도쿄 유일 노면 직영, 2017 오픈 후 2023년 B1 증床 리뉴얼(아라키 노부오 설계). 자체 개발 캐시미어·코튼 원단의 미니멀 실루엣 — 남녀 모두 입는 정제된 결</li>
+<li><strong>가격</strong>: 니트·셔츠 3~5만엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 + 2026.2 한큐우메다 간사이 첫 직영 등 확장 중. 미니멀 무드라 시즌 안 타는 스테디</li>
+<li><strong>커뮤니티 근거</strong>: WWD JAPAN·Fashion Press·이세탄 멘즈 브랜드 인덱스. 조용한 디자이너 팬층이 미는, 인스타 행렬과 무관한 정석</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 남녀 컬렉션이 한 매장에 있어 부부 동반에 최적. 오모테산도 visvim·NEPENTHES와 같은 권역이라 하루에 디자이너 코스로 묶기 좋음. 한국 셀렉트에도 일부 들어오나 풀 라인업·노면 직영 경험은 여기뿐</li>
+</ul>
+<h3>9. Mame Kurogouchi Aoyama (마메 쿠로고우치 / 青山 旗艦店, 여성)</h3>
+<ul>
+<li><strong>분류</strong>: 일본 여성 디자이너 플래그십 — 쿠로고우치 마이코, 전통·자연 모티프 + 첨단 텍스타일</li>
+<li><strong>위치/거리</strong>: 키타아오야마 (北青山3-8-3). 오모테산도 교차로에서 한 블록 안쪽 · <code>core</code></li>
+<li><strong>시그니처</strong>: 2023년 오픈한 브랜드 첫 플래그십(야나기하라 테루히로 공간 설계, 다실풍). 컬렉션 풀라인 + 액세서리·백·Basics까지. 곡선 실루엣과 오리지널 패턴이 시그니처</li>
+<li><strong>가격</strong>: 원피스·니트 고가 디자이너스</li>
+<li><strong>2026 현재성</strong>: 스테디 + SS26 Basics·26-27 AW(안개 산·일본 유리 영감) 신상 전개 — 부인 쪽 타깃에 현재성</li>
+<li><strong>커뮤니티 근거</strong>: Numero TOKYO·FASHIONSNAP·이세탄 Re-Style 단독 기획. 일본 여성 디자이너의 정점급으로 매체 평가, 인스타 의존 아님</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 목~일 13:00-20:00, 월~수 휴무 — 부부 여행이 금~일이라 토·일 방문 가능(금요일은 휴무 유의). 오모테산도 교차로 한 골목 안쪽이라 visvim·AURALEE와 같은 날 묶기. 부인 대상 한국 미입점 디자이너로 추천</li>
+</ul>
+<h3>10. HUMAN MADE OFFLINE STORE (휴먼메이드 / 神宮前, NIGO)</h3>
+<ul>
+<li><strong>분류</strong>: 일본 스트리트 — NIGO 주재, 하트·타이거·폴라베어 그래픽 + Blue Bottle 콜라보 카페</li>
+<li><strong>위치/거리</strong>: 진구마에 (神宮前2-6-6 슈와가이엔주택 1F). 가이엔마에·오모테산도 권역 · <code>core</code></li>
+<li><strong>시그니처</strong>: 최신 컬렉션 구매 + Blue Bottle Coffee 콜라보 카페 병설 — 쇼핑·커피투어를 한 곳에서. 'THE FUTURE IS IN THE PAST' 콘셉트</li>
+<li><strong>가격</strong>: 티 1만엔대~, 카페 별도</li>
+<li><strong>2026 현재성</strong>: 현 운영 직영. 단, 史上 최대 旗艦 'HUMAN MADE TOKYO'(메이지도리, 神宮前6-25-10, 3층 595㎡)는 2026년 8~9월 오픈 예정이라 6월 여행 시점엔 미오픈 — 이번엔 Offline Store로</li>
+<li><strong>커뮤니티 근거</strong>: HUMAN MADE 공식·Esquire HK 가이드. 인스타에도 많이 뜨나 NIGO 브랜드 실체가 있어 유행만은 아님. 다만 관광객 비중 높음</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 부부가 좋아하는 '커피투어'와 묶이는 포인트 — Blue Bottle 콜라보 카페가 핵심 메리트. 8월 메이지도리 대형 旗艦은 이번 여행엔 못 보니, 다음 방문 떡밥으로만. 6월엔 Offline Store 방문</li>
+</ul>
+<h3>11. 高円寺 古着 (코엔지 빈티지 거리 — 시모키타 대안)</h3>
+<ul>
+<li><strong>분류</strong>: 빈티지 밀집 거리 — 아메카지·유로 빈티지, 시모키타보다 가성비·발굴형</li>
+<li><strong>위치/거리</strong>: 코엔지 (高円寺). 시부야에서 환승 약 25~30분 · <code>far</code></li>
+<li><strong>시그니처</strong>: 下北沢·原宿과 함께 도쿄 3대 古着 거리. 시모키타가 '셀렉트·디자인'이면 코엔지는 '물량·발굴·가격' — 같은 아이템도 시모키타보다 싼 경우 多. BIG TIME 고엔지점은 넓고 50~70년대 아메카지가 묵직</li>
+<li><strong>가격</strong>: 노브랜드 빈티지~ 합리적, 마니아템은 별도</li>
+<li><strong>2026 현재성</strong>: 스테디 빈티지 성지. 관광 동선 밖이라 2026에도 로컬 비중 높아 진정성 유지</li>
+<li><strong>커뮤니티 근거</strong>: note(uedama_restart 高円寺vs下北沢 가격차 공략), 古着の町 비교글, TikTok '下北 vs 高円寺' 토론. 로컬·발굴파가 미는 곳</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 시모키타(MONK·BIG TIME)로 충분하면 굳이 둘 다 안 가도 됨 — 30% 여유분으로 제시. 더 깊이 파는 발굴형이면 코엔지, 큐레이션·데이트 분위기면 시모키타. 둘 중 하루 택일 권장</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-7" class="sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2 class="sec-title">캐릭터·특이 쇼핑</h2>
+    </div>
+    <div class="prose"><p><strong>굿즈의 90%는 시부야 파르코 6F 한 층에서 해결됩니다.</strong> Nintendo TOKYO(국내 1호 직영, 파르코 한정 젤다 가죽 토트백), 포켓몬센터 시부야(블랙 콘셉트), 점프숍(파르코 한정 클리어파일·복제원화)이 한 층에 모여 있고, 여행일과 겹치는 <strong>굿스마일 팝업</strong>(6F PIXEL, 6/11~7/5)에서 넨도로이드·POP UP PARADE 한정을 노릴 수 있습니다(인기품은 토요일 오전).</p>
+<p><strong>진짜 마니아 결은 나카노 브로드웨이에 반나절을 떼는 구조</strong>가 효율적입니다(시부야서 20~30분, far). 만다라케 30개 전문관 중 변야(브리키·초합금·괴수 소프비), 미크로관(킨케시·SD건담 지우개), SP7(쇼와 울트라맨·고지라 소프비)은 한국 입수 난이도가 최상이고, 같은 3F의 타코셰는 일반 유통 안 되는 인디 ZINE·아티스트 굿즈라 '진짜는 드물다'는 기준에 정확히 맞습니다. 근거도 nippon.com·MyFigureCollection 컬렉터 포럼이라 인스타 큐레이션이 아닙니다.</p>
+<p><strong>시부야 도보권 특이템</strong> — 헤이즈(구 도큐핸즈) 시부야점의 아코야 진주 가챠(1회 1,000엔, 정품 아코야 진주+증명서, 운영 40년 진주 전문기업)는 그 자리에서 뽑아 아내에게 선물하는 데이트성 아이템입니다. 빌리지 뱅가드 시부야 본점(괴짜 잡화 7,500종+)과 MAGNET 가챠(상시 800종+)도 돈키 좋아하는 취향과 겹칩니다.</p>
+<p><strong>유의</strong> — 치이카와·산리오·스밋코구라시는 한국에도 있으니 같은 매장이라도 '일본 점포 한정·돈키호테 한정·하라주쿠 각인'에만 집중해야 의미가 있습니다.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">캐릭터·특이쇼핑 — 리서치 원본 9건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 캐릭터 굿즈 + 특이/괴짜 쇼핑 (시부야 core · 나카노 브로드웨이 far)
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>핵심 동선 제안: 굿즈는 '시부야 파르코 6F 한 층(닌텐도·포켓몬·점프·굿스마일 팝업)'에서 90%를 해결하고, 진짜 마니아 결은 far인 '나카노 브로드웨이(만다라케 30개 전문관 + 타코셰 ZINE)'에 반나절을 따로 떼는 구조가 가장 효율적입니다. 여행일(6/19~21)에 굿스마일 팝업(6.11~7.5)이 정확히 겹치고, 6.6 발매 돈키호테 한정 치이카와도 부부가 이미 좋아하는 돈키호테와 자연스럽게 연결됩니다.</p>
+<p>인스타 함정 주의: 치이카와·산리오·스밋코구라시는 한국에도 이미 들어와 있어 '굿즈 자체'는 차별성이 약합니다. 같은 매장이라도 '일본 점포 한정·돈키호테 한정·하라주쿠 각인' 상품에만 집중해야 의미가 있습니다. 빌리지뱅가드·키디랜드·가챠 대형점은 관광객도 많지만(insta_risk medium) 본질은 물량·큐레이션이라 행렬 포토존 맛집과는 다릅니다.</p>
+<p>한 줄 인사이트: 사용자가 추구하는 '진짜는 드물다' 기준에 가장 부합하는 두 곳은 (1) 나카노 만다라케 변야·SP7의 쇼와 빈티지 괴수 소프비(한국 입수 난이도 최상)와 (2) 타코셰의 일본 인디 ZINE·아티스트 굿즈입니다 — 둘 다 컬렉터 커뮤니티(nippon.com·MyFigureCollection·서점탐방 매체)가 미는 곳이지 인스타 큐레이션이 아닙니다.</p>
+<p>미검증: 헤이즈 진주 가챠 2A층 설치·가격은 2021년 정보 기반이라 방문 전 공식(akoya-gacha.jp) 설치확인 권장. 치이카와랜드 '도쿄점' 단독 명칭은 확인 안 됨(하라주쿠점·이케부쿠로 파르코점·베이커리가 실재). 신상 발매일 입장 예약 여부는 공식 X 당일 확인 필요.</p>
+<h2>항목 (9건)</h2>
+<h3>1. 시부야 파르코 6F 사이버스페이스 시부야 (渋谷PARCO 6F CYBERSPACE SHIBUYA) — Nintendo TOKYO·포켓몬센터·점프숍·캡콤스토어·죠죠월드 집결층</h3>
+<ul>
+<li><strong>분류</strong>: 공식 캐릭터 플래그십 집적층 (한 층에 닌텐도·포켓몬·점프·캡콤·죠죠)</li>
+<li><strong>위치/거리</strong>: 시부야 우다가와초 15-1, JR 시부야역 하치코 출구 도보 5분 (호텔에서 도보권) · <code>core</code></li>
+<li><strong>시그니처</strong>: Nintendo TOKYO(국내 1호 직영, 300㎡, 시부야 파르코 한정 젤다 가죽 토트백·패스케이스 등 어른용 라인)·포켓몬센터 시부야(블랙 콘셉트 매장)·점프숍(파르코 한정 점타 클리어파일, 고급 복제원화)을 한 번에. 6F 외부 계단의 도트 마리오 동상이 포토스폿</li>
+<li><strong>가격</strong>: 굿즈 ~수천 엔, 젤다 가죽 토트백 등 1만 엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(2019 오픈, 도쿄 굿즈 성지의 표준)이자 2026 현행 — 한정 라인은 수시 교체</li>
+<li><strong>커뮤니티 근거</strong>: collabo-cafe·파르코 공식 피처가 '日本의 성지'로 묶어 소개, 영업 10:00~21:00. 인스타 큐레이션이 아니라 공식 직영 집적이라 신뢰도 최상</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 주말(금~일) 신상 발매 타이밍엔 입장 정리권/대기 발생. 닌텐도와 포켓몬센터는 바로 옆이지만 포켓몬 굿즈는 포켓몬센터 쪽이 메인(닌텐도 매장 내 포켓몬은 소량). 한 층에서 다 도니 부부 동선 효율 최고</li>
+</ul>
+<h3>2. GOOD SMILE POP UP STORE in 시부야 파르코 6F PIXEL (그굿스마일 팝업)</h3>
+<ul>
+<li><strong>분류</strong>: 2026 한정 피규어·인형 팝업 (넨도로이드·POP UP PARADE·HELLO! GOOD SMILE)</li>
+<li><strong>위치/거리</strong>: 시부야 파르코 6F 이벤트스페이스 PIXEL (위 파르코 6F 내) · <code>core</code></li>
+<li><strong>시그니처</strong>: 넨도로이드·POP UP PARADE 피규어와 인형 다수. 굿스마일 직영 팝업이라 한정·선행 상품이 핵심</li>
+<li><strong>가격</strong>: 피규어 수천~1만 엔대</li>
+<li><strong>2026 현재성</strong>: 2026 신상/현행 화제 — 회기 2026.6.11(목)~7.5(일), 여행일(6/19~21)과 정확히 겹침</li>
+<li><strong>커뮤니티 근거</strong>: 굿스마일컴퍼니 공식 이벤트 페이지(goodsmile.com/event/6881) 고지. 제조사 직영이라 진정성 확실</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 6F 한 층 안에서 닌텐도·포켓몬·점프와 같이 도는 동선. 인기 한정은 회기 초반 품절 가능 — 토요일 오전 권장</li>
+</ul>
+<h3>3. 만다라케 나카노점 (まんだらけ 中野店) in 나카노 브로드웨이 — 변야(変や)·미크로관·스페셜관 등 30개 전문관</h3>
+<ul>
+<li><strong>분류</strong>: 서브컬처 본산 — 빈티지 괴수 소프비·초합금·중고 피규어·레트로 완구 전문관 집합</li>
+<li><strong>위치/거리</strong>: 나카노 브로드웨이 1~4F, JR 나카노역(中野駅) 북쪽 사몰 상점가 끝. 시부야에서 전철 약 25~30분 · <code>far</code></li>
+<li><strong>시그니처</strong>: 장르별 30개 전문관이 핵심. 변야(4F: 브리키·초합금·괴수 소프비·변신사이보그 빈티지)·미크로관(2F: 킨케시·SD건담 지우개인형·80~90년대 식완, 매장 4배 확장+지브리 굿즈)·스페셜관/SP7(쇼와 울트라맨·고지라 소프비, 인디 아티스트 소프비)</li>
+<li><strong>가격</strong>: 중고 넨도로이드 양호품 합리적, 빈티지 소프비는 수만 엔~</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(1980 창업, 서브컬처 발신지)이자 2026 현행 — SP7 주년 한정 소프비 등 신상도 상시</li>
+<li><strong>커뮤니티 근거</strong>: nippon.com·MyFigureCollection 컬렉터 포럼·Time Out이 '언더그라운드 아키하바라'로 평가. 컬렉터 다수가 아키바보다 레트로·원오브어카인드 셀렉션이 압도적이고 덜 붐빈다고 추천 — 인스타 맛집이 아니라 마니아 본산</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 남쪽 입구 키오스크에서 상시 갱신되는 가이드북을 챙겨 전문관 위치 파악. 3F 직통 에스컬레이터가 빠름. 가성비만 보면 교외 Hobby Off가 더 싸지만 레트로·희귀품은 여기가 최고. 부부가 반나절 보물찾기로 잡으면 딱</li>
+</ul>
+<h3>4. 타코셰 (TACO ché / タコシェ) — 나카노 브로드웨이 ZINE·자주제작본 서점</h3>
+<ul>
+<li><strong>분류</strong>: 사부컬처 ZINE·자주제작본·인디 아티스트 굿즈 (관광객용 아님, 진성 마니아 성지)</li>
+<li><strong>위치/거리</strong>: 나카노 브로드웨이 3F (만다라케와 같은 건물), JR 나카노역 북쪽 도보 5분 · <code>far</code></li>
+<li><strong>시그니처</strong>: 약 10평 소규모지만 일반 유통 안 되는 ZINE·소부수 출판·아티스트 굿즈. 'CD도 상업 인디가 아니라 진짜 인디의 인디'가 모인 곳</li>
+<li><strong>가격</strong>: ZINE·소책자 수백~수천 엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(1993 창업, 잡지 가로 안테나숍 출발) — 한국에 거의 없는 일본 인디 출판·굿즈 결</li>
+<li><strong>커뮤니티 근거</strong>: ITmedia·bookshop-lover·alku tokyo 등 서점 탐방 매체가 '관광객용 아닌 본물'로 평가, 오쓰키 켄지·나카가와 쇼코 등 개성파 아티스트 단골. 사용자 '진짜는 드물다' 기준에 정확히 부합</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 만다라케 도는 김에 같은 3F에서 들르면 됨. 한국에 없는 일본 자주제작 출판물·아티스트 굿즈를 노리는 부부에게 차별 포인트. 입구 간판 일러스트는 도모자와 미미요</li>
+</ul>
+<h3>5. 헤이즈 시부야점 가챠월드 — 아코야 진주 가챠 (ハンズ渋谷 あこや真珠ガチャ)</h3>
+<ul>
+<li><strong>분류</strong>: 특이 잡화 — 진짜 아코야 진주가 나오는 가챠 (한국에 없는 결)</li>
+<li><strong>위치/거리</strong>: 헤이즈(구 도큐핸즈) 시부야점 2A층, 시부야 우다가와초 12-18 (호텔 도보권) · <code>core</code></li>
+<li><strong>시그니처</strong>: 1회 1,000엔(500엔 2개)으로 정품 아코야 진주 액세서리가 반드시 나옴. '아코야 진주 증명서'+1년 보증서 동봉. 3,000엔 프리미엄 라인은 하나구슬(花珠) 진주</li>
+<li><strong>가격</strong>: 1,000엔 / 프리미엄 3,000엔</li>
+<li><strong>2026 현재성</strong>: 스테디 화제(2019 아코야 조개 대량폐사 계기 에히메 우와지마 업체가 시작) — 가챠로 진짜 진주라는 발상이 계속 회자</li>
+<li><strong>커뮤니티 근거</strong>: 헤이즈 공식 힌트매거진·아코야진주가챠 공식(akoya-gacha.jp) 고지. 운영 40년 진주 전문기업이라 진정성 확실 — 인스타 포토용이 아니라 실제 착용 가능한 본물</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 데이트성 선물로 부부에게 딱(아내에게 그 자리에서 뽑아 선물). 핸즈는 진주 가챠 외에도 신상 잡화·문구가 강점이라 같이 둘러보기. 2A층 설치 — 방문 전 공식 설치확인 페이지로 층 재확인 권장(2021년 정보 기준이라 미검증)</li>
+</ul>
+<h3>6. 빌리지 뱅가드 시부야 본점 (ヴィレッジヴァンガード 渋谷本店) — '놀 수 있는 책방' 괴짜 잡화</h3>
+<ul>
+<li><strong>분류</strong>: 특이/괴짜 잡화 — 서브컬처 잡화·기발한 굿즈·캐릭터 코너</li>
+<li><strong>위치/거리</strong>: 시부야 센터가이, 시부야역 A3 출구 도보 0분, B1~B2층 (호텔 도보권) · <code>core</code></li>
+<li><strong>시그니처</strong>: '마음을 풍요롭게 하는 낭비' 콘셉트의 오모시로 잡화 7,500종+. 입구에 아사노 이니오 특별 작화 일러스트, 매일 이벤트 기획. 치이카와·오판츄토끼 굿즈 코너도 충실</li>
+<li><strong>가격</strong>: 잡화 수백~수천 엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(서브컬 잡화의 표준) + 2026 현행 신상 — 상품 회전 매우 빠름</li>
+<li><strong>커뮤니티 근거</strong>: enjoytokyo·MATCHA·Yahoo맵 리뷰가 '서브컬 성지'로 소개. 관광객도 오지만 본질은 일본 괴짜 잡화 큐레이션 — 인스타 행렬 맛집류와는 결이 다름</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 치이카와·산리오는 한국에도 들어와 있으니, 여기선 한국에 안 들어온 기발한 일본 잡화·니치 코너를 노릴 것. 좁고 빽빽한 매장 자체가 구경거리. 돈키호테 좋아하는 부부 취향과 정확히 겹침</li>
+</ul>
+<h3>7. 키디랜드 하라주쿠 (キデイランド原宿) — 4개층 캐릭터 굿즈 테마파크</h3>
+<ul>
+<li><strong>분류</strong>: 종합 캐릭터 굿즈 (산리오·스누피·디즈니·치이카와·스밋코구라시)</li>
+<li><strong>위치/거리</strong>: 진구마에 6-1-9, 오모테산도 쪽(다케시타 거리 반대편), 메이지진구마에역 도보권. 시부야에서 전철 1~2정거장 · <code>near</code></li>
+<li><strong>시그니처</strong>: B1~4F 통째 캐릭터 굿즈. 어른용 고급·실용 라인과 프라모델도 다수. 한정 행사로 '실(스티커) 코너 추첨 판매'가 마니아 사이 화제</li>
+<li><strong>가격</strong>: 산리오 하라주쿠 한정 마스코트홀더 2,596~2,794엔, 커스텀 아크릴참 748엔, 티셔츠 3,960엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 + 2026 화제 — 2026.1 실코너 추첨제 입장(5분 교체·최대 10점), 4월 카사네 테토 팝업(오모카도점) 등 한정 이벤트 상시</li>
+<li><strong>커뮤니티 근거</strong>: 사진 정리 블로그·살롱키노에 등 실(シール) 마니아 커뮤니티가 추첨 이벤트를 깊게 다룸. 다만 산리오·스밋코구라시는 한국에도 있어 차별성은 한정 굿즈/실 코너에서 나옴</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 산리오 직영 하라주쿠점(한정 네코하라주쿠 마스코트 등)도 인근. 한국에 흔한 캐릭터는 패스하고 '하라주쿠 한정' 각인 상품·실 코너에 집중. 추첨 이벤트는 신분증 확인·정리권 필요</li>
+</ul>
+<h3>8. 치이카와랜드 원주쿠점 / 치이카와 베이커리 + 돈키호테 한정 치이카와 (ちいかわらんど·ちいかわベーカリー)</h3>
+<ul>
+<li><strong>분류</strong>: 2026 최대 화제 캐릭터 IP — 치이카와 상설·한정·콜라보</li>
+<li><strong>위치/거리</strong>: 치이카와랜드 하라주쿠점(2025.10 확장 리뉴얼)·치이카와 베이커리(오모테산도 오모카도 3F), 시부야 1~2정거장 · <code>near</code></li>
+<li><strong>시그니처</strong>: 점포 한정 스탬프(점포별 다른 그림)·시즌 신상. 치이카와 베이커리는 빵 모티프 오리지널 빵+굿즈. 2026.6.6~ '돈키호테 한정 치이카와 굿즈' 발매</li>
+<li><strong>가격</strong>: 굿즈 수백~수천 엔, 베이커리 빵 단품</li>
+<li><strong>2026 현재성</strong>: 2026 최신 화제 정점 — 6월 돈키호테 한정 굿즈, 7.24 영화 치이카와 개봉+7월 콜라보 이벤트 직전. 산리오×치이카와 슈퍼마켓 콜라보 전 25종 진행 중</li>
+<li><strong>커뮤니티 근거</strong>: charagoo·치이카와인포 공식·치이카와랜드 공식 X가 한정/선행/이벤트 상시 고지. IP 자체는 한국 유입됐지만 일본 점포 한정·돈키호테 한정은 현지에서만</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 부부가 이미 좋아하는 돈키호테와 연결 — 6.6 발매 돈키호테 한정 치이카와를 돈키호테 갈 때 같이 노릴 것. 신상 발매일엔 입장 예약 필요할 수 있으니 공식 X 사전 확인. 한국에도 치이카와가 있으니 '일본/돈키호테 한정'에만 집중</li>
+</ul>
+<h3>9. 드림캡슐 MAGNET by SHIBUYA109 — 스크램블 교차로 뷰 대형 가챠 (ドリームカプセル MAGNET)</h3>
+<ul>
+<li><strong>분류</strong>: 특이 쇼핑 — 대형 캡슐토이(가챠) 전문, 상시 800종+</li>
+<li><strong>위치/거리</strong>: MAGNET by SHIBUYA109, 시부야 스크램블 교차로 정면 (호텔 도보권) · <code>core</code></li>
+<li><strong>시그니처</strong>: 상시 800종 이상을 스크램블 교차로 내려다보며 돌리는 시부야 한정 체험. 같은 시부야권 #C-pla 센터가이 기함점(우주 콘셉트·재고 디지털 검색)도 대안</li>
+<li><strong>가격</strong>: 1회 300~500엔대 다수</li>
+<li><strong>2026 현재성</strong>: 스테디 + 2026 현행 — 가챠 라인업은 주 단위 신상 교체, 시부야 한정 아이템 포함</li>
+<li><strong>커뮤니티 근거</strong>: 도큐 공식(tokyu.co.jp) 2026 가챠 스폿 6선, 가챠 마니아 블로그(ころころカプセル通信) 대형점 면수 랭킹이 근거. 인스타용이라기보다 가챠 자체 물량이 본질</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: MAGNET 안에는 가챠 외에 캐릭터 가챠 신상이 빨리 들어옴. 부부가 잔돈으로 가볍게 즐기기 좋고, 한국에 없는 니치 IP 가챠를 노릴 것. 100엔 동전 미리 준비</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-8" class="sec ">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">08</span>
+      <h2 class="sec-title">꼭 사야 할 제품·로컬 브랜드</h2>
+    </div>
+    <div class="prose"><p>이 영역은 한국 직구몰 실판매·약사 커뮤니티·일본 뷰티 매체가 교차 검증해 진짜와 유행을 가르기 쉽습니다. <strong>시부야역 도보 3분의 로프트(B1~6F, 밤 9시까지)와 핸즈 스크램블스퀘어 두 곳</strong>에서 대부분 해결됩니다.</p>
+<ul>
+<li><strong>드럭스토어</strong> — 메라노CC 미백 화장수(약 900엔, 2025.8 처방 리뉴얼)+미용액(약 1,000엔), 오타이산 소화제(48포 스틱, 약 1,200~1,400엔), 로이히츠보코 동전파스(156매, 약 1,500엔, 한국 가격의 약 2배라 현지 구매 가치). 의약품은 자가소비 반입 한도가 있어 동일 품목 과다 구매는 피하세요.</li>
+<li><strong>문구</strong> — 미도리 MD노트·2026 다이어리(만년필 번짐 적은 종이), 트래블러스 노트(소가죽 커스텀, 나카메구로 본점은 카페 병설이라 커피투어와 묶임).</li>
+<li><strong>주방·생활</strong> — 야나기 소리 스테인리스 커틀러리·볼(MoMA 영구소장 계보), 노다호로 화이트시리즈 법랑(90년 노포 수제), 스와다/키야 손톱깎이(마니아가 꼽는 일본제 그루밍 명품).</li>
+<li><strong>식품 선물</strong> — 야마모토야마 녹차 선물세트, 야와타야 이소고로 시치미(나가노 노포, 메탈 캔이라 짐에 안정적). 백화점 데파치카에서 한 번에 비교 구매가 효율적입니다.</li>
+</ul>
+<p>도쿄바나나류 양산 과자 선물세트는 품질 기준이 달라 뺐습니다.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">꼭 사야 할 제품 — 리서치 원본 10건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 일본 가면 꼭 사오는 제품 + 로컬 브랜드 (드럭스토어·문구·주방·식품·숨은 브랜드) — 2026 최신
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>이 도메인의 핵심 인사이트: 화장품·식품의 인스타 행렬형과 달리, '일본 사올 것'은 한국 직구몰(리틀재팬·백엔샵)의 실판매 데이터, 한국 약사 스레드(Threads @hanyaksa_), 클리앙 실측 비교, 일본 @cosme/美的/VOCE 처방 분석이 교차 검증하는 영역이라 진짜와 유행을 가르기 쉽습니다. 추천 10종은 대부분 insta_risk=low의 검증된 픽으로 채웠습니다. 동선 전략: 부부가 굳이 멀리 안 가도 시부야역 도보 3분의 ① 시부야 로프트(B1~6F, 밤 9시까지)와 ② 핸즈 스크램블스퀘어 두 곳에서 드럭스토어템(메라노CC·오타이산·로이히츠보코)·문구(미도리 MD)·주방(야나기 소리·노다호로)·그루밍(손톱깎이)을 대부분 해결합니다. 트래블러스 노트 본점(나카메구로)은 커피투어 동선에 자연스레 붙고, 식품 명가(야마모토야마·야와타야)는 백화점 데파치카에서 한 번에 비교 구매하면 효율적입니다. 함정 주의: '한국인 인기 1위' 류 기사에 흔한 도쿄바나나·과자 선물세트는 대량 유통 양산품이라 품질 기준이 다르니 이번 리스트에선 배제했고, 트래블러스 노트 매장 한정 굿즈만 medium으로 표시했습니다. 의약품은 자가소비 반입 한도가 있어 동일 품목 과다 구매는 피하는 게 좋습니다(미검증 — 세관 기준은 출발 전 확인 권장). 가격은 2026년 6월 기준 대략치로, 면세·점포별 변동이 있습니다.</p>
+<h2>항목 (10건)</h2>
+<h3>1. 메라노CC 약용 시미대책 미백 화장수 (メラノCC 薬用しみ対策美白化粧水, Melano CC)</h3>
+<ul>
+<li><strong>분류</strong>: 드럭스토어 스킨케어 — 비타민C 미백 화장수</li>
+<li><strong>위치/거리</strong>: 시부야 로프트 B1F·핸즈 스크램블스퀘어, 어느 마쓰모토키요시·코코카라파인이든 (JR 시부야역 도보 3분) · <code>core</code></li>
+<li><strong>시그니처</strong>: 1000엔 미만 프티프라 비타민C의 왕좌. 2025년 8월 30일 처방을 전면 리뉴얼해 지속형 비타민C 유도체 농도를 끌어올렸습니다. 같은 라인의 미백 미용액(美容液, 약 1000엔)을 함께 담는 게 정석입니다.</li>
+<li><strong>가격</strong>: 화장수 약 900엔, 미용액 약 1000엔</li>
+<li><strong>2026 현재성</strong>: 2026 스테디-핫 — 2025년 8월 리뉴얼판이 현재 매대 주력. 화장수 시장 2년 연속 판매수량 1위(로토제약 발표).</li>
+<li><strong>커뮤니티 근거</strong>: LIPS·@cosme·美的·VOCE 2026 드럭스토어 랭킹 단골 상위, 한국 직구몰(리틀재팬·백엔샵) 베스트셀러. 인스타 큐레이션이 아니라 일본 뷰티 미디어 처방 분석과 한국 약사 스레드에서 반복 추천.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 면세 카운터에서 의약부외품(医薬部外品)이라 약 바코드 먼저 찍고 통합 결제. 노멀(사라사라)·시토리(촉촉) 두 타입이 있어 건성이면 시토리. 부부 둘이 쓰면 2~3개 묶음 추천.</li>
+</ul>
+<h3>2. 오타이산 (太田胃散) 분말 스틱형 + A정제</h3>
+<ul>
+<li><strong>분류</strong>: 식품 아닌 OTC 의약품 — 생약 소화제</li>
+<li><strong>위치/거리</strong>: 시부야 권 드럭스토어 어디든·돈키호테 시부야 (JR 시부야역 도보권) · <code>core</code></li>
+<li><strong>시그니처</strong>: 140년 역사의 일본 국민 소화제. 계피·회향·정향 등 생약이 과식·속쓰림에 즉효. 여행용은 48포 스틱형이 실용적이고, 가루가 부담되면 A정제 알약 버전.</li>
+<li><strong>가격</strong>: 48포 스틱형 약 1200~1400엔, 정제 45/120/300정</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 시간이 검증한 한국인 필수 픽. 한국 드럭스토어에선 입수난이라 현지 구매 가치 큼.</li>
+<li><strong>커뮤니티 근거</strong>: 한약사 Threads(@hanyaksa_) 일본 약국 베스트셀러 비교, 리틀재팬·백엔샵 직구 1순위 품목, 일본 지구의걷는법·나무위키 한국인 인기 토산 랭킹. 인스타가 아니라 실수요 직구 데이터.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 의약품은 자가소비 반입 한도가 있으니 동일 품목 과다 구매 주의. 카베진(キャベジン 위점막 보호·내성 없음)과 용도가 달라 둘 다 챙기면 보완적.</li>
+</ul>
+<h3>3. 로이히츠보코 동전파스 (ロイヒつぼ膏, 니치반) + 사론파스</h3>
+<ul>
+<li><strong>분류</strong>: OTC 의약품 — 어깨결림·요통 첩부제</li>
+<li><strong>위치/거리</strong>: 시부야 권 드럭스토어·돈키호테 (JR 시부야역 도보권) · <code>core</code></li>
+<li><strong>시그니처</strong>: 지름 2.8cm 원형 온감 파스. 일본인보다 한국인에게 압도적으로 팔려 매대 제일 잘 보이는 자리에 대량 진열될 정도. 부모님 선물 정번. 사론파스는 냄새가 적고 사이즈가 알맞아 함께 인기.</li>
+<li><strong>가격</strong>: 로이히츠보코 156매 약 1500엔대, 사론파스 대용량 박스</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 한국 가격의 약 2배라 현지에서 다량 구매하는 고정 수요.</li>
+<li><strong>커뮤니티 근거</strong>: 일본 매체 '韓国人に人気の日本土産' 랭킹에서 반복 1위권, 도큐핸즈 추천, 한국 직구몰 고정 품목. 인스타 유행이 아니라 수년째 실구매 검증.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 온감(빨강)·강력(금색) 등 종류 구분. 의약품 반입 한도 확인. 부피 작아 캐리어에 부담 적음.</li>
+</ul>
+<h3>4. 트래블러스 노트 2026판 '더 트래블러스 스피릿' (TRAVELER'S notebook, 미도리/디자인필)</h3>
+<ul>
+<li><strong>분류</strong>: 문구 — 소가죽 커스텀 노트 시스템</li>
+<li><strong>위치/거리</strong>: TRAVELER'S FACTORY 나카메구로 본점 (도큐토요코선 나카메구로역 도보 3분) / 시부야 로프트·핸즈에서도 본체·리필 취급 · <code>near</code></li>
+<li><strong>시그니처</strong>: 소가죽 커버에 MD페이퍼 속지를 끈으로 엮는 평생 커스텀 노트. 2026판 한정 다이어리 리필·하판(下敷き)·클리어홀더·커스텀 스티커가 핵심. 나카메구로 본점은 과자공장을 개조한 공간에 한정 굿즈와 카페(트래블러스 블렌드 커피)까지.</li>
+<li><strong>가격</strong>: 본체 약 4500~5000엔, 리필·커스텀 아이템 각 300~1000엔대</li>
+<li><strong>2026 현재성</strong>: 2026 신상 — 2026 다이어리 테마 'THE TRAVELER'S SPIRIT', 후반기(7~12월) 리필도 출시. 매장 한정품은 발매 직후 품절되기도.</li>
+<li><strong>커뮤니티 근거</strong>: ことりっぷ·enjoytokyo 나카메구로 가이드, 미도리 공식·TFA 온라인숍, 한국 다이어리 커뮤니티(브런치·휘뚜) 고정 추천. 마니아 문구 커뮤니티의 정통 픽.</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 나카메구로 본점 12:00~20:00, 화요일 휴무, 골목 안이라 길 찾기 주의. 커피투어 동선과 묶기 좋음. 시부야에서 빠르게 끝내려면 로프트/핸즈에서 본체+리필만 사도 충분.</li>
+</ul>
+<h3>5. 미도리 MD노트·MD다이어리 2026 + 트래블러스 한정 문구</h3>
+<ul>
+<li><strong>분류</strong>: 문구 — 노트·다이어리·만년필 친화 종이</li>
+<li><strong>위치/거리</strong>: 시부야 로프트 B1F 스테이셔너리·핸즈 스크램블스퀘어 (JR 시부야역 도보 3분) · <code>core</code></li>
+<li><strong>시그니처</strong>: 미도리 자사 MD페이퍼를 쓰는 무지·일기 노트. 하루한페이지(히비노)·위클리·버티컬 포맷, A5/A6/B6. 만년필 번짐 적은 종이질이 강점. 한국과 다른 일본 문구 매대를 통째로 구경하기 좋은 곳.</li>
+<li><strong>가격</strong>: MD노트 약 700~1500엔, 다이어리 약 1500~2500엔</li>
+<li><strong>2026 현재성</strong>: 2026 신상 — 2026 다이어리 라인업 매대 전개 중.</li>
+<li><strong>커뮤니티 근거</strong>: 미도리 공식·DiGJAPAN 도큐핸즈 추천 TOP, 한국 문구 블로그·휘뚜 등 다이어리 커뮤니티. 실사용 마니아 추천.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 로프트는 밤 9시까지·시부야역 3번 출구 도보 3분. 코쿠요·펜텔·토모에리버 등 펜·종이도 같은 층에서 함께. 부피·무게 가벼워 선물 분배 쉬움.</li>
+</ul>
+<h3>6. 야나기 소리 스테인리스 볼·커틀러리·편수냄비 (柳宗理, Yanagi Sori)</h3>
+<ul>
+<li><strong>분류</strong>: 주방/생활잡화 로컬 브랜드 — 평생 쓰는 스테인리스</li>
+<li><strong>위치/거리</strong>: 시부야 핸즈 스크램블스퀘어 주방 코너·로프트, 또는 긴자 이토야 (JR 시부야역 직결) · <code>core</code></li>
+<li><strong>시그니처</strong>: 용(用)의 미를 추구한 디자이너 야나기 소리의 명품. 18-8 스테인리스 볼은 입자 맞물림이 정교한 롱셀러. 부담되면 매일 쓰는 커틀러리(스푼·포크)부터, 욕심나면 편수냄비·프라이팬까지.</li>
+<li><strong>가격</strong>: 커틀러리 1점 약 1000~2000엔, 볼·스트레이너 세트 수천 엔대, 냄비 1만 엔 이상</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 시간이 검증한 일본제. 뉴욕 MoMA 영구소장 디자인 계보.</li>
+<li><strong>커뮤니티 근거</strong>: キナリノ·macaroni '일생 쓰는 주방 브랜드', BECOS 일본제 주방 추천. 디자인·기능 마니아가 미는 브랜드로 인스타 행렬형과 무관.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 전 제품 일본제. 무게가 있으니 커틀러리·볼 위주로. 한국 정발가 대비 현지 구매 메리트 있음.</li>
+</ul>
+<h3>7. 노다호로 화이트시리즈 법랑 보관용기·배트 (野田琺瑯, Noda Horo)</h3>
+<ul>
+<li><strong>분류</strong>: 주방/생활잡화 로컬 브랜드 — 수제 법랑</li>
+<li><strong>위치/거리</strong>: 시부야 핸즈·로프트 키친 코너, 또는 키친웨어 강세인 갓파바시 도구거리 (JR 시부야역 도보권 / 갓파바시는 far) · <code>core</code></li>
+<li><strong>시그니처</strong>: 1934년 창업, 전 공정 수작업 법랑. 음식 색이 살아나는 순백 화이트시리즈는 굿디자인 롱라이프상 수상. 밀폐 보관용기·배트(바트)가 절임·반찬 보관에 인기.</li>
+<li><strong>가격</strong>: 보관용기 약 2000~4000엔, 배트 약 1500엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 90년 노포의 검증된 생활 명품.</li>
+<li><strong>커뮤니티 근거</strong>: キナリノ 일본제 주방 8대 브랜드, macaroni 일생 주방 픽. 살림 마니아 커뮤니티 정통 추천.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 테두리 철 노출부는 사용 후 물기 제거해야 녹 방지, 금속수세미·연마제 금지. 깨질 수 있어 포장 단단히. 갓파바시까지 가면 전문 도구가 더 깊지만 시부야 핸즈로도 충분.</li>
+</ul>
+<h3>8. 스와다·키야 손톱깎이 (SUWADA / KIYA 喜屋) + 카이(貝印)</h3>
+<ul>
+<li><strong>분류</strong>: 생활잡화 — 일본제 고급 손톱깎이</li>
+<li><strong>위치/거리</strong>: 시부야 핸즈 스크램블스퀘어·로프트 그루밍 코너, 또는 니혼바시 키야 본점 (JR 시부야역 직결 / 키야 본점은 near) · <code>core</code></li>
+<li><strong>시그니처</strong>: 한국에 덜 알려졌지만 마니아가 '4대 손톱깎이'로 꼽는 정점. 스와다는 니퍼형으로 절삭 단면이 깨끗해 다듬을 필요 없고 변형 발톱에 특화, 키야는 230년 에도시대 노포. 부담되면 가성비 좋은 카이로.</li>
+<li><strong>가격</strong>: 카이 약 1000엔 안팎(일본풍 무늬 550엔), 키야 중급, 스와다 약 7만원대(고가)</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 유럽·미국 여행객도 사가는 일본제 그루밍 명품.</li>
+<li><strong>커뮤니티 근거</strong>: 클리앙 '일본 4대 손톱깎이 다 사봤네요' 실사용 비교 스레드, 도큐핸즈 추천. 인스타가 아니라 마니아 실측 평가.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 스와다는 고가라 입문은 카이/키야. 부피 작아 선물·자가용 둘 다 좋음. 핸즈 그루밍 코너에서 실물 비교 가능.</li>
+</ul>
+<h3>9. 야마모토야마 녹차·말차 선물세트 (山本山, Yamamotoyama)</h3>
+<ul>
+<li><strong>분류</strong>: 식품 선물 — 노포 녹차·노리</li>
+<li><strong>위치/거리</strong>: 긴자 본점, 또는 시부야·신주쿠 백화점 식품관 데파치카 (JR 시부야역 권 / 긴자 본점은 near) · <code>near</code></li>
+<li><strong>시그니처</strong>: 일본 각지 엄선 찻잎의 노포. 향 좋은 엽차·말차와 선물세트가 풍부하고, 긴자 매장에선 한정 세트와 말차 소프트 디저트도. 상온·소부피라 여행 선물로 부담 적음.</li>
+<li><strong>가격</strong>: 선물세트 약 1500~5000엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 일본 문화를 담은 정번 선물.</li>
+<li><strong>커뮤니티 근거</strong>: 도쿄 녹차 선물 가이드(wellbe-asia), MATCHA 한국어 일본 식 토산 20선. 관광 큐레이션이지만 노포 실체가 분명.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 백화점 데파치카에서 다른 명가(차·과자)와 한 번에 비교 구매 가능. 말차는 개봉 후 빨리 소비. 부부 취향이면 호지차·겐마이차도 추천.</li>
+</ul>
+<h3>10. 야와타야 이소고로 시치미토가라시 (八幡屋礒五郎, 나가노)</h3>
+<ul>
+<li><strong>분류</strong>: 식품 선물 — 시치미(혼합 향신료) 명가</li>
+<li><strong>위치/거리</strong>: 시부야·신주쿠 백화점 식품관, 또는 도쿄역 그란스타 등 명물 매장 (JR 시부야역 권 데파치카는 core~near) · <code>near</code></li>
+<li><strong>시그니처</strong>: 나가노 노포의 시치미. 고춧가루에 깨·산초·진피 등을 배합한 독특한 풍미로, 양철 캔 패키지가 호화로워 선물용으로 인기. 우동·소바·국에 두루.</li>
+<li><strong>가격</strong>: 캔 약 700~1000엔, 리필·세트 별도</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 잊지 못할 풍미로 재구매 많은 명가.</li>
+<li><strong>커뮤니티 근거</strong>: MATCHA·Japaholic 한국어 일본 식 토산, 일본 데파치카 선물 가이드. 향신료 마니아·재방문객 추천.</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 캔이 메탈이라 짐 안정적. 명란(멘타이코) 후리카케·시즈오카 혼와사비 튜브도 같은 식품관에서 함께 담기 좋음.</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-9" class="sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">09</span>
+      <h2 class="sec-title">한국과 다른 쇼핑거리</h2>
+    </div>
+    <div class="prose"><p>한국에 없는 결은 두 가지입니다 — <strong>데파치카가 노포 명점의 안테나샵 집합체</strong>라는 점, <strong>장르 특화 전문상가가 한 거리/한 빌딩에 밀집</strong>한다는 점.</p>
+<ul>
+<li><strong>데파치카</strong> — 도큐 푸드쇼 엣지(스크램블스퀘어 B2·1F, 호텔에서 0분)는 첫날·마지막날 손토산 채우기에 최적이고, 이세탄 신주쿠 본관 B1(후쿠토신선 2정거장)은 '데파치카의 정점'으로 스즈카케·타네야 같은 노포 명점이 한 층에 모입니다(평일 오후 일찍 권장).</li>
+<li><strong>전문상가(택1)</strong> — 갓파바시 칼거리(식칼 전문 16점, 무료 각인, 음식 좋아하는 부부에 '평생 쓰는 한 자루'), 진보초 헌책거리(장르별 고서 전문점, 우키요에·고지도는 부피 작은 진짜 앤티크 기념품), 나카노 만다라케(7장과 연결).</li>
+<li><strong>시타마치 상점가</strong> — 야나카긴자(170m, 쇼와 레트로 다베아루키), 스가모 지조도리('관광객 가장 적은 진짜 로컬').</li>
+</ul>
+<p><strong>진짜 위험지대는 요코초입니다.</strong> 에비스 요코초·신주쿠 오모이데요코초는 노포 실력점이 남아 있지만 금·토 저녁은 외국인·인스타 인파로 만원이고 가격도 부풀었습니다. 가볍게 분위기만 볼 거면 에비스(시부야 1정거장)가 무난하고, 진짜 로컬 술골목을 원하면 아카바네·오이마치로 가야 하지만 동선이 멀어 이번엔 권하지 않습니다.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">쇼핑거리 — 리서치 원본 10건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 한국에 없는 결의 쇼핑거리·상점가·시장 (데파치카·요코초·상점가·전문상가)
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>핵심 인사이트 — 이 도메인에서 '한국에 없는 결'은 두 축입니다. ① 백화점 데파치카가 단순 마트가 아니라 전국 노포 명점의 안테나샵 집합체라는 점(이세탄·도큐 푸드쇼), ② 장르 특화 전문상가가 한 거리/한 빌딩에 밀집한다는 점(갓파바시 식칼 16점, 진보초 장르별 고서점, 나카노 만다라케 33점). 이 둘은 한국 백화점 식품관·서점가와 결이 다르고, 가성비가 아니라 '품질·진정성·전문성' 기준에 정확히 맞습니다.</p>
+<p>인스타 함정 경계 — 이 도메인에서 진짜 위험지대는 '요코초'입니다. 에비스 요코초·신주쿠 오모이데요코초는 노포 실력점이 남아있지만 금·토 저녁은 외국인·인스타 인파로 만원전철급이고 가격도 부풀어 insta_risk=high로 정직히 표기했습니다. 진짜 로컬 술골목은 커뮤니티가 아카바네(せんべろ 발상지)·오이마치 東小路를 꼽지만, 부부 2박3일·시부야 베이스엔 동선이 너무 멀어 '경고 + 대안'으로만 넣었습니다. 야나카긴자 유야케단단 계단도 포토존화됐으니 황혼 인파만 피하면 됩니다.</p>
+<p>동선 추천 — 시부야 베이스 기준 효율 순: (core) 도큐 푸드쇼 엣지는 호텔에서 0분, 첫날·마지막날 손토산. (near) 이노카시라선 급행 한 노선으로 시모키타자와 古着(4분) → 기치조지 하모니카 요코초·이노카시라공원(15분)을 하루에 묶는 게 베스트. 이세탄 신주쿠 데파치카는 후쿠토신선 2정거장. (far) 갓파바시·진보초·나카노·야나카·스가모는 '30% 여유분' — 음식·칼에 진심이면 갓파바시, 캐릭터/특이 쇼핑이면 나카노, 책·앤티크면 진보초를 골라 하나만 끼우길 권합니다. 데파치카·전문상가는 평일 오전~오후 일찍이 인파·품절을 모두 피하는 황금 시간대입니다.</p>
+<h2>항목 (10건)</h2>
+<h3>1. 도큐 푸드쇼 엣지 (東急フードショーエッジ / Tokyu Food Show EDGE)</h3>
+<ul>
+<li><strong>분류</strong>: 데파치카 (지하 식품관·디저트관)</li>
+<li><strong>위치/거리</strong>: 시부야 스크램블 스퀘어 B2·1F, 시부야역 직결 (JR渋谷駅 도보 0분) · <code>core</code></li>
+<li><strong>시그니처</strong>: B2 델리·반찬 41브랜드 + 1F '스위츠 파빌리온'에 日本初·渋谷初 신상 디저트 집결. 호텔 베이스에서 엘리베이터 한 번. 6/18~24 '여름 생선 축제' 등 주간 한정 행사가 상시 돌아갑니다</li>
+<li><strong>가격</strong>: 프티케이크·구움과자 800~2,500엔, 델리 500~1,500엔</li>
+<li><strong>2026 현재성</strong>: 2026 현재성 — 1F 스위츠 파빌리온은 '일본 첫 출점·시부야 첫 출점'을 콘셉트로 라인업을 계속 교체, 6월 신상 페어 진행 중</li>
+<li><strong>커뮤니티 근거</strong>: 東急百貨店 공식 + 流通ニュース 리포트 — '유행·화제성뿐 아니라 상질·진짜(本物)의 식'을 표방, 데파치카 붐의 원조 도큐 푸드쇼 노하우. 인스타 큐레이션이 아닌 백화점 MD가 거른 라인</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 베이스에서 가장 가까운 데파치카라 첫날 저녁/마지막날 귀국 전 손토산 채우기에 최적. 폐점 1시간 전 반찬·도시락 할인. のし(노시·예물 포장) 대응되는 정통 가게 다수</li>
+</ul>
+<h3>2. 이세탄 신주쿠 본관 데파치카 (伊勢丹新宿店 本館B1)</h3>
+<ul>
+<li><strong>분류</strong>: 데파치카 (일본 최강 식품관)</li>
+<li><strong>위치/거리</strong>: 신주쿠산초메 (東京メトロ新宿三丁目駅 직결, 시부야에서 후쿠토신선 2정거장) · <code>near</code></li>
+<li><strong>시그니처</strong>: '데파치카의 정점'으로 불리는 곳. 통(通)이 안 틀린다고 꼽는 스즈카케(鈴懸·후쿠오카 와과자), 타네야 생도라야키, OVEN.Y. 버터샌드 등 실력파가 한 층에. 단 음식 싫은 사람용 '甘くないお菓子'(치즈쿠키·트뤼프 사블레)도 별도 코너</li>
+<li><strong>가격</strong>: 스즈카케 등 와과자 詰め合わせ 2,000~5,000엔, 버터샌드 1,500엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 + 2026 봄 한정 — 이세탄 한정 원핸드 스위츠(노아 드 뵈르, 사다하루 아오키 등)를 시즌마다 교체</li>
+<li><strong>커뮤니티 근거</strong>: 三越伊勢丹 식 미디어 FOODIE + '愛される食品100選' 공식 매출 랭킹 — 인스타 화제가 아니라 '실제로 가장 많이 팔린' 데이터 기반. 스즈카케는 원래 도쿄에선 이세탄에서만 살 수 있던 한정성</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 스즈카케 행렬 평일 15분·주말 30분. 한국엔 없는 결 — 백화점 '식품관'이 단순 마트가 아니라 노포 명점의 안테나샵 집합체. 폐점 임박엔 사라지는 인기품 있으니 오후 일찍</li>
+</ul>
+<h3>3. 갓파바시 도구거리 — 칼 전문점 (かっぱ橋道具街 / Kappabashi)</h3>
+<ul>
+<li><strong>분류</strong>: 전문상가 (주방·식칼·식품샘플)</li>
+<li><strong>위치/거리</strong>: 아사쿠사~우에노 사이 800m (東京メトロ田原町駅 도보 3분, 시부야에서 긴자선) · <code>far</code></li>
+<li><strong>시그니처</strong>: 和包丁(일식칼) 사려면 일본 제일의 목적지. 16개 식칼 전문점이 한 거리에 — 산토쿠·규토를 손에 들고 시절(試し切り) 가능, 무료 각인·이름새김 서비스. 음식 좋아하는 부부에게 '평생 쓰는 한 자루'</li>
+<li><strong>가격</strong>: 가정용 양질 5,000~15,000엔, 프로용 15,000~40,000엔, 핸드메이드 40,000엔+</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 (2026 가이드 갱신) — Japanese Knife Lab이 2026판으로 16점 전수 매핑</li>
+<li><strong>커뮤니티 근거</strong>: Japanese Knife Lab 영문 전문 가이드 + KOHNO 메디아 — 마니아 커뮤니티가 점포별로 등급 매긴 진짜 전문 채널. Kama-Asa·Kiwami·實光·Seisuke 등 영어 응대 점포 명시</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 평일 오전 10~12시 한산(주말 외국인 혼잡). 5,500엔↑ 면세(여권 지참). 캐리어 무게 주의 — 칼은 위탁수하물로만. 식품 샘플(가짜 음식) 마그넷·키링도 한국엔 없는 기념품</li>
+</ul>
+<h3>4. 나카노 브로드웨이 — 만다라케 본진 (中野ブロードウェイ / Nakano Broadway)</h3>
+<ul>
+<li><strong>분류</strong>: 전문상가 (피규어·중고만화·서브컬처·캐릭터)</li>
+<li><strong>위치/거리</strong>: 나카노 (JR中野駅 북쪽 상점가 끝, 시부야에서 신주쿠 경유 ~20분) · <code>far</code></li>
+<li><strong>시그니처</strong>: 아키하바라보다 차분한 '오타쿠 천국'. 만다라케 33개 점포가 한 건물에, 층 올라갈수록 마니악도 상승. 절판 만화·레어 피규어·소프비·기업 노벨티 저금통 등 보물찾기. 캐릭터/특이 쇼핑 도메인에 정답</li>
+<li><strong>가격</strong>: 중고만화 100엔대~, 빈티지 피규어 수천~수만 엔, 희귀품 별도</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 1990년대부터 서브컬 성지, 라인업은 중고 재고라 갈 때마다 다름</li>
+<li><strong>커뮤니티 근거</strong>: Time Out Tokyo + Reddit r/Tokyo 종합 — '관광 함정 아닌 진짜 목적지', '아키바보다 혼잡 덜하고 마이페이스로 본다'는 평이 일관. 단 '일부 애니 굿즈는 약간 비싸다'는 정직한 단점도 같이</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 역에서 나카노선몰(아케이드)을 통과해 진입 — 그 아케이드 자체도 한국에 없는 결. 타코셰(타코셰·자비출판·인디 잡화 1만점), 변야(브리키 로봇)도 들를 것. 개별 점포 영업시간 편차 큼</li>
+</ul>
+<h3>5. 야나카긴자 상점가 (谷中銀座商店街 / Yanaka Ginza)</h3>
+<ul>
+<li><strong>분류</strong>: 시타마치 상점가 (쇼와 레트로·식도락 산책)</li>
+<li><strong>위치/거리</strong>: 야나카 (JR日暮里駅 서쪽 도보 5분, 시부야에서 야마노테선 ~25분) · <code>far</code></li>
+<li><strong>시그니처</strong>: 전장 170m에 개인상점 약 60곳. 공습 안 탄 시타마치 원형 — 손수 만든 반찬·와과자·차를 먹어가며 산책. 골목 끝 '유야케단단(夕やけだんだん)' 계단과 나무조각 고양이. 한국 재개발 상점가엔 없는 쇼와20년대 그대로의 결</li>
+<li><strong>가격</strong>: 다베아루키(걸어먹기) 100~500엔 단위</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — '야네센(谷根千)' 붐의 핵, 70년 이어진 정석 산책 코스</li>
+<li><strong>커뮤니티 근거</strong>: GO TOKYO 공식 + note 현지 큐레이션 — '대형 상업시설에선 못 느끼는 그 동네만의 일상', 관광객과 지역민이 함께 쓰는 살아있는 상점가</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 유야케단단 일몰 포토존은 인스타 명소화됐으니 사람 몰리는 황혼 피하면 한산. 야나카 주변 절·골목까지 묶어 반나절 도보 산책. 월요일 휴무 점포 많음</li>
+</ul>
+<h3>6. 스가모 지조도리 상점가 (巣鴨地蔵通り商店街 / Sugamo Jizo-dori)</h3>
+<ul>
+<li><strong>분류</strong>: 시타마치 상점가 ('할머니들의 하라주쿠')</li>
+<li><strong>위치/거리</strong>: 스가모 (JR巣鴨駅 도보 5분, 시부야에서 환승 ~25분) · <code>far</code></li>
+<li><strong>시그니처</strong>: 관광객 가장 적은 '진짜 로컬' 상점가. 780m 거리에 고령층 타깃 점포 — 빨간 속옷(아카판츠), 시오다이후쿠, 도게누키 지장존. 외국인 거의 없이 일본 노년 일상에 그대로 들어가는 결</li>
+<li><strong>가격</strong>: 시오다이후쿠 200엔대, 아카판츠 1,000엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 에도시대 나카센도 첫 휴게지에서 이어진 거리</li>
+<li><strong>커뮤니티 근거</strong>: Time Out 'most local, least touristy' 명시 + GO TOKYO — '관광 인파를 완전히 벗어나고 싶을 때 가는 곳'. 인스타 바이럴과 정반대 지점</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 매월 4·14·24일 엔니치(縁日) 장날에 가장 활기. 살 '관광 상품'은 적지만 진짜 일본 일상 관찰이 목적이면 최고. 시부야 베이스에선 명백히 '여유분(far)' — 시간 남을 때</li>
+</ul>
+<h3>7. 진보초 고서점거리 (神保町古書店街 / Jimbocho)</h3>
+<ul>
+<li><strong>분류</strong>: 전문상가 (세계 최대 헌책방·전문 고서)</li>
+<li><strong>위치/거리</strong>: 진보초 (東京メトロ神保町駅 직결, 시부야에서 한조몬선 직통 ~15분) · <code>far</code></li>
+<li><strong>시그니처</strong>: 세계 유수의 '책의 거리'. 장르 특화 전문점 — 야구치서점(영화·연극 팸플릿, 50~60년대 영화 팸플릿), 오야서방(우키요에·고지도·和本), 한 빌딩에 만화·생물·아동서·보드게임 층층이. 한국엔 없는 '장르별 고서 전문점' 밀집</li>
+<li><strong>가격</strong>: 헌책 수백 엔~, 우키요에·고지도 수천~수만 엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 + 2026 신상 — 산세이도서점 간다본점 2026년 봄 리뉴얼 오픈, 公式 古書店MAP 2026년도판 배포 중</li>
+<li><strong>커뮤니티 근거</strong>: 散歩の達人(산타츠) + Hanako + 치요다구 공식 — '도쿄에서 가장 산책이 즐거운 거리', 喫茶(킷사)·카레까지 묶인 진짜 문화 동네. 영어·중국어 맵 제공</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 햇빛 책 변색 막으려 북향 점포 많음(豆知識). 우키요에·고지도는 부피 작고 한국엔 없는 진짜 앤티크 기념품. 오전 일찍 시작 권장(시간 순삭). 진보초 카레·노포 킷사텐도 세트</li>
+</ul>
+<h3>8. 시모키타자와 古着(고착·빈티지) 거리 (下北沢 / Shimokitazawa)</h3>
+<ul>
+<li><strong>분류</strong>: 패션 쇼핑 (古着·빈티지·셀렉트)</li>
+<li><strong>위치/거리</strong>: 시모키타자와 (시부야에서 京王井の頭線 급행 1정거장 ~4분) · <code>near</code></li>
+<li><strong>시그니처</strong>: 서브컬 거리에 빈티지샵 밀집 — 북자와 2~3초메에 집중돼 하루에 여러 곳 회유. 플라밍고(1st·2nd·3rd, 美·유럽 사입), 히코리(공기감 좋은 캐주얼), NEW YORK JOE EXCHANGE(매입·교환). 가성비보다 '掘り出し物'(보물)을 캐는 결</li>
+<li><strong>가격</strong>: 스티크아웃 800엔 균일~, 일반 古着 2,000~5,000엔, 진짜 빈티지 만 엔대+</li>
+<li><strong>2026 현재성</strong>: 2026 현재성 — AVEND·VINTY가 2026년판으로 영업 중 점포 재정리, 신구 점포 교체 빠름</li>
+<li><strong>커뮤니티 근거</strong>: ファッションプレス(패션프레스) 25선 + VINTY 빈티지 전문 블로그 — 古着 마니아 채널이 목적별(아메카지/디자인 셀렉트/레디스)로 분류. 시부야에서 4분이라 부부 확장 쇼핑에 현실적</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 시부야 베이스에서 가장 효율 — 이노카시라선 급행 1정거장. 인스타화된 카페·포토존은 거르고 북자와 골목 점포에 집중. 일요일은 보행자천국이라 회유 편함</li>
+</ul>
+<h3>9. 기치조지 하모니카 요코초 (吉祥寺ハモニカ横丁 / Harmonica Yokocho)</h3>
+<ul>
+<li><strong>분류</strong>: 요코초 (전후 암시장 기원 미로 골목)</li>
+<li><strong>위치/거리</strong>: 기치조지 (시부야에서 京王井の頭線 급행 ~15분, 시모키타와 같은 노선) · <code>far</code></li>
+<li><strong>시그니처</strong>: 전후 암시장 기원, 하모니카 입처럼 좁은 미로에 100여 점. 낮엔 서브컬·다베아루키(미루(1973)餃子, 아마네 타이야키), 밤엔 아카초친(빨간 등) 이자카야로 표정이 바뀌는 로컬 상점가. 관광지화 덜 된 결</li>
+<li><strong>가격</strong>: 다베아루키 200~500엔, 히루노미(낮술) 1,000엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — '살고 싶은 거리' 1위 기치조지의 핵, 70년 골목</li>
+<li><strong>커뮤니티 근거</strong>: 東京新聞 + 散歩の達人 + 현지 부동산 미디어 — '점원이 알려주는 추천점' 같은 동네 밀착 콘텐츠가 주력. 외국 관광객 비중 낮고 지역민 퇴근길 상권</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 시모키타와 같은 이노카시라선이라 古着 시모키타 + 요코초 기치조지를 하루에 묶기 좋음. 이노카시라 공원 산책까지 세트. 점심 살짝 비켜 가야 미루 餃子 줄 피함</li>
+</ul>
+<h3>10. 에비스 요코초 (恵比寿横丁 / Ebisu Yokocho) — 정직한 경고 포함</h3>
+<ul>
+<li><strong>분류</strong>: 요코초 (옛 공설시장 개조 음식 골목)</li>
+<li><strong>위치/거리</strong>: 에비스 (JR恵比寿駅 도보 2분, 시부야에서 야마노테선 1정거장) · <code>core</code></li>
+<li><strong>시그니처</strong>: 옛 공설시장을 개조한 쇼와풍 음식 골목. 신니쿠즈시만(고기초밥 '사시토로'), 덴라쿠(교풍 오뎅·규토로동) 등 실력점은 건재. 시부야 1정거장이라 접근성 최고</li>
+<li><strong>가격</strong>: 1인 3,000~5,000엔</li>
+<li><strong>2026 현재성</strong>: 스테디 — 다만 금·토는 만원전철급 혼잡으로 관광지화 진행</li>
+<li><strong>커뮤니티 근거</strong>: GO TOKYO + 현지 그루메 라이터 — '관광지화 = 알맹이 없음'은 아니고 노포 실력점은 살아있다는 균형 평가. 단 인파·가격 인플레는 사실대로</li>
+<li><strong>인스타 유행 위험</strong>: <code>high</code></li>
+<li><strong>실전 팁</strong>: 정직한 경고 — 금·토 저녁은 인스타·외국인 인파로 만원, 월~목 17~19시가 노림수. 진짜 로컬 술골목을 원하면 아카바네(せんべろ 발상지)·오이마치 東小路로 '여유분(far)' 확장 권장. 부부가 분위기만 가볍게 볼 거면 1정거장이라 무난</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-10" class="sec ">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">10</span>
+      <h2 class="sec-title">관광 — 스테디 + 2026 화제</h2>
+    </div>
+    <div class="prose"><p>호텔이 시부야라 도보권 자산이 압도적으로 유리합니다. <strong>정석은 '무엇을 보느냐'보다 '언제 가느냐'가 만족도를 가릅니다.</strong></p>
+<ul>
+<li><strong>오쿠시부야 산책</strong>(신센역 도보권) — 스크램블 옆인데 공기가 다른 어른의 시부야. 쿠마 켄고 공중화장실, 나베시마쇼토 공원, 독립 카페 골목. 첫날 오후·마지막날 아침에 끼우기 최적.</li>
+<li><strong>시부야 스카이</strong>(229m 옥상 오픈에어) — 사전예약 필수, 평일 오전 한산 / 일몰 30분 전 절경이자 최대 혼잡.</li>
+<li><strong>메이지신궁+하라주쿠·오모테산도</strong>(1정거장) — 다케시타도리(빠르게 통과)→신궁 숲(고요)→오모테산도(건축·셀렉트). 부부 취향을 한 동선에.</li>
+<li><strong>다이칸야마·나카메구로</strong>(1정거장) — 다이칸야마 츠타야서점, 메구로강 변 셀렉트숍·크래프트맥주. 속도가 느려지는 어른 산책.</li>
+<li><strong>센소지</strong>(아사쿠사, far) — <strong>오전 8시 전</strong> 인적 없는 센소지는 한낮 인파와 완전히 다른 장소입니다. 마지막날 오전 한 타임으로.</li>
+<li><strong>2026 신상</strong> — 피카소×폴 스미스 전(국립신미술관, 6/10 개막)은 아트+패션 취향에 정타이고 미술 매체 큐레이션이라 인스타 함정이 아닙니다.</li>
+</ul>
+<p><strong>거른 것</strong> — 고화제 메가복합시설(다카나와 게이트웨이·아자부다이힐스)은 일본 매체 스스로 '거리 획일화'를 우려할 만큼 어디나 같은 테넌트라 일정에 넣을 가치가 낮습니다. teamLab Borderless는 평판은 높지만 '인생샷' 동기 비중이 커, 디지털아트 자체에 끌릴 때만.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">관광 — 리서치 원본 10건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 도쿄 관광 — 정석 베스트 + 2026 화제 (시부야 core 우선)
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>핵심 판단 세 가지입니다. ① 호텔이 시부야라 core 자산(오쿠시부야·논베이요코초·시부야스카이·메이지신궁·다이칸야마/나카메구로)이 압도적으로 유리합니다 — 2박3일이면 이동 0~10분권을 중심에 두고 far(센소지)는 아침 한 타임만 끼우는 구조를 권합니다. ② 2026 화제 신상의 함정: 고화제 메가복합시설(高輪ゲートウェイシティ·麻布台ヒルズ)은 일본 매체 스스로 '意識高すぎ(과하게 의식 높은)·街の均一化(거리 획일화)·SNS ガラガラ(텅 빔) 우려'로 비판합니다 — '신상이라 화제'일 뿐 어디 가나 같은 테넌트라 굳이 일정 넣을 가치 낮아 항목에서 뺐습니다. 대신 진짜 2026 신상으로는 여행 직전 6/10 개막하는 '피카소×폴 스미스 전'을 넣었습니다(아트+패션 취향 정타, 인스타 아닌 미술 매체 큐레이션). ③ 인스타 함정 정직 표기: teamLab Borderless는 평판 자체는 높지만 '인생샷' 동기 비중이 커 insta_risk=high로 솔직히 표기하고 우선순위를 낮췄습니다 — 디지털아트 자체에 끌릴 때만 가세요. 반대로 동네 산책 자산(오쿠시부야·다이칸야마·키요스미)은 전부 일본 지역지(さんたつ·東京カレンダー·워커플러스)가 '어른의 세련된 거리'로 고정 추천하는 insta_risk=low 정석이라, 가성비 무관·품질 기준의 이 부부에게 가장 안전한 만족 구간입니다. 한 줄 인사이트: 정석은 '무엇을 보느냐'가 아니라 '언제 가느냐'가 만족도를 가릅니다 — 센소지는 아침 8시 전, 시부야스카이는 평일 오전(한산) 또는 일몰 30분 전(절경), 강변 카페는 오픈 직후. 미검증: 전시·신시설 입장료와 영업시간은 변동 가능하니 방문 전 공식사이트 확인 필요.</p>
+<h2>항목 (10건)</h2>
+<h3>1. 오쿠시부야 산책 + 나베시마쇼토 공원 (奥渋谷 / 鍋島松濤公園, Oku-Shibuya)</h3>
+<ul>
+<li><strong>분류</strong>: 동네 산책 + 독립 카페·서점 거리</li>
+<li><strong>위치/거리</strong>: 시부야 신센역(神泉駅) 도보권, 스크램블에서 도보 10~12분 북서쪽 · <code>core</code></li>
+<li><strong>시그니처</strong>: 관광객 몰리는 스크램블 바로 옆인데 공기가 다른 어른의 시부야입니다. 쿠마 켄고가 설계한 요시노 삼나무 공중화장실, 湧水池(용수지)가 있는 나베시마쇼토 공원, 독립 카페·갤러리·셀렉트숍이 흩어진 골목을 목적지 없이 걷는 코스입니다. 호텔이 시부야이니 이동 0분으로 첫날 오후·마지막날 아침에 끼우기 최적입니다.</li>
+<li><strong>가격</strong>: 산책 무료, 카페 1인 800~1,500엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 시부야 토박이가 중심부와 구분해 미는 구역, 유행 무관</li>
+<li><strong>커뮤니티 근거</strong>: 워커플러스 2026 시부야 가이드가 '관광객 붐비는 중심부와 다른 조용하고 세련된 어른 산책 구역'으로 별도 분류, さんたつ(산책의 달인) 다룸. 인플루언서 스팟이 아니라 지역 매체의 동네 추천</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 도겐자카에서 북쪽으로 올라가면 됩니다. 캣스트리트(旧渋谷川遊歩道)와 묶어 시부야→오모테산도 도보 연결 가능, 식당·카페는 월요일 휴무 많으니 영업 확인</li>
+</ul>
+<h3>2. 논베이요코초 (のんべい横丁, Nonbei Yokocho)</h3>
+<ul>
+<li><strong>분류</strong>: 쇼와 레트로 골목 술집</li>
+<li><strong>위치/거리</strong>: JR 시부야역 동쪽 출구 도보 2~3분, 야마노테선 선로변 · <code>core</code></li>
+<li><strong>시그니처</strong>: 전후 암시장에서 시작해 1950년부터 같은 자리를 지킨 약 40개 초소형 술집·바 골목입니다. 10인 미만 카운터가 대부분이라 주인과 바로 트이는 게 핵심입니다. 야키토리 '토리후쿠(鳥福)', 와인·요리 '에노키(えのき)'가 토박이 단골집입니다. 미야시타파크의 관광객용 渋谷横丁과는 결이 다른 진짜 골목입니다.</li>
+<li><strong>가격</strong>: 1인 3,000~6,000엔(2~3집 하시고)</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 70년 검증된 노포 골목, 미야시타파크 신상 횡정과 명확히 구분</li>
+<li><strong>커뮤니티 근거</strong>: 지역 매체(NAVITIME·워커플러스)가 '토박이에게도 사랑받는'으로 표기. 단 외국인 유입 증가 중이라 일부 가게는 관광객 응대형으로 변질 — 가게 선별 필요</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 이른 시각(17~18시) 또는 평일이 자리 잡기 쉽습니다. 가게마다 차지(席料) 있고 현금만 받는 곳 많음, 한 자리 오래 앉기보다 2~3집 짧게 도는 게 골목 문화. 사진만 찍고 안 들어가는 행위 비매너</li>
+</ul>
+<h3>3. 시부야 스카이 (SHIBUYA SKY, 渋谷スクランブルスクエア 屋上)</h3>
+<ul>
+<li><strong>분류</strong>: 옥상 전망대 (오픈에어)</li>
+<li><strong>위치/거리</strong>: 시부야역 직결, 스크램블스퀘어 동관 45층~옥상 229m · <code>core</code></li>
+<li><strong>시그니처</strong>: 229m 옥상 오픈에어에서 스크램블 교차로를 내려다보고 맑으면 후지산까지 보이는 360도 전망입니다. 난간이 거의 없는 개방형이라 단순 전망대가 아닌 '체험'으로 평가받습니다. 호텔 직결이라 동선 부담이 없습니다.</li>
+<li><strong>가격</strong>: 사전예약 약 2,600~3,000엔/인</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(2019~) — 2026년에도 도쿄 톱 전망 경험으로 꾸준히 상위</li>
+<li><strong>커뮤니티 근거</strong>: 레딧 r/JapanTravel 합의는 '관광지지만 스킵할 트랩 아님, 단 사전예약 필수'. 일본 매체는 평일 오전 10~12시 한산, 일몰 후 트와일라잇 시간대(해진 뒤 15~20분)가 절경이자 최대 혼잡으로 분석</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 야후 혼잡정보로 실시간 확인 가능합니다. 절경 노리면 일몰 30분 전 입장 예약, 한산함 원하면 평일 오전. 옥상은 우산·삼각대·셀카봉 반입 금지, 우천 시 옥상 폐쇄될 수 있음</li>
+</ul>
+<h3>4. 센소지 + 나카미세도리 (浅草寺·仲見世通り, Senso-ji, Asakusa)</h3>
+<ul>
+<li><strong>분류</strong>: 도쿄 대표 사찰·옛거리</li>
+<li><strong>위치/거리</strong>: 아사쿠사역(浅草駅), 시부야에서 긴자선 환승 약 35~40분 · <code>far</code></li>
+<li><strong>시그니처</strong>: 도쿄 최고(最古) 사찰과 카미나리몬·나카미세 상점가입니다. 핵심은 타이밍입니다 — 아침 8시 전 인적 없는 센소지는 한낮의 인파 속과 완전히 다른 장소입니다. 스미다강 산책·스카이트리 조망을 묶으면 반나절 동선이 됩니다.</li>
+<li><strong>가격</strong>: 참배 무료, 나카미세 군것질 200~500엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 변함없는 1순위, '언제 가느냐'가 만족도를 가름</li>
+<li><strong>커뮤니티 근거</strong>: 레딧 r/JapanTravel 반복 조언이 '오전 7~8시 전에 가라, 낮엔 인파 트랩'. 매체·커뮤니티 공통으로 '새벽 센소지=완전히 다른 경험'</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 마지막날(일요일) 오전 일찍 체크아웃 짐 맡기고 다녀오기 좋습니다. 낮 시간대는 나카미세가 인파로 막혀 만족도 급락 — 무조건 아침. 시부야에서 멀어 30% 여유분 옵션</li>
+</ul>
+<h3>5. 메이지신궁 + 하라주쿠·오모테산도 (明治神宮·原宿·表参道, Meiji Jingu)</h3>
+<ul>
+<li><strong>분류</strong>: 신궁 숲 산책 + 쇼핑거리</li>
+<li><strong>위치/거리</strong>: 하라주쿠역(原宿駅), 시부야에서 1정거장·도보 20분 · <code>core</code></li>
+<li><strong>시그니처</strong>: 도심 한복판 70만㎡ 인공림 속 신궁입니다. 다케시타도리(팝컬처)→메이지신궁(고요함)→오모테산도(건축·하이엔드)를 한 동선으로 묶는 게 커뮤니티 정석 코스입니다. 부부 취향(패션 쇼핑 + 도시감성 + 관광)을 한 번에 충족합니다.</li>
+<li><strong>가격</strong>: 참배 무료</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 시부야 1정거장 접근성으로 반나절 코스 효율 최상</li>
+<li><strong>커뮤니티 근거</strong>: 레딧 합의 '하라주쿠는 오전에 다케시타+메이지신궁(고요)+오모테산도(건축) 조합 후 시부야로 걸어 내려와라'. 신궁 자체는 인파에도 숲이 깊어 만족도 높음</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 다케시타도리는 사람 많고 저가 유행 위주라 빠르게 통과, 진짜 가치는 신궁 숲길과 오모테산도 건축·셀렉트숍입니다. 토·일은 사람 많으니 토요일 오전 추천</li>
+</ul>
+<h3>6. 다이칸야마·나카메구로 산책 (代官山·中目黒, Daikanyama·Nakameguro)</h3>
+<ul>
+<li><strong>분류</strong>: 어른 동네 산책 + 책방·카페·강변</li>
+<li><strong>위치/거리</strong>: 나카메구로역(中目黒駅), 시부야에서 도큐토요코선 1정거장 약 3분 · <code>core</code></li>
+<li><strong>시그니처</strong>: 다이칸야마 츠타야서점(代官山 蔦屋書店)에서 느긋하게 책을 보고, 메구로강(目黒川) 변을 따라 셀렉트숍·크래프트맥주(Spring Valley Brewery)·구 아사쿠라가 주택까지 걷는 코스입니다. 시부야 1정거장인데 속도가 완전히 느려지는, 가성비 무관 품질 산책의 정석입니다.</li>
+<li><strong>가격</strong>: 산책 무료, 카페·맥주 1,000~2,500엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 1980년대부터의 패션·문화 타운, 유행 아닌 정착된 어른 동네</li>
+<li><strong>커뮤니티 근거</strong>: さんたつ(산책의 달인)·東京カレンダー(도쿄 캘린더)가 '어른에게 인기 있는 세련된 거리'로 고정 추천. 인플루언서 핫플 아닌 지역지의 동네 큐레이션</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 나카메구로→다이칸야마→에비스는 도보로 이어집니다. 다이칸야마 츠타야는 야간까지 영업해 저녁 산책에도 좋음. 메구로강은 벚꽃철 외엔 한산해 오히려 쾌적</li>
+</ul>
+<h3>7. 키요스미시라카와 커피 거리 + 강변 (清澄白河, Kiyosumi-Shirakawa)</h3>
+<ul>
+<li><strong>분류</strong>: 커피 성지 동네 산책</li>
+<li><strong>위치/거리</strong>: 키요스미시라카와역(清澄白河駅), 시부야에서 한조몬선 약 25~30분 · <code>near</code></li>
+<li><strong>시그니처</strong>: 블루보틀 일본 1호점이 자리 잡은 뒤 스페셜티 로스터리가 모여든 '도쿄 커피 동네'입니다. 부부의 커피투어 관심과 동네 산책을 한 번에 잡습니다. 스미다강·키요스미 정원, CLANN BY THE RIVER 테라스(스카이트리 조망), 토카쿠커피(トカクコーヒー)의 브라질 푸딩이 동네 명물입니다.</li>
+<li><strong>가격</strong>: 카페 1인 800~1,800엔, 정원 입장 약 150엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 2015년 블루보틀 이후 정착한 커피 동네, 유행 아닌 문화</li>
+<li><strong>커뮤니티 근거</strong>: 타베로그 마토메·東京カレンダー가 '카페 문화 뿌리내린 차분한 어른 산책 동네'로 정리. 관광객보다 현지 커피 애호가가 주말에 찾는 곳</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: CLANN BY THE RIVER 테라스는 주말 행렬 — 오픈 직후나 17시경이 노림수입니다. 시부야에서 거리 있으니(near) 커피투어 도메인과 동선 합치면 효율적, 둘째날 오전 배치 추천</li>
+</ul>
+<h3>8. 나카노 브로드웨이 + 시모키타자와 (中野ブロードウェイ·下北沢, Nakano·Shimokitazawa)</h3>
+<ul>
+<li><strong>분류</strong>: 서브컬처·캐릭터·구제 쇼핑</li>
+<li><strong>위치/거리</strong>: 나카노역(中野駅) 시부야서 약 20분 / 시모키타자와역(下北沢駅) 시부야서 게이오이노카시라선 약 7분 · <code>near</code></li>
+<li><strong>시그니처</strong>: 부부의 '캐릭터/특이 쇼핑' 관심에 정확히 맞는 두 동네입니다. 나카노 브로드웨이는 피규어·셀화·아이돌굿즈·고서가 빽빽한 마니아의 보고이고, 시모키타자와는 구제(NEW YORK JOE EXCHANGE 등 명점)·독립 카페·소극장의 서브컬처 거리입니다. 한국과 가장 다른 쇼핑 결입니다.</li>
+<li><strong>가격</strong>: 쇼핑 변동, 구제 2,000~10,000엔대</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 나카노=마니아 캐릭터 굿즈, 시모키타=구제 성지. 둘 다 시간이 검증</li>
+<li><strong>커뮤니티 근거</strong>: 타임아웃 '2022 세계에서 가장 쿨한 거리' 7위(시모키타자와), note·MATCHA 등 일본 매체가 '서브컬처 성지'로 고정 분류. 레딧 r/JapanTravel도 시모키타자와를 '인파 피하는 히든젬'으로 추천</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 캐릭터·피규어·콜렉션은 나카노 브로드웨이, 구제·빈티지는 시모키타자와로 역할 분담합니다. 시모키타는 시부야 7분이라 부담 없음. 나카노는 멀어 둘 중 하나만 골라도 됨</li>
+</ul>
+<h3>9. 피카소 × 폴 스미스 전 (ピカソ×ポール・スミス, 国立新美術館 The National Art Center)</h3>
+<ul>
+<li><strong>분류</strong>: 2026 화제 대형 기획전 (아트 × 패션)</li>
+<li><strong>위치/거리</strong>: 노기자카역(乃木坂駅)·롯폰기, 시부야에서 약 20~25분 · <code>near</code></li>
+<li><strong>시그니처</strong>: 피카소 작품을 폴 스미스가 공간 연출로 재구성하는, 아트와 패션이 교차하는 전시입니다. 국립피카소미술관 소장작 약 80점을 시대순으로 따라갑니다. 여행 직전인 2026년 6월 10일 개막이라 '지금 막 시작한 화제전'이고, 패션 쇼핑과 도시감성을 함께 좋아하는 이 부부에게 정확히 꽂히는 신상입니다.</li>
+<li><strong>가격</strong>: 약 2,000~2,500엔/인 예상</li>
+<li><strong>2026 현재성</strong>: 2026 신상 — 6월 10일 개막, 여행 기간(6/19~21)에 갓 오픈한 화제전</li>
+<li><strong>커뮤니티 근거</strong>: Tokyo Art Beat·artexhibition.jp 등 일본 미술 전문 매체의 '2026 주목 전시' 선정작. 인스타 포토존이 아니라 미술 매체가 큐레이션한 본격 기획전</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 국립신미술관은 쿠로카와 키쇼 설계 건축 자체가 볼거리입니다. 개막 직후 주말은 혼잡하니 온라인 예매·평일 불가 시 오픈 직후 입장 권장. 같은 롯폰기권 모리미술관·아자부다이힐스 팀랩과 묶기 가능</li>
+</ul>
+<h3>10. teamLab Borderless (麻布台ヒルズ, Azabudai Hills)</h3>
+<ul>
+<li><strong>분류</strong>: 몰입형 디지털아트 뮤지엄</li>
+<li><strong>위치/거리</strong>: 카미야초역(神谷町)·롯폰기잇초메, 시부야에서 약 20분 · <code>near</code></li>
+<li><strong>시그니처</strong>: 오다이바에서 옮겨와 2024년 아자부다이힐스에 재개관한 팀랩의 상설 뮤지엄입니다. 방과 방, 작품과 관람객이 경계 없이 섞이는 몰입형이 핵심입니다. 신작 'Microcosmoses - Wobbling Light'(거울 방, 수십 개 반사 구체)가 하이라이트입니다.</li>
+<li><strong>가격</strong>: 약 3,800~4,800엔/인 (시간대별 변동)</li>
+<li><strong>2026 현재성</strong>: 2026 현재성 — 2024 재개관판, 옛 오다이바와 다른 신구성</li>
+<li><strong>커뮤니티 근거</strong>: 오픈 첫해 230만 명으로 단일 아티스트 최다관람 기네스(구관). 단 솔직히 말하면 인스타 바이럴 성격이 강한 곳 — 사진 목적 방문자 다수. 몰입 자체 평가는 높으나 '인생샷' 동기 비중 큼</li>
+<li><strong>인스타 유행 위험</strong>: <code>high</code></li>
+<li><strong>실전 팁</strong>: 사전예약 필수(인기 시간대 4~8주 전 매진). 흰옷·밝은 옷이 작품 투영에 유리합니다. 인파 피하려면 오후 4시 이후 입장 권장. 사진 명소 의존이 큰 곳이라, 위 피카소전·동네 산책 대비 우선순위는 낮게 — 디지털아트 자체에 끌릴 때만</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-11" class="sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">11</span>
+      <h2 class="sec-title">2026 최신 스팟</h2>
+    </div>
+    <div class="prose"><p>매체 큐레이션이 인스타 바이럴과 섞여 노이즈가 큰 영역이라, 정통 매체·타베로그·업계지 신호가 있는 것만 골랐습니다.</p>
+<ul>
+<li><strong>아나 밀러스 미나미아오야마점</strong>(가이엔마에역 옆) — 1973년 1호점 자리로 돌아온 부활점, 그 시절 제복과 홈메이드 파이. 2026.2.13 오픈, 오픈 당일 3시간 만에 완판된 화제작(오전 방문 권장).</li>
+<li><strong>RAWROW 롯폰기</strong>(롯폰기힐스 B1) — 한국 트립웨어 브랜드의 일본 첫 진출 프로젝트 스토어(4/3~7/26, 여행 기간에 정확히 열림). '일본에서 보는 한국 패션'의 역설적 재미.</li>
+<li><strong>imperfect 마루노우치 로스터리</strong>(도쿄역) — 2026.3.6 오픈, 매장 로스터 11종 핸드드립. 커피투어의 정통 한 점.</li>
+<li><strong>도리바야시</strong>(아자부주반) — 가구라자카 인기점이 이전·재출발해 즉시 타베로그 야키토리 백명점 선정(4.12). 소고기가 부담스러우면 '부드러운 닭'으로 방향 전환(예약 필수, 2만엔~).</li>
+<li><strong>MoN Takanawa</strong>(다카나와, 2026.3.28) — 구마 겐고 설계 '이야기의 미술관', 신도시형 관광 동선을 보고 싶을 때.</li>
+</ul>
+<p><strong>유의</strong> — KAWAII MONSTER LAND(하라주쿠, 2026.2 오픈)는 콘셉트가 '세계 제일 포토제닉'이라 정통 맛집이 아닌 '체험 콘텐츠'로만 선택하세요. 시부야 마루이 목조 리뉴얼은 임시 휴업이라 이번엔 방문 불가입니다.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">2026 최신 스팟 — 리서치 원본 6건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 완전 최신성 — 2025말~2026 신규 오픈·지금 화제 도쿄 스팟 (크로스컷)
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>핵심: '2026 신규·화제'는 매체 큐레이션이 인스타 바이럴과 섞여 노이즈가 큰 도메인이라, 정통 매체·타베로그·업계지 신호가 있는 것만 골라 인스타성을 정직하게 분리했습니다. 진짜 추천 4점(인스타 위험 low) — 아나 밀러스 부활점(세대 교차 노스탤지어, medium이지만 서사가 동력), RAWROW 롯폰기(여행 기간 4/3~7/26 정확히 열림, 한국 브랜드라 역설적 재미, 패션 실수요), imperfect 마루노우치 로스터리(커피투어 정통 한 점), 도리바야시(부드러운 소고기의 대안=최상급 야키토리, 백명점 즉시 선정). 관광/전시는 MoN Takanawa(구마 겐고, 3/28 개장)가 신도시형 동선까지 한 번에. 주의할 함정: ① KAWAII MONSTER LAND는 콘셉트 자체가 '세계 제일 포토제닉'이라 insta_risk=high로 정직 표기 — 정통 맛집이 아닌 '체험 콘텐츠'로만 선택하시라 권합니다. ② 시부야 마루이(渋谷マルイ) 목조 리뉴얼은 화제이나 현재 一時休業(임시 휴업) 상태로 여행 기간 방문 불가 — 후보에서 제외했습니다. ③ 날짜 정정: 검색 초기 'KAWAII/아나밀러스 6월 오픈' 정보는 오류, 둘 다 2월 13일 오픈으로 이미 운영 중입니다. 한 줄 인사이트: 부부의 '한국과 다른 쇼핑거리 + 캐릭터/특이' 욕구는 하라주쿠 다케시타도리(KAWAII LAND, core)에서, '커피투어 + 패션'은 RAWROW 롯폰기 + imperfect로 묶어 each 반나절 코스가 동선상 효율적입니다.</p>
+<h2>항목 (6건)</h2>
+<h3>1. 아나 밀러스 미나미아오야마점 (アンナミラーズ 南青山店 / Anna Miller's Minami-Aoyama)</h3>
+<ul>
+<li><strong>분류</strong>: 아메리칸 다이너·홈메이드 파이 카페 (부활 1호점)</li>
+<li><strong>위치/거리</strong>: 미나미아오야마, 도쿄메트로 가이엔마에역(外苑前) 1a 출구 바로 옆 아오야마도리 — core/near 경계(시부야에서 긴자선 2정거장) · <code>near</code></li>
+<li><strong>시그니처</strong>: 1973년 1호점 자리로 3년 반 만에 돌아온 부활점. 그 시절 제복(블라우스+무릎 위 스커트+에이프런) 그대로, 명물 홈메이드 파이. 아즈키바(あずきバー)로 유명한 이무라야(井村屋)가 운영</li>
+<li><strong>가격</strong>: 파이 단품 800~1,000엔대, 식사 1,500~2,500엔</li>
+<li><strong>2026 현재성</strong>: 2026년 2월 13일 부활 오픈 — 올해 도쿄 외식가 최대 화제 중 하나. 오픈 당일 메뉴 완판으로 3시간 조기 마감</li>
+<li><strong>커뮤니티 근거</strong>: 시부야경제신문·닛케이·동양경제 등 정통 매체가 '폐점 4년, 팬 열량으로 부활'로 다룸. 20대까지 '에모이(감성적)'로 줄 서는 세대 교차 현상 — 인스타 포토존이 아니라 브랜드 노스탤지어 서사가 동력</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 오전 9시 개점, 인기 파이는 이른 시간 완판 잦음 — 오전 방문 권장. 약 30석 소규모(1·2층 166㎡). 평일 오픈 직후가 대기 가장 짧음</li>
+</ul>
+<h3>2. RAWROW(로로) 롯폰기힐스 프로젝트 스토어 (六本木ヒルズ ヒルサイドB1)</h3>
+<ul>
+<li><strong>분류</strong>: 한국발 트립웨어(여행 가방·백) 패션 — 일본 첫 진출 팝업/프로젝트 스토어</li>
+<li><strong>위치/거리</strong>: 롯폰기힐스 힐사이드 B1(港区六本木6-10-2), 도쿄메트로 롯폰기역 — 시부야에서 직통 7~10분권 · <code>near</code></li>
+<li><strong>시그니처</strong>: 시그니처 'R TRUNK'(정음 휠) 풀 라인업 + 일본 한정 신작 선행 판매. 'R TRUNK SHOW' 콘셉트로 커스텀 서비스·리페어 서비스까지 제공. 미니멀 디자인</li>
+<li><strong>가격</strong>: R TRUNK·백 류 — 미검증(브랜드 가격대 상이)</li>
+<li><strong>2026 현재성</strong>: 2026년 4월 3일~7월 26일 한정 운영 — 여행 기간(6/19~21)에 정확히 열려 있음. 한국 브랜드라 한국인에겐 역(逆)으로 '일본에서 보는 한국 패션'의 묘미</li>
+<li><strong>커뮤니티 근거</strong>: Hypebeast Japan·섬켄신문(繊研新聞)·패션스냅 등 패션 전문 매체가 '일본 첫 상륙'으로 보도. 인스타 큐레이션이 아닌 업계지 중심 — 패션 실수요 커뮤니티 신호</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 11:00~20:00. 선착순 '일본 한정 플레이트' 증정(소진 시 종료). R TRUNK 정음 휠을 컬링 형식으로 체험하는 이벤트 진행. 7/26 종료라 6월 방문이 적기</li>
+</ul>
+<h3>3. imperfect 마루노우치 로스터리 (imperfect MARUNOUCHI ROASTERY)</h3>
+<ul>
+<li><strong>분류</strong>: 스페셜티 커피 로스터리·핸드드립 + 오픈샌드·자체 아이스크림</li>
+<li><strong>위치/거리</strong>: 마루노우치 '231 PLACE'(미쓰비시상사 본사빌딩 1층), JR 도쿄역 — far(시부야에서 환승, 15~20분) · <code>far</code></li>
+<li><strong>시그니처</strong>: 매장 내 소형 로스터로 볶은 11종 원두를 한 잔씩 핸드드립. 연기·냄새를 잡는 저연·저취 로스터로 오피스가에서도 향이 살아있음. 오픈 맞춰 개발한 'African Spice Chocolate' 등 신상 아이스크림 4종</li>
+<li><strong>가격</strong>: 커피 한 잔 600~800엔대(미검증), 아이스크림 별도</li>
+<li><strong>2026 현재성</strong>: 2026년 3월 6일 오픈 — 올해 가장 화제된 로스터리 오픈. 평일 7시부터 영업해 출근 전 직장인 루틴 스팟으로 정착 중</li>
+<li><strong>커뮤니티 근거</strong>: ことりっぷ·시티리빙 등이 '올해 최대 화제 오픈 중 하나'로 선정. 지속가능 원두·신기술 로스터·아트 융합 공간 — 커피투어 관점에서 실내용(實內用) 평가가 명확</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 평일 오전 7시 오픈(주말 확인 필요). 시부야 베이스라면 다른 마루노우치 일정과 묶어 방문. 커피투어 코스의 정통 한 점</li>
+</ul>
+<h3>4. MoN Takanawa: 모노가타리 미술관 (MoN Takanawa / 物語の美術館)</h3>
+<ul>
+<li><strong>분류</strong>: 복합 문화시설·미술관 (관광/전시)</li>
+<li><strong>위치/거리</strong>: 다카나와 게이트웨이 시티 내(港区三田3丁目), JR 다카나와게이트웨이역 — far(시부야에서 야마노테/직통 15~20분) · <code>far</code></li>
+<li><strong>시그니처</strong>: 구마 겐고(隈研吾) 설계. '門(문)'과 '問(물음)'의 의미를 담은 '이야기의 미술관'. 루프톱 다이닝 'LAUBE', 'MoN Kitchen by Spiral' 등 식음 병설로 관광+식사 한 동선</li>
+<li><strong>가격</strong>: 전시 관람료 미검증</li>
+<li><strong>2026 현재성</strong>: 2026년 3월 28일 개장 — 다카나와 게이트웨이 신도시 개발의 핵심 신규 문화시설. 연면적 약 2.9만㎡, 지상6·지하3층</li>
+<li><strong>커뮤니티 근거</strong>: Time Out Tokyo·패션프레스 등이 '2026 놓칠 수 없는 신규 시설'로 선정. 인스타 포토존이 아니라 건축가·미술관 기획 중심 — 관광/전시 진정성 신호</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 한국과 다른 '신도시형' 관광 동선을 보고 싶을 때 적합. 같은 권역 NEWoMan TAKANAWA, OGAWA COFFEE LABORATORY 高輪와 묶어 반나절 코스. 휴관일·예약 사전 확인</li>
+</ul>
+<h3>5. 도리바야시 (酉囃子 / Toribayashi) — 야키토리 신점</h3>
+<ul>
+<li><strong>분류</strong>: 야키토리(숯불 닭꼬치) — '부드러운 단백질'의 정점, 신규 이전 개업</li>
+<li><strong>위치/거리</strong>: 아자부주반(麻布十番), 도쿄메트로 아자부주반역 166m — near(시부야에서 직통/환승 10~15분) · <code>near</code></li>
+<li><strong>시그니처</strong>: 가구라자카 인기점 '야키토리 아카네(焼鳥茜)'가 이전·재출발한 신점. 개업 즉시 '타베로그 야키토리 EAST 백명점' 선정. 주인 하야시 유타의 높은 기술, 에어커튼으로 연기 적음, 마무리 니멘(煮麺)·닭 모양 치즈케이크</li>
+<li><strong>가격</strong>: 디너 20,000엔~ (타베로그 4.12)</li>
+<li><strong>2026 현재성</strong>: 2026년 신규 재출발점이자 즉시 백명점 — 부드러운 소고기 대안으로 '부드럽게 구운 닭'의 최상급. 소고기 야키니쿠 외 단백질 축</li>
+<li><strong>커뮤니티 근거</strong>: 타베로그 4.12 + EAST 백명점, 『도쿄 최고의 레스토랑 2026』 편집장 5선. 평론가 마쓰우라 다쓰야 직접 평 — 인스타가 아닌 미식 평론 커뮤니티 검증</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 고가·예약 필수(20,000엔~). 카운터 중심 소규모라 며칠~몇 주 전 예약 권장. 소고기 야키니쿠가 부담스러우면 '부드러운 닭'으로 방향 전환하는 선택지</li>
+</ul>
+<h3>6. KAWAII MONSTER LAND -HARAJUKU- (카와이 몬스터 랜드)</h3>
+<ul>
+<li><strong>분류</strong>: 체험형 카와이 어뮤즈먼트(캐릭터/특이 쇼핑·푸드·쇼)</li>
+<li><strong>위치/거리</strong>: 하라주쿠 다케시타도리 스퀘어 B1(渋谷区神宮前1-16-4), JR 하라주쿠역/도쿄메트로 메이지진구마에역 — core(시부야 1정거장·도보권) · <code>core</code></li>
+<li><strong>시그니처</strong>: 마스다 세바스찬(増田セバスチャン) 총괄. 폐점한 'KAWAII MONSTER CAFE'(누적 70만 방문)의 후계. 60분 회유형 라이브 엔터테인먼트, 캐릭터 '촛피' 티컵 라이드, 몬스터 걸 라이브 'Monster Party'</li>
+<li><strong>가격</strong>: 입장 2,800~3,500엔, KAWAII Experience Pack 4,800~5,500엔</li>
+<li><strong>2026 현재성</strong>: 2026년 2월 13일 그랜드 오픈 — 여행 시점에 이미 운영 중. 캐릭터/특이 쇼핑·포토 체험 도쿄 결정판으로 화제</li>
+<li><strong>커뮤니티 근거</strong>: gotokyo.org(도쿄 공식)·PR타임즈·증축 매체가 '하라주쿠 컬처의 부활'로 보도. 다만 콘셉트 자체가 '세계 제일 포토제닉'이라 SNS 동력이 큼 — 진정성(마스다 IP·예약제 운영)과 인스타성이 공존</li>
+<li><strong>인스타 유행 위험</strong>: <code>high</code></li>
+<li><strong>실전 팁</strong>: 전 회차 60분·시간 지정 예약제, 공식 웹 사전 구매 필수. 10:00~21:40. 부부가 '특이 쇼핑/체험' 한 번을 원할 때만 — 정통 맛집이 아니라 체험 콘텐츠로 명확히 구분해 선택</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-12" class="sec ">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">12</span>
+      <h2 class="sec-title">동선 — 시부야 70/30, 2박3일 시안 (선택지)</h2>
+    </div>
+    <div class="prose"><p>고정 일정이 아니라 <strong>선택지로 짠 골격</strong>입니다. 시부야 도보권 코어 3축을 70%로 깔고, 30%는 살짝 멀리 갑니다.</p>
+<p><strong>코어 3축(걸어서 잇는 70%)</strong>
+1. 오쿠시부(카미야마초)→요요기공원 — 커피 산보
+2. 시부야→캣스트리트→하라주쿠/우라하라 — 패션 회유(전철 없이 도보)
+3. 다이칸야마→힐사이드테라스→메구로강 내리막→나카메구로 — 강변 산책</p>
+<p><strong>30% 여유분(택1~2)</strong> — 키요스미시라카와(한조몬선 무환승 20분, 커피 성지, 30% 1순위) / 나카노(만다라케) / 갓파바시·진보초 / 아사쿠사(아침) / 시모키타·기치조지(같은 이노카시라선이라 둘 중 하나)</p>
+<div class="tbl-scroll"><table>
+<thead>
+<tr>
+<th>일자</th>
+<th>오전</th>
+<th>오후</th>
+<th>저녁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>금(6/19)</strong></td>
+<td>도착·체크인, 오쿠시부 커피 산보(About Life→Fuglen→Little Nap)</td>
+<td>시부야→캣스트리트→하라주쿠·오모테산도 디자이너 코스(visvim·AURALEE·NEPENTHES)</td>
+<td><strong>炭火焼 유지</strong> 와규(예약) → 논베이요코초 한두 집</td>
+</tr>
+<tr>
+<td><strong>토(6/20)</strong></td>
+<td>시부야 파르코 6F 캐릭터·굿스마일 팝업 / 로프트·핸즈 쇼핑</td>
+<td>다이칸야마 츠타야→메구로강→나카메구로(Onibus·KAPITAL·트래블러스)</td>
+<td>에비스 <strong>蕃 YORONIKU</strong> 또는 <strong>우시고로 칸</strong>(예약)</td>
+</tr>
+<tr>
+<td><strong>일(6/21)</strong></td>
+<td>센소지 아침(8시 전) + 아사쿠사 이마한 / 또는 키요스미 <strong>Koffee Mameya Kakeru</strong>(예약)</td>
+<td>30% 여유분 택1(나카노/진보초/갓파바시)</td>
+<td>도큐 푸드쇼 엣지에서 손토산 마무리, 귀국</td>
+</tr>
+</tbody>
+</table></div>
+<p>마지막날은 체크아웃 짐을 호텔/코인락커에 맡기고 움직이면 됩니다. 토·일은 시부야·신주쿠·메구로강·다케시타도리가 종일 혼잡하니 산책류는 오전 일찍에 배치하세요.</p>
+<p><strong>전철 핵심</strong> — 시부야 1정거장: 에비스·하라주쿠(야마노테 2분), 다이칸야마(도요코 2분), 나카메구로(도요코 급행 3~5분). 무환승 직통: 시모키타·기치조지(이노카시라선), 산겐자야(덴엔토시 3~4분), 키요스미(한조몬선 20분), 긴자(긴자선 16분), 신주쿠(야마노테 7분). 시부야역이 재개발 중이라 같은 역이라도 노선 갈아타기에 4분 이상 여유를 두세요.</p>
+<hr /></div>
+    <details class="raw"><summary><span class="raw-tag">원자료</span><span class="raw-sum">동선설계 — 리서치 원본 11건 전체 보기</span><span class="raw-chev" aria-hidden="true"></span></summary><div class="raw-body"><blockquote>
+<p>도메인: 시부야 호텔 베이스 지리·동선 설계 (core 70% / far 30%)
+수집 기준: 2026-06-14 · 커뮤니티성 추출 · 인스타 유행 self-flag · distance_tier(core=시부야 도보권/2-3정거장, near=15-30분, far=30% 여유분)</p>
+</blockquote>
+<h2>종합 코멘트</h2>
+<p>시부야 베이스 동선 설계의 뼈대는 '걸어서 잇는 코어 3축'입니다. ① 오쿠시부(카미야마초)→요요기공원 커피산보, ② 시부야→캣스트리트→하라주쿠/우라하라 패션 회유, ③ 대관산→힐사이드테라스→메구로강 내리막→나카메구로 강변. 이 셋은 전철을 거의 안 타고 70% 코어 시간을 채웁니다. 30% 여유분은 한조몬선 무환승 20분의 키요스미시라카와(커피 성지)를 1순위로, 이노카시라선의 시모키타자와(near)·기치조지(far)는 같은 노선 연장선이라 둘 중 하나만 고르는 게 효율적입니다.</p>
+<p>[전철 핵심 정리] 시부야 인접 1정거장: 에비스(야마노테 2-3분), 대관산(도요코 2분), 나카메구로(도요코 급행 3-5분/히비야선), 하라주쿠(야마노테 2분). 무환승 직통 거점: 시모키타자와·기치조지(이노카시라선), 산겐자야(덴엔토시선 3-4분), 키요스미시라카와·오시아게(한조몬선 20분), 긴자(긴자선 16분), 신주쿠(야마노테 7분). 시부야역 자체가 100년에 한 번 재개발 중이라 긴자선·후쿠토신선 환승 동선이 복잡하고 4분 이상 걸립니다 — 같은 시부야역이라도 노선 갈아타기에 여유를 두세요.</p>
+<p>[금토일 혼잡·휴무 주의] 이번 일정(6/19금~6/21일)은 6월이라 벚꽃 혼잡(메구로강·이노카시라공원의 최대 변수)은 회피됩니다. 다만 ① 토일은 시부야·신주쿠 종일 혼잡, 메구로강 강변·다이칸야마 T-SITE 좌석·다케시타도리는 주말 포화이므로 오전 일찍 또는 평일(금요일)에 배치하세요. ② 블루보틀 키요스미 1호점 등 인기 커피점은 주말 11시대 행렬 필수 → 아침 오픈 직후가 정답. ③ 개인 카페·구제숍의 정기휴무는 무휴·부정기·특정요일·매월 마지막 수요일 등 제각각이라 방문 전 점포 공식 SNS 확인이 필수입니다(일괄 패턴 없음). ④ 인스타 함정 경계: 다케시타도리 바이럴 디저트·하라주쿠 포토존류는 insta_risk high로, 같은 동네라도 우라하라/캣스트리트 뒷골목 쪽으로 우회하면 진짜 마니아 동선이 나옵니다.</p>
+<h2>항목 (11건)</h2>
+<h3>1. 오쿠시부 (奥渋谷·神山町 / 카미야마초, Okushibu)</h3>
+<ul>
+<li><strong>분류</strong>: core 거점 — 커피 산보 + 조용한 미식 골목 (산책 70% 동선의 1순위 코어)</li>
+<li><strong>위치/거리</strong>: 시부야역 도보 10-12분, 요요기공원역(代々木公園駅 치요다선) 도보 3-5분 — 시부야 스크램블 북서쪽 진난(神南)-우다가와초 너머 카미야마초 일대 · <code>core</code></li>
+<li><strong>시그니처</strong>: 시부야 번화가에서 한 블록만 들어가면 인파가 사라지는 어른 동네. Coffee Supreme Tokyo(뉴질랜드계, 2017~), 도쿄규뉴(東京牛乳) 라테 스탠드, 자연식 일축 카페가 점점이 박혀 '커피 산보' 한 코스가 그대로 나옴. 테이크아웃해서 요요기공원에서 피크닉이 현지식 마무리</li>
+<li><strong>가격</strong>: 커피 500~800엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(2010년대 후반 형성) + 스시·내추럴와인·오키나와 요리 신상이 계속 유입되는 진행형 미식 구역</li>
+<li><strong>커뮤니티 근거</strong>: 타베로그 카미야마초 카페 카테고리, Retty 인기 8점, eamag·현지 거주 매체가 '오쿠시부=어른의 커피 동네'로 일관되게 소개. 인스타 큐레이션이 아닌 거주자·산보 매체 기반</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 시부야 호텔에서 걸어서 시작하는 1일차 아침 코스로 최적. 현금 전용 스탠드(도쿄규뉴 라테 등) 있음, 동전 준비. 인파 적어 토일 오전도 쾌적</li>
+</ul>
+<h3>2. 다이칸야마 (代官山, Daikanyama) + 다이칸야마 T-SITE 츠타야서점</h3>
+<ul>
+<li><strong>분류</strong>: core 거점 — 저층 부티크·갤러리·서점 산책 (한국과 결이 다른 쇼핑거리)</li>
+<li><strong>위치/거리</strong>: 도큐 도요코선(東急東横線) 시부야→대관산 각역정차 1정거장 약 2분 / 시부야역 도보 약 15-20분. 옛 야마테도리(旧山手通り)·힐사이드테라스 일대 · <code>core</code></li>
+<li><strong>시그니처</strong>: 대사관·저택풍 건물과 가로수가 만드는 도쿄에서 가장 세련된 저층 거리. 대관산 츠타야서점/T-SITE(7:00~22:00, 부정기휴무)는 인문·여행·요리 큐레이션 + 스타벅스·셰어라운지 병설로 '책 보며 커피' 한 시간이 그대로 코스. 노면점 위주라 인파가 분산됨</li>
+<li><strong>가격</strong>: —</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(살고 싶은 거리 상위 단골) — 패션·갤러리·신규 미식이 계속 갱신되지만 동네 자체는 검증된 정석</li>
+<li><strong>커뮤니티 근거</strong>: Walkerplus·GLT·산뽀삼바 등 산책 매체가 '대관산→힐사이드테라스→나카메' 정석 코스로 반복 소개. 현지 거주자 기준 '노면점 많아 의외로 안 붐비는 산책 코스'</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: T-SITE는 토일 좌석이 빨리 참 — 시간 여유 두기. 차로 가면 19시 이후 주차 2시간 무료. 시부야↔대관산은 한 정거장이라 걸어가며 골목 구경해도 됨</li>
+</ul>
+<h3>3. 나카메구로 (中目黒, Nakameguro) — 메구로강·고가하부</h3>
+<ul>
+<li><strong>분류</strong>: core 거점 — 강변 산책 + 개성 카페·셀렉트숍 (대관산과 묶는 한 동선)</li>
+<li><strong>위치/거리</strong>: 도큐 도요코선 급행 시부야→중목흑 1정거장 약 3-5분 / 히비야선(日比谷線) 직통. 대관산에서 도보 13분 내리막. 메구로강(目黒川) 산책로·나카메구로 고가하(高架下) · <code>core</code></li>
+<li><strong>시그니처</strong>: 메구로강 산책로를 따라 개성 카페·숍이 늘어선 강변 동네. 고가 밑(나카메구로 고가하)에 츠타야·바·식당이 들어찬 어번 코스. 대관산에서 내리막으로 걸어 들어와 중목흑역으로 빠지는 게 현지 정석 산책 루트</li>
+<li><strong>가격</strong>: —</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 + 미식 신상이 꾸준히 생기는 동네. 단 벚꽃철·주말 강변은 검증된 혼잡 포인트</li>
+<li><strong>커뮤니티 근거</strong>: 나카메구로 거주자 인터뷰·산책 매체가 '대관산↔중목흑 도보 회유'를 정석으로 제시. 노면점 분산형이라 평소엔 쾌적하나 주말 강변은 혼잡 경고가 일관됨</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 메구로강 산책로는 토일·벚꽃철 매우 붐빔(주의). 평일이나 토일 오전이 쾌적. 대관산→중목흑 내리막 도보가 인파 피하는 베스트 동선</li>
+</ul>
+<h3>4. 하라주쿠·진난 (原宿·神南, Harajuku) — 캣스트리트·우라하라</h3>
+<ul>
+<li><strong>분류</strong>: core 거점 — 스트리트 패션·셀렉트숍·캐릭터 쇼핑</li>
+<li><strong>위치/거리</strong>: JR 야마노테선 시부야→하라주쿠 1정거장 약 2분 / 시부야역 도보 약 15분. 시부야~하라주쿠를 잇는 캣스트리트(キャットストリート)는 도보 회유 가능 · <code>core</code></li>
+<li><strong>시그니처</strong>: 시부야에서 캣스트리트를 따라 걸어 올라가면 그대로 하라주쿠 우라하라(裏原)로 연결되는 패션 회유 동선. 표참도(오모테산도) 쪽은 하이엔드, 우라하라·진난 뒷골목은 스트리트·셀렉트·캐릭터 쇼핑. 전철 안 타고 도보로 코어 2개 거점을 잇는 핵심 축</li>
+<li><strong>가격</strong>: —</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 다케시타도리(竹下通り)는 인스타·관광 포화라 우라하라·캣스트리트 뒷골목 위주로 우회 권장</li>
+<li><strong>커뮤니티 근거</strong>: 야마노테선 1정거장+도보 회유는 노선 정보·산책 매체 공통. 다케시타도리=관광·바이럴 포화, 우라하라=마니아 셀렉트로 현지 평판이 갈림</li>
+<li><strong>인스타 유행 위험</strong>: <code>high</code></li>
+<li><strong>실전 팁</strong>: 다케시타도리는 토일 인파·바이럴 디저트 포화(insta_risk high) — 빠르게 통과하거나 생략. 캣스트리트~우라하라 뒷골목이 진짜. 시부야서 도보 15분이라 동선 묶기 좋음</li>
+</ul>
+<h3>5. 에비스 (恵比寿, Ebisu) — 가든플레이스·요코초</h3>
+<ul>
+<li><strong>분류</strong>: near 거점 — 미식·바·차분한 어른 동네</li>
+<li><strong>위치/거리</strong>: JR 야마노테선 시부야→에비스 1정거장 약 2-3분(IC 150엔) / 히비야선. 서구(西口)=에비스요코초·상점가, 동구(東口)=에비스 가든플레이스(스카이워크 무빙워크 연결) · <code>near</code></li>
+<li><strong>시그니처</strong>: 시부야 옆 1정거장인데 톤이 확 가라앉는 어른의 미식 동네. 서구 에비스요코초의 좁은 술집골목과 동구 가든플레이스의 탁 트인 광장이 대비. 시부야 번화가에 지친 저녁에 차분히 소고기·바를 즐기기 좋은 거점</li>
+<li><strong>가격</strong>: —</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 시부야 인접 미식 백업 동네로 검증됨</li>
+<li><strong>커뮤니티 근거</strong>: 노선 정보·시부야 지역 매체가 '시부야 1정거장, 출구별 동선'까지 정리. 관광 바이럴보다 미식·거주 기반 평판</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 동구는 스카이워크 무빙워크로 비 와도 안 젖고 가든플레이스 접근. 저녁 미식·소고기 코스로 시부야와 묶기 좋음</li>
+</ul>
+<h3>6. 시모키타자와 (下北沢, Shimokitazawa)</h3>
+<ul>
+<li><strong>분류</strong>: near 거점 — 빈티지·구제·소극장·인디 카페 (한국과 다른 쇼핑거리)</li>
+<li><strong>위치/거리</strong>: 케이오 이노카시라선(京王井の頭線) 시부야→하경택 직통, 각정 7-8분·급행 약 4분. 무환승. 차사와도리(茶沢通り)로 산겐자야와 도보 연결 · <code>near</code></li>
+<li><strong>시그니처</strong>: 구제·빈티지 의류, 소극장, 인디 카페가 미로처럼 얽힌 서브컬처 동네. 시부야에서 환승 없이 이노카시라선 한 번에 7-8분. 패션·구제 쇼핑 확장 목적이면 코어 다음 1순위. 일요일엔 다이자와 교차로~산겐자야 구간이 13~17시 보행자천국</li>
+<li><strong>가격</strong>: 케이오 이노카시라선 시부야~하경택 약 130엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 + 재개발(시모키타 신구역) 신상 카페·숍 유입 진행형</li>
+<li><strong>커뮤니티 근거</strong>: 이노카시라선 직통 무환승은 노선 정보 확정. 산책·구제 커뮤니티가 '차사와도리 도보로 산겐자야까지' 정석 루트로 제시. 관광보다 인디·서브컬처 기반</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 일요일 13~17시 차사와도리 보행자천국 — 산책 최적. 시부야↔하경택 무환승 7-8분이라 반나절 코스로 가볍게. 구제숍은 점포별 정기휴무 제각각, 방문 전 확인</li>
+</ul>
+<h3>7. 산겐자야 (三軒茶屋, Sangenjaya)</h3>
+<ul>
+<li><strong>분류</strong>: near 거점 — 로컬 술집·노포·생활밀착 동네</li>
+<li><strong>위치/거리</strong>: 도큐 덴엔토시선(東急田園都市線) 시부야→삼군다옥 직통 약 3-4분, 무환승. 시모키타자와와는 직결 철도 없음 — 차사와도리 도보 약 26분 또는 버스 17분 · <code>near</code></li>
+<li><strong>시그니처</strong>: 관광 때 안 묻은 세타가야 생활 동네. 덴엔토시선으로 시부야에서 3-4분 직통. 시모키타자와와 차사와도리(茶沢通り)로 걸어 잇는 산책 축의 한쪽 끝 — 좋은 가게·재미난 가게가 길 따라 이어짐</li>
+<li><strong>가격</strong>: 시모키타~삼군다옥 도보 무료 / 버스 220엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 거주자 기반 로컬 동네라 유행 부침 적음</li>
+<li><strong>커뮤니티 근거</strong>: 덴엔토시선 직통은 노선 정보 확정. Yahoo 전문가·키나리노 등이 '차사와도리=삼군다옥↔하경택 도보 산책 명로'로 소개. 거주·생활 기반 평판</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 시모키타+산겐자야를 차사와도리 도보로 한 번에 묶는 게 현지식. 두 동네 직결 전철 없음 — 전철이면 시부야 경유라 오히려 도보·버스가 합리적</li>
+</ul>
+<h3>8. 키요스미시라카와 (清澄白河, Kiyosumi-Shirakawa) — 커피 성지</h3>
+<ul>
+<li><strong>분류</strong>: far 거점 (30% 여유분) — 서드웨이브 커피 성지 + 갤러리 + 시타마치 정취</li>
+<li><strong>위치/거리</strong>: 도쿄메트로 한조몬선(半蔵門線) 시부야→청징백하 직통 무환승 약 20분. 블루보틀 1호점은 청징백하역 도보 7분(江東区 平野1-4-8) · <code>far</code></li>
+<li><strong>시그니처</strong>: 커피투어 목적이면 도쿄 최고 성지. 블루보틀 일본 1호점(2015~, 8:00~19:00 무휴, 로스터 병설)을 기점으로 더 크림 오브 더 크롭 등 자가배전 로스터리가 시타마치 골목에 밀집. 테이크아웃해서 기요스미정원까지 걷는 게 정석. 갤러리·아트 동네 얼굴도 겸함</li>
+<li><strong>가격</strong>: 핸드드립 싱글오리진 600엔~</li>
+<li><strong>2026 현재성</strong>: 스테디 정석(2015 형성) + 2026년에도 신규 로스터·갤러리 유입 진행. 8and 등이 2026.4 기준으로 '성지 갱신' 기사화</li>
+<li><strong>커뮤니티 근거</strong>: 산뽀노타츠진(산책의 달인)·enjoytokyo·note 개인 산책기가 일관되게 '커피 성지'로 검증. 블루보틀이 지역에 녹아든 '로컬 커피숍'이 됐다는 거주자 시선까지 존재</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 한조몬선 무환승 20분이라 far 중 접근성 최고 — 30% 여유분 1순위. 블루보틀 1호점은 주말 11시대 행렬 필수 → 아침 일찍(8시 오픈 직후) 방문이 정답</li>
+</ul>
+<h3>9. 기치조지 (吉祥寺, Kichijoji) — 이노카시라공원·하모니카요코초</h3>
+<ul>
+<li><strong>분류</strong>: far 거점 (30% 여유분) — 공원 산책 + 구제·잡화 + 쇼와 골목 술집</li>
+<li><strong>위치/거리</strong>: 케이오 이노카시라선 시부야→길상사 직통 무환승 약 20분(시모키타 같은 노선, 더 멀리). 이노카시라온시공원은 길상사역 도보 5분, 하모니카요코초는 북구 정면 · <code>far</code></li>
+<li><strong>시그니처</strong>: 살고 싶은 거리 단골. 시부야에서 이노카시라선 한 번에 20분(시모키타와 같은 노선 연장). 이노카시라공원에서 음식 사 들고 산책 + 북구 하모니카요코초(전후 암시장 유래, 100여 점포 미로 골목)에서 한잔. 남구 공원·북구 구제·잡화로 하루가 채워짐</li>
+<li><strong>가격</strong>: 케이오 이노카시라선 시부야~길상사 약 230엔</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 동네 자체가 검증됨. 신상은 카페·구제 중심으로 점진 갱신</li>
+<li><strong>커뮤니티 근거</strong>: 무사시노시 관광기구·gnavi·note가 '이노카시라공원+하모니카요코초'를 정석 코스로 소개. 거주 인기·로컬 골목 기반</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 벚꽃철(3월말~4월) 주말 공원 극혼잡 — 6월 방문이라 회피됨. 시부야 무환승 20분이라 시모키타와 같은 선이라 묶기 애매(둘 중 택1 권장). 하모니카요코초는 저녁이 분위기</li>
+</ul>
+<h3>10. 신주쿠 (新宿, Shinjuku)</h3>
+<ul>
+<li><strong>분류</strong>: near 거점 — 대형 백화점·전자상가·심야 동선 백업</li>
+<li><strong>위치/거리</strong>: JR 야마노테선 시부야→신주쿠 약 7분 / 후쿠토신선·사이쿄선도 직통. 시부야역서 가장 가까운 초대형 거점 · <code>near</code></li>
+<li><strong>시그니처</strong>: 시부야서 야마노테선 7분 초접근 대형 거점. 백화점·요도바시·돈키호테(부부가 이미 좋아함)·심야 영업이 밀집해 코어 일정의 백업 카드로 둠. 다만 토일 종일 혼잡한 포화 동네라 목적 쇼핑만 빠르게 치고 빠지는 용도</li>
+<li><strong>가격</strong>: —</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 관광 포화 지역이라 신선도보다 효율·접근성 가치</li>
+<li><strong>커뮤니티 근거</strong>: 야마노테선 7분은 노선 정보 확정. 신주쿠역은 세계 최대 승하차로 혼잡 경고가 매체 공통 — 분위기 산책보다 목적형 방문 권장</li>
+<li><strong>인스타 유행 위험</strong>: <code>medium</code></li>
+<li><strong>실전 팁</strong>: 토일 종일 혼잡(주의) — 산책 동네 아님, 목적 쇼핑·심야 보강용. 시부야 7분이라 저녁 늦게 잠깐 다녀오기 좋음</li>
+</ul>
+<h3>11. 긴자 (銀座, Ginza)</h3>
+<ul>
+<li><strong>분류</strong>: near 거점 — 하이엔드 백화점·노포·플래그십</li>
+<li><strong>위치/거리</strong>: 도쿄메트로 긴자선(銀座線) 시부야→긴자 직통 무환승 약 16분. 시부야역 긴자선 홈은 재개발로 이동됨(히카리에 1·2 개찰 기준) · <code>near</code></li>
+<li><strong>시그니처</strong>: 긴자선 무환승 16분으로 닿는 하이엔드·노포 거리. 품질·진정성 기준이면 시부야·하라주쿠와 다른 격의 쇼핑·미식. 일요일 주오도리(中央通り) 보행자천국(호코텐)이 긴자 산책의 백미</li>
+<li><strong>가격</strong>: —</li>
+<li><strong>2026 현재성</strong>: 스테디 정석 — 검증된 하이엔드 거리</li>
+<li><strong>커뮤니티 근거</strong>: 긴자선 직통 무환승은 노선 정보 확정. 시부야역 긴자선 홈 이동(2020 재개발)은 다수 공략 가이드가 명시</li>
+<li><strong>인스타 유행 위험</strong>: <code>low</code></li>
+<li><strong>실전 팁</strong>: 일요일 호코텐(보행자천국) 시간대 산책 추천. 시부야역 긴자선 홈은 재개발로 이동 — 히카리에 1·2 개찰 경유. 고품질 소고기·노포 미식과 묶기 좋음</li>
+</ul></div></details>
+  </div>
+</section>
+<section id="sec-13" class="sec alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">13</span>
+      <h2 class="sec-title">인스타 함정 — 정직하게 거른 곳</h2>
+    </div>
+    <div class="prose"><p>부부의 '진짜는 드물다' 기준을 위해, 평판이 인스타 노출에 기댄 곳을 위험도와 함께 분리했습니다.</p>
+<div class="tbl-scroll"><table>
+<thead>
+<tr>
+<th>위험</th>
+<th>대상</th>
+<th>이유 / 대안</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高</td>
+<td>시부야역 앞 A5 와규 식べ放題(炭治郎·太樹苑)</td>
+<td>예약사이트 상단이지만 식통 혹평 별도. → 炭火焼 유지</td>
+</tr>
+<tr>
+<td>高</td>
+<td>Bear Pond Espresso(시모키타)</td>
+<td>사진금지·14시 에스프레소 중단·응대 기복, 경험 소비형. → Onibus·About Life</td>
+</tr>
+<tr>
+<td>高</td>
+<td>에비스/신주쿠 요코초 금·토 저녁</td>
+<td>인파·가격 인플레. → 평일 17~19시, 또는 가볍게만</td>
+</tr>
+<tr>
+<td>高</td>
+<td>편의점 エンゼルヘアーチョコ류 SNS 바이럴</td>
+<td>비주얼 주도. → 모구나비 고평점·콜라보</td>
+</tr>
+<tr>
+<td>高</td>
+<td>teamLab Borderless / KAWAII MONSTER LAND</td>
+<td>'인생샷' 동기 큼. → 체험 자체에 끌릴 때만</td>
+</tr>
+<tr>
+<td>中</td>
+<td>다케시타도리 바이럴 디저트</td>
+<td>관광 포화. → 우라하라·캣스트리트 뒷골목</td>
+</tr>
+</tbody>
+</table></div>
+<hr /></div>
+    
+  </div>
+</section>
+<section id="sec-14" class="sec ">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">14</span>
+      <h2 class="sec-title">미검증·주의</h2>
+    </div>
+    <div class="prose"><p>확인 못 했거나 변동 가능한 항목입니다. 방문 전 공식 채널로 최종 확인하세요.</p>
+<ul>
+<li><strong>영업·휴무·예약 슬롯</strong> — 6/19~21 정확한 영업 여부는 점포 공식 SNS/구글맵으로 재확인이 필요합니다. 개인 카페·구제숍의 정기휴무는 무휴·부정기·특정요일·매월 마지막 수요일 등 제각각이라 일괄 패턴이 없습니다. 특히 Koffee Mameya Kakeru 예약 슬롯, 炭火焼 유지 일요일 휴무, Mame Kurogouchi 영업일(출처 간 정보 엇갈림).</li>
+<li><strong>가격</strong> — 모든 가격은 2026년 6월 기준 대략치로, 면세·점포·시기에 따라 변동합니다.</li>
+<li><strong>한정 굿즈 재고</strong> — 돈키 치이카와 한정(6/6 발매)·굿스마일 팝업 인기품은 조기 품절·재판 변수가 있습니다.</li>
+<li><strong>헤이즈 진주 가챠 설치 층</strong> — 2021년 정보 기반이라 방문 전 akoya-gacha.jp로 설치 확인 권장.</li>
+<li><strong>의약품 반입 한도</strong> — 동일 품목 과다 구매는 세관 기준 확인 후.</li>
+<li><strong>전시 입장료·시간</strong> — 피카소×폴 스미스 전, MoN Takanawa 등 신시설은 공식 예매·개관 시간 확인 필요.</li>
+</ul>
+<hr />
+<p><em>수집: 2026-06-14 · 도메인 11개 멀티에이전트 팬아웃(커뮤니티성 추출, 인스타 유행 self-flag) · 원자료 전량은 같은 폴더 <code>01_편의점.md</code>~<code>11_동선설계.md</code> 참조</em></p></div>
+    
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">수집 2026-06-14 · 도메인 11개 멀티에이전트 팬아웃(커뮤니티성 추출 · 인스타 유행 self-flag) · 본문 집필 메인 단독 · 디자인 prism-design 흑백·라이트 · 단일 자체완결 HTML</div>
+</footer>
+
+<script>
+document.querySelectorAll('.raw-body code').forEach(function(c){
+  var t=(c.textContent||'').trim().toLowerCase();
+  if(t==='high'){c.classList.add('r-high');}
+  else if(t==='medium'){c.classList.add('r-mid');}
+  else if(t==='low'){c.classList.add('r-low');}
+});
+function setAll(open){document.querySelectorAll('details.raw').forEach(function(d){d.open=open;});}
+document.getElementById('exp').addEventListener('click',function(){setAll(true);});
+document.getElementById('col').addEventListener('click',function(){setAll(false);});
+</script>
+</body>
+</html>
