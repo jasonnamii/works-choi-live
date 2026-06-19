@@ -398,5 +398,13 @@
     "last_kind": "redeploy",
     "last_sha256": "af4b665ba53893ec7124fd44cea5f546840da21d232461dac315ef87fc34da08",
     "timestamp": "2026-06-14T14:48:39.802211Z"
+  },
+  "kisas-junior-leader": {
+    "slug": "kisas-junior-leader",
+    "mode": "choi",
+    "url": "https://works.choi.build/kisas-junior-leader/",
+    "last_kind": "new",
+    "last_sha256": "9402d425a0655a631967b523b764088a7ec598f98efd528eec42156286f688ad",
+    "timestamp": "2026-06-19T15:55:39.839512Z"
   }
 }
