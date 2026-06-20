@@ -403,8 +403,8 @@
     "slug": "kisas-junior-leader",
     "mode": "choi",
     "url": "https://works.choi.build/kisas-junior-leader/",
-    "last_kind": "new",
-    "last_sha256": "9402d425a0655a631967b523b764088a7ec598f98efd528eec42156286f688ad",
-    "timestamp": "2026-06-19T15:55:39.839512Z"
+    "last_kind": "redeploy",
+    "last_sha256": "3b05019dfd6a157fc04295f6087ea525ab6b5ea48c8cacf62ccf11a6a4be675a",
+    "timestamp": "2026-06-20T02:15:52.651397Z"
   }
 }
