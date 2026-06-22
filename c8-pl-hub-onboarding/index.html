@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>기획허브 팀 온보딩 · v2.7</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --bk:#000; --wh:#FFF;
+    --thin:1px; --thick:2px; --fat:4px;
+    --s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:32px; --s6:48px; --s7:64px;
+    --hatch45:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M-2,2 l4,-4 M0,8 l8,-8 M6,10 l4,-4' stroke='%23000' stroke-width='1.2'/></svg>");
+    --hatchdot:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><circle cx='2' cy='2' r='1.3' fill='%23000'/></svg>");
+  }
+  *{box-sizing:border-box; border-radius:0; margin:0; padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--wh); color:var(--bk);
+    font-family:"Pretendard"; font-weight:700; line-height:1.5; letter-spacing:0;
+    word-break:keep-all; line-break:strict; overflow-wrap:break-word;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .wrap{max-width:1120px; margin:0 auto; padding:var(--s7) var(--s5) var(--s5);}
+  .mono{font-size:9px; letter-spacing:0.25em; text-transform:uppercase; font-weight:700;}
+  .label{font-size:11px; letter-spacing:0.2em; text-transform:uppercase; font-weight:700;}
+  .q::before{content:'"';} .q::after{content:'"';}
+  b{font-weight:900;}
+  .fill{background:var(--bk); color:var(--wh);}
+
+  /* ── 헤더 ── */
+  .head{border-bottom:var(--fat) solid var(--bk); padding-bottom:var(--s5); margin-bottom:var(--s6);}
+  .head-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:var(--s3); margin-bottom:var(--s5);}
+  .hero{font-size:clamp(38px,8.5vw,88px); font-weight:900; line-height:0.92;}
+  .hero span{display:block;}
+  .lead{margin-top:var(--s4); display:flex; flex-wrap:wrap; gap:var(--s4); align-items:flex-start;}
+  .lead .def{font-size:clamp(14px,2.2vw,17px); font-weight:700; max-width:50ch; line-height:1.6; flex:1; min-width:280px;}
+  .lead .def em{font-style:normal; background:var(--bk); color:var(--wh); padding:1px 6px;}
+  .lead .tag{border:var(--thick) solid var(--bk); padding:10px 14px; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; align-self:flex-start;}
+
+  /* ── 섹션 라벨 ── */
+  .sec{margin-top:var(--s7);}
+  .sec-head{display:flex; align-items:center; gap:var(--s3); margin-bottom:var(--s4);}
+  .sec-no{background:var(--bk); color:var(--wh); font-size:11px; letter-spacing:0.2em; padding:6px 11px;}
+  .sec-title{font-size:clamp(15px,2vw,18px); font-weight:900; letter-spacing:0.02em;}
+  .sec-bar{flex:1; height:var(--thin); background:var(--bk);}
+  .sec-note{font-size:12px; font-weight:700; margin:-8px 0 var(--s4); line-height:1.5; max-width:64ch;}
+
+  /* ── 인물 3칸 ── */
+  .trio{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--bk); border:var(--thick) solid var(--bk);}
+  .trio .p{background:var(--wh); padding:var(--s4); display:flex; flex-direction:column; gap:var(--s2);}
+  .trio .pn{font-size:clamp(40px,5vw,56px); font-weight:900; line-height:0.85;}
+  .trio .pw{font-size:clamp(18px,2.4vw,22px); font-weight:900;}
+  .trio .pr{font-size:13px; font-weight:700; line-height:1.5;}
+  .trio .pm{margin-top:var(--s2); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; border-top:var(--thin) solid var(--bk); padding-top:var(--s2);}
+
+  /* ── 트랙 2레포 ── */
+  .tracks{display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:0;}
+  .tk{border:var(--thick) solid var(--bk); padding:var(--s4); display:flex; flex-direction:column; gap:10px;}
+  .tk.op{background:var(--bk); color:var(--wh);}
+  .tk .tkno{font-size:10px; letter-spacing:0.2em; text-transform:uppercase;}
+  .tk .tkn{font-size:clamp(20px,2.6vw,26px); font-weight:900; line-height:1;}
+  .tk .tks{font-size:11px; letter-spacing:0.12em; font-family:"Pretendard"; opacity:0.85;}
+  .tk .tkd{font-size:13px; font-weight:700; line-height:1.5;}
+  .tk ul{list-style:none; display:flex; flex-direction:column; gap:6px; margin-top:auto; padding-top:var(--s2);}
+  .tk ul li{font-size:11.5px; font-weight:700; padding-left:14px; position:relative; line-height:1.4;}
+  .tk ul li::before{content:'/'; position:absolute; left:0; font-weight:900;}
+  .promote{display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 var(--s3); gap:6px;}
+  .promote .arr{font-size:30px; font-weight:900; line-height:1;}
+  .promote .pl{font-size:9px; letter-spacing:0.2em; text-transform:uppercase; writing-mode:vertical-rl; text-orientation:mixed;}
+  .tcmp{width:100%; border-collapse:collapse; font-size:12.5px; border:var(--thick) solid var(--bk); border-top:none; margin-top:0;}
+  .tcmp th,.tcmp td{padding:9px 12px; border-bottom:var(--thin) solid var(--bk); text-align:left; vertical-align:top; line-height:1.4;}
+  .tcmp thead th{background:var(--bk); color:var(--wh); font-size:10px; letter-spacing:0.15em; text-transform:uppercase;}
+  .tcmp .ax{font-weight:900; width:96px; white-space:nowrap;}
+  .tcmp tbody tr:last-child td{border-bottom:none;}
+  .tcmp tr:last-child td{border-bottom:none;}
+
+  /* ── sequence-band ── */
+  .seq{display:flex; flex-wrap:wrap; align-items:center; gap:0; font-size:clamp(11px,1.4vw,14px); font-weight:900;}
+  .seq .node{border:var(--thick) solid var(--bk); padding:10px 13px;}
+  .seq .node.on{background:var(--bk); color:var(--wh);}
+  .seq .arr{padding:0 9px; font-size:17px; font-weight:900;}
+
+  /* ── step-rail ── */
+  .rail{display:flex; align-items:stretch; border:var(--thick) solid var(--bk);}
+  .rail .cell{flex:1; padding:var(--s4); display:flex; flex-direction:column; gap:var(--s3);}
+  .rail .cell + .cell{border-left:var(--thick) solid var(--bk);}
+  .rail .nbox{background:var(--bk); color:var(--wh); font-size:11px; letter-spacing:0.18em; padding:6px 10px; align-self:flex-start;}
+  .rail .who{font-size:clamp(19px,2.4vw,24px); font-weight:900; line-height:1;}
+  .rail ol{list-style:none; counter-reset:st; display:flex; flex-direction:column; gap:10px;}
+  .rail ol li{counter-increment:st; position:relative; padding-left:28px; font-size:13px; font-weight:700; line-height:1.5;}
+  .rail ol li::before{content:counter(st,decimal-leading-zero); position:absolute; left:0; top:0; font-size:10px; letter-spacing:0.1em; border:var(--thin) solid var(--bk); padding:1px 4px; line-height:1.3;}
+  .rail .say{border:var(--thick) solid var(--bk); padding:10px 12px; font-size:13px; font-weight:900;}
+  .rail .say .qq::before{content:'“';} .rail .say .qq::after{content:'”';}
+  .rail .hand{margin-top:auto; padding-top:var(--s3); border-top:var(--thin) solid var(--bk); font-size:12px;}
+  .rail .pass{font-size:11px; letter-spacing:0.05em;}
+
+  /* ── pipeline-band ── */
+  .pipe{background:var(--bk); color:var(--wh); padding:14px 18px; font-size:clamp(11px,1.5vw,13px); letter-spacing:0.14em; text-align:center; font-weight:700;}
+  .pipe b{font-weight:900;}
+
+  /* ── ruled-table ── */
+  .rt{width:100%; border-collapse:collapse; font-size:13px; border:var(--thick) solid var(--bk);}
+  .rt thead tr{background:var(--bk); color:var(--wh);}
+  .rt th{padding:11px 13px; text-align:left; letter-spacing:0.16em; font-size:10px; text-transform:uppercase;}
+  .rt td{padding:11px 13px; border-bottom:var(--thin) solid var(--bk); font-weight:700; line-height:1.45; vertical-align:top;}
+  .rt tbody tr:last-child td{border-bottom:none;}
+  .rt .fn{font-weight:900; white-space:nowrap;}
+  .rt .who-c{font-size:10px; letter-spacing:0.12em; text-transform:uppercase; white-space:nowrap;}
+
+  /* ── PR 5블록 ── */
+  .layers{border:var(--thick) solid var(--bk);}
+  .layers .ly{display:flex; gap:var(--s3); padding:var(--s3) var(--s4); border-bottom:var(--thin) solid var(--bk); align-items:baseline;}
+  .layers .ly:last-child{border-bottom:none;}
+  .layers .ly.auto{background:var(--bk); color:var(--wh);}
+  .layers .lyn{font-size:clamp(22px,3vw,30px); font-weight:900; line-height:0.9; width:42px; flex-shrink:0;}
+  .layers .lyt{font-size:14px; font-weight:900; margin-bottom:3px;}
+  .layers .lyd{font-size:12px; font-weight:700; line-height:1.5;}
+
+  /* ── score-card ── */
+  .scores{display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s2);}
+  .sc{border:var(--thick) solid var(--bk); padding:var(--s3); display:flex; flex-direction:column; gap:10px; min-height:150px;}
+  .sc .chip{width:20px; height:20px;}
+  .sc .chip.k{background:var(--bk);}
+  .sc .chip.h{background-image:var(--hatch45); border:var(--thin) solid var(--bk);}
+  .sc .chip.d{background-image:var(--hatchdot); border:var(--thin) solid var(--bk);}
+  .sc .chip.o{border:var(--thick) solid var(--bk);}
+  .sc .scn{font-size:clamp(14px,1.8vw,17px); font-weight:900; line-height:1.1;}
+  .sc .scd{font-size:11px; font-weight:700; line-height:1.45; margin-top:auto;}
+  .sc .sck{font-size:9px; letter-spacing:0.18em; text-transform:uppercase;}
+
+  /* ── def-table ── */
+  .dt{border-top:var(--thick) solid var(--bk);}
+  .dt .row{display:flex; gap:var(--s4); border-bottom:var(--thin) solid var(--bk); padding:var(--s3) 0;}
+  .dt .k{width:200px; flex-shrink:0; font-size:12px; letter-spacing:0.08em; font-weight:900;}
+  .dt .v{font-size:13px; font-weight:700; line-height:1.55;}
+  .dt.rules .k{text-transform:none;}
+
+  /* ── 티커 ── */
+  .ticker-wrap{overflow:hidden; background:var(--bk); color:var(--wh); padding:12px 0; margin-top:var(--s7);}
+  .ticker{white-space:nowrap; animation:scroll 30s linear infinite; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; font-weight:700;}
+  @keyframes scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+  .foot{display:flex; justify-content:space-between; flex-wrap:wrap; gap:var(--s3); margin-top:var(--s4); padding-bottom:var(--s5);}
+  @media (prefers-reduced-motion: reduce){.ticker{animation:none;}}
+
+  /* ── 반응형 ── */
+  @media (max-width:860px){
+    .trio{grid-template-columns:1fr;}
+    .rail{flex-direction:column;}
+    .rail .cell + .cell{border-left:none; border-top:var(--thick) solid var(--bk);}
+    .scores{grid-template-columns:repeat(2,1fr);}
+    .tracks{grid-template-columns:1fr;}
+    .promote{flex-direction:row; padding:var(--s2) 0;}
+    .promote .arr{transform:rotate(90deg);}
+    .promote .pl{writing-mode:horizontal-tb;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:var(--s6) var(--s4) var(--s4);}
+    .scores{grid-template-columns:1fr;}
+    .dt .row{flex-direction:column; gap:6px;}
+    .dt .k{width:auto;}
+    .rt,.tcmp{font-size:12px;}
+    .rt th,.rt td,.tcmp th,.tcmp td{padding:9px 10px;}
+    .layers .ly{flex-direction:column; gap:6px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 헤더 -->
+  <header class="head">
+    <div class="head-top">
+      <span class="label">C8-PL-HUB · v2.7 / 기획 핸드오프</span>
+      <span class="mono">온보딩 한 장 · 2026-06 기준</span>
+    </div>
+    <h1 class="hero"><span class="q">기획허브</span><span class="q">팀 온보딩</span></h1>
+    <div class="lead">
+      <p class="def">기획허브(c8-pl-hub)는 컨셉 한 줄·와이어프레임·피그마 URL·PDF·기존 기획서를 <em>개발 착수용 PRD와 기능정의 리스트</em>로 바꾸는 핸드오프 도구입니다. 핵심은 이번 버전에 만들 것과 만들지 않을 것을 잠그는 데 있습니다.</p>
+      <span class="tag">READER —<br>기획팀원 · 컨펌자 · 개발자</span>
+    </div>
+  </header>
+
+  <!-- 02 등장인물 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°02</span><span class="sec-title">한 바퀴를 도는 세 사람</span><span class="sec-bar"></span></div>
+    <div class="trio">
+      <div class="p">
+        <span class="pn">01</span>
+        <span class="pw q">기획팀원</span>
+        <span class="pr">입력을 PRD와 기능정의로 만들고, 무르익으면 운영으로 보내 출고합니다. git은 몰라도 됩니다.</span>
+        <span class="pm">작성자 / MAKER</span>
+      </div>
+      <div class="p">
+        <span class="pn">02</span>
+        <span class="pw q">컨펌자</span>
+        <span class="pr">올라온 결과를 PR 화면에서 읽고, 맞으면 버튼을 눌러 운영 레포에 반영합니다. 대표·리드의 자리입니다.</span>
+        <span class="pm">검수·승인 / REVIEWER</span>
+      </div>
+      <div class="p">
+        <span class="pn">03</span>
+        <span class="pw q">개발자</span>
+        <span class="pr">운영 레포에 등록된 PRD와 기능정의를 열어, 무엇을 만들지 작업 단위로 받아 착수합니다.</span>
+        <span class="pm">수신·구현 / BUILDER</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 두 트랙 (v2.7 신규) -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°03</span><span class="sec-title">두 레포 — 연구소와 운영 [v2.7]</span><span class="sec-bar"></span></div>
+    <p class="sec-note">v2.6부터 기획은 레포 두 곳을 씁니다. 새 기획은 연구소에서 자유롭게 굴리고, 무르익으면 운영으로 승격합니다. 매 작업 첫머리에 어느 트랙인지 먼저 정합니다.</p>
+    <div class="tracks">
+      <div class="tk">
+        <span class="tkno">기본 출발점 / DEFAULT</span>
+        <span class="tkn q">연구소</span>
+        <span class="tks">cre8orclub/pre-planning · PRE</span>
+        <span class="tkd">기획팀 내부 탐색 작업장입니다. 미완성·내부 표현·여러 갈래를 허용합니다.</span>
+        <ul><li>월별 폴더 {YYYY-MM}/{단위}</li><li>게이트 느슨 · 8파일 강제 안 함</li><li>신규 기획이 시작하는 곳</li></ul>
+      </div>
+      <div class="promote"><span class="pl">PROMOTE 승격</span><span class="arr">→</span></div>
+      <div class="tk op">
+        <span class="tkno">개발 핸드오프 / HANDOFF</span>
+        <span class="tkn q">운영</span>
+        <span class="tks">cre8orclub/planning · OPERATIONAL</span>
+        <span class="tkd">개발이 받는 정본입니다. 외부 공유본 품질로, strict 검증을 통과한 것만 들어갑니다.</span>
+        <ul><li>GNB flat {기능}/ 8파일</li><li>게이트 strict · 금지어 린트</li><li>무르익은 것만 여기로</li></ul>
+      </div>
+    </div>
+    <table class="tcmp">
+      <thead><tr><th class="ax">축</th><th>연구소 · pre</th><th>운영 · operational</th></tr></thead>
+      <tbody>
+        <tr><td class="ax">구조</td><td>월별 폴더 · 자유형 또는 패키지</td><td>레포 루트 flat · 고정 8파일</td></tr>
+        <tr><td class="ax">게이트</td><td>느슨 — 경고만, 멈추지 않음</td><td>strict — 경고가 곧 실패</td></tr>
+        <tr><td class="ax">독자</td><td>기획팀 내부</td><td>개발 · 디자인 · 외부</td></tr>
+        <tr><td class="ax">언어</td><td>탐색·내부 표현 허용</td><td>외부 공유본(승격 때 정화)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 04 전체 흐름 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°04</span><span class="sec-title">전체 흐름 다섯 칸</span><span class="sec-bar"></span></div>
+    <p class="sec-note">사람이 손대는 곳은 시작(연구소 탐색)과 컨펌뿐입니다. 승격·출고·등록은 스킬과 시스템이 처리합니다.</p>
+    <div class="seq">
+      <span class="node">연구소 탐색</span><span class="arr">/</span>
+      <span class="node">승격 promote</span><span class="arr">/</span>
+      <span class="node">운영 출고</span><span class="arr">/</span>
+      <span class="node">컨펌 · merge</span><span class="arr">/</span>
+      <span class="node on">개발 착수</span>
+    </div>
+  </section>
+
+  <!-- 05 단계 상세 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°05</span><span class="sec-title">단계별로 무엇을 하나</span><span class="sec-bar"></span></div>
+    <div class="rail">
+      <div class="cell">
+        <span class="nbox">N°01 · 기획팀원</span>
+        <span class="who q">올리기</span>
+        <ol>
+          <li>새 기획은 연구소(pre)에서 시작해 자유롭게 탐색합니다.</li>
+          <li>무르익으면 운영으로 승격합니다 — strict 검증·제출청소를 거칩니다.</li>
+          <li>운영 레포에 출고하면 스킬이 PR까지 대신 만듭니다.</li>
+        </ol>
+        <div class="say"><span class="qq">출고해줘</span> — 이 한 마디가 실행 동의</div>
+        <div class="hand">받는 것 — <b>PR URL 1개</b><br><span class="pass">다음 — URL을 컨펌자에게 전달</span></div>
+      </div>
+      <div class="cell">
+        <span class="nbox">N°02 · 컨펌자</span>
+        <span class="who q">컨펌하기</span>
+        <ol>
+          <li>받은 URL을 열어 PR 본문 5블록을 읽습니다.</li>
+          <li>더 볼 게 있으면 PRD.md·features.md만 훑습니다.</li>
+          <li>정할 것이 있으면 그 줄에 코멘트를 남깁니다.</li>
+        </ol>
+        <div class="say">Merge → 머지 전략 <span class="qq">Squash</span> 선택</div>
+        <div class="hand">하는 일 — <b>버튼 클릭 2번</b><br><span class="pass">다음 — 운영(main)에 자동 반영</span></div>
+      </div>
+      <div class="cell">
+        <span class="nbox">N°03 · 개발자</span>
+        <span class="who q">받기</span>
+        <ol>
+          <li>운영 레포 main에서 _nav(메뉴 지도)를 봅니다.</li>
+          <li>_index에서 패키지 목록을 찾아 해당 기능을 엽니다.</li>
+          <li>PRD.md로 범위를, features.md로 작업 단위를 받습니다.</li>
+        </ol>
+        <div class="say">F-ID <span class="qq">↔</span> FR-ID 연결로 추적</div>
+        <div class="hand">여는 곳 — <b>cre8orclub/planning · main</b><br><span class="pass">다음 — 개발 착수</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 출고 뒤 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°06</span><span class="sec-title">"출고해줘" 뒤에서 일어나는 일</span><span class="sec-bar"></span></div>
+    <p class="sec-note">운영으로 출고할 때 기획팀원은 아래 다섯 단계를 직접 하지 않습니다. 스킬이 Bitbucket을 상대로 대신 처리하고, 결과 URL만 돌려줍니다.</p>
+    <div class="pipe"><b>게이트 검사</b> &nbsp;/&nbsp; <b>planning-{기능} 브랜치</b> &nbsp;/&nbsp; <b>커밋</b> &nbsp;/&nbsp; <b>푸시</b> &nbsp;/&nbsp; <b>PR 생성</b> &nbsp;/&nbsp; <b>URL 반환</b></div>
+  </section>
+
+  <!-- 07 산출물 8파일 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°07</span><span class="sec-title">한 기능 = 8파일 한 묶음</span><span class="sec-bar"></span></div>
+    <p class="sec-note">운영 레포에서는 어느 패키지를 열어도 같은 세트가 나옵니다. 연구소에서는 이 8파일·12섹션을 강제하지 않습니다(탐색이라 느슨).</p>
+    <table class="rt">
+      <thead><tr><th>파일</th><th>무엇을 담나</th><th>주로 보는 사람</th></tr></thead>
+      <tbody>
+        <tr><td class="fn">README.md</td><td>패키지 첫 화면 — 무엇부터 보면 되는지</td><td class="who-c">전원</td></tr>
+        <tr><td class="fn">PRD.md</td><td>제품 요구서 — 범위·정책·시나리오(기본 12섹션)</td><td class="who-c">컨펌·개발</td></tr>
+        <tr><td class="fn">features.md</td><td>기능정의 리스트 — 개발 작업 단위(15컬럼)</td><td class="who-c">개발</td></tr>
+        <tr><td class="fn">features.csv</td><td>필터·엑셀·자동화용 데이터(보조 정본)</td><td class="who-c">개발·PM</td></tr>
+        <tr><td class="fn">decisions.md</td><td>사람이 정할 미결정만 — 관련 F·FR ID 포함</td><td class="who-c">컨펌·기획</td></tr>
+        <tr><td class="fn">qa.md</td><td>합격 기준 — "그게 됐는지 보는 법"</td><td class="who-c">개발·QA</td></tr>
+        <tr><td class="fn">screens.md</td><td>화면 지도 — 화면 없으면 '해당 없음' 블록</td><td class="who-c">디자인·개발</td></tr>
+        <tr><td class="fn">changelog.md</td><td>변경 이력</td><td class="who-c">전원</td></tr>
+      </tbody>
+    </table>
+    <p class="mono" style="margin-top:14px;">[ 컨셉 입력이면 concept.md가 9번째로 더해집니다 ] &nbsp; [ "엑셀로 줘" 하면 features.xlsx 추가 ]</p>
+  </section>
+
+  <!-- 08 PR 5블록 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°08</span><span class="sec-title">컨펌자가 읽는 PR 본문 5블록</span><span class="sec-bar"></span></div>
+    <p class="sec-note">코드나 변경 파일을 다 읽지 않아도 됩니다. 사람 말로 쓴 다섯 블록이 판단에 필요한 전부입니다.</p>
+    <div class="layers">
+      <div class="ly"><span class="lyn">01</span><div><div class="lyt">바뀐 것 한눈에</div><div class="lyd">기능 몇 개·미결 몇 건, 어떤 정책이 before→after로 바뀌었나.</div></div></div>
+      <div class="ly"><span class="lyn">02</span><div><div class="lyt">기존 기획과의 정합성 [통과 / 확인 필요]</div><div class="lyd">모순·중복·연결이 하나도 없으면 통과, 있으면 ⚠️로 표시합니다.</div></div></div>
+      <div class="ly"><span class="lyn">03</span><div><div class="lyt">컨펌자가 볼 곳</div><div class="lyd">기계가 못 정하는 것 — "이건 사람이 정하셔야 합니다" 항목.</div></div></div>
+      <div class="ly"><span class="lyn">04</span><div><div class="lyt">추천</div><div class="lyd">"머지 가능 — 나머지는 머지 후 보완" 또는 "보류 — 무엇부터 정하라".</div></div></div>
+      <div class="ly auto"><span class="lyn">05</span><div><div class="lyt">게이트 <span class="mono" style="letter-spacing:0.15em;">· 스킬이 자동 기록</span></div><div class="lyd">검증·폴더링·원격 대조 PASS 스탬프. 사람이 쓰지 않습니다.</div></div></div>
+    </div>
+  </section>
+
+  <!-- 09 상태값 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°09</span><span class="sec-title">미결정의 네 가지 상태</span><span class="sec-bar"></span></div>
+    <p class="sec-note">PM 워룸과 같은 프레임입니다. 채움이 진할수록 착수를 막는 강도가 큽니다.</p>
+    <div class="scores">
+      <div class="sc"><span class="chip o"></span><span class="sck">CLEAR</span><span class="scn">가는중</span><span class="scd">정보·결정이 다 있어 그대로 진행합니다.</span></div>
+      <div class="sc"><span class="chip d"></span><span class="sck">REVIEW</span><span class="scn">기획 확인 필요</span><span class="scd">방향을 한 번 더 확인한 뒤 진행합니다.</span></div>
+      <div class="sc"><span class="chip h"></span><span class="sck">BLOCK · INFO</span><span class="scn">못감 — 정보부족</span><span class="scd">빈칸이 채워져야 출시를 막지 않습니다.</span></div>
+      <div class="sc fill" style="background:#000;color:#FFF;border-color:#000;"><span class="chip k" style="background:#FFF;"></span><span class="sck">BLOCK · DECISION</span><span class="scn">못감 — 결정부족</span><span class="scd">사람이 골라야 다음으로 넘어갑니다.</span></div>
+    </div>
+  </section>
+
+  <!-- 10 꼭 기억 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°10</span><span class="sec-title">처음 오신 분이 꼭 기억할 다섯 가지</span><span class="sec-bar"></span></div>
+    <div class="dt rules">
+      <div class="row"><div class="k q">신규는 연구소에서</div><div class="v">새 기획은 기본으로 연구소(pre)에서 시작합니다. "운영으로 / 개발 핸드오프" 신호가 있을 때만 운영에서 바로 엽니다.</div></div>
+      <div class="row"><div class="k q">운영은 무르익은 것만</div><div class="v">운영(planning)은 strict 검증과 제출청소를 통과한 외부 공유본만 받습니다. 정화는 승격 시점에 일어납니다.</div></div>
+      <div class="row"><div class="k q">머지 ≠ 기획 확정</div><div class="v">Merge는 운영(main)에 반영하는 일입니다. 기획 확정(approved) 표시는 남은 미결정을 정한 뒤 갱신을 한 번 더 돌릴 때 붙습니다.</div></div>
+      <div class="row"><div class="k q">자동 머지는 없다</div><div class="v">스킬은 PR 생성까지만 합니다. 컨펌자가 버튼을 직접 누르지 않으면 어떤 것도 main에 올라가지 않습니다.</div></div>
+      <div class="row"><div class="k q">한 패키지 = 열린 PR 1개</div><div class="v">같은 기능을 다시 출고하면 새 PR을 만들지 않고, 열려 있던 그 PR에 커밋을 더합니다. 머지는 Squash로 main에 커밋 한 개만 남깁니다.</div></div>
+    </div>
+  </section>
+
+  <!-- 11 미결정 확정 루프 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°11</span><span class="sec-title">미결정을 확정하는 길</span><span class="sec-bar"></span></div>
+    <p class="sec-note">PR 위에서 직접 고치지 않습니다. 결정은 decisions.md를 거쳐 한 바퀴 더 돌 때 공식 결정으로 반영됩니다.</p>
+    <div class="seq">
+      <span class="node">컨펌자가 PR 줄에 코멘트</span><span class="arr">›</span>
+      <span class="node">기획팀원이 decisions.md에 답 기입</span><span class="arr">›</span>
+      <span class="node">"기획허브 갱신" 재실행</span><span class="arr">›</span>
+      <span class="node on">상태 approved</span>
+    </div>
+  </section>
+
+  <!-- 12 용어집 -->
+  <section class="sec">
+    <div class="sec-head"><span class="sec-no">N°12</span><span class="sec-title">처음 보는 말 풀이</span><span class="sec-bar"></span></div>
+    <div class="dt">
+      <div class="row"><div class="k q">연구소 · pre</div><div class="v">기획팀 내부 탐색 레포(cre8orclub/pre-planning). 월별 폴더에서 느슨하게 굴립니다. 신규 기획의 기본 출발점입니다.</div></div>
+      <div class="row"><div class="k q">운영 · operational</div><div class="v">개발 핸드오프 정본 레포(cre8orclub/planning). GNB flat·strict. 무르익은 기획만 들어갑니다.</div></div>
+      <div class="row"><div class="k q">승격 · promote</div><div class="v">연구소 단위를 strict 검증과 제출청소로 정화한 뒤 운영으로 옮기는 일입니다.</div></div>
+      <div class="row"><div class="k q">PRD</div><div class="v">제품 요구서. 만들 것과 만들지 않을 것을 잠그는 개발 착수 기준 문서입니다. DB·API·픽셀 지시는 쓰지 않습니다.</div></div>
+      <div class="row"><div class="k q">features</div><div class="v">기능정의 리스트. 개발자가 받을 작업 단위를 행마다 하나씩 적은 15컬럼 표입니다.</div></div>
+      <div class="row"><div class="k q">F-ID · FR-ID</div><div class="v">기능(F)과 요구사항(FR)을 서로 가리키게 묶는 연결 번호입니다(F-001 ↔ FR-001).</div></div>
+      <div class="row"><div class="k q">네 갈래 분리</div><div class="v">이번 버전에 안 넣는 것을 candidate(다음)·required-gap(정보 빈칸)·external(다른 패키지)·decision(사람 결정)으로 나눕니다.</div></div>
+      <div class="row"><div class="k q">GNB · _nav</div><div class="v">앱 메뉴 지도. 운영 레포 모든 패키지의 대전제이고, 각 기능이 어느 메뉴에 붙는지 여기에 매핑됩니다.</div></div>
+      <div class="row"><div class="k q">Squash 머지</div><div class="v">여러 커밋을 main에 하나로 합쳐 올리는 머지 방식입니다. 되돌릴 때도 커밋 하나만 보면 됩니다.</div></div>
+    </div>
+  </section>
+
+  <!-- 티커 -->
+  <div class="ticker-wrap">
+    <div class="ticker">"연구소 PRE" · "승격 PROMOTE" · "운영 PLANNING" · "출고해줘" · "PR URL" · "컨펌 · MERGE → SQUASH" · "개발 착수" · "연구소 PRE" · "승격 PROMOTE" · "운영 PLANNING" · "출고해줘" · "PR URL" · "컨펌 · MERGE → SQUASH" · "개발 착수" · </div>
+  </div>
+  <div class="foot">
+    <span class="mono">c/o CRE8ORCLUB · PLANNING · 2026</span>
+    <span class="mono">c8-pl-hub v2.7 · FOR INTERNAL ONBOARDING</span>
+  </div>
+
+</div>
+</body>
+</html>

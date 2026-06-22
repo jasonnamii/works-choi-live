@@ -406,5 +406,13 @@
     "last_kind": "redeploy",
     "last_sha256": "1a466ff7f5c908c11a3c69439b943bccb1480d519cd70ec07831cbe218b31674",
     "timestamp": "2026-06-20T03:51:07.061654Z"
+  },
+  "c8-pl-hub-onboarding": {
+    "slug": "c8-pl-hub-onboarding",
+    "mode": "choi",
+    "url": "https://works.choi.build/c8-pl-hub-onboarding/",
+    "last_kind": "new",
+    "last_sha256": "c023868d6153e9cd3e5a2e16876db8fdcb6b7827fba7b9e48135cab02bfd9bdb",
+    "timestamp": "2026-06-22T08:34:42.247548Z"
   }
 }
