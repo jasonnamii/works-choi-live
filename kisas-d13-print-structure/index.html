@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta name="robots" content="noindex, nofollow"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KISAS D1.3 — 인쇄 구조 제안</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0;}
+body{background:#FFF;color:#000;font-family:"Pretendard";font-weight:700;letter-spacing:0;
+  word-break:keep-all;line-break:strict;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;}
+.page{max-width:980px;margin:0 auto;padding:40px 48px 64px;}
+
+/* 가구 */
+.meta-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  border-bottom:2px solid #000;padding-bottom:12px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;}
+.mono{font-family:"Pretendard";}
+.cap{font-size:9px;letter-spacing:0.24em;text-transform:uppercase;}
+.cap::before{content:'"';}.cap::after{content:'"';}
+.micro{font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:#000;}
+.slash{color:#000;font-weight:900;}
+
+/* 섹션 */
+.sect{margin-top:60px;}
+.sect-h{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  border-bottom:2px solid #000;padding-bottom:9px;margin-bottom:22px;display:flex;justify-content:space-between;align-items:baseline;}
+.lead{font-size:15px;line-height:1.7;max-width:660px;}
+.note{font-size:12.5px;line-height:1.6;color:#000;}
+
+/* Hero */
+.hero{margin-top:40px;}
+.hero-q{font-size:54px;font-weight:900;line-height:1.04;letter-spacing:0;}
+.hero-sub{font-size:15.5px;line-height:1.7;max-width:680px;margin-top:22px;}
+
+/* 콜아웃 */
+.callout{border-left:4px solid #000;padding:14px 0 14px 18px;margin-top:24px;font-size:14px;line-height:1.65;max-width:680px;}
+
+/* keyval (산출물) */
+.kv{border:2px solid #000;}
+.kv-row{display:grid;grid-template-columns:1fr 1.15fr;border-bottom:1px solid #000;}
+.kv-row:last-child{border-bottom:0;}
+.kv-k{padding:13px 16px;border-right:1px solid #000;font-size:14px;font-weight:900;}
+.kv-v{padding:13px 16px;font-size:13px;line-height:1.45;display:flex;align-items:center;}
+
+/* layer-stack (4분할) */
+.master{border:3px solid #000;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+.master .nm{font-size:18px;font-weight:900;}
+.master .rl{font-size:12px;}
+.splitbar{text-align:center;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;padding:14px 0 16px;}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.unit{border:2px solid #000;padding:16px;display:flex;flex-direction:column;gap:8px;min-height:148px;}
+.unit .no{background:#000;color:#FFF;font-size:10px;letter-spacing:0.2em;padding:4px 8px;display:inline-block;align-self:flex-start;}
+.unit .nm{font-size:15px;font-weight:900;line-height:1.2;}
+.unit .qty{font-size:11px;letter-spacing:0.05em;}
+.unit .rl{font-size:12px;line-height:1.45;margin-top:2px;}
+.showcase{border:2px dashed #000;padding:13px 16px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:12.5px;}
+
+/* ruled-table */
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+thead th{background:#000;color:#FFF;border:1px solid #000;padding:11px 12px;text-align:left;letter-spacing:0.12em;font-size:11px;text-transform:uppercase;}
+tbody td{border:1px solid #000;padding:10px 12px;line-height:1.4;vertical-align:top;}
+.tag{font-size:10px;letter-spacing:0.1em;border:1px solid #000;padding:2px 7px;display:inline-block;white-space:nowrap;}
+.tag-fill{background:#000;color:#FFF;}
+
+/* branch-fork */
+.fork{border:2px solid #000;}
+.fork-row{display:grid;grid-template-columns:150px 1fr;border-bottom:1px solid #000;align-items:stretch;}
+.fork-row:last-child{border-bottom:0;}
+.fork-day{padding:13px 16px;border-right:2px solid #000;font-size:13px;font-weight:900;display:flex;align-items:center;line-height:1.3;}
+.fork-opts{display:flex;align-items:center;gap:14px;padding:13px 16px;font-size:13.5px;flex-wrap:wrap;}
+.fork-or{font-weight:900;font-size:16px;}
+.fork-both{font-size:11px;letter-spacing:0.05em;border:1px solid #000;padding:2px 8px;}
+
+/* before-after-split */
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid #000;}
+.split2 > div:first-child{border-right:2px solid #000;}
+.pane{padding:18px;}
+.pane h4{font-size:13px;font-weight:900;margin-bottom:4px;}
+.pane .en{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;}
+.check{font-size:12.5px;line-height:1.9;}
+.check span{display:inline-block;width:13px;height:13px;border:1.5px solid #000;margin-right:8px;vertical-align:-1px;}
+.pane p{font-size:12.5px;line-height:1.62;margin-top:6px;}
+
+/* step-rail */
+.rail{display:grid;grid-template-columns:repeat(5,1fr);border:2px solid #000;}
+.rail .step{padding:16px 14px;border-right:1px solid #000;display:flex;flex-direction:column;gap:10px;}
+.rail .step:last-child{border-right:0;}
+.rail .sn{background:#000;color:#FFF;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;}
+.rail .st{font-size:12.5px;line-height:1.5;}
+
+/* spec-matrix */
+.matrix th.rec{position:relative;}
+.matrix .pill{font-size:9px;letter-spacing:0.14em;background:#FFF;color:#000;padding:1px 6px;margin-left:6px;}
+.matrix td.dim{background:#000;color:#FFF;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;font-size:10.5px;}
+
+/* footer */
+.foot{border-top:2px solid #000;margin-top:60px;padding-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-size:11px;letter-spacing:0.22em;text-transform:uppercase;}
+
+@media (max-width:760px){
+  .page{padding:28px 20px 48px;}
+  .hero-q{font-size:38px;}
+  .kv-row{grid-template-columns:1fr;}
+  .kv-k{border-right:0;border-bottom:1px solid #000;}
+  .three{grid-template-columns:1fr;}
+  .split2{grid-template-columns:1fr;}
+  .split2 > div:first-child{border-right:0;border-bottom:2px solid #000;}
+  .rail{grid-template-columns:1fr;}
+  .rail .step{border-right:0;border-bottom:1px solid #000;}
+  .rail .step:last-child{border-bottom:0;}
+  .fork-row{grid-template-columns:1fr;}
+  .fork-day{border-right:0;border-bottom:1px solid #000;}
+  .meta-row{flex-wrap:wrap;gap:6px;}
+  table{font-size:11.5px;}
+  thead th,tbody td{padding:8px 9px;}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+:focus-visible{outline:2px solid #000;outline-offset:2px;}
+</style></head>
+<body>
+<div class="page">
+
+  <!-- 1. 헤드 메타 -->
+  <div class="meta-row">
+    <span>"KISAS" <span class="slash">/</span> D1.3</span>
+    <span class="mono">PRINT STRUCTURE — PROPOSAL</span>
+    <span>2026.06.22</span>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;font-size:12px;letter-spacing:0.04em;">
+    <span>수신 <span class="slash">—</span> 김선 박사</span>
+    <span class="micro">9-DAY CREATOR LOGBOOK</span>
+  </div>
+
+  <!-- 2. 핵심 판단 (Hero) -->
+  <div class="hero">
+    <div class="hero-q">내용은 살리고,<br>인쇄 단위만 나눕니다.</div>
+    <p class="hero-sub">D1.3은 학생이 9일 동안 가사·스피치·에세이·영상 피치를 완성해 가는 제작 기록입니다. 내용을 줄이면 산출물 흐름이 약해집니다. 지금은 콘텐츠를 덜어낼 때가 아니라, 168페이지 전체본을 학생 전원에게 한 권으로 지급하는 방식을 바꿀 때입니다.</p>
+    <div class="callout">표지명은 “Student Textbook”보다 “Creator Logbook”이 적합합니다. textbook은 빈칸을 채우는 책처럼 보이지만, logbook은 아이가 결과물을 만들어 간 기록으로 읽힙니다.</div>
+  </div>
+
+  <!-- 3. 산출물 6종 (COMPARE keyval) -->
+  <div class="sect">
+    <div class="sect-h"><span>N°01 / 이 책으로 학생이 남기는 것</span><span class="cap">OUTPUT</span></div>
+    <p class="lead" style="margin-bottom:22px;">학생은 9일 동안 이 책에 여섯 가지 결과물을 남깁니다. 학부모에게 보여줄 핵심은 “아이가 자기 생각을 가사·스피치·에세이·영상 피치로 완성했다”입니다.</p>
+    <div class="kv">
+      <div class="kv-row"><div class="kv-k">최종 가사</div><div class="kv-v">Day 2–5 Lyrics Asset Bank · Day 5 Final Lyrics</div></div>
+      <div class="kv-row"><div class="kv-k">무대 소개 (Stage Intro)</div><div class="kv-v">Day 6 Voice &amp; Evidence · Stage Intro Draft</div></div>
+      <div class="kv-row"><div class="kv-k">회복탄력성 에세이</div><div class="kv-v">Day 7 Resilience Essay</div></div>
+      <div class="kv-row"><div class="kv-k">60초 피치 영상</div><div class="kv-v">Day 8–9 Pitch &amp; Showcase</div></div>
+      <div class="kv-row"><div class="kv-k">30초 Q&amp;A 클립</div><div class="kv-v">Day 8–9 Pitch &amp; Showcase</div></div>
+      <div class="kv-row"><div class="kv-k">쇼케이스 인트로</div><div class="kv-v">Day 8–9 Recording Checklist</div></div>
+    </div>
+  </div>
+
+  <!-- 4. 인쇄 4분할 (HIERARCHY layer-stack) -->
+  <div class="sect">
+    <div class="sect-h"><span>N°02 / 인쇄 단위 분할</span><span class="cap">PRINT</span></div>
+    <div class="master">
+      <div><span class="micro">운영 원본 · 교사 / 운영진</span><div class="nm">TEACHER MASTER <span style="font-size:13px;font-weight:700;">· 168p</span></div></div>
+      <div class="rl" style="max-width:380px;">수준별 트랙, 선택 문학, 토론 질문, 에세이 템플릿, 영상 피치를 모두 담은 운영 원본입니다. 교사는 이 전체본을 기준으로 학생별 지급 자료를 선택합니다.</div>
+    </div>
+    <div class="splitbar">▼ 학생 지급본은 아래 3개로 분리합니다</div>
+    <div class="three">
+      <div class="unit">
+        <span class="no">N°01</span>
+        <div class="nm">STUDENT<br>CORE BOOK</div>
+        <div class="qty">약 85–105p · 학생 전원</div>
+        <div class="rl">모든 학생이 공통으로 완성할 산출물 흐름만 묶은 지급본입니다. 쓰기 활동이 많으므로 스프링 제본을 권장합니다.</div>
+      </div>
+      <div class="unit">
+        <span class="no">N°02</span>
+        <div class="nm">TRACK<br>PACK</div>
+        <div class="qty">학생별 15–35p · 교사 선택 배포</div>
+        <div class="rl">수준과 팀에 따라 달라지는 선택형 자료입니다. 교사가 선택한 경로만 학생에게 배포합니다.</div>
+      </div>
+      <div class="unit">
+        <span class="no">N°03</span>
+        <div class="nm">STUDIO<br>NOTES</div>
+        <div class="qty">8–12p · 필요 학생</div>
+        <div class="rl">본책 뒤쪽의 빈 노트 20페이지를 분리한 별도 메모 노트입니다.</div>
+      </div>
+    </div>
+    <div class="showcase">
+      <span><span class="cap">LAST DAY</span> &nbsp; PARENT SHOWCASE SHEET · 1–2p</span>
+      <span class="rl">완성 페이지, 결과물 QR, 교사 코멘트를 1–2페이지로 묶어 학부모에게 전달합니다.</span>
+    </div>
+  </div>
+
+  <!-- 5. Core Book 구성 (TABLE ruled) -->
+  <div class="sect">
+    <div class="sect-h"><span>N°03 / Student Core Book 구성</span><span class="cap">CORE</span></div>
+    <table>
+      <thead><tr><th style="width:40%;">구분</th><th style="width:42%;">포함 범위</th><th style="width:18%;">판단</th></tr></thead>
+      <tbody>
+        <tr><td>Front Dashboard</td><td>신규 1–2p 추가</td><td><span class="tag tag-fill">필수</span></td></tr>
+        <tr><td>Lyrics Asset Bank</td><td>p.3–8</td><td><span class="tag tag-fill">필수</span></td></tr>
+        <tr><td>Day 2 Identity Workshop</td><td>p.9–20</td><td><span class="tag tag-fill">필수</span></td></tr>
+        <tr><td>Day 3 Reading &amp; Debate</td><td>p.21–30</td><td><span class="tag tag-fill">필수</span></td></tr>
+        <tr><td>Day 4 Pressure &amp; Limits</td><td>p.45–55</td><td><span class="tag tag-fill">필수</span></td></tr>
+        <tr><td>Day 5 Songwriting Core</td><td>p.71 + 선택 Track</td><td><span class="tag tag-fill">필수</span></td></tr>
+        <tr><td>Day 6 Voice &amp; Evidence</td><td>p.90–97</td><td><span class="tag tag-fill">필수</span></td></tr>
+        <tr><td>Day 7 Resilience Essay</td><td>p.117–128</td><td><span class="tag tag-fill">필수</span></td></tr>
+        <tr><td>Day 8–9 Pitch &amp; Showcase</td><td>p.142–148</td><td><span class="tag tag-fill">필수</span></td></tr>
+        <tr><td>뒤쪽 Notes (Lined 10p · Idea 10p)</td><td>p.149–168</td><td><span class="tag">본책 제외</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:14px;">가장 먼저 조정할 부분은 뒤쪽 Notes 20페이지입니다. 본책에 그대로 두면 미완성 페이지처럼 보일 수 있으므로, 별도 Studio Notes로 분리합니다.</p>
+  </div>
+
+  <!-- 6. Track Pack 선택지 (FLOW branch-fork) -->
+  <div class="sect">
+    <div class="sect-h"><span>N°04 / Track Pack — 교사 선택 배포</span><span class="cap">TRACK</span></div>
+    <p class="lead" style="margin-bottom:20px;">선택형 자료를 한 권에 모두 넣으면 학생마다 사용하지 않는 페이지가 생깁니다. 선택지는 교사가 관리하고, 학생 책에는 선택된 경로만 들어가게 합니다.</p>
+    <div class="fork">
+      <div class="fork-row"><div class="fork-day">Day 3<br>Reading</div><div class="fork-opts"><span>Aesop’s Fables</span><span class="fork-or">╱</span><span>The Necklace</span></div></div>
+      <div class="fork-row"><div class="fork-day">Day 4<br>Reading</div><div class="fork-opts"><span>Icarus</span><span class="fork-or">╱</span><span>Macbeth</span></div></div>
+      <div class="fork-row"><div class="fork-day">Day 5<br>Songwriting</div><div class="fork-opts"><span>Track A — 짧은 구조화 스프린트</span><span class="fork-or">╱</span><span>Track B — 고급 제작 프로세스</span></div></div>
+      <div class="fork-row"><div class="fork-day">Day 6<br>Speech Evidence</div><div class="fork-opts"><span>BTS + Malala</span><span class="fork-both">대부분 필수</span></div></div>
+      <div class="fork-row"><div class="fork-day">Day 7<br>Final Writing</div><div class="fork-opts"><span>A Christmas Carol (120–250w)</span><span class="fork-or">╱</span><span>The Odyssey (300–600w)</span></div></div>
+    </div>
+  </div>
+
+  <!-- 7. 추가 2페이지 (COMPARE before-after-split) -->
+  <div class="sect">
+    <div class="sect-h"><span>N°05 / 맨 앞에 추가할 2페이지</span><span class="cap">ADD</span></div>
+    <p class="lead" style="margin-bottom:20px;">빈칸 오해는 페이지를 줄이는 것보다 앞 2페이지를 추가하는 방식으로 더 빨리 줄일 수 있습니다. 이 두 장이 있으면 사용하지 않은 페이지가 누락이 아니라 선택되지 않은 트랙으로 보입니다.</p>
+    <div class="split2">
+      <div class="pane">
+        <h4>My KISAS 9-Day Creator Map</h4>
+        <div class="en">학생용 · 첫 장</div>
+        <div class="check">
+          <span></span>My Identity Map<br>
+          <span></span>My Lyrics Asset Bank<br>
+          <span></span>Final K-pop Lyrics<br>
+          <span></span>Stage Intro<br>
+          <span></span>Resilience Essay<br>
+          <span></span>60-second Pitch Video<br>
+          <span></span>30-second Q&amp;A Clip<br>
+          <span></span>Final Showcase Intro
+        </div>
+        <p style="margin-top:10px;color:#000;">교사가 선택한 Track Pack을 같은 장에 체크해 학생별 학습 경로를 명확히 표시합니다.</p>
+      </div>
+      <div class="pane">
+        <h4>Parent View — 이 책이 보여주는 것</h4>
+        <div class="en">학부모용 안내</div>
+        <p>이 책은 모든 페이지를 채우는 문제집이 아닙니다. KISAS Creator Logbook은 학생이 9일 동안 자기 생각을 가사, 스피치, 에세이, 영상 피치로 발전시키는 제작 기록입니다.</p>
+        <p>교사는 학생 수준과 팀 구성에 따라 사용할 페이지를 지정합니다. 캠프가 끝나면 이 책은 학생이 ① 메시지를 찾고 ② 가사로 바꾸고 ③ 스피치·에세이에 근거를 적용하고 ④ 피치와 쇼케이스로 완성한 과정을 보여줍니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 운영 5단계 (FLOW step-rail) -->
+  <div class="sect">
+    <div class="sect-h"><span>N°06 / 운영 흐름</span><span class="cap">RUN</span></div>
+    <p class="lead" style="margin-bottom:20px;">교사가 아직 아이들을 파악하지 못한 상태라면, 처음부터 맞춤형 책을 완성할 필요가 없습니다. 아래 순서로 운영하면 됩니다.</p>
+    <div class="rail">
+      <div class="step"><div class="sn">1</div><div class="st">첫날에는 Student Core Book만 전원에게 지급합니다.</div></div>
+      <div class="step"><div class="sn">2</div><div class="st">Day 2 Identity Workshop과 Asset Bank를 통해 학생의 수준과 성향을 파악합니다.</div></div>
+      <div class="step"><div class="sn">3</div><div class="st">Day 3부터 교사가 학생별 Track Pack을 선택합니다.</div></div>
+      <div class="step"><div class="sn">4</div><div class="st">Track Pack은 수업 전날 또는 당일에 필요한 학생에게만 배포합니다.</div></div>
+      <div class="step"><div class="sn">5</div><div class="st">마지막 날에는 완성 페이지, 결과물 QR, 교사 코멘트를 Showcase Sheet로 정리합니다.</div></div>
+    </div>
+  </div>
+
+  <!-- 9. 결정 3안 (COMPARE spec-matrix) -->
+  <div class="sect">
+    <div class="sect-h"><span>N°07 / 결정 옵션</span><span class="cap">DECIDE</span></div>
+    <table class="matrix">
+      <thead><tr>
+        <th style="width:16%;">구분</th>
+        <th style="width:28%;">1안 — 최소 수정</th>
+        <th class="rec" style="width:28%;background:#000;">2안 — 분할 인쇄<span class="pill">추천</span></th>
+        <th style="width:28%;">3안 — 학부모 만족 우선</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td class="dim">조건</td>
+          <td>인쇄 일정이 촉박할 때</td>
+          <td>가장 균형 잡힌 표준안</td>
+          <td>학부모 만족도를 최우선으로 볼 때</td>
+        </tr>
+        <tr>
+          <td class="dim">핵심 조치</td>
+          <td>168페이지 구조를 유지하되, 앞 2페이지를 추가하고 뒤쪽 Notes 20페이지를 제거합니다. Track 라벨과 표지명만 수정합니다.</td>
+          <td>Master는 운영 원본으로 보관하고, 인쇄용 PDF를 Core Book · Track Pack · Teacher Master 3종으로 분리합니다.</td>
+          <td>2안에 더해 마지막 날 별도 Showcase Portfolio를 제작합니다.</td>
+        </tr>
+        <tr>
+          <td class="dim">결과</td>
+          <td>빠르게 적용할 수 있지만, 학생별 맞춤 배포 효과는 제한적입니다.</td>
+          <td>교사의 선택권, 학생의 집중도, 학부모의 결과물 인식을 모두 확보할 수 있습니다.</td>
+          <td>학부모는 전체 작업지가 아니라 완성 결과물의 압축본을 보게 됩니다.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:16px;">결론은 명확합니다. <strong style="font-weight:900;">D1.3은 줄일 자료가 아니라, 한 권에 너무 많은 역할이 들어간 자료입니다.</strong> 전체본은 Teacher Master로 보관하고, 학생 지급본은 Core Book으로 분리하며, 선택형 자료는 Track Pack으로 운영합니다. 1안·2안·3안 중 방향을 정하면 인쇄용 PDF 분리 작업으로 바로 넘어갈 수 있습니다.</p>
+  </div>
+
+  <!-- 10. 푸터 -->
+  <div class="foot">
+    <span>"KISAS" <span class="slash">/</span> CREATOR LOGBOOK</span>
+    <span class="mono">D1.3 · PRINT STRUCTURE</span>
+    <span>2026.06.22</span>
+  </div>
+
+</div>
+</body></html>

@@ -59,9 +59,9 @@
     "slug": "c8-bp-applebento",
     "mode": "choi",
     "url": "https://works.choi.build/c8-bp-applebento/",
-    "last_kind": "redeploy",
-    "last_sha256": "af540318f90a967da3787c52611b33951a82ccd36cbf3d66c8a567347989dd05",
-    "timestamp": "2026-06-14T13:27:06.045744Z"
+    "last_kind": "backfill",
+    "last_sha256": "",
+    "timestamp": "2026-05-23T02:32:12Z"
   },
   "c8-bp": {
     "slug": "c8-bp",
@@ -391,28 +391,12 @@
     "last_sha256": "fd0c7696af64e3547a89f0d7ef124e187376e6981850a216cd2598e55d2f9cd0",
     "timestamp": "2026-06-09T15:18:26.426768Z"
   },
-  "tokyo-tour": {
-    "slug": "tokyo-tour",
+  "kisas-d13-print-structure": {
+    "slug": "kisas-d13-print-structure",
     "mode": "choi",
-    "url": "https://works.choi.build/tokyo-tour/",
-    "last_kind": "redeploy",
-    "last_sha256": "af4b665ba53893ec7124fd44cea5f546840da21d232461dac315ef87fc34da08",
-    "timestamp": "2026-06-14T14:48:39.802211Z"
-  },
-  "kisas-junior-leader": {
-    "slug": "kisas-junior-leader",
-    "mode": "choi",
-    "url": "https://works.choi.build/kisas-junior-leader/",
-    "last_kind": "redeploy",
-    "last_sha256": "1a466ff7f5c908c11a3c69439b943bccb1480d519cd70ec07831cbe218b31674",
-    "timestamp": "2026-06-20T03:51:07.061654Z"
-  },
-  "c8-pl-hub-onboarding": {
-    "slug": "c8-pl-hub-onboarding",
-    "mode": "choi",
-    "url": "https://works.choi.build/c8-pl-hub-onboarding/",
+    "url": "https://works.choi.build/kisas-d13-print-structure/",
     "last_kind": "new",
-    "last_sha256": "c023868d6153e9cd3e5a2e16876db8fdcb6b7827fba7b9e48135cab02bfd9bdb",
-    "timestamp": "2026-06-22T08:34:42.247548Z"
+    "last_sha256": "939a51dc8618a47d62046e7d06f5fde122c72a19494de02b55388e760a936f0c",
+    "timestamp": "2026-06-22T11:47:13.814687Z"
   }
 }
