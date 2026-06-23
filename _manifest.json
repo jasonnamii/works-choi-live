@@ -292,8 +292,8 @@
     "mode": "choi",
     "url": "https://works.choi.build/madverse-contract-260526/",
     "last_kind": "redeploy",
-    "last_sha256": "c9cfe1140378ce0dd51a47db470ec54ca88b6c2239550d26ed761863ce9c08d1",
-    "timestamp": "2026-06-23T14:47:39.342360Z"
+    "last_sha256": "97dde291d5b99755d2c0ca0a2769f4c809a239b83e901e5cddc2a8e4fa77259c",
+    "timestamp": "2026-06-23T14:49:16.718549Z"
   },
   "madpop-contract-v2": {
     "slug": "madpop-contract-v2",
