@@ -403,8 +403,8 @@
     "slug": "ai-alt-school",
     "mode": "choi",
     "url": "https://works.choi.build/ai-alt-school/",
-    "last_kind": "new",
-    "last_sha256": "87ef4c6dbac2d06aed897e597ed649f1a99044229db39caa7633ff0b8993f00c",
-    "timestamp": "2026-07-08T12:19:49.099840Z"
+    "last_kind": "redeploy",
+    "last_sha256": "e9393f01b04758e8ec973f7903851727e8c5648b2aaa9304eb37309875c3b921",
+    "timestamp": "2026-07-09T08:54:10.852214Z"
   }
 }
