@@ -20,8 +20,8 @@
     "mode": "choi",
     "url": "https://works.choi.build/bcm/",
     "last_kind": "redeploy",
-    "last_sha256": "7e405180e0cbb673c3089f5c923b43c3a52bebc8840c13a433965dd4a6641ebf",
-    "timestamp": "2026-07-13T07:31:22.834808Z"
+    "last_sha256": "c257889cffd51ff3643ad8f4f6c4287f138fb47ea0cebccf5459aa67992b115f",
+    "timestamp": "2026-07-13T07:49:01.223860Z"
   },
   "bma-contract-bento": {
     "slug": "bma-contract-bento",

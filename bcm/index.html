@@ -170,6 +170,11 @@ html[data-lang="en"] .lang-ko,
 html[data-lang="ko"] .menu-en,
 html[data-lang="en"] .menu-ko{display:none!important}
 
+/* Korean display copy wraps by words, never between Hangul syllables. */
+.lang-ko{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+.lang-ko .math,.lang-ko .equation{word-break:normal;overflow-wrap:normal}
+.lang-en{hyphens:none;overflow-wrap:normal}
+
 .hero{
   position:relative;min-height:100svh;display:flex;align-items:flex-end;isolation:isolate;
   padding:calc(var(--nav-h) + 9vh) clamp(22px,6vw,92px) clamp(56px,8vh,96px);
@@ -191,9 +196,10 @@ html[data-lang="en"] .menu-ko{display:none!important}
 .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px;color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
 .eyebrow::before{content:"";width:34px;height:1px;background:currentColor}
 .hero h1{margin:0;max-width:1020px;font-size:clamp(64px,12.5vw,184px);line-height:.82;letter-spacing:-.075em;font-weight:900}
+.lang-en .hero h1{max-width:1220px;font-size:clamp(58px,9vw,128px);line-height:.86;letter-spacing:-.06em}
 .hero h1 .line{display:block}
 .hero .only{color:transparent;-webkit-text-stroke:1.4px rgba(244,244,240,.82);text-stroke:1.4px rgba(244,244,240,.82)}
-.hook{max-width:830px;margin:clamp(38px,6vh,72px) 0 0;font-size:clamp(23px,3.1vw,44px);line-height:1.28;letter-spacing:-.045em;font-weight:650}
+.hook{max-width:830px;margin:clamp(38px,6vh,72px) 0 0;font-size:clamp(23px,3.1vw,44px);line-height:1.28;letter-spacing:-.045em;font-weight:650;text-wrap:balance}
 .hook strong{color:var(--accent);font-weight:800}
 .hypothesis-label{display:inline-flex;margin-top:24px;padding:8px 12px;border:1px solid var(--line-strong);border-radius:999px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.08em}
 .scroll-note{position:absolute;right:clamp(22px,4vw,60px);bottom:34px;display:flex;align-items:center;gap:10px;color:var(--dim);font-size:10px;letter-spacing:.15em;writing-mode:vertical-rl}
@@ -206,10 +212,10 @@ html[data-lang="en"] .menu-ko{display:none!important}
 .section-title{margin:0;font-size:clamp(42px,7.5vw,98px);line-height:.94;letter-spacing:-.065em;font-weight:850;text-wrap:balance}
 .reading{width:min(var(--reading),100%);margin-left:auto;margin-right:auto}
 .reading p{margin:0 0 1.35em}
-.reading .lead{font-size:clamp(25px,3.4vw,42px);line-height:1.4;letter-spacing:-.04em;color:var(--ink)}
+.reading .lead{font-size:clamp(25px,3.4vw,42px);line-height:1.4;letter-spacing:-.04em;color:var(--ink);text-wrap:balance}
 .reading strong{font-weight:750;color:#fff}
 .muted{color:var(--muted)}
-.huge-statement{max-width:1100px;margin:clamp(60px,10vw,130px) auto 0;font-size:clamp(38px,7vw,92px);line-height:1.04;letter-spacing:-.06em;font-weight:820;text-wrap:balance}
+.huge-statement{max-width:1100px;margin:clamp(60px,10vw,130px) auto 0;font-size:clamp(38px,5.8vw,82px);line-height:1.04;letter-spacing:-.06em;font-weight:820;text-wrap:balance}
 .huge-statement em{font-style:normal;color:var(--accent)}
 
 .assumptions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);margin:56px auto 0;max-width:930px}
@@ -235,7 +241,7 @@ html[data-lang="en"] .menu-ko{display:none!important}
 
 .definition{margin:0 auto;max-width:980px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.01));padding:clamp(34px,6vw,78px);text-align:center}
 .definition .math{font-size:clamp(25px,4vw,48px);overflow-x:auto}
-.definition .translation{margin:26px auto 0;max-width:700px;font-size:clamp(21px,2.8vw,32px);line-height:1.42;letter-spacing:-.035em}
+.definition .translation{margin:26px auto 0;max-width:700px;font-size:clamp(21px,2.8vw,32px);line-height:1.42;letter-spacing:-.035em;text-wrap:balance}
 .sim-table{width:100%;border-collapse:collapse;margin:72px 0 0}
 .sim-table th,.sim-table td{padding:20px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 .sim-table th{color:var(--dim);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
@@ -270,7 +276,7 @@ html[data-lang="en"] .menu-ko{display:none!important}
 .section.light{background:var(--paper);color:var(--paper-ink);border-color:rgba(0,0,0,.12)}
 .light .section-num,.light .muted{color:#6c6c69}
 .light .reading strong{color:#000}
-.objection{max-width:1010px;margin:0 auto;font-size:clamp(40px,7.2vw,96px);line-height:1.02;letter-spacing:-.065em;font-weight:850}
+.objection{max-width:1010px;margin:0 auto;font-size:clamp(40px,6.1vw,86px);line-height:1.02;letter-spacing:-.065em;font-weight:850;text-wrap:balance}
 .answer{max-width:760px;margin:70px auto 0;font-size:clamp(21px,2.5vw,30px);line-height:1.55;letter-spacing:-.03em}
 .answer strong{color:#000}
 .research-target{max-width:930px;margin:70px auto 0;padding:clamp(28px,5vw,62px);border:1px solid rgba(0,0,0,.25);text-align:center;background:rgba(255,255,255,.34)}
@@ -284,7 +290,7 @@ html[data-lang="en"] .menu-ko{display:none!important}
 .finale{min-height:92svh;display:flex;align-items:center;background:radial-gradient(circle at 50% 45%,rgba(185,221,255,.08),transparent 36%),var(--bg)}
 .finale-copy{max-width:1080px;margin:0 auto;text-align:center}
 .finale-copy p{margin:0 auto 1.4em;max-width:760px;color:var(--muted);font-size:clamp(19px,2.4vw,27px)}
-.final-line{margin:clamp(54px,8vw,94px) 0 0;font-size:clamp(44px,8.5vw,112px);line-height:.98;letter-spacing:-.07em;font-weight:880;text-wrap:balance}
+.final-line{margin:clamp(54px,8vw,94px) 0 0;font-size:clamp(44px,7.1vw,96px);line-height:.98;letter-spacing:-.07em;font-weight:880;text-wrap:balance}
 .final-line span{display:block;color:var(--accent)}
 
 .technical{background:var(--bg-soft)}
@@ -325,10 +331,15 @@ footer{padding:48px clamp(22px,6vw,92px);border-top:1px solid var(--line);color:
   .topbar{grid-template-columns:auto 1fr auto;padding:0 16px;gap:12px}
   .brand{font-size:12px}.nav-actions{gap:8px}
   .hero{padding-left:20px;padding-right:20px}
-  .hero h1{font-size:clamp(58px,20vw,96px)}
+  .hero h1{font-size:clamp(54px,15.5vw,72px)}
+  .lang-en .hero h1{max-width:100%;font-size:clamp(40px,10.5vw,48px);line-height:.9}
   .scroll-note{display:none}
   .section{padding-left:20px;padding-right:20px}
-  .section-head{display:block}.section-num{margin-bottom:20px}.section-title{font-size:clamp(42px,15vw,70px)}
+  .section-head{display:block}.section-num{margin-bottom:20px}.section-title{font-size:clamp(38px,11vw,58px)}
+  .huge-statement{font-size:clamp(34px,10.5vw,48px)}
+  .objection{font-size:clamp(36px,11vw,54px)}
+  .final-line{font-size:clamp(38px,11.5vw,58px)}
+  .final-line span{display:inline}
   .assumptions{grid-template-columns:1fr}
   .inversion-grid{grid-template-columns:1fr}.world{min-height:390px}
   .sim-table,.sim-table tbody,.sim-table tr,.sim-table td{display:block}
@@ -542,7 +553,7 @@ footer{padding:48px clamp(22px,6vw,92px);border-top:1px solid var(--line);color:
     <div class="section-inner finale-copy reveal">
       <p>우리는 자연을 시간 속에서 변하는 사물들의 집합으로 보았습니다. 그래서 양자 얽힘을 볼 때마다 무엇이 얼마나 빨리 이동했는지를 물었습니다.</p>
       <p>그러나 관계가 사물보다 먼저라면 질문은 달라집니다.</p>
-      <h2 class="final-line">무엇이 이동했는가가 아니라,<span>왜 하나의 연결을 두 사건으로 경험하는가?</span></h2>
+      <h2 class="final-line">무엇이 이동했는가가 아니라, <span>왜 하나의 연결을 두 사건으로 경험하는가?</span></h2>
       <p style="margin-top:64px;color:var(--ink)">우리는 시간이 흐르는 세계에 사는 것이 아니라,<br>연결된 세계를 시간으로 읽고 있는지도 모릅니다.</p>
     </div>
   </section>
@@ -739,7 +750,7 @@ footer{padding:48px clamp(22px,6vw,92px);border-top:1px solid var(--line);color:
     <div class="section-inner finale-copy reveal">
       <p>We have treated nature as a collection of objects changing in time. So whenever we encounter entanglement, we ask what moved and how fast.</p>
       <p>But if relation comes before object, the question changes.</p>
-      <h2 class="final-line">Not what travelled,<span>but why one connection is experienced as two events.</span></h2>
+      <h2 class="final-line">Not what travelled, <span>but why one connection is experienced as two events.</span></h2>
       <p style="margin-top:64px;color:var(--ink)">Perhaps we do not live in a world through which time flows.<br>Perhaps we read a connected world as time.</p>
     </div>
   </section>
