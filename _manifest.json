@@ -406,5 +406,13 @@
     "last_kind": "redeploy",
     "last_sha256": "ef936b2020cf46708851f455dda807e8aabb3a7f15ebaab620a9e74ea2375186",
     "timestamp": "2026-07-09T09:04:48.644601Z"
+  },
+  "masai-koji": {
+    "slug": "masai-koji",
+    "mode": "choi",
+    "url": "https://works.choi.build/masai-koji/",
+    "last_kind": "new",
+    "last_sha256": "ef3a61806f11ffa84d7fc5a6f6aef457705b4d1cb926064d77c4c284af98d1fb",
+    "timestamp": "2026-07-16T07:36:22.466019Z"
   }
 }
