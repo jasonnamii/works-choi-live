@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>명이대표 · XCAR 실체 분석 리포트</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  --paper:#f4efe7; --bg-1:#ffffff; --bg-2:#f7f7f7; --bg-3:#efefef;
+  --rule:#d8d8d8; --rule-strong:#aaaaaa;
+  --fg-1:#0a0a0a; --fg-2:#3a3a3a; --fg-3:#6a6a6a; --fg-on-dark:#f4efe7; --fg-on-dark-2:#c8c4ba; --fg-on-dark-3:#908d83;
+  --ink:#0a0a0a;
+  --accent:#d32f2f;         /* OB-4 red — single product accent */
+  --caution:#b8860b;        /* muted caution for 미확인 */
+  --font-display:'Hanken Grotesk','Helvetica Neue',helvetica,arial,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',menlo,monospace;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg-1); color:var(--fg-1);
+  font-family:var(--font-display); font-size:16px; font-weight:400; line-height:1.5;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  word-break:keep-all; line-break:strict; overflow-wrap:break-word;
+}
+h1,h2,h3,h4{font-family:var(--font-display); font-weight:400; margin:0; line-height:1.1; text-transform:lowercase}
+p{margin:0 0 16px 0}
+a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--rule)}
+a:hover{opacity:.6}
+.mono{font-family:var(--font-mono); font-size:13px; letter-spacing:.01em}
+.tnum{font-variant-numeric:tabular-nums}
+.en{text-transform:lowercase}
+
+.spec-label{font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--fg-3); text-transform:uppercase; display:inline-block}
+.prodcode{font-family:var(--font-mono); letter-spacing:.02em; text-transform:uppercase}
+
+.wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+section{padding:56px 0; border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+.eyebrow{font-family:var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--fg-3); margin-bottom:20px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.eyebrow .n{color:var(--accent)}
+.sec-title{font-size:32px; line-height:1.05; margin-bottom:8px}
+.sec-sub{color:var(--fg-2); font-size:16px; max-width:62ch; margin-bottom:28px}
+.lead{font-size:18px; line-height:1.5; color:var(--fg-2); max-width:66ch}
+
+/* ---------- hero ---------- */
+.hero{padding:64px 0 40px; border-top:0}
+.hero .kick{font-family:var(--font-mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--fg-3); margin-bottom:24px}
+.hero h1{font-size:clamp(40px,8vw,72px); line-height:.95; margin-bottom:8px}
+.hero .zh{font-family:var(--font-mono); font-size:14px; color:var(--fg-3); letter-spacing:.02em; margin-bottom:28px}
+.verdict{background:var(--ink); color:var(--fg-on-dark); padding:28px; margin-top:8px}
+.verdict .big{font-size:clamp(19px,3.4vw,26px); line-height:1.32; color:var(--fg-on-dark); font-weight:500; margin-bottom:20px}
+.verdict .meta{display:flex; gap:28px; flex-wrap:wrap; border-top:1px solid #333; padding-top:18px}
+.verdict .meta div{min-width:96px}
+.verdict .meta .k{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--fg-on-dark-3); margin-bottom:6px}
+.verdict .meta .v{font-size:20px; color:var(--fg-on-dark); font-variant-numeric:tabular-nums}
+.verdict .meta .v.risk{color:#ff6a5a}
+.foot-note{font-family:var(--font-mono); font-size:12px; color:var(--fg-3); margin-top:16px; letter-spacing:.01em}
+
+/* ---------- comparison table ---------- */
+.scroll-x{overflow-x:auto; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; font-size:15px}
+.cmp{min-width:640px}
+.cmp th{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--fg-3); text-align:left; padding:0 14px 10px 0; border-bottom:1px solid var(--ink); font-weight:400; vertical-align:bottom}
+.cmp td{padding:14px 14px 14px 0; border-bottom:1px solid var(--rule); vertical-align:top; line-height:1.4}
+.cmp td.claim{color:var(--fg-2); width:30%}
+.cmp td.real{width:52%}
+.cmp td.v{width:18%; white-space:nowrap}
+.tag{font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; padding:3px 8px; border:1px solid currentColor; display:inline-block; line-height:1.3}
+.tag.bad{color:var(--accent)}
+.tag.warn{color:var(--caution)}
+.tag.neu{color:var(--fg-3)}
+.tag.ref{color:var(--accent)}
+
+/* ---------- dark stat panel ---------- */
+.statpanel{background:var(--ink); color:var(--fg-on-dark); padding:32px; display:grid; grid-template-columns:1.1fr 1fr; gap:28px; align-items:center}
+.statpanel .num{font-size:clamp(48px,11vw,88px); line-height:.9; color:#ff6a5a; font-weight:500; font-variant-numeric:tabular-nums; letter-spacing:-.01em}
+.statpanel .num small{display:block; font-size:14px; color:var(--fg-on-dark-2); margin-top:14px; font-weight:400; letter-spacing:0; line-height:1.4}
+.statpanel p{color:var(--fg-on-dark-2); margin:0; font-size:15px; line-height:1.55}
+.statpanel .sub{font-family:var(--font-mono); font-size:12px; color:var(--fg-on-dark-3); letter-spacing:.02em; margin-top:14px}
+
+/* ---------- pipeline ---------- */
+.pipe{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--rule)}
+.pipe .st{padding:20px 16px; border-right:1px solid var(--rule); position:relative}
+.pipe .st:last-child{border-right:0}
+.pipe .st .idx{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; color:var(--fg-3); text-transform:uppercase}
+.pipe .st .nm{font-size:16px; margin:10px 0 6px; line-height:1.2}
+.pipe .st .stt{font-family:var(--font-mono); font-size:12px; letter-spacing:.02em}
+.pipe .st.now{background:var(--ink); color:var(--fg-on-dark)}
+.pipe .st.now .idx{color:var(--fg-on-dark-3)}
+.pipe .st.now .stt{color:#ff6a5a}
+.pipe .st.pend .nm,.pipe .st.pend .stt{color:var(--fg-3)}
+.cap{font-family:var(--font-mono); font-size:12px; color:var(--fg-3); margin-top:16px; line-height:1.5; letter-spacing:.01em}
+
+/* ---------- bars ---------- */
+.bars{display:flex; flex-direction:column; gap:18px; margin-top:8px}
+.bar .top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; gap:12px}
+.bar .lab{font-size:14px; color:var(--fg-2)}
+.bar .val{font-family:var(--font-mono); font-size:14px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.bar .track{height:20px; background:var(--bg-3)}
+.bar .fill{height:100%; background:var(--fg-2)}
+.bar.hot .fill{background:var(--accent)}
+.bar.hot .val{color:var(--accent)}
+.disparity{display:flex; align-items:baseline; gap:16px; margin-top:26px; border-top:1px solid var(--ink); padding-top:20px; flex-wrap:wrap}
+.disparity .x{font-size:clamp(44px,10vw,72px); line-height:.9; color:var(--accent); font-weight:500; font-variant-numeric:tabular-nums}
+.disparity .d{color:var(--fg-2); font-size:15px; max-width:44ch}
+
+/* ---------- ecosystem ---------- */
+.eco-hub{background:var(--ink); color:var(--fg-on-dark); padding:22px 24px; margin-bottom:2px; display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap}
+.eco-hub .h{font-size:22px; color:var(--fg-on-dark)}
+.eco-hub .t{font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#ff6a5a}
+.eco-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--rule)}
+.eco-node{background:var(--bg-1); padding:20px 22px}
+.eco-node .rel{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; display:block}
+.eco-node .nm{font-size:17px; margin-bottom:8px; line-height:1.15; text-transform:none}
+.eco-node .meta{font-family:var(--font-mono); font-size:12px; color:var(--fg-3); line-height:1.6; letter-spacing:0}
+
+/* ---------- scorecard ---------- */
+.score{min-width:640px}
+.score th{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--fg-3); text-align:left; padding:0 14px 10px 0; border-bottom:1px solid var(--ink); font-weight:400}
+.score td{padding:13px 14px 13px 0; border-bottom:1px solid var(--rule); vertical-align:top; line-height:1.4}
+.score td.c{width:34%; color:var(--fg-1)}
+.score td.jd{width:20%; white-space:nowrap}
+.score td.ev{width:46%; color:var(--fg-2); font-size:14px}
+
+/* ---------- flag list ---------- */
+.flags{border-top:1px solid var(--ink)}
+.flag{display:grid; grid-template-columns:40px 1fr; gap:18px; padding:15px 0; border-bottom:1px solid var(--rule); align-items:start}
+.flag .n{font-family:var(--font-mono); font-size:13px; color:var(--accent); font-variant-numeric:tabular-nums; padding-top:1px}
+.flag .t{font-size:15px; line-height:1.45}
+
+/* ---------- timeline ---------- */
+.tl{border-left:2px solid var(--ink); margin-left:6px}
+.tl .ev{position:relative; padding:0 0 26px 26px}
+.tl .ev:last-child{padding-bottom:0}
+.tl .ev::before{content:""; position:absolute; left:-7px; top:4px; width:12px; height:12px; background:var(--bg-1); border:2px solid var(--ink)}
+.tl .ev.hot::before{background:var(--accent); border-color:var(--accent)}
+.tl .ev .dt{font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; color:var(--fg-3); margin-bottom:5px}
+.tl .ev .tx{font-size:15px; line-height:1.4}
+.tl .ev.hot .tx{color:var(--accent)}
+
+/* ---------- risk meter + gauge ---------- */
+.riskrow{display:grid; grid-template-columns:1fr 1.4fr; gap:36px; align-items:center; margin-bottom:28px}
+.meter{display:flex; flex-direction:column; gap:8px}
+.meter .segs{display:grid; grid-template-columns:repeat(4,1fr); gap:3px}
+.meter .seg{height:44px; border:1px solid var(--rule); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; color:var(--fg-3); text-transform:uppercase}
+.meter .seg.on{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:500}
+.meter .cap2{font-family:var(--font-mono); font-size:12px; color:var(--fg-3); letter-spacing:.02em}
+.gaugewrap{display:flex; align-items:center; gap:22px}
+.gauge svg{display:block}
+.gauge .center{font-family:var(--font-mono); font-variant-numeric:tabular-nums}
+.gauge-cap{font-family:var(--font-mono); font-size:12px; color:var(--fg-3); letter-spacing:.04em; text-transform:uppercase}
+
+/* ---------- steps ---------- */
+.steps{counter-reset:s; border-top:1px solid var(--ink)}
+.step{display:grid; grid-template-columns:44px 1fr; gap:18px; padding:16px 0; border-bottom:1px solid var(--rule); align-items:start}
+.step .num{font-family:var(--font-mono); font-size:20px; color:var(--ink); font-variant-numeric:tabular-nums}
+.step .tx{font-size:15px; line-height:1.5}
+.step .tx b{font-weight:600}
+
+/* ---------- footer ---------- */
+footer{border-top:2px solid var(--ink); padding:40px 0 64px}
+.srcgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px 32px; font-family:var(--font-mono); font-size:12px; color:var(--fg-3); line-height:1.6; margin-bottom:28px}
+.srcgrid div::before{content:"— "; color:var(--fg-3)}
+.legal{font-size:13px; color:var(--fg-3); line-height:1.6; border-top:1px solid var(--rule); padding-top:20px}
+.legal .warn{color:var(--accent); font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (max-width:720px){
+  section{padding:44px 0}
+  .sec-title{font-size:26px}
+  .statpanel{grid-template-columns:1fr; gap:18px}
+  .pipe{grid-template-columns:1fr}
+  .pipe .st{border-right:0; border-bottom:1px solid var(--rule)}
+  .pipe .st:last-child{border-bottom:0}
+  .eco-grid{grid-template-columns:1fr}
+  .riskrow{grid-template-columns:1fr; gap:24px}
+  .verdict .meta{gap:18px}
+}
+
+@media (prefers-color-scheme:dark){
+  :root{--bg-1:#0e0e0e; --bg-2:#161616; --bg-3:#1e1e1e; --rule:#2a2a2a; --rule-strong:#444;
+    --fg-1:#f4efe7; --fg-2:#c8c4ba; --fg-3:#8f8b82; --ink:#f4efe7;}
+  body{background:#0e0e0e}
+  .verdict,.statpanel,.eco-hub,.pipe .st.now{background:#000}
+  .verdict .big,.statpanel .num,.eco-hub .h{color:#f4efe7}
+  .statpanel .num,.pipe .st.now .stt,.verdict .meta .v.risk,.eco-hub .t,.tl .ev.hot .tx{color:#ff6a5a}
+  .meter .seg.on{color:#0e0e0e}
+  .eco-node{background:#0e0e0e}
+  a{color:var(--fg-1)}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kick">entity due-diligence &nbsp;·&nbsp; 명이대표 · xcar / 北京猫尾草科技</div>
+    <h1>명이대표와 그의 회사, 실체 보고서</h1>
+    <div class="zh">XCAR · 小鸡 happy chick · vallidge · xcar tech ltd &nbsp;—&nbsp; 2026-07-20</div>
+    <div class="verdict">
+      <div class="big">임박한 나스닥 상장·1.48억 사용자·글로벌 완성차 제휴는 대부분 자체발표뿐이고, 상장은 첫 관문에서 정체돼 있습니다. 실재하는 소기업 위에 과장·오도 서사를 얹은 구조입니다.</div>
+      <div class="meta">
+        <div><div class="k">리스크</div><div class="v risk">높음</div></div>
+        <div><div class="k">판정 신뢰도</div><div class="v tnum">80 / 100</div></div>
+        <div><div class="k">성격</div><div class="v">과장·오도 우세</div></div>
+        <div><div class="k">기준일</div><div class="v tnum">2026·07·20</div></div>
+      </div>
+    </div>
+    <div class="foot-note">DeepGreenX · 양란(Lan Yang) · 우정(Bruno Wu) 계열은 명이대표와 무관하여 이 보고서에서 다루지 않습니다.</div>
+  </header>
+
+  <section>
+    <div class="eyebrow"><span class="n">01</span> 서사 대 실체</div>
+    <h2 class="sec-title">주장은 크고, 실체는 작습니다</h2>
+    <p class="sec-sub">명이대표 측이 제시하는 일곱 가지 핵심 주장을 독립 확인 가능한 사실과 나란히 둡니다. 대부분 자체발표에만 존재합니다.</p>
+    <div class="scroll-x">
+    <table class="cmp">
+      <thead><tr><th>주장</th><th>독립 확인된 실체</th><th>판정</th></tr></thead>
+      <tbody>
+        <tr><td class="claim">"곧 나스닥 상장"</td><td class="real">CSRC 备案만 접수(방증), SEC 신고 0건, 상장 주체는 2024-07 신설 홍콩 셸</td><td class="v"><span class="tag bad">오도</span></td></tr>
+        <tr><td class="claim">"备案 审理中 = 상장 진행 중"</td><td class="real">备案은 상장의 첫 전치 행정단계일 뿐. 법정 20영업일 대비 14~21개월 미완결</td><td class="v"><span class="tag bad">적신호</span></td></tr>
+        <tr><td class="claim">"총다운로드 1.48억·사용자 1.3억"</td><td class="real">자체 대시보드 수치. 독립 실측(구글플레이 전 계정)은 약 300만</td><td class="v"><span class="tag bad">약 50배 과장</span></td></tr>
+        <tr><td class="claim">"중국 1위 스마트콕핏 게임 플랫폼"</td><td class="real">정통 산업매체의 스마트콕핏 IPO 지형에 猫尾草는 등장하지 않음</td><td class="v"><span class="tag warn">삭제된 광고 기사뿐</span></td></tr>
+        <tr><td class="claim">"폭스바겐 등 완성차 장기 제휴·50개국 프리인스톨"</td><td class="real">완성차 측 발표·양산 사례·2차 독립 보도 0건</td><td class="v"><span class="tag warn">미확인</span></td></tr>
+        <tr><td class="claim">"한국 Rimitech·SmileCats 제휴"</td><td class="real">SmileCats는 검색 흔적 자체 없음. Rimitech Korea는 실재하나 XCAR 제휴 근거 없음</td><td class="v"><span class="tag warn">미확인</span></td></tr>
+        <tr><td class="claim">크립토 손익 <span class="mono tnum">+¥93,819,730</span> 과시</td><td class="real">Vallidge가 홍보하는 무등록 크립토 플랫폼(Xenorize) 연계 개연</td><td class="v"><span class="tag neu">자체발표</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">02</span> 인물 · 명이대표</div>
+    <h2 class="sec-title">대표가 보이지 않습니다</h2>
+    <div class="statpanel">
+      <div class="num">0<small>공개된 대표·주주 (등기 조회 = 유료벽 · 인물 소개 기사 = 삭제 404)</small></div>
+      <div>
+        <p>명이대표의 실명·한자명은 공개 웹에서 특정하지 못했습니다. 법정대표인·창업자 성명은 天眼查·企查查 유료벽으로 막혔고, 회사를 인물 수준으로 소개한 유일한 기사(网易 读懂IPO)는 현재 삭제됐습니다.</p>
+        <p style="margin:0">대표·주주가 역외 셸(싱가포르 Vallidge, 홍콩 Xcar Tech) 뒤에 감춰진 이 불투명성 자체가 리스크 신호입니다.</p>
+        <div class="sub">신원 확정은 유료 등기 조회 또는 본인이 직접 준 명함·계약서로만 가능합니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">03</span> 상장 경로의 실제</div>
+    <h2 class="sec-title">나스닥까지 네 관문, 첫 관문에서 멈춰 있습니다</h2>
+    <p class="sec-sub">备案은 상장 승인이 아니라 해외상장의 첫 전치 등록입니다. 이후 SEC 심사와 나스닥 심사는 각각 별개의 문턱입니다.</p>
+    <div class="pipe">
+      <div class="st now"><div class="idx">step 1</div><div class="nm">CSRC 备案 접수</div><div class="stt">审理中 · 14~21개월 정체</div></div>
+      <div class="st pend"><div class="idx">step 2</div><div class="nm">备案 통지 완료</div><div class="stt">미달성</div></div>
+      <div class="st pend"><div class="idx">step 3</div><div class="nm">SEC F–1 제출</div><div class="stt">미제출 · 신고 0건</div></div>
+      <div class="st pend"><div class="idx">step 4</div><div class="nm">나스닥 심사·상장</div><div class="stt">미개시</div></div>
+    </div>
+    <div class="cap">备案 통지서를 받기 전에는 법률상 SEC에 어떤 미국 상장 서류도 제출할 수 없습니다. "审理中" 한 장면을 상장 임박처럼 제시하는 방식 자체가 오도 유인입니다.</div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">04</span> 备案 정체 · 단위 개월</div>
+    <h2 class="sec-title">최장 사례마저 넘어선 심사 지연</h2>
+    <p class="sec-sub">접수 2024-10-11 기준 2026년 7월 현재 약 21개월이 지났습니다. 법정 기간은 물론 관측된 최장 사례도 초과했습니다.</p>
+    <div class="bars">
+      <div class="bar"><div class="top"><span class="lab">법정 처리기간 (자료 완비 시)</span><span class="val">20영업일 ≈ 1개월</span></div><div class="track"><div class="fill" style="width:4.8%"></div></div></div>
+      <div class="bar"><div class="top"><span class="lab">간접상장 실제 평균</span><span class="val">≈ 160일 · 5.3개월</span></div><div class="track"><div class="fill" style="width:25%"></div></div></div>
+      <div class="bar"><div class="top"><span class="lab">관측된 최장 사례</span><span class="val">441일 · 14.5개월</span></div><div class="track"><div class="fill" style="width:69%"></div></div></div>
+      <div class="bar hot"><div class="top"><span class="lab">본건 (北京猫尾草科技)</span><span class="val">≈ 21개월 · 미완결</span></div><div class="track"><div class="fill" style="width:100%"></div></div></div>
+    </div>
+    <div class="cap">초장기 정체는 순항이 아니라 심사 쟁점 미해소·표류 신호입니다. 감독기관의 반복 보충자료 요구가 통상 원인입니다.</div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">05</span> 사용자수 · 자체발표 대 실측</div>
+    <h2 class="sec-title">대시보드 1.48억, 실측 300만</h2>
+    <p class="sec-sub">감사 가능한 유일 채널(구글플레이 전 계정) 기준입니다. 자체 대시보드 수치는 어떤 독립 지표에서도 확인되지 않습니다.</p>
+    <div class="bars">
+      <div class="bar hot"><div class="top"><span class="lab">자체 대시보드 주장 (총다운로드)</span><span class="val tnum">148,204,552</span></div><div class="track"><div class="fill" style="width:100%"></div></div></div>
+      <div class="bar"><div class="top"><span class="lab">구글플레이 독립 실측 (전 계정 합산)</span><span class="val tnum">≈ 3,000,000</span></div><div class="track"><div class="fill" style="width:2%"></div></div></div>
+    </div>
+    <div class="disparity"><span class="x tnum">≈50×</span><span class="d">자체 주장이 감사 가능한 실측의 약 50배입니다. iOS·중국 안드로이드 채널을 더해도 1.48억을 뒷받침하는 독립 근거는 없습니다.</span></div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">06</span> 역외 셸 클러스터</div>
+    <h2 class="sec-title">셸 뒤에 실적을 흡수하는 구조</h2>
+    <p class="sec-sub">기존 중국 브랜드(Happy Chick)의 국제 배포를 역외 껍데기 명의로 돌려, 그 다운로드를 "우리 실적"처럼 제시합니다. 허브인 대표 신원은 미확인입니다.</p>
+    <div class="eco-hub"><span class="h">명이대표</span><span class="t">hub · 신원 미확인</span></div>
+    <div class="eco-grid">
+      <div class="eco-node"><span class="rel">지배 · 미확인</span><div class="nm">北京猫尾草科技 <span class="prodcode">/ XCAR</span></div><div class="meta">중국 등록 소기업 · 브랜드 XCAR(車載 콕핏 게임)<br>자본금 101만위안 · 직원 20여명 · 天眼查 32468652</div></div>
+      <div class="eco-node"><span class="rel">저작권 표기 · 상장주체 정황</span><div class="nm">Xcar Tech Limited</div><div class="meta">홍콩 · 2024-07-17 신설 셸 · BRN 76814534<br>xiaoji001.org 저작권 표기 · SEC 신고 없음</div></div>
+      <div class="eco-node"><span class="rel">배포·운영 + 크립토 겸업</span><div class="nm">VALLIDGE CONSULTING</div><div class="meta">싱가포르 · 2019 · UEN 201928791K<br>Happy Chick 구글플레이 배포 · 무등록 크립토 Xenorize 홍보</div></div>
+      <div class="eco-node"><span class="rel">원개발 = 별개 주체</span><div class="nm">Happy Chick / 小鸡模拟器</div><div class="meta">멀티콘솔 에뮬레이터(2013~) · 원개발 광저우 小鸡快跑(GameSir)<br>역외 명의로 재배포됨</div></div>
+      <div class="eco-node"><span class="rel">로고 교차게재</span><div class="nm">Remitech Korea</div><div class="meta">서울 여의도 · Vallidge와 상호 파트너 로고 게재<br>지분·계약·자금 흐름은 미확인</div></div>
+      <div class="eco-node" style="background:var(--bg-2)"><span class="rel">관계 미확인</span><div class="nm">SmileCats</div><div class="meta">"한국 해외 제휴사"로 언급되나<br>검색 흔적 자체가 없음</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">07</span> 로드베어링 주장 판정</div>
+    <h2 class="sec-title">근거별 신호등</h2>
+    <div class="scroll-x">
+    <table class="score">
+      <thead><tr><th>주장</th><th>판정</th><th>근거</th></tr></thead>
+      <tbody>
+        <tr><td class="c">XCAR 나스닥 상장 임박</td><td class="jd"><span class="tag bad">오도</span></td><td class="ev">SEC 무신고 · 홍콩 신설 셸</td></tr>
+        <tr><td class="c">备案 审理中 = 상장 진행</td><td class="jd"><span class="tag bad">오도·적신호</span></td><td class="ev">备案=첫 전치단계 · 14~21개월 정체</td></tr>
+        <tr><td class="c">1.48억 다운로드·1.3억 사용자</td><td class="jd"><span class="tag bad">과장</span></td><td class="ev">구글플레이 실측 약 300만 (50배)</td></tr>
+        <tr><td class="c">중국 1위·완성차 제휴·50개국</td><td class="jd"><span class="tag warn">미확인</span></td><td class="ev">정통 매체 미언급 · 완성차 발표 0</td></tr>
+        <tr><td class="c">한국 Rimitech·SmileCats 제휴</td><td class="jd"><span class="tag warn">미확인</span></td><td class="ev">SmileCats 부재 · XCAR 제휴 근거 없음</td></tr>
+        <tr><td class="c">에뮬레이터가 투자적격 자산</td><td class="jd"><span class="tag ref">반박</span></td><td class="ev">롬 불법복제·코드도용·iOS 배제</td></tr>
+        <tr><td class="c">猫尾草가 시총 100억 위안급</td><td class="jd"><span class="tag bad">오도</span></td><td class="ev">기사의 100억=시장규모 · 등록자본 101만위안</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">08</span> 레드플래그</div>
+    <h2 class="sec-title">여덟 가지 위험 신호</h2>
+    <div class="flags">
+      <div class="flag"><span class="n">01</span><span class="t">상장 "임박" 서사와 실체 불일치 — 备案 정체, SEC 무신고, 신설 셸 혼재.</span></div>
+      <div class="flag"><span class="n">02</span><span class="t">근거가 모두 회사 발신 콘텐츠(광고 기사·자체 대시보드·PR)에 수렴하고, 독립 산업 저널리즘 커버리지가 사실상 없습니다.</span></div>
+      <div class="flag"><span class="n">03</span><span class="t">자체 지표 1.48억 대 감사 가능한 약 300만 — 약 50배 괴리.</span></div>
+      <div class="flag"><span class="n">04</span><span class="t">다층 역외 셸(싱가포르·홍콩)로 실소유주·경영진·주주를 은폐하고, 대표 신원을 공개하지 않습니다.</span></div>
+      <div class="flag"><span class="n">05</span><span class="t">저작권·코드도용으로 오염된 에뮬레이터를 사용자 규모·상장 가치의 근거로 사용합니다.</span></div>
+      <div class="flag"><span class="n">06</span><span class="t">같은 껍데기 법인이 무등록 크립토 트레이딩 플랫폼(Xenorize)을 겸해, 신뢰 자산과 투자 유인을 연결합니다.</span></div>
+      <div class="flag"><span class="n">07</span><span class="t">브랜드명 차용(XCAR = 기존 유명 자동차 커뮤니티)과 로고 교차게재형 신뢰망.</span></div>
+      <div class="flag"><span class="n">08</span><span class="t">회사를 인물 수준으로 소개한 유일한 기사가 삭제됐습니다.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">09</span> 타임라인</div>
+    <h2 class="sec-title">설립부터 정체까지</h2>
+    <div class="tl">
+      <div class="ev"><div class="dt">2022</div><div class="tx">北京猫尾草科技 설립</div></div>
+      <div class="ev"><div class="dt">2024 · 04</div><div class="tx">XCAR 소프트웨어 발표회 — 베이징 石景山 首钢园(베이징시 정부 포털 보도)</div></div>
+      <div class="ev"><div class="dt">2024 · 07 · 17</div><div class="tx">홍콩 Xcar Tech Limited 설립 — 대량등기 주소의 신설 셸</div></div>
+      <div class="ev hot"><div class="dt">2024 · 10 · 11</div><div class="tx">CSRC 境外发行备案 접수 (审理中 주장)</div></div>
+      <div class="ev hot"><div class="dt">2024 – 2026</div><div class="tx">备案 미완결 정체 — 14~21개월, 최장 사례 초과</div></div>
+      <div class="ev"><div class="dt">2026 · 07 (現)</div><div class="tx">SEC 신고 0건 · 나스닥 상장 절차 미개시</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">10</span> 리스크 등급 · 한국 맥락</div>
+    <h2 class="sec-title">알려진 대본과 겹칩니다</h2>
+    <div class="riskrow">
+      <div class="meter">
+        <div class="segs">
+          <div class="seg">낮음</div>
+          <div class="seg">중간</div>
+          <div class="seg on">높음</div>
+          <div class="seg">심각</div>
+        </div>
+        <div class="cap2">정상 초기기업으로 보기 어렵고, 과장·오도가 뚜렷합니다</div>
+      </div>
+      <p class="lead" style="margin:0">한국 금융위·증선위가 2024-11-06 제재한 "나스닥 상장 추진 부정거래" 대본과 이 클러스터의 프레이밍이 항목별로 유사합니다. 다만 이는 패턴 일치이지, 명이대표 개인의 형사 사기가 이미 성립했다는 뜻은 아닙니다.</p>
+    </div>
+    <p class="sec-sub" style="max-width:72ch; margin:0">그 대본의 요소는 미국에 세운 상장용 껍데기 법인, 국내 투자설명회, "대형 증권사가 공모 투자 예정"이라는 허위, 근거 없는 기업가치·매출 부풀리기, 상장 후 국내에서 거래·회수가 어려운 주식입니다. 2025년 나스닥이 중국 소형주 상장 문턱을 상향(최소 조달 2,500만 달러 제안)해, 이런 소기업의 미국 상장은 오히려 더 어려운 국면입니다.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">11</span> 상대방이 할 일</div>
+    <h2 class="sec-title">투자·계약·자금 전 여섯 가지 확인</h2>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><span class="tx"><b>상장 주장은 직접 확인합니다.</b> SEC EDGAR와 CSRC 备案 목록을 직접 엽니다. 备案 접수는 상장이 아니고, "审理中"은 임박 신호가 아닙니다.</span></div>
+      <div class="step"><span class="num">2</span><span class="tx"><b>사용자·다운로드는 제3자 지표로 대조합니다.</b> 자체 대시보드·스크린샷을 근거로 인정하지 않습니다. 구글플레이·앱스토어 지표로 확인합니다.</span></div>
+      <div class="step"><span class="num">3</span><span class="tx"><b>대형 제휴는 상대 기업으로 교차확인합니다.</b> 완성차·글로벌 제휴는 상대의 공식 발표·양산 사례로 확인합니다. PR 기사만 있는 제휴는 무효로 봅니다.</span></div>
+      <div class="step"><span class="num">4</span><span class="tx"><b>실소유주를 등기로 확인합니다.</b> 경영진·감사인·법정대표인을 등기로 확인하고, 대표 신원이 감춰져 있으면 그 자체를 중단 신호로 봅니다.</span></div>
+      <div class="step"><span class="num">5</span><span class="tx"><b>보장·이전 요구는 즉시 멈춥니다.</b> "상장 임박·원금/수익 보장·지분 이전·계약서 회수"는 투자권유 사기의 상투구입니다. 국내 변호사·회계사·증권사 검증을 받습니다.</span></div>
+      <div class="step"><span class="num">6</span><span class="tx"><b>상장은 우량 보증이 아닙니다.</b> 나스닥 상장 자체가 품질 보증이 아니며, 상장 전 장외주식은 거래·회수 제약이 큽니다.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="n">12</span> 확신도 · 관찰 한계</div>
+    <h2 class="sec-title">무엇이 강하고 무엇이 미확인인가</h2>
+    <div class="riskrow">
+      <div class="gaugewrap">
+        <div class="gauge">
+          <svg width="132" height="132" viewBox="0 0 132 132" role="img" aria-label="판정 신뢰도 80/100">
+            <circle cx="66" cy="66" r="52" fill="none" stroke="var(--bg-3)" stroke-width="14"></circle>
+            <circle cx="66" cy="66" r="52" fill="none" stroke="var(--accent)" stroke-width="14"
+              stroke-dasharray="261.4 326.7" stroke-dashoffset="0" transform="rotate(-90 66 66)" stroke-linecap="butt"></circle>
+            <text class="center" x="66" y="62" text-anchor="middle" font-size="30" fill="var(--fg-1)">80</text>
+            <text class="center" x="66" y="84" text-anchor="middle" font-size="12" fill="var(--fg-3)">/ 100</text>
+          </svg>
+        </div>
+        <div class="gauge-cap">판정 신뢰도</div>
+      </div>
+      <p class="lead" style="margin:0">핵심 결론은 복수의 독립 신호로 지지됩니다. SEC 무신고, 홍콩 등기, 구글플레이 실측, 정통 매체 부재, 베이징시 정부 포털이 서로 다른 방향에서 같은 그림을 가리킵니다.</p>
+    </div>
+    <p class="sec-sub" style="max-width:72ch; margin:0">확신을 낮추는 요인은 세 가지입니다. 첫째, 중국 등기 세부값과 CSRC 备案 레코드를 유료·SPA 벽으로 1차 확정하지 못해 "허위"가 아니라 "미확인"으로 남겼습니다. 둘째, 명이대표 개인의 신원과 형사책임은 이 조사 범위 밖입니다. 셋째, 자체 대시보드 원본과 중국·iOS 채널 합산치는 독립 재확인이 불가능했습니다.</p>
+  </section>
+
+  <footer>
+    <div class="eyebrow"><span class="n">—</span> 출처</div>
+    <div class="srcgrid">
+      <div>SEC EDGAR — XCARTECH 신고 부재 확인</div>
+      <div>베이징시 정부 영문 포털 — XCAR 발표회</div>
+      <div>홍콩 회사등기 — Xcar Tech Limited BRN 76814534</div>
+      <div>구글플레이 · AppBrain — Happy Chick 실측</div>
+      <div>텐센트뉴스 — 스마트콕핏 IPO 지형</div>
+      <div>한국 금융위 — 나스닥 상장 빙자 부정거래 제재</div>
+      <div>CSRC — 境外发行备案 규정·목록</div>
+      <div>싱가포르 OpenGov — VALLIDGE 201928791K</div>
+    </div>
+    <div class="legal">
+      <span class="warn">거래·투자 결정 전 법률·회계 검토 권장</span><br>
+      작성 2026-07-20. 이 보고서는 조사 시점의 공개 정보에 근거하며, 자체발표(대시보드·스크린샷·구두)와 독립 확인을 구분했습니다. 확인하지 못한 값은 단정하지 않고 그대로 표시했습니다. 기업 등기 원문을 열람하면 세부값과 실소유주를 더 확정할 수 있습니다.
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
