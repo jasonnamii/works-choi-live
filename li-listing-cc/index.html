@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>역외 상장 제안 리스크 — 통합 재검토 (Claude × Codex)</title>
+<style>
+:root{
+  --ink:#182430; --muted:#5c6a76; --paper:#fff; --canvas:#f4f6f7; --line:#dbe3e8;
+  --c-black:#101418; --x-teal:#0e8a80; --x-soft:#e5f4f2;
+  --red:#a83f35; --red-soft:#fbecea; --amber:#a06a00; --amber-soft:#fdf3d9; --green:#27714f; --green-soft:#e9f5ee;
+  --navy:#13314a;
+  --shadow:0 10px 30px rgba(19,48,71,.07); --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--canvas);color:var(--ink);font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.65;word-break:keep-all;font-size:15px}
+a{color:#1e5d86;text-underline-offset:3px}
+.wrap{width:min(1140px,calc(100% - 32px));margin:0 auto}
+b,strong{font-weight:800}
+
+/* header */
+header{background:linear-gradient(135deg,#0f1720 0%,#16324a 55%,#0c6d66 100%);color:#fff;padding:60px 0 46px}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 12px;font-size:12px;letter-spacing:.06em;background:rgba(255,255,255,.08)}
+h1{font-size:clamp(28px,4.6vw,50px);line-height:1.16;letter-spacing:-.03em;margin:16px 0 10px;max-width:880px}
+.lead{font-size:clamp(15px,2vw,19px);color:#d9e8ec;max-width:860px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;font-size:12.5px;color:#d5e6ea}
+.meta span{background:rgba(255,255,255,.1);padding:6px 10px;border-radius:8px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding:9px 0;scrollbar-width:none}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-weight:700;font-size:13px;padding:6px 10px;border-radius:8px}
+nav a:hover{background:var(--x-soft);color:var(--navy)}
+
+main{padding:30px 0 60px}
+section{scroll-margin-top:64px;margin:34px 0}
+.kicker{color:var(--x-teal);font-weight:800;font-size:12.5px;letter-spacing:.05em;margin-bottom:4px}
+h2.t{font-size:clamp(21px,3vw,27px);letter-spacing:-.02em;color:var(--navy);margin-bottom:6px}
+.cap{color:var(--muted);font-size:14px;margin-bottom:14px;max-width:860px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+
+/* attribution chips */
+.who{display:inline-block;font-size:11px;font-weight:800;padding:2.5px 8px;border-radius:999px;vertical-align:1px;white-space:nowrap}
+.who.c{background:var(--c-black);color:#fff}
+.who.x{background:var(--x-teal);color:#fff}
+.who.cx{background:linear-gradient(90deg,var(--c-black) 50%,var(--x-teal) 50%);color:#fff}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:8px}
+
+/* verdict */
+.verdict-grid{display:grid;grid-template-columns:1.45fr .55fr;gap:16px}
+.verdict{border-top:6px solid var(--red)}
+.verdict h2{font-size:24px;color:var(--navy);margin-bottom:8px}
+.verdict .big{font-size:17px;font-weight:800;margin:6px 0 12px;line-height:1.55}
+.rec{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.rec-row{display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fbfdfd}
+.rec-row .no{font-size:12px;font-weight:900;color:var(--x-teal);letter-spacing:.04em;padding-top:2px}
+.score-card{background:linear-gradient(150deg,#f8fbfc,#e8f4f2);display:flex;flex-direction:column;gap:14px;justify-content:center}
+.score-card .n{font-size:52px;font-weight:900;letter-spacing:-.05em;color:var(--navy);line-height:1}
+.score-card .n small{font-size:16px;color:var(--muted);font-weight:700;letter-spacing:0}
+.score-card p{color:var(--muted);font-size:13px}
+
+/* tables */
+.scroll-x{overflow-x:auto;border-radius:var(--radius)}
+table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:13.5px}
+th{background:var(--navy);color:#fff;text-align:left;padding:11px 13px;font-size:12.5px;white-space:nowrap}
+td{padding:12px 13px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.55}
+tr:last-child td{border-bottom:0}
+td.head{font-weight:800;color:var(--navy)}
+.min720{min-width:720px}
+.min840{min-width:840px}
+
+/* status pills */
+.st{display:inline-block;min-width:52px;text-align:center;padding:3px 8px;border-radius:6px;font-size:11.5px;font-weight:900;white-space:nowrap}
+.st.no{background:var(--red-soft);color:var(--red)}
+.st.gray{background:var(--amber-soft);color:var(--amber)}
+.st.ok{background:var(--green-soft);color:var(--green)}
+.st.miss{background:#e9ecef;color:#4a5560;border:1px dashed #9aa7b1}
+
+/* grade */
+.gr{display:inline-block;padding:3px 8px;border-radius:6px;font-size:11.5px;font-weight:900;white-space:nowrap}
+.gr.r{background:var(--red);color:#fff}
+.gr.a{background:var(--amber-soft);color:var(--amber);border:1px solid #e3c98a}
+.gr.g{background:var(--green-soft);color:var(--green)}
+
+/* two-col finding lists */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.find{border-left:5px solid var(--c-black);padding:18px}
+.find.x{border-left-color:var(--x-teal)}
+.find h3{font-size:16px;color:var(--navy);margin-bottom:10px}
+.find ul{list-style:none}
+.find li{position:relative;padding-left:16px;margin:7px 0;font-size:13.5px;color:#3d4a56}
+.find li::before{content:"—";position:absolute;left:0;color:var(--muted)}
+.find li b{color:var(--ink)}
+
+/* agree list */
+.agree{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.agree .card{padding:16px 18px;display:flex;gap:12px;align-items:flex-start}
+.agree .num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--green-soft);color:var(--green);font-weight:900;font-size:13px;display:grid;place-items:center;margin-top:2px}
+.agree h3{font-size:14.5px;color:var(--navy);margin-bottom:4px}
+.agree p{font-size:13px;color:var(--muted)}
+
+/* clash */
+.clash{border-top:5px solid var(--amber);padding:20px}
+.clash h3{font-size:16.5px;color:var(--navy);margin-bottom:10px}
+.clash .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.clash .side{border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;color:#3d4a56;background:#fbfcfd}
+.clash .side .who{margin-bottom:6px}
+.clash .judge{background:var(--green-soft);border:1px solid #bfe0cd;border-radius:10px;padding:13px 15px;font-size:13.5px}
+.clash .judge b{color:var(--green)}
+
+/* probability */
+.prob{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.prob .card h3{font-size:15.5px;color:var(--navy);margin-bottom:4px}
+.prob .card .src{font-size:12px;color:var(--muted);margin-bottom:12px}
+.pnum{font-size:34px;font-weight:900;letter-spacing:-.04em;line-height:1}
+.pnum.red{color:var(--red)}.pnum.amber{color:var(--amber)}.pnum.teal{color:var(--x-teal)}
+.bar{height:10px;border-radius:999px;background:#e8eef1;overflow:hidden;margin:10px 0 8px}
+.bar i{display:block;height:100%;border-radius:999px}
+.bar.red i{background:linear-gradient(90deg,#b6544a,#d97b71)}
+.bar.amber i{background:linear-gradient(90deg,#b07500,#dca63c)}
+.bar.teal i{background:linear-gradient(90deg,#0e8a80,#3aa89e)}
+.prob .note{font-size:12.5px;color:var(--muted)}
+.callout{background:var(--amber-soft);border:1px solid #ecd598;border-left:6px solid var(--amber);border-radius:12px;padding:16px 18px;margin-top:16px}
+.callout h3{color:#775005;font-size:15px;margin-bottom:5px}
+.callout p{color:#5f4a1c;font-size:13.5px}
+
+/* gates */
+.gates{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:g}
+.gate{counter-increment:g;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.gate::before{content:"G" counter(g);display:inline-grid;place-items:center;min-width:32px;height:24px;border-radius:6px;background:var(--navy);color:#fff;font-weight:900;font-size:12px;margin-bottom:9px;padding:0 6px}
+.gate h3{font-size:14.5px;color:var(--navy);margin-bottom:7px}
+.gate ul{list-style:none}
+.gate li{position:relative;padding-left:14px;margin:5px 0;font-size:12.5px;color:var(--muted)}
+.gate li::before{content:"·";position:absolute;left:2px;font-weight:900;color:var(--x-teal)}
+
+.kill{border:2px solid var(--red);border-radius:12px;margin-top:16px;display:grid;grid-template-columns:150px 1fr;overflow:hidden}
+.kill .tag{background:var(--red);color:#fff;padding:16px;display:flex;align-items:center;font-size:12.5px;font-weight:900;letter-spacing:.05em}
+.kill .body{padding:15px 18px;font-size:13.5px;line-height:1.7}
+
+.keyval{border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;box-shadow:var(--shadow)}
+.kv{display:grid;grid-template-columns:170px 1fr;gap:14px;border-bottom:1px solid var(--line);padding:13px 16px;font-size:13.5px}
+.kv:last-child{border-bottom:0}
+.kv .k{font-size:11.5px;font-weight:900;letter-spacing:.08em;color:var(--x-teal);padding-top:2px}
+.check{list-style:none;columns:2;column-gap:26px}
+.check li{break-inside:avoid;position:relative;padding-left:26px;margin:0 0 9px;font-size:13.5px}
+.check li::before{content:"✓";position:absolute;left:0;top:1px;width:18px;height:18px;display:grid;place-items:center;border-radius:50%;background:var(--x-soft);color:var(--x-teal);font-weight:900;font-size:11px}
+
+/* sources */
+.sources{columns:2;column-gap:30px;padding-left:20px}
+.sources li{break-inside:avoid;margin-bottom:9px;font-size:13px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:12.5px}
+
+@media (max-width:900px){
+  .verdict-grid,.grid-2,.grid-3,.agree,.prob,.clash .vs{grid-template-columns:1fr}
+  .gates{grid-template-columns:repeat(2,1fr)}
+  .sources,.check{columns:1}
+}
+@media (max-width:560px){
+  .wrap{width:min(100% - 20px,1140px)}
+  header{padding:44px 0 34px}
+  .card{padding:17px}
+  .gates{grid-template-columns:1fr}
+  .kill{grid-template-columns:1fr}
+  .kv{grid-template-columns:1fr;gap:5px}
+  .rec-row{grid-template-columns:1fr;gap:5px}
+}
+@media print{
+  body{background:#fff;font-size:10.5pt}
+  header{background:#fff!important;color:var(--ink);padding:24px 0;border-bottom:4px solid var(--x-teal)}
+  header .lead,.meta{color:var(--muted)}
+  nav{display:none}
+  .card,.gate{box-shadow:none;break-inside:avoid}
+  a{text-decoration:none;color:var(--ink)}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">CROSS-REVIEW · 클로드 × 코덱스 통합본</div>
+    <h1>역외 상장 제안 리스크<br>통합 재검토</h1>
+    <p class="lead">같은 제안서를 두 분석이 서로 모르는 채 각자 검증했습니다. 이 문서는 두 결과를 대조해 일치·단독 발견·충돌을 가르고, 충돌 지점은 판정까지 내려 하나의 결론과 실행안으로 정리한 통합본입니다.</p>
+    <div class="meta">
+      <span>기준일 2026-07-22</span>
+      <span>원문 — 中方 「境外上市方案」 v0722 (A안 중국 운영 · B안 한국 운영)</span>
+      <span>입력 — 클로드 리스크 분석 · 코덱스 독립 리스크 분석</span>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="보고서 목차"><div class="wrap">
+  <a href="#verdict">결론</a><a href="#profile">대조 개요</a><a href="#agree">교차 확인</a><a href="#solo">단독 발견</a><a href="#clash">충돌과 판정</a><a href="#facts">원문 검증</a><a href="#risks">리스크 보드</a><a href="#prob">현실 가능성</a><a href="#options">선택지</a><a href="#exec">실행 설계</a><a href="#sources">한계·출처</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- 결론 -->
+<section id="verdict">
+  <div class="verdict-grid">
+    <article class="card verdict">
+      <div class="kicker">INTEGRATED VERDICT</div>
+      <h2>원안 서명 불가 — 재설계 협상으로 전환</h2>
+      <p class="big">두 분석이 독립적으로 같은 결론에 도달했습니다. 제안서의 핵심 전제(등록 면제·배당세 5%·6~12개월 상장)는 검증에서 깨졌고, 원문의 사실 오류가 최소 5건 확인되었습니다.</p>
+      <p>다만 두 분석 모두 "죽은 제안"이 아니라 "고칠 제안"으로 봅니다. 통합 권고는 세 축입니다.</p>
+      <div class="rec">
+        <div class="rec-row"><span class="no">① 실체 먼저</span><span>법인을 하나라도 세우기 전에, 15일 팩트팩으로 사업 실체(매출·자산·인력·IP·데이터 소재지)와 창업자의 국적·거주·외환등기 상태를 확정합니다. <span class="who x">코덱스</span></span></div>
+        <div class="rec-row"><span class="no">② 입구 과세 제거</span><span>기존 한국 법인 지분은 역외로 넘기지 않습니다. 신규 글로벌 사업만 신설 합작 구조에 담아, 상장 실패 시에도 세금만 남는 비대칭을 차단합니다. <span class="who c">클로드</span></span></div>
+        <div class="rec-row"><span class="no">③ 최소 계층</span><span>케이맨→한국 두 층으로 시작합니다. 홍콩·BVI는 세후 편익이 유지비용을 넘는다는 증거가 나올 때만 추가합니다. <span class="who cx">공통</span></span></div>
+      </div>
+    </article>
+    <aside class="card score-card">
+      <div><div class="kicker">확신도</div><div class="n">90<small>/100</small></div><p>"원안 그대로 서명 불가" 결론 — 독립 이중 검증 일치 + 원문 수치 오류 다수</p></div>
+      <div><div class="n" style="font-size:36px">75<small>/100</small></div><p>통합 권고 구조(합작 신설 × 최소 계층) — 창업자 사실관계 3종 확인 전 조건부</p></div>
+    </aside>
+  </div>
+  <div class="legend"><span><span class="who c">클로드</span> 리스크 분석(「RISK CUT」·B안 집중)</span><span><span class="who x">코덱스</span> 독립 리스크 분석(A·B안 비교)</span><span><span class="who cx">공통</span> 두 분석 일치</span></div>
+</section>
+
+<!-- 01 대조 개요 -->
+<section id="profile">
+  <div class="kicker">01 · SIDE BY SIDE</div>
+  <h2 class="t">대조 개요 — 두 보고서의 성격</h2>
+  <p class="cap">두 문서는 경쟁 보고서가 아니라 서로 다른 질문에 답한 보고서입니다. 클로드는 "이 제안을 어떻게 받을 것인가"(협상), 코덱스는 "어떤 구조가 실체에 맞는가"(설계)를 물었습니다. 그래서 겹치는 판정은 신뢰도가 올라가고, 각자의 사각지대는 상대가 메웁니다.</p>
+  <div class="scroll-x">
+  <table class="min720">
+    <thead><tr><th style="width:15%"></th><th style="width:42%">클로드 「RISK CUT」</th><th>코덱스 「독립 리스크 분석」</th></tr></thead>
+    <tbody>
+      <tr><td class="head">분석 프레임</td><td>협상 보고서 — 한국 주주 관점에서 중국 측 제안(B안)의 수용 조건을 판정</td><td>구조 설계 보고서 — A안·B안을 사업 실체 기준으로 비교 판정</td></tr>
+      <tr><td class="head">결론</td><td>조건부 협상 — 원안 거절, 재설계 협상 (확신도 75/100)</td><td>승인 불가 — B-라이트(케이맨→한국 직접) 권고 (확신도 82/100)</td></tr>
+      <tr><td class="head">최대 발견</td><td>한국 주주의 <b>입구 양도세</b>가 문서에 아예 없다는 누락</td><td>원문 통계 <b>반증</b> — "2026년 등록 2건"은 사실과 다름(최소 4건)</td></tr>
+      <tr><td class="head">권고 구조</td><td>신규사업 합작 — 기존 법인 지분 보존</td><td>B-라이트 — 계층 최소화, 홍콩·BVI는 증거 있을 때만</td></tr>
+      <tr><td class="head">고유 강점</td><td>협상 순서·선행조건·킬 스위치·소수주주 보호 설계</td><td>1차 출처 16종 링크 검증·IP/데이터 리스크·H주 대안·90일 게이트</td></tr>
+      <tr><td class="head">사각지대</td><td>원문 통계 반증, 한국 법인세율 오류, 아티스트 IP·데이터 리스크 미검토</td><td>입구 양도세, 신탁×차등의결권 불성립, 소수주주 보호 공백 미검토</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 02 교차 확인 -->
+<section id="agree">
+  <div class="kicker">02 · DOUBLE-CONFIRMED</div>
+  <h2 class="t">교차 확인 — 두 분석이 함께 도달한 판정 7</h2>
+  <p class="cap">서로 참조 없이 같은 결론에 도달한 항목입니다. 이 7건은 협상에서 "논쟁 여지 있는 의견"이 아니라 "확정 전제"로 다뤄도 됩니다.</p>
+  <div class="agree">
+    <article class="card"><span class="num">1</span><div><h3>원안 그대로 서명 불가</h3><p>거절이 아니라 재설계가 결론이라는 점까지 일치합니다.</p></div></article>
+    <article class="card"><span class="num">2</span><div><h3>배당세 "10%→5%"는 조약에 없음</h3><p>한-홍콩 조약 상한은 25% 이상 직접 보유 시 10%, 그 외 15%입니다. 5% 구간은 존재하지 않습니다.</p></div></article>
+    <article class="card"><span class="num">3</span><div><h3>중국 등록 판정은 형식이 아니라 실질</h3><p>명목상 한국 법인을 끼워도 실질 우선 원칙·50% 테스트·회피 방지 조항으로 뒤집힐 수 있습니다.</p></div></article>
+    <article class="card"><span class="num">4</span><div><h3>"구조 3~6개월 + 상장 6~12개월"은 비현실</h3><p>거래소 재무 문턱과 감사·실사·주관사 절차를 대입하면 성립하지 않는 일정입니다.</p></div></article>
+    <article class="card"><span class="num">5</span><div><h3>창업자 37호문 외환등기는 필수 전제</h3><p>한국 자산 구조라도 중국 거주 창업자의 역외 SPV는 등기 대상입니다. 미등기면 구조 전체의 뇌관입니다.</p></div></article>
+    <article class="card"><span class="num">6</span><div><h3>홍콩·BVI 층은 기본값이 아님</h3><p>실질 없는 홍콩 법인은 조약 세율을 부인당하고, BVI는 매각·분리 필요가 입증될 때만 의미가 있습니다.</p></div></article>
+    <article class="card" style="grid-column:1/-1"><span class="num">7</span><div><h3>구조보다 증거 먼저</h3><p>법률의견서·감사재무제표·실체 확정 전에는 어떤 법인도 설립하지 않는다는 실행 원칙이 양쪽에서 같습니다. 잘못된 전제 위에 법인을 세우면 리스크를 줄이는 게 아니라 전제를 법인으로 고정하게 됩니다.</p></div></article>
+  </div>
+</section>
+
+<!-- 03 단독 발견 -->
+<section id="solo">
+  <div class="kicker">03 · UNIQUE FINDINGS</div>
+  <h2 class="t">단독 발견 — 한쪽만 잡은 리스크</h2>
+  <p class="cap">어느 한쪽이라도 빠뜨렸다면 통합 판단에서 사라졌을 항목입니다. 이 목록이 두 분석을 합쳐야 하는 실질적 이유입니다.</p>
+  <div class="grid-2">
+    <article class="card find">
+      <h3><span class="who c">클로드</span>&nbsp; 협상·세무·거버넌스 축</h3>
+      <ul>
+        <li><b>입구 양도세 (최대 누락)</b> — 국경 간 지분 이전은 과세이연 없이 즉시 과세되고, 대가가 비상장 역외 주식이라 납부 재원이 없는 현금 없는 소득이 됩니다. 원문이 언급조차 하지 않은 최대 비용입니다.</li>
+        <li><b>신탁 99% × 홍콩 차등의결권 불성립</b> — 홍콩 신규 상장의 차등의결권 수익자는 개인·현역 이사만 가능하고, 문턱도 시총 HK$100억 + 매출 HK$10억입니다.</li>
+        <li><b>상장 문턱 실측치</b> — 홍콩 메인보드 이익 테스트(누적 순이익 HK$8,000만 + 시총 HK$5억), 나스닥 2026년 1월부터 사실상 최소 1,500만 달러 공모.</li>
+        <li><b>소수주주 보호 공백</b> — 케이맨에는 성문 부당침해 구제가 없어, 분쟁 시 한국 주주는 역외 법정에서 약자가 됩니다. 상장 전 주주간계약이 필수입니다.</li>
+        <li><b>협상 순서 리스크</b> — 지분·대가가 공백인 채 구조 동의부터 요구받는 순서 자체가 리스크입니다. 텀시트 선행과 단계별 중단권으로 대응합니다.</li>
+      </ul>
+    </article>
+    <article class="card find x">
+      <h3><span class="who x">코덱스</span>&nbsp; 팩트체크·사업 실체 축</h3>
+      <ul>
+        <li><b>원문 통계 반증</b> — "2026년 레드칩/VIE 등록 누적 2건" 주장은 공식 통지만으로 최소 4건(Manycore 2월·DSC 4월·Momenta 6월·SHEIN 7월)이 확인되어 무너집니다. 원문 작성 자문의 품질 문제입니다.</li>
+        <li><b>한국 법인세 "25% 단일" 오류</b> — 실제는 9·19·21·24% 누진에 지방법인소득세 10%가 부가됩니다. 이대로면 사업·배당 계획 수치가 통째로 틀어집니다.</li>
+        <li><b>글로벌 최저한세 과대 반영</b> — 연결매출 7.5억 유로 이상 그룹에만 적용되므로 현 단계 구조 변수가 아닙니다.</li>
+        <li><b>중국 문화·인터넷 업종 외자 제한</b> — 플랫폼·콘텐츠 사업의 인허가에 해외 지분 제한이 걸릴 수 있고, VIE는 제한 업종에 정말 필요할 때만 검토할 최후 수단입니다.</li>
+        <li><b>아티스트 IP 권리 체인</b> — 저작권·초상·성명·음성·AI 학습권이 작품별로 정리되지 않으면 핵심 자산 가치가 사라집니다.</li>
+        <li><b>한·중 데이터 국외이전</b> — 상장 실사·감사·CRM·AI 학습 과정에서 데이터 이전이 규제로 중단될 수 있습니다.</li>
+        <li><b>대안 확장</b> — 실질이 중국이면 H주 직접 상장을 우선 비교해야 한다는 선택지와, 90일 게이트·필수 증거 8종이라는 실행 틀.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- 04 충돌과 판정 -->
+<section id="clash">
+  <div class="kicker">04 · CONFLICTS RESOLVED</div>
+  <h2 class="t">충돌과 판정 — 어긋난 지점 3과 재검토 결론</h2>
+  <p class="cap">두 분석이 다르게 말한 지점은 세 곳입니다. 각각 대조해 이 통합본의 판정을 내렸습니다.</p>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <article class="card clash">
+      <h3>충돌 ① 권고 구조 — "B-라이트 직접 보유" 대 "합작 신설"</h3>
+      <div class="vs">
+        <div class="side"><span class="who x">코덱스</span><br>케이맨 TopCo가 한국 OpCo를 직접 보유하는 B-라이트가 최선입니다. 계층 최소화로 비용·시간·실체 부담을 줄입니다.</div>
+        <div class="side"><span class="who c">클로드</span><br>기존 법인 지분을 역외로 넘기는 순간 입구 양도세가 확정됩니다. 기존 지분은 보존하고 신규 사업만 합작 신설 구조에 담아야 합니다.</div>
+      </div>
+      <div class="judge"><b>판정 — 두 권고의 결합이 정답입니다.</b> 코덱스의 B-라이트는 "기존 한국 법인을 어떻게 케이맨 아래로 넣는가"라는 입구 문제를 다루지 않았고, 그 입구에서 클로드가 찾은 양도세가 그대로 발생합니다. 따라서 계층은 B-라이트만큼 얇게(케이맨→한국 2층), 입구는 클로드 방식으로(기존 지분 이전 없이 신설 합작) 설계합니다. 이것이 이 문서의 통합 권고안입니다.</div>
+    </article>
+    <article class="card clash">
+      <h3>충돌 ② 성공 확률 — "≈4%" 대 "15~35%"</h3>
+      <div class="vs">
+        <div class="side"><span class="who c">클로드</span><br>원안이 문서 일정(12~18개월)대로 완주할 확률 ≈4%(구간 3~8%). 재설계 후 3년 시계면 ≈25%.</div>
+        <div class="side"><span class="who x">코덱스</span><br>24~36개월 시계에서 B안 상장 15~35%, B-라이트 20~40%. 구조 재편 완료 확률은 별도로 65~90%.</div>
+      </div>
+      <div class="judge"><b>판정 — 모순이 아니라 시계와 대상의 차이입니다.</b> 클로드의 4%는 "원안 구조 + 문서 일정", 코덱스의 구간은 "구조별 + 3년 시계"를 측정했습니다. 통합하면: 문서가 말하는 일정으로는 어느 구조든 한 자릿수, 재설계하고 3년 시계로 넓히면 20~40% 구간입니다. 두 분석 모두 병목을 구조 재편이 아니라 상장 완료 게이트(재무 문턱·주관사·조달)에 둔다는 점도 일치합니다.</div>
+    </article>
+    <article class="card clash">
+      <h3>충돌 ③ 원문을 보는 눈 — "고칠 제안" 대 "전제 재검증 대상"</h3>
+      <div class="vs">
+        <div class="side"><span class="who c">클로드</span><br>구조를 고치면 살릴 수 있는 제안입니다. 거절이 아니라 재설계 협상이 정답입니다.</div>
+        <div class="side"><span class="who x">코덱스</span><br>숫자와 규제 판단부터 바로잡아야 합니다. 원문 전제 위에서는 어떤 구조 논의도 안전하지 않습니다.</div>
+      </div>
+      <div class="judge"><b>판정 — 순서를 합치면 됩니다.</b> 두 발견을 합치면 원문 오류가 최소 5건(등록 통계·배당세율·법인세율·상장 일정·지배구조 성립성)입니다. 이 정도면 상대 자문의 품질 자체가 협상 의제이므로, 정정본 요구를 첫 협상 카드로 쓰고(코덱스의 눈), 정정이 오면 재설계 협상으로 진행합니다(클로드의 길).</div>
+    </article>
+  </div>
+</section>
+
+<!-- 05 원문 검증 통합 -->
+<section id="facts">
+  <div class="kicker">05 · CLAIMS AUDIT</div>
+  <h2 class="t">원문 검증 통합 — 주장 10건 판정표</h2>
+  <p class="cap">두 보고서의 팩트체크를 합쳐 원문 주장 9건과 결정적 무언급 1건을 한 표로 정리했습니다. "검증" 열은 어느 분석이 확인했는지 표시합니다.</p>
+  <div class="scroll-x">
+  <table class="min840">
+    <thead><tr><th style="width:24%">원문 주장</th><th style="width:9%">판정</th><th>검증 결과</th><th style="width:8%">검증</th></tr></thead>
+    <tbody>
+      <tr><td class="head">한국에 자산을 두면 중국 증감회 등록 대상 아님</td><td><span class="st gray">회색지대</span></td><td>판정 기준 문언상으로는 벗어날 수 있으나, 실질 우선 원칙·50% 테스트·회피 방지 조항이 남습니다. 창업자·경영진이 중국 거주이거나 자산이 중국에서 옮겨온 이력이 있으면 뒤집힐 수 있습니다.</td><td><span class="who cx">공통</span></td></tr>
+      <tr><td class="head">2026년 레드칩/VIE 등록 누적 2건</td><td><span class="st no">반증</span></td><td>공식 통지만으로 최소 4건 — Manycore(2월)·DSC(4월)·Momenta(6월)·SHEIN(7월). 이 통계는 의사결정 근거로 쓸 수 없습니다.</td><td><span class="who x">코덱스</span></td></tr>
+      <tr><td class="head">배당 원천세 20% → 10% → 5%</td><td><span class="st no">오류</span></td><td>한-홍콩 조약 상한은 25% 이상 직접 보유·실질귀속자일 때 10%, 그 외 15%입니다. 5% 구간은 없고, 10%도 홍콩 법인이 실질을 갖출 때만 지켜집니다.</td><td><span class="who cx">공통</span></td></tr>
+      <tr><td class="head">한국 법인세 지방세 포함 25%</td><td><span class="st no">오류</span></td><td>실제는 9·19·21·24% 누진 구조에 지방법인소득세(법인세의 10%)가 부가됩니다.</td><td><span class="who x">코덱스</span></td></tr>
+      <tr><td class="head">구조 3~6개월 + 상장 6~12개월</td><td><span class="st no">불성립</span></td><td>홍콩 메인보드 이익 테스트(누적 순이익 HK$8,000만 + 시총 HK$5억)는 초기 기업이 통과할 수 없고, 나스닥은 2026년 1월부터 사실상 최소 1,500만 달러 공모가 전제입니다. 감사·실사·주관사 절차를 대입해도 성립하지 않습니다.</td><td><span class="who cx">공통</span></td></tr>
+      <tr><td class="head">신탁 99% 지배 (+차등의결권 함의)</td><td><span class="st no">불성립</span></td><td>홍콩 차등의결권 수익자는 개인·현역 이사만 가능해 신탁 직접 보유가 성립하지 않고, 문턱도 시총 HK$100억 + 매출 HK$10억입니다.</td><td><span class="who c">클로드</span></td></tr>
+      <tr><td class="head">BVI·홍콩 중간층은 표준 관행</td><td><span class="st ok">부분 성립</span></td><td>형식으로는 관행이 맞고, 순수 지주면 경제적 실질도 완화 시험으로 충족됩니다. 진짜 쟁점은 홍콩 층의 실질귀속자 부인과 계층당 유지비용 하나로 좁혀집니다.</td><td><span class="who cx">공통</span></td></tr>
+      <tr><td class="head">해외직접투자 10만 달러 이하 사후신고</td><td><span class="st gray">재검증</span></td><td>일반화된 설명은 안전하지 않습니다. 한국 거주자의 해외직접투자는 원칙적으로 지정 외국환은행 신고 대상이며, 예외·사후보고는 거래 유형과 시점에 따라 다릅니다.</td><td><span class="who x">코덱스</span></td></tr>
+      <tr><td class="head">글로벌 최저한세 부담 고려</td><td><span class="st gray">비변수</span></td><td>연결매출 7.5억 유로 이상 다국적기업그룹에만 적용되므로, 현재 규모에서는 초기 구조의 핵심 변수가 아닙니다.</td><td><span class="who x">코덱스</span></td></tr>
+      <tr><td class="head">(문서에 없음) 한국 주주의 입구 양도세</td><td><span class="st miss">최대 누락</span></td><td>주식 교환 과세이연 특례는 내국법인 간 거래에만 적용됩니다. 국경 간 이전은 즉시 양도소득세가 확정되고, 대가가 비상장 역외 주식이라 납부 재원이 없습니다.</td><td><span class="who c">클로드</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 06 리스크 보드 -->
+<section id="risks">
+  <div class="kicker">06 · UNIFIED RISK BOARD</div>
+  <h2 class="t">통합 리스크 보드 — 15개</h2>
+  <p class="cap">두 보고서의 리스크(클로드 10개 + 코덱스 12개)를 중복 제거해 15개로 통합하고, 충격과 시급성 순으로 배열했습니다.</p>
+  <div class="scroll-x">
+  <table class="min840">
+    <thead><tr><th style="width:4%">N°</th><th style="width:17%">리스크</th><th style="width:7%">등급</th><th style="width:7%">발견</th><th style="width:36%">무엇이 문제인가</th><th>어떻게 막는가</th></tr></thead>
+    <tbody>
+      <tr><td>01</td><td class="head">입구 양도세 (한국)</td><td><span class="gr r">치명</span></td><td><span class="who c">클로드</span></td><td>지분을 역외로 넘기는 순간 과세이연 없이 양도세가 확정됩니다. 상장에 실패해도 세금은 남는 비대칭 구조입니다.</td><td>기존 지분 이전 금지 — 신규사업 합작 신설로 재설계</td></tr>
+      <tr><td>02</td><td class="head">실체 미확정 상태의 구조 선결정</td><td><span class="gr r">치명</span></td><td><span class="who x">코덱스</span></td><td>사업의 실제 중심지를 확정하기 전에 구조부터 정하면 규제 소재지·세금·상장지가 동시에 틀어집니다.</td><td>15일 팩트팩 선행 — 그 전 법인 설립 금지</td></tr>
+      <tr><td>03</td><td class="head">중국 등록 실질 판정</td><td><span class="gr r">치명</span></td><td><span class="who cx">공통</span></td><td>"한국 자산 = 면제"는 창업자 국적·거주지·자산 이전 이력·50% 테스트로 뒤집힐 수 있습니다. 판정 주체는 주관사와 중국 로펌입니다.</td><td>중국 로펌 법률의견서를 거래 선행조건으로 요구</td></tr>
+      <tr><td>04</td><td class="head">상장 문턱·일정</td><td><span class="gr r">치명</span></td><td><span class="who cx">공통</span></td><td>홍콩 메인보드 재무 요건 미달, 나스닥 최소 공모 전제, 준비도(감사·주관사) 미고려로 6~12개월 일정은 비현실입니다.</td><td>시장·시점 재설정 + 프리IPO 조달 계획 선행</td></tr>
+      <tr><td>05</td><td class="head">창업자 37호문 외환등기 (중국)</td><td><span class="gr a">주의</span></td><td><span class="who cx">공통</span></td><td>미등기면 상장 심사·자금 주입·회수에서 중단되거나 사후 제재 위험이 생깁니다.</td><td>등기 완료 증빙을 선행조건(CP)에 포함</td></tr>
+      <tr><td>06</td><td class="head">홍콩층 조약 부인</td><td><span class="gr a">주의</span></td><td><span class="who cx">공통</span></td><td>실질 없는 홍콩 법인은 10%를 부인당해 15% 이상으로 돌아갑니다. 절세 폭 대비 실질 유지비용이 저울질 대상입니다.</td><td>실질 구축 계획 요구, 없으면 층 생략 후 15% 수용</td></tr>
+      <tr><td>07</td><td class="head">신탁·차등의결권·실질소유자</td><td><span class="gr a">주의</span></td><td><span class="who cx">공통</span></td><td>신탁 99% 지배는 홍콩 차등의결권 요건과 충돌하고, 표기·실질소유자 불일치는 KYC·상장심사·세무 거주성에서 문제가 됩니다.</td><td>보통주 다수 지배 재설계 또는 미국 경로 정렬 + 수익권·의결권 다이어그램 확정</td></tr>
+      <tr><td>08</td><td class="head">아티스트 IP 권리 체인</td><td><span class="gr a">주의</span></td><td><span class="who x">코덱스</span></td><td>저작권·저작인접권·초상·성명·음성·AI 학습권이 미정리면 분쟁으로 핵심 자산 가치가 사라집니다.</td><td>권리자·지역·기간·매체·2차사용을 작품별 대장으로 검증</td></tr>
+      <tr><td>09</td><td class="head">중국 업종 외자 제한</td><td><span class="gr a">주의</span></td><td><span class="who x">코덱스</span></td><td>플랫폼·영상·음악·아티스트 사업 인허가에 해외 지분 제한이 걸릴 수 있습니다.</td><td>제품 기능별 인허 자산 분해 — VIE는 최후 수단</td></tr>
+      <tr><td>10</td><td class="head">한·중 데이터 국외이전</td><td><span class="gr a">주의</span></td><td><span class="who x">코덱스</span></td><td>상장 실사·감사·CRM·AI 학습 과정에서 데이터 이전이 중단될 수 있습니다.</td><td>데이터 맵 + 표준계약·동의·인증 경로 설계</td></tr>
+      <tr><td>11</td><td class="head">소수주주 보호 공백 (케이맨)</td><td><span class="gr a">주의</span></td><td><span class="who c">클로드</span></td><td>케이맨에는 성문 부당침해 구제가 없어, 분쟁 시 한국 주주는 역외 법정에서 약자가 됩니다.</td><td>상장 전 주주간계약 — 태그얼롱·정보권·이사지명·유보사항</td></tr>
+      <tr><td>12</td><td class="head">한국 외환 신고</td><td><span class="gr a">주의</span></td><td><span class="who cx">공통</span></td><td>케이맨 지분 취득은 사전신고 대상이고, 미신고 20억 원 초과분은 형사처벌 영역입니다.</td><td>주주별 신고 매트릭스 + 외국환은행 사전 협의</td></tr>
+      <tr><td>13</td><td class="head">협상 순서</td><td><span class="gr a">주의</span></td><td><span class="who c">클로드</span></td><td>지분·대가가 공백인 채 구조 동의부터 요구받는 순서입니다. 먼저 동의하면 이후 조건 협상에서 끌려갑니다.</td><td>텀시트 선행 확정 + 단계별 중단권 계약화</td></tr>
+      <tr><td>14</td><td class="head">역외 유지비·상장 후 공시 부담</td><td><span class="gr g">관리</span></td><td><span class="who x">코덱스</span></td><td>계층당 연간 유지비·실체 증거·수익자 신고가 늘고, 미국이면 PCAOB 감사·20-F 공시가 상시 부담입니다.</td><td>층별 세후 편익 대 3년 유지비 NPV 비교 + 준비도 진단</td></tr>
+      <tr><td>15</td><td class="head">IP 역외 배치·국가핵심기술</td><td><span class="gr g">관리</span></td><td><span class="who c">클로드</span></td><td>국가핵심기술 해당 시 정부 승인이 걸리고, IP를 역외층에 두면 규제가 무거워집니다.</td><td>IP는 한국 법인에 유지 + 해당 여부 사전 확인</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 07 현실 가능성 -->
+<section id="prob">
+  <div class="kicker">07 · FEASIBILITY</div>
+  <h2 class="t">현실 가능성 — 확률의 통합 독법</h2>
+  <p class="cap">두 분석의 확률은 시계(12~18개월 대 24~36개월)와 대상 구조가 달라 표면상 어긋나 보이지만, 같은 축 위에 놓으면 하나의 그림이 됩니다. 기초율 통계가 없는 영역의 조건부 전문가 추정이며, 확신도 60/100입니다.</p>
+  <div class="prob">
+    <article class="card">
+      <h3>원안 · 문서 일정</h3>
+      <div class="src">4계층 + 기존 지분 이전 · 12~18개월 · <span class="who c">클로드</span></div>
+      <div class="pnum red">≈4%</div>
+      <div class="bar red"><i style="width:6%"></i></div>
+      <p class="note">구간 3~8%. 구조 성립 40% × 규제 무사고 60% × 상장 완료 15%의 곱입니다.</p>
+    </article>
+    <article class="card">
+      <h3>원안 구조 · 시계 확장</h3>
+      <div class="src">4계층 유지 · 24~36개월 · <span class="who x">코덱스</span></div>
+      <div class="pnum amber">15~35%</div>
+      <div class="bar amber"><i style="width:25%"></i></div>
+      <p class="note">시간을 넓혀도 4계층 유지비와 입구 문제는 남습니다. 구조 재편 완료 확률(65~80%)과 상장 완료는 별개입니다.</p>
+    </article>
+    <article class="card" style="border:2px solid var(--x-teal)">
+      <h3>재설계 · 3년 시계</h3>
+      <div class="src">합작 신설 × 최소 계층 · <span class="who cx">공통</span></div>
+      <div class="pnum teal">20~40%</div>
+      <div class="bar teal"><i style="width:32%"></i></div>
+      <p class="note">클로드 ≈25%와 코덱스 B-라이트 20~40%가 겹치는 구간입니다. 통합 권고안의 기대 범위입니다.</p>
+    </article>
+  </div>
+  <div class="callout">
+    <h3>확률을 끌어올리는 조건</h3>
+    <p>두 분석 모두 병목은 구조 재편이 아니라 상장 완료 게이트입니다. 3개년 감사 추적기록과 거래소 재무 요건을 충족하고 주관사의 서면 예비의견을 받으면, 상장 구간을 약 40~60%로 재평가할 수 있습니다. 반대로 창업자의 국적·거주지·자산 이전 이력이 불리하게 확인되면 전 구간이 하향 갱신됩니다.</p>
+  </div>
+</section>
+
+<!-- 08 선택지 -->
+<section id="options">
+  <div class="kicker">08 · OPTIONS</div>
+  <h2 class="t">선택지 — 구조 6안 비교</h2>
+  <p class="cap">코덱스의 5안에 클로드의 재설계안을 더해 6안으로 정리했습니다. 갈림길은 "어느 나라가 실제 사업의 중심인가"와 "입구 과세를 어떻게 피하는가" 두 질문입니다.</p>
+  <div class="scroll-x">
+  <table class="min840">
+    <thead><tr><th style="width:19%">구조</th><th style="width:27%">언제 맞는가</th><th style="width:30%">결정적 약점</th><th style="width:12%">가역성</th><th>판정</th></tr></thead>
+    <tbody>
+      <tr><td class="head">A · 중국 운영 레드칩/VIE</td><td>중국 인허제한 업종이고 해외 자본 필요성을 입증할 수 있을 때</td><td>CSRC 등록·외환·업종·데이터 심사 전면 + 계약통제 집행력 불확실</td><td><span class="st no">낮음</span></td><td>예외적 선택 <span class="who x">코덱스</span></td></tr>
+      <tr><td class="head">A-2 · 중국 법인 H주 직접 상장</td><td>매출·자산·인력·관리의 중심이 중국일 때</td><td>중국 주식·외환·인센티브 제약</td><td><span class="st gray">중간</span></td><td>실질이 중국이면 우선 비교 <span class="who x">코덱스</span></td></tr>
+      <tr><td class="head">B · 원안 (케이맨→BVI→홍콩→한국 + 기존 지분 이전)</td><td>—</td><td>입구 양도세 + 세율·통계 오류 + 일정 비현실 + 4계층 유지비. 두 분석 공통 기각</td><td><span class="st no">낮음</span></td><td><b>서명 불가</b> <span class="who cx">공통</span></td></tr>
+      <tr><td class="head">B-라이트 · 케이맨→한국 직접</td><td>한국 실체가 분명하고 입구 과세의 해법(재원 또는 신설 방식)이 확보될 때</td><td>기존 지분을 이전하는 방식이면 입구 양도세가 그대로 발생</td><td><span class="st ok">높음</span></td><td>조건부 — 입구 설계와 결합 필요 <span class="who x">코덱스</span></td></tr>
+      <tr style="background:#f2faf8"><td class="head">통합 권고 · 합작 신설 × 최소 계층</td><td>기존 법인 지분은 보존하고, 신규 글로벌 사업만 신설 케이맨→신설 한국 JV에 담을 때</td><td>기존 사업의 상장 프리미엄 편입은 늦어짐 — 대신 실패해도 잃는 것이 통제됨</td><td><span class="st ok">높음</span></td><td><b>권고</b> <span class="who cx">통합</span></td></tr>
+      <tr><td class="head">보류 · BATNA</td><td>감사재무·주관사 의견·권리 대장 등 증거가 아직 없을 때</td><td>글로벌 자본 접근 지연이라는 기회비용</td><td><span class="st ok">매우 높음</span></td><td>증거가 없으면 정답 <span class="who cx">공통</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 09 실행 설계 -->
+<section id="exec">
+  <div class="kicker">09 · EXECUTION</div>
+  <h2 class="t">실행 설계 — 90일 게이트와 협상 카드</h2>
+  <p class="cap">코덱스의 90일 게이트에 클로드의 선행조건·킬 스위치·협상 카드를 결합했습니다. 원칙은 하나 — 되돌릴 수 없는 일(법인 설립·지분 이전)을 가장 뒤로 보냅니다.</p>
+
+  <div class="gates">
+    <article class="gate"><h3>0~15일 · 팩트팩</h3><ul><li>실질소유자·신탁·국적·거주지</li><li>국가별 매출·이익·자산 50% 테스트</li><li>IP·인허·데이터 소재지</li><li>자산의 중국 이전 이력</li></ul></article>
+    <article class="gate"><h3>16~30일 · 법률·세무 의견</h3><ul><li>중국 로펌 등록(비안) 의견서</li><li>H주 대 최소구조 비교</li><li>홍콩층 편익 NPV 산정</li><li>입구 과세 시뮬레이션</li></ul></article>
+    <article class="gate"><h3>31~60일 · 자격 실측 + 텀시트</h3><ul><li>홍콩 3개 재무 테스트 대입</li><li>나스닥 재무·공모 요건 대입</li><li>감사인·주관사 갭 분석</li><li>지분·이사회·유보사항·중단권 확정</li></ul></article>
+    <article class="gate"><h3>61~90일 · Go / Pivot / Stop</h3><ul><li>법인 설립·재편은 이 게이트 뒤에만</li><li>예산·책임자·일정 확정</li><li>중단·전환 조건 승인</li></ul></article>
+  </div>
+
+  <div class="kill">
+    <div class="tag">KILL SWITCH</div>
+    <div class="body">다음 신호가 하나라도 켜지면 다음 단계로 넘어가지 않습니다 — ① 중국 로펌 의견서의 회색 판정 ② 창업자 37호문 등기 실패 ③ 신탁 의결권·실질소유자 미확정 ④ 중국 측 지표의 50% 초과 확인(→ H주 전환 검토) ⑤ 프리IPO 1,500만 달러 조달 실패 ⑥ 12개월 내 감사 완료 실패.</div>
+  </div>
+
+  <div class="grid-2" style="margin-top:16px">
+    <div>
+      <h3 style="font-size:16px;color:var(--navy);margin:6px 0 10px">협상 카드 7 — 답이 오기 전에는 어떤 서명도 하지 않습니다</h3>
+      <div class="keyval">
+        <div class="kv"><span class="k">FACT</span><span>등록 사례 통계·배당세율·법인세율 오류의 정정본을 줄 수 있습니까? 이 문서를 작성한 자문사는 어디입니까?</span></div>
+        <div class="kv"><span class="k">EQUITY</span><span>한국 측이 케이맨 층에서 받는 지분율과 산정 근거는 무엇입니까?</span></div>
+        <div class="kv"><span class="k">OPINION</span><span>등록 면제 판단을 담은 중국 로펌 법률의견서를 제출할 수 있습니까? 창업자·경영진의 국적·상주지 기준이어야 합니다.</span></div>
+        <div class="kv"><span class="k">REGISTRATION</span><span>창업자의 37호문 외환등기는 완료되었습니까? 증빙을 선행조건에 넣는 데 동의합니까?</span></div>
+        <div class="kv"><span class="k">TAX</span><span>한국 주주의 입구 양도세 처리를 포함한 세무 시뮬레이션을 공유할 수 있습니까? 비용은 어느 쪽이 부담합니까?</span></div>
+        <div class="kv"><span class="k">LISTING</span><span>상장 시장·시점을 어떤 요건 실측에 근거해 정했습니까? 프리IPO 조달 계획은 무엇입니까?</span></div>
+        <div class="kv"><span class="k">GOVERNANCE</span><span>신탁의 수익자·지배 조건 상세와, 한국 측 이사지명권·유보사항·태그얼롱을 주주간계약에 넣는 데 동의합니까?</span></div>
+      </div>
+    </div>
+    <article class="card">
+      <h3 style="font-size:16px;color:var(--navy);margin-bottom:12px">실행 전 필수 증거 8종 <span class="who x">코덱스</span></h3>
+      <ul class="check">
+        <li>신탁 계약과 실질소유자·의결권 다이어그램</li>
+        <li>국가별 매출·이익·자산·순자산 50% 테스트</li>
+        <li>주주별 37호문·ODI·한국 외환 신고 매트릭스</li>
+        <li>제품 기능별 한·중 인허·외자 제한 매트릭스</li>
+        <li>작품·아티스트별 IP 권리 대장</li>
+        <li>한·중 데이터 맵과 국외이전 근거</li>
+        <li>3개년 감사재무제표·내부통제 갭 분석</li>
+        <li>홍콩/나스닥 주관사 예비 의견서</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- 10 한계·출처 -->
+<section id="sources">
+  <div class="kicker">10 · LIMITS &amp; SOURCES</div>
+  <h2 class="t">한계와 출처</h2>
+  <div class="card" style="margin-bottom:16px">
+    <p style="font-size:13.5px;color:#3d4a56">이 문서는 두 독립 분석을 대조·통합한 의사결정 보조 자료이며, 제3의 재검증이 아니라서 각 판정의 검증 깊이는 표기된 발견 주체의 원문 확인 수준을 따릅니다. 법률·세무 자문을 대체하지 않으며, 실행 전 한국 세무사·변호사와 중국 로펌의 공식 의견이 필요합니다.</p>
+    <p style="font-size:13.5px;color:#3d4a56;margin-top:8px">확률 추정은 기초율 통계가 없는 조건부 전문가 판단입니다. 창업자의 국적·거주지·자산 이전 이력 3대 사실관계가 확인되면 크게 갱신됩니다. 소형 IPO 완주율 통계, 홍콩거래소의 신탁 비히클 보유 규정 원문, 케이맨+한국 운영법인 조합의 심사 선례는 두 분석 모두 확보하지 못했습니다.</p>
+  </div>
+  <ol class="sources">
+    <li>중국 증감회(CSRC) 「境内企业境外发行证券和上市管理试行办法」 — 제15·17조, 50% 테스트, 실질 우선 <span class="who cx">공통</span></li>
+    <li><a href="https://www.csrc.gov.cn/csrc/c106251/c7643384/content.shtml">CSRC 2026-07-03 해외 상장 등록 현황표</a> 및 개별 통지(Manycore·DSC·Momenta·SHEIN) <span class="who x">코덱스</span></li>
+    <li>중국 국가외환관리국(SAFE) 37호문 — 개인 주주의 역외 SPV 외환등기 <span class="who cx">공통</span></li>
+    <li><a href="https://www.ndrc.gov.cn/xxgk/zcfb/fzggwl/202409/t20240907_1392875_ext.html">NDRC·상무부 2024 외상투자 네거티브리스트</a> <span class="who x">코덱스</span></li>
+    <li><a href="https://www.cac.gov.cn/2024-03/22/c_1712776612187994.htm">CAC 데이터 국경 간 이동 규정</a> · <a href="https://www.cac.gov.cn/2024-09/30/c_1729384452307680.htm">네트워크 데이터 보안 조례</a> <span class="who x">코덱스</span></li>
+    <li><a href="https://www.ird.gov.hk/eng/pdf/Synthesised_Text_HKSAR_Korea.pdf">한국-홍콩 이중과세방지협정 통합문</a> · 제한세율표(삼일) <span class="who cx">공통</span></li>
+    <li><a href="https://www.ird.gov.hk/eng/tax/bus_fsie.htm">홍콩 세무국 FSIE·경제적 실체 요건</a> <span class="who x">코덱스</span></li>
+    <li>조세특례제한법 제38조 — 주식 교환 과세이연의 내국법인 한정 (law.go.kr) <span class="who c">클로드</span></li>
+    <li><a href="https://www.investkorea.org/ik-kr/cntnts/i-187/web.do">KOTRA Invest Korea — 한국 법인세 누진 구조</a> <span class="who x">코덱스</span></li>
+    <li><a href="https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000207421&amp;chrClsCd=010201">외국환거래규정 제9-5조 — 해외직접투자 신고</a> <span class="who cx">공통</span></li>
+    <li><a href="https://m.pipc.go.kr/np/default/page.do?mCode=D060040010">개인정보보호위원회 — 개인정보 국외이전</a> <span class="who x">코덱스</span></li>
+    <li><a href="https://www.ditc.ky/frameworks/es/">케이맨 DITC Economic Substance</a> · <a href="https://bvi.gov.vg/economic-substance">BVI Economic Substance</a> · 실무 가이드(Ogier·Walkers·Conyers) <span class="who cx">공통</span></li>
+    <li><a href="https://www.hkex.com.hk/Listing/Explore-By-Role/Potential-Applicants/Equity-Securities?sc_lang=en">홍콩거래소 메인보드 재무·추적기록 요건</a> · 신규상장 가이드 Ch.2.2(차등의결권) <span class="who cx">공통</span></li>
+    <li><a href="https://listingcenter.nasdaq.com/assets/initialguide.pdf">Nasdaq Initial Listing Guide</a> · 유동성 요건 개정(2025-04·2026-01 발효, Cozen 정리) · <a href="https://www.sec.gov/rules-regulations/holding-foreign-companies-accountable-act">SEC HFCAA</a> <span class="who cx">공통</span></li>
+    <li><a href="https://nts.go.kr/gmt/cm/cntnts/cntntsView.do?cntntsId=239055&amp;mi=41008">국세청 글로벌최저한세 신고대상</a> <span class="who cx">공통</span></li>
+    <li><a href="https://www.mcst.go.kr/site/s_data/ordinance/instruction/instructionView.jsp?pSeq=3436&amp;pType=&amp;pMenuCD=0405020000">문화체육관광부 2024 대중문화예술인 표준전속계약서</a> <span class="who x">코덱스</span></li>
+    <li>원 분석 2건 — 클로드 「RISK CUT」(같은 폴더, _research 조사 노트 6건 포함) · 코덱스 「독립 리스크 분석」(_Codex 폴더)</li>
+  </ol>
+</section>
+
+</main>
+
+<footer><div class="wrap">통합 재검토 · 기준일 2026-07-22 · 내부 검토용 · 클로드·코덱스 원 분석과 함께 읽는 문서입니다. 사실관계가 갱신되면 확률·권고 구조를 재산정해야 합니다.</div></footer>
+
+</body>
+</html>
