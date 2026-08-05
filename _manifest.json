@@ -3,8 +3,8 @@
     "slug": "life-journal",
     "mode": "choi",
     "url": "https://works.choi.build/life-journal/",
-    "last_kind": "new",
-    "last_sha256": "6c6318ab4196df517d78e217977601253dca9b3ba30fefd85f2950bb2557cf67",
-    "timestamp": "2026-08-05T17:28:48.276464Z"
+    "last_kind": "redeploy",
+    "last_sha256": "2c012121f50f589c3b6cb86a134a378f5c84787375e1c18b2f7d922d85fa3995",
+    "timestamp": "2026-08-05T17:29:46.249540Z"
   }
 }
