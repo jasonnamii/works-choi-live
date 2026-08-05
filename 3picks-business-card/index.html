@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3PICKS 명함 디자인 · 백선미 실장</title>
+  <style>
+    :root {
+      --canvas: #f5f0e4;
+      --paper: #fff;
+      --ink: #080808;
+      --rule: rgba(8, 8, 8, .28);
+      --shadow: 0 18px 42px rgba(29, 22, 13, .11), 0 3px 8px rgba(29, 22, 13, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--canvas); }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(8, 8, 8, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8, 8, 8, .025) 1px, transparent 1px),
+        var(--canvas);
+      background-size: 42px 42px;
+      font-family: Pretendard, "Apple SD Gothic Neo", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      width: min(1680px, 100%);
+      margin: 0 auto;
+      padding: clamp(28px, 4vw, 68px) clamp(18px, 4vw, 72px) clamp(56px, 7vw, 110px);
+    }
+
+    .page-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      padding-bottom: 27px;
+      border-bottom: 1.5px solid var(--ink);
+    }
+
+    .eyebrow,
+    .meta,
+    .side-label,
+    .concept-code {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow { margin: 0 0 13px; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 4.2vw, 70px);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .lead {
+      max-width: 720px;
+      margin: 18px 0 0;
+      font-size: clamp(15px, 1.25vw, 19px);
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+
+    .meta {
+      display: grid;
+      gap: 8px;
+      justify-items: end;
+      padding-bottom: 4px;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    .concepts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(30px, 3vw, 58px);
+      margin-top: clamp(42px, 5vw, 76px);
+    }
+
+    .concept { min-width: 0; }
+
+    .concept-head {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: 14px;
+      align-items: start;
+      min-height: 94px;
+      margin-bottom: 20px;
+    }
+
+    .concept-letter {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 58px;
+      font-weight: 800;
+      line-height: .78;
+      letter-spacing: -.06em;
+    }
+
+    .concept-code { margin: 1px 0 8px; }
+
+    .concept h2 {
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.15;
+      letter-spacing: -.035em;
+    }
+
+    .concept-note {
+      grid-column: 2;
+      margin: 8px 0 0;
+      min-height: 42px;
+      font-size: 13px;
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+
+    .side + .side { margin-top: clamp(32px, 3vw, 46px); }
+
+    .side-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 11px;
+    }
+
+    .side-label::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--rule);
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 90 / 50;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .card svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ink,
+    .thin,
+    .bold-line {
+      fill: none;
+      stroke: var(--ink);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .ink { stroke-width: 2; }
+    .thin { stroke-width: 1; }
+    .bold-line { stroke-width: 3.5; }
+    .solid { fill: var(--ink); }
+
+    .svg-name {
+      font-family: Pretendard, "Apple SD Gothic Neo", sans-serif;
+      font-size: 29px;
+      font-weight: 800;
+      letter-spacing: -.05em;
+    }
+
+    .svg-role {
+      font-family: Pretendard, "Apple SD Gothic Neo", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .svg-contact {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -.015em;
+    }
+
+    .svg-small {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: clamp(48px, 6vw, 90px);
+      padding-top: 20px;
+      border-top: 1.5px solid var(--ink);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 1080px) {
+      .page-head { grid-template-columns: 1fr; }
+      .meta { justify-items: start; }
+      .concepts { grid-template-columns: 1fr; max-width: 760px; margin-inline: auto; }
+      .concept-head { min-height: 0; }
+      .concept-note { min-height: 0; }
+    }
+
+    @media (max-width: 560px) {
+      main { padding-inline: 14px; }
+      .page-head { gap: 18px; }
+      .lead { font-size: 14px; }
+      .meta { font-size: 9px; white-space: normal; }
+      .concepts { gap: 52px; }
+      .concept-letter { font-size: 48px; }
+      .concept h2 { font-size: 20px; }
+      .concept-note { font-size: 12px; }
+      footer { display: grid; font-size: 9px; }
+    }
+
+    @media print {
+      body { background: var(--canvas); }
+      main { width: 100%; padding: 20mm 16mm; }
+      .concepts { gap: 10mm; }
+      .card { box-shadow: none; outline: .2mm solid rgba(0,0,0,.12); }
+    }
+  </style>
+</head>
+<body>
+  <!-- 한 파일 안에서 재사용하는 벡터 로고·아이콘 정의 -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+    <defs>
+      <symbol id="ticket-logo" viewBox="0 0 360 130">
+        <path d="M18 10H82c13 0 18 8 18 20v70c0 12-5 20-18 20H18v-15c-21 0-21-20 0-20V72c-21 0-21-20 0-20V39c-21 0-21-20 0-20Z" class="bold-line"/>
+        <path d="M100 30c0-12 6-20 19-20h217v31c31 0 31 48 0 48v31H119c-13 0-19-8-19-20" class="bold-line"/>
+        <path d="M100 30v8m0 10v8m0 10v8m0 10v8m0 10v8" class="bold-line"/>
+        <text x="39" y="91" font-family="DIN Condensed, Helvetica Neue, sans-serif" font-size="78" font-weight="700" fill="currentColor">3</text>
+        <text x="140" y="91" font-family="DIN Condensed, Avenir Next Condensed, Helvetica Neue, sans-serif" font-size="70" font-weight="700" letter-spacing="3" fill="currentColor">PICKS</text>
+        <circle cx="336" cy="65" r="9" class="solid"/>
+      </symbol>
+
+      <symbol id="i-tumbler" viewBox="0 0 64 64"><path d="M19 13h26l-3 42H22L19 13Z" class="ink"/><path d="M17 13h30M23 8h18l3 5H20l3-5Z" class="ink"/><path d="M27 8V4h11v4M26 22h12M27 48h10" class="thin"/></symbol>
+      <symbol id="i-tote" viewBox="0 0 64 64"><path d="M13 21h38v35H13V21Z" class="ink"/><path d="M23 25v-8c0-13 18-13 18 0v8M19 21v35m26-35v35" class="thin"/><path d="M25 36h14v10H25z" class="thin"/></symbol>
+      <symbol id="i-pen" viewBox="0 0 64 64"><path d="m16 49 29-37 8 7-29 37-12 4 4-11Z" class="ink"/><path d="m41 17 8 7M16 49l8 7M12 60l7-2" class="thin"/></symbol>
+      <symbol id="i-umbrella" viewBox="0 0 64 64"><path d="M7 30c4-19 46-19 50 0-6-6-12-6-17 0-5-6-11-6-16 0-5-6-11-6-17 0Z" class="ink"/><path d="M32 12v39c0 10 12 9 12 1" class="ink"/><path d="M24 30c1-9 4-15 8-18m8 18c-1-9-4-15-8-18" class="thin"/></symbol>
+      <symbol id="i-shirt" viewBox="0 0 64 64"><path d="m22 11 10 5 10-5 14 8-8 12-6-4v29H22V27l-6 4-8-12 14-8Z" class="ink"/><path d="M24 12c1 9 15 9 16 0M27 49h10M18 18l7 6m21-6-7 6" class="thin"/></symbol>
+      <symbol id="i-mug" viewBox="0 0 64 64"><path d="M12 20h33v34H12V20Z" class="ink"/><path d="M45 27h5c11 0 11 19 0 19h-5" class="ink"/><path d="M21 13c-4-5 4-6 0-11m11 11c-4-5 4-6 0-11" class="thin"/></symbol>
+      <symbol id="i-power" viewBox="0 0 64 64"><rect x="14" y="7" width="36" height="50" rx="5" class="ink"/><path d="M23 12h18v6H23zM22 48h20" class="thin"/><circle cx="23" cy="24" r="1.5" class="solid"/><circle cx="29" cy="24" r="1.5" class="solid"/><circle cx="35" cy="24" r="1.5" class="solid"/></symbol>
+      <symbol id="i-towel" viewBox="0 0 64 64"><path d="M10 17h38c8 0 8 12 0 12H16c-8 0-8 12 0 12h38v15H16C4 56 4 38 16 38h32c3 0 3-6 0-6H10V17Z" class="ink"/><path d="M18 21h28M18 46h30m-30 5h30" class="thin"/></symbol>
+      <symbol id="i-notebook" viewBox="0 0 64 64"><path d="M17 8h38v48H17V8Z" class="ink"/><path d="M11 8v48M8 14h12M8 23h12M8 32h12M8 41h12M8 50h12" class="thin"/><path d="M27 18h18M27 27h18M27 36h14" class="thin"/></symbol>
+      <symbol id="i-lunch" viewBox="0 0 64 64"><path d="M10 24h44v32H10V24Z" class="ink"/><path d="M21 24v-5c0-11 22-11 22 0v5M10 33h44M14 29h36" class="thin"/><path d="M28 33v6h8v-6" class="ink"/></symbol>
+      <symbol id="i-button" viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" class="ink"/><circle cx="32" cy="32" r="14" class="thin"/><path d="m22 43 20-22M26 22h11l5 5v11" class="thin"/></symbol>
+      <symbol id="i-charger" viewBox="0 0 64 64"><rect x="8" y="15" width="48" height="34" rx="6" class="ink"/><circle cx="32" cy="32" r="10" class="thin"/><path d="m34 20-8 13h7l-3 11 9-15h-7l2-9Z" class="ink"/></symbol>
+      <symbol id="i-keyring" viewBox="0 0 64 64"><circle cx="28" cy="21" r="12" class="ink"/><circle cx="28" cy="21" r="6" class="thin"/><path d="M35 30l9 8" class="ink"/><path d="m41 34 13 10-10 13-13-10 10-13Z" class="ink"/><circle cx="43" cy="42" r="2.5" class="solid"/></symbol>
+    </defs>
+  </svg>
+
+  <main>
+    <header class="page-head">
+      <div>
+        <p class="eyebrow">3PICKS · Business card study</p>
+        <h1>태그의 구조를<br>명함의 인상으로</h1>
+        <p class="lead">선택한 티켓 로고의 절취선과 스캘럽, 태그 구멍을 명함 전체의 규칙으로 확장했습니다. 장식보다 선의 굵기와 간격, 재단 구조가 먼저 보이도록 세 방향을 나눴습니다.</p>
+      </div>
+      <div class="meta" aria-label="명함 정보">
+        <span>백선미 실장</span>
+        <span>90 × 50 mm</span>
+        <span>Black 1C</span>
+      </div>
+    </header>
+
+    <section class="concepts" aria-label="명함 디자인 3안">
+      <article class="concept">
+        <header class="concept-head">
+          <span class="concept-letter">A</span>
+          <div><p class="concept-code">Die-cut tag</p><h2>재단 태그형</h2></div>
+          <p class="concept-note">모서리 재단과 이중 재단선으로 상품 태그의 물성을 가장 직접적으로 살린 안입니다.</p>
+        </header>
+
+        <section class="side">
+          <p class="side-label">앞면</p>
+          <div class="card">
+            <svg viewBox="0 0 640 356" role="img" aria-label="재단 태그형 명함 앞면">
+              <path d="M28 28H552l58 58v242H28V28Z" class="bold-line"/>
+              <path d="M39 39H546l51 51v225H39V39Z" class="thin" stroke-dasharray="2 5"/>
+              <circle cx="560" cy="78" r="15" class="bold-line"/><circle cx="560" cy="78" r="7" class="thin"/>
+              <use href="#ticket-logo" x="56" y="67" width="270" height="98"/>
+              <line x1="56" y1="196" x2="582" y2="196" class="ink"/>
+              <line x1="310" y1="196" x2="310" y2="300" class="thin"/>
+              <text x="56" y="251" class="svg-name">백선미</text><text x="195" y="249" class="svg-role">실장</text>
+              <text x="340" y="241" class="svg-contact">01063319276</text><text x="340" y="279" class="svg-contact">julia@3picks.co.kr</text>
+              <path d="M546 310h36m-36-7v14m36-14v14" class="thin"/>
+            </svg>
+          </div>
+        </section>
+
+        <section class="side">
+          <p class="side-label">뒷면</p>
+          <div class="card">
+            <svg viewBox="0 0 640 356" role="img" aria-label="재단 태그형 명함 뒷면">
+              <path d="M28 28H552l58 58v242H28V28Z" class="bold-line"/>
+              <circle cx="560" cy="78" r="15" class="bold-line"/>
+              <path d="M42 42H546l50 50v222H42V42Z" class="thin" stroke-dasharray="2 5"/>
+              <path d="M55 45v267M153 45v267M251 45v267M349 45v267M447 45v267M545 103v209M55 134h490M55 223h490" class="thin"/>
+              <use href="#i-tumbler" x="76" y="60" width="56" height="56"/><use href="#i-tote" x="174" y="60" width="56" height="56"/><use href="#i-pen" x="272" y="60" width="56" height="56"/><use href="#i-umbrella" x="370" y="60" width="56" height="56"/>
+              <use href="#i-shirt" x="76" y="150" width="56" height="56"/><use href="#i-mug" x="174" y="150" width="56" height="56"/><use href="#i-power" x="272" y="150" width="56" height="56"/><use href="#i-towel" x="370" y="150" width="56" height="56"/><use href="#i-notebook" x="468" y="150" width="56" height="56"/>
+              <use href="#i-lunch" x="76" y="239" width="56" height="56"/><use href="#i-button" x="174" y="239" width="56" height="56"/><use href="#i-charger" x="272" y="239" width="56" height="56"/><use href="#i-keyring" x="370" y="239" width="56" height="56"/>
+              <path d="M470 270h52m-52 8h52m-52 8h34" class="thin"/>
+            </svg>
+          </div>
+        </section>
+      </article>
+
+      <article class="concept">
+        <header class="concept-head">
+          <span class="concept-letter">B</span>
+          <div><p class="concept-code">Detachable stub</p><h2>절취 스텁형</h2></div>
+          <p class="concept-note">왼쪽 절취부와 점선 리듬을 강조해 티켓 로고의 구조를 명함 전체로 확장한 안입니다.</p>
+        </header>
+
+        <section class="side">
+          <p class="side-label">앞면</p>
+          <div class="card">
+            <svg viewBox="0 0 640 356" role="img" aria-label="절취 스텁형 명함 앞면">
+              <path d="M28 28H612V328H28v-20c-25 0-25-22 0-22v-17c-25 0-25-22 0-22v-17c-25 0-25-22 0-22v-17c-25 0-25-22 0-22v-17c-25 0-25-22 0-22v-20Z" class="bold-line"/>
+              <line x1="160" y1="43" x2="160" y2="313" class="bold-line" stroke-dasharray="5 12"/>
+              <text x="73" y="201" font-family="DIN Condensed, Helvetica Neue" font-size="112" font-weight="700">3</text>
+              <circle cx="572" cy="66" r="14" class="bold-line"/><circle cx="572" cy="66" r="6" class="solid"/>
+              <text x="202" y="111" font-family="DIN Condensed, Avenir Next Condensed, Helvetica Neue" font-size="72" font-weight="700" letter-spacing="4">PICKS</text>
+              <line x1="202" y1="142" x2="578" y2="142" class="ink"/>
+              <text x="202" y="201" class="svg-name">백선미</text><rect x="337" y="169" width="58" height="34" rx="17" class="ink"/><text x="366" y="191" text-anchor="middle" class="svg-role">실장</text>
+              <text x="202" y="264" class="svg-contact">01063319276</text><text x="202" y="298" class="svg-contact">julia@3picks.co.kr</text>
+              <path d="M517 286h61m-61 8h61m-61 8h61" class="thin"/>
+            </svg>
+          </div>
+        </section>
+
+        <section class="side">
+          <p class="side-label">뒷면</p>
+          <div class="card">
+            <svg viewBox="0 0 640 356" role="img" aria-label="절취 스텁형 명함 뒷면">
+              <path d="M28 28H612V328H28v-18c-25 0-25-22 0-22v-18c-25 0-25-22 0-22v-18c-25 0-25-22 0-22v-18c-25 0-25-22 0-22v-18c-25 0-25-22 0-22v-20Z" class="bold-line"/>
+              <line x1="160" y1="43" x2="160" y2="313" class="bold-line" stroke-dasharray="5 12"/>
+              <circle cx="94" cy="78" r="14" class="bold-line"/><circle cx="94" cy="78" r="6" class="thin"/>
+              <text x="72" y="232" font-family="DIN Condensed, Helvetica Neue" font-size="102" font-weight="700">3</text>
+              <path d="M184 62h384M184 176h384M184 291h384" class="thin"/>
+              <use href="#i-tumbler" x="187" y="82" width="50" height="50"/><use href="#i-tote" x="243" y="82" width="50" height="50"/><use href="#i-pen" x="299" y="82" width="50" height="50"/><use href="#i-umbrella" x="355" y="82" width="50" height="50"/><use href="#i-shirt" x="411" y="82" width="50" height="50"/><use href="#i-mug" x="467" y="82" width="50" height="50"/><use href="#i-power" x="523" y="82" width="50" height="50"/>
+              <use href="#i-towel" x="215" y="199" width="50" height="50"/><use href="#i-notebook" x="271" y="199" width="50" height="50"/><use href="#i-lunch" x="327" y="199" width="50" height="50"/><use href="#i-button" x="383" y="199" width="50" height="50"/><use href="#i-charger" x="439" y="199" width="50" height="50"/><use href="#i-keyring" x="495" y="199" width="50" height="50"/>
+              <path d="M184 145h384M184 260h384" class="thin" stroke-dasharray="2 7"/>
+            </svg>
+          </div>
+        </section>
+      </article>
+
+      <article class="concept">
+        <header class="concept-head">
+          <span class="concept-letter">C</span>
+          <div><p class="concept-code">Archive tag</p><h2>아카이브 태그형</h2></div>
+          <p class="concept-note">중첩 테두리와 봉제선 같은 미세 선을 사용해 보관 라벨과 제품 명세표의 인상을 결합한 안입니다.</p>
+        </header>
+
+        <section class="side">
+          <p class="side-label">앞면</p>
+          <div class="card">
+            <svg viewBox="0 0 640 356" role="img" aria-label="아카이브 태그형 명함 앞면">
+              <rect x="28" y="28" width="584" height="300" class="bold-line"/><rect x="41" y="41" width="558" height="274" class="thin"/><rect x="53" y="53" width="534" height="250" class="thin" stroke-dasharray="1 5"/>
+              <circle cx="557" cy="79" r="16" class="bold-line"/><circle cx="557" cy="79" r="7" class="thin"/>
+              <use href="#ticket-logo" x="77" y="65" width="270" height="98"/>
+              <path d="M77 185h480M77 197h480" class="thin"/>
+              <text x="77" y="250" class="svg-name">백선미</text><text x="214" y="248" class="svg-role">실장</text>
+              <text x="557" y="237" text-anchor="end" class="svg-contact">01063319276</text><text x="557" y="275" text-anchor="end" class="svg-contact">julia@3picks.co.kr</text>
+              <path d="M77 290h92m8 0h18m8 0h8m8 0h44" class="bold-line"/>
+            </svg>
+          </div>
+        </section>
+
+        <section class="side">
+          <p class="side-label">뒷면</p>
+          <div class="card">
+            <svg viewBox="0 0 640 356" role="img" aria-label="아카이브 태그형 명함 뒷면">
+              <rect x="28" y="28" width="584" height="300" class="bold-line"/><rect x="41" y="41" width="558" height="274" class="thin" stroke-dasharray="1 5"/>
+              <circle cx="557" cy="79" r="16" class="bold-line"/>
+              <path d="M63 125h498M63 222h498" class="thin"/>
+              <path d="M63 58h430M63 292h498" class="thin" stroke-dasharray="2 7"/>
+              <use href="#i-tote" x="81" y="60" width="56" height="56"/><use href="#i-notebook" x="191" y="60" width="56" height="56"/><use href="#i-tumbler" x="301" y="60" width="56" height="56"/><use href="#i-keyring" x="411" y="60" width="56" height="56"/>
+              <use href="#i-pen" x="62" y="143" width="56" height="56"/><use href="#i-umbrella" x="164" y="143" width="56" height="56"/><use href="#i-shirt" x="266" y="143" width="56" height="56"/><use href="#i-mug" x="368" y="143" width="56" height="56"/><use href="#i-power" x="470" y="143" width="56" height="56"/>
+              <use href="#i-towel" x="81" y="231" width="56" height="56"/><use href="#i-lunch" x="191" y="231" width="56" height="56"/><use href="#i-button" x="301" y="231" width="56" height="56"/><use href="#i-charger" x="411" y="231" width="56" height="56"/>
+              <path d="M63 103h18m398 0h18M63 200h18m480 0h18M63 279h18m398 0h18" class="thin"/>
+            </svg>
+          </div>
+        </section>
+      </article>
+    </section>
+
+    <footer>
+      <span>백선미 실장 · 01063319276 · julia@3picks.co.kr</span>
+      <span>3PICKS · TAG EDITION</span>
+    </footer>
+  </main>
+</body>
+</html>
