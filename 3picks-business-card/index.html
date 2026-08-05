@@ -182,6 +182,27 @@
     .bold-line { stroke-width: 3.5; }
     .solid { fill: var(--ink); }
 
+    .logo-outline,
+    .logo-perforation,
+    .logo-hole {
+      fill: none;
+      stroke: var(--ink);
+      stroke-linejoin: round;
+    }
+
+    .logo-outline {
+      stroke-width: 3.5;
+      stroke-linecap: round;
+    }
+
+    .logo-perforation {
+      stroke-width: 3.2;
+      stroke-linecap: round;
+      stroke-dasharray: 4 7;
+    }
+
+    .logo-hole { stroke-width: 3.2; }
+
     .svg-name {
       font-family: Pretendard, "Apple SD Gothic Neo", sans-serif;
       font-size: 29px;
@@ -197,9 +218,16 @@
 
     .svg-contact {
       font-family: "Helvetica Neue", Arial, sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
       letter-spacing: -.015em;
+    }
+
+    .svg-address {
+      font-family: Pretendard, "Apple SD Gothic Neo", sans-serif;
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: -.025em;
     }
 
     .svg-small {
@@ -254,13 +282,12 @@
   <!-- 한 파일 안에서 재사용하는 벡터 로고·아이콘 정의 -->
   <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
     <defs>
-      <symbol id="ticket-logo" viewBox="0 0 360 130">
-        <path d="M18 10H82c13 0 18 8 18 20v70c0 12-5 20-18 20H18v-15c-21 0-21-20 0-20V72c-21 0-21-20 0-20V39c-21 0-21-20 0-20Z" class="bold-line"/>
-        <path d="M100 30c0-12 6-20 19-20h217v31c31 0 31 48 0 48v31H119c-13 0-19-8-19-20" class="bold-line"/>
-        <path d="M100 30v8m0 10v8m0 10v8m0 10v8m0 10v8" class="bold-line"/>
-        <text x="39" y="91" font-family="DIN Condensed, Helvetica Neue, sans-serif" font-size="78" font-weight="700" fill="currentColor">3</text>
-        <text x="140" y="91" font-family="DIN Condensed, Avenir Next Condensed, Helvetica Neue, sans-serif" font-size="70" font-weight="700" letter-spacing="3" fill="currentColor">PICKS</text>
-        <circle cx="336" cy="65" r="9" class="solid"/>
+      <symbol id="ticket-logo" viewBox="0 0 336 136">
+        <path d="M15 2H80c5 0 8 5 8 14 0-9 5-14 12-14h208v42c18 0 28 11 28 24s-10 24-28 24v42H100c-7 0-12-5-12-14 0 9-3 14-8 14H15v-15c-20 0-20-32 0-32v-3c-20 0-20-32 0-32v-3c-20 0-20-32 0-32V2Z" class="logo-outline"/>
+        <line x1="88" y1="20" x2="88" y2="116" class="logo-perforation"/>
+        <text x="36" y="102" font-family="DIN Condensed, Helvetica Neue, sans-serif" font-size="78" font-weight="700" fill="currentColor">3</text>
+        <text x="125" y="102" font-family="DIN Condensed, Avenir Next Condensed, Helvetica Neue, sans-serif" font-size="73" font-weight="700" letter-spacing="3" fill="currentColor">PICKS</text>
+        <circle cx="310" cy="68" r="10" class="logo-hole"/>
       </symbol>
 
       <symbol id="i-tumbler" viewBox="0 0 64 64"><path d="M19 13h26l-3 42H22L19 13Z" class="ink"/><path d="M17 13h30M23 8h18l3 5H20l3-5Z" class="ink"/><path d="M27 8V4h11v4M26 22h12M27 48h10" class="thin"/></symbol>
@@ -308,12 +335,14 @@
               <path d="M28 28H552l58 58v242H28V28Z" class="bold-line"/>
               <path d="M39 39H546l51 51v225H39V39Z" class="thin" stroke-dasharray="2 5"/>
               <circle cx="560" cy="78" r="15" class="bold-line"/><circle cx="560" cy="78" r="7" class="thin"/>
-              <use href="#ticket-logo" x="56" y="67" width="270" height="98"/>
-              <line x1="56" y1="196" x2="582" y2="196" class="ink"/>
-              <line x1="310" y1="196" x2="310" y2="300" class="thin"/>
-              <text x="56" y="251" class="svg-name">백선미</text><text x="195" y="249" class="svg-role">실장</text>
-              <text x="340" y="241" class="svg-contact">01063319276</text><text x="340" y="279" class="svg-contact">julia@3picks.co.kr</text>
-              <path d="M546 310h36m-36-7v14m36-14v14" class="thin"/>
+              <use href="#ticket-logo" x="56" y="62" width="242" height="98"/>
+              <line x1="56" y1="184" x2="582" y2="184" class="ink"/>
+              <line x1="310" y1="184" x2="310" y2="300" class="thin"/>
+              <text x="56" y="241" class="svg-name">백선미</text><text x="195" y="239" class="svg-role">실장</text>
+              <text x="340" y="218" class="svg-contact">01063319276</text>
+              <text x="340" y="244" class="svg-contact">julia@3picks.co.kr</text>
+              <text x="340" y="270" class="svg-contact">www.3picks.co.kr</text>
+              <text x="340" y="296" class="svg-address">서울특별시 용산구 이촌로14길 16, 1층 101호</text>
             </svg>
           </div>
         </section>
@@ -348,13 +377,14 @@
             <svg viewBox="0 0 640 356" role="img" aria-label="절취 스텁형 명함 앞면">
               <path d="M28 28H612V328H28v-20c-25 0-25-22 0-22v-17c-25 0-25-22 0-22v-17c-25 0-25-22 0-22v-17c-25 0-25-22 0-22v-17c-25 0-25-22 0-22v-20Z" class="bold-line"/>
               <line x1="160" y1="43" x2="160" y2="313" class="bold-line" stroke-dasharray="5 12"/>
-              <text x="73" y="201" font-family="DIN Condensed, Helvetica Neue" font-size="112" font-weight="700">3</text>
               <circle cx="572" cy="66" r="14" class="bold-line"/><circle cx="572" cy="66" r="6" class="solid"/>
-              <text x="202" y="111" font-family="DIN Condensed, Avenir Next Condensed, Helvetica Neue" font-size="72" font-weight="700" letter-spacing="4">PICKS</text>
-              <line x1="202" y1="142" x2="578" y2="142" class="ink"/>
-              <text x="202" y="201" class="svg-name">백선미</text><rect x="337" y="169" width="58" height="34" rx="17" class="ink"/><text x="366" y="191" text-anchor="middle" class="svg-role">실장</text>
-              <text x="202" y="264" class="svg-contact">01063319276</text><text x="202" y="298" class="svg-contact">julia@3picks.co.kr</text>
-              <path d="M517 286h61m-61 8h61m-61 8h61" class="thin"/>
+              <use href="#ticket-logo" x="202" y="54" width="218" height="88"/>
+              <line x1="202" y1="159" x2="578" y2="159" class="ink"/>
+              <text x="202" y="211" class="svg-name">백선미</text><rect x="337" y="179" width="58" height="34" rx="17" class="ink"/><text x="366" y="201" text-anchor="middle" class="svg-role">실장</text>
+              <text x="202" y="254" class="svg-contact">01063319276</text>
+              <text x="365" y="254" class="svg-contact">julia@3picks.co.kr</text>
+              <text x="202" y="286" class="svg-contact">www.3picks.co.kr</text>
+              <text x="202" y="313" class="svg-address">서울특별시 용산구 이촌로14길 16, 1층 101호</text>
             </svg>
           </div>
         </section>
@@ -389,11 +419,13 @@
             <svg viewBox="0 0 640 356" role="img" aria-label="아카이브 태그형 명함 앞면">
               <rect x="28" y="28" width="584" height="300" class="bold-line"/><rect x="41" y="41" width="558" height="274" class="thin"/><rect x="53" y="53" width="534" height="250" class="thin" stroke-dasharray="1 5"/>
               <circle cx="557" cy="79" r="16" class="bold-line"/><circle cx="557" cy="79" r="7" class="thin"/>
-              <use href="#ticket-logo" x="77" y="65" width="270" height="98"/>
-              <path d="M77 185h480M77 197h480" class="thin"/>
-              <text x="77" y="250" class="svg-name">백선미</text><text x="214" y="248" class="svg-role">실장</text>
-              <text x="557" y="237" text-anchor="end" class="svg-contact">01063319276</text><text x="557" y="275" text-anchor="end" class="svg-contact">julia@3picks.co.kr</text>
-              <path d="M77 290h92m8 0h18m8 0h8m8 0h44" class="bold-line"/>
+              <use href="#ticket-logo" x="77" y="59" width="230" height="93"/>
+              <path d="M77 172h480M77 184h480" class="thin"/>
+              <text x="77" y="235" class="svg-name">백선미</text><text x="214" y="233" class="svg-role">실장</text>
+              <text x="557" y="218" text-anchor="end" class="svg-contact">01063319276</text>
+              <text x="557" y="243" text-anchor="end" class="svg-contact">julia@3picks.co.kr</text>
+              <text x="557" y="268" text-anchor="end" class="svg-contact">www.3picks.co.kr</text>
+              <text x="557" y="294" text-anchor="end" class="svg-address">서울특별시 용산구 이촌로14길 16, 1층 101호</text>
             </svg>
           </div>
         </section>
