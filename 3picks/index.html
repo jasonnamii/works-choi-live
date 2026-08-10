@@ -314,8 +314,6 @@
     .footer-links{display:grid;gap:8px;text-align:right;font-family:var(--tp-font-mono);font-size:13px;letter-spacing:.05em}
     .footer-note{margin-top:40px;padding-top:16px;border-top:1px solid rgba(255,255,255,.35);font-size:13px;color:var(--tp-cell)}
 
-    .mobile-cta{display:none;position:fixed;z-index:80;left:0;right:0;bottom:0;padding:8px 16px calc(8px + env(safe-area-inset-bottom));background:var(--tp-cell);border-top:1px solid var(--tp-line)}
-    .mobile-cta .tp-btn{width:100%}
     .toast{position:fixed;left:50%;bottom:88px;z-index:160;transform:translate(-50%,16px);max-width:calc(100% - 32px);padding:12px 18px;background:var(--tp-ink);color:var(--tp-cell);font-size:14px;opacity:0;pointer-events:none;transition:opacity var(--tp-dur),transform var(--tp-dur)}
     .toast.is-visible{opacity:1;transform:translate(-50%,0)}
     dialog{width:min(560px,calc(100% - 32px));border:1px solid var(--tp-line);border-radius:var(--tp-radius-box);padding:0;background:var(--tp-cell);color:var(--tp-ink)}
@@ -353,8 +351,7 @@
       .consult__grid{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr}
       .footer-links{text-align:left}
-      .mobile-cta{display:block}
-      .quote-float{left:8px;bottom:calc(72px + env(safe-area-inset-bottom));width:calc(100vw - 16px)}
+      .quote-float{left:8px;bottom:calc(8px + env(safe-area-inset-bottom));width:calc(100vw - 16px)}
       .quote-trigger{width:60px;height:60px;font-size:14px}
       .quote-bar{height:208px;overflow-x:auto;overflow-y:hidden}
       .quote-bar__inner{min-width:980px;padding-left:60px}
@@ -377,15 +374,15 @@
       .hero__grid{padding-bottom:310px}
       .hero__copy{padding:44px 0 32px;justify-content:flex-start}
       .hero__backdrop{top:auto;bottom:0;height:310px}
-      .hero__backdrop img{object-position:70% center}
+      .hero__backdrop img{object-position:right center}
       .hero h1{margin:12px 0 20px;font-size:clamp(40px,13vw,52px);line-height:1.01}
       .hero__lead{margin-bottom:24px;font-size:16px;line-height:1.55}
-      .hero .tp-btns{display:grid;grid-template-columns:1fr;gap:8px}
-      .hero .tp-btn{width:100%;padding-inline:12px}
+      .hero .tp-btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+      .hero .tp-btn{width:100%;padding-inline:6px;font-size:clamp(11px,3.2vw,13px);white-space:nowrap}
       .hero__note{margin-top:18px;font-size:13px}
-      .proof-strip__grid{display:flex;gap:0;overflow-x:auto;margin-inline:calc(var(--tp-gutter) * -1);padding-inline:var(--tp-gutter);scroll-snap-type:x mandatory;scrollbar-width:none}
+      .proof-strip__grid{display:grid;grid-template-columns:1fr;gap:0;overflow:visible;margin-inline:0;padding-inline:0}
       .proof-strip__grid::-webkit-scrollbar{display:none}
-      .proof-item{flex:0 0 min(78vw,280px);min-height:84px;padding:14px 18px 14px 0;gap:10px;scroll-snap-align:start}
+      .proof-item{width:100%;min-height:72px;padding:12px 0;gap:12px}
       .proof-item .icon{width:24px;height:24px}
       .proof-item strong{font-size:14px}
       .proof-item span{font-size:12px}
@@ -403,7 +400,7 @@
       .budget-choice .tp-btn{flex:1 1 auto;min-height:44px}
       .check-grid,.tag-grid{gap:6px}
       .check-chip label,.tag-chip label{min-height:44px;padding:9px 12px;font-size:13px}
-      .survey-actions{position:sticky;z-index:5;bottom:calc(64px + env(safe-area-inset-bottom));margin-inline:-1px;padding:12px 0;background:var(--tp-cell)}
+      .survey-actions{position:sticky;z-index:5;bottom:env(safe-area-inset-bottom);margin-inline:-1px;padding:12px 0;background:var(--tp-cell)}
       .survey-actions .tp-btn{flex:1;padding-inline:12px}
       .results{margin-top:32px}
       .result-summary{gap:18px;padding:18px}
@@ -436,11 +433,10 @@
       .faq summary{min-height:64px;padding:16px 48px 16px 4px;justify-content:flex-start;text-align:left;font-size:16px}
       .faq summary::after{right:8px}
       .faq p{padding:0 4px 20px;text-align:left}
-      .site-footer{padding:40px 0 calc(124px + env(safe-area-inset-bottom))}
+      .site-footer{padding:40px 0 calc(48px + env(safe-area-inset-bottom))}
       .footer-grid{gap:28px}
       .footer-info{font-size:13px;overflow-wrap:anywhere}
-      .mobile-cta{z-index:100;padding:8px 12px calc(8px + env(safe-area-inset-bottom))}
-      .quote-float{z-index:150;left:8px;bottom:calc(72px + env(safe-area-inset-bottom));width:calc(100vw - 16px)}
+      .quote-float{z-index:150;left:8px;bottom:calc(8px + env(safe-area-inset-bottom));width:calc(100vw - 16px)}
       .quote-trigger{width:56px;height:56px}
       .quote-bar{width:100%;height:min(680px,calc(100svh - 96px - env(safe-area-inset-bottom)));max-height:calc(100svh - 96px - env(safe-area-inset-bottom));overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain}
       .quote-bar__inner{height:auto;min-height:100%;min-width:0;padding:56px 0 0;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto}
@@ -462,7 +458,6 @@
       .hero__grid{padding-bottom:280px}
       .hero__backdrop{height:280px}
       .hero h1{font-size:40px}
-      .proof-item{flex-basis:84vw}
       .product-rail{grid-auto-columns:88vw}
       .survey-main{padding-inline:14px}
       .input-wrap input{font-size:28px}
@@ -646,7 +641,6 @@
     </div>
   </footer>
 
-  <div class="mobile-cta"><a class="tp-btn tp-btn--primary" href="#recommend">3분 만에 3 PICKS 받기</a></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <aside class="quote-float" id="quoteFloat" aria-label="미니 견적함">
