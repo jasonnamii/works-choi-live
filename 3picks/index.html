@@ -202,17 +202,18 @@
     .result-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 
     .catalog-intro{align-items:center}
-    .catalog-intro h2{max-width:15ch}
-    .curation-proof{display:grid;grid-template-columns:auto 88px auto;align-items:center;gap:18px;min-width:420px}
+    .catalog-intro h2{max-width:15ch;font-size:clamp(52px,6vw,76px);line-height:1.02}
+    .curation-proof{display:grid;grid-template-columns:auto 88px auto;align-items:center;gap:18px;min-width:500px}
     .curation-stat{display:grid;grid-template-columns:auto auto;align-items:end;column-gap:10px}
     .curation-stat span{grid-column:1/-1;font-family:var(--tp-font-mono);font-size:12px;letter-spacing:.12em;color:var(--tp-grey)}
     .curation-stat strong{font-family:var(--tp-font-mono);font-size:48px;line-height:1;font-weight:500}
+    .curation-stat--pool strong{font-size:42px}
     .curation-stat small{padding-bottom:5px;color:var(--tp-grey);font-size:13px;white-space:nowrap}
     .curation-stat.is-selected{padding:12px 16px;background:var(--tp-sun);border:1px solid var(--tp-line)}
     .curation-route{position:relative;height:38px;display:flex;align-items:flex-start;justify-content:center}
     .curation-route::before{content:"";position:absolute;left:0;right:0;top:24px;height:1px;background:var(--tp-line)}
     .curation-route::after{content:"";position:absolute;right:0;top:20px;width:8px;height:8px;border-top:1px solid var(--tp-line);border-right:1px solid var(--tp-line);transform:rotate(45deg)}
-    .curation-route b{position:relative;z-index:1;padding:0 7px;background:var(--tp-cream);font-family:var(--tp-font-mono);font-size:11px;letter-spacing:.08em;font-weight:500}
+    .curation-route b{position:relative;z-index:1;padding:0 7px;background:var(--tp-cream);font-family:var(--tp-font-mono);font-size:10px;line-height:1.15;letter-spacing:.08em;text-align:center;font-weight:500}
 
     .category-section{border-bottom:1px solid var(--tp-line)}
     .category-section:last-child{border-bottom:0}
@@ -350,6 +351,7 @@
       .hero h1{max-width:10.5ch}
       .proof-strip__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .catalog-intro{align-items:flex-start;flex-direction:column}
+      .catalog-intro h2{font-size:clamp(48px,7vw,64px)}
       .curation-proof{width:100%;max-width:600px}
       .survey-shell{grid-template-columns:1fr}
       .survey-aside{min-height:auto}
@@ -384,10 +386,11 @@
       .section-head{align-items:flex-start;flex-direction:column;gap:12px;margin-bottom:24px;padding-top:12px}
       .section-head h2{font-size:32px}
       .section-head p{max-width:none;font-size:14px}
-      .catalog-intro h2{max-width:12ch}
+      .catalog-intro h2{max-width:12ch;font-size:40px}
       .curation-proof{grid-template-columns:minmax(0,1fr) 56px minmax(0,1fr);gap:10px;min-width:0}
       .curation-stat{column-gap:6px}
       .curation-stat strong{font-size:38px}
+      .curation-stat--pool strong{font-size:30px}
       .curation-stat small{padding-bottom:3px;font-size:11px;white-space:normal}
       .curation-stat.is-selected{padding:10px}
       .curation-route b{font-size:10px}
@@ -597,9 +600,9 @@
       <div class="tp-wrap">
         <div class="section-head catalog-intro">
           <div><div class="tp-eyebrow">3PICKS curation</div><h2>수많은 굿즈 중,<br>고른 것만 보여드려요</h2></div>
-          <div class="curation-proof" aria-label="110개 상품을 검토해 73개를 공개 상품으로 선별했습니다">
-            <div class="curation-stat"><span>REVIEWED</span><strong>110</strong><small>전체 후보</small></div>
-            <div class="curation-route" aria-hidden="true"><b>3PICKS</b></div>
+          <div class="curation-proof" aria-label="시장 리서치 후보 7,800여 종에서 110개를 상세 검토해 73개를 공개 상품으로 선별했습니다">
+            <div class="curation-stat curation-stat--pool"><span>RESEARCH POOL</span><strong>7,800+</strong><small>리서치 후보</small></div>
+            <div class="curation-route" aria-hidden="true"><b>110<br>REVIEWED</b></div>
             <div class="curation-stat is-selected"><span>SELECTED</span><strong>73</strong><small>공개 셀렉션</small></div>
           </div>
         </div>
