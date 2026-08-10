@@ -1,10 +1,18 @@
 {
-  "life-journal": {
-    "slug": "life-journal",
+  "3picks-business-card": {
+    "slug": "3picks-business-card",
     "mode": "choi",
-    "url": "https://works.choi.build/life-journal/",
+    "url": "https://works.choi.build/3picks-business-card/",
     "last_kind": "redeploy",
-    "last_sha256": "f5658b4c222928fd4491994e998b86cd9222564a4a0531465df9eabc8cb584f6",
-    "timestamp": "2026-08-05T17:31:46.573128Z"
+    "last_sha256": "160c50c8627294fd268c73c697133b427c1660bc010ad8b5f85bfe59890a3f37",
+    "timestamp": "2026-08-05T12:28:12.878920Z"
+  },
+  "3picks": {
+    "slug": "3picks",
+    "mode": "choi",
+    "url": "https://works.choi.build/3picks/",
+    "last_kind": "new",
+    "last_sha256": "e7fda88121863d173043bf74ce357a4d5b44a5ff468d69ac8aea3c2f944f7089",
+    "timestamp": "2026-08-10T07:43:33.218138Z"
   }
 }
