@@ -108,8 +108,8 @@
     .hero__copy{position:relative;z-index:1;width:44%;min-height:680px;padding:clamp(64px,8vw,112px) clamp(24px,4vw,64px) 64px 0;display:flex;flex-direction:column;justify-content:center}
     .hero h1{margin:16px 0 24px;max-width:10.5ch;font-size:clamp(48px,5.4vw,76px);font-weight:900;line-height:1.02;letter-spacing:-.055em}
     .hero h1 span{display:block;white-space:nowrap}
-    .hero__lead{max-width:36ch;margin:0 0 32px;font-size:clamp(20px,1.6vw,24px);font-weight:700;line-height:1.5;color:var(--tp-ink)}
-    .hero__note{display:flex;align-items:flex-start;gap:10px;margin-top:24px;font-size:14px;color:var(--tp-ink-70)}
+    .hero__lead{max-width:36ch;margin:0 0 24px;font-size:clamp(20px,1.6vw,24px);font-weight:700;line-height:1.5;color:var(--tp-ink)}
+    .hero__note{display:flex;align-items:flex-start;gap:10px;margin-top:0;font-size:14px;color:var(--tp-ink-70)}
     .hero__note .icon{width:20px;height:20px;margin-top:1px}
 
     .proof-strip{background:var(--tp-cream)}
@@ -401,10 +401,8 @@
       .hero__backdrop{top:auto;bottom:0;height:310px}
       .hero__backdrop img{position:absolute;left:50%;top:0;width:auto;height:100%;max-width:none;object-fit:contain;object-position:center;transform:translateX(-69%)}
       .hero h1{margin:12px 0 20px;font-size:clamp(40px,13vw,52px);line-height:1.01}
-      .hero__lead{margin-bottom:24px;font-size:18px;font-weight:700;line-height:1.5}
-      .hero .tp-btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-      .hero .tp-btn{width:100%;padding-inline:6px;font-size:clamp(11px,3.2vw,13px);white-space:nowrap}
-      .hero__note{margin-top:18px;font-size:13px}
+      .hero__lead{margin-bottom:18px;font-size:18px;font-weight:700;line-height:1.5}
+      .hero__note{font-size:13px}
       .proof-strip__grid{display:grid;grid-template-columns:1fr;gap:0;overflow:visible;margin-inline:0;padding-inline:0}
       .proof-strip__grid::-webkit-scrollbar{display:none}
       .proof-item{width:100%;min-height:72px;padding:12px 0;gap:12px}
@@ -534,10 +532,6 @@
           <div class="tp-eyebrow">Three picks, until it clicks</div>
           <h1><span>마음에 들</span><span>때까지,</span><span>세 가지씩.</span></h1>
           <p class="hero__lead">원하는 방향이 나올 때까지 세 가지 안을 다시 제안해요. 비교와 견적, 내부 보고용 자료까지 번거로운 일은 3PICKS가 맡을게요.</p>
-          <div class="tp-btns">
-            <a class="tp-btn tp-btn--primary" href="#recommend">3분 만에 3 PICKS 받기</a>
-            <a class="tp-btn tp-btn--secondary" href="#catalog">상품 먼저 보기</a>
-          </div>
           <div class="hero__note">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 12.4l4.7 4.7L19.4 7"/></svg>
             <span>담당자는 링크만 공유하세요. 선택 근거와 보고 자료까지 함께 정리해 드립니다.</span>
