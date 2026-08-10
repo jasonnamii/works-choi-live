@@ -23,7 +23,8 @@ assert.ok(html.includes(".nav-actions{gap:6px}"), "상단 CTA 간격 축소가 �
 assert.ok(html.includes(".nav-actions .tp-btn{min-height:40px;padding:8px 12px;font-size:13px;letter-spacing:0}"), "상단 CTA 크기 축소가 없습니다.");
 assert.ok(html.includes(".nav-actions{width:100%;grid-template-columns:auto minmax(0,1fr) auto;gap:4px}"), "모바일 상단 CTA 행이 없습니다.");
 assert.ok(!html.includes('.nav-actions .tp-btn--secondary{display:none}'), "모바일에서 CTA를 숨기는 기존 규칙이 남아 있습니다.");
-assert.ok(html.includes(".category-strip__inner{position:relative;display:flex;width:100%;min-width:0;"), "카테고리 레일 데스크톱 폭 잠금이 없습니다.");
+assert.ok(html.includes(".category-strip__inner{position:relative;display:flex;min-width:0;"), "카테고리 레일 공통 tp-wrap 상속 규칙이 없습니다.");
+assert.ok(!html.includes(".category-strip__inner{position:relative;display:flex;width:100%"), "카테고리 레일이 공통 tp-wrap을 덮어쓰고 있습니다.");
 assert.ok(html.includes(".category-chip{display:flex;flex:1 1 auto;min-width:0;align-items:center;justify-content:center;"), "카테고리 칩 레일 내 가변 분배 규칙이 없습니다.");
 assert.ok(html.includes(".category-strip__inner{width:max-content;min-width:100%}"), "모바일 카테고리 가로 스크롤 규칙이 없습니다.");
 assert.ok(!html.includes("견적 문의"), "기존 상단 CTA가 남아 있습니다.");
