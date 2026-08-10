@@ -11,8 +11,8 @@
     "slug": "3picks",
     "mode": "choi",
     "url": "https://works.choi.build/3picks/",
-    "last_kind": "new",
-    "last_sha256": "e7fda88121863d173043bf74ce357a4d5b44a5ff468d69ac8aea3c2f944f7089",
-    "timestamp": "2026-08-10T07:43:33.218138Z"
+    "last_kind": "redeploy",
+    "last_sha256": "e631203b3512c7afcb2af6ff4e56ec9a8202ced0d81a93cecd3ac93e84710d37",
+    "timestamp": "2026-08-10T07:54:52.781568Z"
   }
 }
