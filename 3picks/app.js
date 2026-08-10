@@ -1261,6 +1261,10 @@
   }
 
   function bindConsultation() {
+    const contactEmail = siteConfig.contactEmail || "julia@3picks.co.kr";
+    document.querySelectorAll("[data-email-link]").forEach((link) => {
+      link.href = `mailto:${contactEmail}`;
+    });
     document.addEventListener("click", (event) => {
       const consult = event.target.closest("[data-consult]");
       if (consult) openConsultation("page");

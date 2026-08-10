@@ -20,14 +20,14 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 | # | 섹션 | 정보유형 | 시각문법 | 구현 컴포넌트 |
 |---:|---|---|---|---|
 | 0 | 제작·상담 안내 | PROSE | 마르퀴 티커 | `tp-ticker` |
-| 1 | GNB·카테고리 | HIERARCHY | 스크롤스파이·이동형 트랙 | `site-nav`, `category-strip` |
+| 1 | GNB·카테고리 | HIERARCHY·RELATION | 스크롤스파이·이동형 트랙 + 공통 3CTA | `site-nav`, `category-strip`, `cta-actions` |
 | 2 | 키비주얼 | RELATION | 왼쪽 카피 안전영역과 오른쪽 그래피티 오브젝트가 이어지는 가로형 브랜드 장면 | `hero__backdrop` 통합 배경 + `hero__copy` 오버레이 |
 | 3 | 핵심 서비스 안내 | METRIC·FLOW | 낮은 4칸 픽토그램 신뢰 바 | `proof-strip` |
 | 4 | 맞춤 추천 설문 | FLOW | 한 화면 한 질문·스텝 레일 | `survey-shell`, `progress-rail` |
 | 5 | 추천 결과 | HIERARCHY·RELATION·COMPARE | 예산 근접 구성 3안 + 구성별 상품·차액 비교 | `tp-picks`·제로갭 비교 그리드 변형 |
 | 6 | 전체 카테고리 | DISTRIBUTION | 10개 가로 상품 레일 | `tp-grid--floor` 변형 |
 | 7 | 제작 과정·추천 기준 | TIME·TABLE | 단계별 기준을 합친 4열 진행 레일 | `tp-timeline` |
-| 8 | 상담 전환 | PROSE | 오렌지 팝 서피스 + 버튼 페어 | `tp-pop-surface`, `tp-btn` |
+| 8 | 상담 전환 | PROSE·RELATION | 오렌지 팝 서피스 + 공통 3CTA | `tp-pop-surface`, `cta-actions` |
 | 9 | FAQ·푸터 | TABLE·PROSE | 룰 리스트·정보 행 | `tp-faq`, `site-footer` |
 | 10 | 위시리스트·미니 견적 | RELATION·TABLE·METRIC | 좌하단 트리거에서 가로로 펼쳐지는 고정 견적 레일 | `quote-float`, `quote-bar`, A4 인쇄 문서 |
 
@@ -48,6 +48,7 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 | 이미지 | 상품은 560×560 WebP·`loading=lazy`; 히어로는 1672×941 알파 WebP·`fetchpriority=high`, 왼쪽 44% 카피 안전영역을 포함한 한 장면; 종이 바탕을 투명 처리해 캔버스 `#F5F0E4`를 직접 노출 |
 | 히어로 크롭 | 데스크톱 `cover center`; 900px 이하 배경을 하단 420px, 560px 이하 340px로 제한하고 `cover right`로 오브젝트 영역 노출 |
 | 신뢰 바 | 히어로 직후 1200px 레일의 4열·최소 88px; 세로선 없이 24~64px 열 여백; 900px 이하 2×2; 아이콘 28px·스트로크 1.2px·본문 13px 이상 |
+| 상·하단 CTA | `맞춤추천 → 카카오톡 상담하기 → 이메일문의` 순서 고정; 같은 색·타이포·48px 높이; 데스크톱 3열, 600px 이하 상단 CTA를 로고 아래 전용 행으로 재배치; 375px에서도 44px 터치 목표와 한 줄 라벨 유지 |
 | 모션 | 240ms 호버, 320ms 카테고리 트랙 이동; reduced-motion에서 티커·전환 정지 |
 | 미니 견적 | 좌우 24px·하단 24px 고정, 72px 사각 트리거, 데스크톱 높이 208px, 상품 영역만 가로 스크롤, 260ms 무바운스 가로 전개, 외곽선 4면 연속 |
 
@@ -64,6 +65,7 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 - 마스터의 `전체마스터`는 헤더 포함 111행이며 실제 상품은 110개다. 이미지 폴더는 330장으로 제품당 3장이고, 따라서 현재 입력끼리 누락은 없다.
 - 상품 카드의 3색은 색상을 고르는 데 도움을 주는 이미지 예시다. 모든 카드에 `실제 제작 가능 색상은 상담 후 확정됩니다`를 고정 표기한다.
 - 카카오톡 채널 Public ID와 JavaScript 키가 없어 가짜 채널 연결을 만들지 않는다. 대신 상담 요약 복사와 연락처 복사까지 구현하고, `config.js`의 `kakaoChannelUrl`을 설정하면 같은 CTA가 즉시 연결되도록 구성한다.
+- 헤더와 하단 상담 전환은 서로 다른 2버튼 조합을 폐기하고 `맞춤추천·카카오톡 상담하기·이메일문의`의 동일한 3버튼 조합으로 통일한다. 추천은 `#recommend`, 카카오는 기존 `data-consult`, 이메일은 `config.js`의 담당자 이메일로 연결한다.
 - 하드 필터 뒤 3개 카테고리가 남지 않는 저예산·대량 조건에서는 필터를 임의로 완화하지 않는다. 통과한 결과 수를 정확히 표시하고 나머지는 1:1 상담으로 넘긴다.
 - 마스터에 트렌드 태그 전용 열이 없어 `상품성격·특징/비고·카테고리` 텍스트에서 12개 태그를 보수적으로 파생한다. 추천 이유에는 이 파생 사실을 노출하지 않고 행사·예산·납기·로고 조건만 설명한다.
 - 가격·MOQ·납기를 숫자로 해석할 수 없는 상품은 전체 카탈로그에는 표시하되 자동 추천에서는 제외한다. 하드 필터를 통과했다고 과장하지 않기 위한 보수적 처리다.
