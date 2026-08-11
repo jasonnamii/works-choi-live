@@ -1,18 +1,26 @@
 {
-  "life-journal": {
-    "slug": "life-journal",
+  "3picks-business-card": {
+    "slug": "3picks-business-card",
     "mode": "choi",
-    "url": "https://works.choi.build/life-journal/",
+    "url": "https://works.choi.build/3picks-business-card/",
     "last_kind": "redeploy",
-    "last_sha256": "d36cc84bcbc5342c62b109e6b01215395c7dbdcf732f96b22c3133f11b65a38f",
-    "timestamp": "2026-08-11T05:36:29.402176Z"
+    "last_sha256": "160c50c8627294fd268c73c697133b427c1660bc010ad8b5f85bfe59890a3f37",
+    "timestamp": "2026-08-05T12:28:12.878920Z"
   },
   "3picks": {
     "slug": "3picks",
     "mode": "choi",
     "url": "https://works.choi.build/3picks/",
     "last_kind": "redeploy",
-    "last_sha256": "21f987ec676edb188619bcbff8fd64f60412da57308702948a14604623303a53",
-    "timestamp": "2026-08-11T08:46:52.314755Z"
+    "last_sha256": "1d66a72bb99147f782f09a1c6f213f92c178f2b574d26b42018a7feaf7f8c152",
+    "timestamp": "2026-08-10T09:03:04.081955Z"
+  },
+  "life-journal": {
+    "slug": "life-journal",
+    "mode": "choi",
+    "url": "https://works.choi.build/life-journal/",
+    "last_kind": "redeploy",
+    "last_sha256": "87d4356e8b1a225d414288bdefd77f61aaf3124f5589b2c037e7ba7ed7ac1bf2",
+    "timestamp": "2026-08-11T09:31:46.904080Z"
   }
 }
