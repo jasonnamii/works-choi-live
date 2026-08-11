@@ -22,9 +22,11 @@ const checks = [
   [html.includes(".hero__grid{display:flex;flex-direction:column}"), "mobile hero vertical flow"],
   [html.includes("order:0;width:100%;height:auto;aspect-ratio:1671/941"), "mobile hero image comes first"],
   [html.includes(".hero__copy{order:1;width:100%;min-height:0"), "mobile hero copy follows image"],
-  [html.includes("object-fit:contain;object-position:center;transform:none"), "mobile key visual fully contained"],
+  [html.includes("object-fit:contain;object-position:center;transform:translateX(-18.7313%)"), "mobile visible key visual centered"],
   [html.includes(".proof-strip__grid{display:grid;grid-template-columns:1fr"), "stacked mobile proof items"],
   [html.includes("max-height:calc(100svh - 24px)"), "dialog viewport cap"],
+  [html.includes("animation:quote-heartbeat 2.6s ease-in-out infinite"), "heart-only resting heartbeat"],
+  [html.includes(".quote-trigger__heart{animation:none}"), "reduced-motion heartbeat override"],
 ];
 
 for (const [passed, label] of checks) assert.ok(passed, `Missing mobile invariant: ${label}`);
