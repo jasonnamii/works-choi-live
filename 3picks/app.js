@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const products = Array.isArray(window.PRODUCTS) ? window.PRODUCTS : [];
+  const sourceProducts = Array.isArray(window.PRODUCTS) ? window.PRODUCTS : [];
   const siteConfig = window.SITE_CONFIG || {};
   const navigationEntry = performance.getEntriesByType?.("navigation")?.[0];
   const isReloadNavigation = navigationEntry
@@ -45,18 +45,8 @@
     }
   }
   if (scrollStorageAvailable && "scrollRestoration" in history) history.scrollRestoration = "manual";
-  const categories = [
-    "텀블러",
-    "에코백",
-    "볼펜",
-    "우산",
-    "티셔츠·단체복",
-    "머그컵",
-    "보조배터리",
-    "수건·타올",
-    "노트·다이어리",
-    "보온보냉·런치백",
-  ];
+  const categories = [...window.RecommendationCore.CATEGORY_ORDER];
+  const products = window.RecommendationCore.selectOperatingProducts(sourceProducts, categories);
   const eventOptions = [
     "워크샵·단합",
     "체육대회·사내 이벤트",
@@ -677,8 +667,8 @@
 
   function renderCatalog() {
     els.catalogHost.innerHTML = categories.map((category, categoryIndex) => {
-      const visible = products
-        .filter((product) => product.category === category && product.visibility === "화면노출")
+      const catalogProducts = products
+        .filter((product) => product.category === category)
         .sort((a, b) => (a.rank || 99) - (b.rank || 99));
       return `
         <section class="tp-section category-section" id="${categoryId(category)}">
@@ -694,7 +684,7 @@
             </div>
           </div>
           <div class="product-rail" tabindex="0" aria-label="${escapeHtml(category)} 상품 목록">
-            ${visible.map((product, index) => productCard(product, { badge: index === 0 ? "BEST" : "" })).join("")}
+            ${catalogProducts.map((product, index) => productCard(product, { badge: index === 0 ? "BEST" : "" })).join("")}
           </div>
         </section>
       `;

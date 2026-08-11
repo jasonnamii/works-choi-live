@@ -303,6 +303,19 @@
     .faq details[open] summary::after{content:"−"}
     .faq p{max-width:64ch;margin:0 auto;padding:0 16px 24px;text-align:center;color:var(--tp-ink-70);font-size:14px}
 
+    .about{border-top:1px solid var(--tp-line);background:var(--tp-cream)}
+    .about-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--tp-line);border:1px solid var(--tp-line)}
+    .team-member{min-width:0;background:var(--tp-cell);display:flex;flex-direction:column}
+    .team-member__visual{aspect-ratio:4/3;margin:0;display:grid;place-items:center;overflow:hidden;background:var(--tp-cream);border-bottom:1px solid var(--tp-line)}
+    .team-member__visual img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+    .team-member__body{display:flex;flex:1;flex-direction:column;padding:24px}
+    .team-member__role{font-family:var(--tp-font-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--tp-grey)}
+    .team-member h3{margin:8px 0 16px;font-size:clamp(26px,3vw,36px);line-height:1.12;letter-spacing:-.025em}
+    .team-career{list-style:none;margin:0;padding:0;border-top:1px solid var(--tp-line)}
+    .team-career li{min-height:44px;padding:10px 0;border-bottom:1px solid var(--tp-line);display:flex;align-items:center;font-size:14px;font-weight:700}
+    .team-member__intro{margin:24px 0 0;color:var(--tp-ink-70)}
+    .team-member--placeholder .team-member__intro{margin-top:0}
+
     @media (hover:hover){
       .tp-btn:hover{opacity:1;transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--tp-ink)}
       .main-links a:hover{border-color:var(--tp-ink)}
@@ -342,10 +355,11 @@
       .category-strip__inner{width:max-content;min-width:100%}
       .category-chip{flex:0 0 auto}
       .nav-actions .tp-btn{min-height:44px;padding:8px 12px;font-size:14px}
-      .hero,.hero__grid{min-height:820px}
-      .hero__copy{width:100%;min-height:820px;padding:64px 0 400px;justify-content:flex-start}
-      .hero__backdrop{top:auto;height:400px}
-      .hero__backdrop img{object-position:72% center}
+      .hero,.hero__grid{min-height:0}
+      .hero__grid{display:flex;flex-direction:column}
+      .hero__backdrop{position:relative;inset:auto;order:0;width:100%;height:auto;aspect-ratio:1671/941}
+      .hero__backdrop img{width:100%;height:100%;object-fit:contain;object-position:center;transform:none}
+      .hero__copy{order:1;width:100%;min-height:0;padding:40px 0 56px;justify-content:flex-start}
       .hero h1{max-width:10.5ch}
       .proof-strip__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .catalog-intro{align-items:flex-start;flex-direction:column}
@@ -363,6 +377,7 @@
       .result-primary .product-card__media{aspect-ratio:16/10}
       .product-rail{grid-auto-columns:calc((100% - 1px)/2)}
       .process{grid-template-columns:repeat(2,1fr)}
+      .about-grid{grid-template-columns:1fr}
       .consult__grid{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr}
       .footer-links{text-align:left}
@@ -389,11 +404,7 @@
       .curation-stars{font-size:14px;letter-spacing:.04em}
       .catalog-intro h2{max-width:13ch;margin-top:14px;font-size:40px}
       .tp-btn{padding-inline:18px}
-      .hero,.hero__grid,.hero__copy{min-height:0}
-      .hero__grid{padding-bottom:310px}
-      .hero__copy{padding:44px 0 32px;justify-content:flex-start}
-      .hero__backdrop{top:auto;bottom:0;height:310px}
-      .hero__backdrop img{position:absolute;left:50%;top:5%;width:auto;height:90%;max-width:none;object-fit:contain;object-position:center;transform:translateX(-69%)}
+      .hero__copy{padding:32px 0 40px}
       .hero h1{margin:12px 0 20px;font-size:clamp(40px,13vw,52px);line-height:1.01}
       .hero__lead{margin-bottom:18px;font-size:18px;font-weight:700;line-height:1.5}
       .hero__note{font-size:13px}
@@ -450,6 +461,9 @@
       .faq summary{min-height:64px;padding:16px 48px 16px 4px;justify-content:flex-start;text-align:left;font-size:16px}
       .faq summary::after{right:8px}
       .faq p{padding:0 4px 20px;text-align:left}
+      .team-member__body{padding:20px 16px}
+      .team-member h3{font-size:28px}
+      .team-member__intro{margin-top:20px;font-size:14px}
       .site-footer{padding:40px 0 calc(48px + env(safe-area-inset-bottom))}
       .footer-grid{gap:28px}
       .footer-info{font-size:13px;overflow-wrap:anywhere}
@@ -472,8 +486,6 @@
     @media (max-width:360px){
       .brand img{width:108px}
       .nav-actions .tp-btn{padding-inline:4px;font-size:13px}
-      .hero__grid{padding-bottom:280px}
-      .hero__backdrop{height:280px}
       .hero h1{font-size:40px}
       .product-rail{grid-auto-columns:88vw}
       .survey-main{padding-inline:14px}
@@ -505,6 +517,7 @@
         <a href="#recommend">맞춤 추천</a>
         <a href="#catalog">상품 보기</a>
         <a href="#process">제작 과정</a>
+        <a href="#about">회사소개</a>
       </nav>
       <div class="nav-actions cta-actions">
         <a class="tp-btn cta-action--recommend" href="#recommend">맞춤추천</a>
@@ -521,15 +534,15 @@
     <section class="hero" id="top">
       <div class="tp-wrap hero__grid">
         <figure class="hero__backdrop" aria-hidden="true">
-          <img src="assets/3-picks-key-visual-transparent.webp" width="1672" height="941" alt="" fetchpriority="high">
+          <img src="assets/3-picks-key-visual-tshirt-v2.webp" width="1671" height="941" alt="" fetchpriority="high">
         </figure>
         <div class="hero__copy">
           <div class="tp-eyebrow">Three picks, until it clicks</div>
           <h1><span>마음에 들</span><span>때까지,</span><span>세 가지씩.</span></h1>
-          <p class="hero__lead">원하는 방향이 나올 때까지 세 가지 안을 다시 제안해요. 비교와 견적, 내부 보고용 자료까지 번거로운 일은 3PICKS가 맡을게요.</p>
+          <p class="hero__lead">보이는 상품이 전부가 아니에요. 원하는 제품을 말씀해 주세요. 더 넓게 찾아 세 가지 안으로 제안하고, 제작까지 맡아드릴게요.</p>
           <div class="hero__note">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 12.4l4.7 4.7L19.4 7"/></svg>
-            <span>담당자는 링크만 공유하세요. 선택 근거와 보고 자료까지 함께 정리해 드립니다.</span>
+            <span>정해진 제품이 없어도 괜찮아요. 아이디어만 알려주시면 됩니다.</span>
           </div>
         </div>
       </div>
@@ -539,19 +552,19 @@
       <div class="tp-wrap proof-strip__grid">
         <article class="proof-item">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.2 15.2 4.3 4.3M7.7 10.8l1.8 1.8 3.8-4"/></svg>
-          <div class="proof-item__copy"><strong>110개 상품 검토</strong><span>행사에 맞는 후보부터 살펴봤어요.</span></div>
+          <div class="proof-item__copy"><strong>100개 대표 상품</strong><span>카테고리마다 10개씩 모두 보여드려요.</span></div>
         </article>
         <article class="proof-item">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.4c.7 4.7 1.9 5.9 6.6 6.6-4.7.7-5.9 1.9-6.6 6.6-.7-4.7-1.9-5.9-6.6-6.6 4.7-.7 5.9-1.9 6.6-6.6zM18.5 16.5c.3 2.1.9 2.7 3 3-2.1.3-2.7.9-3 3-.3-2.1-.9-2.7-3-3 2.1-.3 2.7-.9 3-3z"/></svg>
-          <div class="proof-item__copy"><strong>맞춤 3 PICKS</strong><span>조건에 맞는 세 가지만 먼저 보여드려요.</span></div>
+          <div class="proof-item__copy"><strong>더 넓은 상품 소싱</strong><span>화면에 없어도 원하는 제품을 찾아드려요.</span></div>
         </article>
         <article class="proof-item">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 3zM8 9h8M8 12.5h5"/></svg>
-          <div class="proof-item__copy"><strong>1:1 제작 상담</strong><span>색상과 인쇄 방식을 함께 확인해요.</span></div>
+          <div class="proof-item__copy"><strong>맞춤 제작</strong><span>색상과 인쇄, 구성까지 목적에 맞춰 제작해요.</span></div>
         </article>
         <article class="proof-item">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="4" width="15" height="16" rx="1"/><path d="M8 2.8v3M16 2.8v3M8 9h8M8 13h5M8 16.5h3"/></svg>
-          <div class="proof-item__copy"><strong>견적과 납기 안내</strong><span>수량별 비용과 제작 일정을 안내해요.</span></div>
+          <div class="proof-item__copy"><strong>견적과 납기 안내</strong><span>수량별 비용과 제작 일정을 확인해요.</span></div>
         </article>
       </div>
     </section>
@@ -587,9 +600,9 @@
 
     <section class="tp-section" id="catalog">
       <div class="tp-wrap">
-        <div class="section-head catalog-intro" aria-label="7,300여 개 리서치 데이터에서 66대 1의 경쟁률을 뚫은 110개 굿즈를 제안드립니다">
-          <div class="curation-kicker"><span class="curation-stars" aria-hidden="true">★★★★★</span><span><strong>7,300+</strong>개 리서치 데이터에서 고른</span></div>
-          <h2><mark>66대 1</mark>의 경쟁률을 뚫은<br>110개의 굿즈를 제안드려요</h2>
+        <div class="section-head catalog-intro" aria-label="10개 카테고리에서 고른 100개 대표 상품. 100개는 시작일 뿐, 원하는 굿즈는 더 찾아드립니다">
+          <div class="curation-kicker"><span class="curation-stars" aria-hidden="true">★★★★★</span><span>10개 카테고리에서 고른 <strong>100개</strong> 대표 상품</span></div>
+          <h2><mark>100개는 시작일 뿐,</mark><br>원하는 굿즈는 더 찾아드려요</h2>
         </div>
         <div id="catalogHost"></div>
       </div>
@@ -644,13 +657,46 @@
         </div>
       </div>
     </section>
+
+    <section class="tp-section about" id="about">
+      <div class="tp-wrap">
+        <div class="section-head">
+          <div><div class="tp-eyebrow">People behind 3PICKS</div><h2>사람과 브랜드를 이해하는 사람들이 함께합니다</h2></div>
+          <p>원하는 굿즈를 고르는 일부터 실제 제작까지, 경험을 바탕으로 끝까지 함께합니다.</p>
+        </div>
+        <div class="about-grid">
+          <article class="team-member">
+            <figure class="team-member__visual" aria-hidden="true"><img src="assets/team-baek-sunmi-v1.png" alt=""></figure>
+            <div class="team-member__body">
+              <div class="team-member__role">Director</div>
+              <h3>백선미 이사</h3>
+              <ul class="team-career" aria-label="백선미 이사 경력">
+                <li>게임사 마케팅·운영</li>
+                <li>헤드헌터</li>
+                <li>기업교육 강사</li>
+                <li>마케팅 에이전시 이사</li>
+              </ul>
+              <p class="team-member__intro">브랜드를 알리고, 사람을 찾고, 성장을 가르쳐 온 경험을 바탕으로 고객이 원하는 바를 읽습니다. 그 요구를 실행 가능한 세 가지 제안으로 바꾸고, 제작까지 끝까지 연결합니다.</p>
+            </div>
+          </article>
+          <article class="team-member team-member--placeholder">
+            <figure class="team-member__visual" aria-hidden="true"><img src="assets/team-member-placeholder-v1.png" alt=""></figure>
+            <div class="team-member__body">
+              <div class="team-member__role">Profile coming soon</div>
+              <h3>두 번째 멤버</h3>
+              <p class="team-member__intro">소개와 경력은 곧 업데이트됩니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="tp-wrap">
       <div class="footer-grid">
-        <div><img class="footer-logo" src="assets/3PICKS-logo.svg" alt="3PICKS"><div class="footer-info"><p>백선미 이사</p><p>010-6331-9276 · julia@3picks.co.kr</p><p>서울특별시 용산구 이촌로14길 16, 1층 101호</p></div></div>
-        <div class="footer-links"><a href="#recommend">맞춤 추천</a><a href="#catalog">상품 보기</a><a href="mailto:julia@3picks.co.kr">이메일 문의</a></div>
+        <div><img class="footer-logo" src="assets/3PICKS-logo.svg" alt="3PICKS"><div class="footer-info"><p>백선미 이사</p><p>010-6331-9276 · julia@3picks.co.kr</p><p>서울특별시 용산구 이촌로14길 16, 1층 101호</p><!-- 임시 등록번호: 실제 번호 수령 시 아래 두 줄만 교체 --><p>사업자등록번호 000-00-00000</p><p>통신판매업 신고번호 제2026-서울강남-0000호</p></div></div>
+        <div class="footer-links"><a href="#recommend">맞춤 추천</a><a href="#catalog">상품 보기</a><a href="#about">회사소개</a><a href="mailto:julia@3picks.co.kr">이메일 문의</a></div>
       </div>
       <div class="footer-note">가격과 재고, 제작 색상, 납기는 주문 수량과 상담 시점에 따라 달라질 수 있어요.</div>
     </div>

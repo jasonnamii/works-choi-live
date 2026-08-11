@@ -19,28 +19,19 @@ const checks = [
   [html.includes("transform:scale(.9);transform-origin:center"), "desktop key visual scaled to 90%"],
   [html.includes("object-fit:contain;object-position:center;transform:scale(.9)"), "desktop key visual fully contained"],
   [html.includes("padding:36px clamp(24px,4vw,64px) 64px 0;display:flex;flex-direction:column;justify-content:flex-start"), "desktop hero copy aligned to visual top"],
-  [html.includes("left:50%;top:5%;width:auto;height:90%;max-width:none;object-fit:contain;object-position:center;transform:translateX(-69%)"), "centered mobile key visual geometry at 90%"],
+  [html.includes(".hero__grid{display:flex;flex-direction:column}"), "mobile hero vertical flow"],
+  [html.includes("order:0;width:100%;height:auto;aspect-ratio:1671/941"), "mobile hero image comes first"],
+  [html.includes(".hero__copy{order:1;width:100%;min-height:0"), "mobile hero copy follows image"],
+  [html.includes("object-fit:contain;object-position:center;transform:none"), "mobile key visual fully contained"],
   [html.includes(".proof-strip__grid{display:grid;grid-template-columns:1fr"), "stacked mobile proof items"],
   [html.includes("max-height:calc(100svh - 24px)"), "dialog viewport cap"],
 ];
 
 for (const [passed, label] of checks) assert.ok(passed, `Missing mobile invariant: ${label}`);
 
-const sourceWidth = 1672;
-const sourceHeight = 941;
-const visualLeft = 660;
-const visualRight = 1640;
-for (const viewport of [320, 360, 390, 430]) {
-  const frameHeight = (viewport <= 360 ? 280 : 310) * 0.9;
-  const scale = frameHeight / sourceHeight;
-  const renderedWidth = sourceWidth * scale;
-  const imageLeft = viewport / 2 - renderedWidth * 0.69;
-  const left = imageLeft + visualLeft * scale;
-  const right = imageLeft + visualRight * scale;
-  const center = (left + right) / 2;
-  assert.ok(left >= 0 && right <= viewport, `Key visual clips at ${viewport}px: ${left}..${right}`);
-  assert.ok(Math.abs(center - viewport / 2) <= 8, `Key visual is off-center at ${viewport}px: ${center}`);
-}
+const heroFigure = html.indexOf('<figure class="hero__backdrop"');
+const heroCopy = html.indexOf('<div class="hero__copy">');
+assert.ok(heroFigure >= 0 && heroCopy > heroFigure, "Hero image must precede copy in DOM order");
 
 const openBraces = [...html].filter((character) => character === "{").length;
 const closeBraces = [...html].filter((character) => character === "}").length;

@@ -5,6 +5,30 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, () => {
   "use strict";
 
+  const CATEGORY_ORDER = Object.freeze([
+    "텀블러",
+    "에코백",
+    "볼펜",
+    "우산",
+    "티셔츠·단체복",
+    "수건·타올",
+    "머그컵",
+    "보조배터리",
+    "노트·다이어리",
+    "보온보냉·런치백",
+  ]);
+
+  function selectOperatingProducts(products, categoryOrder = CATEGORY_ORDER, maxRank = 10) {
+    const categoryIndexes = new Map(categoryOrder.map((category, index) => [category, index]));
+    return products.filter((product) => {
+      const rank = Number(product.rank);
+      return categoryIndexes.has(product.category) && Number.isInteger(rank) && rank >= 1 && rank <= maxRank;
+    }).sort((left, right) => {
+      const categoryDifference = categoryIndexes.get(left.category) - categoryIndexes.get(right.category);
+      return categoryDifference || Number(left.rank) - Number(right.rank);
+    });
+  }
+
   const popularityScore = (value) => value === "상" ? 4 : value === "중" ? 2 : 0;
 
   function seasonalScore(product, month) {
@@ -26,7 +50,7 @@
   function eligibleProducts({ products, answers, categoryOrder, leadLimit, month }) {
     const count = Number(answers.count);
     const excluded = new Set(answers.excludes || []);
-    return products.filter((product) => {
+    return selectOperatingProducts(products).filter((product) => {
       if (excluded.has(product.category) || product.visibility !== "화면노출" || !product.available) return false;
       if (!product.price || !product.moq || !product.leadDays) return false;
       if (product.moq > count || product.leadDays > leadLimit) return false;
@@ -124,5 +148,5 @@
     }));
   }
 
-  return { eligibleProducts, enumerateBundles, recommend };
+  return { CATEGORY_ORDER, selectOperatingProducts, eligibleProducts, enumerateBundles, recommend };
 });

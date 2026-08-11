@@ -10,8 +10,10 @@ const backup = path.resolve("../../../Temp/3picks-hero-copy-backup-260810-1718.m
 assert.ok(fs.existsSync(backup), "Previous hero copy backup is missing");
 assert.ok(html.includes("Three picks, until it clicks"), "New hero eyebrow is missing");
 assert.ok(html.includes("<h1><span>마음에 들</span><span>때까지,</span><span>세 가지씩.</span></h1>"), "New hero headline is missing");
-assert.ok(html.includes("비교와 견적, 내부 보고용 자료까지"), "End-to-end service promise is missing");
-assert.ok(html.includes("담당자는 링크만 공유하세요"), "Low-friction handoff promise is missing");
+assert.ok(html.includes("보이는 상품이 전부가 아니에요"), "Expanded product range promise is missing");
+assert.ok(html.includes("더 넓게 찾아 세 가지 안으로 제안하고, 제작까지 맡아드릴게요"), "End-to-end sourcing promise is missing");
+assert.ok(html.includes("정해진 제품이 없어도 괜찮아요"), "Idea-first consultation promise is missing");
+assert.ok(html.includes("assets/3-picks-key-visual-tshirt-v2.webp"), "T-shirt hero asset is missing");
 assert.ok(html.includes(".hero__lead{max-width:36ch;margin:0 0 24px;font-size:clamp(20px,1.6vw,24px);font-weight:700;line-height:1.5;color:var(--tp-ink)}"), "Desktop hero lead emphasis is missing");
 assert.ok(html.includes(".hero__lead{margin-bottom:18px;font-size:18px;font-weight:700;line-height:1.5}"), "Mobile hero lead emphasis is missing");
 assert.ok(!html.includes("3분 만에 3 PICKS 받기"), "Hero recommendation CTA remains active");
