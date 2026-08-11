@@ -26,7 +26,7 @@ const checks = [
   [html.includes(".proof-strip__grid{display:grid;grid-template-columns:1fr"), "stacked mobile proof items"],
   [html.includes("max-height:calc(100svh - 24px)"), "dialog viewport cap"],
   [html.includes("animation:quote-heartbeat 1.3s ease-in-out infinite"), "heart-only double-speed heartbeat"],
-  [html.includes("12%{transform:scale(5)}") && html.includes("42%{transform:scale(3.6)}"), "fivefold heartbeat peak"],
+  [html.includes("12%{transform:scale(3)}") && html.includes("42%{transform:scale(1.5)}"), "threefold and one-point-fivefold heartbeat peaks"],
   [html.includes("gap:5px;overflow:visible;font-family"), "heartbeat may exceed trigger bounds"],
   [html.includes(".quote-trigger__heart{animation:none}"), "reduced-motion heartbeat override"],
 ];
