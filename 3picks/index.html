@@ -314,6 +314,7 @@
     .team-member{min-width:0;background:var(--tp-cell);display:flex;flex-direction:column}
     .team-member__visual{aspect-ratio:4/3;margin:0;display:grid;place-items:center;overflow:hidden;background:var(--tp-cream);border-bottom:1px solid var(--tp-line)}
     .team-member__visual img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+    .team-member--baek .team-member__visual img{transform:scale(1.02);transform-origin:center bottom}
     .team-member__body{display:flex;flex:1;flex-direction:column;padding:24px}
     .team-member__role{font-family:var(--tp-font-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--tp-grey)}
     .team-member h3{margin:8px 0 16px;font-size:clamp(26px,3vw,36px);line-height:1.12;letter-spacing:-.025em}
@@ -321,6 +322,31 @@
     .team-career li{min-height:44px;padding:10px 0;border-bottom:1px solid var(--tp-line);display:flex;align-items:center;font-size:14px;font-weight:700}
     .team-member__intro{margin:24px 0 0;color:var(--tp-ink-70)}
     .team-member--placeholder .team-member__intro{margin-top:0}
+    .member-story{margin-top:clamp(48px,6vw,72px)}
+    .member-story__head{padding-top:16px;margin-bottom:24px;border-top:1px solid var(--tp-line)}
+    .member-story__head h3{margin:0;font-size:clamp(56px,6vw,76px);font-weight:900;line-height:1.05;letter-spacing:-.04em}
+    .member-story__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:auto;column-gap:clamp(12px,2vw,24px);row-gap:clamp(48px,7vw,96px);align-items:stretch}
+    .story-panel{position:relative;min-width:0;height:100%;margin:0;overflow:hidden;background:var(--tp-cell);border:0;display:grid;grid-template-rows:auto 1fr}
+    .story-panel--01{grid-column:1/5;grid-row:1}
+    .story-panel--02{grid-column:5/13;grid-row:1}
+    .story-panel--03{grid-column:1/9;grid-row:2}
+    .story-panel--04{grid-column:9/13;grid-row:2}
+    .story-panel--05{grid-column:1/9;grid-row:3}
+    .story-panel--06{grid-column:9/13;grid-row:3}
+    .story-panel picture{display:block;width:100%;height:clamp(300px,30vw,420px);overflow:hidden;background:var(--tp-cream);border:0}
+    .story-panel img{width:100%;height:100%;object-fit:cover;object-position:center}
+    .story-panel--02 img{transform:scale(1.05)}
+    .story-panel figcaption{position:relative;z-index:2;width:auto;padding:clamp(18px,2.2vw,28px);background:var(--tp-cell);border:0;clip-path:none}
+    .story-panel__no{display:flex;align-items:center;gap:8px;font-family:var(--tp-font-mono);font-size:clamp(14px,1.1vw,16px);letter-spacing:.12em;color:var(--tp-grey)}
+    .story-panel h4{margin:8px 0 16px;font-size:clamp(30px,3vw,44px);line-height:1.12;letter-spacing:-.03em}
+    .story-panel__copy{display:grid;gap:12px}
+    .story-panel p{max-width:60ch;margin:0;color:var(--tp-ink-70);font-size:clamp(17px,1.35vw,19px);line-height:1.55}
+    .story-panel p strong{color:var(--tp-ink);font-size:1.12em}
+    .story-panel__dialogue{color:var(--tp-ink)!important;font-weight:800}
+    .member-story__ending{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px;margin-top:clamp(80px,9vw,128px);padding:clamp(24px,4vw,48px);background:var(--tp-ink);color:var(--tp-cell)}
+    .member-story__ending h4{max-width:17ch;margin:0;font-size:clamp(28px,4vw,48px);line-height:1.12;letter-spacing:-.035em}
+    .member-story__ending p{max-width:48ch;margin:16px 0 0;color:var(--tp-cell)}
+    .member-story__ending .tp-btn{align-self:end;border-color:var(--tp-cell);background:transparent;color:var(--tp-cell)}
 
     @media (hover:hover){
       .tp-btn:hover{opacity:1;transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--tp-ink)}
@@ -384,6 +410,16 @@
       .product-rail{grid-auto-columns:calc((100% - 1px)/2)}
       .process{grid-template-columns:repeat(2,1fr)}
       .about-grid{grid-template-columns:1fr}
+      .member-story__grid{grid-template-rows:none;grid-auto-rows:auto;column-gap:16px;row-gap:64px;align-items:start}
+      .story-panel{height:auto;overflow:visible}
+      .story-panel picture{height:auto;aspect-ratio:4/3}
+      .story-panel img{object-fit:contain}
+      .story-panel--01{grid-column:1/11;grid-row:1}
+      .story-panel--02{grid-column:4/13;grid-row:2}
+      .story-panel--03{grid-column:1/13;grid-row:3}
+      .story-panel--04{grid-column:1/10;grid-row:4}
+      .story-panel--05{grid-column:1/13;grid-row:5}
+      .story-panel--06{grid-column:4/13;grid-row:6;align-self:start}
       .consult__grid{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr}
       .footer-links{text-align:left}
@@ -470,6 +506,26 @@
       .team-member__body{padding:20px 16px}
       .team-member h3{font-size:28px}
       .team-member__intro{margin-top:20px;font-size:14px}
+      .member-story{margin-top:48px}
+      .member-story__head{padding-top:12px}
+      .member-story__head h3{font-size:42px;line-height:1.08}
+      .member-story__grid{column-gap:8px;row-gap:48px}
+      .story-panel--01{grid-column:1/13;grid-row:1}
+      .story-panel--02{grid-column:3/13;grid-row:2}
+      .story-panel--03{grid-column:1/13;grid-row:3}
+      .story-panel--04{grid-column:1/11;grid-row:4}
+      .story-panel--05{grid-column:1/13;grid-row:5}
+      .story-panel--06{grid-column:4/13;grid-row:6}
+      .story-panel picture{aspect-ratio:3/4}
+      .story-panel img{object-position:center 18%}
+      .story-panel figcaption{inset:auto;width:auto;padding:16px}
+      .story-panel__no{font-size:14px}
+      .story-panel h4{margin:6px 0 12px;font-size:clamp(28px,8vw,34px)}
+      .story-panel p{font-size:16px;line-height:1.45}
+      .member-story__ending{grid-template-columns:1fr;align-items:start;gap:24px;padding:24px 16px}
+      .member-story__ending h4{font-size:32px}
+      .member-story__ending p{font-size:14px}
+      .member-story__ending .tp-btn{width:100%}
       .site-footer{padding:40px 0 calc(48px + env(safe-area-inset-bottom))}
       .footer-grid{gap:28px}
       .footer-info{font-size:13px;overflow-wrap:anywhere}
@@ -668,11 +724,11 @@
     <section class="tp-section about" id="about">
       <div class="tp-wrap">
         <div class="section-head">
-          <div><div class="tp-eyebrow">People behind 3PICKS</div><h2>사람과 브랜드를 이해하는 사람들이 함께합니다</h2></div>
+          <div><div class="tp-eyebrow">People behind 3PICKS</div><h2>사람과 브랜드를 이해하는<br>사람들이 함께합니다.</h2></div>
           <p>원하는 굿즈를 고르는 일부터 실제 제작까지, 경험을 바탕으로 끝까지 함께합니다.</p>
         </div>
         <div class="about-grid">
-          <article class="team-member">
+          <article class="team-member team-member--baek">
             <figure class="team-member__visual" aria-hidden="true"><img src="assets/team-baek-sunmi-v1.png" alt=""></figure>
             <div class="team-member__body">
               <div class="team-member__role">Director</div>
@@ -695,6 +751,79 @@
             </div>
           </article>
         </div>
+        <section class="member-story" aria-labelledby="memberStoryTitle">
+          <div class="member-story__head"><h3 id="memberStoryTitle">막내 인생 26년, 그리고 3PICKS</h3></div>
+          <div class="member-story__grid">
+            <figure class="story-panel story-panel--01">
+              <picture><img src="assets/team-story-01-career-v1.webp" width="1448" height="1086" alt=""></picture>
+              <figcaption>
+                <div class="story-panel__no">01</div><h4>막내 인생 26년</h4>
+                <div class="story-panel__copy">
+                  <p>새로운 경험을 꿈꾸고, 또 좇다 보니<br>대기업부터 중소기업까지 참 열심히도 옮겨 다녔습니다.</p>
+                  <p>덕분에 차곡차곡 쌓인 경력은 무려,<br><strong>막내 인생 26년.</strong></p>
+                  <p>희한하게도 회사만 옮기면<br>기다렸다는 듯 제게 찾아오는 일이 하나 있었습니다.</p>
+                </div>
+              </figcaption>
+            </figure>
+            <figure class="story-panel story-panel--02">
+              <picture><img src="assets/team-story-02-three-picks-v1.webp" width="1448" height="1086" alt=""></picture>
+              <figcaption>
+                <div class="story-panel__no">02</div><h4>세 가지의 저주</h4>
+                <div class="story-panel__copy">
+                  <p class="story-panel__dialogue">“이번 판촉물 좀 알아봐 줘.”<br>“굿즈도 몇 개 찾아보고.”<br>“최소 세 가지는 비교해서 보고해 줘.”</p>
+                  <p>아니, 제 마음속 1등은 이미 정해졌는데<br>대체 그놈의 ‘세 가지 비교 보고’가 뭐라고….</p>
+                  <p>귀찮은 마음에 제일 괜찮은 것 하나만 들고 가면<br>어김없이 돌아오는 3연타.</p>
+                  <p class="story-panel__dialogue">“차별성이 없는데?”<br>“다른 것도 더 찾아봐.”<br>“장단점까지 정리해 줘.”</p>
+                  <p>네, 다시 해오겠습니다.<br>제가 막내니까요.</p>
+                </div>
+              </figcaption>
+            </figure>
+            <figure class="story-panel story-panel--03">
+              <picture><img src="assets/team-story-03-overtime-v1.webp" width="1448" height="1086" loading="lazy" alt=""></picture>
+              <figcaption>
+                <div class="story-panel__no">03</div><h4>쇼핑인데 왜 야근</h4>
+                <div class="story-panel__copy">
+                  <p>사실 제가 가장 좋아하고, 제일 잘하는 건 쇼핑입니다.<br>그런데 이상하죠. 회사 굿즈와 판촉물 쇼핑만큼은<br>한숨이 먼저 나왔습니다.</p>
+                  <p class="story-panel__dialogue">최신 유행 찾아야지,<br>가격 비교해야지,<br>업체 알아봐야지,<br>최소 수량 확인해야지,<br>마지막에는 보고서까지 써야지….</p>
+                  <p>쇼핑은 제가 했는데,<br>왜 결제는 회사가 하고 야근은 제가 하는 걸까요?</p>
+                </div>
+              </figcaption>
+            </figure>
+            <figure class="story-panel story-panel--04">
+              <picture><img src="assets/team-story-04-origin-v1.webp" width="1448" height="1086" loading="lazy" alt=""></picture>
+              <figcaption>
+                <div class="story-panel__no">04</div><h4>한이 브랜드가<br>되던 날</h4>
+                <div class="story-panel__copy">
+                  <p>그렇게 수많은 막내들의 귀찮음과 한을<br>차곡차곡 모아 3PICKS가 탄생했습니다.</p>
+                  <p>여러분은 여러분의 일에만 집중하세요.<br>쇼핑은 저희가 하고, 보고서도 저희가 쓰겠습니다.</p>
+                </div>
+              </figcaption>
+            </figure>
+            <figure class="story-panel story-panel--05">
+              <picture><img src="assets/team-story-05-curation-v1.webp" width="1448" height="1086" loading="lazy" alt=""></picture>
+              <figcaption>
+                <div class="story-panel__no">05</div><h4>찾고,<br>고르고,<br>비교하고</h4>
+                <div class="story-panel__copy">
+                  <p>최신 트렌드와 지금 가장 핫한 아이템을 샅샅이 찾아<br>딱 세 가지로 추려드립니다.<br>가격부터 장단점까지,<br>상사도 한눈에 알아보게 비교해 드립니다.</p>
+                </div>
+              </figcaption>
+            </figure>
+            <figure class="story-panel story-panel--06">
+              <picture><img src="assets/team-story-06-you-are-boss-v1.webp" width="1448" height="1086" loading="lazy" alt=""></picture>
+              <figcaption>
+                <div class="story-panel__no">06</div><h4>여러분은<br>찾지 마세요.<br>정리하지도 마세요.<br>그냥 보고만<br>받으세요.</h4>
+                <div class="story-panel__copy">
+                  <p><strong>3PICKS의 상사는 바로 당신이니까요.</strong></p>
+                  <p>마음에 드실 때까지 찾아오겠습니다.<br>늘 그래왔듯이요.</p>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="member-story__ending">
+            <div><h4>찾고,<br>비교하고,<br>보고하는 귀찮은 일.<br>이제 3PICKS에 시키세요.</h4></div>
+            <button class="tp-btn cta-action--kakao" type="button" data-consult>카카오톡 상담하기</button>
+          </div>
+        </section>
       </div>
     </section>
   </main>

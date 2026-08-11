@@ -109,3 +109,23 @@ UNVERIFIED: 320·360·430px 히어로, 키보드·미니 견적 직접 조작, �
 - `node tools/test_recommendation.js` — 기본 96개와 객관식·태그·제외·수치 경계 5,786개 검사 통과
 - 결과 마지막의 친절한 가예산 변동 안내와 상담 확인 조건 카피 회귀 통과
 - 브라우저 — 1440·1280·768·390·375px 가로 넘침 0·콘솔 오류 0, 멤버 소개 2열/1열, 375·390px 히어로 이미지 우선·비잘림 확인
+
+## 멤버 스토리툰 정적 회귀 검사
+
+- [x] `node tools/test_member_story.js` — DOM 01→06, 최신 카피워싱 17개 segment 배열 완전일치로 누락·추가·순서·문구 검사 통과
+- [x] 의미 체크포인트 별도 유지: 경력·막내 26년·반복 업무·상사 지시/피드백 인용문 6개·쇼핑/야근·3PICKS 탄생·큐레이션·상사=당신·끝까지 재탐색 검사 통과
+- [x] 04 `한이 브랜드가<br>되던 날`, 05 `찾고,<br>고르고,<br>비교하고`, 06 `여러분은<br>찾지 마세요.<br>정리하지도 마세요.<br>그냥 보고만<br>받으세요.` exact HTML 검사 통과
+- [x] 엔딩 `찾고,<br>비교하고,<br>보고하는 귀찮은 일.<br>이제 3PICKS에 시키세요.` 4줄 exact HTML 검사 통과
+- [x] 멤버 소개 제목을 `사람과 브랜드를 이해하는<br>사람들이 함께합니다.` HTML로 고정하고 줄바꿈까지 검사 통과
+- [x] 최신 스토리 WebP 6개 실파일 1448×1086·SHA-256 확정값 일치 — 01 제거판 `a2c1ff56…` 포함, 프로필 PNG 2개 참조·알파 채널·확정 해시 검사 통과
+- [x] 백선미 article 전용 `team-member--baek`과 `scale(1.02)`·`transform-origin:center bottom`, 짧은머리 프로필 transform 0건 검사 통과
+- [x] 캐릭터 의미 계약: 01~03 짧은머리 단독 주화자, 05 짧은머리 상품 탐색·긴머리 비교 카드 정리; 픽셀 자동 판정은 확정 해시·크기로 제한
+- [x] 폐기된 flex-column·고정 3행 계약 0건, 데스크톱 12열 `grid-auto-rows:auto`·`align-items:stretch`·01~06 pair span과 600px 이하 혼합 오프셋 검사 통과
+- [x] 각 패널 `display:grid;grid-template-rows:auto 1fr`, 데스크톱 picture 공통 높이 `clamp(300px,30vw,420px)`, 900px 이하 4:3·600px 이하 3:4 검사 통과
+- [x] 패널·`picture`·`figcaption`의 0이 아닌 border 0건, `.story-panel__no::before`·`.story-panel::after` 장식선 0건 검사 통과
+- [x] 제목 `clamp(56px,6vw,76px)`·굵기 900·모바일 42px, 이미지 `object-fit:cover`·02컷 외곽선 crop `scale(1.05)` 및 클리핑 검사 통과
+- [x] 각 `figcaption`이 같은 패널의 이미지 다음에 있고 `position:relative`·무채색·무경계·`clip-path:none` 인플로우 영역으로 배치되는 계약 검사 통과
+- [x] 600px 이하 `figcaption`의 `inset:auto;width:auto` 리셋 검사 통과
+- [x] 600px 이하 패널 자체 absolute 배치·스토리 가로 스크롤 없음, 전역 `overflow-x:clip` 규칙 검사 통과
+- [x] 엔딩 상담 CTA가 기존 `data-consult`를 재사용하고 밝은 테두리·투명 배경·밝은 글자를 유지하며 헤더·스토리툰·하단 카카오 CTA 총 3개 회귀 검사 통과
+- [ ] 신규 인플로우 캡션 구조의 1440·1280·768·390·375px 렌더·가로 넘침·CTA 직접 재검수 — 별도 캡처 대기

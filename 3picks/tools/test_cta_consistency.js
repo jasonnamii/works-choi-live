@@ -15,7 +15,7 @@ const groups = [...html.matchAll(groupPattern)].map((match) =>
 assert.equal(groups.length, 2, "상·하단 CTA 그룹은 정확히 2개여야 합니다.");
 groups.forEach((labels) => assert.deepEqual(labels, expectedGroup, "상·하단 CTA 문구와 순서가 다릅니다."));
 assert.equal((html.match(/href="#recommend">맞춤추천<\/a>/g) || []).length, 2, "맞춤추천 링크 수가 다릅니다.");
-assert.equal((html.match(/data-consult>카카오톡 상담하기<\/button>/g) || []).length, 2, "카카오톡 CTA 수가 다릅니다.");
+assert.equal((html.match(/data-consult>카카오톡 상담하기<\/button>/g) || []).length, 3, "헤더·스토리툰·하단의 카카오톡 CTA 수가 다릅니다.");
 assert.equal((html.match(/data-email-link>이메일문의<\/a>/g) || []).length, 2, "이메일 CTA 수가 다릅니다.");
 assert.ok(app.includes('document.querySelectorAll("[data-email-link]")'), "이메일 링크가 config와 연결되지 않았습니다.");
 assert.ok(html.includes(".cta-actions{display:grid;grid-template-columns:repeat(3,max-content);gap:8px}"), "공통 CTA 레이아웃이 없습니다.");
