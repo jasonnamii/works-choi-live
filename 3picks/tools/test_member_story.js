@@ -199,6 +199,9 @@ assert.ok(endingCtaRule.includes("border-color:var(--tp-cell)") && endingCtaRule
 assert.ok(html.includes(".member-story__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr))"), "스토리툰의 12열 모자이크 기준이 없습니다.");
 assert.ok(!html.includes(".member-story__grid{display:flex;flex-direction:column}"), "폐기된 flex-column 스토리 계약이 남아 있습니다.");
 assert.match(html, /\.member-story__head h3\{[^}]*font-size:clamp\(56px,6vw,76px\)[^}]*font-weight:900[^}]*\}/, "스토리 제목의 데스크톱 크기·굵기 계약이 다릅니다.");
+assert.ok(story.includes('<p class="member-story__eyebrow">OUR BRAND STORY</p>'), "스토리 제목 위 OUR BRAND STORY 아이브로가 없습니다.");
+assert.match(html, /\.member-story\{[^}]*margin-top:clamp\(72px,8vw,112px\)[^}]*\}/, "프로필과 스토리 제목 사이 여백이 다릅니다.");
+assert.match(html, /\.member-story__head\{[^}]*padding-top:clamp\(24px,3vw,36px\)[^}]*margin-bottom:clamp\(44px,5vw,68px\)[^}]*\}/, "스토리 아이브로 상단 또는 첫 컷 앞 여백이 다릅니다.");
 assert.match(html, /@media \(max-width:600px\)[\s\S]*?\.member-story__head h3\{[^}]*font-size:42px[^}]*\}/, "스토리 제목의 모바일 42px 계약이 없습니다.");
 const desktopGridRule = html.match(/\.member-story__grid\{([^}]*)\}/)?.[1] || "";
 assert.ok(desktopGridRule.includes("grid-auto-rows:auto"), "스토리 데스크톱 pair의 자동 행 높이 계약이 없습니다.");

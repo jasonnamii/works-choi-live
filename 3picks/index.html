@@ -322,8 +322,9 @@
     .team-career li{min-height:44px;padding:10px 0;border-bottom:1px solid var(--tp-line);display:flex;align-items:center;font-size:14px;font-weight:700}
     .team-member__intro{margin:24px 0 0;color:var(--tp-ink-70)}
     .team-member--placeholder .team-member__intro{margin-top:0}
-    .member-story{margin-top:clamp(48px,6vw,72px)}
-    .member-story__head{padding-top:16px;margin-bottom:24px;border-top:1px solid var(--tp-line)}
+    .member-story{margin-top:clamp(72px,8vw,112px)}
+    .member-story__head{padding-top:clamp(24px,3vw,36px);margin-bottom:clamp(44px,5vw,68px);border-top:1px solid var(--tp-line)}
+    .member-story__eyebrow{margin:0 0 14px;font-family:var(--tp-font-mono);font-size:13px;letter-spacing:.16em;color:var(--tp-grey)}
     .member-story__head h3{margin:0;font-size:clamp(56px,6vw,76px);font-weight:900;line-height:1.05;letter-spacing:-.04em}
     .member-story__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:auto;column-gap:clamp(12px,2vw,24px);row-gap:clamp(48px,7vw,96px);align-items:stretch}
     .story-panel{position:relative;min-width:0;height:100%;margin:0;overflow:hidden;background:var(--tp-cell);border:0;display:grid;grid-template-rows:auto 1fr}
@@ -507,7 +508,9 @@
       .team-member h3{font-size:28px}
       .team-member__intro{margin-top:20px;font-size:14px}
       .member-story{margin-top:48px}
-      .member-story__head{padding-top:12px}
+      .member-story{margin-top:56px}
+      .member-story__head{padding-top:24px;margin-bottom:36px}
+      .member-story__eyebrow{margin-bottom:12px;font-size:12px}
       .member-story__head h3{font-size:42px;line-height:1.08}
       .member-story__grid{column-gap:8px;row-gap:48px}
       .story-panel--01{grid-column:1/13;grid-row:1}
@@ -752,7 +755,10 @@
           </article>
         </div>
         <section class="member-story" aria-labelledby="memberStoryTitle">
-          <div class="member-story__head"><h3 id="memberStoryTitle">막내 인생 26년, 그리고 3PICKS</h3></div>
+          <div class="member-story__head">
+            <p class="member-story__eyebrow">OUR BRAND STORY</p>
+            <h3 id="memberStoryTitle">막내 인생 26년, 그리고 3PICKS</h3>
+          </div>
           <div class="member-story__grid">
             <figure class="story-panel story-panel--01">
               <picture><img src="assets/team-story-01-career-v2.webp" width="1448" height="1086" alt=""></picture>
