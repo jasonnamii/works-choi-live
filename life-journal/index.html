@@ -278,6 +278,97 @@ footer p{font-size:12px; color:var(--fg-3); line-height:1.7}
   @keyframes fade{from{opacity:0}to{opacity:1}}
 }
 @media print{ body{background:#fff} .issue{page-break-after:always} }
+
+/* ── course builder ────────────────────── */
+.cb-d{
+  display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.05em;
+  border:1px solid var(--rule-strong); padding:1px 5px; color:var(--fg-3);
+  margin-left:6px; white-space:nowrap; vertical-align:1px;
+}
+.cb-add{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:20px; height:20px; margin-left:6px; vertical-align:-3px;
+  border:1px solid var(--ink); background:var(--bg-1); color:var(--fg-1);
+  font-family:var(--mono); font-size:13px; line-height:1; cursor:pointer; padding:0;
+}
+.cb-add:hover{border-color:var(--accent); color:var(--accent)}
+.cb-add.on{background:var(--accent); border-color:var(--accent); color:var(--accent-ink)}
+.cb-fab{
+  position:fixed; right:20px; bottom:20px; z-index:940;
+  display:flex; align-items:center; gap:10px;
+  background:var(--ink); color:var(--bg-1); border:0; cursor:pointer;
+  font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+  padding:13px 16px; box-shadow:0 4px 18px rgba(0,0,0,.25);
+  transition:bottom .25s ease;
+}
+.cb-fab .bd{
+  background:var(--accent); color:var(--accent-ink); font-size:11px;
+  min-width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center;
+  padding:0 4px; font-variant-numeric:tabular-nums;
+}
+body.cb-open .cb-fab{bottom:calc(33vh + 14px)}
+.cb-sheet{
+  position:fixed; left:0; right:0; bottom:0; z-index:930;
+  height:33vh; min-height:252px; display:flex; flex-direction:column;
+  background:var(--bg-1); border-top:2px solid var(--ink);
+  box-shadow:0 -8px 30px rgba(0,0,0,.18);
+  transform:translateY(106%); transition:transform .26s ease;
+}
+body.cb-open .cb-sheet{transform:none}
+.cb-head{
+  display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px;
+  padding:7px 16px; border-bottom:1px solid var(--rule); flex:none;
+}
+.cb-head .tt{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--fg-1); font-weight:600}
+.cb-head .sum{font-family:var(--mono); font-size:11.5px; color:var(--fg-3); font-variant-numeric:tabular-nums}
+.cb-head .sp{flex:1}
+.cb-head label{display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:11px; color:var(--fg-3); cursor:pointer}
+.cb-head label input{accent-color:var(--accent); margin:0}
+.cb-btn{
+  font-family:var(--mono); font-size:11px; letter-spacing:.05em; cursor:pointer;
+  border:1px solid var(--rule-strong); background:var(--bg-1); color:var(--fg-2); padding:4px 9px;
+}
+.cb-btn:hover{border-color:var(--accent); color:var(--accent)}
+.cb-main{flex:1; display:flex; min-height:0}
+.cb-mapbox{flex:1.25; min-width:0; position:relative; background:var(--bg-3)}
+#cbMap{position:absolute; inset:0}
+#cbMap .cb-pin{
+  background:var(--ink); color:var(--bg-1); border:1px solid var(--bg-1);
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  display:flex; align-items:center; justify-content:center; font-variant-numeric:tabular-nums;
+}
+#cbMap .cb-pin.home{background:var(--accent); color:var(--accent-ink)}
+.cb-listbox{flex:1; min-width:0; overflow-y:auto; border-left:1px solid var(--rule)}
+.cb-empty{padding:22px 18px; font-size:13px; color:var(--fg-3); line-height:1.7}
+.cb-li{
+  display:grid; grid-template-columns:26px 1fr auto; gap:8px; align-items:center;
+  padding:7px 12px 7px 14px; border-bottom:1px solid var(--rule); cursor:grab;
+}
+.cb-li.drag{opacity:.35}
+.cb-li .no{
+  font-family:var(--mono); font-size:11px; font-weight:600; color:var(--bg-1);
+  background:var(--ink); width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center;
+  font-variant-numeric:tabular-nums;
+}
+.cb-li .nm2{font-size:13.5px; font-weight:600; line-height:1.3}
+.cb-li .nm2 .ct{font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; color:var(--fg-3); text-transform:uppercase; margin-left:6px; font-weight:500}
+.cb-li .leg{font-family:var(--mono); font-size:10.5px; color:var(--fg-3); margin-top:1px; font-variant-numeric:tabular-nums}
+.cb-li .leg .ac{color:var(--accent)}
+.cb-li .ops{display:flex; gap:3px}
+.cb-li .ops button{
+  width:22px; height:22px; border:1px solid var(--rule-strong); background:var(--bg-1);
+  color:var(--fg-3); font-family:var(--mono); font-size:11px; cursor:pointer; padding:0; line-height:1;
+}
+.cb-li .ops button:hover{border-color:var(--accent); color:var(--accent)}
+@media (max-width:680px){
+  .cb-sheet{height:62vh}
+  body.cb-open .cb-fab{bottom:calc(62vh + 14px)}
+  .cb-main{flex-direction:column}
+  .cb-mapbox{flex:none; height:42%}
+  .cb-listbox{border-left:0; border-top:1px solid var(--rule)}
+  .cb-fab{right:14px; bottom:calc(14px + env(safe-area-inset-bottom))}
+}
+@media print{ .cb-fab,.cb-sheet{display:none} }
 </style>
 </head>
 <body>
@@ -346,6 +437,7 @@ footer p{font-size:12px; color:var(--fg-3); line-height:1.7}
       <li><span class="t">일</span><span class="dot"></span><span class="w"><b>가까운 날</b><span>영랑호·카페·빵집을 가볍게 잇습니다</span></span></li>
       <li><span class="t">월 아침</span><span class="dot"></span><span class="w"><b>복귀</b><span>10시 전에 출발해 서울까지 여유롭게</span></span></li>
     </ul>
+    <p style="font-size:12.5px; color:var(--fg-3); margin-top:12px">도보·차 시간은 숙소(UH 플랫 더 속초) 기준 추정치입니다. 이름 옆 + 를 누르면 우하단 코스 빌더에 담깁니다.</p>
 
     <!-- ═══ A–3 ═══ -->
     <div class="folio"><span class="pg">A–3</span><span class="spec">드라이브 메뉴 · drive menu</span></div>
@@ -402,13 +494,13 @@ footer p{font-size:12px; color:var(--fg-3); line-height:1.7}
         <thead><tr><th>bakery</th><th class="n">hours</th><th class="n">price</th><th>fine print</th></tr></thead>
         <tbody>
           <tr class="pick">
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20초당소금빵" target="_blank" rel="noopener">초당소금빵</a></span><span class="tag on">숙소 도보권</span><br>고메버터에 안데스 소금, 시장 초입</td>
+            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20초당소금빵" target="_blank" rel="noopener">초당소금빵</a></span><br>고메버터에 안데스 소금, 시장 초입</td>
             <td class="n">10:00–21:00</td>
             <td class="n">4개 14,000</td>
             <td>무휴 · 아이스크림 소금빵 6,500~7,000 · 오후 소진 잦음</td>
           </tr>
           <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초옥수수소금빵" target="_blank" rel="noopener">속초옥수수소금빵</a></span><span class="tag on">숙소 도보권</span><br>옥수수를 품은 소금빵, 시장 건너편 코너의 흰 2층 건물</td>
+            <td><span class="nm"><a href="https://map.naver.com/p/search/속초옥수수소금빵" target="_blank" rel="noopener">속초옥수수소금빵</a></span><br>옥수수를 품은 소금빵, 시장 건너편 코너의 흰 2층 건물</td>
             <td class="n">확인 필요</td>
             <td class="n">4개 12,000</td>
             <td>옥수수 아이스크림 소금빵도 판매 · 웨이팅 잦음 — 대기 감안</td>
@@ -432,7 +524,7 @@ footer p{font-size:12px; color:var(--fg-3); line-height:1.7}
             <td>봉브레드 쉬는 날과 늦은 밤의 대체재 · 주차 수월</td>
           </tr>
           <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20강원도막걸리술빵" target="_blank" rel="noopener">강원도막걸리술빵</a></span><span class="tag on">도보 1분</span><br>닭강정 골목의 단일 메뉴 노포</td>
+            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20강원도막걸리술빵" target="_blank" rel="noopener">강원도막걸리술빵</a></span><br>닭강정 골목의 단일 메뉴 노포</td>
             <td class="n">09:00–19:00</td>
             <td class="n">5,000</td>
             <td>주말 08시 오픈 · 대기 20~30분, 성수기 1시간 — 문 열 때 방문 권장</td>
@@ -500,7 +592,7 @@ footer p{font-size:12px; color:var(--fg-3); line-height:1.7}
         <thead><tr><th>table</th><th class="n">hours</th><th class="n">price</th><th>fine print</th></tr></thead>
         <tbody>
           <tr class="pick">
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20명가한우마을" target="_blank" rel="noopener">명가한우마을</a></span><span class="tag on">도보 10분</span><br>쇼케이스에서 부위를 고르는 정육식당</td>
+            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20명가한우마을" target="_blank" rel="noopener">명가한우마을</a></span><br>쇼케이스에서 부위를 고르는 정육식당</td>
             <td class="n">10:00–21:30</td>
             <td class="n">차돌 28,320</td>
             <td>꽃갈비 56,160 · 예약 033-635-5123 · 휴무 확인 필요</td>
@@ -623,6 +715,227 @@ footer p{font-size:12px; color:var(--fg-3); line-height:1.7}
     <p style="margin-top:8px">개인 일정이 담겨 있어 외부로 공유하지 않습니다.</p>
   </div>
 </footer>
+
+<button class="cb-fab" id="cbFab" type="button" aria-expanded="false" aria-controls="cbSheet">코스 빌더 <span class="bd" id="cbBadge">0</span></button>
+
+<aside class="cb-sheet" id="cbSheet" aria-label="코스 빌더">
+  <div class="cb-head">
+    <span class="tt">코스 빌더</span>
+    <span class="sum" id="cbSum">0곳</span>
+    <span class="sp"></span>
+    <label><input type="checkbox" id="cbHome" checked aria-label="숙소 출발"> 숙소 출발</label>
+    <button class="cb-btn" id="cbSort" type="button">가까운 순</button>
+    <button class="cb-btn" id="cbCopy" type="button">복사</button>
+    <button class="cb-btn" id="cbClear" type="button">비우기</button>
+    <button class="cb-btn" id="cbClose" type="button">접기 ▾</button>
+  </div>
+  <div class="cb-main">
+    <div class="cb-mapbox"><div id="cbMap"></div></div>
+    <div class="cb-listbox" id="cbList"></div>
+  </div>
+</aside>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+"use strict";
+var HOME = {name:"숙소 · UH 플랫 더 속초", lat:38.2060942, lng:128.5934209};
+var SPOTS = {"고성 청간정": {"name": "청간정", "cat": "드라이브", "lat": 38.2644317, "lng": 128.5583707}, "아야진해변": {"name": "아야진해변", "cat": "드라이브", "lat": 38.2758723, "lng": 128.5533854}, "고성 천학정": {"name": "천학정", "cat": "드라이브", "lat": 38.2890014, "lng": 128.5476596}, "고성 능파대": {"name": "능파대", "cat": "드라이브", "lat": 38.2967403, "lng": 128.5488754}, "양양 낙산해변": {"name": "낙산해변", "cat": "드라이브", "lat": 38.1179229, "lng": 128.6337826}, "하조대 스카이워크": {"name": "하조대 스카이워크", "cat": "드라이브", "lat": 38.0222689, "lng": 128.7291416}, "영랑호 호수윗길": {"name": "영랑호 부교", "cat": "드라이브", "lat": 38.2158084, "lng": 128.5782105}, "영랑호 범바위": {"name": "범바위", "cat": "드라이브", "lat": 38.2147156, "lng": 128.5758236}, "속초 영랑정": {"name": "영랑정", "cat": "드라이브", "lat": 38.2141929, "lng": 128.5761624}, "양양 낙산사": {"name": "낙산사", "cat": "절·산", "lat": 38.1265937, "lng": 128.6285213}, "속초 신흥사": {"name": "신흥사", "cat": "절·산", "lat": 38.175604, "lng": 128.4847509}, "설악케이블카": {"name": "권금성 케이블카", "cat": "절·산", "lat": 38.1730493, "lng": 128.4891317}, "속초 초당소금빵": {"name": "초당소금빵", "cat": "빵", "lat": 38.2053246, "lng": 128.5901816}, "속초옥수수소금빵": {"name": "속초옥수수소금빵", "cat": "빵", "lat": 38.2041639, "lng": 128.5882247}, "속초 히응커피": {"name": "히응커피", "cat": "빵", "lat": 38.2008017, "lng": 128.5689766}, "속초 봉브레드": {"name": "봉브레드", "cat": "빵", "lat": 38.2029121, "lng": 128.5684687}, "베이커리가루 속초점": {"name": "베이커리 가루", "cat": "빵", "lat": 38.1977832, "lng": 128.5813463}, "속초 강원도막걸리술빵": {"name": "강원도막걸리술빵", "cat": "빵", "lat": 38.2049814, "lng": 128.5896022}, "세렝게티커피 속초중앙시장점": {"name": "세렝게티 베이크샵", "cat": "빵", "lat": 38.2052177, "lng": 128.5892754}, "속초 SHLTR": {"name": "SHLTR", "cat": "커피", "lat": 38.1976357, "lng": 128.5974595}, "속초 어나더블루": {"name": "어나더블루", "cat": "커피", "lat": 38.2267686, "lng": 128.5872898}, "속초 칠성조선소": {"name": "칠성조선소", "cat": "커피", "lat": 38.1985154, "lng": 128.583475}, "속초 보사노바": {"name": "보사노바", "cat": "커피", "lat": 38.1885616, "lng": 128.6038568}, "속초 시드누아": {"name": "시드누아", "cat": "커피", "lat": 38.1969076, "lng": 128.5308059}, "속초 커피해요": {"name": "커피해요", "cat": "커피", "lat": 38.2161515, "lng": 128.5957708}, "속초 명가한우마을": {"name": "명가한우마을", "cat": "밥", "lat": 38.2073576, "lng": 128.5929582}, "속초 단천식당": {"name": "단천식당", "cat": "밥", "lat": 38.2025844, "lng": 128.5937724}, "속초탑골막국수 본점": {"name": "탑골막국수", "cat": "밥", "lat": 38.1916152, "lng": 128.6017339}, "감나무집감자옹심이": {"name": "감나무집 감자옹심이", "cat": "밥", "lat": 38.204315, "lng": 128.590906}, "속초 최가네": {"name": "최가네", "cat": "밥", "lat": 38.2116709, "lng": 128.5902277}, "속초 춘천중앙닭갈비": {"name": "춘천중앙닭갈비", "cat": "밥", "lat": 38.193649, "lng": 128.576215}, "만석닭강정 중앙시장": {"name": "만석닭강정", "cat": "밥", "lat": 38.2047589, "lng": 128.5902344}, "속초 연탄불생구이": {"name": "연탄불생구이", "cat": "밥", "lat": 38.1962247, "lng": 128.5731656}, "속초 정든식당": {"name": "정든식당", "cat": "밥", "lat": 38.2118546, "lng": 128.5879515}, "속초 김영애할머니순두부": {"name": "김영애할머니순두부", "cat": "밥", "lat": 38.206068, "lng": 128.52795}, "외옹치 바다향기로": {"name": "외옹치 바다향기로", "cat": "산책", "lat": 38.1829608, "lng": 128.6093359}, "속초 영금정": {"name": "영금정", "cat": "산책", "lat": 38.2118321, "lng": 128.6015368}, "속초아이 대관람차": {"name": "속초아이", "cat": "산책", "lat": 38.1907178, "lng": 128.6027408}, "속초 상도문돌담마을": {"name": "상도문 돌담마을", "cat": "산책", "lat": 38.1640486, "lng": 128.5540375}, "속초 청초정": {"name": "청초호 해상보행교", "cat": "산책", "lat": 38.1969086, "lng": 128.5837544}};
+var LSKEY = "cb-issue02";
+
+/* ── 거리 모델: 직선거리 × 1.3 도로 보정, 도보 80m/분(1.2km 이하), 차 40km/h ── */
+function hav(a,b){
+  var R=6371000, r=Math.PI/180;
+  var dLat=(b.lat-a.lat)*r, dLng=(b.lng-a.lng)*r;
+  var s=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLng/2)*Math.sin(dLng/2);
+  return 2*R*Math.asin(Math.sqrt(s));
+}
+function leg(a,b){
+  var m=hav(a,b)*1.3;
+  if(m<=1200) return {mode:"도보", min:Math.max(1,Math.round(m/80)), m:m};
+  return {mode:"차", min:Math.max(2,Math.round(m/667)), m:m};
+}
+function legTxt(l){
+  var d=l.m<950? Math.round(l.m/10)*10+"m" : (l.m/1000).toFixed(1)+"km";
+  return l.mode+" "+l.min+"분 · "+d;
+}
+
+/* ── 상태 ── */
+var state={sel:[], home:true};
+try{ var s=JSON.parse(localStorage.getItem(LSKEY)||"null"); if(s&&s.sel){state.sel=s.sel.filter(function(q){return SPOTS[q];}); state.home=s.home!==false;} }catch(e){}
+function save(){ try{localStorage.setItem(LSKEY,JSON.stringify(state));}catch(e){} }
+
+/* ── 선택 버튼·거리 칩 주입: 페이지의 모든 지도 링크 ── */
+var anchors=[].slice.call(document.querySelectorAll('a[href^="https://map.naver.com/p/search/"]'));
+anchors.forEach(function(a){
+  var q=decodeURIComponent(a.getAttribute("href").split("/p/search/")[1]||"");
+  var sp=SPOTS[q]; if(!sp) return;
+  var l=leg(HOME,sp);
+  var chip=document.createElement("span"); chip.className="cb-d"; chip.textContent="숙소 "+l.mode+" "+l.min+"분";
+  var btn=document.createElement("button"); btn.type="button"; btn.className="cb-add"; btn.dataset.q=q;
+  btn.setAttribute("aria-label",sp.name+" 코스에 담기"); btn.textContent="+";
+  btn.addEventListener("click",function(ev){ ev.preventDefault(); toggle(q); });
+  a.after(btn); a.after(chip);
+});
+function syncBtns(){
+  [].slice.call(document.querySelectorAll(".cb-add")).forEach(function(b){
+    var on=state.sel.indexOf(b.dataset.q)>=0;
+    b.classList.toggle("on",on); b.textContent=on?"✓":"+";
+  });
+}
+
+/* ── 지도 ── */
+var map=null, layer=null, tileL=null;
+function darkNow(){
+  var t=document.documentElement.getAttribute("data-theme");
+  if(t==="dark") return true; if(t==="light") return false;
+  return window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+function tiles(){
+  return L.tileLayer("https://{s}.basemaps.cartocdn.com/"+(darkNow()?"dark_all":"light_all")+"/{z}/{x}/{y}{r}.png",
+    {maxZoom:18, attribution:'&copy; OpenStreetMap &copy; CARTO'});
+}
+function ensureMap(){
+  if(map) return;
+  if(typeof L==="undefined"){
+    document.getElementById("cbMap").innerHTML='<div class="cb-empty">지도를 불러오지 못했습니다 — 네트워크 연결 뒤 새로고침해 주세요. 오른쪽 시나리오는 그대로 쓸 수 있습니다.</div>';
+    return;
+  }
+  map=L.map("cbMap",{zoomControl:true, attributionControl:true});
+  tileL=tiles().addTo(map);
+  layer=L.layerGroup().addTo(map);
+  map.setView([HOME.lat,HOME.lng],13);
+  if(window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){
+    if(!map) return; map.removeLayer(tileL); tileL=tiles().addTo(map);
+  });
+}
+function route(){
+  var pts=state.sel.map(function(q){return SPOTS[q];});
+  if(state.home&&pts.length) pts=[HOME].concat(pts);
+  return pts;
+}
+function drawMap(){
+  if(!map) return;
+  layer.clearLayers();
+  var pts=route(); if(!pts.length) return;
+  pts.forEach(function(p,i){
+    var home=(state.home&&i===0);
+    var ic=L.divIcon({className:"", html:'<div class="cb-pin'+(home?' home':'')+'" style="width:22px;height:22px">'+(home?"H":(state.home?i:i+1))+"</div>", iconSize:[22,22], iconAnchor:[11,11]});
+    L.marker([p.lat,p.lng],{icon:ic, title:p.name}).addTo(layer);
+  });
+  L.polyline(pts.map(function(p){return [p.lat,p.lng];}),{color:getComputedStyle(document.documentElement).getPropertyValue("--accent").trim()||"#ff5722", weight:2.5, dashArray:"6 5", opacity:.9}).addTo(layer);
+  var b=L.latLngBounds(pts.map(function(p){return [p.lat,p.lng];}));
+  map.fitBounds(b,{padding:[26,26], maxZoom:15});
+}
+
+/* ── 시나리오 리스트 ── */
+var listEl=document.getElementById("cbList");
+function drawList(){
+  listEl.innerHTML="";
+  if(!state.sel.length){
+    var d=document.createElement("div"); d.className="cb-empty";
+    d.textContent="메뉴 이름 옆 + 버튼으로 스팟을 담으면, 여기서 순서를 짜고 지도로 확인합니다.";
+    listEl.appendChild(d); return;
+  }
+  var prev=state.home?HOME:null;
+  state.sel.forEach(function(q,i){
+    var sp=SPOTS[q];
+    var li=document.createElement("div"); li.className="cb-li"; li.draggable=true; li.dataset.i=i;
+    var lg=prev?leg(prev,sp):null;
+    li.innerHTML='<span class="no">'+(i+1)+'</span>'
+      +'<span><span class="nm2">'+sp.name+'<span class="ct">'+sp.cat+'</span></span>'
+      +'<div class="leg">'+(lg?('<span class="ac">↳</span> '+legTxt(lg)):"출발점")+"</div></span>"
+      +'<span class="ops"><button type="button" data-op="up" aria-label="위로">▲</button><button type="button" data-op="dn" aria-label="아래로">▼</button><button type="button" data-op="rm" aria-label="빼기">✕</button></span>';
+    li.querySelectorAll("button").forEach(function(b){
+      b.addEventListener("click",function(){
+        var op=b.dataset.op;
+        if(op==="rm") return toggle(q);
+        var j=op==="up"?i-1:i+1;
+        if(j<0||j>=state.sel.length) return;
+        var t=state.sel[i]; state.sel[i]=state.sel[j]; state.sel[j]=t;
+        save(); render();
+      });
+    });
+    li.addEventListener("dragstart",function(e){ li.classList.add("drag"); e.dataTransfer.setData("text/plain",String(i)); });
+    li.addEventListener("dragend",function(){ li.classList.remove("drag"); });
+    li.addEventListener("dragover",function(e){ e.preventDefault(); });
+    li.addEventListener("drop",function(e){
+      e.preventDefault();
+      var from=parseInt(e.dataTransfer.getData("text/plain"),10);
+      if(isNaN(from)||from===i) return;
+      var it=state.sel.splice(from,1)[0]; state.sel.splice(i,0,it);
+      save(); render();
+    });
+    listEl.appendChild(li);
+    prev=sp;
+  });
+}
+function summary(){
+  var pts=route(), tot=0, mins=0;
+  for(var i=1;i<pts.length;i++){ var l=leg(pts[i-1],pts[i]); tot+=l.m; mins+=l.min; }
+  var t=mins>=60? Math.floor(mins/60)+"시간 "+(mins%60?mins%60+"분":""): mins+"분";
+  document.getElementById("cbSum").textContent=state.sel.length+"곳"+(pts.length>1?" · "+(tot/1000).toFixed(1)+"km · 이동 약 "+t.trim():"");
+  document.getElementById("cbBadge").textContent=state.sel.length;
+}
+function render(){ syncBtns(); drawList(); summary(); drawMap(); }
+
+/* ── 열고 닫기: FAB 토글, 배너 밖 클릭 시 접힘 ── */
+var fab=document.getElementById("cbFab"), sheet=document.getElementById("cbSheet");
+function open(){
+  document.body.classList.add("cb-open"); fab.setAttribute("aria-expanded","true");
+  ensureMap(); setTimeout(function(){ if(map){ map.invalidateSize(); drawMap(); } },280);
+}
+function close(){ document.body.classList.remove("cb-open"); fab.setAttribute("aria-expanded","false"); }
+fab.addEventListener("click",function(){ document.body.classList.contains("cb-open")?close():open(); });
+document.getElementById("cbClose").addEventListener("click",close);
+document.addEventListener("pointerdown",function(e){
+  if(!document.body.classList.contains("cb-open")) return;
+  if(sheet.contains(e.target)||fab.contains(e.target)) return;
+  if(e.target.closest&&e.target.closest(".cb-add")) return;
+  close();
+});
+document.addEventListener("keydown",function(e){ if(e.key==="Escape") close(); });
+
+/* ── 액션 ── */
+function toggle(q){
+  var i=state.sel.indexOf(q);
+  if(i>=0) state.sel.splice(i,1); else state.sel.push(q);
+  save(); render();
+  if(i<0&&!document.body.classList.contains("cb-open")) open();
+}
+document.getElementById("cbHome").checked=state.home;
+document.getElementById("cbHome").addEventListener("change",function(e){ state.home=e.target.checked; save(); render(); });
+document.getElementById("cbClear").addEventListener("click",function(){ state.sel=[]; save(); render(); });
+document.getElementById("cbSort").addEventListener("click",function(){
+  var rest=state.sel.slice(), out=[], cur;
+  if(state.home){ cur=HOME; }
+  else{ var first=rest.shift(); if(!first) return; out.push(first); cur=SPOTS[first]; }
+  while(rest.length){
+    var bi=0,bd=Infinity;
+    rest.forEach(function(q,i){ var d=hav(cur,SPOTS[q]); if(d<bd){bd=d;bi=i;} });
+    var q=rest.splice(bi,1)[0]; out.push(q); cur=SPOTS[q];
+  }
+  state.sel=out; save(); render();
+});
+document.getElementById("cbCopy").addEventListener("click",function(){
+  var pts=route(), lines=[], prev=null;
+  pts.forEach(function(p,i){
+    var head=(state.home&&i===0)?"출발 · ":(state.home?i+". ":(i+1)+". ");
+    var l=prev?leg(prev,p):null;
+    lines.push(head+p.name+(l?" — "+legTxt(l):""));
+    prev=p;
+  });
+  var txt=lines.join("\n");
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+    document.getElementById("cbCopy").textContent="복사됨";
+    setTimeout(function(){document.getElementById("cbCopy").textContent="복사";},1400);
+  }).catch(function(){ window.prompt("복사해 주세요", txt); });
+});
+
+render();
+})();
+</script>
 
 </body>
 </html>
