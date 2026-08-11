@@ -368,6 +368,16 @@ body.cb-open .cb-sheet{transform:none}
   .cb-listbox{border-left:0; border-top:1px solid var(--rule)}
   .cb-fab{right:14px; bottom:calc(14px + env(safe-area-inset-bottom))}
 }
+.cb-li .nm2{cursor:pointer}
+.cb-li .nm2:hover{color:var(--accent)}
+.cb-saves{flex:none; display:flex; flex-wrap:wrap; align-items:center; gap:6px; padding:6px 14px; border-top:1px solid var(--rule)}
+.cb-saves .lb{font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase; color:var(--fg-3); margin-right:4px}
+.cb-chip{display:inline-flex; align-items:center; gap:7px; border:1px solid var(--rule-strong); padding:3px 8px; font-family:var(--mono); font-size:11px; cursor:pointer; background:var(--bg-1); color:var(--fg-2); font-variant-numeric:tabular-nums}
+.cb-chip:hover{border-color:var(--accent); color:var(--accent)}
+.cb-chip .x{color:var(--fg-3); padding:0 1px}
+.cb-chip .x:hover{color:var(--accent)}
+@keyframes cbFlash{0%,100%{background:transparent; box-shadow:none}20%,60%{background:rgba(255,87,34,.16); box-shadow:inset 3px 0 0 var(--accent)}40%,80%{background:transparent; box-shadow:none}}
+.cb-flash{animation:cbFlash 1.7s ease 2}
 @media print{ .cb-fab,.cb-sheet{display:none} }
 </style>
 </head>
@@ -724,6 +734,7 @@ body.cb-open .cb-sheet{transform:none}
     <span class="sum" id="cbSum">0곳</span>
     <span class="sp"></span>
     <label><input type="checkbox" id="cbHome" checked aria-label="숙소 출발"> 숙소 출발</label>
+    <button class="cb-btn" id="cbSave" type="button" hidden>저장</button>
     <button class="cb-btn" id="cbSort" type="button">가까운 순</button>
     <button class="cb-btn" id="cbCopy" type="button">복사</button>
     <button class="cb-btn" id="cbClear" type="button">비우기</button>
@@ -733,6 +744,7 @@ body.cb-open .cb-sheet{transform:none}
     <div class="cb-mapbox"><div id="cbMap"></div></div>
     <div class="cb-listbox" id="cbList"></div>
   </div>
+  <div class="cb-saves" id="cbSaves" hidden><span class="lb">저장된 코스</span></div>
 </aside>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -762,8 +774,10 @@ function legTxt(l){
 }
 
 /* ── 상태 ── */
-var state={sel:[], home:true};
-try{ var s=JSON.parse(localStorage.getItem(LSKEY)||"null"); if(s&&s.sel){state.sel=s.sel.filter(function(q){return SPOTS[q];}); state.home=s.home!==false;} }catch(e){}
+var state={sel:[], home:true, saves:[]};
+try{ var s=JSON.parse(localStorage.getItem(LSKEY)||"null"); if(s&&s.sel){state.sel=s.sel.filter(function(q){return SPOTS[q];}); state.home=s.home!==false;
+  if(Array.isArray(s.saves)) state.saves=s.saves.filter(function(v){return v&&Array.isArray(v.sel)&&v.sel.length;}).map(function(v){return {name:String(v.name||"저장"), sel:v.sel.filter(function(q){return SPOTS[q];}), home:v.home!==false};});
+} }catch(e){}
 function save(){ try{localStorage.setItem(LSKEY,JSON.stringify(state));}catch(e){} }
 
 /* ── 선택 버튼·거리 칩 주입: 페이지의 모든 지도 링크 ── */
@@ -847,6 +861,7 @@ function drawList(){
       +'<span><span class="nm2">'+sp.name+'<span class="ct">'+sp.cat+'</span></span>'
       +'<div class="leg">'+(lg?('<span class="ac">↳</span> '+legTxt(lg)):"출발점")+"</div></span>"
       +'<span class="ops"><button type="button" data-op="up" aria-label="위로">▲</button><button type="button" data-op="dn" aria-label="아래로">▼</button><button type="button" data-op="rm" aria-label="빼기">✕</button></span>';
+    li.querySelector(".nm2").addEventListener("click",function(){ flashSpot(q); });
     li.querySelectorAll("button").forEach(function(b){
       b.addEventListener("click",function(){
         var op=b.dataset.op;
@@ -878,7 +893,41 @@ function summary(){
   document.getElementById("cbSum").textContent=state.sel.length+"곳"+(pts.length>1?" · "+(tot/1000).toFixed(1)+"km · 이동 약 "+t.trim():"");
   document.getElementById("cbBadge").textContent=state.sel.length;
 }
-function render(){ syncBtns(); drawList(); summary(); drawMap(); }
+function flashSpot(q){
+  var a=[].slice.call(document.querySelectorAll('a[href^="https://map.naver.com/p/search/"]')).filter(function(el){
+    return decodeURIComponent(el.getAttribute("href").split("/p/search/")[1]||"")===q;
+  })[0];
+  if(!a) return;
+  var box=a.closest("tr, .sc li, .m3 > div, .tl li")||a.parentElement;
+  a.scrollIntoView({behavior:"smooth", block:"center"});
+  box.classList.remove("cb-flash"); void box.offsetWidth;
+  box.classList.add("cb-flash");
+  setTimeout(function(){ box.classList.remove("cb-flash"); },3600);
+}
+function nextName(){
+  var n=0;
+  state.saves.forEach(function(v){ var m=/^저장(\d+)$/.exec(v.name); if(m) n=Math.max(n,parseInt(m[1],10)); });
+  return "저장"+(n+1);
+}
+function renderSaves(){
+  document.getElementById("cbSave").hidden = state.sel.length<2;
+  var box=document.getElementById("cbSaves");
+  box.hidden = !state.saves.length;
+  [].slice.call(box.querySelectorAll(".cb-chip")).forEach(function(c){c.remove();});
+  state.saves.forEach(function(v,i){
+    var c=document.createElement("button"); c.type="button"; c.className="cb-chip";
+    c.innerHTML='<span>'+v.name+' · '+v.sel.length+'곳</span><span class="x" aria-label="'+v.name+' 삭제">✕</span>';
+    c.setAttribute("aria-label",v.name+" 불러오기");
+    c.addEventListener("click",function(e){
+      if(e.target.classList.contains("x")){ state.saves.splice(i,1); save(); render(); return; }
+      state.sel=v.sel.slice(); state.home=v.home;
+      document.getElementById("cbHome").checked=v.home;
+      save(); render();
+    });
+    box.appendChild(c);
+  });
+}
+function render(){ syncBtns(); drawList(); summary(); renderSaves(); drawMap(); }
 
 /* ── 열고 닫기: FAB 토글, 배너 밖 클릭 시 접힘 ── */
 var fab=document.getElementById("cbFab"), sheet=document.getElementById("cbSheet");
@@ -907,6 +956,13 @@ function toggle(q){
 document.getElementById("cbHome").checked=state.home;
 document.getElementById("cbHome").addEventListener("change",function(e){ state.home=e.target.checked; save(); render(); });
 document.getElementById("cbClear").addEventListener("click",function(){ state.sel=[]; save(); render(); });
+document.getElementById("cbSave").addEventListener("click",function(){
+  if(state.sel.length<2) return;
+  state.saves.push({name:nextName(), sel:state.sel.slice(), home:state.home});
+  save(); render();
+  var b=document.getElementById("cbSave"); b.textContent="저장됨";
+  setTimeout(function(){ b.textContent="저장"; },1200);
+});
 document.getElementById("cbSort").addEventListener("click",function(){
   var rest=state.sel.slice(), out=[], cur;
   if(state.home){ cur=HOME; }
