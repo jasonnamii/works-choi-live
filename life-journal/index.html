@@ -370,8 +370,8 @@ body.cb-open .cb-sheet{transform:none}
 }
 .cb-li .nm2{cursor:pointer}
 .cb-li .nm2:hover{color:var(--accent)}
-.cb-saves{flex:none; display:flex; flex-wrap:wrap; align-items:center; gap:6px; padding:6px 14px; border-top:1px solid var(--rule)}
-.cb-saves .lb{font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase; color:var(--fg-3); margin-right:4px}
+.cb-saves{flex:none; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:6px; padding:6px 14px; border-top:1px solid var(--rule)}
+.cb-saves .lb{font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase; color:var(--fg-3); margin-right:auto}
 .cb-chip{display:inline-flex; align-items:center; gap:7px; border:1px solid var(--rule-strong); padding:3px 8px; font-family:var(--mono); font-size:11px; cursor:pointer; background:var(--bg-1); color:var(--fg-2); font-variant-numeric:tabular-nums}
 .cb-chip:hover{border-color:var(--accent); color:var(--accent)}
 .cb-chip .x{color:var(--fg-3); padding:0 1px}
@@ -914,12 +914,12 @@ function renderSaves(){
   var box=document.getElementById("cbSaves");
   box.hidden = !state.saves.length;
   [].slice.call(box.querySelectorAll(".cb-chip")).forEach(function(c){c.remove();});
-  state.saves.forEach(function(v,i){
+  state.saves.slice().reverse().forEach(function(v){
     var c=document.createElement("button"); c.type="button"; c.className="cb-chip";
     c.innerHTML='<span>'+v.name+' · '+v.sel.length+'곳</span><span class="x" aria-label="'+v.name+' 삭제">✕</span>';
     c.setAttribute("aria-label",v.name+" 불러오기");
     c.addEventListener("click",function(e){
-      if(e.target.classList.contains("x")){ state.saves.splice(i,1); save(); render(); return; }
+      if(e.target.classList.contains("x")){ var idx=state.saves.indexOf(v); if(idx>=0) state.saves.splice(idx,1); save(); render(); return; }
       state.sel=v.sel.slice(); state.home=v.home;
       document.getElementById("cbHome").checked=v.home;
       save(); render();
