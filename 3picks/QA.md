@@ -11,7 +11,7 @@ RESPONSIVE FLOW: pass / mobile-image-first / about-2col-1col
 KEYBOARD & MOTION: source-pass / direct-browser-unverified
 STRICT QC: pass
 HERO VISUAL: pass / tshirt-background / mobile-image-first / visible-art-centered
-MICROINTERACTION: source-pass / heart-only-2.6s / reduced-motion-safe
+MICROINTERACTION: source-pass / heart-only-1.3s / amplitude-5x / reduced-motion-safe
 UNVERIFIED: 320·360·430px 히어로, 키보드·미니 견적 직접 조작, 카카오톡 채널 실연결
 ```
 

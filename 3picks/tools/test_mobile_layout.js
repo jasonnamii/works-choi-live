@@ -25,7 +25,8 @@ const checks = [
   [html.includes("object-fit:contain;object-position:center;transform:translateX(-18.7313%)"), "mobile visible key visual centered"],
   [html.includes(".proof-strip__grid{display:grid;grid-template-columns:1fr"), "stacked mobile proof items"],
   [html.includes("max-height:calc(100svh - 24px)"), "dialog viewport cap"],
-  [html.includes("animation:quote-heartbeat 2.6s ease-in-out infinite"), "heart-only resting heartbeat"],
+  [html.includes("animation:quote-heartbeat 1.3s ease-in-out infinite"), "heart-only double-speed heartbeat"],
+  [html.includes("8%{transform:scale(2)}") && html.includes("17%{transform:scale(1.65)}"), "fivefold heartbeat amplitude"],
   [html.includes(".quote-trigger__heart{animation:none}"), "reduced-motion heartbeat override"],
 ];
 

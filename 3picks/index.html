@@ -247,8 +247,8 @@
     .quote-float{position:fixed;z-index:140;left:24px;bottom:24px;width:calc(100vw - 48px);pointer-events:none}
     .quote-trigger{position:absolute;z-index:2;left:0;bottom:0;width:72px;height:72px;padding:0;border:1px solid var(--tp-ink);border-radius:0;background:var(--tp-ink);color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:5px;font-family:var(--tp-font-mono);font-size:16px;font-weight:800;letter-spacing:.04em;pointer-events:auto;transition:background var(--tp-dur) var(--tp-ease),color var(--tp-dur) var(--tp-ease)}
     .quote-trigger[aria-expanded="true"]{background:var(--tp-sun);color:var(--tp-ink)}
-    .quote-trigger__heart{display:inline-block;font-size:20px;line-height:1;transform-origin:center;animation:quote-heartbeat 2.6s ease-in-out infinite}
-    @keyframes quote-heartbeat{0%,24%,100%{transform:scale(1)}8%{transform:scale(1.2)}12%{transform:scale(1)}17%{transform:scale(1.13)}21%{transform:scale(1)}}
+    .quote-trigger__heart{display:inline-block;font-size:20px;line-height:1;transform-origin:center;animation:quote-heartbeat 1.3s ease-in-out infinite}
+    @keyframes quote-heartbeat{0%,24%,100%{transform:scale(1)}8%{transform:scale(2)}12%{transform:scale(1)}17%{transform:scale(1.65)}21%{transform:scale(1)}}
     .quote-bar{height:208px;min-width:0;border:1px solid var(--tp-ink);background:var(--tp-cream);overflow:hidden;opacity:0;clip-path:inset(0 100% 0 0);transform:translateX(-12px);transform-origin:left bottom;pointer-events:none;transition:clip-path 260ms cubic-bezier(.22,1,.36,1),transform 260ms cubic-bezier(.22,1,.36,1),opacity 180ms linear}
     .quote-float.is-open .quote-bar{opacity:1;clip-path:inset(0 0 0 0);transform:translateX(0);pointer-events:auto}
     .quote-bar__inner{height:100%;min-width:980px;padding-left:72px;display:grid;grid-template-columns:minmax(360px,1fr) 228px 356px}
