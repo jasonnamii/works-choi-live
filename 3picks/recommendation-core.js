@@ -63,17 +63,28 @@
     }));
   }
 
-  function enumerateBundles(scored, targetPrice, publicRecipient) {
+  function enumerateBundles(scored, targetPrice, publicRecipient, count = 0, totalBudget = 0) {
     const bundles = [];
     const push = (items) => {
       if (new Set(items.map((item) => item.product.category)).size !== items.length) return;
       const totalPrice = items.reduce((sum, item) => sum + Number(item.product.price), 0);
       if (publicRecipient === "포함" && totalPrice > 50000) return;
+      const appliedQuantities = items.map((item) => Math.max(Number(count) || 0, Number(item.product.moq) || 0));
+      const estimatedTotal = Number(count) > 0
+        ? items.reduce((sum, item, index) => sum + Number(item.product.price) * appliedQuantities[index], 0)
+        : null;
+      const totalDifference = Number(totalBudget) > 0 && estimatedTotal !== null ? Number(totalBudget) - estimatedTotal : null;
       bundles.push({
         products: items.map((item) => item.product),
         totalPrice,
         targetPrice,
         difference: targetPrice - totalPrice,
+        quantity: Number(count) || null,
+        appliedQuantities,
+        estimatedTotal,
+        totalBudget: Number(totalBudget) || null,
+        totalDifference,
+        hasMoqAdjustment: appliedQuantities.some((quantity) => quantity > Number(count)),
         score: items.reduce((sum, item) => sum + item.score, 0),
       });
     };
@@ -89,9 +100,11 @@
     }
 
     return bundles.sort((a, b) => {
-      const distance = Math.abs(a.difference) - Math.abs(b.difference);
+      const leftDifference = a.totalDifference === null ? a.difference : a.totalDifference;
+      const rightDifference = b.totalDifference === null ? b.difference : b.totalDifference;
+      const distance = Math.abs(leftDifference) - Math.abs(rightDifference);
       if (distance) return distance;
-      const overage = Number(a.difference < 0) - Number(b.difference < 0);
+      const overage = Number(leftDifference < 0) - Number(rightDifference < 0);
       if (overage) return overage;
       if (b.score !== a.score) return b.score - a.score;
       return b.products.length - a.products.length;
@@ -108,7 +121,71 @@
     }).slice(0, 3);
   }
 
-  function unknownBudgetPicks(scored, categoryOrder) {
+  function fallbackCandidates({ products, answers, categoryOrder, leadLimit, month, targetPrice }) {
+    const effectiveOrder = categoryOrder?.length ? categoryOrder : CATEGORY_ORDER;
+    const excluded = new Set(answers.excludes || []);
+    const base = selectOperatingProducts(products).filter((product) => {
+      if (!product.available || !Number(product.price)) return false;
+      if (answers.publicRecipient === "포함" && Number(product.price) > 50000) return false;
+      return true;
+    });
+    const preferred = base.filter((product) => !excluded.has(product.category));
+    const preferredCategories = new Set(preferred.map((product) => product.category));
+    const pool = preferredCategories.size >= 3 ? preferred : base;
+    const scored = pool.map((product) => ({ product, score: productScore(product, answers, effectiveOrder, month) }));
+    const byCategory = new Map();
+    scored.forEach((item) => {
+      if (!byCategory.has(item.product.category)) byCategory.set(item.product.category, []);
+      byCategory.get(item.product.category).push(item);
+    });
+    const selected = new Map();
+    const keep = (item) => item && selected.set(item.product.id, item);
+    byCategory.forEach((items) => {
+      const byScore = [...items].sort((a, b) => b.score - a.score || Number(a.product.rank) - Number(b.product.rank));
+      const byPrice = [...items].sort((a, b) => Number(a.product.price) - Number(b.product.price));
+      const byTarget = [...items].sort((a, b) => Math.abs(Number(a.product.price) - Number(targetPrice || 0)) - Math.abs(Number(b.product.price) - Number(targetPrice || 0)));
+      keep(byScore[0]);
+      keep(byPrice[0]);
+      keep(byPrice.at(-1));
+      keep(byTarget[0]);
+    });
+    return [...selected.values()].sort((a, b) => b.score - a.score || Number(a.product.rank) - Number(b.product.rank));
+  }
+
+  function mergeCandidates(primary, fallback) {
+    const merged = new Map(fallback.map((item) => [item.product.id, item]));
+    primary.forEach((item) => merged.set(item.product.id, item));
+    return [...merged.values()];
+  }
+
+  function fallbackReasons(product, answers, leadLimit) {
+    const reasons = [];
+    if ((answers.excludes || []).includes(product.category)) reasons.push("제외 품목");
+    if (product.visibility !== "화면노출") reasons.push("상담 제안 상품");
+    if (Number(product.moq) > Number(answers.count)) reasons.push("최소 주문 수량");
+    if (Number(product.leadDays) > Number(leadLimit)) reasons.push("희망 납기");
+    if (answers.logo === "예" && (!product.printMethod || product.printMethod.includes("문의"))) reasons.push("인쇄 방식");
+    return reasons;
+  }
+
+  function enrichGroups(groups, exactIds, answers, leadLimit, effectiveBudget) {
+    const count = Number(answers.count) || 0;
+    return groups.map((group) => {
+      const usedFallback = group.products.some((product) => !exactIds.has(product.id));
+      const consultationChecks = usedFallback
+        ? [...new Set(group.products.flatMap((product) => fallbackReasons(product, answers, leadLimit)))]
+        : [];
+      return {
+        ...group,
+        quantity: count,
+        totalBudget: effectiveBudget || group.totalBudget,
+        usedFallback,
+        consultationChecks,
+      };
+    });
+  }
+
+  function unknownBudgetPicks(scored, categoryOrder, count = 0) {
     const ordered = [...scored].sort((a, b) => {
       const leftCategory = categoryOrder.indexOf(a.product.category);
       const rightCategory = categoryOrder.indexOf(b.product.category);
@@ -128,25 +205,49 @@
       totalPrice: Number(item.product.price),
       targetPrice: null,
       difference: null,
+      quantity: Number(count) || null,
+      appliedQuantities: [Math.max(Number(count) || 0, Number(item.product.moq) || 0)],
+      estimatedTotal: Number(item.product.price) * Math.max(Number(count) || 0, Number(item.product.moq) || 0),
+      totalBudget: null,
+      totalDifference: null,
+      hasMoqAdjustment: Number(item.product.moq) > Number(count),
     }));
   }
 
   function recommend({ products, answers, categoryOrder, leadLimit, month }) {
     const scored = eligibleProducts({ products, answers, categoryOrder, leadLimit, month });
-    if (answers.budgetUnknown) return unknownBudgetPicks(scored, categoryOrder);
+    const count = Number(answers.count);
+    if (!count) return [];
+    const exactIds = new Set(scored.map((item) => item.product.id));
+
+    if (answers.budgetUnknown) {
+      let candidates = scored;
+      let groups = unknownBudgetPicks(candidates, categoryOrder, count);
+      if (groups.length < 3) {
+        candidates = mergeCandidates(scored, fallbackCandidates({ products, answers, categoryOrder, leadLimit, month, targetPrice: 0 }));
+        groups = unknownBudgetPicks(candidates, categoryOrder?.length ? categoryOrder : CATEGORY_ORDER, count);
+      }
+      return enrichGroups(groups, exactIds, answers, leadLimit, null);
+    }
 
     const totalBudget = Number(answers.budget);
-    const count = Number(answers.count);
-    if (!totalBudget || !count) return [];
+    if (!totalBudget) return [];
     const perPerson = Math.floor(totalBudget / count);
     const targetPrice = answers.publicRecipient === "포함" ? Math.min(perPerson, 50000) : perPerson;
-    return diverseTopThree(enumerateBundles(scored, targetPrice, answers.publicRecipient)).map((bundle, index) => ({
+    const effectiveBudget = answers.publicRecipient === "포함" ? Math.min(totalBudget, count * 50000) : totalBudget;
+    let bundles = diverseTopThree(enumerateBundles(scored, targetPrice, answers.publicRecipient, count, effectiveBudget));
+    if (bundles.length < 3) {
+      const fallback = fallbackCandidates({ products, answers, categoryOrder, leadLimit, month, targetPrice });
+      bundles = diverseTopThree(enumerateBundles(mergeCandidates(scored, fallback), targetPrice, answers.publicRecipient, count, effectiveBudget));
+    }
+    const groups = bundles.map((bundle, index) => ({
       ...bundle,
       category: `구성 ${String(index + 1).padStart(2, "0")}`,
       isBundle: true,
       budgetUnknown: false,
     }));
+    return enrichGroups(groups, exactIds, answers, leadLimit, effectiveBudget);
   }
 
-  return { CATEGORY_ORDER, selectOperatingProducts, eligibleProducts, enumerateBundles, recommend };
+  return { CATEGORY_ORDER, selectOperatingProducts, eligibleProducts, fallbackCandidates, enumerateBundles, recommend };
 });

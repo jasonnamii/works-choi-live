@@ -405,7 +405,7 @@
   function saveRecommendationState(shared = false) {
     if (!scrollStorageAvailable || !state.results.length) return;
     const payload = {
-      version: 2,
+      version: 3,
       shared,
       answers: state.answers,
       groups: state.results.map((group) => ({
@@ -416,6 +416,14 @@
         targetPrice: group.targetPrice,
         totalPrice: group.totalPrice,
         difference: group.difference,
+        quantity: group.quantity,
+        appliedQuantities: group.appliedQuantities,
+        estimatedTotal: group.estimatedTotal,
+        totalBudget: group.totalBudget,
+        totalDifference: group.totalDifference,
+        hasMoqAdjustment: Boolean(group.hasMoqAdjustment),
+        usedFallback: Boolean(group.usedFallback),
+        consultationChecks: group.consultationChecks,
       })),
     };
     try {
@@ -438,17 +446,25 @@
     if (!scrollStorageAvailable || !isReloadNavigation) return false;
     try {
       const saved = JSON.parse(sessionStorage.getItem(recommendationStorageKey) || "null");
-      if (!saved || ![1, 2].includes(saved.version) || !Array.isArray(saved.groups)) return false;
+      if (!saved || ![1, 2, 3].includes(saved.version) || !Array.isArray(saved.groups)) return false;
       Object.assign(state.answers, saved.answers || {});
       state.answers.budgetUnknown = Boolean(state.answers.budgetUnknown);
       state.answers.budget = state.answers.budgetUnknown ? "" : normalizeBudgetWon(state.answers.budget);
       const groups = saved.groups.map((group) => ({
         category: group.category,
-        isBundle: saved.version === 2 ? Boolean(group.isBundle) : false,
-        budgetUnknown: saved.version === 2 ? Boolean(group.budgetUnknown) : false,
-        targetPrice: saved.version === 2 ? group.targetPrice : null,
-        totalPrice: saved.version === 2 ? group.totalPrice : null,
-        difference: saved.version === 2 ? group.difference : null,
+        isBundle: saved.version >= 2 ? Boolean(group.isBundle) : false,
+        budgetUnknown: saved.version >= 2 ? Boolean(group.budgetUnknown) : false,
+        targetPrice: saved.version >= 2 ? group.targetPrice : null,
+        totalPrice: saved.version >= 2 ? group.totalPrice : null,
+        difference: saved.version >= 2 ? group.difference : null,
+        quantity: saved.version >= 3 ? group.quantity : Number(state.answers.count) || null,
+        appliedQuantities: saved.version >= 3 ? group.appliedQuantities : [],
+        estimatedTotal: saved.version >= 3 ? group.estimatedTotal : null,
+        totalBudget: saved.version >= 3 ? group.totalBudget : Number(state.answers.budget) || null,
+        totalDifference: saved.version >= 3 ? group.totalDifference : null,
+        hasMoqAdjustment: saved.version >= 3 ? Boolean(group.hasMoqAdjustment) : false,
+        usedFallback: saved.version >= 3 ? Boolean(group.usedFallback) : false,
+        consultationChecks: saved.version >= 3 && Array.isArray(group.consultationChecks) ? group.consultationChecks : [],
         products: Array.isArray(group.productIds)
           ? group.productIds.map((id) => products.find((product) => product.id === id)).filter(Boolean)
           : [],
@@ -927,6 +943,7 @@
   function resultNotice() {
     const notices = [];
     notices.push("구성가는 상품 마스터의 100개 주문 기준 단가 합계예요. 실제 수량별 단가와 인쇄비는 상담에서 확정해 드려요.");
+    if (state.results.some((group) => group.usedFallback)) notices.push("입력하신 조건을 그대로 적용하면 선택 폭이 좁아져, 수량·납기·인쇄를 상담으로 조정할 수 있는 후보까지 함께 보여드려요.");
     if (state.answers.budgetUnknown) notices.push("예산을 정하지 않아 행사와 원하는 느낌에 잘 맞는 대표 상품부터 보여드려요.");
     if (state.answers.publicRecipient === "포함") notices.push("공직자·교직원·언론인 수령 조건을 반영해 1인당 5만 원 이하의 상품만 골랐어요.");
     if (state.answers.event === "명절·시즌 선물") notices.push("명절 선물은 본선물에 자연스럽게 곁들일 수 있는 답례 구성을 중심으로 살펴봤어요.");
@@ -946,16 +963,17 @@
         `${index + 1}. ${group.category}${group.totalPrice ? ` · 1인당 ${money(group.totalPrice)}원` : ""}`,
         ...group.products.map((product) => `   - ${product.name} (${product.id})`),
       ]),
-      "제작 색상과 재고, 정확한 단가와 납기는 상담에서 확인해 드립니다.",
+      "지금 금액은 방향을 잡기 위한 가예산이며, 실제 견적은 수량·재고·인쇄·포장·배송 조건을 확인한 뒤 예산에 맞춰 다시 안내해 드립니다.",
     ];
     return lines.filter(Boolean).join("\n");
   }
 
   function budgetDifferenceLabel(group) {
     if (group.budgetUnknown || group.difference === null || group.difference === undefined) return "예산 미정";
-    if (group.difference > 0) return `예산 ${money(group.difference)}원 남음`;
-    if (group.difference < 0) return `예산 ${money(Math.abs(group.difference))}원 부족`;
-    return "예산에 맞음";
+    const difference = group.totalDifference ?? group.difference;
+    if (difference > 0) return `가예산보다 ${money(difference)}원 남음`;
+    if (difference < 0) return `가예산보다 ${money(Math.abs(difference))}원 초과`;
+    return "가예산에 맞음";
   }
 
   function renderResults(groups = state.results, shared = false) {
@@ -997,13 +1015,19 @@
       </div>
       <div class="result-groups result-groups--${Math.min(groups.length, 3)}">
         ${groups.map((group, index) => {
+          const resultQuantity = Number(group.quantity || state.answers.count || 0);
+          const estimatedTotal = Number(group.estimatedTotal || (Number(group.totalPrice) * resultQuantity));
+          const unitLabel = group.hasMoqAdjustment ? "상품 단가 합계" : "1인당";
+          const totalLabel = !resultQuantity ? "수량 입력 후 총액 확인" : group.hasMoqAdjustment ? `MOQ 반영 총 ${money(estimatedTotal)}원` : `${money(resultQuantity)}명 기준 총 ${money(estimatedTotal)}원`;
+          const consultationChecks = Array.isArray(group.consultationChecks) ? group.consultationChecks : [];
           return `
             <section class="result-group" style="--result-column:${index + 1}">
               <div class="result-group__head">
                 <div class="result-number">0${index + 1}</div>
                 <h4>${escapeHtml(group.category)}</h4>
-                <div class="result-budget"><strong>${group.totalPrice ? `1인당 ${money(group.totalPrice)}원` : "가격 확인"}</strong><span class="${Number(group.difference) < 0 ? "is-over" : ""}">${escapeHtml(budgetDifferenceLabel(group))}</span></div>
-                <p class="result-why">${group.budgetUnknown ? "행사 적합도와 원하는 느낌을 우선해 고른 대표 상품이에요." : `${group.products.length}종을 묶어 목표 예산과의 차이를 최소화했어요.`}</p>
+                <div class="result-budget"><strong>${group.totalPrice ? `${unitLabel} ${money(group.totalPrice)}원` : "가격 확인"}</strong><span class="result-budget__total">${escapeHtml(totalLabel)}</span><span class="${Number(group.totalDifference ?? group.difference) < 0 ? "is-over" : ""}">${escapeHtml(budgetDifferenceLabel(group))}</span></div>
+                ${consultationChecks.length ? `<p class="result-constraint"><strong>상담 확인:</strong> ${escapeHtml(consultationChecks.join(" · "))}</p>` : ""}
+                <p class="result-why">${group.budgetUnknown ? "행사 적합도와 원하는 느낌을 우선해 고른 대표 상품이에요." : `${group.products.length}종을 묶고 입력 수량과 MOQ를 반영해 총예산과의 차이를 최소화했어요.`}</p>
               </div>
               <div class="result-bundle-products">${group.products.map((product, productIndex) => productCard(product, { badge: `구성${productIndex + 1}`, compact: true })).join("")}</div>
             </section>`;
@@ -1014,6 +1038,7 @@
         <button class="tp-btn tp-btn--secondary" type="button" data-share-result>추천 결과 공유</button>
         <button class="tp-btn tp-btn--primary" type="button" data-consult>카카오톡으로 상담하기</button>
       </div>
+      <div class="result-estimate-note" role="note"><strong>가예산 안내</strong><p>지금 보시는 금액은 예산의 방향을 편하게 잡아보는 가예산이에요. 실제 견적은 선택하신 수량과 상품 재고, 인쇄·포장 방식, 배송 일정에 따라 조금 달라질 수 있습니다. 걱정하지 않으셔도 괜찮아요. 상담할 때 조건을 하나씩 확인해 가능한 예산 안에서 가장 좋은 구성으로 다시 맞춰드릴게요.</p></div>
     `;
     saveRecommendationState(shared);
     emit("result_view", { result_count: groups.length });
