@@ -36,7 +36,8 @@ for (const [passed, label] of checks) assert.ok(passed, `Missing mobile invarian
 const heroFigure = html.indexOf('<figure class="hero__backdrop"');
 const heroCopy = html.indexOf('<div class="hero__copy">');
 assert.ok(heroFigure >= 0 && heroCopy > heroFigure, "Hero image must precede copy in DOM order");
-assert.equal((html.match(/<a href="#about">멤버 소개<\/a>/g) || []).length, 2, "GNB와 푸터의 멤버 소개 라벨이 일치하지 않습니다.");
+assert.equal((html.match(/<a href="#about">Our brand story<\/a>/g) || []).length, 1, "GNB의 Our brand story 라벨이 없거나 중복됐습니다.");
+assert.equal((html.match(/<a href="#about">멤버 소개<\/a>/g) || []).length, 1, "푸터의 멤버 소개 라벨이 없거나 중복됐습니다.");
 assert.ok(!html.includes('href="#about">회사소개'), "이전 회사소개 메뉴 라벨이 남아 있습니다.");
 
 const openBraces = [...html].filter((character) => character === "{").length;
