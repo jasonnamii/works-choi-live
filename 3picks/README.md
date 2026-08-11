@@ -35,7 +35,7 @@ python3 tools/build_catalog.py
 - `app.js`: 설문, 룰 추천, 결과 복원, 색상 전환, 미니 견적, PDF·공유·상담 동작
 - `config.js`: 카카오톡 채널과 담당자 설정
 - `assets/3-picks-key-visual-tshirt-v2.webp`: 보조배터리를 티셔츠로 교체한 히어로 키비주얼
-- `assets/team-baek-sunmi-v1.png`, `assets/team-member-placeholder-v1.png`: 회사소개 멤버 실루엣
+- `assets/team-baek-sunmi-v1.png`, `assets/team-member-placeholder-v1.png`: 멤버 소개 실루엣
 - `assets/products-data.js`: 브라우저용 상품 데이터
 - `assets/products.json`: 검수·연동용 상품 데이터
 - `assets/products/`: 제품당 3장, 총 330장의 WebP 이미지
@@ -45,7 +45,7 @@ python3 tools/build_catalog.py
 ## 2차 개편 상태
 
 - 히어로는 데스크톱에서 카피와 키비주얼을 한 장면으로 구성하고, 900px 이하에서는 이미지가 카피보다 먼저 나옵니다.
-- GNB 가장 오른쪽의 `회사소개`는 FAQ 다음의 독립 섹션으로 연결되며 백선미 이사와 준비 중인 두 번째 멤버를 보여줍니다.
+- GNB 가장 오른쪽의 `멤버 소개`는 FAQ 다음의 독립 섹션으로 연결되며 백선미 이사와 준비 중인 두 번째 멤버를 보여줍니다.
 - 푸터의 사업자등록번호와 통신판매업 신고번호는 임시값입니다. 실제 번호를 받으면 `index.html`의 주석 아래 두 문장만 교체합니다.
 
 ## 현재 연결 상태

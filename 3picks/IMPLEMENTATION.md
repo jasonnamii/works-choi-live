@@ -29,7 +29,7 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 | 7 | 제작 과정·추천 기준 | TIME·TABLE | 단계별 기준을 합친 4열 진행 레일 | `tp-timeline` |
 | 8 | 상담 전환 | PROSE·RELATION | 오렌지 팝 서피스 + 공통 3CTA | `tp-pop-surface`, `cta-actions` |
 | 9 | FAQ | TABLE·PROSE | 룰 리스트 | `tp-faq` |
-| 10 | 회사소개 | HIERARCHY·PROSE | 멤버 2열 프로필 그리드 | `about-grid`, `team-member` |
+| 10 | 멤버 소개 | HIERARCHY·PROSE | 멤버 2열 프로필 그리드 | `about-grid`, `team-member` |
 | 11 | 푸터 | TABLE·PROSE | 연락처·임시 사업자 정보 행 | `site-footer` |
 | 12 | 위시리스트·미니 견적 | RELATION·TABLE·METRIC | 좌하단 트리거에서 가로로 펼쳐지는 고정 견적 레일 | `quote-float`, `quote-bar`, A4 인쇄 문서 |
 
@@ -46,7 +46,7 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 | 설문 | 데스크톱 2열 선택지, 모바일 1열; 컨트롤 48px·터치 44px 이상 |
 | 타이포 | 히어로 `clamp(48px, 5.4vw, 76px)`; 본문 16px; 읽는 메타 14px; 라벨 13px |
 | 색 | 유채색은 오렌지 `#FC6B38`, 옐로 `#FFFD78`만 사용; 오렌지 면 내부 요소는 검정·흰색만 사용 |
-| 반응형 | 900px 이하 GNB 재배치·히어로 이미지→카피·설문 1열·상품 2열 가시·회사소개 1열·고정 모바일 CTA |
+| 반응형 | 900px 이하 GNB 재배치·히어로 이미지→카피·설문 1열·상품 2열 가시·멤버 소개 1열·고정 모바일 CTA |
 | 이미지 | 상품은 560×560 WebP·`loading=lazy`; 히어로 실파일은 1671×941 알파 WebP·`fetchpriority=high`; 멤버 실루엣은 1122×1402 알파 PNG |
 | 히어로 배치 | 데스크톱은 전체 히어로에 `contain center`·90% 스케일, 카피는 왼쪽 44% 오버레이; 900px 이하는 이미지 영역을 문서 흐름의 첫 번째에 두고 스케일 없이 전체 표시 |
 | 신뢰 바 | 히어로 직후 1200px 레일의 4열·최소 88px; 세로선 없이 24~64px 열 여백; 900px 이하 2×2; 아이콘 28px·스트로크 1.2px·본문 13px 이상 |
@@ -85,7 +85,7 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 - 미니 견적은 브라우저 하단에 길고 낮은 가로 프레임으로 고정해 본문을 계속 볼 수 있게 한다. 공통 수량은 100개 기본·20개 단위이며 상품별 MOQ보다 작으면 적용 수량만 MOQ로 올린다.
 - 상품 금액은 현재 기준 단가×적용 수량의 참고 합계다. 인쇄·배송·부가세는 구조화된 값이 아니므로 숫자 합계에 넣지 않고 상담 확인 문구로 남긴다.
 - `PDF 미니 견적서`는 A4 인쇄 전용 새 창을 만들고 브라우저의 인쇄·PDF 저장 기능을 호출한다. 견적 바 자체는 팝업으로 전환하지 않는다.
-- GNB 가장 오른쪽의 `회사소개`는 FAQ 다음의 `#about`으로 이동한다. 백선미 이사의 실제 경력과 소개를 텍스트로 제공하고, 두 번째 멤버는 가짜 이력 없이 준비 중 더미로 둔다.
+- GNB 가장 오른쪽의 `멤버 소개`는 FAQ 다음의 `#about`으로 이동한다. 백선미 이사의 실제 경력과 소개를 텍스트로 제공하고, 두 번째 멤버는 가짜 이력 없이 준비 중 더미로 둔다.
 - 푸터에는 교체용 임시값 `사업자등록번호 000-00-00000`, `통신판매업 신고번호 제2026-서울강남-0000호`를 두며 실제 번호를 받으면 두 줄만 바꾼다.
 
 ## 2026-08-10 추천 로직 교정
@@ -103,4 +103,4 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 ## 2026-08-11 운영 집합·콘텐츠 개편
 
 - 사이트 운영 상품을 카테고리별 rank 1~10, 총 100개로 제한하고 카탈로그와 추천의 노출 조건을 분리했다.
-- 수건·타올을 06번으로 이동하고 티셔츠 히어로, 모바일 이미지 우선, 회사소개, 임시 사업자 정보를 연결했다.
+- 수건·타올을 06번으로 이동하고 티셔츠 히어로, 모바일 이미지 우선, 멤버 소개, 임시 사업자 정보를 연결했다.
