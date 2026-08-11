@@ -47,32 +47,32 @@ assert.equal(panels.length, 6, "스토리툰이 정확히 6컷이 아닙니다."
 
 const expectedPanels = [
   {
-    asset: "assets/team-story-01-career-v1.webp",
+    asset: "assets/team-story-01-career-v2.webp",
     title: "막내 인생 26년",
     sha256: "a2c1ff56cb1f32f4b5b0c76ddf63e943ed9093baa239ce10bdf4794f0fab87d9",
   },
   {
-    asset: "assets/team-story-02-three-picks-v1.webp",
+    asset: "assets/team-story-02-three-picks-v2.webp",
     title: "세 가지의 저주",
     sha256: "a6bb7c8beb0e9f013564fdd403425fec1757ceae0b88ffd5afb33c76f80c577a",
   },
   {
-    asset: "assets/team-story-03-overtime-v1.webp",
+    asset: "assets/team-story-03-overtime-v2.webp",
     title: "쇼핑인데 왜 야근",
     sha256: "a8f74e9d2516d96fc45ea0351fab1ab8320c0c0dcf2a72d34fde399fd6176e1b",
   },
   {
-    asset: "assets/team-story-04-origin-v1.webp",
+    asset: "assets/team-story-04-origin-v2.webp",
     title: "한이 브랜드가<br>되던 날",
     sha256: "a3d665531e5801706da70c4a3d2565aec9d6c3f814febb84e3bbb0c38bd123ee",
   },
   {
-    asset: "assets/team-story-05-curation-v1.webp",
+    asset: "assets/team-story-05-curation-v2.webp",
     title: "찾고,<br>고르고,<br>비교하고",
     sha256: "f523072c4dc2ef4247e35a767356dfe3467118e440edc7d85705f1aa45118744",
   },
   {
-    asset: "assets/team-story-06-you-are-boss-v1.webp",
+    asset: "assets/team-story-06-you-are-boss-v2.webp",
     title: "여러분은<br>찾지 마세요.<br>정리하지도 마세요.<br>그냥 보고만<br>받으세요.",
     sha256: "6c6471c59b3275600bd43af3d50fdcc59750a8e099e79d4a9c81d1b42fd147bb",
   },
@@ -166,7 +166,7 @@ const profileCopy = html.slice(aboutStart, storyStart);
 assert.ok(profileCopy.includes("<h2>사람과 브랜드를 이해하는<br>사람들이 함께합니다.</h2>"), "멤버 소개 제목 또는 줄바꿈이 확정 카피와 다릅니다.");
 assert.ok(profileCopy.includes("백선미 이사") && profileCopy.includes("브랜드를 알리고, 사람을 찾고, 성장을 가르쳐 온 경험"), "긴머리 화자의 의미 카피가 없습니다.");
 assert.ok(profileCopy.includes("두 번째 멤버") && profileCopy.includes("소개와 경력은 곧 업데이트됩니다."), "짧은머리 팀 캐릭터의 확인된 의미 카피가 없습니다.");
-const profileAssets = ["assets/team-baek-sunmi-v1.png", "assets/team-member-placeholder-v1.png"];
+const profileAssets = ["assets/team-baek-sunmi-v2.png", "assets/team-member-placeholder-v2.png"];
 for (const profileAsset of profileAssets) {
   assert.equal((profileCopy.match(new RegExp(profileAsset.replaceAll(".", "\\."), "g")) || []).length, 1, `${profileAsset} 프로필 참조 수가 1회가 아닙니다.`);
   const metadata = pngMetadata(path.join(root, profileAsset));
@@ -174,12 +174,12 @@ for (const profileAsset of profileAssets) {
   assert.ok(metadata.hasAlpha, `${profileAsset} 프로필 PNG에 알파 채널이 없습니다.`);
 }
 assert.equal(
-  sha256(path.join(root, "assets/team-baek-sunmi-v1.png")),
+  sha256(path.join(root, "assets/team-baek-sunmi-v2.png")),
   "1b9812de3a83086172ab9052fbe1c1d3c02996d3c7410bd7fa9210fb6f34b333",
   "백선미 프로필의 짙은 브라운 긴머리·둥근 안경 확정 자산이 바뀌었습니다.",
 );
 assert.equal(
-  sha256(path.join(root, "assets/team-member-placeholder-v1.png")),
+  sha256(path.join(root, "assets/team-member-placeholder-v2.png")),
   "00f68471e72cdd2d131d5e4b6a42d73b9d727a2841dae79e6aa8d470a69e5cd8",
   "짧은머리 성숙한 직장인 확정 프로필 자산이 바뀌었습니다.",
 );

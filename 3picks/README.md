@@ -35,7 +35,7 @@ python3 tools/build_catalog.py
 - `app.js`: 설문, 룰 추천, 결과 복원, 색상 전환, 미니 견적, PDF·공유·상담 동작
 - `config.js`: 카카오톡 채널과 담당자 설정
 - `assets/3-picks-key-visual-tshirt-v2.webp`: 보조배터리를 티셔츠로 교체한 히어로 키비주얼
-- `assets/team-baek-sunmi-v1.png`, `assets/team-member-placeholder-v1.png`: 멤버 소개 실루엣
+- `assets/team-baek-sunmi-v2.png`, `assets/team-member-placeholder-v2.png`: 멤버 소개 캐릭터 프로필
 - `assets/products-data.js`: 브라우저용 상품 데이터
 - `assets/products.json`: 검수·연동용 상품 데이터
 - `assets/products/`: 제품당 3장, 총 330장의 WebP 이미지
