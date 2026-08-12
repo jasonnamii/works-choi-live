@@ -19,7 +19,7 @@ assert.deepEqual(copyStackLabels, ["찾고,", "비교하고,", "보고하는 귀
 assert.ok(html.includes(".hero__copy-stack{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto"), "Desktop hero copy stack is not anchored in the lower-left whitespace");
 assert.ok(html.includes(".hero__copy-stack span{display:block;width:max-content;max-width:100%"), "Hero copy labels do not fit their individual sentence widths");
 assert.ok(html.includes("padding-top:24px;background:transparent"), "Hero copy stack parent must not become a large filled box");
-assert.equal((html.match(/이제 3PICKS에 시키세요\./g) || []).length, 1, "Hero copy must appear exactly once in the page");
+assert.equal((html.match(/이제 3PICKS에 시키세요\./g) || []).length, 2, "Hero and story ending must both contain the copy");
 assert.ok(html.includes("assets/3-picks-key-visual-tshirt-v2.webp"), "T-shirt hero asset is missing");
 assert.ok(html.includes(".hero__lead{max-width:36ch;margin:0 0 24px;font-size:clamp(20px,1.6vw,24px);font-weight:700;line-height:1.5;color:var(--tp-ink)}"), "Desktop hero lead emphasis is missing");
 assert.ok(html.includes(".hero__lead{margin-bottom:18px;font-size:18px;font-weight:700;line-height:1.5}"), "Mobile hero lead emphasis is missing");
@@ -27,4 +27,4 @@ assert.ok(!html.includes("3분 만에 3 PICKS 받기"), "Hero recommendation CTA
 assert.ok(!html.includes("상품 먼저 보기"), "Hero catalog CTA remains active");
 assert.ok(!html.includes("<h1><span>우리 행사에</span><span>맞는 굿즈,</span><span>세 가지만.</span></h1>"), "Old hero headline remains active");
 
-console.log("PASS hero copy backup, service promise, and four-label stack");
+console.log("PASS hero copy backup, four-label stack, and duplicated story ending copy");

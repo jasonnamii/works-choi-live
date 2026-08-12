@@ -433,8 +433,9 @@
     .story-panel p{max-width:60ch;margin:0;color:var(--tp-ink-70);font-size:clamp(17px,1.35vw,19px);line-height:1.55}
     .story-panel p strong{color:var(--tp-ink);font-size:1.12em}
     .story-panel__dialogue{color:var(--tp-ink)!important;font-weight:800}
-    .member-story__ending{min-height:96px;display:flex;align-items:center;justify-content:flex-end;margin-top:clamp(80px,9vw,128px);padding:24px clamp(24px,4vw,48px);background:var(--tp-ink);color:var(--tp-cell)}
-    .member-story__ending .tp-btn{border-color:var(--tp-cell);background:transparent;color:var(--tp-cell)}
+    .member-story__ending{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px;margin-top:clamp(80px,9vw,128px);padding:clamp(24px,4vw,48px);background:var(--tp-ink);color:var(--tp-cell)}
+    .member-story__ending h4{max-width:17ch;margin:0;font-size:clamp(28px,4vw,48px);line-height:1.12;letter-spacing:-.035em}
+    .member-story__ending .tp-btn{align-self:end;border-color:var(--tp-cell);background:transparent;color:var(--tp-cell)}
 
     @media (hover:hover){
       .tp-btn:hover{opacity:1;transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--tp-ink)}
@@ -650,7 +651,8 @@
       .story-panel__no{font-size:14px}
       .story-panel h4{margin:6px 0 12px;font-size:clamp(28px,8vw,34px)}
       .story-panel p{font-size:16px;line-height:1.45}
-      .member-story__ending{min-height:0;justify-content:stretch;padding:16px}
+      .member-story__ending{grid-template-columns:1fr;align-items:start;gap:24px;padding:24px 16px}
+      .member-story__ending h4{font-size:32px}
       .member-story__ending .tp-btn{width:100%}
       .site-footer{padding:40px 0 calc(48px + env(safe-area-inset-bottom))}
       .footer-grid{gap:28px}
@@ -955,6 +957,7 @@
             </figure>
           </div>
           <div class="member-story__ending" aria-label="스토리 상담">
+            <div><h4>찾고,<br>비교하고,<br>보고하는 귀찮은 일.<br>이제 3PICKS에 시키세요.</h4></div>
             <button class="tp-btn cta-action--kakao" type="button" data-consult>카카오톡 상담하기</button>
           </div>
         </section>
