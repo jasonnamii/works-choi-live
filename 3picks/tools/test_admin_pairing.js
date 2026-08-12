@@ -99,6 +99,11 @@ if (!adminSrc.includes("자동 추천에 나감")) {
   failures.push("어드민 토글 라벨(자동 추천에 나감)이 사라짐 — 홈페이지 실동작과 어긋나지 않는지 확인할 것");
 }
 
+// 7) 연락처 운영 경계 — 이메일 레이어는 config.js, 상품·추천은 콘솔이 담당한다.
+if (!adminSrc.includes("이메일 문의 레이어") || !adminSrc.includes("config.js")) {
+  failures.push("어드민에 이메일 문의 담당자의 config.js 운영 경계 안내가 없음");
+}
+
 if (failures.length) {
   console.error(`FAIL 홈페이지↔어드민 짝 계약 ${failures.length}건\n` + failures.map((f) => `- ${f}`).join("\n"));
   process.exit(1);

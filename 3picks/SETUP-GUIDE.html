@@ -101,7 +101,7 @@ footer { border-top: 1px solid var(--tp-line); margin-top: 64px; padding-top: 24
         <tr><th>index.html</th><td>고객이 보는 홈페이지 본체입니다.</td></tr>
         <tr><th>admin.html</th><td>운영 콘솔입니다. 새 상품 등록(사진 포함), 상품 정보 전체 수정, 숨김·보관, 행사별 추천 매핑, 카테고리별 노출 상품 10개, 추천 가중치를 조정하고 추천 결과를 미리 시뮬레이션합니다. 접속 코드 잠금이 걸려 있고, <strong>웹에 올리지 않고 내 컴퓨터에서 여는 것이 기본</strong>입니다(아래 비공개 원칙).</td></tr>
         <tr><th>site-overrides.js</th><td>콘솔에서 저장한 설정이 담기는 파일입니다. 홈페이지는 열릴 때마다 이 파일을 읽어 기본값 위에 덮어씁니다.</td></tr>
-        <tr><th>config.js</th><td>담당자 이름·전화·이메일·카카오 채널 주소입니다. 개통 전에 본인 정보로 바꿉니다.</td></tr>
+        <tr><th>config.js</th><td>담당자 이름·전화·카카오 채널 주소와 이메일 문의 레이어에 보일 두 담당자의 이름·이메일입니다. 개통 전에 본인 정보로 바꿉니다.</td></tr>
         <tr><th>assets/ 외 나머지</th><td>상품 데이터·이미지·추천 엔진 등 사이트 구성 파일입니다. 직접 고칠 일은 없습니다.</td></tr>
       </table>
     </div>
@@ -195,7 +195,7 @@ footer { border-top: 1px solid var(--tp-line); margin-top: 64px; padding-top: 24
     <p class="lede">실제 손님에게 열기 전에 아래 항목을 본인 정보로 바꿨는지 확인하세요.</p>
     <ul class="check">
       <li>홈페이지 맨 아래 사업자등록번호·통신판매업 신고번호 — 임시값이 들어 있습니다. <code>index.html</code>을 GitHub 화면에서 열어 연필 아이콘으로 해당 숫자만 바꿉니다.</li>
-      <li><code>config.js</code>의 담당자 이름·전화번호·이메일·카카오 채널 주소.</li>
+      <li><code>config.js</code>의 담당자 이름·전화번호·카카오 채널 주소와 이메일 문의 레이어에 보일 두 담당자의 이름·이메일.</li>
       <li>미리보기로 대표 행사 두세 개를 돌려 추천이 의도대로 나오는지 확인.</li>
     </ul>
   </section>

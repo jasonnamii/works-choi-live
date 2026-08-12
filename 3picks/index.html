@@ -456,6 +456,7 @@
     .footer-info{font-size:14px;color:var(--tp-cell)}
     .footer-info p{margin:2px 0}
     .footer-links{display:grid;gap:8px;text-align:right;font-family:var(--tp-font-mono);font-size:13px;letter-spacing:.05em}
+    .footer-email-link{appearance:none;border:0;padding:0;background:transparent;text-align:inherit;font-family:inherit;font-size:inherit;letter-spacing:inherit}
     .footer-note{margin-top:40px;padding-top:16px;border-top:1px solid rgba(255,255,255,.35);font-size:13px;color:var(--tp-cell)}
 
     .toast{position:fixed;left:50%;bottom:88px;z-index:160;transform:translate(-50%,16px);max-width:calc(100% - 32px);padding:12px 18px;background:var(--tp-ink);color:var(--tp-cell);font-size:14px;opacity:0;pointer-events:none;transition:opacity var(--tp-dur),transform var(--tp-dur)}
@@ -466,6 +467,13 @@
     .dialog-body h2{margin:8px 0 12px;font-size:32px;line-height:1.15}
     .dialog-body p{margin:0 0 20px;color:var(--tp-ink-70)}
     .dialog-actions{display:flex;flex-wrap:wrap;gap:8px}
+    .email-options{display:grid;gap:8px;margin:24px 0}
+    .email-option{width:100%;min-height:72px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;padding:14px 16px;border:1px solid var(--tp-line);background:var(--tp-cell);text-align:left;transition:background var(--tp-dur) var(--tp-ease)}
+    .email-option:hover{background:var(--tp-sun)}
+    .email-option__identity{display:grid;min-width:0}
+    .email-option__identity strong{font-size:14px}
+    .email-option__identity span{font-family:var(--tp-font-mono);font-size:16px;overflow-wrap:anywhere}
+    .email-option__status{font-size:13px;font-weight:800;white-space:nowrap}
 
     @media (min-width:901px) and (max-width:1100px){
       .product-rail{grid-auto-columns:calc((100% - 3px)/4)}
@@ -702,7 +710,7 @@
       <div class="nav-actions cta-actions">
         <a class="tp-btn cta-action--recommend" href="#recommend">맞춤추천</a>
         <button class="tp-btn cta-action--kakao" type="button" data-consult>카카오톡 상담하기</button>
-        <a class="tp-btn cta-action--email" href="mailto:julia@3picks.co.kr" data-email-link>이메일문의</a>
+        <button class="tp-btn cta-action--email" type="button" data-email-link aria-haspopup="dialog">이메일문의</button>
       </div>
     </div>
     <nav class="category-strip" aria-label="상품 카테고리">
@@ -827,7 +835,7 @@
         <div class="tp-btns cta-actions">
           <a class="tp-btn cta-action--recommend" href="#recommend">맞춤추천</a>
           <button class="tp-btn cta-action--kakao" type="button" data-consult>카카오톡 상담하기</button>
-          <a class="tp-btn cta-action--email" href="mailto:julia@3picks.co.kr" data-email-link>이메일문의</a>
+          <button class="tp-btn cta-action--email" type="button" data-email-link aria-haspopup="dialog">이메일문의</button>
         </div>
       </div>
     </section>
@@ -958,7 +966,7 @@
     <div class="tp-wrap">
       <div class="footer-grid">
         <div><img class="footer-logo" src="assets/3PICKS-logo.svg" alt="3PICKS"><div class="footer-info"><p>백선미 이사</p><p>010-6331-9276 · julia@3picks.co.kr</p><p>서울특별시 용산구 이촌로14길 16, 1층 101호</p><!-- 임시 등록번호: 실제 번호 수령 시 아래 두 줄만 교체 --><p>사업자등록번호 000-00-00000</p><p>통신판매업 신고번호 제2026-서울강남-0000호</p></div></div>
-        <div class="footer-links"><a href="#recommend">맞춤 추천</a><a href="#catalog">상품 보기</a><a href="#about">스토리</a><a href="mailto:julia@3picks.co.kr">이메일 문의</a></div>
+        <div class="footer-links"><a href="#recommend">맞춤 추천</a><a href="#catalog">상품 보기</a><a href="#about">스토리</a><button class="footer-email-link" type="button" data-email-link aria-haspopup="dialog">이메일 문의</button></div>
       </div>
       <div class="footer-note">가격과 재고, 제작 색상, 납기는 주문 수량과 상담 시점에 따라 달라질 수 있어요.</div>
     </div>
@@ -996,6 +1004,18 @@
     </section>
   </aside>
 
+  <dialog id="emailDialog" aria-labelledby="emailTitle">
+    <div class="dialog-body">
+      <div class="tp-eyebrow">Email inquiry</div>
+      <h2 id="emailTitle">이메일로 문의하기</h2>
+      <p>담당자를 선택하면 이메일 주소가 복사됩니다.</p>
+      <div class="email-options" id="emailOptions"></div>
+      <div class="dialog-actions">
+        <button class="tp-btn tp-btn--ghost" type="button" data-close-email-dialog>닫기</button>
+      </div>
+    </div>
+  </dialog>
+
   <dialog id="consultDialog" aria-labelledby="consultTitle">
     <div class="dialog-body">
       <div class="tp-eyebrow">Kakao consultation</div>
@@ -1009,10 +1029,10 @@
     </div>
   </dialog>
 
-  <script src="config.js?v=260812a"></script>
+  <script src="config.js?v=260812b"></script>
   <script src="site-overrides.js"></script>
   <script src="assets/products-data.js?v=260810-2"></script>
   <script src="recommendation-core.js?v=260812b"></script>
-  <script src="app.js?v=260812b"></script>
+  <script src="app.js?v=260812c"></script>
 </body>
 </html>

@@ -141,6 +141,8 @@
     progressList: document.querySelector("#progressList"),
     results: document.querySelector("#results"),
     toast: document.querySelector("#toast"),
+    emailDialog: document.querySelector("#emailDialog"),
+    emailOptions: document.querySelector("#emailOptions"),
     consultDialog: document.querySelector("#consultDialog"),
     quoteFloat: document.querySelector("#quoteFloat"),
     quoteTrigger: document.querySelector("#quoteTrigger"),
@@ -1301,11 +1303,41 @@
     }
   }
 
-  function bindConsultation() {
-    const contactEmail = siteConfig.contactEmail || "julia@3picks.co.kr";
-    document.querySelectorAll("[data-email-link]").forEach((link) => {
-      link.href = `mailto:${contactEmail}`;
+  function bindEmailInquiry() {
+    const fallbackEmail = siteConfig.contactEmail || "julia@3picks.co.kr";
+    const contacts = Array.isArray(siteConfig.emailContacts) && siteConfig.emailContacts.length
+      ? siteConfig.emailContacts
+      : [{ name: siteConfig.contactName || "백선미 이사", email: fallbackEmail }];
+    els.emailOptions.innerHTML = contacts.map((contact) => `
+      <button class="email-option" type="button" data-copy-email="${escapeHtml(contact.email)}">
+        <span class="email-option__identity"><strong>${escapeHtml(contact.name)}</strong><span>${escapeHtml(contact.email)}</span></span>
+        <span class="email-option__status">복사</span>
+      </button>
+    `).join("");
+
+    document.querySelectorAll("[data-email-link]").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        els.emailOptions.querySelectorAll(".email-option__status").forEach((status) => { status.textContent = "복사"; });
+        if (typeof els.emailDialog.showModal === "function") els.emailDialog.showModal();
+        else els.emailDialog.setAttribute("open", "");
+        document.body.classList.add("modal-open");
+      });
     });
+
+    els.emailDialog.addEventListener("click", async (event) => {
+      const copyButton = event.target.closest("[data-copy-email]");
+      if (copyButton) {
+        await copyText(copyButton.dataset.copyEmail, "복사되었습니다");
+        els.emailOptions.querySelectorAll(".email-option__status").forEach((status) => { status.textContent = "복사"; });
+        copyButton.querySelector(".email-option__status").textContent = "복사되었습니다";
+      }
+      if (event.target.closest("[data-close-email-dialog]") || event.target === els.emailDialog) els.emailDialog.close();
+    });
+    els.emailDialog.addEventListener("close", () => document.body.classList.remove("modal-open"));
+    els.emailDialog.addEventListener("cancel", () => document.body.classList.remove("modal-open"));
+  }
+
+  function bindConsultation() {
     document.addEventListener("click", (event) => {
       const consult = event.target.closest("[data-consult]");
       if (consult) openConsultation("page");
@@ -1333,6 +1365,7 @@
     bindSurvey();
     bindProductInteractions();
     bindQuoteInteractions();
+    bindEmailInquiry();
     bindConsultation();
     const loadedSharedResult = loadSharedResult();
     if (!loadedSharedResult) restoreRecommendationState();
