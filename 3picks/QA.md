@@ -7,7 +7,7 @@ RAIL: source-pass / final-render-sampled
 HAIRLINE: source-pass / 200%-zoom-unverified
 CARD BASELINES: source-pass / final-render-sampled
 COLOR HIERARCHY: pass / tshirt-hero-applied
-RESPONSIVE FLOW: pass / desktop-product-rail-5 / compact-desktop-4 / mobile-product-rail-2.2 / result-desktop-4col / result-mobile-2x2 / result-five-viewport-render / result-intro-75pct / product-direct-render-pass-320-375-390 / member-story-centered-fullwidth-4x3
+RESPONSIVE FLOW: pass / desktop-product-rail-5 / compact-desktop-4 / mobile-product-rail-2.2 / result-desktop-4col / result-mobile-2x2 / result-five-viewport-render / result-intro-75pct / product-direct-render-pass-320-375-390 / member-profile-team-left-copy-right / member-story-centered-fullwidth-4x3
 KEYBOARD & MOTION: source-pass / direct-browser-unverified
 STRICT QC: pass
 HERO VISUAL: source-math-pass / tshirt-background / mobile-image-first / <=600px visible-art-100vw / copy-label-stack-five-viewport-pass
@@ -69,6 +69,7 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - [x] 모바일에서 숨기던 GNB 대분류 4개를 44px 이상 터치 행으로 노출
 - [x] 600px 이하 상품 레일을 완전한 2장+다음 카드 20%가 보이는 2.2장 폭으로 변경하고 360px 이하의 단일 카드 덮어쓰기 제거 — 320·360·375·390·430·600px 수식 오차 0.000002 이하
 - [x] 1101px 이상 상품 레일을 5열로 전환하고 카드 내부 16px 여백·44px 하트·13px 라벨 하한 유지 — 1440·1280px 5개·카드 238.8px, 1100px 4개 보호, 1101px 5개 전환, 가로 넘침·콘솔 오류 0건
+- [x] 카탈로그 100개 카드의 3색 예시·안내 문구를 카드 하단 기준선에 고정 — 1440·1280·768·390·375px 전 카테고리에서 스와치 상단·하단 및 안내 문구 하단 편차 0px, 가로 넘침 0px
 - [x] 2.2장 레일의 정보 밀도에 맞춰 모바일 상품명 13px·가격 16px로 축소하고 메타·안내 라벨은 13px 가독성 하한 유지
 - [x] 320·375·390px에서 상품 2.2장 노출·카드 정보 줄바꿈 직접 렌더 — 세 번째 카드 가시 비율 0.2078·0.2066·0.2063, 문서 가로 넘침 0px, 상품명 13px·가격 16px 확인
 - [x] 사용자 모바일 캡처에서 확인한 대분류 외곽선·세로 칸막이·셀 배경을 제거하고 현재 위치는 밑줄로만 표시
@@ -90,9 +91,10 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - [x] 운영 상품을 카테고리별 rank 1~10, 총 100개로 제한하고 각 카테고리 10개·중복 0개 자동 검사 통과
 - [x] 카탈로그의 `visibility` 필터를 제거하고 추천의 기존 `visibility`·제작 가능 조건은 유지 — 자동 검사 통과
 - [x] 공통 카테고리 순서에서 수건·타올 06번 적용 — 자동 검사 통과
-- [x] GNB·푸터 `Our brand story`와 FAQ 다음 `#about`, 백선미 이사·두 번째 멤버 더미 연결 — 소스 확인
+- [x] GNB·푸터의 `#about` 링크를 한글 `스토리`로 통일하고, 백선미 이사·두 번째 멤버 더미 연결 — 소스 확인
 - [x] FAQ를 MOQ 질문 포함 5개로 확장하고 질문·답변을 좌측 정렬; 질문 22px·답변 16px, 600px 이하 질문 18px로 가독성 상향
-- [x] 멤버 소개 자산 응답 200, 알파 경계·초록 잔류 0, 데스크톱 2열·모바일 1열 — 최종 렌더 확인
+- [x] 멤버 소개 자산 응답 200, 알파 경계·초록 잔류 0, 데스크톱 좌측 2인 팀+우측 산문·모바일 팀→산문 흐름 — 최종 렌더 확인
+- [x] 백선미 경력 목록·프로필 테이블 외곽/중앙/정보 행 선 0건, 두 상반신 아래 1px 선만 유지 — 다섯 뷰포트 계산 스타일 확인
 - [x] 푸터에 임시 사업자등록번호·통신판매업 신고번호와 교체 주석 연결 — 소스 확인
 - [ ] 미니 견적 하트·수량·새로고침·PDF 팝업 직접 조작 — 이번 실행 환경의 연결 가능한 브라우저가 없어 소스·서버 응답 검증까지만 완료
 - [x] 1440·1280·768·390·375px 콘솔 오류 0 — 최종 브라우저 확인
@@ -125,6 +127,7 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - 로컬 390px 추천 인트로는 요약→일러스트 1열을 유지하고 버튼 카피 간격 18px·일러스트 원본비 0.96178·문서 가로 넘침 0px
 - 로컬 1440px 결과 제목은 `첫번째 구성.·두번째 구성.·세번째 구성.` 순서와 번호 `01·02·03`을 유지하고 기존 `구성 01·02·03` 노출 0건; 390px은 세 제목 모두 1행·구성표 177.5px 2열·문서 가로 넘침 0px
 - 로컬 FAQ는 1440px에서 질문 5개·22px·좌측 정렬, 열린 답변 16px·좌측 정렬; 390px에서 질문 18px·2개만 자연스러운 2행·나머지 1행이며 문서 가로 넘침 0px
+- 로컬 390px GNB는 `맞춤 추천·상품 보기·제작 과정·스토리` 4개가 모두 한 줄·44px 높이이고 푸터도 `스토리`; 내비 영문 `Our brand story` 0건·문서 가로 넘침 0px
 - 미니 견적 UI 선택자·로컬 저장·12개 제한·수량 계산·PDF 문서 생성 훅 존재 확인
 - 운영 상품 ID 100개 중복 0개, 각 10개와 수건·타올 06번 자동 검사 통과
 - 빈 결과가 발생했던 `1명·당일`, `전 품목 제외`, `공직자 포함` 경계도 추천 3안 반환
@@ -133,9 +136,10 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 
 - `uv run --with openpyxl tools/audit_catalog.py` — 2026-08-10 원본 상품마스터 110행과 브라우저 입력 110개 핵심 필드 전수 대조
 - `node tools/test_catalog_curation.js` — 운영 100개·각 10개·rank 1~10·수건 06·카탈로그 visibility 무관 검사 통과
+- 브라우저 — 수정 전 메타데이터 줄바꿈에 따른 3색 영역 편차 최대 19.5px 확인; 수정 후 100개 카드×5개 뷰포트에서 편차 0px
 - `node tools/test_recommendation.js` — 기본 96개와 객관식·태그·제외·수치 경계 5,786개 검사 통과
 - 결과 마지막의 친절한 가예산 변동 안내와 상담 확인 조건 카피 회귀 통과
-- 브라우저 — 1440·1280·768·390·375px 가로 넘침 0·콘솔 오류 0, 멤버 소개 2열/1열, 375·390px 히어로 이미지 우선·비잘림 확인
+- 브라우저 — 1440·1280·768·390·375px 가로 넘침 0·콘솔 오류 0, 멤버 소개 좌측 2인/우측 2단 산문→모바일 팀/산문 흐름, 375·390px 히어로 이미지 우선·비잘림 확인
 
 ## 멤버 스토리툰 정적 회귀 검사
 
@@ -144,6 +148,7 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - [x] 04 `한이 브랜드가<br>되던 날`, 05 `찾고,<br>고르고,<br>비교하고`, 06 `여러분은<br>찾지 마세요.<br>정리하지도 마세요.<br>그냥 보고만<br>받으세요.` exact HTML 검사 통과
 - [x] 엔딩 동일 카피 0건·`카카오톡 상담하기` CTA 전용 행, 같은 4문장은 히어로의 독립 라벨 4개로 DOM 전체 1회 검사 통과
 - [x] 멤버 소개 제목을 `사람과 브랜드를 이해하는<br>사람들이 함께합니다.` HTML로 고정하고 줄바꿈까지 검사 통과
+- [x] 우측 카피를 `고객 이해 → 세 가지 제안 → 제작`의 26/21px 2단 위계로 재작성하고 1440px 제목 시작선과 17.2px 차이, 390px 20/16px 확인
 - [x] 최신 스토리 WebP 6개 실파일 1448×1086·SHA-256 확정값 일치 — 01 제거판 `a2c1ff56…` 포함, 프로필 PNG 2개 참조·알파 채널·확정 해시 검사 통과
 - [x] 백선미 article 전용 `team-member--baek`과 `scale(1.02)`·`transform-origin:center bottom`, 짧은머리 프로필 transform 0건 검사 통과
 - [x] 캐릭터 의미 계약: 01~03 짧은머리 단독 주화자, 05 짧은머리 상품 탐색·긴머리 비교 카드 정리; 픽셀 자동 판정은 확정 해시·크기로 제한

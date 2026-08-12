@@ -20,7 +20,7 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 | # | 섹션 | 정보유형 | 시각문법 | 구현 컴포넌트 |
 |---:|---|---|---|---|
 | 0 | 제작·상담 안내 | PROSE | 마르퀴 티커 | `tp-ticker` |
-| 1 | GNB·카테고리 | HIERARCHY·RELATION | 스크롤스파이·이동형 트랙 + 공통 3CTA; 모바일도 대분류 4개 상시 노출 | `site-nav`, `main-links`, `category-strip`, `cta-actions` |
+| 1 | GNB·카테고리 | HIERARCHY·RELATION | 스크롤스파이·이동형 트랙 + 공통 3CTA; 모바일도 대분류 4개 상시 노출, 메뉴 언어는 한글로 통일 | `site-nav`, `main-links`, `category-strip`, `cta-actions` |
 | 2 | 키비주얼 | RELATION·PROSE | 티셔츠 그래피티와 현행 카피를 유지하고 좌측 하단 여백에 문장 길이별 먹색 라벨 4개 배치; 모바일 이미지 우선 | `hero__backdrop` + `hero__copy` + `hero__copy-stack` |
 | 3 | 핵심 서비스 안내 | METRIC·FLOW | 낮은 4칸 픽토그램 신뢰 바 | `proof-strip` |
 | 4 | 맞춤 추천 설문 | FLOW | 한 화면 한 질문·스텝 레일 | `survey-shell`, `progress-rail` |
@@ -29,7 +29,7 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 | 7 | 제작 과정·추천 기준 | TIME·TABLE | 단계별 기준을 합친 4열 진행 레일 | `tp-timeline` |
 | 8 | 상담 전환 | PROSE·RELATION | 오렌지 팝 서피스 + 공통 3CTA | `tp-pop-surface`, `cta-actions` |
 | 9 | FAQ | TABLE·PROSE | 5개 룰 리스트·질문/답변 좌측 정렬 | `tp-faq` |
-| 10 | 멤버 소개 | HIERARCHY·PROSE | 멤버 2열 프로필 그리드 | `about-grid`, `team-member` |
+| 10 | 멤버 소개 | HIERARCHY·RELATION·PROSE | 제목 아래 좌측 2인 팀 포트레이트 + 우측 통합 산문 | `about-layout`, `about-team`, `about__copy` |
 | 11 | 푸터 | TABLE·PROSE | 연락처·임시 사업자 정보 행 | `site-footer` |
 | 12 | 위시리스트·미니 견적 | RELATION·TABLE·METRIC | 좌하단 트리거에서 가로로 펼쳐지는 고정 견적 레일 | `quote-float`, `quote-bar`, A4 인쇄 문서 |
 
@@ -41,13 +41,13 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 | 공통 레일 | 최대 1200px; 거터 `clamp(16px, 2.4vw, 32px)` |
 | 간격 | 4px 체계; 섹션 `clamp(64px, 8vw, 96px)` |
 | 구획선 | `#A89F91` 1px; 제로갭 컨테이너 배경 + 1px gap |
-| 상품 카드 | 1101px 이상 5열 가시 폭, 901~1100px 4열, 900px 이하 2열, 600px 이하 2.2장(2장 전체+다음 카드 20%) 가시 폭; 데스크톱 카드 약 239px·내부 패딩 16px 유지·상품명 14px·가격 값 17px; 미디어 1:1; 모바일 상품명 13px·가격 16px, 가격 세로 적층·메타 값 열 줄바꿈 허용 |
+| 상품 카드 | 1101px 이상 5열 가시 폭, 901~1100px 4열, 900px 이하 2열, 600px 이하 2.2장(2장 전체+다음 카드 20%) 가시 폭; 데스크톱 카드 약 239px·내부 패딩 16px 유지·상품명 14px·가격 값 17px; 미디어 1:1; 모바일 상품명 13px·가격 16px, 가격 세로 적층·메타 값 열 줄바꿈 허용; 카탈로그의 3색 예시와 안내 문구는 메타데이터 줄 수와 무관하게 카드 하단에 고정해 같은 기준선으로 정렬 |
 | 추천 결과 | 데스크톱은 좌측 카피와 조건 변경 버튼·270px 팀 일러스트 뒤, 구성별 한 행을 `minmax(240px,1fr) + 3×1fr`로 잠금; 인트로는 기존 360px 대비 가로·세로 75% 비례 축소한 일러스트로 약 25% 낮추고, 조건 변경 버튼은 주황 요약 셀 좌·하단에서 각각 24px; 첫 칸은 구성가·잔액/부족액·이유, 나머지는 `1st·2nd·3rd pick`; 900px 이하는 요약 카피 바로 아래 버튼→일러스트 뒤 각 구성을 2×2(`설명·1st / 2nd·3rd`) 테이블로 재배치; 가로 스크롤 없음 |
 | 설문 | 데스크톱 2열 선택지, 모바일 1열; 컨트롤 48px·터치 44px 이상 |
 | FAQ | 질문 5개; 질문/답변 좌측 정렬; 데스크톱 질문 22px·답변 16px, 600px 이하 질문 18px; 1px 행 구분선 유지 |
 | 타이포 | 히어로 `clamp(48px, 5.4vw, 76px)`; 본문 16px; 읽는 메타 14px; 라벨 13px |
 | 색 | 유채색은 오렌지 `#FC6B38`, 옐로 `#FFFD78`만 사용; 오렌지 면 내부 요소는 검정·흰색만 사용 |
-| 반응형 | 900px 이하 GNB 대분류 4개를 테이블 선·셀 배경 없이 44px 이상 텍스트 행으로 재배치·히어로 이미지→카피·설문 1열·추천 요약→일러스트→구성·상품 2열 가시; 600px 이하 상품 레일은 2.2장 노출·멤버 소개 1열·고정 모바일 CTA |
+| 반응형 | 900px 이하 GNB 대분류 4개를 테이블 선·셀 배경 없이 44px 이상 텍스트 행으로 재배치·히어로 이미지→카피·설문 1열·추천 요약→일러스트→구성·상품 2열 가시; 멤버 소개는 팀 포트레이트 2열을 유지한 채 통합 산문을 아래로 이동; 600px 이하 상품 레일은 2.2장 노출·고정 모바일 CTA |
 | 이미지 | 상품은 560×560 WebP·`loading=lazy`; 히어로 실파일은 1671×941 알파 WebP·`fetchpriority=high`; 멤버 실루엣은 1122×1402 알파 PNG |
 | 히어로 배치 | 데스크톱은 전체 히어로에 `contain center`·90% 스케일, 카피는 왼쪽 44% 오버레이; 900px 이하는 이미지 영역을 문서 흐름의 첫 번째에 둠; 600px 이하는 원본 알파 가시 경계 `983×911`(x 657~1639, y 12~922)를 기준으로 그림 폭을 `100vw`에 맞추고 좌우 거터 없이 풀블리드 |
 | 히어로 보조 카피 | 부모 면 없이 `찾고,`·`비교하고,`·`보고하는 귀찮은 일.`·`이제 3PICKS에 시키세요.` 네 문장만 각각 `max-content` 먹색 사각 라벨로 구성; 데스크톱 좌측 하단, 모바일 본문 다음 |
@@ -57,6 +57,7 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 | 모션 | 240ms 호버, 320ms 카테고리 트랙 이동; reduced-motion에서 티커·전환 정지 |
 | 미니 견적 | 좌우 24px·하단 24px 고정, 72px 사각 트리거, 데스크톱 높이 208px, 상품 영역만 가로 스크롤, 260ms 무바운스 가로 전개, 외곽선 4면 연속; 열린 상태에서 견적 영역 밖 `pointerdown` 시 접힘, 견적 내부 조작과 상품 하트의 열기 클릭은 유지 |
 | 모바일 브랜드 스토리 | 사용자 모바일 캡처 기준; 900px 이하 6컷 모두 공통 레일의 중앙·100% 폭, 원본과 같은 4:3 미디어, 컷 사이 32px; 좌우 혼합 오프셋과 3:4 세로 미디어 박스는 사용하지 않음 |
+| 멤버 소개 | 데스크톱 좌 7 : 우 5; 제목 아래 두 인물을 같은 팀으로 2열 배치하고 상반신 아래 1px 선만 유지; 외곽·중앙·정보 행 선과 백선미 경력 목록은 제거; 우측 산문은 기존 긴 소개→제작 안내 순서; 900px 이하는 팀 포트레이트→산문 1열 |
 
 ## 상품 데이터 계약
 

@@ -164,8 +164,16 @@ for (const checkpointGroup of meaningCheckpoints) {
 const aboutStart = html.indexOf('<section class="tp-section about" id="about">');
 const profileCopy = html.slice(aboutStart, storyStart);
 assert.ok(profileCopy.includes("<h2>사람과 브랜드를 이해하는<br>사람들이 함께합니다.</h2>"), "멤버 소개 제목 또는 줄바꿈이 확정 카피와 다릅니다.");
-assert.ok(profileCopy.includes("백선미 이사") && profileCopy.includes("브랜드를 알리고, 사람을 찾고, 성장을 가르쳐 온 경험"), "긴머리 화자의 의미 카피가 없습니다.");
-assert.ok(profileCopy.includes("두 번째 멤버") && profileCopy.includes("소개와 경력은 곧 업데이트됩니다."), "짧은머리 팀 캐릭터의 확인된 의미 카피가 없습니다.");
+assert.ok(profileCopy.includes("백선미 이사") && profileCopy.includes("두 번째 멤버"), "두 팀 캐릭터의 이름이 없습니다.");
+const integratedCopy = [
+  "사람과 브랜드를 이해해 온 경험으로, 고객이 원하는 바를 정확히 읽습니다.",
+  "막연한 아이디어를 실행 가능한 세 가지 제안으로 정리하고, 굿즈 선정부터 실제 제작까지 끝까지 함께합니다.",
+];
+assert.ok(profileCopy.includes(`<p class="about__copy-lead">${integratedCopy[0]}</p>`) && profileCopy.includes(`<p class="about__copy-body">${integratedCopy[1]}</p>`), "우측 통합 산문의 두 위계 문장이 확정 카피와 다릅니다.");
+assert.ok(profileCopy.indexOf(integratedCopy[0]) < profileCopy.indexOf(integratedCopy[1]), "백선미 소개 문단이 제작 안내 문단 위에 있지 않습니다.");
+assert.match(profileCopy, /<div class="about-team"[^>]*>[\s\S]*team-member--baek[\s\S]*team-member--placeholder[\s\S]*<\/div>\s*<\/div>\s*<div class="about__copy">/, "두 인물이 제목 아래 좌측 그룹이고 통합 산문이 오른쪽인 구조가 아닙니다.");
+assert.ok(!profileCopy.includes("team-career") && !profileCopy.includes("게임사 마케팅·운영") && !profileCopy.includes("헤드헌터") && !profileCopy.includes("기업교육 강사") && !profileCopy.includes("마케팅 에이전시 이사"), "삭제하기로 한 백선미 이사 경력이 남아 있습니다.");
+assert.ok(!profileCopy.includes("소개와 경력은 곧 업데이트됩니다."), "두 번째 멤버의 비대칭 경력 안내가 남아 있습니다.");
 const profileAssets = ["assets/team-baek-sunmi-v2.png", "assets/team-member-placeholder-v2.png"];
 for (const profileAsset of profileAssets) {
   assert.equal((profileCopy.match(new RegExp(profileAsset.replaceAll(".", "\\."), "g")) || []).length, 1, `${profileAsset} 프로필 참조 수가 1회가 아닙니다.`);
@@ -185,6 +193,12 @@ assert.equal(
 );
 const profileImageRule = html.match(/\.team-member__visual img\{([^}]*)\}/)?.[1] || "";
 assert.ok(profileImageRule.includes("width:100%") && profileImageRule.includes("height:100%") && profileImageRule.includes("object-fit:contain"), "프로필 공통 contain 시각 크기 기준이 다릅니다.");
+const profileVisualRule = html.match(/\.team-member__visual\{([^}]*)\}/)?.[1] || "";
+const profileCardRule = html.match(/\.team-member\{([^}]*)\}/)?.[1] || "";
+assert.ok(profileVisualRule.includes("border-bottom:1px solid var(--tp-line)"), "인물 상반신 아래 유일한 가로선이 없습니다.");
+assert.ok(profileCardRule.includes("background:transparent"), "프로필 카드에 폐기한 셀 배경이 남아 있습니다.");
+assert.ok(html.includes(".about-team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))"), "제목 아래 두 인물의 2열 팀 그룹이 없습니다.");
+assert.ok(!html.includes(".about-grid{") && !html.includes(".team-career{"), "폐기한 프로필 테이블 CSS가 남아 있습니다.");
 assert.match(profileCopy, /<article class="team-member team-member--baek">/, "백선미 프로필에 전용 시각 보정 클래스가 없습니다.");
 assert.match(html, /\.team-member--baek \.team-member__visual img\{[^}]*transform:scale\(1\.02\)[^}]*transform-origin:center bottom[^}]*\}/, "백선미 프로필의 1.02 배율·하단 기준 보정이 없습니다.");
 assert.ok(!/\.team-member--placeholder \.team-member__visual img\{[^}]*transform:/.test(html), "짧은머리 프로필에 폐기된 transform이 남아 있습니다.");
@@ -276,4 +290,4 @@ assert.match(tabletCss, /\.story-panel\{[^}]*width:100%[^}]*margin-inline:auto[^
 assert.ok(html.includes("body{overflow-x:clip"), "모바일 페이지 가로 넘침 차단 규칙이 없습니다.");
 assert.ok(!/\.member-story[^}]*overflow-x:auto/.test(html), "스토리툰에 가로 스크롤이 남아 있습니다.");
 
-console.log("PASS member-story panels=6 segments=17 meaning=checkpoints quotes=6 assets=sha256 profiles=baek1.02/short1 story02-scale=1.05 copy=exact-html/br cta=data-consult/white mosaic=12col/auto-pairs/mobile-centered-fullwidth border=zero caption=relative-inflow overflow=0");
+console.log("PASS member-story panels=6 segments=17 meaning=checkpoints quotes=6 assets=sha256 profiles=team-left/copy-right/career-zero/visual-bottom-line story02-scale=1.05 copy=exact-html/br cta=data-consult/white mosaic=12col/auto-pairs/mobile-centered-fullwidth border=zero caption=relative-inflow overflow=0");
