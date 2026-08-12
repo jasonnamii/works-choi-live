@@ -7,12 +7,12 @@ RAIL: source-pass / final-render-sampled
 HAIRLINE: source-pass / 200%-zoom-unverified
 CARD BASELINES: source-pass / final-render-sampled
 COLOR HIERARCHY: pass / tshirt-hero-applied
-RESPONSIVE FLOW: source-pass / mobile-product-rail-2.2 / result-desktop-4col / result-mobile-2x2 / direct-render-unverified
+RESPONSIVE FLOW: pass / mobile-product-rail-2.2 / result-desktop-4col / result-mobile-2x2 / result-five-viewport-render / product-direct-render-pass-320-375-390 / member-story-centered-fullwidth-4x3
 KEYBOARD & MOTION: source-pass / direct-browser-unverified
 STRICT QC: pass
 HERO VISUAL: source-math-pass / tshirt-background / mobile-image-first / <=600px visible-art-100vw / render-unverified
 MICROINTERACTION: source-pass / heart-only-1.3s / peaks-3x-1.5x / overflow-visible / reduced-motion-safe
-UNVERIFIED: 연결 가능한 브라우저 없음 — 320·360·375·390·430px 히어로 실화면, 신규 모바일 대분류·추천 결과 일러스트 실렌더, 키보드·미니 견적 직접 조작, 라이브 배포 후 카카오톡 도착 화면
+UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조작, 라이브 배포 후 카카오톡 도착 화면
 ```
 
 ## 벤치마킹 기록
@@ -55,7 +55,7 @@ UNVERIFIED: 연결 가능한 브라우저 없음 — 320·360·375·390·430px �
 - [x] 새로고침일 때만 탭별 세로 위치 저장·복원
 - [x] URL에 `#recommend`가 남아 있어도 새로고침 좌표를 우선 복원 — 실제 브라우저 `4200px → 4200px`, 오차 0px
 - [x] 예산이 있으면 서로 다른 카테고리의 1~3종 구성 3안을 제시하고, 각 구성을 `설명 | 1st | 2nd | 3rd pick`의 한 행으로 분리 — 소스·회귀 통과
-- [x] 900px 이하에서 각 추천 구성을 `설명·1st / 2nd·3rd`의 2×2 테이블로 재배치 — DOM 순서·CSS 불변조건 통과, 실렌더 대기
+- [x] 900px 이하에서 각 추천 구성을 `설명·1st / 2nd·3rd`의 2×2 테이블로 재배치 — 768·390·375px 실렌더 통과
 - [x] 각 구성에 입력 수량·MOQ 반영 총 가예산과 잔액·초과액 표시 — 회귀 검사 통과
 - [x] 추천 결과 라벨·전역 오렌지 버튼·티커의 글자를 순백으로 바꾸고, 상담 오렌지 면의 버튼까지 검정·흰색 조합으로 제한
 - [x] 비교 카드의 색상 버튼을 정보 길이와 무관하게 카드 하단선에 고정하고 `ALT 01·02`를 `비교1·비교2`로 변경
@@ -66,10 +66,12 @@ UNVERIFIED: 연결 가능한 브라우저 없음 — 320·360·375·390·430px �
 - [x] 상단·하단 CTA를 `맞춤추천·카카오톡 상담하기·이메일문의` 동일 3버튼으로 통일하고 이메일 주소를 `config.js`와 연결
 - [x] 모바일에서 숨기던 GNB 대분류 4개를 44px 이상 터치 행으로 노출
 - [x] 600px 이하 상품 레일을 완전한 2장+다음 카드 20%가 보이는 2.2장 폭으로 변경하고 360px 이하의 단일 카드 덮어쓰기 제거 — 320·360·375·390·430·600px 수식 오차 0.000002 이하
-- [ ] 320·360·375·390·430·600px에서 상품 2.2장 노출·카드 정보 줄바꿈·스크롤 스냅 직접 렌더 — 연결 가능한 브라우저 0개로 대기
+- [x] 2.2장 레일의 정보 밀도에 맞춰 모바일 상품명 13px·가격 16px로 축소하고 메타·안내 라벨은 13px 가독성 하한 유지
+- [x] 320·375·390px에서 상품 2.2장 노출·카드 정보 줄바꿈 직접 렌더 — 세 번째 카드 가시 비율 0.2078·0.2066·0.2063, 문서 가로 넘침 0px, 상품명 13px·가격 16px 확인
 - [x] 사용자 모바일 캡처에서 확인한 대분류 외곽선·세로 칸막이·셀 배경을 제거하고 현재 위치는 밑줄로만 표시
 - [x] 추천 요약과 구성 3안 사이에 제공된 3PICKS 팀 일러스트를 연결하고 900px 이하에서 세로 적층
-- [x] 사용자 데스크톱 캡처에서 분리돼 보이던 조건 변경 버튼을 좌측 카피 아래 같은 시작선으로 이동
+- [x] 조건 변경 버튼을 데스크톱 주황 요약 셀 좌측 하단으로 이동하고 좌·하단 여백을 각각 24px로 통일; 900px 이하는 카피 아래 흐름 유지
+- [x] 데스크톱 추천 인트로의 팀 일러스트를 360px에서 270px로 75% 비례 축소해 박스 높이를 약 25% 절감하고 원본 비율·전체 노출 유지
 - [x] 모든 카카오톡 상담 CTA를 `https://open.kakao.com/me/3PICK` 설정값으로 연결
 - [x] 상단 CTA를 40px·13px·6px 간격으로 축소하고 카테고리 10칸이 1200px 레일을 채워 CTA 오른쪽 선과 맞도록 균등 확장
 - [x] 총예산을 만원 단위로 입력하고 내부 상태에는 원 단위로 변환 — `100만원 → 1,000,000원` 계산 경로 적용
@@ -107,8 +109,12 @@ UNVERIFIED: 연결 가능한 브라우저 없음 — 320·360·375·390·430px �
 - FFmpeg 알파 가시 경계는 x 657~1639·y 12~922·983×911이며, 600px 이하에서 가시 폭 983px을 `100vw`로 환산하고 중심점 1148.5px을 화면 50%에 정렬
 - 320·360·375·390·430·600px 수식 검증에서 가시 그림 좌우 경계 `0.000px ~ viewport width`, 수평 넘침 `0.000px`
 - 모바일 상품 레일 320·360·375·390·430·600px 계산에서 세 번째 카드 가시 폭/카드 폭 `0.200002`; 카드 폭은 각각 130.000·148.182·155.000·161.818·180.000·257.272px
+- Chrome 직접 렌더 실측에서 320·375·390px 세 번째 카드 가시 비율은 각각 `0.2078`·`0.2066`·`0.2063`; 문서 `scrollWidth`는 각 뷰포트 폭과 같아 페이지 가로 넘침 0px
+- 320px 계산 스타일은 브랜드·상품명·가격 라벨·메타·색상 안내 13px, 가격 값 16px이며 2장 전체와 세 번째 카드 일부가 한 화면에 유지
 - 최종 렌더 캡처 14장: `Temp/3picks-qa-260811/page-layout/`; 5개 뷰포트 전체 화면과 히어로·멤버 소개 표적 캡처 보존
 - 추천 결과의 폐기 세로 묶음 `result-bundle-products` 잔존 0개, 구성별 4칸 행·모바일 2×2·저장·복원·초기화 훅 존재 확인
+- 1440·1280px에서 각 구성은 298.75px 동일 4칸·자식 4개, 768px은 364.07px 2칸, 390px은 177.5px 2칸, 375px은 170px 2칸으로 실렌더
+- 다섯 뷰포트 모두 페이지 가로 넘침 0px; 라이브 390px에서 구성 3개·각 4셀·1st·2nd·3rd 라벨·콘솔 오류 0건 확인
 - 미니 견적 UI 선택자·로컬 저장·12개 제한·수량 계산·PDF 문서 생성 훅 존재 확인
 - 운영 상품 ID 100개 중복 0개, 각 10개와 수건·타올 06번 자동 검사 통과
 - 빈 결과가 발생했던 `1명·당일`, `전 품목 제외`, `공직자 포함` 경계도 추천 3안 반환
@@ -131,12 +137,13 @@ UNVERIFIED: 연결 가능한 브라우저 없음 — 320·360·375·390·430px �
 - [x] 최신 스토리 WebP 6개 실파일 1448×1086·SHA-256 확정값 일치 — 01 제거판 `a2c1ff56…` 포함, 프로필 PNG 2개 참조·알파 채널·확정 해시 검사 통과
 - [x] 백선미 article 전용 `team-member--baek`과 `scale(1.02)`·`transform-origin:center bottom`, 짧은머리 프로필 transform 0건 검사 통과
 - [x] 캐릭터 의미 계약: 01~03 짧은머리 단독 주화자, 05 짧은머리 상품 탐색·긴머리 비교 카드 정리; 픽셀 자동 판정은 확정 해시·크기로 제한
-- [x] 폐기된 flex-column·고정 3행 계약 0건, 데스크톱 12열 `grid-auto-rows:auto`·`align-items:stretch`·01~06 pair span과 600px 이하 혼합 오프셋 검사 통과
-- [x] 각 패널 `display:grid;grid-template-rows:auto 1fr`, 데스크톱 picture 공통 높이 `clamp(300px,30vw,420px)`, 900px 이하 4:3·600px 이하 3:4 검사 통과
+- [x] 폐기된 flex-column·고정 3행 계약 0건, 데스크톱 12열 `grid-auto-rows:auto`·`align-items:stretch`·01~06 pair span과 900px 이하 중앙 전폭 검사 통과
+- [x] 각 패널 `display:grid;grid-template-rows:auto 1fr`, 데스크톱 picture 공통 높이 `clamp(300px,30vw,420px)`, 900px 이하 원본 4:3 검사 통과
 - [x] 패널·`picture`·`figcaption`의 0이 아닌 border 0건, `.story-panel__no::before`·`.story-panel::after` 장식선 0건 검사 통과
 - [x] 제목 `clamp(56px,6vw,76px)`·굵기 900·모바일 42px, 이미지 `object-fit:cover`·02컷 외곽선 crop `scale(1.05)` 및 클리핑 검사 통과
 - [x] 각 `figcaption`이 같은 패널의 이미지 다음에 있고 `position:relative`·무채색·무경계·`clip-path:none` 인플로우 영역으로 배치되는 계약 검사 통과
 - [x] 600px 이하 `figcaption`의 `inset:auto;width:auto` 리셋 검사 통과
 - [x] 600px 이하 패널 자체 absolute 배치·스토리 가로 스크롤 없음, 전역 `overflow-x:clip` 규칙 검사 통과
 - [x] 엔딩 상담 CTA가 기존 `data-consult`를 재사용하고 밝은 테두리·투명 배경·밝은 글자를 유지하며 헤더·스토리툰·하단 카카오 CTA 총 3개 회귀 검사 통과
-- [ ] 신규 인플로우 캡션 구조의 1440·1280·768·390·375px 렌더·가로 넘침·CTA 직접 재검수 — 별도 캡처 대기
+- [x] 모바일 스토리 6컷을 좌우 혼합 오프셋 없이 중앙 전폭으로 통일하고 3:4 빈 미디어 박스를 원본 4:3으로 교정 — 375·390px에서 패널 좌우 기준선 일치, 이미지–캡션 간격 0px, 컷 간격 32px, 가로 넘침·콘솔 오류 0 확인
+- [x] 신규 인플로우 캡션 구조의 1440·1280·768·390·375px 렌더·가로 넘침 재검수 — 데스크톱 모자이크 유지, 900px 이하 6컷 공통 레일 100% 폭 확인

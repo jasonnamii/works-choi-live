@@ -12,6 +12,8 @@ const checks = [
   [html.includes("body{overflow-x:clip"), "horizontal overflow guard"],
   [html.includes("grid-auto-columns:calc(45.4545% - .9091px)"), "two-point-two-card mobile rail"],
   [!html.includes("grid-auto-columns:88vw"), "compact phones retain two-point-two-card rail"],
+  [html.includes(".product-card__name{min-height:76px;font-size:13px;line-height:1.45}"), "compact mobile product names"],
+  [html.includes(".product-card__price strong{margin-top:2px;font-size:16px;text-align:right}"), "compact mobile product prices"],
   [html.includes("height:min(680px,calc(100svh"), "viewport-aware quote sheet"],
   [html.includes("grid-template-columns:1fr;grid-template-rows:auto auto auto"), "stacked quote layout"],
   [html.includes("bottom:env(safe-area-inset-bottom)"), "survey action safe area"],

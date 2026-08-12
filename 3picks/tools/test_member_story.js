@@ -257,20 +257,22 @@ assert.ok(tabletBreakpoint >= 0 && tabletBreakpoint < mobileBreakpoint, "900px �
 assert.match(tabletCss, /\.story-panel picture\{[^}]*height:auto[^}]*aspect-ratio:4\/3[^}]*\}/, "900px 이하 picture의 4:3 자동 높이 계약이 없습니다.");
 assert.ok(!/\.story-panel[^}]*position:absolute/.test(mobileCss), "모바일 컷이 DOM 세로 흐름에서 이탈했습니다.");
 assert.match(mobileCss, /\.story-panel figcaption\{[^}]*inset:auto[^}]*width:auto[^}]*\}/, "모바일 figcaption의 inset·width 자동 리셋이 없습니다.");
-assert.match(mobileCss, /\.story-panel picture\{[^}]*aspect-ratio:3\/4[^}]*\}/, "600px 이하 picture의 3:4 계약이 없습니다.");
+assert.match(mobileCss, /\.story-panel picture\{[^}]*aspect-ratio:4\/3[^}]*\}/, "600px 이하 picture의 4:3 계약이 없습니다.");
 const mobileMosaic = {
   "01": ["1/13", "1"],
-  "02": ["3/13", "2"],
+  "02": ["1/13", "2"],
   "03": ["1/13", "3"],
-  "04": ["1/11", "4"],
+  "04": ["1/13", "4"],
   "05": ["1/13", "5"],
-  "06": ["4/13", "6"],
+  "06": ["1/13", "6"],
 };
 for (const [cutNumber, [column, row]] of Object.entries(mobileMosaic)) {
   const rule = mobileCss.match(new RegExp(`\\.story-panel--${cutNumber}\\{([^}]*)\\}`))?.[1] || "";
-  assert.ok(rule.includes(`grid-column:${column}`) && rule.includes(`grid-row:${row}`), `컷 ${cutNumber}의 모바일 혼합 오프셋이 다릅니다.`);
+  assert.ok(rule.includes(`grid-column:${column}`) && rule.includes(`grid-row:${row}`), `컷 ${cutNumber}의 모바일 중앙 전폭 정렬이 다릅니다.`);
 }
+assert.match(tabletCss, /\.member-story__grid\{[^}]*row-gap:32px[^}]*\}/, "900px 이하 컷 사이 32px 계약이 없습니다.");
+assert.match(tabletCss, /\.story-panel\{[^}]*width:100%[^}]*margin-inline:auto[^}]*justify-self:center[^}]*\}/, "900px 이하 패널의 중앙 전폭 계약이 없습니다.");
 assert.ok(html.includes("body{overflow-x:clip"), "모바일 페이지 가로 넘침 차단 규칙이 없습니다.");
 assert.ok(!/\.member-story[^}]*overflow-x:auto/.test(html), "스토리툰에 가로 스크롤이 남아 있습니다.");
 
-console.log("PASS member-story panels=6 segments=17 meaning=checkpoints quotes=6 assets=sha256 profiles=baek1.02/short1 story02-scale=1.05 copy=exact-html/br cta=data-consult/white mosaic=12col/auto-pairs/mobile-offset border=zero caption=relative-inflow overflow=0");
+console.log("PASS member-story panels=6 segments=17 meaning=checkpoints quotes=6 assets=sha256 profiles=baek1.02/short1 story02-scale=1.05 copy=exact-html/br cta=data-consult/white mosaic=12col/auto-pairs/mobile-centered-fullwidth border=zero caption=relative-inflow overflow=0");
