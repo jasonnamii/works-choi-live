@@ -1004,6 +1004,7 @@
         ? `${escapeHtml(state.answers.event)} · ${money(state.answers.count)}명 · 예산 미정 조건으로 골랐어요.`
         : `${escapeHtml(state.answers.event)} · ${money(state.answers.count)}명 · 1인당 ${money(Math.floor(Number(state.answers.budget) / Number(state.answers.count)))}원에 최대한 가깝게 맞췄어요.`;
     const pickLabels = ["1st pick", "2nd pick", "3rd pick"];
+    const groupTitles = ["첫번째 구성.", "두번째 구성.", "세번째 구성."];
     els.results.innerHTML = `
       <div class="result-intro">
         <div class="result-summary">
@@ -1037,7 +1038,7 @@
             <section class="result-group" aria-label="${escapeHtml(group.category)} 추천 구성">
               <div class="result-group__head">
                 <div class="result-number">0${index + 1}</div>
-                <h4>${escapeHtml(group.category)}</h4>
+                <h4>${escapeHtml(groupTitles[index] || group.category)}</h4>
                 <div class="result-budget"><strong>${group.totalPrice ? `${unitLabel} ${money(group.totalPrice)}원` : "가격 확인"}</strong><span class="result-budget__total">${escapeHtml(totalLabel)}</span><span class="${Number(group.totalDifference ?? group.difference) < 0 ? "is-over" : ""}">${escapeHtml(budgetDifferenceLabel(group))}</span></div>
                 ${consultationChecks.length ? `<p class="result-constraint"><strong>상담 확인:</strong> ${escapeHtml(consultationChecks.join(" · "))}</p>` : ""}
                 <p class="result-why">${group.budgetUnknown ? "행사 적합도와 원하는 느낌을 우선해 고른 대표 상품이에요." : `${group.products.length}종을 묶고 입력 수량과 MOQ를 반영해 총예산과의 차이를 최소화했어요.`}</p>
@@ -1204,6 +1205,10 @@
     });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && quoteState.open) setQuoteOpen(false, true);
+    });
+    document.addEventListener("pointerdown", (event) => {
+      if (!quoteState.open || els.quoteFloat.contains(event.target)) return;
+      setQuoteOpen(false);
     });
   }
 

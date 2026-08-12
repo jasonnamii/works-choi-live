@@ -4,6 +4,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 
 const html = fs.readFileSync("index.html", "utf8");
+const app = fs.readFileSync("app.js", "utf8");
 
 const checks = [
   [html.includes("viewport-fit=cover"), "safe-area viewport"],
@@ -38,6 +39,7 @@ const checks = [
   [html.includes("12%{transform:scale(3)}") && html.includes("42%{transform:scale(1.5)}"), "threefold and one-point-fivefold heartbeat peaks"],
   [html.includes("gap:5px;overflow:visible;font-family"), "heartbeat may exceed trigger bounds"],
   [html.includes(".quote-trigger__heart{animation:none}"), "reduced-motion heartbeat override"],
+  [app.includes('document.addEventListener("pointerdown", (event) => {') && app.includes("!quoteState.open || els.quoteFloat.contains(event.target)"), "outside quote pointer closes without canceling the click that opens it"],
 ];
 
 for (const [passed, label] of checks) assert.ok(passed, `Missing mobile invariant: ${label}`);

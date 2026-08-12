@@ -21,6 +21,9 @@ assert.ok(html.includes(".result-summary .tp-btn--secondary{margin-top:0}"), "�
 assert.ok(html.includes(".result-group{min-width:0;display:grid;grid-template-columns:minmax(240px,1fr) repeat(3,minmax(0,1fr))"), "데스크톱 추천 구성이 설명+3픽 가로 행이 아닙니다.");
 assert.ok(html.includes(".result-group{grid-template-columns:repeat(2,minmax(0,1fr))}"), "모바일 추천 구성이 2×2 테이블이 아닙니다.");
 assert.ok(app.includes('const pickLabels = ["1st pick", "2nd pick", "3rd pick"]'), "1st·2nd·3rd pick 라벨이 없습니다.");
+assert.ok(app.includes('const groupTitles = ["첫번째 구성.", "두번째 구성.", "세번째 구성."]'), "추천 구성 제목이 자연어 서수형이 아닙니다.");
+assert.ok(app.includes('<h4>${escapeHtml(groupTitles[index] || group.category)}</h4>'), "추천 구성 화면 제목이 자연어 서수형을 사용하지 않습니다.");
+assert.ok(!app.includes('<h4>${escapeHtml(group.category)}</h4>'), "기계적인 구성 식별값이 화면 제목에 남아 있습니다.");
 assert.ok(app.includes('class="result-pick"') && app.includes('${pickCells}'), "구성별 제품 3칸 렌더 구조가 없습니다.");
 assert.ok(!app.includes("result-bundle-products"), "폐기한 세로 제품 묶음이 남아 있습니다.");
 assert.ok(fs.existsSync(imagePath), "추천 결과 이미지 파일이 없습니다.");

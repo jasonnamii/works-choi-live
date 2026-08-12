@@ -7,7 +7,7 @@ RAIL: source-pass / final-render-sampled
 HAIRLINE: source-pass / 200%-zoom-unverified
 CARD BASELINES: source-pass / final-render-sampled
 COLOR HIERARCHY: pass / tshirt-hero-applied
-RESPONSIVE FLOW: pass / mobile-product-rail-2.2 / result-desktop-4col / result-mobile-2x2 / result-five-viewport-render / product-direct-render-pass-320-375-390 / member-story-centered-fullwidth-4x3
+RESPONSIVE FLOW: pass / mobile-product-rail-2.2 / result-desktop-4col / result-mobile-2x2 / result-five-viewport-render / result-intro-75pct / product-direct-render-pass-320-375-390 / member-story-centered-fullwidth-4x3
 KEYBOARD & MOTION: source-pass / direct-browser-unverified
 STRICT QC: pass
 HERO VISUAL: source-math-pass / tshirt-background / mobile-image-first / <=600px visible-art-100vw / render-unverified
@@ -55,6 +55,7 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - [x] 새로고침일 때만 탭별 세로 위치 저장·복원
 - [x] URL에 `#recommend`가 남아 있어도 새로고침 좌표를 우선 복원 — 실제 브라우저 `4200px → 4200px`, 오차 0px
 - [x] 예산이 있으면 서로 다른 카테고리의 1~3종 구성 3안을 제시하고, 각 구성을 `설명 | 1st | 2nd | 3rd pick`의 한 행으로 분리 — 소스·회귀 통과
+- [x] 구성 설명 셀의 큰 번호 아래 제목을 `첫번째 구성.·두번째 구성.·세번째 구성.`으로 교체하고 화면에서 `구성 01·02·03` 반복 제거
 - [x] 900px 이하에서 각 추천 구성을 `설명·1st / 2nd·3rd`의 2×2 테이블로 재배치 — 768·390·375px 실렌더 통과
 - [x] 각 구성에 입력 수량·MOQ 반영 총 가예산과 잔액·초과액 표시 — 회귀 검사 통과
 - [x] 추천 결과 라벨·전역 오렌지 버튼·티커의 글자를 순백으로 바꾸고, 상담 오렌지 면의 버튼까지 검정·흰색 조합으로 제한
@@ -82,6 +83,7 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - [x] 최대 12개 보관, 기본 합계 포함, 체크 해제 제외, 삭제, 100개 기본·20개 단위 공통 수량과 MOQ 적용 계산 연결
 - [x] 좌하단 사각 트리거에서 화면 하단의 208px 가로 프레임이 260ms에 걸쳐 펼쳐지고 접히며 좌측을 포함한 외곽선 4면이 이어지는 구조 연결
 - [x] 미니 견적 상태를 로컬 저장하고 새로고침 뒤 상품·선택·수량·열림 상태를 복원하도록 연결
+- [x] 열린 미니 견적의 바깥 페이지 클릭 시 접히고, 견적 내부 클릭은 열린 상태를 유지 — 390px 상단 페이지 링크·1440px 본문 영역 직접 클릭, 내부 수량 조작 후 열림 유지, 접힘 뒤 `aria-expanded=false`·`aria-hidden=true`, 콘솔 오류 0건
 - [x] 선택 상품의 A4 문서 창, 반복 표 헤더, 인쇄·PDF 저장, 복사·공유·카카오톡 상담 액션 연결
 - [x] 운영 상품을 카테고리별 rank 1~10, 총 100개로 제한하고 각 카테고리 10개·중복 0개 자동 검사 통과
 - [x] 카탈로그의 `visibility` 필터를 제거하고 추천의 기존 `visibility`·제작 가능 조건은 유지 — 자동 검사 통과
@@ -115,6 +117,9 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - 추천 결과의 폐기 세로 묶음 `result-bundle-products` 잔존 0개, 구성별 4칸 행·모바일 2×2·저장·복원·초기화 훅 존재 확인
 - 1440·1280px에서 각 구성은 298.75px 동일 4칸·자식 4개, 768px은 364.07px 2칸, 390px은 177.5px 2칸, 375px은 170px 2칸으로 실렌더
 - 다섯 뷰포트 모두 페이지 가로 넘침 0px; 라이브 390px에서 구성 3개·각 4셀·1st·2nd·3rd 라벨·콘솔 오류 0건 확인
+- 라이브 1440px 추천 인트로는 1200×282.73px, 일러스트는 270×280.73px·원본비 0.96179이며 직전 376.30px 대비 높이 24.9% 감소; 조건 변경 버튼의 좌·하단 간격은 각각 24px, 문서 가로 넘침 0px
+- 로컬 390px 추천 인트로는 요약→일러스트 1열을 유지하고 버튼 카피 간격 18px·일러스트 원본비 0.96178·문서 가로 넘침 0px
+- 로컬 1440px 결과 제목은 `첫번째 구성.·두번째 구성.·세번째 구성.` 순서와 번호 `01·02·03`을 유지하고 기존 `구성 01·02·03` 노출 0건; 390px은 세 제목 모두 1행·구성표 177.5px 2열·문서 가로 넘침 0px
 - 미니 견적 UI 선택자·로컬 저장·12개 제한·수량 계산·PDF 문서 생성 훅 존재 확인
 - 운영 상품 ID 100개 중복 0개, 각 10개와 수건·타올 06번 자동 검사 통과
 - 빈 결과가 발생했던 `1명·당일`, `전 품목 제외`, `공직자 포함` 경계도 추천 3안 반환
