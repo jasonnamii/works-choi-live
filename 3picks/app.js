@@ -1225,7 +1225,7 @@
       if (event.key === "Escape" && quoteState.open) setQuoteOpen(false, true);
     });
     document.addEventListener("pointerdown", (event) => {
-      if (!quoteState.open || els.quoteFloat.contains(event.target)) return;
+      if (!quoteState.open || els.quoteFloat.contains(event.target) || event.target.closest("[data-wishlist-toggle]")) return;
       setQuoteOpen(false);
     });
   }

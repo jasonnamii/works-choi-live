@@ -39,7 +39,7 @@ const checks = [
   [html.includes("12%{transform:scale(3)}") && html.includes("42%{transform:scale(1.5)}"), "threefold and one-point-fivefold heartbeat peaks"],
   [html.includes("gap:5px;overflow:visible;font-family"), "heartbeat may exceed trigger bounds"],
   [html.includes(".quote-trigger__heart{animation:none}"), "reduced-motion heartbeat override"],
-  [app.includes('document.addEventListener("pointerdown", (event) => {') && app.includes("!quoteState.open || els.quoteFloat.contains(event.target)"), "outside quote pointer closes without canceling the click that opens it"],
+  [app.includes('document.addEventListener("pointerdown", (event) => {') && app.includes('els.quoteFloat.contains(event.target) || event.target.closest("[data-wishlist-toggle]")'), "outside quote pointer closes while consecutive product hearts keep the quote open"],
 ];
 
 for (const [passed, label] of checks) assert.ok(passed, `Missing mobile invariant: ${label}`);
