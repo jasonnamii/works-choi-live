@@ -1003,6 +1003,7 @@
       : state.answers.budgetUnknown
         ? `${escapeHtml(state.answers.event)} · ${money(state.answers.count)}명 · 예산 미정 조건으로 골랐어요.`
         : `${escapeHtml(state.answers.event)} · ${money(state.answers.count)}명 · 1인당 ${money(Math.floor(Number(state.answers.budget) / Number(state.answers.count)))}원에 최대한 가깝게 맞췄어요.`;
+    const pickLabels = ["1st pick", "2nd pick", "3rd pick"];
     els.results.innerHTML = `
       <div class="result-intro">
         <div class="result-summary">
@@ -1018,15 +1019,22 @@
           <img src="assets/recommendation-team-v1.webp" width="654" height="680" alt="세 가지 제안 보드를 들고 있는 3PICKS 팀 일러스트" decoding="async">
         </figure>
       </div>
-      <div class="result-groups result-groups--${Math.min(groups.length, 3)}">
+      <div class="result-groups">
         ${groups.map((group, index) => {
           const resultQuantity = Number(group.quantity || state.answers.count || 0);
           const estimatedTotal = Number(group.estimatedTotal || (Number(group.totalPrice) * resultQuantity));
           const unitLabel = group.hasMoqAdjustment ? "상품 단가 합계" : "1인당";
           const totalLabel = !resultQuantity ? "수량 입력 후 총액 확인" : group.hasMoqAdjustment ? `MOQ 반영 총 ${money(estimatedTotal)}원` : `${money(resultQuantity)}명 기준 총 ${money(estimatedTotal)}원`;
           const consultationChecks = Array.isArray(group.consultationChecks) ? group.consultationChecks : [];
+          const pickCells = pickLabels.map((pickLabel, productIndex) => {
+            const product = group.products[productIndex];
+            if (product) {
+              return `<div class="result-pick" aria-label="${escapeHtml(group.category)} ${escapeHtml(pickLabel)}">${productCard(product, { badge: pickLabel, compact: true })}</div>`;
+            }
+            return `<div class="result-pick result-pick--empty"><strong>${escapeHtml(pickLabel)}</strong><p>이 구성은 ${group.products.length}종으로 맞췄어요.</p></div>`;
+          }).join("");
           return `
-            <section class="result-group" style="--result-column:${index + 1}">
+            <section class="result-group" aria-label="${escapeHtml(group.category)} 추천 구성">
               <div class="result-group__head">
                 <div class="result-number">0${index + 1}</div>
                 <h4>${escapeHtml(group.category)}</h4>
@@ -1034,7 +1042,7 @@
                 ${consultationChecks.length ? `<p class="result-constraint"><strong>상담 확인:</strong> ${escapeHtml(consultationChecks.join(" · "))}</p>` : ""}
                 <p class="result-why">${group.budgetUnknown ? "행사 적합도와 원하는 느낌을 우선해 고른 대표 상품이에요." : `${group.products.length}종을 묶고 입력 수량과 MOQ를 반영해 총예산과의 차이를 최소화했어요.`}</p>
               </div>
-              <div class="result-bundle-products">${group.products.map((product, productIndex) => productCard(product, { badge: `구성${productIndex + 1}`, compact: true })).join("")}</div>
+              ${pickCells}
             </section>`;
         }).join("")}
       </div>
