@@ -273,7 +273,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   <div class="gate-card">
     <span class="tp-eyebrow">3PICKS Admin</span>
     <h1>운영 콘솔 잠금</h1>
-    <p>이 화면은 운영 담당자용입니다. 전달받은 접속 코드를 입력해 주세요. 코드는 열람 잠금이며, 실제 저장 권한은 본인 GitHub 토큰이 있어야만 동작합니다.</p>
+    <p>3PICKS 홈페이지를 관리하는 담당자용 화면입니다. 전달받은 접속 코드를 입력해 주세요.</p>
     <form id="gateForm">
       <input id="gateCode" type="password" autocomplete="off" aria-label="접속 코드">
       <button class="tp-btn tp-btn--primary" type="submit">열기</button>
@@ -290,20 +290,19 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
         <strong>운영 콘솔</strong>
       </div>
       <div class="admin-header__actions">
-        <span class="badge badge--ghost" id="draftBadge">변경 없음</span>
-        <span class="badge badge--ghost" id="connBadge">연결 안 됨</span>
-        <button class="tp-btn" type="button" id="exportBtnTop">내보내기</button>
-        <button class="tp-btn tp-btn--primary" type="button" id="saveBtnTop" disabled>GitHub에 저장</button>
+        <span class="badge badge--ghost" id="draftBadge">고친 내용 없음</span>
+        <span class="badge badge--ghost" id="connBadge">홈페이지 연결 전</span>
+        <button class="tp-btn tp-btn--primary" type="button" id="saveBtnTop" disabled>홈페이지에 반영하기</button>
       </div>
     </div>
     <nav class="anchor-nav" aria-label="섹션 이동">
-      <a href="#connect">연결 설정</a>
-      <a href="#logic">추천 로직</a>
-      <a href="#weights">가중치</a>
+      <a href="#connect">처음 연결</a>
+      <a href="#logic">추천 원리</a>
+      <a href="#weights">점수 조정</a>
       <a href="#mapping">행사 매핑</a>
+      <a href="#simulator">미리보기</a>
       <a href="#products">상품 운영</a>
-      <a href="#simulator">시뮬레이터</a>
-      <a href="#review">검토·적용</a>
+      <a href="#review">홈페이지 반영</a>
     </nav>
   </div>
 </header>
@@ -311,38 +310,45 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
 <main class="tp-wrap" data-app hidden>
 
   <section class="hero">
-    <span class="tp-eyebrow">Logic · Curation · Publish</span>
-    <h1>추천 로직을 눈으로 보고, 손으로 조정하고, 홈페이지에 바로 반영합니다</h1>
-    <p>이 콘솔에서 바꾼 행사 매핑·상품 순위·노출·가격·가중치는 저장 버튼을 누르면 설정 파일 한 장으로 홈페이지 저장소에 커밋되고, 몇 분 안에 실제 사이트에 적용됩니다. 저장 전에는 아래 시뮬레이터로 결과를 먼저 확인할 수 있습니다.</p>
+    <span class="tp-eyebrow">3PICKS Homepage Manager</span>
+    <h1>홈페이지 관리 화면</h1>
+    <p>이 화면은 연습장이라고 생각하면 됩니다. 여기서 무엇을 고쳐도 실제 홈페이지는 바로 바뀌지 않아요. 맨 아래의 <strong>홈페이지에 반영하기</strong> 버튼을 눌러야만 진짜 홈페이지가 바뀝니다. 그 전까지는 마음껏 눌러 보고, 바꿔 보고, 미리보기로 확인해도 안전합니다.</p>
+    <div class="tp-cell" style="margin-top:var(--tp-s-5);overflow:hidden">
+      <ul class="rules">
+        <li><span class="rule-key">걱정하지 않아도 되는 이유</span><span class="rule-body">여기서 고치는 내용은 이 컴퓨터 화면 안에만 머뭅니다. 실수로 무엇을 누르거나 바꿔도 홈페이지는 그대로예요.</span></li>
+        <li><span class="rule-key">홈페이지가 바뀌는 순간</span><span class="rule-body">딱 하나, 「홈페이지에 반영하기」 버튼을 눌렀을 때뿐입니다. 누르면 1~10분 뒤에 바뀝니다.</span></li>
+        <li><span class="rule-key">잘못 고쳤을 때</span><span class="rule-body">맨 아래 「고친 내용 모두 취소」를 누르면 이 화면이 처음 상태로 돌아옵니다. 홈페이지는 사라지지도, 바뀌지도 않습니다.</span></li>
+      </ul>
+    </div>
   </section>
 
   <section class="section" id="connect">
     <div class="section-head">
       <span class="tp-eyebrow">01 · Connection</span>
-      <h2>연결 설정</h2>
-      <p>이 사이트가 올라가 있는 GitHub 저장소 정보를 입력합니다. 토큰은 이 브라우저에만 저장되며 화면 밖으로 전송되는 곳은 GitHub뿐입니다.</p>
+      <h2>처음 한 번, 홈페이지와 연결</h2>
+      <p>홈페이지 파일이 보관된 곳(깃허브라는 서비스)과 이 화면을 잇는 단계입니다. 아래 네 칸은 설치를 도와준 담당자가 알려준 값을 그대로 붙여 넣으면 됩니다. 한 번 연결해 두면 다음부터는 건드릴 일이 없습니다.</p>
     </div>
     <div class="tp-cell" style="overflow:hidden">
       <div class="connect-grid tp-mesh" style="border:0;border-radius:0">
-        <label class="field"><span>저장소 소유자 (owner)</span><input id="ghOwner" type="text" autocomplete="off" placeholder="github-id"></label>
-        <label class="field"><span>저장소 이름 (repo)</span><input id="ghRepo" type="text" autocomplete="off" placeholder="3picks-site"></label>
-        <label class="field"><span>브랜치</span><input id="ghBranch" type="text" autocomplete="off" value="main"></label>
-        <label class="field"><span>액세스 토큰 (PAT)</span><input id="ghToken" type="password" autocomplete="off" placeholder="github_pat_…"></label>
+        <label class="field"><span>깃허브 아이디 (owner)</span><input id="ghOwner" type="text" autocomplete="off" placeholder="github-id"></label>
+        <label class="field"><span>홈페이지 보관함 이름 (repo)</span><input id="ghRepo" type="text" autocomplete="off" placeholder="3picks-site"></label>
+        <label class="field"><span>브랜치 (main 그대로 두세요)</span><input id="ghBranch" type="text" autocomplete="off" value="main"></label>
+        <label class="field"><span>비밀 열쇠 (토큰)</span><input id="ghToken" type="password" autocomplete="off" placeholder="github_pat_…"></label>
       </div>
       <div class="connect-foot">
-        <label class="checks"><input id="ghRemember" type="checkbox"> 이 브라우저에 토큰 저장</label>
+        <label class="checks"><input id="ghRemember" type="checkbox"> 이 컴퓨터에 비밀 열쇠 기억해 두기</label>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
           <p class="status-line" id="connStatus">아직 연결을 확인하지 않았습니다.</p>
           <button class="tp-btn tp-btn--secondary" type="button" id="connTestBtn">연결 확인</button>
         </div>
       </div>
       <div class="connect-note tp-rule" style="border-top:1px solid var(--tp-line)">
-        토큰은 GitHub에서 Fine-grained personal access token으로 발급합니다.
+        비밀 열쇠(토큰)는 깃허브 사이트에서 발급받습니다. 처음 설치할 때 한 번만 필요하니, 어렵게 느껴지면 설치 담당자에게 부탁하세요. 입력한 열쇠는 이 컴퓨터에만 저장되고 다른 곳으로 나가지 않습니다.
         <ol>
-          <li>GitHub 우측 상단 프로필 → Settings → Developer settings → Fine-grained tokens → Generate new token</li>
-          <li>Repository access는 이 사이트 저장소 하나만 선택합니다.</li>
+          <li>깃허브(GitHub) 우측 상단 프로필 → Settings → Developer settings → Fine-grained tokens → Generate new token</li>
+          <li>Repository access는 이 홈페이지 보관함 하나만 선택합니다.</li>
           <li>Permissions에서 Contents만 Read and write로 켭니다. 다른 권한은 필요 없습니다.</li>
-          <li>만든 토큰을 위 칸에 붙여 넣고 연결 확인을 누릅니다. 자세한 순서는 함께 전달된 설치 가이드에 있습니다.</li>
+          <li>만든 열쇠를 위 칸에 붙여 넣고 연결 확인을 누릅니다. 자세한 순서는 함께 전달된 설치 가이드에 있습니다.</li>
         </ol>
       </div>
     </div>
@@ -351,8 +357,8 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   <section class="section" id="logic">
     <div class="section-head">
       <span class="tp-eyebrow">02 · How it works</span>
-      <h2>추천 로직 한눈에</h2>
-      <p>고객이 설문을 마치면 아래 다섯 단계를 지나 구성 3안이 만들어집니다. 이 콘솔의 편집 항목이 각 단계의 어느 지점을 움직이는지 함께 표시했습니다.</p>
+      <h2>맞춤 추천이 만들어지는 원리</h2>
+      <p>고객이 홈페이지에서 설문을 마치면 아래 다섯 단계를 거쳐 추천 3안이 만들어집니다. 각 단계를 이 화면의 어느 부분에서 조정하는지도 함께 적어 두었습니다.</p>
     </div>
     <ol class="steps tp-mesh">
       <li>
@@ -377,7 +383,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
         <span class="step-no">STEP 4</span>
         <h3>조합 만들기</h3>
         <p>서로 다른 카테고리 1~3종을 묶는 모든 조합을 만듭니다. 같은 카테고리 중복은 허용하지 않습니다.</p>
-        <p class="tp-mono">편집: 시뮬레이터에서 교체</p>
+        <p class="tp-mono">확인: 미리보기에서 교체</p>
       </li>
       <li>
         <span class="step-no">STEP 5</span>
@@ -401,8 +407,8 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   <section class="section" id="weights">
     <div class="section-head">
       <span class="tp-eyebrow">03 · Scoring</span>
-      <h2>점수 공식과 가중치</h2>
-      <p>상품 하나의 점수는 아래 다섯 항의 합입니다. 값을 바꾸면 시뮬레이터와 저장 이후의 실제 추천 순서가 함께 바뀝니다. 기본값으로 되돌리려면 초기화를 누릅니다.</p>
+      <h2>맞춤 추천 점수 조정</h2>
+      <p>상품 하나의 추천 점수는 아래 다섯 가지를 더해 만듭니다. 숫자를 키우면 그 항목이 추천에서 더 중요해집니다. 잘 모르겠으면 그대로 두세요 — 기본값이 가장 안전하고, 언제든 아래 초기화 버튼으로 되돌릴 수 있습니다.</p>
     </div>
     <div class="tp-cell" style="overflow:hidden">
       <div class="formula">
@@ -430,8 +436,8 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   <section class="section" id="mapping">
     <div class="section-head">
       <span class="tp-eyebrow">04 · Event mapping</span>
-      <h2>행사별 카테고리 매핑</h2>
-      <p>행사 유형마다 어떤 카테고리를 몇 순위로 내세울지 정합니다. 순위가 높을수록 관련성 점수가 커져 추천에 먼저 올라옵니다. 한 행사 안에서 같은 카테고리는 두 번 고를 수 없습니다.</p>
+      <h2>행사마다 어떤 카테고리를 먼저 보여줄까</h2>
+      <p>행사 유형마다 어떤 카테고리를 몇 순위로 내세울지 정합니다. 순위가 높을수록 추천에 먼저 올라옵니다. 한 행사 안에서 같은 카테고리는 두 번 고를 수 없고, 잘못 골랐으면 맨 오른쪽 「기본값」 버튼으로 되돌리면 됩니다.</p>
     </div>
     <div class="tp-cell" style="overflow:hidden">
       <div class="table-scroll">
@@ -446,23 +452,11 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     </div>
   </section>
 
-  <section class="section" id="products">
-    <div class="section-head">
-      <span class="tp-eyebrow">05 · Catalog curation</span>
-      <h2>카테고리별 상품 운영</h2>
-      <p>위·아래 버튼으로 순위를 바꿉니다. 1~10위는 홈페이지 카탈로그와 추천에 오르고, 노출 구간 아래 대기 상품은 순위를 올리면 자동으로 교대합니다. 상품을 펼치면 가격·수량·납기·태그를 고칠 수 있고, 노출 버튼을 끄면 카탈로그에는 남되 자동 추천에서는 빠져 상담 제안으로만 다뤄집니다.</p>
-    </div>
-    <div class="cat-tabs" id="catTabs" role="tablist"></div>
-    <div class="tp-cell" style="overflow:hidden">
-      <ul class="plist" id="productList"></ul>
-    </div>
-  </section>
-
   <section class="section" id="simulator">
     <div class="section-head">
-      <span class="tp-eyebrow">06 · Simulator</span>
-      <h2>추천 시뮬레이터 · 짝짓기</h2>
-      <p>지금 화면에서 편집 중인 값으로 실제 추천 엔진을 돌립니다. 결과의 각 상품은 규칙이 허용하는 다른 상품으로 바로 바꿔볼 수 있고, 바꾸는 순간 총액과 예산 차이가 다시 계산됩니다.</p>
+      <span class="tp-eyebrow">05 · Preview</span>
+      <h2>맞춤 추천 미리보기</h2>
+      <p>진짜 고객이 된 것처럼 조건을 넣고 「추천 실행」을 눌러 보세요. 위에서 고친 값 기준으로 어떤 추천이 나오는지 미리 볼 수 있습니다. 여기서는 아무리 돌려 봐도 홈페이지에 아무 영향이 없어요. 결과의 상품은 그 자리에서 다른 상품으로 바꿔 보며 금액 변화를 확인할 수 있습니다.</p>
     </div>
     <div class="tp-cell" style="overflow:hidden">
       <div class="sim-form">
@@ -486,30 +480,49 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     <div class="sim-results" id="simResults"></div>
   </section>
 
+  <section class="section" id="products">
+    <div class="section-head">
+      <span class="tp-eyebrow">06 · Catalog curation</span>
+      <h2>카테고리별 상품 운영</h2>
+      <p>위·아래 버튼으로 순위를 바꿉니다. 각 카테고리의 1~10위만 홈페이지와 추천에 오르고, 그 아래 대기 상품은 순위를 올리면 자동으로 자리를 바꿉니다. 상품을 펼치면 가격·수량·납기·태그를 고칠 수 있고, 노출 버튼을 끄면 홈페이지에는 남되 자동 추천에서는 빠져 상담 제안으로만 다뤄집니다. 여기서 바꾼 것도 아직 홈페이지에 올라간 상태는 아니에요.</p>
+    </div>
+    <div class="cat-tabs" id="catTabs" role="tablist"></div>
+    <div class="tp-cell" style="overflow:hidden">
+      <ul class="plist" id="productList"></ul>
+    </div>
+  </section>
+
   <section class="section" id="review">
     <div class="section-head">
       <span class="tp-eyebrow">07 · Review &amp; publish</span>
-      <h2>변경 검토와 적용</h2>
-      <p>기본값과 달라진 항목만 모아 보여줍니다. 저장하면 이 차이만 설정 파일로 만들어 저장소에 커밋하고, 홈페이지는 다음 방문부터 새 설정을 읽습니다.</p>
+      <h2>바뀐 내용 확인하고 홈페이지에 올리기</h2>
+      <p>지금까지 이 화면에서 고친 내용이 아래에 목록으로 모입니다. 목록을 읽어 보고 맞으면 「홈페이지에 반영하기」를 누르세요. 실제 홈페이지를 바꾸는 버튼은 이것 하나뿐입니다.</p>
+    </div>
+    <div class="tp-cell" style="overflow:hidden;margin-bottom:var(--tp-s-5)">
+      <ul class="rules">
+        <li><span class="rule-key">홈페이지에 반영하기</span><span class="rule-body">여기서 고친 내용을 실제 홈페이지에 올립니다. 1~10분 뒤부터 모든 방문자에게 새 내용이 보입니다.</span></li>
+        <li><span class="rule-key">백업 파일 받기</span><span class="rule-body">고친 내용을 파일 하나로 내 컴퓨터에 저장해 둡니다. 눌러도 홈페이지에는 아무 일도 일어나지 않아요. 꼭 받아야 하는 것도 아닙니다.</span></li>
+        <li><span class="rule-key">고친 내용 모두 취소</span><span class="rule-body">이 화면에서 고친 것만 지우고 처음 상태로 되돌립니다. 홈페이지는 그대로 있습니다. 사라지지 않아요.</span></li>
+      </ul>
     </div>
     <div class="tp-cell" style="overflow:hidden">
       <ul class="diff-list" id="diffList"></ul>
       <div class="review-actions" style="border-top:1px solid var(--tp-line)">
-        <button class="tp-btn tp-btn--primary" type="button" id="saveBtn" disabled>GitHub에 저장</button>
-        <button class="tp-btn" type="button" id="exportBtn">설정 파일 내보내기</button>
-        <button class="tp-btn tp-btn--small" type="button" id="discardBtn">모든 변경 버리기</button>
+        <button class="tp-btn tp-btn--primary" type="button" id="saveBtn" disabled>홈페이지에 반영하기</button>
+        <button class="tp-btn" type="button" id="exportBtn">백업 파일 받기</button>
+        <button class="tp-btn tp-btn--small" type="button" id="discardBtn">고친 내용 모두 취소</button>
       </div>
       <p class="save-log" id="saveLog"></p>
     </div>
     <div class="pop-note">
-      저장하면 GitHub Pages가 사이트를 다시 만드는 1~2분, 방문자 브라우저 캐시가 풀리는 최대 10분 뒤부터 모든 방문자에게 새 설정이 보입니다. 급하지 않은 변경은 시뮬레이터로 충분히 확인한 뒤 한 번에 저장하는 편이 안전합니다.
+      「홈페이지에 반영하기」를 누르면 홈페이지가 새 내용으로 갈아입는 데 1~2분, 이미 접속해 있던 방문자 화면까지 바뀌는 데 길게는 10분이 걸립니다. 급하지 않다면 미리보기로 충분히 확인한 뒤 한 번에 반영하는 편이 좋습니다.
     </div>
   </section>
 
 </main>
 
 <footer class="page-foot" data-app hidden>
-  <div class="tp-wrap">3PICKS admin console · settings live in site-overrides.js</div>
+  <div class="tp-wrap">3PICKS 홈페이지 관리 화면 · 막히면 설치 담당자에게 문의하세요</div>
 </footer>
 
 <script src="site-overrides.js"></script>
@@ -716,7 +729,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       ? { eventMap: overrides.eventMap || {}, weights: overrides.weights || {}, productOverrides: overrides.productOverrides }
       : null);
     const badge = el("draftBadge");
-    badge.textContent = unsaved ? "저장 안 된 변경 있음" : "변경 없음";
+    badge.textContent = unsaved ? "고친 내용 있음 · 반영 전" : "고친 내용 없음";
     badge.className = unsaved ? "badge badge--sun" : "badge badge--ghost";
     const problems = validate();
     const savable = unsaved && problems.length === 0 && connection.verified;
@@ -923,7 +936,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     list.forEach((product, index) => {
       if (index === 10) {
         const dividerItem = create("li");
-        const divider = create("div", "bench-divider", "여기까지 화면 노출 · 아래는 대기 상품");
+        const divider = create("div", "bench-divider", "여기까지 홈페이지에 보임 · 아래는 대기 상품");
         dividerItem.append(divider);
         host.append(dividerItem);
       }
@@ -1273,31 +1286,31 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     if (ok) el("connStatus").append(strong);
     el("connStatus").append(document.createTextNode(text));
     const badge = el("connBadge");
-    badge.textContent = ok ? "연결됨" : "연결 안 됨";
+    badge.textContent = ok ? "홈페이지 연결됨" : "홈페이지 연결 전";
     badge.className = ok ? "badge badge--sun" : "badge badge--ghost";
   }
   async function testConnection() {
     const { owner, repo, branch, token } = connectionInput();
     if (!owner || !repo || !token) {
-      setConnStatus("소유자·저장소·토큰을 모두 입력해 주세요.", false);
+      setConnStatus("아이디·보관함 이름·비밀 열쇠를 모두 입력해 주세요.", false);
       return;
     }
     setConnStatus("확인 중…", false);
     try {
       const repoResponse = await githubRequest(`/repos/${owner}/${repo}`);
-      if (repoResponse.status === 401) { setConnStatus("토큰이 올바르지 않습니다. 새 토큰을 발급해 주세요.", false); connection.verified = false; refreshMeta(); return; }
-      if (repoResponse.status === 404) { setConnStatus("저장소를 찾지 못했습니다. 소유자·이름과 토큰의 저장소 접근 범위를 확인해 주세요.", false); connection.verified = false; refreshMeta(); return; }
-      if (!repoResponse.ok) { setConnStatus(`저장소 확인에 실패했습니다 (오류 ${repoResponse.status}).`, false); connection.verified = false; refreshMeta(); return; }
+      if (repoResponse.status === 401) { setConnStatus("비밀 열쇠(토큰)가 맞지 않습니다. 설치 담당자에게 새 열쇠를 요청해 주세요.", false); connection.verified = false; refreshMeta(); return; }
+      if (repoResponse.status === 404) { setConnStatus("홈페이지 보관함을 찾지 못했습니다. 아이디·보관함 이름을 다시 확인해 주세요.", false); connection.verified = false; refreshMeta(); return; }
+      if (!repoResponse.ok) { setConnStatus(`보관함 확인에 실패했습니다 (오류 ${repoResponse.status}). 잠시 후 다시 시도해 주세요.`, false); connection.verified = false; refreshMeta(); return; }
       const fileResponse = await githubRequest(`/repos/${owner}/${repo}/contents/site-overrides.js?ref=${encodeURIComponent(branch)}`);
       if (fileResponse.status === 404) {
-        setConnStatus(`저장소는 확인했지만 ${branch} 브랜치에 site-overrides.js가 없습니다. 저장하면 새로 만듭니다.`, true);
+        setConnStatus("홈페이지와 연결됐습니다. 설정 파일은 아직 없지만 처음 반영할 때 자동으로 만들어집니다.", true);
       } else if (!fileResponse.ok) {
-        setConnStatus(`설정 파일 확인에 실패했습니다 (오류 ${fileResponse.status}).`, false);
+        setConnStatus(`설정 파일 확인에 실패했습니다 (오류 ${fileResponse.status}). 잠시 후 다시 시도해 주세요.`, false);
         connection.verified = false;
         refreshMeta();
         return;
       } else {
-        setConnStatus(`${owner}/${repo} · ${branch} 브랜치의 설정 파일까지 확인했습니다.`, true);
+        setConnStatus("홈페이지와 연결됐고 설정 파일까지 확인했습니다.", true);
       }
       connection.verified = true;
       persistConnection();
@@ -1309,14 +1322,14 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
             buildState(remote);
             setBaselineFromState();
             renderAll();
-            el("connStatus").append(document.createTextNode(" 저장소의 최신 설정도 불러왔습니다."));
+            el("connStatus").append(document.createTextNode(" 지금 홈페이지에 올라가 있는 최신 설정도 불러왔습니다."));
           } else {
-            el("connStatus").append(document.createTextNode(" 이 브라우저에 저장 안 된 변경이 있어 저장소의 최신 설정은 불러오지 않았습니다. 최신에서 시작하려면 모든 변경 버리기 후 연결 확인을 다시 누르세요."));
+            el("connStatus").append(document.createTextNode(" 이 화면에 아직 반영 전인 수정이 있어 그대로 두었습니다. 홈페이지의 최신 상태에서 새로 시작하려면 「고친 내용 모두 취소」 후 연결 확인을 다시 누르세요."));
           }
         }
       } catch { /* 원격 설정을 못 읽어도 연결 자체는 유효합니다 */ }
     } catch {
-      setConnStatus("네트워크 오류로 GitHub에 닿지 못했습니다. 연결 상태를 확인해 주세요.", false);
+      setConnStatus("인터넷 연결 문제로 확인하지 못했습니다. 잠시 후 다시 시도해 주세요.", false);
       connection.verified = false;
     }
     refreshMeta();
@@ -1349,18 +1362,18 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   async function saveToGithub() {
     const overrides = refreshMeta();
     const problems = validate();
-    if (problems.length) { logSave(`저장 중단 · ${problems[0]}`); return; }
-    if (!connection.verified) { logSave("저장 중단 · 먼저 연결 확인을 해주세요."); return; }
+    if (problems.length) { logSave(`반영 중단 · ${problems[0]}`); return; }
+    if (!connection.verified) { logSave("반영 중단 · 먼저 01번에서 연결 확인을 눌러 주세요."); return; }
     const { owner, repo, branch } = connectionInput();
     const path = `/repos/${owner}/${repo}/contents/site-overrides.js`;
     el("saveBtn").disabled = true;
     el("saveBtnTop").disabled = true;
-    logSave("저장을 시작합니다…");
+    logSave("홈페이지에 올리는 중…");
     try {
       let sha = null;
       const current = await githubRequest(`${path}?ref=${encodeURIComponent(branch)}`);
       if (current.ok) sha = (await current.json()).sha;
-      else if (current.status !== 404) { logSave(`저장 실패 · 현재 파일을 읽지 못했습니다 (오류 ${current.status}).`); refreshMeta(); return; }
+      else if (current.status !== 404) { logSave(`반영 실패 · 기존 설정을 읽지 못했습니다 (오류 ${current.status}). 잠시 후 다시 시도해 주세요.`); refreshMeta(); return; }
       const body = {
         message: "운영 콘솔에서 추천·카탈로그 설정 갱신",
         content: toBase64(overridesFileContent(overrides)),
@@ -1368,14 +1381,14 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       };
       if (sha) body.sha = sha;
       const put = await githubRequest(path, { method: "PUT", body: JSON.stringify(body) });
-      if (put.status === 409) { logSave("저장 실패 · 다른 곳에서 먼저 저장했습니다. 연결 확인 후 다시 저장해 주세요."); refreshMeta(); return; }
-      if (!put.ok) { logSave(`저장 실패 · GitHub 응답 오류 ${put.status}. 토큰 권한(Contents Read and write)을 확인해 주세요.`); refreshMeta(); return; }
+      if (put.status === 409) { logSave("반영 실패 · 다른 컴퓨터에서 먼저 반영했습니다. 연결 확인을 다시 누른 뒤 반영해 주세요."); refreshMeta(); return; }
+      if (!put.ok) { logSave(`반영 실패 · 오류 ${put.status}. 비밀 열쇠(토큰)의 권한 문제일 수 있으니 설치 담당자에게 확인해 주세요.`); refreshMeta(); return; }
       const result = await put.json();
       const commitSha = result.commit && result.commit.sha ? result.commit.sha.slice(0, 7) : "확인 불가";
       setBaselineFromState();
-      logSave(`저장 완료 · 커밋 ${commitSha} · 사이트에는 1~10분 안에 반영됩니다.`);
+      logSave(`반영 완료 · 1~10분 안에 홈페이지에 나타납니다. (기록번호 ${commitSha})`);
     } catch {
-      logSave("저장 실패 · 네트워크 오류입니다. 잠시 후 다시 시도해 주세요.");
+      logSave("반영 실패 · 인터넷 연결 문제입니다. 잠시 후 다시 시도해 주세요.");
     }
     refreshMeta();
   }
@@ -1393,13 +1406,12 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     link.click();
     link.remove();
     URL.revokeObjectURL(url);
-    logSave("설정 파일을 내려받았습니다. 저장소의 site-overrides.js를 이 파일로 바꾸면 같은 효과입니다.");
+    logSave("백업 파일을 컴퓨터의 다운로드 폴더에 저장했습니다. 홈페이지에는 아무 변화가 없습니다.");
   }
   el("exportBtn").addEventListener("click", exportFile);
-  el("exportBtnTop").addEventListener("click", exportFile);
 
   el("discardBtn").addEventListener("click", () => {
-    if (!window.confirm("저장하지 않은 모든 변경을 버리고 배포된 설정으로 되돌립니다. 계속할까요?")) return;
+    if (!window.confirm("이 화면에서 고친 내용을 모두 지우고 처음 상태로 되돌립니다. 홈페이지는 바뀌지 않습니다. 계속할까요?")) return;
     writeJson(localStorage, storage.draft, null);
     location.reload();
   });
