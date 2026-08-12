@@ -51,12 +51,30 @@ assertSame(
   extractLiteral(adminSrc, "const trendTags", "[", "]", "admin trendTags"),
 );
 
-// 3) site-overrides가 덮을 수 있는 상품 필드 목록
-assertSame(
-  "overridable fields(설정으로 덮는 상품 필드)",
-  extractLiteral(appSrc, "const overridableProductFields", "[", "]", "app.js overridableProductFields"),
-  extractLiteral(adminSrc, "const overridableFields", "[", "]", "admin overridableFields"),
-);
+// 3) site-overrides가 덮을 수 있는 상품 필드 — 정본은 recommendation-core 한 곳이다(사본 금지).
+//    양쪽 화면이 사본 없이 core의 목록·병합 함수를 쓰는지 확인한다.
+const coreSrc = fs.readFileSync(path.join(root, "recommendation-core.js"), "utf8");
+const coreFields = extractLiteral(coreSrc, "const OVERRIDABLE_PRODUCT_FIELDS", "[", "]", "core OVERRIDABLE_PRODUCT_FIELDS");
+if (!Array.isArray(coreFields) || coreFields.length === 0) {
+  failures.push("core OVERRIDABLE_PRODUCT_FIELDS가 비어 있음");
+}
+if (!adminSrc.includes("core.OVERRIDABLE_PRODUCT_FIELDS")) {
+  failures.push("admin이 core.OVERRIDABLE_PRODUCT_FIELDS를 쓰지 않음 — 독립 사본으로 회귀했는지 확인할 것");
+}
+if (/const overridableProductFields/.test(appSrc)) {
+  failures.push("app.js에 overridable 필드 사본이 다시 생김 — 정본은 recommendation-core 한 곳");
+}
+if (!appSrc.includes("RecommendationCore.activeSiteProducts")) {
+  failures.push("app.js가 core의 activeSiteProducts 병합을 쓰지 않음 — 병합 규칙 사본 여부를 확인할 것");
+}
+if (!adminSrc.includes("core.mergeSiteProducts") || !adminSrc.includes("core.filterActiveProducts")) {
+  failures.push("admin이 core의 병합·상태 필터 함수를 쓰지 않음 — 시뮬레이터와 홈페이지 동작이 갈라질 수 있음");
+}
+
+// 3-1) 상품 상태 enum — core 정본과 어드민 표시 라벨의 키가 같아야 한다
+const coreStatuses = extractLiteral(coreSrc, "const PRODUCT_STATUSES", "[", "]", "core PRODUCT_STATUSES");
+const adminStatusNames = extractLiteral(adminSrc, "const statusNames", "{", "}", "admin statusNames");
+assertSame("product statuses(상품 상태 enum)", coreStatuses, adminStatusNames ? Object.keys(adminStatusNames) : null);
 
 // 4) 자동 순위 조정 규칙 — moveCategory 호출과 조건을 정규화해 비교
 function moveRules(src) {

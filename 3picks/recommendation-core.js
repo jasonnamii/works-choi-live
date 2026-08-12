@@ -29,6 +29,62 @@
     });
   }
 
+  // ----- site-overrides 병합 계층 — app.js와 admin.html이 같은 함수를 쓴다 (사본 금지)
+  const OVERRIDABLE_PRODUCT_FIELDS = Object.freeze([
+    "rank", "visibility", "price", "moq", "leadDays", "tags", "popularity",
+    "name", "printMethod", "lead", "moqText", "supplier", "imageLabels", "images", "status",
+  ]);
+  const PRODUCT_STATUSES = Object.freeze(["active", "hidden", "archived"]);
+
+  // status가 없는 원본 상품은 active로 본다
+  function productStatus(product) {
+    const value = product && product.status;
+    return PRODUCT_STATUSES.includes(value) ? value : "active";
+  }
+
+  function applyProductOverrides(products, productOverrides) {
+    const map = productOverrides || {};
+    return products.map((product) => {
+      const patch = map[product.id];
+      if (!patch) return product;
+      const merged = { ...product };
+      OVERRIDABLE_PRODUCT_FIELDS.forEach((field) => {
+        if (patch[field] !== undefined && patch[field] !== null) merged[field] = patch[field];
+      });
+      return merged;
+    });
+  }
+
+  // 원본 × 수정 델타 + 콘솔에서 등록한 신규 상품(원본과 id가 겹치면 원본이 이긴다)
+  function mergeSiteProducts(baseProducts, overrides) {
+    const merged = applyProductOverrides(Array.isArray(baseProducts) ? baseProducts : [], overrides && overrides.productOverrides);
+    const additions = overrides && Array.isArray(overrides.productAdditions) ? overrides.productAdditions : [];
+    const usedIds = new Set(merged.map((product) => product.id));
+    return merged.concat(additions.filter((item) => item && item.id && !usedIds.has(item.id)).map((item) => ({ ...item })));
+  }
+
+  // 숨김·보관 상품을 뺀 뒤 카테고리 안 순위를 1부터 촘촘하게 다시 매긴다 —
+  // 3위를 숨기면 11위가 자연히 운영 10위 안으로 올라오게 하는 장치
+  function filterActiveProducts(products) {
+    const byCategory = new Map();
+    products.filter((product) => productStatus(product) === "active").forEach((product) => {
+      if (!byCategory.has(product.category)) byCategory.set(product.category, []);
+      byCategory.get(product.category).push(product);
+    });
+    const result = [];
+    byCategory.forEach((items) => {
+      items.sort((left, right) => (Number(left.rank) - Number(right.rank)) || (Number(left.number) - Number(right.number)))
+        .forEach((product, index) => {
+          result.push(Number(product.rank) === index + 1 ? product : { ...product, rank: index + 1 });
+        });
+    });
+    return result;
+  }
+
+  function activeSiteProducts(baseProducts, overrides) {
+    return filterActiveProducts(mergeSiteProducts(baseProducts, overrides));
+  }
+
   const DEFAULT_WEIGHTS = Object.freeze({
     tagMatch: 12,
     popularityHigh: 4,
@@ -272,5 +328,8 @@
     return enrichGroups(groups, exactIds, answers, leadLimit, effectiveBudget);
   }
 
-  return { CATEGORY_ORDER, DEFAULT_WEIGHTS, selectOperatingProducts, eligibleProducts, fallbackCandidates, enumerateBundles, recommend };
+  return {
+    CATEGORY_ORDER, DEFAULT_WEIGHTS, selectOperatingProducts, eligibleProducts, fallbackCandidates, enumerateBundles, recommend,
+    OVERRIDABLE_PRODUCT_FIELDS, PRODUCT_STATUSES, productStatus, applyProductOverrides, mergeSiteProducts, filterActiveProducts, activeSiteProducts,
+  };
 });

@@ -2,18 +2,12 @@
   "use strict";
 
   const siteOverrides = window.SITE_OVERRIDES || {};
-  const productOverrides = siteOverrides.productOverrides || {};
-  const overridableProductFields = ["rank", "visibility", "price", "moq", "leadDays", "tags", "popularity"];
-  const applyProductOverride = (product) => {
-    const patch = productOverrides[product.id];
-    if (!patch) return product;
-    const merged = { ...product };
-    overridableProductFields.forEach((field) => {
-      if (patch[field] !== undefined && patch[field] !== null) merged[field] = patch[field];
-    });
-    return merged;
-  };
-  const sourceProducts = (Array.isArray(window.PRODUCTS) ? window.PRODUCTS : []).map(applyProductOverride);
+  // 상품 유효값 = 원본 × site-overrides(수정 델타 + 콘솔 등록 신규 상품), 숨김·보관 제외 후 순위 재정렬.
+  // 병합 규칙은 recommendation-core의 activeSiteProducts 한 곳이 정본이다 — 어드민도 같은 함수를 쓴다.
+  const sourceProducts = window.RecommendationCore.activeSiteProducts(
+    Array.isArray(window.PRODUCTS) ? window.PRODUCTS : [],
+    siteOverrides,
+  );
   const siteConfig = window.SITE_CONFIG || {};
   const navigationEntry = performance.getEntriesByType?.("navigation")?.[0];
   const isReloadNavigation = navigationEntry
@@ -182,7 +176,7 @@
   function normalizeQuoteQuantity(value) {
     const numeric = Number(String(value ?? "").replace(/[^0-9]/g, ""));
     if (!Number.isFinite(numeric) || numeric <= 0) return 100;
-    return Math.max(20, Math.ceil(numeric / 20) * 20);
+    return Math.max(10, Math.ceil(numeric / 10) * 10);
   }
 
   function restoreQuoteState() {
