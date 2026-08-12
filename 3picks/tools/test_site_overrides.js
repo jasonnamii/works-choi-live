@@ -26,7 +26,7 @@ assert.equal(typeof overrides.productOverrides, "object", "productOverrides가 �
 assert.ok(Array.isArray(overrides.productAdditions), "productAdditions가 배열이 아닙니다.");
 
 // 2. 로드 체인 — index.html이 app.js 이전에 오버라이드를 싣는지
-const overridesTagIndex = htmlSource.indexOf('src="site-overrides.js"');
+const overridesTagIndex = htmlSource.indexOf('src="site-overrides.js');
 const appTagIndex = htmlSource.indexOf('src="app.js');
 assert.ok(overridesTagIndex > 0, "index.html이 site-overrides.js를 로드하지 않습니다.");
 assert.ok(overridesTagIndex < appTagIndex, "site-overrides.js가 app.js보다 뒤에 로드됩니다.");

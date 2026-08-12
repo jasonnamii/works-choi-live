@@ -283,7 +283,7 @@
             <div class="quote-item__copy">
               <div class="quote-item__category">${escapeHtml(product.category)}</div>
               <div class="quote-item__name">${escapeHtml(product.name)}</div>
-              <div class="quote-item__price">${subtotal === null ? "상담 필요" : `${money(subtotal)}원`}${applied > quoteState.quantity ? ` · MOQ ${money(applied)}개` : ""}</div>
+              <div class="quote-item__price">${subtotal === null ? "상담 필요" : `${money(subtotal)}원`}${applied > quoteState.quantity ? ` · 최소 주문 수량 ${money(applied)}개` : ""}</div>
             </div>
             <label class="quote-item__select">
               <input type="checkbox" data-quote-select="${escapeHtml(product.id)}" ${selectedIds.has(product.id) ? "checked" : ""}>
@@ -380,11 +380,11 @@
     const rows = totals.entries.map((entry, index) => `
       <tr>
         <td class="number">${String(index + 1).padStart(2, "0")}</td>
-        <td class="product"><img src="${escapeHtml(absoluteAssetUrl(entry.product.images?.[0] || ""))}" alt=""><div><b>${escapeHtml(entry.product.name)}</b><span>${escapeHtml(entry.product.category)} · ${escapeHtml(entry.product.supplier || "3PICKS SELECT")}</span></div></td>
+        <td class="product"><img src="${escapeHtml(absoluteAssetUrl(entry.product.images?.[0] || ""))}" alt=""><div><b>${escapeHtml(entry.product.name)}</b><span>${escapeHtml(entry.product.category)}</span></div></td>
         <td>${entry.product.price ? `${money(entry.product.price)}원` : "상담 필요"}</td>
         <td>${escapeHtml(entry.product.moqText || "문의")}</td>
         <td>${money(entry.requested)}개</td>
-        <td>${money(entry.applied)}개${entry.applied > entry.requested ? '<small>MOQ 반영</small>' : ""}</td>
+        <td>${money(entry.applied)}개${entry.applied > entry.requested ? '<small>최소 주문 수량 반영</small>' : ""}</td>
         <td class="amount">${entry.subtotal === null ? "상담 필요" : `${money(entry.subtotal)}원`}</td>
       </tr>`).join("");
     const brief = [
@@ -396,7 +396,7 @@
     popup.document.open();
     popup.document.write(`<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>3PICKS 미니 견적서</title><style>
       :root{--cream:#F5F0E4;--ink:#000;--line:#A89F91;--orange:#FC6B38;--yellow:#FFFD78}*{box-sizing:border-box}body{margin:0;background:#ded8cc;color:var(--ink);font-family:-apple-system,"Apple SD Gothic Neo",sans-serif;word-break:keep-all}.toolbar{position:sticky;z-index:3;top:0;display:flex;justify-content:flex-end;gap:8px;padding:12px 20px;background:var(--ink)}button{min-height:44px;padding:10px 18px;border:1px solid #fff;background:var(--yellow);font-family:inherit;font-size:14px;font-weight:800;cursor:pointer}button:first-child{background:var(--orange);color:#fff}.sheet{width:210mm;min-height:297mm;margin:24px auto;padding:14mm;background:var(--cream);box-shadow:0 8px 28px rgba(0,0,0,.22)}header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding-bottom:12mm;border-bottom:2px solid var(--ink)}header img{width:42mm}h1{margin:0;font-size:30px;line-height:1.1}header p{margin:7px 0 0;color:#555;font-size:13px}.brief{display:grid;grid-template-columns:repeat(4,1fr);margin:8mm 0;background:var(--line);gap:1px;border:1px solid var(--line)}.brief div{min-height:24mm;padding:5mm;background:var(--cream)}.brief span{display:block;color:#666;font-size:11px}.brief b{display:block;margin-top:3px;font-size:15px}table{width:100%;border-collapse:collapse;font-size:11px}thead{display:table-header-group}th{padding:3.5mm 2mm;background:var(--ink);color:#fff;text-align:left}td{padding:3mm 2mm;border-bottom:1px solid var(--line);vertical-align:middle}tr{break-inside:avoid}.number{font-family:monospace}.product{display:flex;align-items:center;gap:3mm;min-width:55mm}.product img{width:17mm;height:17mm;object-fit:contain}.product b{display:block;font-size:12px}.product span,td small{display:block;margin-top:2px;color:#666;font-size:9px}.amount{font-weight:800;white-space:nowrap}.total{display:grid;grid-template-columns:1fr auto;align-items:end;gap:16px;margin-top:9mm;padding:7mm;background:var(--orange)}.total h2{margin:0;font-size:14px}.total strong{font-size:28px}.notes{margin-top:8mm;padding-top:5mm;border-top:1px solid var(--line);font-size:10px;line-height:1.65;color:#444}.notes b{color:#000}.footer{display:flex;justify-content:space-between;margin-top:10mm;font-size:9px;color:#666}@page{size:A4;margin:0}@media print{body{background:#fff}.toolbar{display:none}.sheet{margin:0;box-shadow:none;break-after:page}}
-    </style></head><body><div class="toolbar"><button type="button" onclick="window.print()">인쇄·PDF 저장</button><button type="button" onclick="window.close()">닫기</button></div><main class="sheet"><header><img src="${escapeHtml(absoluteAssetUrl("assets/3PICKS-logo.svg"))}" alt="3PICKS"><div><h1>미니 견적서</h1><p>${escapeHtml(createdAt)} 작성</p></div></header><section class="brief">${brief}</section><table><thead><tr><th>번호</th><th>상품</th><th>참고 단가</th><th>MOQ</th><th>요청</th><th>적용</th><th>예상 금액</th></tr></thead><tbody>${rows}</tbody></table><section class="total"><div><h2>예상 상품 금액</h2><span>선택 ${totals.selectedCount}개 · 총 제작 ${money(totals.unitCount)}개</span></div><strong>${money(totals.total)}원</strong></section><section class="notes"><b>확인해 주세요.</b><br>이 문서는 상품 기준 단가로 계산한 미니 견적입니다. 실제 재고와 제작 색상, 인쇄 방식, 납기, 인쇄비, 배송비, 부가세는 상담 후 확정됩니다.${totals.missingPrice ? `<br>가격 확인이 필요한 상품 ${totals.missingPrice}개는 숫자 합계에서 제외했습니다.` : ""}</section><footer class="footer"><span>3PICKS · Curated goods for every occasion</span><span>${escapeHtml(siteConfig.contactPhone || "010-6331-9276")} · ${escapeHtml(siteConfig.contactEmail || "julia@3picks.co.kr")}</span></footer></main></body></html>`);
+    </style></head><body><div class="toolbar"><button type="button" onclick="window.print()">인쇄·PDF 저장</button><button type="button" onclick="window.close()">닫기</button></div><main class="sheet"><header><img src="${escapeHtml(absoluteAssetUrl("assets/3PICKS-logo.svg"))}" alt="3PICKS"><div><h1>미니 견적서</h1><p>${escapeHtml(createdAt)} 작성</p></div></header><section class="brief">${brief}</section><table><thead><tr><th>번호</th><th>상품</th><th>참고 단가</th><th>최소 주문 수량</th><th>요청</th><th>적용</th><th>예상 금액</th></tr></thead><tbody>${rows}</tbody></table><section class="total"><div><h2>예상 상품 금액</h2><span>선택 ${totals.selectedCount}개 · 총 제작 ${money(totals.unitCount)}개</span></div><strong>${money(totals.total)}원</strong></section><section class="notes"><b>확인해 주세요.</b><br>이 문서는 상품 기준 단가로 계산한 미니 견적입니다. 실제 재고와 제작 색상, 인쇄 방식, 납기, 인쇄비, 배송비, 부가세는 상담 후 확정됩니다.${totals.missingPrice ? `<br>가격 확인이 필요한 상품 ${totals.missingPrice}개는 숫자 합계에서 제외했습니다.` : ""}</section><footer class="footer"><span>3PICKS · Curated goods for every occasion</span><span>${escapeHtml(siteConfig.contactPhone || "010-6331-9276")} · ${escapeHtml(siteConfig.contactEmail || "julia@3picks.co.kr")}</span></footer></main></body></html>`);
     popup.document.close();
     popup.focus();
     emit("wishlist_quote_open", { item_count: totals.selectedCount, total: totals.total });
@@ -648,9 +648,13 @@
     requestUpdate();
   }
 
-  function compactPrintMethod(value) {
-    const text = String(value || "상담 시 안내").replaceAll("_", " ");
-    return text.length > 20 ? `${text.slice(0, 19)}…` : text;
+  function formatPrintMethod(value) {
+    return String(value || "상담 시 안내").replaceAll("_", " ");
+  }
+
+  function productDisplayName(product, imageLabel = "") {
+    if (!product.titleUsesImageLabel || !imageLabel) return product.name;
+    return `${product.name} · ${imageLabel}`;
   }
 
   function productCard(product, options = {}) {
@@ -659,6 +663,7 @@
     const badge = options.badge || (product.rank === 1 ? "BEST" : "");
     const variantClass = options.compact ? " product-card--compact" : "";
     const image = images[0] || "";
+    const displayName = productDisplayName(product, labels[0]);
     return `
       <article class="product-card${variantClass}" data-product-id="${escapeHtml(product.id)}">
         ${badge ? `<span class="product-card__badge">${escapeHtml(badge)}</span>` : ""}
@@ -669,22 +674,20 @@
           </button>
         </div>
         <div class="product-card__info">
-          <div class="product-card__brand">${escapeHtml(product.supplier || "3PICKS SELECT")}</div>
-          <div class="product-card__name">${escapeHtml(product.name)}</div>
+          <div class="product-card__name" data-title-base="${escapeHtml(product.name)}" data-title-uses-image-label="${String(Boolean(product.titleUsesImageLabel))}">${escapeHtml(displayName)}</div>
           <div class="product-card__price"><span>100개 기준</span><strong>${product.price ? `${money(product.price)}원` : "상담 시 안내"}</strong></div>
           <dl class="product-card__meta">
-            <dt>MOQ</dt><dd>${escapeHtml(product.moqText || "상담 시 안내")}</dd>
+            <dt>최소 주문 수량</dt><dd>${escapeHtml(product.moqText || "상담 시 안내")}</dd>
             <dt>납기</dt><dd>${escapeHtml(product.lead || "상담 시 안내")}</dd>
-            <dt>인쇄</dt><dd title="${escapeHtml(product.printMethod)}">${escapeHtml(compactPrintMethod(product.printMethod))}</dd>
+            <dt>인쇄</dt><dd>${escapeHtml(formatPrintMethod(product.printMethod))}</dd>
           </dl>
           <div class="swatches" aria-label="${escapeHtml(product.name)} 색상 예시">
             ${images.map((source, index) => `
-              <button class="swatch ${index === 0 ? "is-active" : ""}" type="button" data-image="${escapeHtml(source)}" data-alt="${escapeHtml(product.name)} · ${escapeHtml(labels[index] || `색상 예시 ${index + 1}`)}" aria-label="${escapeHtml(labels[index] || `색상 예시 ${index + 1}`)}" aria-pressed="${index === 0 ? "true" : "false"}">
+              <button class="swatch ${index === 0 ? "is-active" : ""}" type="button" data-image="${escapeHtml(source)}" data-alt="${escapeHtml(product.name)} · ${escapeHtml(labels[index] || `색상 예시 ${index + 1}`)}" data-title-label="${escapeHtml(labels[index] || "")}" aria-label="${escapeHtml(labels[index] || `색상 예시 ${index + 1}`)}" aria-pressed="${index === 0 ? "true" : "false"}">
                 <img src="${escapeHtml(source)}" alt="" loading="lazy" width="32" height="32">
               </button>
             `).join("")}
           </div>
-          <p class="color-note">사진은 색상 예시예요. 실제 제작 색상은 상담에서 확인해 드립니다.</p>
         </div>
       </article>
     `;
@@ -711,6 +714,7 @@
           <div class="product-rail" tabindex="0" aria-label="${escapeHtml(category)} 상품 목록">
             ${catalogProducts.map((product, index) => productCard(product, { badge: index === 0 ? "BEST" : "" })).join("")}
           </div>
+          <p class="category-color-note">사진은 색상 예시예요. 실제 제작 색상은 상담에서 확인해 드립니다.</p>
         </section>
       `;
     }).join("");
@@ -1035,7 +1039,7 @@
           const resultQuantity = Number(group.quantity || state.answers.count || 0);
           const estimatedTotal = Number(group.estimatedTotal || (Number(group.totalPrice) * resultQuantity));
           const unitLabel = group.hasMoqAdjustment ? "상품 단가 합계" : "1인당";
-          const totalLabel = !resultQuantity ? "수량 입력 후 총액 확인" : group.hasMoqAdjustment ? `MOQ 반영 총 ${money(estimatedTotal)}원` : `${money(resultQuantity)}명 기준 총 ${money(estimatedTotal)}원`;
+          const totalLabel = !resultQuantity ? "수량 입력 후 총액 확인" : group.hasMoqAdjustment ? `최소 주문 수량 반영 총 ${money(estimatedTotal)}원` : `${money(resultQuantity)}명 기준 총 ${money(estimatedTotal)}원`;
           const consultationChecks = Array.isArray(group.consultationChecks) ? group.consultationChecks : [];
           const pickCells = pickLabels.map((pickLabel, productIndex) => {
             const product = group.products[productIndex];
@@ -1051,7 +1055,7 @@
                 <h4>${escapeHtml(groupTitles[index] || group.category)}</h4>
                 <div class="result-budget"><strong>${group.totalPrice ? `${unitLabel} ${money(group.totalPrice)}원` : "가격 확인"}</strong><span class="result-budget__total">${escapeHtml(totalLabel)}</span><span class="${Number(group.totalDifference ?? group.difference) < 0 ? "is-over" : ""}">${escapeHtml(budgetDifferenceLabel(group))}</span></div>
                 ${consultationChecks.length ? `<p class="result-constraint"><strong>상담 확인:</strong> ${escapeHtml(consultationChecks.join(" · "))}</p>` : ""}
-                <p class="result-why">${group.budgetUnknown ? "행사 적합도와 원하는 느낌을 우선해 고른 대표 상품이에요." : `${group.products.length}종을 묶고 입력 수량과 MOQ를 반영해 총예산과의 차이를 최소화했어요.`}</p>
+                <p class="result-why">${group.budgetUnknown ? "행사 적합도와 원하는 느낌을 우선해 고른 대표 상품이에요." : `${group.products.length}종을 묶고 입력 수량과 최소 주문 수량을 반영해 총예산과의 차이를 최소화했어요.`}</p>
               </div>
               ${pickCells}
             </section>`;
@@ -1132,6 +1136,10 @@
         const card = swatch.closest(".product-card");
         card.querySelector(".product-card__media img").src = swatch.dataset.image;
         card.querySelector(".product-card__media img").alt = swatch.dataset.alt;
+        const title = card.querySelector(".product-card__name");
+        if (title.dataset.titleUsesImageLabel === "true" && swatch.dataset.titleLabel) {
+          title.textContent = `${title.dataset.titleBase} · ${swatch.dataset.titleLabel}`;
+        }
         card.querySelectorAll(".swatch").forEach((button) => {
           const active = button === swatch;
           button.classList.toggle("is-active", active);

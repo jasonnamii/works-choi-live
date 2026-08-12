@@ -88,5 +88,12 @@ assert.ok(adminSrc.includes("보관함"), "어드민에 보관함 탭이 없습�
 assert.ok(adminSrc.indexOf("사진 올리는 중") < adminSrc.indexOf("설정 올리는 중"), "반영 순서(사진 먼저, 설정 나중)가 소스에서 확인되지 않습니다.");
 assert.ok(adminSrc.includes("새 상품 등록"), "어드민에 새 상품 등록 진입점이 없습니다.");
 assert.ok(adminSrc.includes("llmSyncBtn"), "LLM 수정 적용 버튼이 없습니다.");
+assert.ok(adminSrc.includes("input.maxLength = maxLength"), "신규 상품 인쇄 방식 입력창에 30자 제한이 없습니다.");
+assert.ok(adminSrc.includes("인쇄 방식은 ${productFieldLimits.printMethod}자 이하여야 합니다."), "신규 상품 등록 시 30자 초과 검사가 없습니다.");
+assert.ok(adminSrc.includes("편집 기호(**, ★, [번호])"), "신규 상품 등록 시 편집 기호 검사가 없습니다.");
+assert.ok(adminSrc.includes("titleUsesImageLabel: false"), "신규 상품에 색상명 제목 연동 기본값이 없습니다.");
+assert.ok(adminSrc.includes("선택한 색상명을 상품 제목에 표시"), "신규 상품 등록에서 색상명 제목 연동을 설정할 수 없습니다.");
+assert.ok(adminSrc.includes("titleHasSerialCode(product.name)"), "신규 상품 등록 시 품번·시리얼 코드 검사가 없습니다.");
+assert.ok(adminSrc.includes("사진 · 1~5장"), "신규 상품 등록 사진 한도가 5장으로 동기화되지 않았습니다.");
 
 console.log("PASS product-registration additions+insert-rank+hidden-promote+archive+status-default+admin-contract");

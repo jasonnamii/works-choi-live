@@ -32,9 +32,15 @@
   // ----- site-overrides 병합 계층 — app.js와 admin.html이 같은 함수를 쓴다 (사본 금지)
   const OVERRIDABLE_PRODUCT_FIELDS = Object.freeze([
     "rank", "visibility", "price", "moq", "leadDays", "tags", "popularity",
-    "name", "printMethod", "lead", "moqText", "supplier", "imageLabels", "images", "status",
+    "name", "titleUsesImageLabel", "printMethod", "lead", "moqText", "supplier", "imageLabels", "images", "status",
   ]);
   const PRODUCT_STATUSES = Object.freeze(["active", "hidden", "archived"]);
+  const PRODUCT_FIELD_LIMITS = Object.freeze({ printMethod: 30 });
+  const PRODUCT_TITLE_SERIAL_PATTERN = /\b(?:A\d{6}|K\d{6}|Z\d{3}|WB\d{3}|PS\d{2}|1008PD|allo\d+MW|UM\d+|M20|25A)\b/i;
+
+  function titleHasSerialCode(value) {
+    return PRODUCT_TITLE_SERIAL_PATTERN.test(String(value || ""));
+  }
 
   // status가 없는 원본 상품은 active로 본다
   function productStatus(product) {
@@ -330,6 +336,7 @@
 
   return {
     CATEGORY_ORDER, DEFAULT_WEIGHTS, selectOperatingProducts, eligibleProducts, fallbackCandidates, enumerateBundles, recommend,
-    OVERRIDABLE_PRODUCT_FIELDS, PRODUCT_STATUSES, productStatus, applyProductOverrides, mergeSiteProducts, filterActiveProducts, activeSiteProducts,
+    OVERRIDABLE_PRODUCT_FIELDS, PRODUCT_STATUSES, PRODUCT_FIELD_LIMITS,
+    titleHasSerialCode, productStatus, applyProductOverrides, mergeSiteProducts, filterActiveProducts, activeSiteProducts,
   };
 });

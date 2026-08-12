@@ -90,7 +90,7 @@
           {
             "@type": "Question",
             "name": "최소 주문 수량은 어떻게 확인하나요?",
-            "acceptedAnswer": { "@type": "Answer", "text": "상품마다 최소 주문 수량이 달라요. 상품 카드에 표시된 MOQ를 확인해 주세요. 원하시는 수량과 맞지 않으면 상담에서 가능한 대안을 함께 찾아드립니다." }
+            "acceptedAnswer": { "@type": "Answer", "text": "상품마다 최소 주문 수량이 달라요. 상품 카드에 표시된 최소 주문 수량을 확인해 주세요. 원하시는 수량과 맞지 않으면 상담에서 가능한 대안을 함께 찾아드립니다." }
           },
           {
             "@type": "Question",
@@ -196,13 +196,10 @@
     .hero__backdrop{position:absolute;z-index:0;inset:0;margin:0;overflow:hidden;pointer-events:none}
     .hero__backdrop img{width:100%;height:100%;object-fit:contain;object-position:center;transform:scale(.9);transform-origin:center}
     .hero__copy{position:relative;z-index:1;width:44%;min-height:680px;padding:36px clamp(24px,4vw,64px) 64px 0;display:flex;flex-direction:column;justify-content:flex-start}
-    .hero h1{margin:16px 0 24px;max-width:10.5ch;font-size:clamp(48px,5.4vw,76px);font-weight:900;line-height:1.02;letter-spacing:-.055em}
+    .hero h1{margin:16px 0 24px;max-width:10.5ch;font-size:clamp(56px,6.2vw,88px);font-weight:900;line-height:1.02;letter-spacing:-.055em}
     .hero h1 span{display:block;white-space:nowrap}
-    .hero__lead{max-width:36ch;margin:0 0 24px;font-size:clamp(20px,1.6vw,24px);font-weight:700;line-height:1.5;color:var(--tp-ink)}
-    .hero__note{display:flex;align-items:flex-start;gap:10px;margin-top:0;font-size:14px;color:var(--tp-ink-70)}
-    .hero__note .icon{width:20px;height:20px;margin-top:1px}
-    .hero__copy-stack{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;padding-top:24px;background:transparent}
-    .hero__copy-stack span{display:block;width:max-content;max-width:100%;padding:6px 10px;background:var(--tp-ink);color:var(--tp-cream);font-size:clamp(20px,2vw,24px);font-weight:900;line-height:1.05;letter-spacing:-.03em}
+    .hero__copy-stack{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:auto;padding-top:24px;background:transparent}
+    .hero__copy-stack span{display:block;width:max-content;max-width:100%;padding:8px 12px;background:var(--tp-ink);color:var(--tp-cream);font-size:clamp(24px,2.4vw,32px);font-weight:900;line-height:1.03;letter-spacing:-.03em}
 
     .proof-strip{background:var(--tp-cream)}
     .proof-strip__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(24px,4vw,64px)}
@@ -284,7 +281,6 @@
     .result-pick .product-card__meta dd{text-align:left;margin:0 0 4px}
     .result-pick .swatches{gap:5px;margin-top:auto;padding-top:8px}
     .result-pick .swatch{width:28px;height:28px}
-    .result-pick .color-note{display:none}
     .result-pick--empty{min-height:100%;padding:24px;align-content:center;flex-direction:column;justify-content:center;color:var(--tp-grey)}
     .result-pick--empty strong{font-family:var(--tp-font-mono);font-size:13px;letter-spacing:.06em}
     .result-pick--empty p{margin:8px 0 0;font-size:14px;line-height:1.5}
@@ -301,6 +297,11 @@
     .curation-kicker strong{font-family:var(--tp-font-mono);font-size:1.12em;font-weight:700}
     .catalog-intro h2{max-width:18ch;margin-top:22px;font-size:clamp(56px,6.4vw,88px);line-height:1.02}
     .catalog-intro h2 mark{color:inherit;background:transparent;box-shadow:inset 0 -.38em var(--tp-sun);padding-inline:.04em}
+    .catalog-promise{display:grid;grid-template-columns:minmax(0,14fr) minmax(360px,11fr);gap:0;margin-top:36px;border-block:1px solid var(--tp-line)}
+    .catalog-intro .catalog-promise__lead{margin:0;padding:20px 32px 20px 0;font-size:clamp(22px,1.8vw,26px);font-weight:800;line-height:1.45;letter-spacing:-.025em}
+    .catalog-promise__note{display:flex;align-items:center;gap:12px;padding:20px 0 20px 24px;border-left:1px solid var(--tp-line);color:var(--tp-ink-70);font-size:clamp(15px,1.15vw,17px);line-height:1.55}
+    .catalog-promise__note span{white-space:nowrap}
+    .catalog-promise__note .icon{flex:0 0 32px;width:32px;height:32px;padding:6px;background:var(--tp-sun);stroke-width:1.8}
 
     .category-section{border-bottom:1px solid var(--tp-line)}
     .category-section:last-child{border-bottom:0}
@@ -314,25 +315,24 @@
     .product-card{position:relative;background:var(--tp-cell);scroll-snap-align:start;display:flex;flex-direction:column;min-width:0}
     .product-card__media{position:relative;aspect-ratio:1/1;background:var(--tp-cell);overflow:hidden}
     .product-card__media img{width:100%;height:100%;object-fit:contain;transition:transform var(--tp-dur) var(--tp-ease)}
-    .product-card__wishlist{position:absolute;z-index:4;right:12px;top:12px;width:44px;height:44px;padding:0;display:grid;place-items:center;border:1px solid var(--tp-ink);border-radius:0;background:var(--tp-cell);transition:background var(--tp-dur) var(--tp-ease),transform var(--tp-dur) var(--tp-ease)}
+    .product-card__wishlist{position:absolute;z-index:4;right:12px;top:12px;width:44px;height:44px;padding:0;display:grid;place-items:center;border:1px solid var(--tp-ink-12);border-radius:0;background:var(--tp-cell);transition:background var(--tp-dur) var(--tp-ease),transform var(--tp-dur) var(--tp-ease)}
     .product-card__wishlist svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
     .product-card__wishlist.is-active{background:var(--tp-sun)}
     .product-card__wishlist.is-active svg{fill:var(--tp-ink)}
     .product-card__badge{position:absolute;left:12px;top:12px;z-index:1;padding:5px 9px;background:var(--tp-sun);border-radius:var(--tp-radius-badge);font-family:var(--tp-font-mono);font-size:13px;font-weight:800;letter-spacing:.07em}
     .product-card__info{display:flex;flex:1;flex-direction:column;min-height:224px;padding:16px;border-top:1px solid var(--tp-line)}
-    .product-card__brand{color:var(--tp-grey);font-family:var(--tp-font-mono);font-size:13px;letter-spacing:.09em;text-transform:uppercase}
     .product-card__name{min-height:50px;margin:6px 0 10px;font-size:14px;font-weight:700;line-height:1.45}
     .product-card__price{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-family:var(--tp-font-mono);font-size:13px}
     .product-card__price strong{font-size:17px}
     .product-card__meta{display:grid;grid-template-columns:auto 1fr;gap:2px 8px;margin-top:12px;padding-top:10px;border-top:1px solid var(--tp-ink-12);font-family:var(--tp-font-mono);font-size:13px;line-height:1.5}
-    .product-card__meta dt{color:var(--tp-grey)}
-    .product-card__meta dd{margin:0;text-align:right}
+    .product-card__meta dt{color:var(--tp-grey);white-space:nowrap}
+    .product-card__meta dd{min-width:0;margin:0;text-align:right;white-space:normal;overflow:visible;overflow-wrap:anywhere}
     .swatches{display:flex;gap:8px;margin-top:12px}
     .product-rail .product-card__info>.swatches{margin-top:auto;padding-top:12px}
     .swatch{width:32px;height:32px;padding:0;border:1px solid var(--tp-line);border-radius:0;background:var(--tp-cell);overflow:hidden}
     .swatch img{width:100%;height:100%;object-fit:cover}
     .swatch.is-active{border:2px solid var(--tp-ink)}
-    .color-note{margin:10px 0 0;color:var(--tp-grey);font-size:13px;line-height:1.45}
+    .category-color-note{margin:12px 0 0;padding-left:4px;color:var(--tp-grey);font-size:13px;line-height:1.45}
 
     .quote-float{--qf-edge:max(24px,calc((100vw - var(--tp-max))/2 - 88px));position:fixed;z-index:140;left:var(--qf-edge);bottom:24px;width:calc(100vw - var(--qf-edge)*2);pointer-events:none}
     .quote-trigger{position:absolute;z-index:2;left:0;bottom:0;width:72px;height:72px;padding:0;border:1px solid var(--tp-ink);border-radius:0;background:var(--tp-ink);color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:5px;overflow:visible;font-family:var(--tp-font-mono);font-size:16px;font-weight:800;letter-spacing:.04em;pointer-events:auto;transition:background var(--tp-dur) var(--tp-ease),color var(--tp-dur) var(--tp-ease)}
@@ -478,6 +478,9 @@
 
     @media (min-width:901px) and (max-width:1100px){
       .product-rail{grid-auto-columns:calc((100% - 3px)/4)}
+      .catalog-promise{grid-template-columns:1fr}
+      .catalog-intro .catalog-promise__lead{padding:20px 0}
+      .catalog-promise__note{padding:16px 0 20px;border-top:1px solid var(--tp-line);border-left:0}
     }
     @media (max-width:900px){
       html{scroll-padding-top:160px}
@@ -499,11 +502,14 @@
       .hero__copy{order:1;width:100%;min-height:0;padding:40px 0 56px;justify-content:flex-start}
       .hero h1{max-width:10.5ch}
       .hero__copy-stack{margin-top:28px;padding-top:0}
-      .hero__copy-stack span{font-size:20px}
+      .hero__copy-stack span{font-size:24px}
       .proof-strip__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .catalog-intro{align-items:flex-start;flex-direction:column}
       .catalog-intro h2{font-size:clamp(48px,7vw,64px)}
       .catalog-intro{width:100%}
+      .catalog-promise{grid-template-columns:1fr;width:100%;margin-top:28px}
+      .catalog-intro .catalog-promise__lead{padding:20px 0}
+      .catalog-promise__note{padding:16px 0 20px;border-top:1px solid var(--tp-line);border-left:0}
       .survey-shell{grid-template-columns:1fr}
       .survey-aside{min-height:auto}
       .progress-list{display:none}
@@ -558,15 +564,18 @@
       .curation-kicker{align-items:flex-start;gap:8px;font-size:15px}
       .curation-stars{font-size:14px;letter-spacing:.04em}
       .catalog-intro h2{max-width:13ch;margin-top:14px;font-size:40px}
+      .catalog-promise{margin-top:24px}
+      .catalog-intro .catalog-promise__lead{padding:16px 0;font-size:18px;line-height:1.5}
+      .catalog-promise__note{align-items:flex-start;padding:14px 0 16px;font-size:13px}
+      .catalog-promise__note .icon{flex-basis:28px;width:28px;height:28px;padding:5px}
+      .catalog-promise__note span{white-space:normal}
       .tp-btn{padding-inline:18px}
       .hero__backdrop{width:100vw;margin-inline:calc(50% - 50vw);aspect-ratio:983/941}
       .hero__backdrop img{position:absolute;left:50%;top:0;width:auto;height:100%;max-width:none;object-fit:contain;transform:translateX(-68.7313%)}
       .hero__copy{padding:32px 0 40px}
-      .hero h1{margin:12px 0 20px;font-size:clamp(40px,13vw,52px);line-height:1.01}
-      .hero__lead{margin-bottom:18px;font-size:18px;font-weight:700;line-height:1.5}
-      .hero__note{font-size:13px}
-      .hero__copy-stack{margin-top:24px;gap:3px}
-      .hero__copy-stack span{padding:5px 8px;font-size:18px}
+      .hero h1{margin:12px 0 20px;font-size:clamp(44px,14vw,58px);line-height:1.01}
+      .hero__copy-stack{margin-top:24px;gap:4px}
+      .hero__copy-stack span{padding:6px 9px;font-size:20px}
       .proof-strip__grid{display:grid;grid-template-columns:1fr;gap:0;overflow:visible;margin-inline:0;padding-inline:0}
       .proof-strip__grid::-webkit-scrollbar{display:none}
       .proof-item{width:100%;min-height:72px;padding:12px 0;gap:12px}
@@ -605,7 +614,6 @@
       .product-card__wishlist{right:8px;top:8px}
       .product-card__badge{left:8px;top:8px;padding-inline:6px}
       .product-card__info{min-height:276px;padding:12px}
-      .product-card__brand{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
       .product-card__name{min-height:76px;font-size:13px;line-height:1.45}
       .product-card__price{display:block;font-size:13px}
       .product-card__price span,.product-card__price strong{display:block}
@@ -614,7 +622,7 @@
       .product-card__meta dd{min-width:0;text-align:right;margin:0;overflow-wrap:anywhere}
       .swatches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
       .swatch{width:100%}
-      .color-note{font-size:13px}
+      .category-color-note{margin-top:10px;padding-left:0;font-size:13px}
       .process{grid-template-columns:1fr}
       .process-step{min-height:220px;padding:22px 18px}
       .process-step__key{margin-top:22px}
@@ -729,11 +737,6 @@
         <div class="hero__copy">
           <div class="tp-eyebrow">Three picks, until it clicks</div>
           <h1><span>마음에 들</span><span>때까지,</span><span>세 가지씩.</span></h1>
-          <p class="hero__lead">보이는 상품이 전부가 아니에요. 원하는 제품을 말씀해 주세요. 더 넓게 찾아 세 가지 안으로 제안하고, 제작까지 맡아드릴게요.</p>
-          <div class="hero__note">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 12.4l4.7 4.7L19.4 7"/></svg>
-            <span>정해진 제품이 없어도 괜찮아요. 아이디어만 알려주시면 됩니다.</span>
-          </div>
           <div class="hero__copy-stack" aria-label="3PICKS가 대신하는 일">
             <span>찾고,</span>
             <span>비교하고,</span>
@@ -799,6 +802,13 @@
         <div class="section-head catalog-intro" aria-label="10개 카테고리에서 고른 100개 대표 상품. 100개는 시작일 뿐, 원하는 굿즈는 더 찾아드립니다">
           <div class="curation-kicker"><span class="curation-stars" aria-hidden="true">★★★★★</span><span>10개 카테고리에서 고른 <strong>100개</strong> 대표 상품</span></div>
           <h2><mark>100개는 시작일 뿐,</mark><br>원하는 굿즈는 더 찾아드려요</h2>
+          <div class="catalog-promise">
+            <p class="catalog-promise__lead">보이는 상품이 전부가 아니에요. 원하는 제품을 말씀해 주세요. 더 넓게 찾아 세 가지 안으로 제안하고, 제작까지 맡아드릴게요.</p>
+            <div class="catalog-promise__note">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 12.4l4.7 4.7L19.4 7"/></svg>
+              <span>정해진 제품이 없어도 괜찮아요. 아이디어만 알려주시면 됩니다.</span>
+            </div>
+          </div>
         </div>
         <div id="catalogHost"></div>
       </div>
@@ -849,7 +859,7 @@
           <details><summary>표시된 가격은 어떤 기준인가요?</summary><p>100개 주문 기준의 예상 단가예요. 인쇄와 포장 방식에 따라 달라질 수 있어 정확한 금액은 상담에서 안내해 드립니다.</p></details>
           <details><summary>사진에 나온 세 가지 색상을 모두 제작할 수 있나요?</summary><p>사진은 색상을 고르는 데 도움을 드리기 위한 예시예요. 실제 제작 색상과 재고는 상담할 때 확인해 드립니다.</p></details>
           <details><summary>찾는 상품이 사이트에 없으면 어떻게 하나요?</summary><p>화면에는 3PICKS가 먼저 고른 상품만 보여드리고 있어요. 원하시는 품목을 말씀해 주시면 더 넓은 범위에서 찾아드립니다.</p></details>
-          <details><summary>최소 주문 수량은 어떻게 확인하나요?</summary><p>상품마다 최소 주문 수량이 달라요. 상품 카드에 표시된 MOQ를 확인해 주세요. 원하시는 수량과 맞지 않으면 상담에서 가능한 대안을 함께 찾아드립니다.</p></details>
+          <details><summary>최소 주문 수량은 어떻게 확인하나요?</summary><p>상품마다 최소 주문 수량이 달라요. 상품 카드에 표시된 최소 주문 수량을 확인해 주세요. 원하시는 수량과 맞지 않으면 상담에서 가능한 대안을 함께 찾아드립니다.</p></details>
           <details><summary>추천 결과를 상담할 때 어떻게 전달하나요?</summary><p>결과 화면에서 상담 요약을 복사해 보내주시면 돼요. 공유 링크에는 제품 정보만 담기고 예산과 인원은 포함되지 않아요.</p></details>
         </div>
       </div>
@@ -1033,9 +1043,9 @@
   </dialog>
 
   <script src="config.js?v=260812b"></script>
-  <script src="site-overrides.js"></script>
+  <script src="site-overrides.js?v=260812d"></script>
   <script src="assets/products-data.js?v=260810-2"></script>
-  <script src="recommendation-core.js?v=260812b"></script>
-  <script src="app.js?v=260812c"></script>
+  <script src="recommendation-core.js?v=260812d"></script>
+  <script src="app.js?v=260812d"></script>
 </body>
 </html>

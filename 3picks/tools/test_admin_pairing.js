@@ -70,6 +70,21 @@ if (!appSrc.includes("RecommendationCore.activeSiteProducts")) {
 if (!adminSrc.includes("core.mergeSiteProducts") || !adminSrc.includes("core.filterActiveProducts")) {
   failures.push("admin이 core의 병합·상태 필터 함수를 쓰지 않음 — 시뮬레이터와 홈페이지 동작이 갈라질 수 있음");
 }
+if (!adminSrc.includes("core.PRODUCT_FIELD_LIMITS") || !adminSrc.includes("input.maxLength = maxLength")) {
+  failures.push("admin이 core의 인쇄 문구 30자 제한을 입력창에 적용하지 않음");
+}
+if (!adminSrc.includes("printLength > productFieldLimits.printMethod")) {
+  failures.push("admin 저장 검사가 인쇄 문구 공통 제한을 확인하지 않음");
+}
+if (!adminSrc.includes("core.titleHasSerialCode") || !adminSrc.includes("품번·시리얼 코드를 지워 주세요")) {
+  failures.push("admin이 고객용 상품명의 품번·시리얼 코드 재유입을 막지 않음");
+}
+if (!adminSrc.includes("선택한 색상명을 상품 제목에 표시") || !adminSrc.includes("product.titleUsesImageLabel = variantTitleInput.checked")) {
+  failures.push("admin이 색상명 제목 연동 설정을 편집하지 못함");
+}
+if (!adminSrc.includes("사진 · 최대 5장") || !adminSrc.includes("slotIndex < 5")) {
+  failures.push("admin 사진 편집기가 홈페이지의 5색 상품을 온전히 다루지 못함");
+}
 
 // 3-1) 상품 상태 enum — core 정본과 어드민 표시 라벨의 키가 같아야 한다
 const coreStatuses = extractLiteral(coreSrc, "const PRODUCT_STATUSES", "[", "]", "core PRODUCT_STATUSES");
@@ -86,7 +101,10 @@ assertSame("자동 순위 조정 규칙(moveCategory)", moveRules(appSrc), moveR
 
 // 5) 공유 모듈 로드 — 어드민이 홈페이지와 같은 엔진·데이터 파일을 쓰는지
 ["site-overrides.js", "assets/products-data.js", "recommendation-core.js"].forEach((file) => {
-  if (!adminSrc.includes(`src="${file}"`)) failures.push(`admin.html이 공유 파일 ${file}을 로드하지 않음`);
+  const escapedFile = file.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  if (!new RegExp(`src="${escapedFile}(?:\\?[^\"]*)?"`).test(adminSrc)) {
+    failures.push(`admin.html이 공유 파일 ${file}을 로드하지 않음`);
+  }
 });
 
 // 6) 노출 의미 계약 — visibility는 진열이 아니라 자동 추천 여부다.
