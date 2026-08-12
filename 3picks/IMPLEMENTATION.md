@@ -121,3 +121,13 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 - 사용자 실기기 캡처에서 4:3 원본을 3:4 박스에 `contain`으로 표시해 이미지 아래가 빈 공간처럼 늘어난 문제를 확인했다.
 - 900px 이하에서는 6컷 모두 좌우 오프셋 없이 공통 레일을 채우고 중앙 정렬하며, 미디어 비율을 4:3으로 통일한다.
 - 모바일 컷 사이는 32px로 줄이되 이미지와 캡션은 한 패널의 인플로우 구조를 유지한다.
+
+## 2026-08-12 어드민 상품 등록·수정·숨김·보관 (site-overrides v2)
+
+- 병합 규칙을 `recommendation-core.js`로 승격해 `OVERRIDABLE_PRODUCT_FIELDS`(15필드)·`PRODUCT_STATUSES`·`mergeSiteProducts`·`filterActiveProducts`·`activeSiteProducts`를 홈페이지와 어드민이 공유한다. app.js의 병합 사본은 제거했다.
+- `site-overrides.js`를 v2로 올려 `productAdditions`(신규 상품 전체 레코드)를 추가했다. 원본과 id가 겹치는 등록 레코드는 병합에서 무시해 원본을 보호한다.
+- 숨김·보관은 상태 필터 후 카테고리 순위를 1부터 재정렬해, 빠진 자리를 아래 순위가 자동 승격으로 채운다. 삭제 버튼은 정책상 만들지 않았다(회귀 테스트가 감시).
+- 어드민 반영은 사진(장당 1커밋, base64 PUT)을 먼저 올리고 설정을 마지막에 커밋한다. 중간 실패 시 설정은 그대로라 재시도로 이어진다. 교체 사진은 `-vN` 파일명으로 캐시를 회피한다.
+- 사진 변환은 브라우저 canvas로 560×560 흰 바탕 WebP q82(미지원 브라우저는 PNG 폴백)를 만들고, 반영 전 초안은 dataURL로 localStorage에 저장하며 용량 초과 시 배지로 경고한다.
+- 홈페이지 쪽이 콘솔 밖(LLM 등)에서 바뀌면 상품·기본값·설정의 지문 대조와 원격 설정 비교로 감지해, 헤더의 「LLM으로 홈페이지 수정한 내용 어드민에 적용하기」 버튼을 빨간 깜빡임으로 알리고 수동 클릭 시에만 적용한다. 연결 확인의 원격 설정 자동 적용은 이 감지·수동 방식으로 대체했다.
+- 회귀: `test_admin_pairing.js`에 core 정본 참조·상태 enum 검사, `test_site_overrides.js`에 v2 스키마·확장 필드, 신규 `test_product_registration.js`에 등록 순위 삽입·숨김 승격·보관 제외·관리 화면 계약을 추가했다.

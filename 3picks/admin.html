@@ -108,6 +108,9 @@ input, select { font: inherit; color: inherit; }
 .tp-btn--secondary { background: var(--tp-sun); color: var(--tp-ink); border-color: var(--tp-line); }
 .tp-btn--small { min-height: 36px; padding: 0 var(--tp-s-3); font-size: var(--tp-fs-meta); font-weight: 500; }
 .tp-btn[disabled] { opacity: 0.35; cursor: not-allowed; }
+/* LLM 수정 감지 — 적용할 내용이 있으면 빨갛게 깜빡인다 */
+.llm-sync-btn[data-alert="true"] { background: var(--tp-pop); color: var(--tp-cell); border-color: var(--tp-pop); font-weight: 700; animation: llm-blink 1.2s step-end infinite; }
+@keyframes llm-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 .anchor-nav { display: flex; gap: var(--tp-s-4); overflow-x: auto; padding-block: var(--tp-s-2); border-top: var(--tp-border) solid var(--tp-line); }
 .anchor-nav a { font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-label); color: var(--tp-ink-70); text-decoration: none; white-space: nowrap; padding: var(--tp-s-1) 0; }
 .anchor-nav a:hover { color: var(--tp-ink); text-decoration: underline; }
@@ -288,7 +291,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   .pform { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
+  * { transition: none !important; animation: none !important; }
 }
 </style>
 </head>
@@ -315,6 +318,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
         <strong>운영 콘솔</strong>
       </div>
       <div class="admin-header__actions">
+        <button class="tp-btn tp-btn--small llm-sync-btn" type="button" id="llmSyncBtn" data-alert="false">LLM으로 홈페이지 수정한 내용 어드민에 적용하기</button>
         <span class="badge badge--ghost" id="draftBadge">고친 내용 없음</span>
         <span class="badge badge--ghost" id="connBadge">홈페이지 연결 전</span>
         <button class="tp-btn tp-btn--primary" type="button" id="saveBtnTop" disabled>홈페이지에 반영하기</button>
@@ -630,6 +634,8 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     tokenSession: "3picks-admin:token:session",
     tokenLocal: "3picks-admin:token:local",
     draft: "3picks-admin:draft:v1",
+    appliedBase: "3picks-admin:applied-base:v1",
+    syncReload: "3picks-admin:sync-reload",
   };
 
   const readJson = (area, key) => {
@@ -1923,17 +1929,12 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       connection.verified = true;
       persistConnection();
       try {
+        // 자동으로 적용하면 이 화면의 작업과 꼬일 수 있어, 다른 점만 감지하고 적용은 상단 버튼에 맡긴다.
         const remote = await fetchRemoteOverrides();
-        if (remote) {
-          const unsavedNow = canonicalKey(computeOverrides()) !== baselineCanonical;
-          if (!unsavedNow) {
-            buildState(remote);
-            setBaselineFromState();
-            renderAll();
-            el("connStatus").append(document.createTextNode(" 지금 홈페이지에 올라가 있는 최신 설정도 불러왔습니다."));
-          } else {
-            el("connStatus").append(document.createTextNode(" 이 화면에 아직 반영 전인 수정이 있어 그대로 두었습니다. 홈페이지의 최신 상태에서 새로 시작하려면 「고친 내용 모두 취소」 후 연결 확인을 다시 누르세요."));
-          }
+        if (remote && overridesKey(remote) !== overridesKey(syncedOverrides)) {
+          remoteOverridesCache = remote;
+          llmSyncFlag("홈페이지에 올라가 있는 설정이 이 화면보다 최신입니다. 눌러서 불러오세요.");
+          el("connStatus").append(document.createTextNode(" 홈페이지에 이 화면보다 최신 설정이 있습니다. 상단의 빨간 「LLM으로 홈페이지 수정한 내용 어드민에 적용하기」 버튼으로 불러오세요."));
         }
       } catch { /* 원격 설정을 못 읽어도 연결 자체는 유효합니다 */ }
     } catch {
@@ -1943,6 +1944,77 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     refreshMeta();
   }
   el("connTestBtn").addEventListener("click", testConnection);
+
+  // ----- LLM 수정 감지·수동 적용 — 홈페이지 쪽이 바뀌어도 이 화면은 자동으로 따라가지 않는다.
+  //       바뀐 것이 감지되면 상단 버튼이 빨갛게 깜빡이고, 누를 때만 최신 내용을 적용한다.
+  const overridesKey = (overrides) => JSON.stringify({
+    e: overrides.eventMap || null,
+    w: overrides.weights || null,
+    p: overrides.productOverrides || {},
+    a: overrides.productAdditions || [],
+  });
+  let syncedOverrides = committed; // 이 화면이 마지막으로 적용한 '홈페이지에 올라간 설정'
+  let remoteOverridesCache = null;
+  const llmSync = { needed: false, reasons: [] };
+  function baseFingerprint() {
+    const seed = JSON.stringify([baseProducts, defaultEventMap, defaultWeights, trendTags, overridesKey(committed)]);
+    let hash = 5381;
+    for (let index = 0; index < seed.length; index += 1) hash = ((hash * 33) ^ seed.charCodeAt(index)) >>> 0;
+    return String(hash);
+  }
+  function updateLlmSyncBtn() {
+    const btn = el("llmSyncBtn");
+    btn.dataset.alert = String(llmSync.needed);
+    btn.title = llmSync.needed
+      ? llmSync.reasons.join(" ")
+      : "홈페이지 쪽에서 바뀐 내용이 감지되면 이 버튼이 빨갛게 깜빡입니다.";
+  }
+  function llmSyncFlag(reason) {
+    llmSync.needed = true;
+    if (!llmSync.reasons.includes(reason)) llmSync.reasons.push(reason);
+    updateLlmSyncBtn();
+  }
+  function checkBaseFingerprint() {
+    let syncReloaded = false;
+    let stored = null;
+    try {
+      syncReloaded = sessionStorage.getItem(storage.syncReload) === "1";
+      if (syncReloaded) sessionStorage.removeItem(storage.syncReload);
+      stored = localStorage.getItem(storage.appliedBase);
+    } catch { return; }
+    const current = baseFingerprint();
+    if (!stored || syncReloaded) {
+      try { localStorage.setItem(storage.appliedBase, current); } catch { /* 기록을 못 하면 다음에 다시 시도한다 */ }
+      return;
+    }
+    if (stored !== current) llmSyncFlag("홈페이지 파일(상품·기본값·설정)이 이 화면이 알던 것과 달라졌습니다. 눌러서 적용하세요.");
+  }
+  async function applyLlmSync() {
+    const unsaved = canonicalKey(computeOverrides()) !== baselineCanonical;
+    if (unsaved && !window.confirm("이 화면에 아직 반영 전인 수정이 있습니다. 홈페이지의 최신 내용을 적용하면 그 수정은 사라집니다. 남겨 두려면 먼저 「백업 파일 받기」를 누르세요. 계속할까요?")) return;
+    try { localStorage.removeItem(storage.draft); } catch { /* 초안이 안 지워져도 아래에서 새 기준으로 덮인다 */ }
+    if (connection.verified) {
+      try {
+        const remote = remoteOverridesCache || await fetchRemoteOverrides();
+        if (remote) {
+          syncedOverrides = remote;
+          remoteOverridesCache = null;
+          try { localStorage.setItem(storage.appliedBase, baseFingerprint()); } catch { /* 기록 실패는 무시 */ }
+          buildState(remote);
+          setBaselineFromState();
+          renderAll();
+          llmSync.needed = false;
+          llmSync.reasons = [];
+          updateLlmSyncBtn();
+          logSave("홈페이지의 최신 내용을 이 화면에 적용했습니다.");
+          return;
+        }
+      } catch { /* 원격을 못 읽으면 아래의 새로고침 경로로 간다 */ }
+    }
+    try { sessionStorage.setItem(storage.syncReload, "1"); } catch { /* 표시 없이 새로고침해도 동작은 같다 */ }
+    location.reload();
+  }
+  el("llmSyncBtn").addEventListener("click", applyLlmSync);
 
   async function fetchRemoteOverrides() {
     const { owner, repo, branch } = connectionInput();
@@ -2062,6 +2134,8 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   loadConnection();
   initSimForm();
   renderAll();
+  checkBaseFingerprint();
+  updateLlmSyncBtn();
 })();
 </script>
 </body>

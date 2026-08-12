@@ -29,6 +29,18 @@ python3 -m http.server 4173 --bind 127.0.0.1
 python3 tools/build_catalog.py
 ```
 
+## 어드민 상품 운영 (site-overrides v2)
+
+운영 콘솔(`admin.html`)은 원본을 건드리지 않고 `site-overrides.js` 한 파일에 델타만 쌓습니다.
+
+- `productOverrides`: 기존 상품의 수정 델타. 덮어쓰기 필드 15개의 정본은 `recommendation-core.js`의 `OVERRIDABLE_PRODUCT_FIELDS`이며, 이름·인쇄 방식·납기 문구·공급처·색상 라벨·사진(`images`)·상태(`status`)까지 포함합니다.
+- `productAdditions`: 콘솔에서 등록한 신규 상품의 전체 레코드 배열. id·number는 기존 최대 번호 다음을 이어 씁니다.
+- 상태 모델 `status`: `active`(운영)·`hidden`(숨김)·`archived`(보관). 숨김·보관 상품은 사이트 병합에서 빠지고 카테고리 순위가 촘촘하게 재정렬되어, 3위를 숨기면 11위가 자동으로 운영 10개 안에 올라옵니다. 삭제 기능은 없습니다 — 보관함에서 언제든 복원합니다.
+- 사진: 콘솔이 브라우저 안에서 560×560 흰 바탕 WebP(q82)로 변환하고, 반영 시 GitHub Contents API로 사진을 먼저(장당 1커밋) 올린 뒤 `site-overrides.js`를 마지막에 커밋합니다. 기존 사진 교체는 캐시 회피를 위해 `-v2`·`-v3` 버전 파일명으로 올라갑니다.
+- 병합 정본: `recommendation-core.js`의 `mergeSiteProducts`·`filterActiveProducts`·`activeSiteProducts`를 홈페이지(`app.js`)와 어드민이 함께 씁니다. 사본 금지.
+- LLM 수정 감지: 홈페이지 파일·설정이 콘솔 밖에서 바뀌면 콘솔 상단 「LLM으로 홈페이지 수정한 내용 어드민에 적용하기」 버튼이 빨갛게 깜빡이고, 누를 때만 최신 내용을 불러옵니다(자동 덮어쓰기 없음).
+- 정본 지위: 상품마스터 xlsx는 초기 110개의 정본이고, 콘솔에서 등록·수정한 내용은 배포 저장소의 `site-overrides.js`가 정본입니다. 전달용 zip을 새로 만들기 전에는 `node tools/pull_live_state.js`로 라이브 상태를 로컬로 회수해야 콘솔 등록분이 증발하지 않습니다.
+
 ## 주요 파일
 
 - `index.html`: 페이지 구조와 3PICKS 디자인 토큰
