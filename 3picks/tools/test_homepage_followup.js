@@ -8,7 +8,7 @@ const config = fs.readFileSync("config.js", "utf8");
 const html = fs.readFileSync("index.html", "utf8");
 const imagePath = "assets/recommendation-team-v1.webp";
 
-assert.ok(config.includes('kakaoChannelUrl: "https://open.kakao.com/me/3PICK"'), "카카오 오픈채팅 주소가 설정되지 않았습니다.");
+assert.ok(config.includes('kakaoChannelUrl: "https://open.kakao.com/me/3PICKS"'), "카카오 오픈채팅 주소가 설정되지 않았습니다.");
 assert.ok(app.includes(`src="${imagePath}"`), "추천 결과에 팀 일러스트가 연결되지 않았습니다.");
 assert.ok(app.includes('width="654" height="680"'), "추천 이미지 크기 메타데이터가 없습니다.");
 assert.ok(app.indexOf('class="result-intro"') < app.indexOf('class="result-groups'), "추천 일러스트가 결과 구성보다 먼저 나와야 합니다.");

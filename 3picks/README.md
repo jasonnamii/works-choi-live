@@ -51,7 +51,7 @@ python3 tools/build_catalog.py
 
 ## 현재 연결 상태
 
-모든 카카오톡 상담 CTA는 `https://open.kakao.com/me/3PICK` 오픈채팅으로 연결됩니다. 주소를 바꿀 때는 `config.js`의 `kakaoChannelUrl` 한 곳만 수정합니다.
+모든 카카오톡 상담 CTA는 `https://open.kakao.com/me/3PICKS` 오픈채팅으로 연결됩니다. 주소를 바꿀 때는 `config.js`의 `kakaoChannelUrl` 한 곳만 수정합니다.
 
 ## 미니 견적 사용
 
