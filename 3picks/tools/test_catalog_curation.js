@@ -47,7 +47,7 @@ assert.ok(html.includes("@media (min-width:901px) and (max-width:1100px)"), "중
 assert.ok(html.includes(".product-card__info{display:flex;flex:1;flex-direction:column;min-height:224px;padding:16px"), "5열 카드가 16px 내부 여백과 정보 높이를 유지하지 않습니다.");
 assert.ok(html.includes(".product-card__name{min-height:50px;margin:6px 0 10px;font-size:14px"), "5열 상품명 크기·여백 계약이 다릅니다.");
 assert.ok(html.includes(".product-card__price strong{font-size:17px}"), "5열 가격 강조 크기가 다릅니다.");
-assert.ok(html.includes(".product-card__wishlist{position:absolute") && html.includes("border:1px solid var(--tp-ink-12)"), "하트 사각 테두리가 가격 아래 구분선과 같은 농도가 아닙니다.");
+assert.ok(html.includes(".product-card__wishlist{position:absolute") && html.includes("border:1px solid var(--tp-line)"), "하트 사각 테두리가 상품 테이블 선과 같은 무게가 아닙니다.");
 assert.ok(html.includes(".product-rail .product-card__info>.swatches{margin-top:auto;padding-top:12px}"), "카탈로그의 3색 예시 영역이 카드 하단 기준선에 고정되지 않았습니다.");
 assert.ok(!productCardRenderer.includes("사진은 색상 예시예요"), "상품 카드마다 색상 안내가 반복됩니다.");
 assert.ok(!productCardRenderer.includes("product.supplier") && !productCardRenderer.includes("product-card__brand"), "상품 카드에 내부 소스 출처가 노출됩니다.");
