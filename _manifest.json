@@ -1,26 +1,26 @@
 {
-  "life-journal": {
-    "slug": "life-journal",
+  "3picks-business-card": {
+    "slug": "3picks-business-card",
     "mode": "choi",
-    "url": "https://works.choi.build/life-journal/",
+    "url": "https://works.choi.build/3picks-business-card/",
     "last_kind": "redeploy",
-    "last_sha256": "2949aa174cd69f3024fb2615d6c756f50cc3866d4962a02c3e1f674392e67523",
-    "timestamp": "2026-08-11T14:15:55.254372Z"
+    "last_sha256": "160c50c8627294fd268c73c697133b427c1660bc010ad8b5f85bfe59890a3f37",
+    "timestamp": "2026-08-05T12:28:12.878920Z"
   },
   "3picks": {
     "slug": "3picks",
     "mode": "choi",
     "url": "https://works.choi.build/3picks/",
     "last_kind": "redeploy",
-    "last_sha256": "21f987ec676edb188619bcbff8fd64f60412da57308702948a14604623303a53",
-    "timestamp": "2026-08-11T08:46:52.314755Z"
+    "last_sha256": "0483397f28909c9498fd581a18c97728baf596b9a29e2ef9b5d09fb17a96e41e",
+    "timestamp": "2026-08-12T00:26:41.642029Z"
   },
-  "madpop-investment-agenda": {
-    "slug": "madpop-investment-agenda",
+  "life-journal": {
+    "slug": "life-journal",
     "mode": "choi",
-    "url": "https://works.choi.build/madpop-investment-agenda/",
+    "url": "https://works.choi.build/life-journal/",
     "last_kind": "redeploy",
-    "last_sha256": "331c6279e4b1d3110bc6cd3b315b453f3618c8a0240076e1ec2b535f2e76ef3d",
-    "timestamp": "2026-08-11T16:22:00.413799Z"
+    "last_sha256": "37210b2eda6a69a698c2649ccd6433f85f090cfbb9e9f9ef1438fefa1ef843cf",
+    "timestamp": "2026-08-11T09:45:24.474434Z"
   }
 }

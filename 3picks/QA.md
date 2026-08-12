@@ -7,12 +7,12 @@ RAIL: source-pass / final-render-sampled
 HAIRLINE: source-pass / 200%-zoom-unverified
 CARD BASELINES: source-pass / final-render-sampled
 COLOR HIERARCHY: pass / tshirt-hero-applied
-RESPONSIVE FLOW: pass / mobile-image-first / about-2col-1col
+RESPONSIVE FLOW: source-pass / mobile-primary-nav-and-result-image-render-unverified
 KEYBOARD & MOTION: source-pass / direct-browser-unverified
 STRICT QC: pass
-HERO VISUAL: pass / tshirt-background / mobile-image-first / visible-art-centered
+HERO VISUAL: source-math-pass / tshirt-background / mobile-image-first / <=600px visible-art-100vw / render-unverified
 MICROINTERACTION: source-pass / heart-only-1.3s / peaks-3x-1.5x / overflow-visible / reduced-motion-safe
-UNVERIFIED: 320·360·430px 히어로, 키보드·미니 견적 직접 조작, 카카오톡 채널 실연결
+UNVERIFIED: 연결 가능한 브라우저 없음 — 320·360·375·390·430px 히어로 실화면, 신규 모바일 대분류·추천 결과 일러스트 실렌더, 키보드·미니 견적 직접 조작, 라이브 배포 후 카카오톡 도착 화면
 ```
 
 ## 벤치마킹 기록
@@ -46,8 +46,8 @@ UNVERIFIED: 320·360·430px 히어로, 키보드·미니 견적 직접 조작, �
 - [x] 히어로 단일 장면·티셔츠·`01·02·03`과 세 상품 노출 — 1440·1280·768·390·375px 최종 렌더 확인
 - [x] 히어로 이미지 종이색과 홈페이지 `#F5F0E4` 경계 소거 — 알파 WebP·최종 렌더 확인
 - [x] 900px 이하에서 히어로 이미지가 카피보다 먼저 오는 DOM·CSS 순서 적용 — 소스 확인
-- [x] 375·390px에서 모바일 히어로 이미지→카피 순서와 티셔츠·`01·02·03` 비잘림 — 최종 렌더 확인
-- [ ] 320·360·430px에서 티셔츠와 키비주얼 비잘림 — 별도 캡처 대기
+- [ ] 375·390px에서 모바일 히어로 이미지→카피 순서와 티셔츠·`01·02·03` 비잘림 — 100vw 풀블리드 수정 후 실화면 재검수 대기
+- [ ] 320·360·430px에서 티셔츠와 키비주얼 비잘림 — 알파 경계 계산은 통과, 실화면 캡처 대기
 - [x] 신뢰 바 상·하단 선 굵기 통일 — 자체 하단 보더 제거, 다음 섹션의 1px 상단선만 사용
 - [x] 히어로 직후 대형 가치 스트립 제거, 88px 높이의 4칸 신뢰 바로 교체 — 세로선 없이 픽토그램·효익 문안·열 여백 구성
 - [x] 설문 첫 항목 자동 포커스를 제거하고, 키보드 포커스와 실제 선택 상태를 서로 다른 색으로 구분
@@ -63,6 +63,11 @@ UNVERIFIED: 320·360·430px 히어로, 키보드·미니 견적 직접 조작, �
 - [x] `100개 대표 상품·더 넓은 상품 소싱·맞춤 제작·견적과 납기 안내`를 4열, 900px 이하 2×2로 구성
 - [x] 추천 설문 첫 화면의 반복 의문사 제거 — 섹션 헤드·검은 안내 패널·실제 질문의 역할 분리
 - [x] 상단·하단 CTA를 `맞춤추천·카카오톡 상담하기·이메일문의` 동일 3버튼으로 통일하고 이메일 주소를 `config.js`와 연결
+- [x] 모바일에서 숨기던 GNB 대분류 4개를 44px 이상 터치 행으로 노출
+- [x] 사용자 모바일 캡처에서 확인한 대분류 외곽선·세로 칸막이·셀 배경을 제거하고 현재 위치는 밑줄로만 표시
+- [x] 추천 요약과 구성 3안 사이에 제공된 3PICKS 팀 일러스트를 연결하고 900px 이하에서 세로 적층
+- [x] 사용자 데스크톱 캡처에서 분리돼 보이던 조건 변경 버튼을 좌측 카피 아래 같은 시작선으로 이동
+- [x] 모든 카카오톡 상담 CTA를 `https://open.kakao.com/me/3PICK` 설정값으로 연결
 - [x] 상단 CTA를 40px·13px·6px 간격으로 축소하고 카테고리 10칸이 1200px 레일을 채워 CTA 오른쪽 선과 맞도록 균등 확장
 - [x] 총예산을 만원 단위로 입력하고 내부 상태에는 원 단위로 변환 — `100만원 → 1,000,000원` 계산 경로 적용
 - [x] 정확 조건의 후보가 부족해도 상담 확인 항목을 밝히고 추천 3안 표시
@@ -96,6 +101,8 @@ UNVERIFIED: 320·360·430px 히어로, 키보드·미니 견적 직접 조작, �
 - `3picks-design` strict QC 통과
 - 티셔츠 히어로 WebP 실파일 1671×941·알파·197,794B, SHA-256 `adbd8a11f03986f1e5d014648d4ed9a68953fa563d0dcc2b6c12b983ff80a374`
 - 히어로 HTML `width`·`height`와 모바일 `aspect-ratio`를 실파일 1671×941에 맞춤 — 소스·실파일 정합 통과
+- FFmpeg 알파 가시 경계는 x 657~1639·y 12~922·983×911이며, 600px 이하에서 가시 폭 983px을 `100vw`로 환산하고 중심점 1148.5px을 화면 50%에 정렬
+- 320·360·375·390·430·600px 수식 검증에서 가시 그림 좌우 경계 `0.000px ~ viewport width`, 수평 넘침 `0.000px`
 - 최종 렌더 캡처 14장: `Temp/3picks-qa-260811/page-layout/`; 5개 뷰포트 전체 화면과 히어로·멤버 소개 표적 캡처 보존
 - 추천 결과의 기존 펼침 선택자·이벤트 잔존 0개, 3열 결과 클래스·저장·복원·초기화 훅 존재 확인
 - 미니 견적 UI 선택자·로컬 저장·12개 제한·수량 계산·PDF 문서 생성 훅 존재 확인

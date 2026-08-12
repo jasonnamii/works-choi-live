@@ -1004,14 +1004,19 @@
         ? `${escapeHtml(state.answers.event)} · ${money(state.answers.count)}명 · 예산 미정 조건으로 골랐어요.`
         : `${escapeHtml(state.answers.event)} · ${money(state.answers.count)}명 · 1인당 ${money(Math.floor(Number(state.answers.budget) / Number(state.answers.count)))}원에 최대한 가깝게 맞췄어요.`;
     els.results.innerHTML = `
-      <div class="result-summary">
-        <div>
-          <div class="tp-eyebrow">Your 3 picks</div>
-          <h3>${resultTitle}</h3>
-          <p>${resultDescription}</p>
-          ${notices.map((notice) => `<p style="margin-top:8px"><strong>참고:</strong> ${escapeHtml(notice)}</p>`).join("")}
+      <div class="result-intro">
+        <div class="result-summary">
+          <div>
+            <div class="tp-eyebrow">Your 3 picks</div>
+            <h3>${resultTitle}</h3>
+            <p>${resultDescription}</p>
+            ${notices.map((notice) => `<p style="margin-top:8px"><strong>참고:</strong> ${escapeHtml(notice)}</p>`).join("")}
+          </div>
+          <button class="tp-btn tp-btn--secondary" type="button" data-restart>조건 바꿔 다시 보기</button>
         </div>
-        <button class="tp-btn tp-btn--secondary" type="button" data-restart>조건 바꿔 다시 보기</button>
+        <figure class="result-visual">
+          <img src="assets/recommendation-team-v1.webp" width="654" height="680" alt="세 가지 제안 보드를 들고 있는 3PICKS 팀 일러스트" decoding="async">
+        </figure>
       </div>
       <div class="result-groups result-groups--${Math.min(groups.length, 3)}">
         ${groups.map((group, index) => {

@@ -22,6 +22,11 @@ const checks = [
   [html.includes(".hero__grid{display:flex;flex-direction:column}"), "mobile hero vertical flow"],
   [html.includes("order:0;width:100%;height:auto;aspect-ratio:1671/941"), "mobile hero image comes first"],
   [html.includes(".hero__copy{order:1;width:100%;min-height:0"), "mobile hero copy follows image"],
+  [html.includes(".main-links{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))"), "mobile primary navigation visible in four columns"],
+  [html.includes(".main-links a{min-width:0;min-height:44px"), "mobile primary navigation touch targets"],
+  [html.includes("gap:0;width:100%;border:0"), "mobile primary navigation has no table frame"],
+  [html.includes("white-space:normal;border:0;background:transparent"), "mobile primary navigation has no cell dividers"],
+  [html.includes(".result-intro{grid-template-columns:1fr}"), "mobile recommendation intro stacks"],
   [html.includes("object-fit:contain;object-position:center;transform:translateX(-18.7313%)"), "mobile visible key visual centered"],
   [html.includes(".proof-strip__grid{display:grid;grid-template-columns:1fr"), "stacked mobile proof items"],
   [html.includes("max-height:calc(100svh - 24px)"), "dialog viewport cap"],
@@ -39,6 +44,7 @@ assert.ok(heroFigure >= 0 && heroCopy > heroFigure, "Hero image must precede cop
 assert.equal((html.match(/<a href="#about">Our brand story<\/a>/g) || []).length, 2, "GNB와 푸터의 Our brand story 라벨이 일치하지 않습니다.");
 assert.equal((html.match(/<a href="#about">멤버 소개<\/a>/g) || []).length, 0, "폐기한 멤버 소개 메뉴 라벨이 남아 있습니다.");
 assert.ok(!html.includes('href="#about">회사소개'), "이전 회사소개 메뉴 라벨이 남아 있습니다.");
+assert.ok(!html.includes(".main-links{display:none}"), "모바일에서 대분류 메뉴를 숨기는 규칙이 남아 있습니다.");
 
 const openBraces = [...html].filter((character) => character === "{").length;
 const closeBraces = [...html].filter((character) => character === "}").length;

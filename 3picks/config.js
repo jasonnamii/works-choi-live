@@ -1,5 +1,5 @@
 window.SITE_CONFIG = {
-  kakaoChannelUrl: "",
+  kakaoChannelUrl: "https://open.kakao.com/me/3PICK",
   contactName: "백선미 이사",
   contactPhone: "010-6331-9276",
   contactEmail: "julia@3picks.co.kr",
