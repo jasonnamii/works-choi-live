@@ -97,7 +97,14 @@ input, select { font: inherit; color: inherit; }
 .admin-header__row { display: flex; align-items: center; gap: var(--tp-s-4); min-height: 64px; flex-wrap: wrap; padding-block: var(--tp-s-2); }
 .admin-header__brand { display: flex; flex-direction: column; gap: 2px; margin-right: auto; }
 .admin-header__brand strong { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
-.admin-header__actions { display: flex; align-items: center; gap: var(--tp-s-2); flex-wrap: wrap; }
+.admin-header__actions { display: flex; align-items: center; gap: var(--tp-s-4); flex-wrap: wrap; }
+/* 기능군 구획 — 동기화 · 상태 · 반영을 여백과 헤어라인으로 가른다 */
+.hgroup { display: flex; align-items: center; gap: var(--tp-s-2); }
+.hgroup + .hgroup { border-left: var(--tp-border) solid var(--tp-line); padding-left: var(--tp-s-4); }
+/* 헤더 안 버튼은 역할이 달라도 크기·글자는 한 몸 */
+.admin-header__actions .tp-btn { min-height: 44px; font-size: 14px; padding: 0 var(--tp-s-4); }
+/* 상태 배지는 버튼으로 오해되지 않게 면색만 남긴다 (신호 상태 badge--sun은 그대로) */
+.admin-header__actions .badge--ghost { background: var(--tp-cream); border-color: transparent; }
 .badge { display: inline-block; padding: 3px 10px; border-radius: var(--tp-radius-badge); font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-label); border: var(--tp-border) solid var(--tp-line); }
 .badge--sun { background: var(--tp-sun); border-color: var(--tp-ink); }
 .badge--pop { background: var(--tp-pop); color: var(--tp-cell); border-color: var(--tp-pop); }
@@ -273,6 +280,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
 
 @media (max-width: 900px) {
   .admin-header { position: static; }
+  .hgroup + .hgroup { border-left: 0; padding-left: 0; }
   .connect-grid { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: 1fr; }
   .steps > li { min-height: 0; }
@@ -318,10 +326,16 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
         <strong>운영 콘솔</strong>
       </div>
       <div class="admin-header__actions">
-        <button class="tp-btn tp-btn--small llm-sync-btn" type="button" id="llmSyncBtn" data-alert="false">LLM으로 홈페이지 수정한 내용 어드민에 적용하기</button>
-        <span class="badge badge--ghost" id="draftBadge">고친 내용 없음</span>
-        <span class="badge badge--ghost" id="connBadge">홈페이지 연결 전</span>
-        <button class="tp-btn tp-btn--primary" type="button" id="saveBtnTop" disabled>홈페이지에 반영하기</button>
+        <div class="hgroup">
+          <button class="tp-btn llm-sync-btn" type="button" id="llmSyncBtn" data-alert="false">LLM으로 홈페이지 수정한 내용 어드민에 적용하기</button>
+        </div>
+        <div class="hgroup">
+          <span class="badge badge--ghost" id="draftBadge">고친 내용 없음</span>
+          <span class="badge badge--ghost" id="connBadge">홈페이지 연결 전</span>
+        </div>
+        <div class="hgroup">
+          <button class="tp-btn tp-btn--primary" type="button" id="saveBtnTop" disabled>홈페이지에 반영하기</button>
+        </div>
       </div>
     </div>
     <nav class="anchor-nav" aria-label="섹션 이동">
@@ -544,7 +558,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       <div class="review-actions" style="border-top:1px solid var(--tp-line)">
         <button class="tp-btn tp-btn--primary" type="button" id="saveBtn" disabled>홈페이지에 반영하기</button>
         <button class="tp-btn" type="button" id="exportBtn">백업 파일 받기</button>
-        <button class="tp-btn tp-btn--small" type="button" id="discardBtn">고친 내용 모두 취소</button>
+        <button class="tp-btn" type="button" id="discardBtn">고친 내용 모두 취소</button>
       </div>
       <p class="save-log" id="saveLog"></p>
     </div>
