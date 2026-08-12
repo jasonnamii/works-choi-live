@@ -364,14 +364,14 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       <li>
         <span class="step-no">STEP 1</span>
         <h3>운영 상품 확정</h3>
-        <p>전체 상품 중 카테고리별 순위 1~10위, 총 100개만 추천과 카탈로그에 오릅니다.</p>
+        <p>전체 상품 중 카테고리별 순위 1~10위, 총 100개가 홈페이지에 진열되고 추천 대상이 됩니다.</p>
         <p class="tp-mono">편집: 상품 운영 → 순위</p>
       </li>
       <li>
         <span class="step-no">STEP 2</span>
         <h3>조건 필터</h3>
-        <p>화면 노출 여부, 인원 대비 최소 주문 수량, 납기, 인쇄 가능 여부, 제외 품목, 공직자 5만 원 기준으로 후보를 거릅니다.</p>
-        <p class="tp-mono">편집: 상품 운영 → 노출·필드</p>
+        <p>자동 추천 대상 여부, 인원 대비 최소 주문 수량, 납기, 인쇄 가능 여부, 제외 품목, 공직자 5만 원 기준으로 후보를 거릅니다.</p>
+        <p class="tp-mono">편집: 상품 운영 → 추천 여부</p>
       </li>
       <li>
         <span class="step-no">STEP 3</span>
@@ -484,7 +484,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     <div class="section-head">
       <span class="tp-eyebrow">06 · Catalog curation</span>
       <h2>카테고리별 상품 운영</h2>
-      <p>위·아래 버튼으로 순위를 바꿉니다. 각 카테고리의 1~10위만 홈페이지와 추천에 오르고, 그 아래 대기 상품은 순위를 올리면 자동으로 자리를 바꿉니다. 상품을 펼치면 가격·수량·납기·태그를 고칠 수 있고, 노출 버튼을 끄면 홈페이지에는 남되 자동 추천에서는 빠져 상담 제안으로만 다뤄집니다. 여기서 바꾼 것도 아직 홈페이지에 올라간 상태는 아니에요.</p>
+      <p>위·아래 버튼으로 순위를 바꿉니다. 각 카테고리의 1~10위, 총 100개는 지금 홈페이지에 전부 진열되어 있습니다. 그 아래 대기 상품은 순위를 10위 안으로 올리면 자리를 맞바꿔 진열됩니다. 상품을 펼치면 가격·수량·납기·태그를 고칠 수 있고, 「자동 추천에 나감」 버튼을 끄면 홈페이지 진열은 그대로 두고 자동 추천에서만 빠져 상담 때 제안하는 상품이 됩니다. 여기서 바꾼 것도 아직 홈페이지에 올라간 상태는 아니에요.</p>
     </div>
     <div class="cat-tabs" id="catTabs" role="tablist"></div>
     <div class="tp-cell" style="overflow:hidden">
@@ -936,7 +936,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     list.forEach((product, index) => {
       if (index === 10) {
         const dividerItem = create("li");
-        const divider = create("div", "bench-divider", "여기까지 홈페이지에 보임 · 아래는 대기 상품");
+        const divider = create("div", "bench-divider", "여기까지(1~10위) 홈페이지에 진열 중 · 아래는 대기 상품");
         dividerItem.append(divider);
         host.append(dividerItem);
       }
@@ -970,7 +970,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       row.append(info);
 
       const acts = create("div", "pacts");
-      const visBtn = create("button", "vis-toggle", product.visibility === "화면노출" ? "노출 중" : "상담 제안");
+      const visBtn = create("button", "vis-toggle", product.visibility === "화면노출" ? "자동 추천에 나감" : "추천 제외 · 상담용");
       visBtn.type = "button";
       visBtn.dataset.on = String(product.visibility === "화면노출");
       visBtn.addEventListener("click", () => {
@@ -1219,9 +1219,11 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     Object.entries(overrides.productOverrides).forEach(([id, patch]) => {
       const base = byId.get(id);
       const parts = Object.entries(patch).map(([field, value]) => {
-        const fieldNames = { rank: "순위", visibility: "노출", price: "가격", moq: "최소 수량", leadDays: "납기", tags: "태그", popularity: "인기도" };
-        const from = field === "tags" ? (base.tags || []).join(",") || "없음" : base[field];
-        const to = field === "tags" ? (value || []).join(",") || "없음" : value;
+        const fieldNames = { rank: "순위", visibility: "자동 추천", price: "가격", moq: "최소 수량", leadDays: "납기", tags: "태그", popularity: "인기도" };
+        const visNames = { "화면노출": "나감", "상담제안": "제외(상담용)" };
+        const label = (raw) => field === "visibility" ? (visNames[raw] || raw) : raw;
+        const from = field === "tags" ? (base.tags || []).join(",") || "없음" : label(base[field]);
+        const to = field === "tags" ? (value || []).join(",") || "없음" : label(value);
         return `${fieldNames[field]} ${from} → ${to}`;
       });
       add("상품", `${base ? base.name : id} · ${parts.join(" · ")}`);
