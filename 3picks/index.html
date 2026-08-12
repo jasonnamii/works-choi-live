@@ -334,7 +334,7 @@
     .swatch.is-active{border:2px solid var(--tp-ink)}
     .color-note{margin:10px 0 0;color:var(--tp-grey);font-size:13px;line-height:1.45}
 
-    .quote-float{position:fixed;z-index:140;left:24px;bottom:24px;width:calc(100vw - 48px);pointer-events:none}
+    .quote-float{--qf-edge:max(24px,calc((100vw - var(--tp-max))/2 - 88px));position:fixed;z-index:140;left:var(--qf-edge);bottom:24px;width:calc(100vw - var(--qf-edge)*2);pointer-events:none}
     .quote-trigger{position:absolute;z-index:2;left:0;bottom:0;width:72px;height:72px;padding:0;border:1px solid var(--tp-ink);border-radius:0;background:var(--tp-ink);color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:5px;overflow:visible;font-family:var(--tp-font-mono);font-size:16px;font-weight:800;letter-spacing:.04em;pointer-events:auto;transition:background var(--tp-dur) var(--tp-ease),color var(--tp-dur) var(--tp-ease)}
     .quote-trigger[aria-expanded="true"]{background:var(--tp-sun);color:var(--tp-ink)}
     .quote-trigger__heart{position:relative;z-index:3;display:inline-block;font-size:20px;line-height:1;transform-origin:center;will-change:transform;animation:quote-heartbeat 1.3s ease-in-out infinite}
