@@ -116,6 +116,8 @@
     .hero__lead{max-width:36ch;margin:0 0 24px;font-size:clamp(20px,1.6vw,24px);font-weight:700;line-height:1.5;color:var(--tp-ink)}
     .hero__note{display:flex;align-items:flex-start;gap:10px;margin-top:0;font-size:14px;color:var(--tp-ink-70)}
     .hero__note .icon{width:20px;height:20px;margin-top:1px}
+    .hero__copy-stack{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:auto;padding-top:24px;background:transparent}
+    .hero__copy-stack span{display:block;width:max-content;max-width:100%;padding:6px 10px;background:var(--tp-ink);color:var(--tp-cream);font-size:clamp(20px,2vw,24px);font-weight:900;line-height:1.05;letter-spacing:-.03em}
 
     .proof-strip{background:var(--tp-cream)}
     .proof-strip__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(24px,4vw,64px)}
@@ -223,7 +225,7 @@
     .rail-controls{display:flex;gap:8px}
     .rail-arrow{width:44px;height:44px;border:1px solid var(--tp-line);border-radius:0;background:var(--tp-cell);font-size:20px}
     .rail-arrow:hover{background:var(--tp-cream)}
-    .product-rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3px)/4);gap:1px;overflow-x:auto;scroll-snap-type:x mandatory;background:var(--tp-line);border:1px solid var(--tp-line);scrollbar-width:thin}
+    .product-rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 4px)/5);gap:1px;overflow-x:auto;scroll-snap-type:x mandatory;background:var(--tp-line);border:1px solid var(--tp-line);scrollbar-width:thin}
     .product-card{position:relative;background:var(--tp-cell);scroll-snap-align:start;display:flex;flex-direction:column;min-width:0}
     .product-card__media{position:relative;aspect-ratio:1/1;background:var(--tp-cell);overflow:hidden}
     .product-card__media img{width:100%;height:100%;object-fit:contain;transition:transform var(--tp-dur) var(--tp-ease)}
@@ -232,11 +234,11 @@
     .product-card__wishlist.is-active{background:var(--tp-sun)}
     .product-card__wishlist.is-active svg{fill:var(--tp-ink)}
     .product-card__badge{position:absolute;left:12px;top:12px;z-index:1;padding:5px 9px;background:var(--tp-sun);border-radius:var(--tp-radius-badge);font-family:var(--tp-font-mono);font-size:13px;font-weight:800;letter-spacing:.07em}
-    .product-card__info{display:flex;flex:1;flex-direction:column;min-height:208px;padding:16px;border-top:1px solid var(--tp-line)}
+    .product-card__info{display:flex;flex:1;flex-direction:column;min-height:224px;padding:16px;border-top:1px solid var(--tp-line)}
     .product-card__brand{color:var(--tp-grey);font-family:var(--tp-font-mono);font-size:13px;letter-spacing:.09em;text-transform:uppercase}
-    .product-card__name{min-height:50px;margin:6px 0 10px;font-size:15px;font-weight:700;line-height:1.45}
-    .product-card__price{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-family:var(--tp-font-mono);font-size:14px}
-    .product-card__price strong{font-size:18px}
+    .product-card__name{min-height:50px;margin:6px 0 10px;font-size:14px;font-weight:700;line-height:1.45}
+    .product-card__price{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-family:var(--tp-font-mono);font-size:13px}
+    .product-card__price strong{font-size:17px}
     .product-card__meta{display:grid;grid-template-columns:auto 1fr;gap:2px 8px;margin-top:12px;padding-top:10px;border-top:1px solid var(--tp-ink-12);font-family:var(--tp-font-mono);font-size:13px;line-height:1.5}
     .product-card__meta dt{color:var(--tp-grey)}
     .product-card__meta dd{margin:0;text-align:right}
@@ -300,11 +302,11 @@
 
     .faq{border-top:1px solid var(--tp-line)}
     .faq details{border-bottom:1px solid var(--tp-line)}
-    .faq summary{min-height:72px;padding:20px 56px 20px 16px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:18px;font-weight:800;cursor:pointer;list-style:none;position:relative}
+    .faq summary{min-height:72px;padding:20px 56px 20px 16px;display:flex;align-items:center;justify-content:flex-start;text-align:left;font-size:22px;font-weight:800;cursor:pointer;list-style:none;position:relative}
     .faq summary::-webkit-details-marker{display:none}
     .faq summary::after{content:"+";position:absolute;right:20px;font-family:var(--tp-font-mono);font-size:22px;font-weight:400}
     .faq details[open] summary::after{content:"−"}
-    .faq p{max-width:64ch;margin:0 auto;padding:0 16px 24px;text-align:center;color:var(--tp-ink-70);font-size:14px}
+    .faq p{max-width:80ch;margin:0;padding:0 16px 24px;text-align:left;color:var(--tp-ink-70);font-size:16px}
 
     .about{border-top:1px solid var(--tp-line);background:var(--tp-cream)}
     .about-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--tp-line);border:1px solid var(--tp-line)}
@@ -341,10 +343,8 @@
     .story-panel p{max-width:60ch;margin:0;color:var(--tp-ink-70);font-size:clamp(17px,1.35vw,19px);line-height:1.55}
     .story-panel p strong{color:var(--tp-ink);font-size:1.12em}
     .story-panel__dialogue{color:var(--tp-ink)!important;font-weight:800}
-    .member-story__ending{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px;margin-top:clamp(80px,9vw,128px);padding:clamp(24px,4vw,48px);background:var(--tp-ink);color:var(--tp-cell)}
-    .member-story__ending h4{max-width:17ch;margin:0;font-size:clamp(28px,4vw,48px);line-height:1.12;letter-spacing:-.035em}
-    .member-story__ending p{max-width:48ch;margin:16px 0 0;color:var(--tp-cell)}
-    .member-story__ending .tp-btn{align-self:end;border-color:var(--tp-cell);background:transparent;color:var(--tp-cell)}
+    .member-story__ending{min-height:96px;display:flex;align-items:center;justify-content:flex-end;margin-top:clamp(80px,9vw,128px);padding:24px clamp(24px,4vw,48px);background:var(--tp-ink);color:var(--tp-cell)}
+    .member-story__ending .tp-btn{border-color:var(--tp-cell);background:transparent;color:var(--tp-cell)}
 
     @media (hover:hover){
       .tp-btn:hover{opacity:1;transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--tp-ink)}
@@ -377,6 +377,9 @@
     .dialog-body p{margin:0 0 20px;color:var(--tp-ink-70)}
     .dialog-actions{display:flex;flex-wrap:wrap;gap:8px}
 
+    @media (min-width:901px) and (max-width:1100px){
+      .product-rail{grid-auto-columns:calc((100% - 3px)/4)}
+    }
     @media (max-width:900px){
       html{scroll-padding-top:160px}
       .site-nav{grid-template-columns:1fr auto;min-height:0;gap:8px 16px;padding-block:8px}
@@ -396,6 +399,8 @@
       .hero__backdrop img{width:100%;height:100%;object-fit:contain;object-position:center;transform:translateX(-18.7313%)}
       .hero__copy{order:1;width:100%;min-height:0;padding:40px 0 56px;justify-content:flex-start}
       .hero h1{max-width:10.5ch}
+      .hero__copy-stack{margin-top:28px;padding-top:0}
+      .hero__copy-stack span{font-size:20px}
       .proof-strip__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .catalog-intro{align-items:flex-start;flex-direction:column}
       .catalog-intro h2{font-size:clamp(48px,7vw,64px)}
@@ -456,6 +461,8 @@
       .hero h1{margin:12px 0 20px;font-size:clamp(40px,13vw,52px);line-height:1.01}
       .hero__lead{margin-bottom:18px;font-size:18px;font-weight:700;line-height:1.5}
       .hero__note{font-size:13px}
+      .hero__copy-stack{margin-top:24px;gap:3px}
+      .hero__copy-stack span{padding:5px 8px;font-size:18px}
       .proof-strip__grid{display:grid;grid-template-columns:1fr;gap:0;overflow:visible;margin-inline:0;padding-inline:0}
       .proof-strip__grid::-webkit-scrollbar{display:none}
       .proof-item{width:100%;min-height:72px;padding:12px 0;gap:12px}
@@ -511,7 +518,7 @@
       .consult h2{font-size:42px}
       .consult .tp-btns{display:grid;grid-template-columns:1fr;gap:8px}
       .consult .tp-btn{width:100%}
-      .faq summary{min-height:64px;padding:16px 48px 16px 4px;justify-content:flex-start;text-align:left;font-size:16px}
+      .faq summary{min-height:64px;padding:16px 48px 16px 4px;justify-content:flex-start;text-align:left;font-size:18px}
       .faq summary::after{right:8px}
       .faq p{padding:0 4px 20px;text-align:left}
       .team-member__body{padding:20px 16px}
@@ -534,9 +541,7 @@
       .story-panel__no{font-size:14px}
       .story-panel h4{margin:6px 0 12px;font-size:clamp(28px,8vw,34px)}
       .story-panel p{font-size:16px;line-height:1.45}
-      .member-story__ending{grid-template-columns:1fr;align-items:start;gap:24px;padding:24px 16px}
-      .member-story__ending h4{font-size:32px}
-      .member-story__ending p{font-size:14px}
+      .member-story__ending{min-height:0;justify-content:stretch;padding:16px}
       .member-story__ending .tp-btn{width:100%}
       .site-footer{padding:40px 0 calc(48px + env(safe-area-inset-bottom))}
       .footer-grid{gap:28px}
@@ -617,6 +622,12 @@
           <div class="hero__note">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 12.4l4.7 4.7L19.4 7"/></svg>
             <span>정해진 제품이 없어도 괜찮아요. 아이디어만 알려주시면 됩니다.</span>
+          </div>
+          <div class="hero__copy-stack" aria-label="3PICKS가 대신하는 일">
+            <span>찾고,</span>
+            <span>비교하고,</span>
+            <span>보고하는 귀찮은 일.</span>
+            <span>이제 3PICKS에 시키세요.</span>
           </div>
         </div>
       </div>
@@ -727,6 +738,7 @@
           <details><summary>표시된 가격은 어떤 기준인가요?</summary><p>100개 주문 기준의 예상 단가예요. 인쇄와 포장 방식에 따라 달라질 수 있어 정확한 금액은 상담에서 안내해 드립니다.</p></details>
           <details><summary>사진에 나온 세 가지 색상을 모두 제작할 수 있나요?</summary><p>사진은 색상을 고르는 데 도움을 드리기 위한 예시예요. 실제 제작 색상과 재고는 상담할 때 확인해 드립니다.</p></details>
           <details><summary>찾는 상품이 사이트에 없으면 어떻게 하나요?</summary><p>화면에는 3PICKS가 먼저 고른 상품만 보여드리고 있어요. 원하시는 품목을 말씀해 주시면 더 넓은 범위에서 찾아드립니다.</p></details>
+          <details><summary>최소 주문 수량은 어떻게 확인하나요?</summary><p>상품마다 최소 주문 수량이 달라요. 상품 카드에 표시된 MOQ를 확인해 주세요. 원하시는 수량과 맞지 않으면 상담에서 가능한 대안을 함께 찾아드립니다.</p></details>
           <details><summary>추천 결과를 상담할 때 어떻게 전달하나요?</summary><p>결과 화면에서 상담 요약을 복사해 보내주시면 돼요. 공유 링크에는 제품 정보만 담기고 예산과 인원은 포함되지 않아요.</p></details>
         </div>
       </div>
@@ -833,8 +845,7 @@
               </figcaption>
             </figure>
           </div>
-          <div class="member-story__ending">
-            <div><h4>찾고,<br>비교하고,<br>보고하는 귀찮은 일.<br>이제 3PICKS에 시키세요.</h4></div>
+          <div class="member-story__ending" aria-label="스토리 상담">
             <button class="tp-btn cta-action--kakao" type="button" data-consult>카카오톡 상담하기</button>
           </div>
         </section>

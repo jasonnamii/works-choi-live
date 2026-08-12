@@ -27,5 +27,10 @@ assert.ok(!app.includes('<h4>${escapeHtml(group.category)}</h4>'), "기계적인
 assert.ok(app.includes('class="result-pick"') && app.includes('${pickCells}'), "구성별 제품 3칸 렌더 구조가 없습니다.");
 assert.ok(!app.includes("result-bundle-products"), "폐기한 세로 제품 묶음이 남아 있습니다.");
 assert.ok(fs.existsSync(imagePath), "추천 결과 이미지 파일이 없습니다.");
+assert.equal((html.match(/<details><summary>/g) || []).length, 5, "FAQ가 5개가 아닙니다.");
+assert.ok(html.includes("최소 주문 수량은 어떻게 확인하나요?"), "FAQ에 MOQ 확인 질문이 없습니다.");
+assert.ok(html.includes(".faq summary{min-height:72px;padding:20px 56px 20px 16px;display:flex;align-items:center;justify-content:flex-start;text-align:left;font-size:22px"), "데스크톱 FAQ 질문이 22px 좌측 정렬이 아닙니다.");
+assert.ok(html.includes(".faq p{max-width:80ch;margin:0;padding:0 16px 24px;text-align:left"), "FAQ 답변이 좌측 정렬이 아닙니다.");
+assert.ok(html.includes(".faq summary{min-height:64px;padding:16px 48px 16px 4px;justify-content:flex-start;text-align:left;font-size:18px}"), "모바일 FAQ 질문이 18px 좌측 정렬이 아닙니다.");
 
-console.log("PASS homepage follow-up kakao=linked intro-button=desktop-bottom-left/mobile-flow result-layout=desktop-4col/mobile-2x2 picks=1st/2nd/3rd");
+console.log("PASS homepage follow-up kakao=linked intro-button=desktop-bottom-left/mobile-flow result-layout=desktop-4col/mobile-2x2 picks=1st/2nd/3rd faq=5/left/22px");

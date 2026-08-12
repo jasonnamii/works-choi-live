@@ -7,10 +7,10 @@ RAIL: source-pass / final-render-sampled
 HAIRLINE: source-pass / 200%-zoom-unverified
 CARD BASELINES: source-pass / final-render-sampled
 COLOR HIERARCHY: pass / tshirt-hero-applied
-RESPONSIVE FLOW: pass / mobile-product-rail-2.2 / result-desktop-4col / result-mobile-2x2 / result-five-viewport-render / result-intro-75pct / product-direct-render-pass-320-375-390 / member-story-centered-fullwidth-4x3
+RESPONSIVE FLOW: pass / desktop-product-rail-5 / compact-desktop-4 / mobile-product-rail-2.2 / result-desktop-4col / result-mobile-2x2 / result-five-viewport-render / result-intro-75pct / product-direct-render-pass-320-375-390 / member-story-centered-fullwidth-4x3
 KEYBOARD & MOTION: source-pass / direct-browser-unverified
 STRICT QC: pass
-HERO VISUAL: source-math-pass / tshirt-background / mobile-image-first / <=600px visible-art-100vw / render-unverified
+HERO VISUAL: source-math-pass / tshirt-background / mobile-image-first / <=600px visible-art-100vw / copy-label-stack-five-viewport-pass
 MICROINTERACTION: source-pass / heart-only-1.3s / peaks-3x-1.5x / overflow-visible / reduced-motion-safe
 UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조작, 라이브 배포 후 카카오톡 도착 화면
 ```
@@ -44,6 +44,7 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - [x] `prefers-reduced-motion`에서 티커·전환 정지 규칙 존재
 - [x] 히어로 자산과 HTML 참조를 보조배터리 없는 티셔츠 키비주얼로 교체 — 소스·자산 직접 확인
 - [x] 히어로 단일 장면·티셔츠·`01·02·03`과 세 상품 노출 — 1440·1280·768·390·375px 최종 렌더 확인
+- [x] 히어로 좌측 하단 여백의 문장별 먹색 라벨 4개·부모 투명·스토리 엔딩 중복 0건 — 1440·1280·768·390·375px 렌더, 가로 넘침 0·콘솔 오류 0 확인
 - [x] 히어로 이미지 종이색과 홈페이지 `#F5F0E4` 경계 소거 — 알파 WebP·최종 렌더 확인
 - [x] 900px 이하에서 히어로 이미지가 카피보다 먼저 오는 DOM·CSS 순서 적용 — 소스 확인
 - [ ] 375·390px에서 모바일 히어로 이미지→카피 순서와 티셔츠·`01·02·03` 비잘림 — 100vw 풀블리드 수정 후 실화면 재검수 대기
@@ -67,6 +68,7 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - [x] 상단·하단 CTA를 `맞춤추천·카카오톡 상담하기·이메일문의` 동일 3버튼으로 통일하고 이메일 주소를 `config.js`와 연결
 - [x] 모바일에서 숨기던 GNB 대분류 4개를 44px 이상 터치 행으로 노출
 - [x] 600px 이하 상품 레일을 완전한 2장+다음 카드 20%가 보이는 2.2장 폭으로 변경하고 360px 이하의 단일 카드 덮어쓰기 제거 — 320·360·375·390·430·600px 수식 오차 0.000002 이하
+- [x] 1101px 이상 상품 레일을 5열로 전환하고 카드 내부 16px 여백·44px 하트·13px 라벨 하한 유지 — 1440·1280px 5개·카드 238.8px, 1100px 4개 보호, 1101px 5개 전환, 가로 넘침·콘솔 오류 0건
 - [x] 2.2장 레일의 정보 밀도에 맞춰 모바일 상품명 13px·가격 16px로 축소하고 메타·안내 라벨은 13px 가독성 하한 유지
 - [x] 320·375·390px에서 상품 2.2장 노출·카드 정보 줄바꿈 직접 렌더 — 세 번째 카드 가시 비율 0.2078·0.2066·0.2063, 문서 가로 넘침 0px, 상품명 13px·가격 16px 확인
 - [x] 사용자 모바일 캡처에서 확인한 대분류 외곽선·세로 칸막이·셀 배경을 제거하고 현재 위치는 밑줄로만 표시
@@ -89,6 +91,7 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - [x] 카탈로그의 `visibility` 필터를 제거하고 추천의 기존 `visibility`·제작 가능 조건은 유지 — 자동 검사 통과
 - [x] 공통 카테고리 순서에서 수건·타올 06번 적용 — 자동 검사 통과
 - [x] GNB·푸터 `Our brand story`와 FAQ 다음 `#about`, 백선미 이사·두 번째 멤버 더미 연결 — 소스 확인
+- [x] FAQ를 MOQ 질문 포함 5개로 확장하고 질문·답변을 좌측 정렬; 질문 22px·답변 16px, 600px 이하 질문 18px로 가독성 상향
 - [x] 멤버 소개 자산 응답 200, 알파 경계·초록 잔류 0, 데스크톱 2열·모바일 1열 — 최종 렌더 확인
 - [x] 푸터에 임시 사업자등록번호·통신판매업 신고번호와 교체 주석 연결 — 소스 확인
 - [ ] 미니 견적 하트·수량·새로고침·PDF 팝업 직접 조작 — 이번 실행 환경의 연결 가능한 브라우저가 없어 소스·서버 응답 검증까지만 완료
@@ -117,9 +120,11 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - 추천 결과의 폐기 세로 묶음 `result-bundle-products` 잔존 0개, 구성별 4칸 행·모바일 2×2·저장·복원·초기화 훅 존재 확인
 - 1440·1280px에서 각 구성은 298.75px 동일 4칸·자식 4개, 768px은 364.07px 2칸, 390px은 177.5px 2칸, 375px은 170px 2칸으로 실렌더
 - 다섯 뷰포트 모두 페이지 가로 넘침 0px; 라이브 390px에서 구성 3개·각 4셀·1st·2nd·3rd 라벨·콘솔 오류 0건 확인
+- 로컬 히어로 문장 라벨은 1280px에서 24px·폭 66.69/106.73/195.70/258.73px, 375px에서 18px·폭 51.02/81.05/147.77/195.05px이며 부모 배경은 투명·스토리 엔딩은 CTA만 유지
 - 라이브 1440px 추천 인트로는 1200×282.73px, 일러스트는 270×280.73px·원본비 0.96179이며 직전 376.30px 대비 높이 24.9% 감소; 조건 변경 버튼의 좌·하단 간격은 각각 24px, 문서 가로 넘침 0px
 - 로컬 390px 추천 인트로는 요약→일러스트 1열을 유지하고 버튼 카피 간격 18px·일러스트 원본비 0.96178·문서 가로 넘침 0px
 - 로컬 1440px 결과 제목은 `첫번째 구성.·두번째 구성.·세번째 구성.` 순서와 번호 `01·02·03`을 유지하고 기존 `구성 01·02·03` 노출 0건; 390px은 세 제목 모두 1행·구성표 177.5px 2열·문서 가로 넘침 0px
+- 로컬 FAQ는 1440px에서 질문 5개·22px·좌측 정렬, 열린 답변 16px·좌측 정렬; 390px에서 질문 18px·2개만 자연스러운 2행·나머지 1행이며 문서 가로 넘침 0px
 - 미니 견적 UI 선택자·로컬 저장·12개 제한·수량 계산·PDF 문서 생성 훅 존재 확인
 - 운영 상품 ID 100개 중복 0개, 각 10개와 수건·타올 06번 자동 검사 통과
 - 빈 결과가 발생했던 `1명·당일`, `전 품목 제외`, `공직자 포함` 경계도 추천 3안 반환
@@ -137,7 +142,7 @@ UNVERIFIED: 360·430px 히어로 실화면, 키보드·미니 견적 직접 조�
 - [x] `node tools/test_member_story.js` — DOM 01→06, 최신 카피워싱 17개 segment 배열 완전일치로 누락·추가·순서·문구 검사 통과
 - [x] 의미 체크포인트 별도 유지: 경력·막내 26년·반복 업무·상사 지시/피드백 인용문 6개·쇼핑/야근·3PICKS 탄생·큐레이션·상사=당신·끝까지 재탐색 검사 통과
 - [x] 04 `한이 브랜드가<br>되던 날`, 05 `찾고,<br>고르고,<br>비교하고`, 06 `여러분은<br>찾지 마세요.<br>정리하지도 마세요.<br>그냥 보고만<br>받으세요.` exact HTML 검사 통과
-- [x] 엔딩 `찾고,<br>비교하고,<br>보고하는 귀찮은 일.<br>이제 3PICKS에 시키세요.` 4줄 exact HTML 검사 통과
+- [x] 엔딩 동일 카피 0건·`카카오톡 상담하기` CTA 전용 행, 같은 4문장은 히어로의 독립 라벨 4개로 DOM 전체 1회 검사 통과
 - [x] 멤버 소개 제목을 `사람과 브랜드를 이해하는<br>사람들이 함께합니다.` HTML로 고정하고 줄바꿈까지 검사 통과
 - [x] 최신 스토리 WebP 6개 실파일 1448×1086·SHA-256 확정값 일치 — 01 제거판 `a2c1ff56…` 포함, 프로필 PNG 2개 참조·알파 채널·확정 해시 검사 통과
 - [x] 백선미 article 전용 `team-member--baek`과 `scale(1.02)`·`transform-origin:center bottom`, 짧은머리 프로필 transform 0건 검사 통과

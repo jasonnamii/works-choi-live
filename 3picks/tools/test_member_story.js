@@ -191,7 +191,8 @@ assert.ok(!/\.team-member--placeholder \.team-member__visual img\{[^}]*transform
 assert.ok(!story.includes("공동창업자") && !story.includes("두 번째 멤버의 경력"), "짧은머리 캐릭터에 확인되지 않은 이력이 섞였습니다.");
 const storyText = story.replace(/<br\s*\/?>/g, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 assert.ok(storyText.includes("찾지 마세요. 정리하지도 마세요. 그냥 보고만 받으세요."), "엔딩 제목 카피가 없습니다.");
-assert.ok(story.includes("<h4>찾고,<br>비교하고,<br>보고하는 귀찮은 일.<br>이제 3PICKS에 시키세요.</h4>"), "엔딩 4줄 카피 또는 줄바꿈이 다릅니다.");
+assert.ok(!story.includes("이제 3PICKS에 시키세요."), "상단으로 이동한 카피가 스토리 엔딩에 중복됐습니다.");
+assert.match(story, /<div class="member-story__ending"[^>]*>\s*<button/, "스토리 엔딩이 CTA 전용 행이 아닙니다.");
 assert.match(story, /<button[^>]*data-consult[^>]*>[^<]+<\/button>/, "스토리툰 CTA가 기존 data-consult 동작을 재사용하지 않습니다.");
 const endingCtaRule = html.match(/\.member-story__ending \.tp-btn\{([^}]*)\}/)?.[1] || "";
 assert.ok(endingCtaRule.includes("border-color:var(--tp-cell)") && endingCtaRule.includes("background:transparent") && endingCtaRule.includes("color:var(--tp-cell)"), "스토리 엔딩 CTA의 밝은 테두리·투명 배경·밝은 글자 계약이 다릅니다.");

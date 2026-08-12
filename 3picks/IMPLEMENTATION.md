@@ -21,14 +21,14 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 |---:|---|---|---|---|
 | 0 | 제작·상담 안내 | PROSE | 마르퀴 티커 | `tp-ticker` |
 | 1 | GNB·카테고리 | HIERARCHY·RELATION | 스크롤스파이·이동형 트랙 + 공통 3CTA; 모바일도 대분류 4개 상시 노출 | `site-nav`, `main-links`, `category-strip`, `cta-actions` |
-| 2 | 키비주얼 | RELATION | 티셔츠를 포함한 그래피티 오브젝트와 제작 범위 카피가 이어지는 브랜드 장면; 모바일 이미지 우선 | `hero__backdrop` + `hero__copy` |
+| 2 | 키비주얼 | RELATION·PROSE | 티셔츠 그래피티와 현행 카피를 유지하고 좌측 하단 여백에 문장 길이별 먹색 라벨 4개 배치; 모바일 이미지 우선 | `hero__backdrop` + `hero__copy` + `hero__copy-stack` |
 | 3 | 핵심 서비스 안내 | METRIC·FLOW | 낮은 4칸 픽토그램 신뢰 바 | `proof-strip` |
 | 4 | 맞춤 추천 설문 | FLOW | 한 화면 한 질문·스텝 레일 | `survey-shell`, `progress-rail` |
 | 5 | 추천 결과 | HIERARCHY·RELATION·COMPARE | 요약과 팀 일러스트 뒤, 구성별로 `설명 | 1st pick | 2nd pick | 3rd pick`을 한 가로 행에 배치 | `result-intro`·`result-group`·4칸 제로갭 비교 행 |
 | 6 | 전체 카테고리 | DISTRIBUTION | 10개 가로 상품 레일 | `tp-grid--floor` 변형 |
 | 7 | 제작 과정·추천 기준 | TIME·TABLE | 단계별 기준을 합친 4열 진행 레일 | `tp-timeline` |
 | 8 | 상담 전환 | PROSE·RELATION | 오렌지 팝 서피스 + 공통 3CTA | `tp-pop-surface`, `cta-actions` |
-| 9 | FAQ | TABLE·PROSE | 룰 리스트 | `tp-faq` |
+| 9 | FAQ | TABLE·PROSE | 5개 룰 리스트·질문/답변 좌측 정렬 | `tp-faq` |
 | 10 | 멤버 소개 | HIERARCHY·PROSE | 멤버 2열 프로필 그리드 | `about-grid`, `team-member` |
 | 11 | 푸터 | TABLE·PROSE | 연락처·임시 사업자 정보 행 | `site-footer` |
 | 12 | 위시리스트·미니 견적 | RELATION·TABLE·METRIC | 좌하단 트리거에서 가로로 펼쳐지는 고정 견적 레일 | `quote-float`, `quote-bar`, A4 인쇄 문서 |
@@ -41,14 +41,16 @@ REFERENCES: tokens.css | components.html | objects.html | precision-qa.md | pack
 | 공통 레일 | 최대 1200px; 거터 `clamp(16px, 2.4vw, 32px)` |
 | 간격 | 4px 체계; 섹션 `clamp(64px, 8vw, 96px)` |
 | 구획선 | `#A89F91` 1px; 제로갭 컨테이너 배경 + 1px gap |
-| 상품 카드 | 데스크톱 4열 가시 폭, 900px 이하 2열, 600px 이하 2.2장(2장 전체+다음 카드 20%) 가시 폭; 미디어 1:1; 모바일 상품명 13px·가격 16px, 가격 세로 적층·메타 값 열 줄바꿈 허용 |
+| 상품 카드 | 1101px 이상 5열 가시 폭, 901~1100px 4열, 900px 이하 2열, 600px 이하 2.2장(2장 전체+다음 카드 20%) 가시 폭; 데스크톱 카드 약 239px·내부 패딩 16px 유지·상품명 14px·가격 값 17px; 미디어 1:1; 모바일 상품명 13px·가격 16px, 가격 세로 적층·메타 값 열 줄바꿈 허용 |
 | 추천 결과 | 데스크톱은 좌측 카피와 조건 변경 버튼·270px 팀 일러스트 뒤, 구성별 한 행을 `minmax(240px,1fr) + 3×1fr`로 잠금; 인트로는 기존 360px 대비 가로·세로 75% 비례 축소한 일러스트로 약 25% 낮추고, 조건 변경 버튼은 주황 요약 셀 좌·하단에서 각각 24px; 첫 칸은 구성가·잔액/부족액·이유, 나머지는 `1st·2nd·3rd pick`; 900px 이하는 요약 카피 바로 아래 버튼→일러스트 뒤 각 구성을 2×2(`설명·1st / 2nd·3rd`) 테이블로 재배치; 가로 스크롤 없음 |
 | 설문 | 데스크톱 2열 선택지, 모바일 1열; 컨트롤 48px·터치 44px 이상 |
+| FAQ | 질문 5개; 질문/답변 좌측 정렬; 데스크톱 질문 22px·답변 16px, 600px 이하 질문 18px; 1px 행 구분선 유지 |
 | 타이포 | 히어로 `clamp(48px, 5.4vw, 76px)`; 본문 16px; 읽는 메타 14px; 라벨 13px |
 | 색 | 유채색은 오렌지 `#FC6B38`, 옐로 `#FFFD78`만 사용; 오렌지 면 내부 요소는 검정·흰색만 사용 |
 | 반응형 | 900px 이하 GNB 대분류 4개를 테이블 선·셀 배경 없이 44px 이상 텍스트 행으로 재배치·히어로 이미지→카피·설문 1열·추천 요약→일러스트→구성·상품 2열 가시; 600px 이하 상품 레일은 2.2장 노출·멤버 소개 1열·고정 모바일 CTA |
 | 이미지 | 상품은 560×560 WebP·`loading=lazy`; 히어로 실파일은 1671×941 알파 WebP·`fetchpriority=high`; 멤버 실루엣은 1122×1402 알파 PNG |
 | 히어로 배치 | 데스크톱은 전체 히어로에 `contain center`·90% 스케일, 카피는 왼쪽 44% 오버레이; 900px 이하는 이미지 영역을 문서 흐름의 첫 번째에 둠; 600px 이하는 원본 알파 가시 경계 `983×911`(x 657~1639, y 12~922)를 기준으로 그림 폭을 `100vw`에 맞추고 좌우 거터 없이 풀블리드 |
+| 히어로 보조 카피 | 부모 면 없이 `찾고,`·`비교하고,`·`보고하는 귀찮은 일.`·`이제 3PICKS에 시키세요.` 네 문장만 각각 `max-content` 먹색 사각 라벨로 구성; 데스크톱 좌측 하단, 모바일 본문 다음 |
 | 신뢰 바 | 히어로 직후 1200px 레일의 4열·최소 88px; 세로선 없이 24~64px 열 여백; 900px 이하 2×2; 아이콘 28px·스트로크 1.2px·본문 13px 이상 |
 | 상·하단 CTA | `맞춤추천 → 카카오톡 상담하기 → 이메일문의` 순서와 색 역할 고정; 상단은 헤더 위계를 위해 13px·40px 높이·6px 간격으로 축소, 하단은 48px 유지; 600px 이하 상단 CTA를 로고 아래 전용 행으로 재배치하고 44px 터치 목표 유지 |
 | 카테고리 메뉴 | 데스크톱은 별도 `width`를 두지 않고 `.tp-wrap`의 1200px 공통 레일을 그대로 상속해 검은 설문 패널 시작선과 상단 `이메일문의` 끝선에 양쪽 정렬; 10개 칩만 내부에서 가변 분배하며 900px 이하에서는 내용폭·가로 스크롤로 전환 |
