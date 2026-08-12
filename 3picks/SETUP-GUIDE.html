@@ -99,7 +99,7 @@ footer { border-top: 1px solid var(--tp-line); margin-top: 64px; padding-top: 24
     <div class="table-scroll">
       <table>
         <tr><th>index.html</th><td>고객이 보는 홈페이지 본체입니다.</td></tr>
-        <tr><th>admin.html</th><td>운영 콘솔입니다. 행사별 추천 매핑, 카테고리별 노출 상품 10개, 가격·수량·납기·태그, 추천 가중치를 조정하고 추천 결과를 미리 시뮬레이션합니다.</td></tr>
+        <tr><th>admin.html</th><td>운영 콘솔입니다. 행사별 추천 매핑, 카테고리별 노출 상품 10개, 가격·수량·납기·태그, 추천 가중치를 조정하고 추천 결과를 미리 시뮬레이션합니다. 접속 코드 잠금이 걸려 있고, <strong>웹에 올리지 않고 내 컴퓨터에서 여는 것이 기본</strong>입니다(아래 비공개 원칙).</td></tr>
         <tr><th>site-overrides.js</th><td>콘솔에서 저장한 설정이 담기는 파일입니다. 홈페이지는 열릴 때마다 이 파일을 읽어 기본값 위에 덮어씁니다.</td></tr>
         <tr><th>config.js</th><td>담당자 이름·전화·이메일·카카오 채널 주소입니다. 개통 전에 본인 정보로 바꿉니다.</td></tr>
         <tr><th>assets/ 외 나머지</th><td>상품 데이터·이미지·추천 엔진 등 사이트 구성 파일입니다. 직접 고칠 일은 없습니다.</td></tr>
@@ -115,7 +115,7 @@ footer { border-top: 1px solid var(--tp-line); margin-top: 64px; padding-top: 24
         <li>GitHub에 로그인한 뒤 우측 상단 <strong>+</strong> 버튼 → <strong>New repository</strong>를 누릅니다.</li>
         <li>Repository name에 원하는 이름을 적습니다. 예: <code>3picks-site</code>. <strong>Public</strong>을 선택하고 <strong>Create repository</strong>를 누릅니다.</li>
         <li>만들어진 저장소 화면에서 <strong>uploading an existing file</strong> 링크를 누릅니다.</li>
-        <li>전달받은 폴더를 열고 <strong>안의 내용물 전체</strong>를 선택해 업로드 화면으로 끌어다 놓습니다. 폴더째가 아니라 내용물을 올려야 <code>index.html</code>이 저장소 맨 위에 옵니다.</li>
+        <li>전달받은 폴더를 열고 <strong><code>admin.html</code>만 빼고 내용물 전체</strong>를 선택해 업로드 화면으로 끌어다 놓습니다. 폴더째가 아니라 내용물을 올려야 <code>index.html</code>이 저장소 맨 위에 옵니다. 콘솔(<code>admin.html</code>)은 웹에 올리지 않는 것이 기본입니다 — 이유와 예외는 아래 「콘솔 비공개 원칙」에 있습니다.</li>
         <li>아래 <strong>Commit changes</strong>를 누르고 업로드가 끝날 때까지 기다립니다. 이미지가 많아 몇 분 걸릴 수 있습니다.</li>
       </ol>
     </div>
@@ -154,12 +154,24 @@ footer { border-top: 1px solid var(--tp-line); margin-top: 64px; padding-top: 24
     <h2><span class="step-no">STEP 4</span>운영 콘솔 연결과 첫 저장</h2>
     <div class="cell">
       <ol class="steps">
-        <li>사이트 주소 뒤에 <code>admin.html</code>을 붙여 운영 콘솔을 엽니다.</li>
-        <li>연결 설정에 저장소 소유자(본인 계정 이름), 저장소 이름, 브랜치 <code>main</code>, 복사해 둔 토큰을 넣고 <strong>연결 확인</strong>을 누릅니다. 본인 컴퓨터에서만 쓴다면 「이 브라우저에 토큰 저장」을 켜두면 다음부터 입력이 필요 없습니다.</li>
+        <li>전달받은 폴더에서 <code>admin.html</code>을 더블클릭해 브라우저로 엽니다. 사이트가 아니라 <strong>내 컴퓨터에서 여는 것</strong>이 기본입니다.</li>
+        <li>전달받은 <strong>접속 코드</strong>를 넣어 잠금을 풉니다.</li>
+        <li>연결 설정에 저장소 소유자(본인 계정 이름), 저장소 이름, 브랜치 <code>main</code>, 복사해 둔 토큰을 넣고 <strong>연결 확인</strong>을 누릅니다. 연결되면 저장소에 있는 최신 설정을 자동으로 불러옵니다. 본인 컴퓨터에서만 쓴다면 「이 브라우저에 토큰 저장」을 켜두면 다음부터 입력이 필요 없습니다.</li>
         <li>아무 항목이나 하나 바꿔 본 뒤(예: 가중치 하나) <strong>GitHub에 저장</strong>을 누릅니다. 저장 기록에 커밋 번호가 나오면 성공입니다.</li>
         <li>1~2분 뒤 홈페이지를 새로고침해 반영을 확인하고, 확인이 끝나면 콘솔에서 값을 되돌려 다시 저장합니다.</li>
       </ol>
     </div>
+  </section>
+
+  <section>
+    <h2>콘솔 비공개 원칙</h2>
+    <p class="lede">운영 콘솔이 다른 사람 눈에 띄지 않게 하는 규칙입니다. 콘솔 화면 자체에는 비밀 정보가 없고 저장 권한도 본인 토큰이 있어야만 생기지만, 관리 화면이 공개 주소에 노출되는 것 자체를 막는 것이 원칙입니다.</p>
+    <ul class="plain">
+      <li><strong>기본: 웹에 올리지 않기</strong> — <code>admin.html</code>은 저장소에 업로드하지 말고, 전달받은 폴더에서 직접 엽니다. GitHub Pages에 올라간 파일은 주소만 알면 누구나 볼 수 있어, 올리지 않는 것만이 완전한 비공개입니다.</li>
+      <li><strong>예외: 꼭 웹에서 써야 한다면</strong> — 여러 사람이 각자 컴퓨터에서 써야 할 때만 업로드합니다. 이때도 접속 코드 잠금과 검색 제외가 걸려 있지만, 주소를 아는 사람의 접근까지 막지는 못한다는 한계를 알고 써야 합니다.</li>
+      <li><strong>실수로 올렸다면</strong> — 저장소 파일 목록에서 <code>admin.html</code>을 열어 휴지통 아이콘(Delete file)으로 지우고 커밋하면 됩니다. 사이트 동작에는 영향이 없습니다.</li>
+      <li><strong>접속 코드·토큰 관리</strong> — 코드와 토큰은 사이트를 만들어 준 담당자와 운영자만 압니다. 코드 변경이 필요하면 담당자에게 요청하세요.</li>
+    </ul>
   </section>
 
   <section>
@@ -189,6 +201,7 @@ footer { border-top: 1px solid var(--tp-line); margin-top: 64px; padding-top: 24
     <h2>문제가 생겼을 때</h2>
     <div class="table-scroll">
       <table>
+        <tr><th>접속 코드가 안 맞음</th><td>코드는 대소문자를 구분합니다. 계속 안 되면 사이트를 만들어 준 담당자에게 코드를 다시 확인합니다.</td></tr>
         <tr><th>연결 확인에서 토큰 오류</th><td>토큰이 만료됐거나 잘못 복사된 경우입니다. STEP 3대로 새 토큰을 만들어 다시 넣습니다.</td></tr>
         <tr><th>저장소를 찾지 못함</th><td>소유자·저장소 이름의 오타, 또는 토큰 발급 때 이 저장소를 선택하지 않은 경우입니다.</td></tr>
         <tr><th>저장 시 충돌 안내</th><td>다른 창이나 다른 사람이 먼저 저장한 경우입니다. 연결 확인을 다시 누른 뒤 저장하면 됩니다.</td></tr>
