@@ -1,7 +1,19 @@
 (() => {
   "use strict";
 
-  const sourceProducts = Array.isArray(window.PRODUCTS) ? window.PRODUCTS : [];
+  const siteOverrides = window.SITE_OVERRIDES || {};
+  const productOverrides = siteOverrides.productOverrides || {};
+  const overridableProductFields = ["rank", "visibility", "price", "moq", "leadDays", "tags", "popularity"];
+  const applyProductOverride = (product) => {
+    const patch = productOverrides[product.id];
+    if (!patch) return product;
+    const merged = { ...product };
+    overridableProductFields.forEach((field) => {
+      if (patch[field] !== undefined && patch[field] !== null) merged[field] = patch[field];
+    });
+    return merged;
+  };
+  const sourceProducts = (Array.isArray(window.PRODUCTS) ? window.PRODUCTS : []).map(applyProductOverride);
   const siteConfig = window.SITE_CONFIG || {};
   const navigationEntry = performance.getEntriesByType?.("navigation")?.[0];
   const isReloadNavigation = navigationEntry
@@ -83,7 +95,7 @@
     "노트·다이어리": "교육과 세미나, 연말 선물에 자연스럽게 어울려요.",
     "보온보냉·런치백": "야외 행사와 여름철에 특히 유용한 기능성 가방이에요.",
   };
-  const eventMap = {
+  const defaultEventMap = {
     "워크샵·단합": ["텀블러", "노트·다이어리", "에코백", "수건·타올", "우산"],
     "체육대회·사내 이벤트": ["수건·타올", "텀블러", "티셔츠·단체복", "에코백", "보온보냉·런치백"],
     "창립기념": ["텀블러", "수건·타올", "우산", "머그컵", "보조배터리"],
@@ -93,6 +105,7 @@
     "명절·시즌 선물": ["수건·타올", "텀블러", "우산", "노트·다이어리", "머그컵"],
     "고객사·VIP 선물": ["우산", "볼펜", "텀블러", "수건·타올", "보조배터리"],
   };
+  const eventMap = { ...defaultEventMap, ...(siteOverrides.eventMap || {}) };
 
   const state = {
     step: 0,
@@ -918,6 +931,7 @@
       categoryOrder: rankedCategories(),
       leadLimit,
       month,
+      weights: siteOverrides.weights || null,
     });
     state.results = groups;
     return groups;

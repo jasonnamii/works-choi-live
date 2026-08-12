@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F5F0E4">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title>3PICKS 설치·운영 가이드</title>
+<style>
+:root {
+  --tp-cream: #F5F0E4;
+  --tp-ink: #000000;
+  --tp-line: #A89F91;
+  --tp-cell: #FFFFFF;
+  --tp-pop: #FC6B38;
+  --tp-sun: #FFFD78;
+  --tp-grey: #767676;
+  --tp-ink-70: rgba(0, 0, 0, 0.70);
+  --tp-font-sans: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --tp-font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --tp-border: 1px;
+  --tp-max: 1200px;
+  --tp-gutter: clamp(16px, 4vw, 32px);
+  --tp-touch-min: 44px;
+  --tp-control-h: 48px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--tp-cream);
+  color: var(--tp-ink);
+  font-family: var(--tp-font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  word-break: keep-all;
+  line-break: strict;
+  overflow-wrap: break-word;
+}
+.wrap { max-width: min(880px, var(--tp-max)); margin: 0 auto; padding: 0 var(--tp-gutter) 96px; }
+a, button { min-height: var(--tp-touch-min); }
+.eyebrow { font-family: var(--tp-font-mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tp-grey); }
+header.hero { padding: clamp(40px, 7vw, 72px) 0 clamp(24px, 4vw, 40px); }
+header.hero h1 { margin: 8px 0 12px; font-size: clamp(30px, 5vw, 44px); font-weight: 800; line-height: 1.12; letter-spacing: -0.01em; }
+header.hero p { margin: 0; color: var(--tp-ink-70); font-size: 18px; max-width: 680px; }
+section { border-top: 1px solid var(--tp-line); padding: clamp(32px, 5vw, 48px) 0 0; margin-top: clamp(32px, 5vw, 48px); }
+section:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+h2 { margin: 0 0 8px; font-size: 26px; font-weight: 800; line-height: 1.2; }
+h2 .step-no { font-family: var(--tp-font-mono); font-size: 13px; letter-spacing: 0.14em; color: var(--tp-grey); display: block; margin-bottom: 6px; }
+section > p.lede { margin: 0 0 16px; color: var(--tp-ink-70); max-width: 680px; }
+.cell { background: var(--tp-cell); border: 1px solid var(--tp-line); border-radius: 8px; padding: 20px 24px; margin-top: 16px; }
+.cell h3 { margin: 0 0 8px; font-size: 17px; font-weight: 700; }
+ol.steps { margin: 0; padding-left: 22px; }
+ol.steps li { margin-bottom: 10px; }
+ol.steps li strong { font-weight: 700; }
+ul.plain { margin: 0; padding-left: 20px; }
+ul.plain li { margin-bottom: 8px; }
+code { font-family: var(--tp-font-mono); font-size: 14px; background: var(--tp-cream); border: 1px solid var(--tp-line); border-radius: 4px; padding: 1px 6px; }
+table { border-collapse: collapse; width: 100%; margin-top: 16px; background: var(--tp-cell); }
+th, td { border: 1px solid var(--tp-line); padding: 10px 12px; font-size: 14px; text-align: left; vertical-align: top; }
+th { background: var(--tp-cream); font-weight: 700; white-space: nowrap; }
+.table-scroll { overflow-x: auto; }
+.pop-note { background: var(--tp-pop); color: var(--tp-ink); border-radius: 10px; padding: 16px 20px; margin-top: 16px; font-size: 15px; font-weight: 500; }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 5px; font-family: var(--tp-font-mono); font-size: 13px; letter-spacing: 0.07em; background: var(--tp-sun); border: 1px solid var(--tp-ink); }
+.check { list-style: none; padding: 0; margin: 0; }
+.check li { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--tp-line); font-size: 15px; }
+.check li:last-child { border-bottom: 0; }
+.check li::before { content: "○"; font-family: var(--tp-font-mono); color: var(--tp-grey); }
+footer { border-top: 1px solid var(--tp-line); margin-top: 64px; padding-top: 24px; color: var(--tp-grey); font-family: var(--tp-font-mono); font-size: 13px; letter-spacing: 0.07em; }
+@media (max-width: 640px) {
+  .cell { padding: 16px; }
+  th, td { padding: 8px 10px; }
+  header.hero p { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow">3PICKS · Setup &amp; Operations</span>
+    <h1>설치와 운영 가이드</h1>
+    <p>이 폴더 하나가 3PICKS 홈페이지 전체입니다. 아래 네 단계를 따라 본인 GitHub 계정에 올리면 사이트가 열리고, 운영 콘솔(admin.html)로 추천 로직과 상품 노출을 직접 조정할 수 있습니다. 개발 지식 없이 따라 할 수 있게 적었습니다.</p>
+  </header>
+
+  <section>
+    <h2>받은 것</h2>
+    <p class="lede">전달받은 폴더에는 홈페이지, 운영 콘솔, 그리고 콘솔이 저장하는 설정 파일이 함께 들어 있습니다.</p>
+    <div class="table-scroll">
+      <table>
+        <tr><th>index.html</th><td>고객이 보는 홈페이지 본체입니다.</td></tr>
+        <tr><th>admin.html</th><td>운영 콘솔입니다. 행사별 추천 매핑, 카테고리별 노출 상품 10개, 가격·수량·납기·태그, 추천 가중치를 조정하고 추천 결과를 미리 시뮬레이션합니다.</td></tr>
+        <tr><th>site-overrides.js</th><td>콘솔에서 저장한 설정이 담기는 파일입니다. 홈페이지는 열릴 때마다 이 파일을 읽어 기본값 위에 덮어씁니다.</td></tr>
+        <tr><th>config.js</th><td>담당자 이름·전화·이메일·카카오 채널 주소입니다. 개통 전에 본인 정보로 바꿉니다.</td></tr>
+        <tr><th>assets/ 외 나머지</th><td>상품 데이터·이미지·추천 엔진 등 사이트 구성 파일입니다. 직접 고칠 일은 없습니다.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="step-no">STEP 1</span>GitHub에 저장소 만들기</h2>
+    <p class="lede">GitHub는 사이트 파일을 보관하고 무료로 웹에 열어주는 서비스입니다. 계정이 없다면 github.com에서 먼저 가입합니다.</p>
+    <div class="cell">
+      <ol class="steps">
+        <li>GitHub에 로그인한 뒤 우측 상단 <strong>+</strong> 버튼 → <strong>New repository</strong>를 누릅니다.</li>
+        <li>Repository name에 원하는 이름을 적습니다. 예: <code>3picks-site</code>. <strong>Public</strong>을 선택하고 <strong>Create repository</strong>를 누릅니다.</li>
+        <li>만들어진 저장소 화면에서 <strong>uploading an existing file</strong> 링크를 누릅니다.</li>
+        <li>전달받은 폴더를 열고 <strong>안의 내용물 전체</strong>를 선택해 업로드 화면으로 끌어다 놓습니다. 폴더째가 아니라 내용물을 올려야 <code>index.html</code>이 저장소 맨 위에 옵니다.</li>
+        <li>아래 <strong>Commit changes</strong>를 누르고 업로드가 끝날 때까지 기다립니다. 이미지가 많아 몇 분 걸릴 수 있습니다.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="step-no">STEP 2</span>GitHub Pages로 사이트 열기</h2>
+    <div class="cell">
+      <ol class="steps">
+        <li>저장소 상단의 <strong>Settings</strong> 탭 → 왼쪽 메뉴 <strong>Pages</strong>로 갑니다.</li>
+        <li>Build and deployment의 Source를 <strong>Deploy from a branch</strong>로 두고, Branch를 <strong>main</strong> / <strong>/(root)</strong>로 선택한 뒤 <strong>Save</strong>를 누릅니다.</li>
+        <li>1~2분 뒤 같은 화면 상단에 사이트 주소가 나타납니다. 형태는 <code>https://계정이름.github.io/저장소이름/</code>입니다.</li>
+        <li>주소를 열어 홈페이지가 나오는지, 주소 뒤에 <code>admin.html</code>을 붙여 운영 콘솔이 나오는지 확인합니다.</li>
+      </ol>
+      <p style="margin:12px 0 0;color:var(--tp-ink-70);font-size:14px">회사 도메인을 붙이고 싶다면 같은 Pages 화면의 Custom domain에 도메인을 넣고, 도메인 업체에서 안내대로 DNS를 설정하면 됩니다. 나중에 해도 됩니다.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="step-no">STEP 3</span>저장용 토큰 만들기</h2>
+    <p class="lede">운영 콘솔이 설정을 저장소에 기록하려면 본인 계정의 열쇠(토큰)가 필요합니다. 이 저장소 하나에만 쓰기가 되는 제한된 토큰을 만듭니다.</p>
+    <div class="cell">
+      <ol class="steps">
+        <li>GitHub 우측 상단 프로필 사진 → <strong>Settings</strong> → 왼쪽 맨 아래 <strong>Developer settings</strong>로 갑니다.</li>
+        <li><strong>Personal access tokens → Fine-grained tokens → Generate new token</strong>을 누릅니다.</li>
+        <li>Token name은 알아볼 이름(예: 3picks-console), Expiration은 90일 이상을 권합니다. 만료되면 같은 방법으로 새로 만들면 됩니다.</li>
+        <li>Repository access에서 <strong>Only select repositories</strong>를 고르고 STEP 1에서 만든 저장소만 선택합니다.</li>
+        <li>Permissions → Repository permissions에서 <strong>Contents</strong>를 <strong>Read and write</strong>로 바꿉니다. 다른 권한은 그대로 둡니다.</li>
+        <li><strong>Generate token</strong>을 누르고, 화면에 한 번만 보이는 토큰 문자열을 복사해 둡니다.</li>
+      </ol>
+    </div>
+    <div class="pop-note">토큰은 비밀번호와 같습니다. 메신저나 문서에 남기지 말고, 콘솔 입력 칸에만 붙여 넣으세요. 유출이 의심되면 GitHub의 토큰 목록에서 삭제하고 새로 만들면 됩니다.</div>
+  </section>
+
+  <section>
+    <h2><span class="step-no">STEP 4</span>운영 콘솔 연결과 첫 저장</h2>
+    <div class="cell">
+      <ol class="steps">
+        <li>사이트 주소 뒤에 <code>admin.html</code>을 붙여 운영 콘솔을 엽니다.</li>
+        <li>연결 설정에 저장소 소유자(본인 계정 이름), 저장소 이름, 브랜치 <code>main</code>, 복사해 둔 토큰을 넣고 <strong>연결 확인</strong>을 누릅니다. 본인 컴퓨터에서만 쓴다면 「이 브라우저에 토큰 저장」을 켜두면 다음부터 입력이 필요 없습니다.</li>
+        <li>아무 항목이나 하나 바꿔 본 뒤(예: 가중치 하나) <strong>GitHub에 저장</strong>을 누릅니다. 저장 기록에 커밋 번호가 나오면 성공입니다.</li>
+        <li>1~2분 뒤 홈페이지를 새로고침해 반영을 확인하고, 확인이 끝나면 콘솔에서 값을 되돌려 다시 저장합니다.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <h2>일상 운영</h2>
+    <p class="lede">콘솔 화면 순서대로 쓰면 됩니다. 권장 흐름은 「고치고 → 시뮬레이터로 확인하고 → 한 번에 저장」입니다.</p>
+    <ul class="plain">
+      <li><strong>행사 매핑</strong> — 행사 유형별로 어떤 카테고리를 몇 순위로 추천할지 바꿉니다.</li>
+      <li><strong>상품 운영</strong> — 카테고리마다 순위를 조정해 노출 10개를 고르고, 상품을 펼쳐 가격·최소 수량·납기·태그를 고칩니다. 노출 버튼을 끄면 자동 추천에서 빠지고 상담 제안으로만 다뤄집니다.</li>
+      <li><strong>가중치</strong> — 추천 점수의 배점을 조정합니다. 확신이 없으면 기본값을 유지하세요.</li>
+      <li><strong>시뮬레이터</strong> — 저장 전에 고객 입장으로 조건을 넣어 구성 3안을 확인하고, 상품을 바꿔가며 짝을 맞춰봅니다.</li>
+      <li><strong>저장과 반영</strong> — 저장하면 사이트에 1~10분 안에 반영됩니다. 저장 전 변경은 이 브라우저에만 있는 초안이므로, 다른 컴퓨터에는 보이지 않습니다.</li>
+      <li><strong>백업</strong> — 큰 변경 전에는 「설정 파일 내보내기」로 현재 설정을 내려받아 두세요. 문제가 생기면 저장소의 <code>site-overrides.js</code>를 그 파일로 되돌리면 됩니다.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>개통 전 확인</h2>
+    <p class="lede">실제 손님에게 열기 전에 아래 항목을 본인 정보로 바꿨는지 확인하세요.</p>
+    <ul class="check">
+      <li>홈페이지 맨 아래 사업자등록번호·통신판매업 신고번호 — 임시값이 들어 있습니다. <code>index.html</code>을 GitHub 화면에서 열어 연필 아이콘으로 해당 숫자만 바꿉니다.</li>
+      <li><code>config.js</code>의 담당자 이름·전화번호·이메일·카카오 채널 주소.</li>
+      <li>시뮬레이터로 대표 행사 두세 개를 돌려 추천이 의도대로 나오는지 확인.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>문제가 생겼을 때</h2>
+    <div class="table-scroll">
+      <table>
+        <tr><th>연결 확인에서 토큰 오류</th><td>토큰이 만료됐거나 잘못 복사된 경우입니다. STEP 3대로 새 토큰을 만들어 다시 넣습니다.</td></tr>
+        <tr><th>저장소를 찾지 못함</th><td>소유자·저장소 이름의 오타, 또는 토큰 발급 때 이 저장소를 선택하지 않은 경우입니다.</td></tr>
+        <tr><th>저장 시 충돌 안내</th><td>다른 창이나 다른 사람이 먼저 저장한 경우입니다. 연결 확인을 다시 누른 뒤 저장하면 됩니다.</td></tr>
+        <tr><th>저장했는데 사이트가 그대로</th><td>브라우저 캐시입니다. 최대 10분 기다리거나 강력 새로고침(Windows Ctrl+Shift+R, Mac Cmd+Shift+R)을 합니다.</td></tr>
+        <tr><th>설정을 전부 처음으로</th><td>콘솔에서 매핑·가중치의 기본값 버튼을 쓰거나, 저장소의 <code>site-overrides.js</code> 내용을 처음 전달받은 파일로 되돌립니다.</td></tr>
+      </table>
+    </div>
+    <div class="pop-note">상품을 대량으로 넣고 빼거나(원본 상품표 교체), 페이지 구조·문구·디자인을 바꾸는 일은 콘솔 범위 밖입니다. 이런 변경은 사이트를 만들어 준 담당자에게 요청하세요.</div>
+  </section>
+
+  <footer>3PICKS setup &amp; operations guide · v1</footer>
+
+</div>
+</body>
+</html>

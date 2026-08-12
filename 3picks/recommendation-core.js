@@ -29,27 +29,49 @@
     });
   }
 
-  const popularityScore = (value) => value === "상" ? 4 : value === "중" ? 2 : 0;
+  const DEFAULT_WEIGHTS = Object.freeze({
+    tagMatch: 12,
+    popularityHigh: 4,
+    popularityMid: 2,
+    qualityBase: 12,
+    relevanceBase: 18,
+    relevanceStep: 3,
+    seasonal: 6,
+  });
 
-  function seasonalScore(product, month) {
-    if (product.category === "우산" && [5, 6, 7].includes(month)) return 6;
-    if (product.category === "노트·다이어리" && [10, 11, 12].includes(month)) return 6;
-    if (product.category === "티셔츠·단체복" && [4, 5, 9, 10].includes(month)) return 6;
-    if (product.category === "보온보냉·런치백" && month >= 4 && month <= 7) return 6;
+  function normalizeWeights(weights) {
+    if (!weights) return DEFAULT_WEIGHTS;
+    const merged = { ...DEFAULT_WEIGHTS };
+    Object.keys(DEFAULT_WEIGHTS).forEach((key) => {
+      const value = Number(weights[key]);
+      if (Number.isFinite(value) && value >= 0) merged[key] = value;
+    });
+    return merged;
+  }
+
+  const popularityScore = (value, weights = DEFAULT_WEIGHTS) =>
+    value === "상" ? weights.popularityHigh : value === "중" ? weights.popularityMid : 0;
+
+  function seasonalScore(product, month, weights = DEFAULT_WEIGHTS) {
+    if (product.category === "우산" && [5, 6, 7].includes(month)) return weights.seasonal;
+    if (product.category === "노트·다이어리" && [10, 11, 12].includes(month)) return weights.seasonal;
+    if (product.category === "티셔츠·단체복" && [4, 5, 9, 10].includes(month)) return weights.seasonal;
+    if (product.category === "보온보냉·런치백" && month >= 4 && month <= 7) return weights.seasonal;
     return 0;
   }
 
-  function productScore(product, answers, categoryOrder, month) {
-    const tagScore = (product.tags || []).filter((tag) => (answers.tags || []).includes(tag)).length * 12;
-    const qualityScore = Math.max(0, 12 - Number(product.rank || 12));
+  function productScore(product, answers, categoryOrder, month, weights = DEFAULT_WEIGHTS) {
+    const tagScore = (product.tags || []).filter((tag) => (answers.tags || []).includes(tag)).length * weights.tagMatch;
+    const qualityScore = Math.max(0, weights.qualityBase - Number(product.rank || weights.qualityBase));
     const categoryIndex = categoryOrder.indexOf(product.category);
-    const relevanceScore = categoryIndex < 0 ? 0 : Math.max(0, 18 - categoryIndex * 3);
-    return tagScore + popularityScore(product.popularity) + qualityScore + relevanceScore + seasonalScore(product, month);
+    const relevanceScore = categoryIndex < 0 ? 0 : Math.max(0, weights.relevanceBase - categoryIndex * weights.relevanceStep);
+    return tagScore + popularityScore(product.popularity, weights) + qualityScore + relevanceScore + seasonalScore(product, month, weights);
   }
 
-  function eligibleProducts({ products, answers, categoryOrder, leadLimit, month }) {
+  function eligibleProducts({ products, answers, categoryOrder, leadLimit, month, weights }) {
     const count = Number(answers.count);
     const excluded = new Set(answers.excludes || []);
+    const effectiveWeights = normalizeWeights(weights);
     return selectOperatingProducts(products).filter((product) => {
       if (excluded.has(product.category) || product.visibility !== "화면노출" || !product.available) return false;
       if (!product.price || !product.moq || !product.leadDays) return false;
@@ -59,7 +81,7 @@
       return true;
     }).map((product) => ({
       product,
-      score: productScore(product, answers, categoryOrder, month),
+      score: productScore(product, answers, categoryOrder, month, effectiveWeights),
     }));
   }
 
@@ -121,8 +143,9 @@
     }).slice(0, 3);
   }
 
-  function fallbackCandidates({ products, answers, categoryOrder, leadLimit, month, targetPrice }) {
+  function fallbackCandidates({ products, answers, categoryOrder, leadLimit, month, targetPrice, weights }) {
     const effectiveOrder = categoryOrder?.length ? categoryOrder : CATEGORY_ORDER;
+    const effectiveWeights = normalizeWeights(weights);
     const excluded = new Set(answers.excludes || []);
     const base = selectOperatingProducts(products).filter((product) => {
       if (!product.available || !Number(product.price)) return false;
@@ -132,7 +155,7 @@
     const preferred = base.filter((product) => !excluded.has(product.category));
     const preferredCategories = new Set(preferred.map((product) => product.category));
     const pool = preferredCategories.size >= 3 ? preferred : base;
-    const scored = pool.map((product) => ({ product, score: productScore(product, answers, effectiveOrder, month) }));
+    const scored = pool.map((product) => ({ product, score: productScore(product, answers, effectiveOrder, month, effectiveWeights) }));
     const byCategory = new Map();
     scored.forEach((item) => {
       if (!byCategory.has(item.product.category)) byCategory.set(item.product.category, []);
@@ -214,8 +237,8 @@
     }));
   }
 
-  function recommend({ products, answers, categoryOrder, leadLimit, month }) {
-    const scored = eligibleProducts({ products, answers, categoryOrder, leadLimit, month });
+  function recommend({ products, answers, categoryOrder, leadLimit, month, weights }) {
+    const scored = eligibleProducts({ products, answers, categoryOrder, leadLimit, month, weights });
     const count = Number(answers.count);
     if (!count) return [];
     const exactIds = new Set(scored.map((item) => item.product.id));
@@ -224,7 +247,7 @@
       let candidates = scored;
       let groups = unknownBudgetPicks(candidates, categoryOrder, count);
       if (groups.length < 3) {
-        candidates = mergeCandidates(scored, fallbackCandidates({ products, answers, categoryOrder, leadLimit, month, targetPrice: 0 }));
+        candidates = mergeCandidates(scored, fallbackCandidates({ products, answers, categoryOrder, leadLimit, month, targetPrice: 0, weights }));
         groups = unknownBudgetPicks(candidates, categoryOrder?.length ? categoryOrder : CATEGORY_ORDER, count);
       }
       return enrichGroups(groups, exactIds, answers, leadLimit, null);
@@ -237,7 +260,7 @@
     const effectiveBudget = answers.publicRecipient === "포함" ? Math.min(totalBudget, count * 50000) : totalBudget;
     let bundles = diverseTopThree(enumerateBundles(scored, targetPrice, answers.publicRecipient, count, effectiveBudget));
     if (bundles.length < 3) {
-      const fallback = fallbackCandidates({ products, answers, categoryOrder, leadLimit, month, targetPrice });
+      const fallback = fallbackCandidates({ products, answers, categoryOrder, leadLimit, month, targetPrice, weights });
       bundles = diverseTopThree(enumerateBundles(mergeCandidates(scored, fallback), targetPrice, answers.publicRecipient, count, effectiveBudget));
     }
     const groups = bundles.map((bundle, index) => ({
@@ -249,5 +272,5 @@
     return enrichGroups(groups, exactIds, answers, leadLimit, effectiveBudget);
   }
 
-  return { CATEGORY_ORDER, selectOperatingProducts, eligibleProducts, fallbackCandidates, enumerateBundles, recommend };
+  return { CATEGORY_ORDER, DEFAULT_WEIGHTS, selectOperatingProducts, eligibleProducts, fallbackCandidates, enumerateBundles, recommend };
 });
