@@ -310,9 +310,11 @@
     .faq p{max-width:80ch;margin:0;padding:0 16px 24px;text-align:left;color:var(--tp-ink-70);font-size:16px}
 
     .about{border-top:1px solid var(--tp-line);background:var(--tp-cream)}
-    .about-layout{display:grid;grid-template-columns:minmax(0,7fr) minmax(320px,5fr);align-items:start;gap:clamp(48px,7vw,96px);padding-top:16px;border-top:1px solid var(--tp-line)}
-    .about__lead h2{margin:6px 0 0;font-size:clamp(32px,4vw,48px);line-height:1.12;letter-spacing:-.035em;font-weight:900}
-    .about-team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:clamp(12px,2vw,24px);margin-top:clamp(32px,4vw,48px)}
+    .about-layout{padding-top:16px;border-top:1px solid var(--tp-line)}
+    .about__lead h2{margin:8px 0 0;font-size:clamp(56px,5vw,68px);line-height:1.04;letter-spacing:-.05em;font-weight:900}
+    .about__lead h2 span,.about__copy span{display:block;white-space:nowrap}
+    .about__content{display:grid;grid-template-columns:minmax(0,5fr) minmax(520px,7fr);align-items:start;gap:clamp(48px,7vw,96px);margin-top:clamp(48px,6vw,72px)}
+    .about-team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;justify-self:end;gap:clamp(12px,2vw,24px);width:100%;max-width:660px}
     .team-member{min-width:0;background:transparent}
     .team-member__visual{aspect-ratio:4/3;margin:0;display:grid;place-items:center;overflow:hidden;background:var(--tp-cream);border-bottom:1px solid var(--tp-line)}
     .team-member__visual img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
@@ -320,10 +322,10 @@
     .team-member__body{padding:16px 0 0}
     .team-member__role{min-height:2.7em;font-family:var(--tp-font-mono);font-size:13px;line-height:1.35;letter-spacing:.12em;text-transform:uppercase;color:var(--tp-grey)}
     .team-member h3{margin:8px 0 0;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.025em}
-    .about__copy{max-width:28ch;padding-top:44px}
+    .about__copy{max-width:none;padding-top:0}
     .about__copy p{margin:0}
-    .about__copy-lead{color:var(--tp-ink);font-size:clamp(22px,1.9vw,26px);font-weight:800;line-height:1.5;letter-spacing:-.025em}
-    .about__copy-body{margin-top:32px!important;color:var(--tp-ink-70);font-size:clamp(18px,1.55vw,21px);font-weight:500;line-height:1.65;letter-spacing:-.015em}
+    .about__copy-lead{color:var(--tp-ink);font-size:clamp(30px,2.5vw,34px);font-weight:800;line-height:1.34;letter-spacing:-.035em}
+    .about__copy-body{margin-top:32px!important;color:var(--tp-ink-70);font-size:clamp(22px,1.9vw,26px);font-weight:500;line-height:1.5;letter-spacing:-.025em}
     .member-story{margin-top:clamp(72px,8vw,112px)}
     .member-story__head{padding-top:clamp(24px,3vw,36px);margin-bottom:clamp(44px,5vw,68px);border-top:1px solid var(--tp-line)}
     .member-story__eyebrow{margin:0 0 14px;font-family:var(--tp-font-mono);font-size:13px;letter-spacing:.16em;color:var(--tp-grey)}
@@ -419,10 +421,12 @@
       .result-group__head{min-height:0}
       .product-rail{grid-auto-columns:calc((100% - 1px)/2)}
       .process{grid-template-columns:repeat(2,1fr)}
-      .about-layout{grid-template-columns:1fr;gap:32px}
-      .about__copy{max-width:48ch;padding-top:0}
-      .about__copy-lead{font-size:22px}
-      .about__copy-body{font-size:18px}
+      .about__lead h2{font-size:46px}
+      .about__content{grid-template-columns:1fr;gap:40px;margin-top:40px}
+      .about__copy{max-width:100%}
+      .about__copy-lead{font-size:28px}
+      .about__copy-body{font-size:21px}
+      .about-team{justify-self:end;max-width:100%}
       .member-story__grid{grid-template-rows:none;grid-auto-rows:auto;column-gap:0;row-gap:32px;align-items:start}
       .story-panel{height:auto;width:100%;margin-inline:auto;justify-self:center;overflow:visible}
       .story-panel picture{height:auto;aspect-ratio:4/3}
@@ -527,13 +531,15 @@
       .faq summary{min-height:64px;padding:16px 48px 16px 4px;justify-content:flex-start;text-align:left;font-size:18px}
       .faq summary::after{right:8px}
       .faq p{padding:0 4px 20px;text-align:left}
-      .about-layout{gap:28px;padding-top:12px}
-      .about__lead h2{font-size:32px}
-      .about-team{gap:8px;margin-top:28px}
+      .about-layout{padding-top:12px}
+      .about__lead h2{font-size:34px;line-height:1.08}
+      .about__lead h2 span,.about__copy span{white-space:normal}
+      .about__content{gap:32px;margin-top:32px}
+      .about-team{gap:8px}
       .team-member__body{padding-top:12px}
       .team-member h3{font-size:22px}
-      .about__copy-lead{font-size:20px}
-      .about__copy-body{margin-top:20px!important;font-size:16px}
+      .about__copy-lead{font-size:22px;line-height:1.42}
+      .about__copy-body{margin-top:24px!important;font-size:18px;line-height:1.55}
       .member-story{margin-top:48px}
       .member-story__head{padding-top:24px;margin-bottom:24px}
       .member-story__eyebrow{margin-bottom:12px;font-size:13px}
@@ -759,7 +765,13 @@
         <div class="about-layout">
           <div class="about__lead">
             <div class="tp-eyebrow">People behind 3PICKS</div>
-            <h2>사람과 브랜드를 이해하는<br>사람들이 함께합니다.</h2>
+            <h2><span>사람과 브랜드를 이해하는</span><span>사람들이 함께합니다.</span></h2>
+          </div>
+          <div class="about__content">
+            <div class="about__copy">
+              <p class="about__copy-lead"><span>사람과 브랜드를 이해해 온 경험으로,</span><span>고객이 원하는 바를 정확히 읽습니다.</span></p>
+              <p class="about__copy-body"><span>막연한 아이디어를 실행 가능한</span><span>세 가지 제안으로 정리하고,</span><span>굿즈 선정부터 실제 제작까지</span><span>끝까지 함께합니다.</span></p>
+            </div>
             <div class="about-team" aria-label="3PICKS 멤버">
               <article class="team-member team-member--baek">
                 <figure class="team-member__visual" aria-hidden="true"><img src="assets/team-baek-sunmi-v2.png" alt=""></figure>
@@ -776,10 +788,6 @@
                 </div>
               </article>
             </div>
-          </div>
-          <div class="about__copy">
-            <p class="about__copy-lead">사람과 브랜드를 이해해 온 경험으로, 고객이 원하는 바를 정확히 읽습니다.</p>
-            <p class="about__copy-body">막연한 아이디어를 실행 가능한 세 가지 제안으로 정리하고, 굿즈 선정부터 실제 제작까지 끝까지 함께합니다.</p>
           </div>
         </div>
         <section class="member-story" aria-labelledby="memberStoryTitle">

@@ -163,15 +163,15 @@ for (const checkpointGroup of meaningCheckpoints) {
 
 const aboutStart = html.indexOf('<section class="tp-section about" id="about">');
 const profileCopy = html.slice(aboutStart, storyStart);
-assert.ok(profileCopy.includes("<h2>사람과 브랜드를 이해하는<br>사람들이 함께합니다.</h2>"), "멤버 소개 제목 또는 줄바꿈이 확정 카피와 다릅니다.");
+assert.ok(profileCopy.includes("<h2><span>사람과 브랜드를 이해하는</span><span>사람들이 함께합니다.</span></h2>"), "멤버 소개 제목 또는 2행 줄바꿈이 확정 카피와 다릅니다.");
 assert.ok(profileCopy.includes("백선미 이사") && profileCopy.includes("두 번째 멤버"), "두 팀 캐릭터의 이름이 없습니다.");
 const integratedCopy = [
-  "사람과 브랜드를 이해해 온 경험으로, 고객이 원하는 바를 정확히 읽습니다.",
-  "막연한 아이디어를 실행 가능한 세 가지 제안으로 정리하고, 굿즈 선정부터 실제 제작까지 끝까지 함께합니다.",
+  "<span>사람과 브랜드를 이해해 온 경험으로,</span><span>고객이 원하는 바를 정확히 읽습니다.</span>",
+  "<span>막연한 아이디어를 실행 가능한</span><span>세 가지 제안으로 정리하고,</span><span>굿즈 선정부터 실제 제작까지</span><span>끝까지 함께합니다.</span>",
 ];
 assert.ok(profileCopy.includes(`<p class="about__copy-lead">${integratedCopy[0]}</p>`) && profileCopy.includes(`<p class="about__copy-body">${integratedCopy[1]}</p>`), "우측 통합 산문의 두 위계 문장이 확정 카피와 다릅니다.");
 assert.ok(profileCopy.indexOf(integratedCopy[0]) < profileCopy.indexOf(integratedCopy[1]), "백선미 소개 문단이 제작 안내 문단 위에 있지 않습니다.");
-assert.match(profileCopy, /<div class="about-team"[^>]*>[\s\S]*team-member--baek[\s\S]*team-member--placeholder[\s\S]*<\/div>\s*<\/div>\s*<div class="about__copy">/, "두 인물이 제목 아래 좌측 그룹이고 통합 산문이 오른쪽인 구조가 아닙니다.");
+assert.match(profileCopy, /<div class="about__content">\s*<div class="about__copy">[\s\S]*<div class="about-team"[^>]*>[\s\S]*team-member--baek[\s\S]*team-member--placeholder/, "카피가 왼쪽이고 두 인물이 오른쪽인 콘텐츠 구조가 아닙니다.");
 assert.ok(!profileCopy.includes("team-career") && !profileCopy.includes("게임사 마케팅·운영") && !profileCopy.includes("헤드헌터") && !profileCopy.includes("기업교육 강사") && !profileCopy.includes("마케팅 에이전시 이사"), "삭제하기로 한 백선미 이사 경력이 남아 있습니다.");
 assert.ok(!profileCopy.includes("소개와 경력은 곧 업데이트됩니다."), "두 번째 멤버의 비대칭 경력 안내가 남아 있습니다.");
 const profileAssets = ["assets/team-baek-sunmi-v2.png", "assets/team-member-placeholder-v2.png"];
@@ -198,6 +198,7 @@ const profileCardRule = html.match(/\.team-member\{([^}]*)\}/)?.[1] || "";
 assert.ok(profileVisualRule.includes("border-bottom:1px solid var(--tp-line)"), "인물 상반신 아래 유일한 가로선이 없습니다.");
 assert.ok(profileCardRule.includes("background:transparent"), "프로필 카드에 폐기한 셀 배경이 남아 있습니다.");
 assert.ok(html.includes(".about-team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))"), "제목 아래 두 인물의 2열 팀 그룹이 없습니다.");
+assert.ok(html.includes(".about__content{display:grid;grid-template-columns:minmax(0,5fr) minmax(520px,7fr)"), "데스크톱 카피 5 : 인물 7의 좌우 전환 구조가 없습니다.");
 assert.ok(!html.includes(".about-grid{") && !html.includes(".team-career{"), "폐기한 프로필 테이블 CSS가 남아 있습니다.");
 assert.match(profileCopy, /<article class="team-member team-member--baek">/, "백선미 프로필에 전용 시각 보정 클래스가 없습니다.");
 assert.match(html, /\.team-member--baek \.team-member__visual img\{[^}]*transform:scale\(1\.02\)[^}]*transform-origin:center bottom[^}]*\}/, "백선미 프로필의 1.02 배율·하단 기준 보정이 없습니다.");
@@ -290,4 +291,4 @@ assert.match(tabletCss, /\.story-panel\{[^}]*width:100%[^}]*margin-inline:auto[^
 assert.ok(html.includes("body{overflow-x:clip"), "모바일 페이지 가로 넘침 차단 규칙이 없습니다.");
 assert.ok(!/\.member-story[^}]*overflow-x:auto/.test(html), "스토리툰에 가로 스크롤이 남아 있습니다.");
 
-console.log("PASS member-story panels=6 segments=17 meaning=checkpoints quotes=6 assets=sha256 profiles=team-left/copy-right/career-zero/visual-bottom-line story02-scale=1.05 copy=exact-html/br cta=data-consult/white mosaic=12col/auto-pairs/mobile-centered-fullwidth border=zero caption=relative-inflow overflow=0");
+console.log("PASS member-story panels=6 segments=17 meaning=checkpoints quotes=6 assets=sha256 profiles=copy-left/team-right/career-zero/visual-bottom-line story02-scale=1.05 copy=exact-html/br cta=data-consult/white mosaic=12col/auto-pairs/mobile-centered-fullwidth border=zero caption=relative-inflow overflow=0");
