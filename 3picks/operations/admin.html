@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F5F0E4">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <title>3PICKS 운영 콘솔</title>
 <style>
 :root {
@@ -328,7 +328,6 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       <div class="admin-header__actions">
         <div class="hgroup">
           <button class="tp-btn llm-sync-btn" type="button" id="llmSyncBtn" data-alert="false">LLM으로 홈페이지 수정한 내용 어드민에 적용하기</button>
-          <a class="tp-btn" href="production-readiness.html">운영 점검 가이드</a>
         </div>
         <div class="hgroup">
           <span class="badge badge--ghost" id="draftBadge">고친 내용 없음</span>
@@ -364,7 +363,6 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
         <li><span class="rule-key">고객 미니 견적</span><span class="rule-body">홈페이지 견적함의 수량 계산과 「비우기」는 고객 화면에서 바로 동작합니다. 상품·추천 설정은 이 운영 콘솔에서 관리하고, 담은 목록 자체는 고객의 브라우저에만 저장됩니다.</span></li>
         <li><span class="rule-key">이메일 문의 담당자</span><span class="rule-body">홈페이지의 이메일 문의 레이어에 보이는 두 담당자는 <code>config.js</code>에서 바꿉니다. 이 운영 콘솔의 상품·추천 설정과는 별개입니다.</span></li>
         <li><span class="rule-key">잘못 고쳤을 때</span><span class="rule-body">맨 아래 「고친 내용 모두 취소」를 누르면 이 화면이 처음 상태로 돌아옵니다. 홈페이지는 사라지지도, 바뀌지도 않습니다.</span></li>
-        <li><span class="rule-key">반영하기 전</span><span class="rule-body">상단 「운영 점검 가이드」에서 출시 Gate와 반영 전·후 확인 항목을 먼저 점검해 주세요.</span></li>
       </ul>
     </div>
   </section>
@@ -383,14 +381,14 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
         <label class="field"><span>비밀 열쇠 (토큰)</span><input id="ghToken" type="password" autocomplete="off" placeholder="github_pat_…"></label>
       </div>
       <div class="connect-foot">
-        <label class="checks"><input id="ghRemember" type="checkbox"> 이 컴퓨터에 비밀 열쇠 기억해 두기</label>
+        <p class="status-line">비밀 열쇠는 현재 탭을 닫으면 지워집니다.</p>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
           <p class="status-line" id="connStatus">아직 연결을 확인하지 않았습니다.</p>
           <button class="tp-btn tp-btn--secondary" type="button" id="connTestBtn">연결 확인</button>
         </div>
       </div>
       <div class="connect-note tp-rule" style="border-top:1px solid var(--tp-line)">
-        비밀 열쇠(토큰)는 깃허브 사이트에서 발급받습니다. 처음 설치할 때 한 번만 필요하니, 어렵게 느껴지면 설치 담당자에게 부탁하세요. 입력한 열쇠는 이 컴퓨터에만 저장되고 다른 곳으로 나가지 않습니다.
+        비밀 열쇠(토큰)는 깃허브 사이트에서 발급받습니다. 어렵게 느껴지면 설치 담당자에게 부탁하세요. 입력한 열쇠는 현재 탭에만 잠시 저장되며 탭을 닫으면 지워집니다.
         <ol>
           <li>깃허브(GitHub) 우측 상단 프로필 → Settings → Developer settings → Fine-grained tokens → Generate new token</li>
           <li>Repository access는 이 홈페이지 보관함 하나만 선택합니다.</li>
@@ -554,6 +552,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       <ul class="rules">
         <li><span class="rule-key">홈페이지에 반영하기</span><span class="rule-body">여기서 고친 내용을 실제 홈페이지에 올립니다. 새로 올린 상품 사진이 있으면 사진 파일부터 먼저 올라가고 설정이 마지막에 올라갑니다. 1~10분 뒤부터 모든 방문자에게 새 내용이 보입니다.</span></li>
         <li><span class="rule-key">백업 파일 받기</span><span class="rule-body">고친 내용을 파일 하나로 내 컴퓨터에 저장해 둡니다. 눌러도 홈페이지에는 아무 일도 일어나지 않아요. 꼭 받아야 하는 것도 아닙니다.</span></li>
+        <li><span class="rule-key">직전 정상본 불러오기</span><span class="rule-body">마지막 반영 직전의 홈페이지 설정을 이 화면에 초안으로 불러옵니다. 확인 뒤 「홈페이지에 반영하기」를 눌러야 실제 복구됩니다.</span></li>
         <li><span class="rule-key">고친 내용 모두 취소</span><span class="rule-body">이 화면에서 고친 것만 지우고 처음 상태로 되돌립니다. 홈페이지는 그대로 있습니다. 사라지지 않아요.</span></li>
       </ul>
     </div>
@@ -562,6 +561,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       <div class="review-actions" style="border-top:1px solid var(--tp-line)">
         <button class="tp-btn tp-btn--primary" type="button" id="saveBtn" disabled>홈페이지에 반영하기</button>
         <button class="tp-btn" type="button" id="exportBtn">백업 파일 받기</button>
+        <button class="tp-btn" type="button" id="restoreBtn" disabled>직전 정상본 불러오기</button>
         <button class="tp-btn" type="button" id="discardBtn">고친 내용 모두 취소</button>
       </div>
       <p class="save-log" id="saveLog"></p>
@@ -577,9 +577,10 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   <div class="tp-wrap">3PICKS 홈페이지 관리 화면 · 막히면 설치 담당자에게 문의하세요</div>
 </footer>
 
-<script src="site-overrides.js?v=260812d"></script>
-<script src="assets/products-data.js?v=260810-2"></script>
-<script src="recommendation-core.js?v=260812d"></script>
+<script src="admin-core.js?v=260814"></script>
+<script src="../site-overrides.js?v=260812d"></script>
+<script src="../assets/products-data.js?v=260810-2"></script>
+<script src="../recommendation-core.js?v=260812d"></script>
 <script>
 (() => {
   "use strict";
@@ -612,8 +613,9 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   });
 
   const core = window.RecommendationCore;
+  const adminCore = window.AdminCore;
   const baseProducts = Array.isArray(window.PRODUCTS) ? window.PRODUCTS : [];
-  const committed = window.SITE_OVERRIDES || {};
+  let committed = window.SITE_OVERRIDES || {};
   const categories = [...core.CATEGORY_ORDER];
   const defaultWeights = { ...core.DEFAULT_WEIGHTS };
   // 덮어쓰기 필드·상태값·병합 규칙은 recommendation-core가 정본이다 (사본 금지)
@@ -652,10 +654,11 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   const storage = {
     repo: "3picks-admin:repo:v1",
     tokenSession: "3picks-admin:token:session",
-    tokenLocal: "3picks-admin:token:local",
     draft: "3picks-admin:draft:v1",
     appliedBase: "3picks-admin:applied-base:v1",
     syncReload: "3picks-admin:sync-reload",
+    published: "3picks-admin:published:v1",
+    lastGood: "3picks-admin:last-good:v1",
   };
 
   const readJson = (area, key) => {
@@ -667,6 +670,10 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       else area.setItem(key, JSON.stringify(value));
     } catch { /* 저장 공간을 못 쓰면 초안 유지 없이 동작합니다 */ }
   };
+
+  // 로컬 운영 콘솔은 고객 저장소의 파일과 별개이므로 마지막 반영 성공본을 브라우저에 보존한다.
+  const cachedPublished = readJson(localStorage, storage.published);
+  if (cachedPublished && Number(cachedPublished.version) === 2) committed = cachedPublished;
 
   // ----- 상태: 기본값 + 배포된 설정 + 이 브라우저의 초안을 겹쳐 만든 유효값
   const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -1029,6 +1036,8 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   const dataUrlBytes = (dataUrl) => Math.floor((dataUrl.length - dataUrl.indexOf(",") - 1) * 3 / 4);
   async function convertToProductImage(file) {
     const source = await loadImageElement(await readFileAsDataUrl(file));
+    const uploadProblem = adminCore.validateUploadMeta(file, source.naturalWidth, source.naturalHeight);
+    if (uploadProblem) throw new Error(uploadProblem);
     const canvas = document.createElement("canvas");
     canvas.width = IMAGE_BOX;
     canvas.height = IMAGE_BOX;
@@ -1902,7 +1911,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   }
 
   // ----- GitHub 연동
-  const connection = { verified: false };
+  const connection = { verified: false, identity: "" };
   function connectionInput() {
     return {
       owner: el("ghOwner").value.trim(),
@@ -1918,27 +1927,25 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       el("ghRepo").value = saved.repo || "";
       el("ghBranch").value = saved.branch || "main";
     }
-    const localToken = localStorage.getItem(storage.tokenLocal);
     const sessionToken = sessionStorage.getItem(storage.tokenSession);
-    if (localToken) {
-      el("ghToken").value = localToken;
-      el("ghRemember").checked = true;
-    } else if (sessionToken) {
-      el("ghToken").value = sessionToken;
-    }
+    if (sessionToken) el("ghToken").value = sessionToken;
+    // 구버전에서 장기 저장한 토큰이 남아 있으면 즉시 제거한다.
+    try { localStorage.removeItem("3picks-admin:token:local"); } catch { /* 제거 실패는 현재 세션 동작과 무관 */ }
   }
   function persistConnection() {
     const { owner, repo, branch, token } = connectionInput();
     writeJson(localStorage, storage.repo, { owner, repo, branch });
-    try {
-      if (el("ghRemember").checked) {
-        localStorage.setItem(storage.tokenLocal, token);
-        sessionStorage.removeItem(storage.tokenSession);
-      } else {
-        localStorage.removeItem(storage.tokenLocal);
-        sessionStorage.setItem(storage.tokenSession, token);
-      }
-    } catch { /* 저장 공간이 막혀 있으면 입력값으로만 동작합니다 */ }
+    try { sessionStorage.setItem(storage.tokenSession, token); } catch { /* 저장 공간이 막혀 있으면 입력값으로만 동작합니다 */ }
+  }
+  function currentConnectionIdentity() {
+    return adminCore.connectionIdentity(connectionInput());
+  }
+  function invalidateConnection() {
+    if (!connection.verified) return;
+    connection.verified = false;
+    connection.identity = "";
+    setConnStatus("연결 정보가 바뀌었습니다. 다시 연결 확인을 눌러 주세요.", false);
+    refreshMeta();
   }
   async function githubRequest(path, options = {}) {
     const { token } = connectionInput();
@@ -1986,6 +1993,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
         setConnStatus("홈페이지와 연결됐고 설정 파일까지 확인했습니다.", true);
       }
       connection.verified = true;
+      connection.identity = currentConnectionIdentity();
       persistConnection();
       try {
         // 자동으로 적용하면 이 화면의 작업과 꼬일 수 있어, 다른 점만 감지하고 적용은 상단 버튼에 맡긴다.
@@ -2003,6 +2011,9 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     refreshMeta();
   }
   el("connTestBtn").addEventListener("click", testConnection);
+  ["ghOwner", "ghRepo", "ghBranch", "ghToken"].forEach((id) => {
+    el(id).addEventListener("input", invalidateConnection);
+  });
 
   // ----- LLM 수정 감지·수동 적용 — 홈페이지 쪽이 바뀌어도 이 화면은 자동으로 따라가지 않는다.
   //       바뀐 것이 감지되면 상단 버튼이 빨갛게 깜빡이고, 누를 때만 최신 내용을 적용한다.

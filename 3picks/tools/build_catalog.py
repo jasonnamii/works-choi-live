@@ -19,6 +19,7 @@ PROJECT = Path(__file__).resolve().parents[1]
 SOURCE = PROJECT.parent
 ASSETS = PROJECT / "assets"
 PRODUCT_ASSETS = ASSETS / "products"
+DATA = PROJECT / "data"
 
 
 def nfc(value: object) -> str:
@@ -232,7 +233,8 @@ def main() -> None:
             future.result()
 
     encoded = json.dumps(products, ensure_ascii=False, separators=(",", ":"))
-    (ASSETS / "products.json").write_text(
+    DATA.mkdir(parents=True, exist_ok=True)
+    (DATA / "products-internal.json").write_text(
         json.dumps(products, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     (ASSETS / "products-data.js").write_text(
