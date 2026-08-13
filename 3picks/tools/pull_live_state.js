@@ -1,9 +1,5 @@
-// 라이브 사이트의 운영 상태(site-overrides.js + 콘솔이 올린 상품 사진)를 로컬 폴더로 회수한다.
-// 어드민은 배포 저장소에 직접 커밋하므로, 회수 없이 로컬 기준으로 전달 zip을 다시 만들면
-// 콘솔에서 등록·수정한 내용이 증발한다. build-official-bundle.sh 전에 반드시 실행한다.
-//
+// 라이브의 검증된 운영 데이터와 콘솔 업로드 사진만 로컬로 회수한다.
 // 사용: node tools/pull_live_state.js [--url https://www.3picks.co.kr/] [--dry-run]
-// 공개 페이지를 fetch하므로 토큰이 필요 없다.
 "use strict";
 
 const fs = require("node:fs");
@@ -13,72 +9,137 @@ const root = path.resolve(__dirname, "..");
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const urlFlag = args.indexOf("--url");
-const baseUrl = (urlFlag >= 0 ? args[urlFlag + 1] : "https://www.3picks.co.kr/").replace(/\/?$/, "/");
+const requestedUrl = urlFlag >= 0 ? args[urlFlag + 1] : "https://www.3picks.co.kr/";
+const allowedHosts = new Set(["3picks.co.kr", "www.3picks.co.kr", "works.choi.build"]);
+const allowedTopFields = new Set(["version", "updatedAt", "eventMap", "weights", "productOverrides", "productAdditions"]);
+const allowedProductFields = new Set([
+  "id", "number", "category", "name", "rank", "visibility", "popularity", "price", "moq", "moqText",
+  "printMethod", "lead", "leadDays", "available", "supplier", "images", "imageLabels", "tags", "status", "titleUsesImageLabel",
+]);
+const maxSettingsBytes = 2 * 1024 * 1024;
+const maxImageBytes = 6 * 1024 * 1024;
+
+function checkedBaseUrl(value) {
+  const parsed = new URL(value);
+  if (parsed.protocol !== "https:" || !allowedHosts.has(parsed.hostname)) {
+    throw new Error("허용된 3PICKS HTTPS 주소만 사용할 수 있습니다.");
+  }
+  parsed.pathname = parsed.pathname.replace(/\/?$/, "/");
+  parsed.search = "";
+  parsed.hash = "";
+  return parsed;
+}
+
+function ensureSize(response, limit, label) {
+  const declared = Number(response.headers.get("content-length") || 0);
+  if (declared > limit) throw new Error(`${label} 응답이 허용 크기를 넘었습니다.`);
+}
 
 async function fetchText(url) {
-  const response = await fetch(url, { redirect: "follow" });
+  const response = await fetch(url, { redirect: "error", cache: "no-store" });
   if (!response.ok) throw new Error(`${url} → HTTP ${response.status}`);
-  return response.text();
+  ensureSize(response, maxSettingsBytes, "설정");
+  const type = response.headers.get("content-type") || "";
+  if (!/(javascript|text\/plain|octet-stream)/i.test(type)) throw new Error(`설정 MIME이 예상과 다릅니다: ${type || "없음"}`);
+  const text = await response.text();
+  if (Buffer.byteLength(text) > maxSettingsBytes) throw new Error("설정 응답이 허용 크기를 넘었습니다.");
+  return text;
 }
+
 async function fetchBinary(url) {
-  const response = await fetch(url, { redirect: "follow" });
+  const response = await fetch(url, { redirect: "error", cache: "no-store" });
   if (!response.ok) throw new Error(`${url} → HTTP ${response.status}`);
-  return Buffer.from(await response.arrayBuffer());
+  ensureSize(response, maxImageBytes, "이미지");
+  const type = response.headers.get("content-type") || "";
+  if (!/^image\/(webp|png)$/i.test(type)) throw new Error(`이미지 MIME이 예상과 다릅니다: ${type || "없음"}`);
+  const buffer = Buffer.from(await response.arrayBuffer());
+  if (buffer.length > maxImageBytes) throw new Error("이미지 응답이 허용 크기를 넘었습니다.");
+  return buffer;
 }
 
-(async () => {
-  const overridesUrl = `${baseUrl}site-overrides.js?pull=${Date.now()}`;
-  let text;
-  try {
-    text = await fetchText(overridesUrl);
-  } catch (error) {
-    console.error(`FAIL 라이브 설정을 읽지 못했습니다: ${error.message}`);
-    console.error("공식 사이트가 아직 없으면 --url로 스테이징 주소를 지정하세요. 예: --url https://works.choi.build/3picks/");
-    process.exit(1);
+function validateProduct(record, label, requireFullRecord) {
+  if (!record || typeof record !== "object" || Array.isArray(record)) throw new Error(`${label}이 객체가 아닙니다.`);
+  const unexpected = Object.keys(record).filter((key) => !allowedProductFields.has(key));
+  if (unexpected.length) throw new Error(`${label}에 예상 밖 필드가 있습니다: ${unexpected.join(", ")}`);
+  if (requireFullRecord && !/^p\d{3,}$/.test(String(record.id || ""))) throw new Error(`${label}의 상품 ID가 올바르지 않습니다.`);
+  if (record.images !== undefined) {
+    if (!Array.isArray(record.images) || !record.images.every((image) => /^assets\/products\/[\w.-]+\.(webp|png)$/.test(image))) {
+      throw new Error(`${label}의 이미지 경로가 올바르지 않습니다.`);
+    }
   }
-  const match = text.match(/window\.SITE_OVERRIDES\s*=\s*(\{[\s\S]*\});/);
-  if (!match) {
-    console.error("FAIL 응답에서 SITE_OVERRIDES를 찾지 못했습니다 — 주소가 사이트 루트인지 확인하세요.");
-    process.exit(1);
-  }
+}
+
+function validateOverrides(overrides) {
+  if (!overrides || typeof overrides !== "object" || Array.isArray(overrides)) throw new Error("운영 설정이 객체가 아닙니다.");
+  const unexpected = Object.keys(overrides).filter((key) => !allowedTopFields.has(key));
+  if (unexpected.length) throw new Error(`운영 설정에 예상 밖 필드가 있습니다: ${unexpected.join(", ")}`);
+  if (Number(overrides.version) !== 2) throw new Error("지원하지 않는 운영 설정 버전입니다.");
+  if (!overrides.productOverrides || typeof overrides.productOverrides !== "object" || Array.isArray(overrides.productOverrides)) throw new Error("productOverrides 형식이 올바르지 않습니다.");
+  if (!Array.isArray(overrides.productAdditions)) throw new Error("productAdditions 형식이 올바르지 않습니다.");
+  Object.entries(overrides.productOverrides).forEach(([id, patch]) => {
+    if (!/^p\d{3,}$/.test(id)) throw new Error(`수정 상품 ID가 올바르지 않습니다: ${id}`);
+    validateProduct(patch, `수정 상품 ${id}`, false);
+  });
+  overrides.productAdditions.forEach((product, index) => validateProduct(product, `신규 상품 ${index + 1}`, true));
+  return overrides;
+}
+
+function parseOverrides(text) {
+  const match = text.match(/^\s*(?:\/\/[^\n]*\n)*window\.SITE_OVERRIDES\s*=\s*(\{[\s\S]*\});\s*$/);
+  if (!match) throw new Error("응답이 단일 SITE_OVERRIDES 설정 파일 형식이 아닙니다.");
+  return validateOverrides(JSON.parse(match[1]));
+}
+
+function serializeOverrides(overrides) {
+  return [
+    "// 3PICKS 운영 설정 — operations/admin.html에서 저장하면 이 파일이 갱신됩니다.",
+    "// 값이 null이거나 비어 있으면 사이트 기본값이 그대로 적용됩니다.",
+    "// productOverrides는 기존 상품의 수정 델타, productAdditions는 콘솔에서 등록한 신규 상품 전체 레코드입니다.",
+    `window.SITE_OVERRIDES = ${JSON.stringify(overrides, null, 2)};`,
+    "",
+  ].join("\n");
+}
+
+async function main() {
+  let baseUrl;
+  try { baseUrl = checkedBaseUrl(requestedUrl); }
+  catch (error) { console.error(`FAIL ${error.message}`); process.exit(1); }
+  const overridesUrl = new URL(`site-overrides.js?pull=${Date.now()}`, baseUrl);
   let overrides;
-  try {
-    overrides = JSON.parse(match[1]);
-  } catch {
-    console.error("FAIL SITE_OVERRIDES JSON 해석 실패 — 파일이 손상됐는지 확인하세요.");
+  try { overrides = parseOverrides(await fetchText(overridesUrl)); }
+  catch (error) {
+    console.error(`FAIL 라이브 설정을 안전하게 읽지 못했습니다: ${error.message}`);
+    console.error("공식 사이트 개통 전에는 --url https://works.choi.build/3picks/ 를 사용하세요.");
     process.exit(1);
   }
 
-  // 콘솔이 참조하는 이미지 경로 수집: 신규 상품 + 기존 상품의 사진 교체 오버라이드
   const imagePaths = new Set();
-  (overrides.productAdditions || []).forEach((product) => (product.images || []).forEach((p) => imagePaths.add(p)));
-  Object.values(overrides.productOverrides || {}).forEach((patch) => (patch.images || []).forEach((p) => imagePaths.add(p)));
-
+  (overrides.productAdditions || []).forEach((product) => (product.images || []).forEach((value) => imagePaths.add(value)));
+  Object.values(overrides.productOverrides || {}).forEach((patch) => (patch.images || []).forEach((value) => imagePaths.add(value)));
   const missing = [...imagePaths].filter((relative) => !fs.existsSync(path.join(root, relative)));
-  console.log(`라이브 설정 v${overrides.version || 1} · updatedAt ${overrides.updatedAt || "없음"}`);
-  console.log(`신규 상품 ${(overrides.productAdditions || []).length}개 · 수정 델타 ${Object.keys(overrides.productOverrides || {}).length}건 · 참조 사진 ${imagePaths.size}장 (로컬에 없는 사진 ${missing.length}장)`);
-
+  console.log(`라이브 설정 v${overrides.version} · updatedAt ${overrides.updatedAt || "없음"}`);
+  console.log(`신규 상품 ${overrides.productAdditions.length}개 · 수정 델타 ${Object.keys(overrides.productOverrides).length}건 · 참조 사진 ${imagePaths.size}장 (로컬에 없는 사진 ${missing.length}장)`);
   if (dryRun) {
-    missing.forEach((p) => console.log(`  받을 파일: ${p}`));
+    missing.forEach((value) => console.log(`  받을 파일: ${value}`));
     console.log("DRY-RUN — 아무것도 쓰지 않았습니다.");
     return;
   }
 
   for (const relative of missing) {
-    if (!/^assets\/products\/[\w.-]+\.(webp|png)$/.test(relative)) {
-      console.error(`FAIL 예상 밖 이미지 경로를 건너뜁니다: ${relative}`);
-      process.exitCode = 1;
-      continue;
-    }
-    const buffer = await fetchBinary(`${baseUrl}${relative}`);
+    const buffer = await fetchBinary(new URL(relative, baseUrl));
     const target = path.join(root, relative);
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(target, buffer);
     console.log(`받음 ${relative} (${buffer.length}B)`);
   }
+  const serialized = serializeOverrides(overrides);
+  fs.writeFileSync(path.join(root, "site-overrides.js"), serialized);
+  console.log(`갱신 site-overrides.js (${Buffer.byteLength(serialized)}B)`);
+  console.log("DONE 검증된 라이브 운영 상태를 로컬로 회수했습니다.");
+}
 
-  const localOverridesPath = path.join(root, "site-overrides.js");
-  fs.writeFileSync(localOverridesPath, text.replace(/\s*$/, "\n"));
-  console.log(`갱신 site-overrides.js (${fs.statSync(localOverridesPath).size}B)`);
-  console.log("DONE 라이브 상태를 로컬로 회수했습니다. 이제 전달 zip을 만들어도 콘솔 등록분이 보존됩니다.");
-})();
+if (require.main === module) {
+  main().catch((error) => { console.error(`FAIL ${error.message}`); process.exit(1); });
+}
+
+module.exports = { checkedBaseUrl, validateOverrides, parseOverrides, serializeOverrides, main };

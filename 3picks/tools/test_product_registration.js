@@ -13,7 +13,7 @@ const context = { window: {} };
 vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, "assets/products-data.js"), "utf8"), context);
 const baseProducts = context.window.PRODUCTS;
-const adminSrc = fs.readFileSync(path.join(root, "admin.html"), "utf8");
+const adminSrc = fs.readFileSync(path.join(root, "operations", "admin.html"), "utf8");
 
 const CATEGORY = "텀블러";
 const baseCat = baseProducts.filter((product) => product.category === CATEGORY).sort((a, b) => a.rank - b.rank);

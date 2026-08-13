@@ -1,4 +1,4 @@
-// 홈페이지(app.js) ↔ 운영 콘솔(admin.html) 짝 계약 검사
+// 홈페이지(app.js) ↔ 운영 콘솔(operations/admin.html) 짝 계약 검사
 // 홈페이지를 수정하면 어드민도 쌍으로 수정한다 — 이 검사가 두 파일의 사본 구조가
 // 어긋나는 순간 FAIL을 낸다. 홈페이지·어드민 어느 쪽이든 고친 턴에는 반드시 실행한다.
 "use strict";
@@ -7,7 +7,7 @@ const path = require("path");
 
 const root = path.join(__dirname, "..");
 const appSrc = fs.readFileSync(path.join(root, "app.js"), "utf8");
-const adminSrc = fs.readFileSync(path.join(root, "admin.html"), "utf8");
+const adminSrc = fs.readFileSync(path.join(root, "operations", "admin.html"), "utf8");
 
 const failures = [];
 const assertSame = (name, a, b) => {
@@ -100,7 +100,7 @@ function moveRules(src) {
 assertSame("자동 순위 조정 규칙(moveCategory)", moveRules(appSrc), moveRules(adminSrc));
 
 // 5) 공유 모듈 로드 — 어드민이 홈페이지와 같은 엔진·데이터 파일을 쓰는지
-["site-overrides.js", "assets/products-data.js", "recommendation-core.js"].forEach((file) => {
+["../site-overrides.js", "../assets/products-data.js", "../recommendation-core.js"].forEach((file) => {
   const escapedFile = file.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   if (!new RegExp(`src="${escapedFile}(?:\\?[^\"]*)?"`).test(adminSrc)) {
     failures.push(`admin.html이 공유 파일 ${file}을 로드하지 않음`);

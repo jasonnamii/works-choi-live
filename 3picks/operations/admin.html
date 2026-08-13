@@ -760,9 +760,9 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   }
 
   function overridesFileContent(overrides) {
-    const payload = { ...overrides, updatedAt: new Date().toISOString() };
+    const payload = { ...overrides, updatedAt: overrides.updatedAt || new Date().toISOString() };
     return [
-      "// 3PICKS 운영 설정 — admin.html에서 저장하면 이 파일이 갱신됩니다.",
+      "// 3PICKS 운영 설정 — operations/admin.html에서 저장하면 이 파일이 갱신됩니다.",
       "// 값이 null이거나 비어 있으면 사이트 기본값이 그대로 적용됩니다.",
       "// productOverrides는 기존 상품의 수정 델타, productAdditions는 콘솔에서 등록한 신규 상품 전체 레코드입니다.",
       `window.SITE_OVERRIDES = ${JSON.stringify(payload, null, 2)};`,
@@ -2067,8 +2067,10 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
       try {
         const remote = remoteOverridesCache || await fetchRemoteOverrides();
         if (remote) {
+          committed = remote;
           syncedOverrides = remote;
           remoteOverridesCache = null;
+          writeJson(localStorage, storage.published, remote);
           try { localStorage.setItem(storage.appliedBase, baseFingerprint()); } catch { /* 기록 실패는 무시 */ }
           buildState(remote);
           setBaselineFromState();
@@ -2128,9 +2130,18 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
     const problems = validate();
     if (problems.length) { logSave(`반영 중단 · ${problems[0]}`); return; }
     if (!connection.verified) { logSave("반영 중단 · 먼저 01번에서 연결 확인을 눌러 주세요."); return; }
+    if (connection.identity !== currentConnectionIdentity()) {
+      invalidateConnection();
+      logSave("반영 중단 · 연결 정보가 바뀌었습니다. 다시 연결 확인을 눌러 주세요.");
+      return;
+    }
     el("saveBtn").disabled = true;
     el("saveBtnTop").disabled = true;
     try {
+      // 반영 직전 원격 설정은 간단한 복구용 정상본으로 보관한다.
+      const previousRemote = await fetchRemoteOverrides();
+      if (previousRemote) writeJson(localStorage, storage.lastGood, previousRemote);
+      el("restoreBtn").disabled = !previousRemote && !readJson(localStorage, storage.lastGood);
       // 1) 새 사진부터 올린다 — 설정이 먼저 바뀌면 홈페이지가 없는 사진을 잠깐 가리키게 되기 때문
       const imageEntries = Object.entries(state.pendingImages);
       for (let index = 0; index < imageEntries.length; index += 1) {
@@ -2146,16 +2157,25 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
           refreshMeta();
           return;
         }
+        // 성공한 사진은 즉시 대기 목록에서 빼서 다음 재시도 때 다시 올리지 않는다.
+        state.pendingImages = adminCore.withoutUploadedImage(state.pendingImages, imagePath);
+        refreshMeta();
       }
       // 2) 마지막에 설정 파일을 올린다
       logSave(imageEntries.length ? "사진 완료 · 설정 올리는 중…" : "홈페이지에 올리는 중…");
-      const saved = await putRepoFile("site-overrides.js", toBase64(overridesFileContent(overrides)), "운영 콘솔에서 상품·추천·카탈로그 설정 갱신");
+      const published = adminCore.publishedSnapshot(overrides, new Date().toISOString());
+      const saved = await putRepoFile("site-overrides.js", toBase64(overridesFileContent(published)), "운영 콘솔에서 상품·추천·카탈로그 설정 갱신");
       if (!saved.ok && saved.status === 409) { logSave("반영 실패 · 다른 컴퓨터에서 먼저 반영했습니다. 연결 확인을 다시 누른 뒤 반영해 주세요."); refreshMeta(); return; }
       if (!saved.ok) { logSave(`반영 실패 · 오류 ${saved.status}. 비밀 열쇠(토큰)의 권한 문제일 수 있으니 설치 담당자에게 확인해 주세요.`); refreshMeta(); return; }
       const commitSha = saved.result.commit && saved.result.commit.sha ? saved.result.commit.sha.slice(0, 7) : "확인 불가";
       // 올라간 사진의 미리보기는 표시 전용 캐시로 옮긴다 — 로컬 폴더에 파일이 없어도 썸네일 유지
-      Object.entries(state.pendingImages).forEach(([imagePath, image]) => { imagePreviewCache[imagePath] = image; });
+      imageEntries.forEach(([imagePath, image]) => { imagePreviewCache[imagePath] = image; });
       state.pendingImages = {};
+      committed = published;
+      syncedOverrides = published;
+      writeJson(localStorage, storage.published, published);
+      writeJson(localStorage, storage.draft, null);
+      try { localStorage.setItem(storage.appliedBase, baseFingerprint()); } catch { /* 다음 실행에서 다시 대조한다 */ }
       setBaselineFromState();
       logSave(`반영 완료 · 1~10분 안에 홈페이지에 나타납니다. (기록번호 ${commitSha})`);
     } catch {
@@ -2181,6 +2201,16 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   }
   el("exportBtn").addEventListener("click", exportFile);
 
+  function restorePrevious() {
+    const previous = readJson(localStorage, storage.lastGood);
+    if (!previous) { logSave("불러올 직전 정상본이 없습니다."); return; }
+    if (!window.confirm("마지막 반영 직전의 홈페이지 설정을 이 화면에 불러올까요? 실제 홈페이지는 아직 바뀌지 않습니다.")) return;
+    buildState(previous);
+    renderAll();
+    logSave("직전 정상본을 초안으로 불러왔습니다. 미리보기로 확인한 뒤 「홈페이지에 반영하기」를 눌러 복구하세요.");
+  }
+  el("restoreBtn").addEventListener("click", restorePrevious);
+
   el("discardBtn").addEventListener("click", () => {
     if (!window.confirm("이 화면에서 고친 내용을 모두 지우고 처음 상태로 되돌립니다. 홈페이지는 바뀌지 않습니다. 계속할까요?")) return;
     writeJson(localStorage, storage.draft, null);
@@ -2202,6 +2232,7 @@ footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: v
   const savedDraft = readJson(localStorage, storage.draft);
   if (savedDraft) buildState(savedDraft);
   loadConnection();
+  el("restoreBtn").disabled = !readJson(localStorage, storage.lastGood);
   initSimForm();
   renderAll();
   checkBaseFingerprint();

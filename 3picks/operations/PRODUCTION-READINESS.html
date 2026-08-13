@@ -99,11 +99,10 @@ h1{font-size:clamp(42px,6.2vw,76px);line-height:1.02;letter-spacing:-.045em;marg
 <body>
 <header class="top">
   <div class="wrap top__row">
-    <a class="brand" href="admin.html"><span class="eyebrow">3PICKS Admin</span><strong>운영 점검 가이드</strong></a>
+    <div class="brand"><span class="eyebrow">3PICKS Operations</span><strong>운영 점검 가이드</strong></div>
     <div class="actions">
       <button class="btn" type="button" id="resetBtn">체크 초기화</button>
       <button class="btn btn--sun" type="button" id="printBtn">인쇄·PDF</button>
-      <a class="btn btn--primary" href="admin.html">운영 콘솔로 돌아가기</a>
     </div>
   </div>
 </header>
@@ -194,7 +193,7 @@ h1{font-size:clamp(42px,6.2vw,76px);line-height:1.02;letter-spacing:-.045em;marg
           <li><label class="check"><input type="checkbox"><span><strong>공식 도메인이 올바른 호스팅을 가리킨다.</strong><small>www와 루트 도메인의 DNS를 각각 확인합니다.</small></span></label></li>
           <li><label class="check"><input type="checkbox"><span><strong>공식 주소가 HTTPS로 열린다.</strong><small>인증서 오류 없이 자동으로 HTTPS를 사용합니다.</small></span></label></li>
           <li><label class="check"><input type="checkbox"><span><strong>스테이징과 공식 환경이 분리돼 있다.</strong><small>스테이징의 noindex와 공식 사이트의 검색 허용을 구분합니다.</small></span></label></li>
-          <li><label class="check"><input type="checkbox"><span><strong>공식 번들에 운영 콘솔이 없다.</strong><small>admin.html과 운영 가이드가 고객 배포물에 없어야 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>공식 번들에 운영 콘솔이 없다.</strong><small>operations 폴더와 내부 운영 문서가 고객 배포물에 없어야 합니다.</small></span></label></li>
           <li><label class="check"><input type="checkbox"><span><strong>배포 파일의 체크섬과 개수를 기록했다.</strong><small>전달본이 바뀌지 않았음을 다시 확인할 수 있어야 합니다.</small></span></label></li>
           <li><label class="check"><input type="checkbox"><span><strong>배포 전 라이브 운영 상태를 안전하게 회수했다.</strong><small>허용된 호스트와 검증된 설정만 로컬에 반영합니다.</small></span></label></li>
           <li><label class="check"><input type="checkbox"><span><strong>캐시 갱신 시간을 운영자가 안다.</strong><small>반영 직후와 최대 10분 뒤를 나눠 확인합니다.</small></span></label></li>
@@ -322,7 +321,7 @@ h1{font-size:clamp(42px,6.2vw,76px);line-height:1.02;letter-spacing:-.045em;marg
   </section>
 </main>
 
-<footer class="foot"><div class="wrap foot__row"><div><div class="eyebrow" style="color:rgba(255,255,255,.6)">3PICKS Operations</div><strong>PASS의 근거가 없으면 아직 미검증입니다.</strong><p>이 문서는 운영 판단을 돕는 내부 가이드입니다. 고객 사이트 배포물에는 포함하지 않습니다.</p></div><a class="btn" href="admin.html">운영 콘솔로 돌아가기</a></div></footer>
+<footer class="foot"><div class="wrap foot__row"><div><div class="eyebrow" style="color:rgba(255,255,255,.6)">3PICKS Operations</div><strong>PASS의 근거가 없으면 아직 미검증입니다.</strong><p>이 문서는 운영 판단을 돕는 별도 내부 가이드입니다. 어드민과 고객 사이트에는 연결하거나 포함하지 않습니다.</p></div></div></footer>
 
 <script>
 (() => {

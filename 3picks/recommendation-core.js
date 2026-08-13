@@ -29,7 +29,7 @@
     });
   }
 
-  // ----- site-overrides 병합 계층 — app.js와 admin.html이 같은 함수를 쓴다 (사본 금지)
+  // ----- site-overrides 병합 계층 — app.js와 operations/admin.html이 같은 함수를 쓴다 (사본 금지)
   const OVERRIDABLE_PRODUCT_FIELDS = Object.freeze([
     "rank", "visibility", "price", "moq", "leadDays", "tags", "popularity",
     "name", "titleUsesImageLabel", "printMethod", "lead", "moqText", "supplier", "imageLabels", "images", "status",

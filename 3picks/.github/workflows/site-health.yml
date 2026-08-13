@@ -1,0 +1,25 @@
+name: 3PICKS site health
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17,47 * * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      SITE_URL: https://www.3picks.co.kr
+    steps:
+      - name: Check customer pages and data
+        shell: bash
+        run: |
+          set -euo pipefail
+          for path in / /app.js /site-overrides.js /assets/products-data.js; do
+            curl --fail --silent --show-error --location --retry 2 --max-time 20 "${SITE_URL}${path}" >/dev/null
+          done
+          echo "3PICKS customer site is healthy."

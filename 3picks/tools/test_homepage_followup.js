@@ -8,7 +8,9 @@ const config = fs.readFileSync("config.js", "utf8");
 const html = fs.readFileSync("index.html", "utf8");
 const imagePath = "assets/recommendation-team-v1.webp";
 
-assert.ok(config.includes('kakaoChannelUrl: "https://open.kakao.com/me/3PICKS"'), "카카오 오픈채팅 주소가 설정되지 않았습니다.");
+const kakaoUrl = config.match(/kakaoChannelUrl:\s*"([^"]+)"/)?.[1] || "";
+assert.match(kakaoUrl, /^https:\/\//, "config.js의 카카오 주소가 안전한 HTTPS 주소가 아닙니다.");
+assert.ok(app.includes("siteConfig.kakaoChannelUrl"), "홈페이지 상담 CTA가 config.js의 카카오 주소를 소비하지 않습니다.");
 assert.ok(app.includes(`src="${imagePath}"`), "추천 결과에 팀 일러스트가 연결되지 않았습니다.");
 assert.ok(app.includes('width="654" height="680"'), "추천 이미지 크기 메타데이터가 없습니다.");
 assert.ok(app.indexOf('class="result-intro"') < app.indexOf('class="result-groups'), "추천 일러스트가 결과 구성보다 먼저 나와야 합니다.");

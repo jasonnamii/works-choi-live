@@ -523,6 +523,13 @@
     window.dispatchEvent(new CustomEvent("3picks:analytics", { detail: payload }));
   }
 
+  window.addEventListener("error", () => {
+    emit("exception", { description: "javascript_error", fatal: false });
+  });
+  window.addEventListener("unhandledrejection", () => {
+    emit("exception", { description: "unhandled_promise", fatal: false });
+  });
+
   let toastTimer;
   function showToast(message) {
     els.toast.textContent = message;
@@ -937,23 +944,6 @@
     });
     state.results = groups;
     return groups;
-  }
-
-  function categoryReason(category) {
-    const event = state.answers.event || "선택한 행사";
-    const reasons = {
-      "텀블러": `${event}에서 활용도가 높고 로고 각인도 다양하게 살펴볼 수 있어요.`,
-      "에코백": `${event} 현장에서 물품을 담기 좋고 행사 뒤에도 다시 사용할 수 있어요.`,
-      "볼펜": `${event}에서 많은 분께 나눠드리기 좋고 예산도 맞추기 쉬워요.`,
-      "우산": `${event} 선물에 필요한 실용성과 선물다운 느낌을 모두 갖췄어요.`,
-      "티셔츠·단체복": `${event}의 소속감과 현장 분위기를 살려줘요. 제작 전에는 사이즈를 취합해야 해요.`,
-      "머그컵": `${event}가 끝난 뒤에도 사무실이나 집에서 오래 사용할 수 있어요.`,
-      "보조배터리": `${event}에 실용적인 테크 굿즈를 더하고 싶을 때 잘 어울려요.`,
-      "수건·타올": `${event}에 맞춰 단품과 세트, 포장 구성을 유연하게 고를 수 있어요.`,
-      "노트·다이어리": `${event}의 기록과 업무 흐름에 자연스럽게 이어지는 굿즈예요.`,
-      "보온보냉·런치백": `${event}의 야외 활동이나 이동 중에 특히 유용해요.`,
-    };
-    return reasons[category] || `${event}의 수량과 예산에 잘 맞는 품목이에요.`;
   }
 
   function resultNotice() {
