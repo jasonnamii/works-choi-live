@@ -295,6 +295,12 @@
           </article>`;
       }).join("");
     }
+    if (quoteState.items.length <= 2) {
+      els.quoteItems.scrollLeft = 0;
+      requestAnimationFrame(() => {
+        els.quoteItems.scrollLeft = 0;
+      });
+    }
     els.quoteBar.querySelectorAll("[data-quote-requires-selection]").forEach((button) => {
       button.disabled = totals.selectedCount === 0;
     });

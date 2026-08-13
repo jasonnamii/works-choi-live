@@ -677,17 +677,16 @@
       .quote-float{z-index:150;left:8px;bottom:calc(8px + env(safe-area-inset-bottom));width:calc(100vw - 16px)}
       .quote-trigger{width:46px;height:46px;font-size:13px}
       .quote-trigger__heart{font-size:18px}
-      .quote-bar{width:100%;height:clamp(300px,calc(45svh + 2px),430px);max-height:calc(100svh - 96px - env(safe-area-inset-bottom));overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain}
-      .quote-bar__inner{height:auto;min-height:100%;min-width:0;padding:0;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto}
-      .quote-products{min-width:0;border:0;border-bottom:1px solid var(--tp-line)}
+      .quote-bar{width:100%;height:clamp(320px,36svh,360px);max-height:calc(100svh - 96px - env(safe-area-inset-bottom));overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain}
+      .quote-bar__inner{height:auto;min-height:100%;min-width:0;padding:0;display:grid;grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr) 46px}
+      .quote-products{min-width:0;border:0}
       .quote-products__head{min-height:36px;padding:3px 8px;font-size:13px;line-height:1.1}
       .quote-inline-clear,.quote-inline-collapse{height:28px;padding-inline:7px;font-size:13px;line-height:1.1}
-      .quote-items{min-height:112px;max-height:120px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+      .quote-items{min-height:112px;max-height:120px;overflow-x:auto;overflow-y:hidden;border-bottom:1px solid var(--tp-line);scrollbar-width:none}
       .quote-items::-webkit-scrollbar{display:none}
-      .quote-item{height:100%;flex-basis:240px;grid-template-columns:86px minmax(0,1fr);column-gap:8px;padding:6px;border-right:0}
-      .quote-item::after{content:"";position:absolute;z-index:2;top:0;right:0;width:1px;height:100vh;background:var(--tp-line);pointer-events:none}
-      .quote-item__image{width:84px;height:84px;transform:scale(1.15)}
-      .quote-item__copy{padding-right:14px;overflow:hidden}
+      .quote-item{height:100%;flex-basis:50%;min-width:50%;grid-template-columns:clamp(52px,16vw,70px) minmax(0,1fr);column-gap:8px;padding:6px;border-right:1px solid var(--tp-line)}
+      .quote-item__image{width:clamp(52px,16vw,70px);height:clamp(52px,16vw,70px);transform:scale(1.18)}
+      .quote-item__copy{padding-right:10px;overflow:hidden}
       .quote-item__category,.quote-item__name,.quote-item__price,.quote-item__select{font-size:13px}
       .quote-item__category{max-width:100%}
       .quote-item__name{min-height:30px;overflow-wrap:normal}
@@ -703,7 +702,11 @@
       .quote-summary__meta span{min-width:0;white-space:nowrap}
       .quote-summary__total{grid-area:total;min-width:0;align-self:end;margin-top:0;overflow:hidden;text-align:right;line-height:1;white-space:nowrap}
       .quote-summary__total strong{font-size:18px}
-      .quote-actions{grid-template-columns:1fr;grid-template-rows:40px 40px 46px}
+      .quote-actions{height:46px;align-self:end;grid-template-columns:46px repeat(3,minmax(0,1fr));grid-template-rows:46px;padding:0}
+      .quote-actions::before{content:"";grid-column:1;grid-row:1;background:var(--tp-sun)}
+      .quote-actions .quote-pdf{grid-column:2;grid-row:1}
+      .quote-actions .tp-btn--secondary{grid-column:3;grid-row:1}
+      .quote-actions .quote-consult{grid-column:4;grid-row:1}
       .quote-actions .tp-btn{min-height:40px;display:flex;align-items:center;justify-content:center;padding:6px 8px;font-size:13px;line-height:1.1;text-align:center}
       dialog{max-height:calc(100svh - 24px);overflow:auto}
       .dialog-body{padding:24px 18px}
