@@ -150,6 +150,7 @@
     quoteBar: document.querySelector("#quoteBar"),
     quoteItems: document.querySelector("#quoteItems"),
     quoteCountLabel: document.querySelector("#quoteCountLabel"),
+    quoteClear: document.querySelector("[data-quote-clear]"),
     quoteQuantity: document.querySelector("#quoteQuantity"),
     quoteUnitCount: document.querySelector("#quoteUnitCount"),
     quoteMissingPrice: document.querySelector("#quoteMissingPrice"),
@@ -264,6 +265,7 @@
     if ("inert" in els.quoteBar) els.quoteBar.inert = !quoteState.open;
     els.quoteTriggerCount.textContent = String(quoteState.items.length);
     els.quoteCountLabel.textContent = `담은 상품 ${quoteState.items.length}/12 · 계산 ${totals.selectedCount}`;
+    els.quoteClear.disabled = quoteState.items.length === 0;
     els.quoteQuantity.value = String(quoteState.quantity);
     els.quoteUnitCount.textContent = `제작 ${money(totals.unitCount)}개`;
     els.quoteMissingPrice.textContent = `상담 필요 ${totals.missingPrice}개`;
@@ -1164,6 +1166,16 @@
   function bindQuoteInteractions() {
     els.quoteTrigger.addEventListener("click", () => setQuoteOpen(!quoteState.open));
     els.quoteBar.addEventListener("click", (event) => {
+      if (event.target.closest("[data-quote-clear]")) {
+        const clearedCount = quoteState.items.length;
+        if (!clearedCount) return;
+        quoteState.items = [];
+        saveQuoteState();
+        renderQuoteBar();
+        emit("wishlist_clear", { item_count: clearedCount });
+        showToast("미니 견적을 비웠어요.");
+        return;
+      }
       if (event.target.closest("[data-quote-collapse]")) {
         setQuoteOpen(false, true);
         return;

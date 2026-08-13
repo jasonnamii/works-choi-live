@@ -17,6 +17,10 @@ const checks = [
   [html.includes(".product-card__price strong{margin-top:2px;font-size:16px;text-align:right}"), "compact mobile product prices"],
   [html.includes("height:min(680px,calc(100svh"), "viewport-aware quote sheet"],
   [html.includes("grid-template-columns:1fr;grid-template-rows:auto auto auto"), "stacked quote layout"],
+  [html.includes("grid-template-rows:minmax(0,1fr)"), "quote bar height ignores quantity-dependent minimum content"],
+  [html.includes("grid-template-rows:repeat(3,minmax(0,1fr))"), "quote actions keep fixed vertical tracks"],
+  [html.includes(".quote-item__price{height:53px"), "quote item price reserves minimum-order copy height"],
+  [html.includes("data-quote-clear disabled>비우기</button>"), "quote header clear action"],
   [html.includes("bottom:env(safe-area-inset-bottom)"), "survey action safe area"],
   [!html.includes("3분 만에 3 PICKS 받기") && !html.includes("상품 먼저 보기"), "hero actions removed"],
   [!html.includes("class=\"mobile-cta\""), "duplicate fixed CTA removed"],
@@ -40,6 +44,7 @@ const checks = [
   [html.includes("gap:5px;overflow:visible;font-family"), "heartbeat may exceed trigger bounds"],
   [html.includes(".quote-trigger__heart{animation:none}"), "reduced-motion heartbeat override"],
   [app.includes('document.addEventListener("pointerdown", (event) => {') && app.includes('els.quoteFloat.contains(event.target) || event.target.closest("[data-wishlist-toggle]")'), "outside quote pointer closes while consecutive product hearts keep the quote open"],
+  [app.includes('quoteState.items = [];') && app.includes('emit("wishlist_clear"') && app.includes('showToast("미니 견적을 비웠어요.")'), "quote clear empties items and synchronizes feedback"],
 ];
 
 for (const [passed, label] of checks) assert.ok(passed, `Missing mobile invariant: ${label}`);
