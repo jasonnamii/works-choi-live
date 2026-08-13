@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://works.choi.build/3picks/sitemap.xml
