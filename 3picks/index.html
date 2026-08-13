@@ -582,8 +582,8 @@
       .hero__backdrop img{position:absolute;left:50%;top:0;width:auto;height:100%;max-width:none;object-fit:contain;transform:translateX(-68.7313%)}
       .hero__copy{padding:24px 0 28px}
       .hero h1{margin:8px 0;font-size:clamp(52px,15vw,68px);line-height:.99}
-      .hero__copy-stack{margin-top:8px;gap:4px;align-items:flex-end;text-align:right}
-      .hero__copy-stack span{padding:7px 10px;font-size:clamp(21px,5.4vw,24px)}
+      .hero__copy-stack{margin-top:0;gap:4px;align-items:flex-end;text-align:right;transform:translateY(-12px)}
+      .hero__copy-stack span{padding:7px 10px;font-size:clamp(24px,6.4vw,28px)}
       .proof-strip__grid{display:grid;grid-template-columns:1fr;gap:0;overflow:visible;margin-inline:0;padding-inline:0}
       .proof-strip__grid::-webkit-scrollbar{display:none}
       .proof-item{width:100%;min-height:72px;padding:12px 0;gap:12px}
@@ -682,15 +682,15 @@
       .quote-products__head{min-height:36px;padding:3px 8px;font-size:13px;line-height:1.1}
       .quote-inline-clear,.quote-inline-collapse{height:28px;padding-inline:7px;font-size:13px;line-height:1.1}
       .quote-items{min-height:112px;max-height:120px}
-      .quote-item{flex-basis:280px;grid-template-columns:110px minmax(0,1fr);column-gap:8px;padding:6px}
-      .quote-item__image{width:90px;height:90px;transform:scale(1.2)}
-      .quote-item__copy{padding-right:16px;overflow:hidden}
+      .quote-item{height:100%;flex-basis:240px;grid-template-columns:86px minmax(0,1fr);column-gap:8px;padding:6px;border-right:1px solid var(--tp-line)}
+      .quote-item__image{width:84px;height:84px;transform:scale(1.15)}
+      .quote-item__copy{padding-right:14px;overflow:hidden}
       .quote-item__category,.quote-item__name,.quote-item__price,.quote-item__select{font-size:13px}
       .quote-item__category{max-width:100%}
       .quote-item__name{min-height:30px;overflow-wrap:normal}
       .quote-item__price{height:36px;margin-top:2px}
       .quote-item__select{min-height:28px}
-      .quote-summary{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"label total" "quantity total" "meta meta";gap:2px 12px;align-items:end;padding:4px 8px;border:0;border-bottom:1px solid var(--tp-line)}
+      .quote-summary{min-height:0;display:grid;grid-template-columns:minmax(0,200px) minmax(96px,1fr);grid-template-areas:"label total" "quantity total" "meta meta";gap:2px 8px;align-items:end;padding:4px 8px;border:0;border-bottom:1px solid var(--tp-line)}
       .quote-summary__label{grid-area:label}
       .quote-summary__label,.quote-summary__meta,.quote-summary__total{font-size:13px;line-height:1.1}
       .quote-quantity{grid-area:quantity;margin-top:0}
