@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F5F0E4">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title>3PICKS 운영 점검 가이드</title>
+<!--
+SKILL: 3picks-design v1.4
+MODE: homepage | cream
+REFERENCES: components | precision-qa
+MAPPING: 판정=METRIC/빅넘버 · 출시 Gate=TABLE/스펙표 · 반영 순서=FLOW/스텝 레일 · 10영역=HIERARCHY/체크리스트 · 장애 대응=FLOW/룰 리스트
+PRECISION: 1200px rail · 16~32px gutter · #A89F91 1px · 4px spacing · 900/600px responsive · 44px touch target
+-->
+<style>
+:root{
+  --tp-paper:#F5F0E4;--tp-cell:#F5F0E4;--tp-ink:#000;--tp-line:#A89F91;
+  --tp-pop:#FC6B38;--tp-sun:#FFFD78;--tp-grey:#767676;
+  --tp-ink-70:rgba(0,0,0,.7);--tp-ink-12:rgba(0,0,0,.12);
+  --tp-font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --tp-mono:ui-monospace,"SF Mono",Menlo,monospace;
+  --tp-max:1200px;--tp-gutter:clamp(16px,2.4vw,32px);
+  --tp-s1:4px;--tp-s2:8px;--tp-s3:12px;--tp-s4:16px;--tp-s5:24px;--tp-s6:40px;--tp-s7:64px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--tp-paper);color:var(--tp-ink);font-family:var(--tp-font);font-size:16px;line-height:1.6;word-break:keep-all;overflow-wrap:break-word}
+button,a,input{font:inherit;color:inherit}
+a{text-decoration:none}
+:focus-visible{outline:2px solid var(--tp-ink);outline-offset:2px}
+.wrap{width:min(100%,var(--tp-max));margin:0 auto;padding-inline:var(--tp-gutter)}
+.mono,.eyebrow{font-family:var(--tp-mono);font-size:13px;letter-spacing:.09em}
+.eyebrow{text-transform:uppercase;color:var(--tp-grey)}
+.top{position:sticky;top:0;z-index:20;background:var(--tp-paper);border-bottom:1px solid var(--tp-line)}
+.top__row{min-height:64px;display:flex;align-items:center;gap:var(--tp-s4)}
+.brand{margin-right:auto;display:flex;flex-direction:column;line-height:1.25}.brand strong{font-size:18px;font-weight:900}
+.actions{display:flex;gap:var(--tp-s2);align-items:center;flex-wrap:wrap}
+.btn{min-height:44px;padding:9px 16px;border:1px solid var(--tp-line);background:var(--tp-paper);font-weight:700;cursor:pointer;border-radius:0}
+.btn--primary{background:var(--tp-pop);color:var(--tp-ink);border-color:var(--tp-ink)}
+.btn--sun{background:var(--tp-sun);border-color:var(--tp-ink)}
+.progress{border-bottom:1px solid var(--tp-line)}
+.progress__row{display:grid;grid-template-columns:1fr auto;gap:var(--tp-s4);align-items:center;min-height:54px}
+.progress__track{height:8px;background:var(--tp-line);overflow:hidden}.progress__bar{width:0;height:100%;background:var(--tp-pop);transition:width .2s ease}
+.progress__text{font-family:var(--tp-mono);font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hero{padding:clamp(48px,7vw,88px) 0 var(--tp-s7);border-bottom:1px solid var(--tp-line)}
+.hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:1px;background:var(--tp-line);border:1px solid var(--tp-line)}
+.hero__copy,.hero__score{background:var(--tp-paper);padding:clamp(24px,4vw,56px)}
+h1{font-size:clamp(42px,6.2vw,76px);line-height:1.02;letter-spacing:-.045em;margin:var(--tp-s3) 0 var(--tp-s5);font-weight:900}
+.hero__lead{max-width:42ch;margin:0;font-size:19px;color:var(--tp-ink-70)}
+.status{display:inline-flex;align-items:center;gap:8px;background:var(--tp-pop);border:1px solid var(--tp-ink);padding:7px 12px;font-weight:900}.status::before{content:"";width:10px;height:10px;background:var(--tp-ink)}
+.score{font-family:var(--tp-mono);font-size:clamp(72px,10vw,132px);font-weight:800;line-height:.9;letter-spacing:-.08em}.score small{font-size:.23em;letter-spacing:0}
+.score-note{margin:var(--tp-s5) 0 0;color:var(--tp-ink-70)}
+.signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--tp-line);border:1px solid var(--tp-line);border-top:0}
+.signal{background:var(--tp-paper);padding:20px 24px}.signal b{display:block;font-family:var(--tp-mono);font-size:28px;line-height:1;margin-bottom:8px}.signal span{font-size:14px;color:var(--tp-ink-70)}
+.section{padding:clamp(56px,7vw,88px) 0;border-bottom:1px solid var(--tp-line)}
+.section-head{display:grid;grid-template-columns:1fr minmax(260px,480px);gap:var(--tp-s6);align-items:end;margin-bottom:var(--tp-s5)}
+.section-head h2{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.035em;margin:8px 0 0;font-weight:900}
+.section-head p{margin:0;color:var(--tp-ink-70)}
+.alert{background:var(--tp-pop);border:1px solid var(--tp-ink);padding:24px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;margin-bottom:var(--tp-s5)}
+.alert__no{font-family:var(--tp-mono);font-size:36px;font-weight:900;line-height:1}.alert h3{margin:0 0 6px;font-size:21px}.alert p{margin:0}
+.gates{width:100%;border-collapse:collapse;border:1px solid var(--tp-line)}
+.gates th,.gates td{border-top:1px solid var(--tp-line);padding:12px 14px;text-align:left;vertical-align:top;font-size:14px}
+.gates thead th{border-top:0;background:var(--tp-ink);color:#fff;font-family:var(--tp-mono);font-size:13px;letter-spacing:.06em}
+.gates th:first-child,.gates td:first-child{width:48px;text-align:right;font-family:var(--tp-mono)}
+.gates th:nth-child(3),.gates td:nth-child(3){width:112px}
+.tag{display:inline-block;min-width:82px;padding:3px 8px;border:1px solid var(--tp-ink);text-align:center;font-family:var(--tp-mono);font-size:12px;font-weight:800}
+.tag--fail{background:var(--tp-pop)}.tag--partial{background:var(--tp-sun)}.tag--unknown{background:var(--tp-paper)}.tag--pass{background:var(--tp-ink);color:#fff}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--tp-line);border:1px solid var(--tp-line);padding:0;margin:0}
+.steps li{list-style:none;background:var(--tp-paper);padding:20px;min-height:188px}.step-no{font-family:var(--tp-mono);font-size:13px;color:var(--tp-grey)}.steps h3{font-size:18px;line-height:1.25;margin:12px 0 8px}.steps p{font-size:14px;color:var(--tp-ink-70);margin:0}
+.domain-nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;margin-bottom:24px}.domain-nav a{min-height:40px;display:flex;align-items:center;padding:7px 12px;border:1px solid var(--tp-line);font-family:var(--tp-mono);font-size:13px;white-space:nowrap;background:var(--tp-paper)}
+.domains{display:grid;gap:24px}.domain{border:1px solid var(--tp-line);scroll-margin-top:130px}.domain__head{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:18px 20px;border-bottom:1px solid var(--tp-line)}
+.domain__no{font-family:var(--tp-mono);font-size:30px;font-weight:900}.domain h3{font-size:22px;margin:0;line-height:1.2}.domain__meta{font-family:var(--tp-mono);font-size:13px;color:var(--tp-grey);white-space:nowrap}
+.checks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr}
+.checks li{border-top:1px solid var(--tp-line)}.checks li:nth-child(-n+2){border-top:0}.checks li:nth-child(odd){border-right:1px solid var(--tp-line)}
+.check{display:grid;grid-template-columns:24px 1fr;gap:12px;padding:15px 18px;align-items:start;cursor:pointer;min-height:76px}
+.check input{appearance:none;width:22px;height:22px;border:1px solid var(--tp-ink);background:var(--tp-paper);margin:2px 0 0;display:grid;place-items:center;cursor:pointer}.check input:checked{background:var(--tp-sun)}.check input:checked::after{content:"✓";font-weight:900;line-height:1}
+.check strong{display:block;font-size:15px;line-height:1.35}.check small{display:block;margin-top:4px;font-size:13px;line-height:1.45;color:var(--tp-ink-70)}
+.incident{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--tp-line);border:1px solid var(--tp-line)}
+.incident article{background:var(--tp-paper);padding:20px}.incident .mono{color:var(--tp-grey)}.incident h3{font-size:18px;margin:12px 0 8px}.incident p{font-size:14px;color:var(--tp-ink-70);margin:0}
+.rule-list{margin:24px 0 0;padding:0;border:1px solid var(--tp-line)}.rule-list li{list-style:none;display:grid;grid-template-columns:200px 1fr;gap:16px;padding:13px 16px;border-top:1px solid var(--tp-line);font-size:14px}.rule-list li:first-child{border-top:0}.rule-list strong{font-family:var(--tp-mono);font-size:13px;color:var(--tp-grey)}
+.foot{background:var(--tp-ink);color:#fff;padding:40px 0}.foot__row{display:flex;justify-content:space-between;gap:24px;align-items:flex-end}.foot p{margin:6px 0 0;color:rgba(255,255,255,.72);max-width:62ch}.foot .btn{background:var(--tp-sun);color:var(--tp-ink);border-color:#fff}
+@media(max-width:900px){.hero__grid,.section-head{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.signal-grid{grid-template-columns:1fr}.checks{grid-template-columns:1fr}.checks li,.checks li:nth-child(-n+2){border-top:1px solid var(--tp-line)}.checks li:first-child{border-top:0}.checks li:nth-child(odd){border-right:0}.incident{grid-template-columns:1fr 1fr}.gates-wrap{overflow-x:auto}.gates{min-width:780px}}
+@media(max-width:600px){.top__row{align-items:flex-start;padding-block:10px}.actions{justify-content:flex-end}.actions .btn:not(.btn--primary){display:none}.hero{padding-top:40px}.hero__copy,.hero__score{padding:24px}.steps,.incident{grid-template-columns:1fr}.steps li{min-height:0}.domain__head{grid-template-columns:auto 1fr}.domain__meta{grid-column:2}.rule-list li{grid-template-columns:1fr;gap:4px}.foot__row{display:block}.foot .btn{margin-top:20px;width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.progress__bar{transition:none}}
+@media print{.top,.progress,.domain-nav,.actions,.foot .btn{display:none!important}.hero,.section{padding:24px 0}.domain{break-inside:avoid}.check{min-height:0}.check input{appearance:auto}.foot{background:#fff;color:#000;border-top:1px solid #000}.foot p{color:#000}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top__row">
+    <a class="brand" href="admin.html"><span class="eyebrow">3PICKS Admin</span><strong>운영 점검 가이드</strong></a>
+    <div class="actions">
+      <button class="btn" type="button" id="resetBtn">체크 초기화</button>
+      <button class="btn btn--sun" type="button" id="printBtn">인쇄·PDF</button>
+      <a class="btn btn--primary" href="admin.html">운영 콘솔로 돌아가기</a>
+    </div>
+  </div>
+</header>
+<div class="progress" aria-live="polite">
+  <div class="wrap progress__row"><div class="progress__track" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div><div class="progress__text" id="progressText">0 / 80 완료</div></div>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <span class="status">현재 출시 차단</span>
+          <div class="eyebrow" style="margin-top:24px">Production readiness · 2026-08-14</div>
+          <h1>고객 화면은 되지만,<br>운영 서비스는 아직입니다.</h1>
+          <p class="hero__lead">기능 회귀는 강합니다. 다만 공식 도메인, 관리자 보안, 오류 알림, 실제 복구와 배포 E2E가 닫히지 않아 지금은 운영 배포를 승인할 수 없습니다.</p>
+        </div>
+        <div class="hero__score">
+          <div class="eyebrow">Readiness score</div>
+          <div class="score">62<small>/100</small></div>
+          <p class="score-note">이 점수는 기능 완성도가 아니라 실제 운영 준비도입니다. 아래 15개 Gate 중 실패나 미검증이 하나라도 남으면 배포를 멈춥니다.</p>
+        </div>
+      </div>
+      <div class="signal-grid">
+        <div class="signal"><b>10/10</b><span>자동 회귀 검사 통과</span></div>
+        <div class="signal"><b>100</b><span>운영 상품 · 10개 카테고리</span></div>
+        <div class="signal"><b>6 FAIL</b><span>현재 출시 Gate 실패</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="blockers">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Stop first</div><h2>먼저 막아야 할 위험</h2></div><p>아래 세 가지는 운영 편의보다 우선합니다. 해결 전에는 공식 고객 사이트에 관리 화면을 포함하거나 실제 운영 토큰으로 반영하지 않습니다.</p></div>
+      <div class="alert"><div class="alert__no">01</div><div><h3>관리 화면은 고객 사이트와 분리합니다.</h3><p>브라우저 안의 접속 코드 화면은 서버 인증이 아닙니다. 공식 전달 번들에서는 운영 콘솔과 이 가이드를 제외하고, 운영 콘솔은 로컬 또는 별도의 보호된 관리 환경에서만 사용합니다.</p></div></div>
+      <div class="alert"><div class="alert__no">02</div><div><h3>저장소 쓰기 토큰을 브라우저에 오래 보관하지 않습니다.</h3><p>공용 컴퓨터에서는 사용하지 않고, 저장소 하나의 Contents 권한만 가진 짧은 만료 토큰을 세션 동안만 사용한 뒤 폐기합니다. 장기적으로는 서버 인증이 있는 관리면으로 옮깁니다.</p></div></div>
+      <div class="alert"><div class="alert__no">03</div><div><h3>반영 성공 메시지만 믿지 않습니다.</h3><p>현재 자동 검사는 저장 함수의 실제 실행과 새로고침 뒤 원격 상태 보존을 검증하지 못합니다. 반영 후 새 창의 고객 화면, 원격 설정, 기록번호를 함께 대조해야 합니다.</p></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="gates">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Release gates</div><h2>15개 출시 Gate</h2></div><p><strong>PASS만 통과</strong>입니다. PARTIAL·FAIL·UNTESTED는 모두 배포 차단으로 취급합니다. 운영 구조상 삭제 대신 보관을 쓸 경우에는 정책 Gate를 먼저 공식 변경합니다.</p></div>
+      <div class="gates-wrap"><table class="gates">
+        <thead><tr><th>#</th><th>출시 Gate</th><th>현재</th><th>통과 증거</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>고객 홈페이지 핵심 페이지 전체 정상</td><td><span class="tag tag--partial">PARTIAL</span></td><td>스테이징 정상 · 공식 도메인 HTTPS 미개통</td></tr>
+          <tr><td>2</td><td>어드민 CRUD 전체 정상</td><td><span class="tag tag--fail">FAIL</span></td><td>등록·조회·수정·숨김·보관 통과 · 삭제는 정책상 없음</td></tr>
+          <tr><td>3</td><td>어드민 변경 → 고객 화면 E2E</td><td><span class="tag tag--unknown">UNTESTED</span></td><td>실제 저장→배포→새 고객 화면 자동 검사가 없음</td></tr>
+          <tr><td>4</td><td>삭제·숨김·수정·정렬·카테고리 정합성</td><td><span class="tag tag--fail">FAIL</span></td><td>삭제 제외 항목은 회귀 통과</td></tr>
+          <tr><td>5</td><td>권한 없는 사용자 어드민 접근 차단</td><td><span class="tag tag--fail">FAIL</span></td><td>클라이언트 잠금은 접근통제가 아님</td></tr>
+          <tr><td>6</td><td>API 직접 호출 권한 검증</td><td><span class="tag tag--partial">PARTIAL</span></td><td>GitHub 토큰 권한에 의존 · 앱 권한 계층 없음</td></tr>
+          <tr><td>7</td><td>비밀값·자격증명 클라이언트 비노출</td><td><span class="tag tag--partial">PARTIAL</span></td><td>하드코딩 키 0 · 브라우저 토큰 보관 옵션 존재</td></tr>
+          <tr><td>8</td><td>XSS·Injection·파일 업로드 기본 방어</td><td><span class="tag tag--partial">PARTIAL</span></td><td>출력 이스케이프 있음 · 업로드 크기/형식 상한과 CSP 없음</td></tr>
+          <tr><td>9</td><td>Production 에러 로깅</td><td><span class="tag tag--fail">FAIL</span></td><td>중앙 에러 수집 없음</td></tr>
+          <tr><td>10</td><td>500·JS Error 즉시 알림</td><td><span class="tag tag--fail">FAIL</span></td><td>uptime·JS 오류 알림 없음</td></tr>
+          <tr><td>11</td><td>자동 백업 + 실제 restore</td><td><span class="tag tag--partial">PARTIAL</span></td><td>DB 없음 · Git 이력과 수동 백업만 존재</td></tr>
+          <tr><td>12</td><td>배포 실패 시 직전 버전 rollback</td><td><span class="tag tag--fail">FAIL</span></td><td>자동 또는 훈련된 rollback 증거 없음</td></tr>
+          <tr><td>13</td><td>GA4 실제 이벤트 유입</td><td><span class="tag tag--unknown">UNTESTED</span></td><td>태그·이벤트 큐 존재 · DebugView 수신 미확인</td></tr>
+          <tr><td>14</td><td>모바일 Safari·Chrome 실기기 smoke</td><td><span class="tag tag--unknown">UNTESTED</span></td><td>자동 뷰포트 검증은 있음 · 양 브라우저 실기기 미확인</td></tr>
+          <tr><td>15</td><td>다른 개발자 1인 이상 코드리뷰</td><td><span class="tag tag--unknown">UNTESTED</span></td><td>독립 승인 기록 없음</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section class="section" id="flow">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">Safe publishing flow</div><h2>반영은 이 순서로</h2></div><p>저장 성공은 끝이 아닙니다. 초안 백업부터 고객 화면 확인과 기록번호 보관까지 한 흐름으로 닫습니다.</p></div>
+      <ol class="steps">
+        <li><div class="step-no">STEP 01</div><h3>초안 백업</h3><p>현재 설정 파일을 내려받고, 바꾸려는 항목과 원래 값을 짧게 적습니다.</p></li>
+        <li><div class="step-no">STEP 02</div><h3>연결 재확인</h3><p>저장소·브랜치·계정을 확인합니다. 연결 확인 뒤 입력값을 바꿨다면 다시 확인합니다.</p></li>
+        <li><div class="step-no">STEP 03</div><h3>미리보기</h3><p>상품·추천·숨김·순위 결과를 운영 콘솔에서 확인하고 모바일 폭도 점검합니다.</p></li>
+        <li><div class="step-no">STEP 04</div><h3>한 번에 반영</h3><p>중복 클릭하지 않고 완료 또는 실패 메시지와 기록번호가 나올 때까지 기다립니다.</p></li>
+        <li><div class="step-no">STEP 05</div><h3>고객 화면 대조</h3><p>새 창에서 해당 상품·카테고리·추천을 확인하고 10분 뒤 한 번 더 확인합니다.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="checklist">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">80 checks</div><h2>운영 준비도 체크리스트</h2></div><p>체크는 이 브라우저에만 저장됩니다. 확인한 증거가 없는 항목은 체크하지 않습니다. 날짜가 바뀌거나 배포 구조가 바뀌면 다시 검사합니다.</p></div>
+      <nav class="domain-nav" aria-label="점검 영역 바로가기">
+        <a href="#d1">01 배포</a><a href="#d2">02 보안</a><a href="#d3">03 데이터</a><a href="#d4">04 정합성</a><a href="#d5">05 관측성</a><a href="#d6">06 QA</a><a href="#d7">07 화면</a><a href="#d8">08 성능</a><a href="#d9">09 분석·SEO</a><a href="#d10">10 복구</a>
+      </nav>
+      <div class="domains" id="domains">
+        <section class="domain" id="d1"><div class="domain__head"><div class="domain__no">01</div><h3>인프라·배포</h3><div class="domain__meta">8 CHECKS</div></div><ul class="checks">
+          <li><label class="check"><input type="checkbox"><span><strong>공식 도메인이 올바른 호스팅을 가리킨다.</strong><small>www와 루트 도메인의 DNS를 각각 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>공식 주소가 HTTPS로 열린다.</strong><small>인증서 오류 없이 자동으로 HTTPS를 사용합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>스테이징과 공식 환경이 분리돼 있다.</strong><small>스테이징의 noindex와 공식 사이트의 검색 허용을 구분합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>공식 번들에 운영 콘솔이 없다.</strong><small>admin.html과 운영 가이드가 고객 배포물에 없어야 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>배포 파일의 체크섬과 개수를 기록했다.</strong><small>전달본이 바뀌지 않았음을 다시 확인할 수 있어야 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>배포 전 라이브 운영 상태를 안전하게 회수했다.</strong><small>허용된 호스트와 검증된 설정만 로컬에 반영합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>캐시 갱신 시간을 운영자가 안다.</strong><small>반영 직후와 최대 10분 뒤를 나눠 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>배포 실패 시 중단 기준이 명확하다.</strong><small>일부 파일만 올라간 상태에서 계속 진행하지 않습니다.</small></span></label></li>
+        </ul></section>
+
+        <section class="domain" id="d2"><div class="domain__head"><div class="domain__no">02</div><h3>보안</h3><div class="domain__meta">10 CHECKS</div></div><ul class="checks">
+          <li><label class="check"><input type="checkbox"><span><strong>운영 콘솔이 공개 주소에서 열리지 않는다.</strong><small>robots 차단은 접근통제가 아닙니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>관리자는 서버에서 인증·인가된다.</strong><small>클라이언트 코드나 숨김 화면만으로 보호하지 않습니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>관리자 계정에 MFA가 적용됐다.</strong><small>저장소와 관리 서비스 모두 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>토큰은 저장소 하나의 최소 권한만 가진다.</strong><small>Contents 외 불필요한 권한을 주지 않습니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>토큰을 localStorage에 장기 보관하지 않는다.</strong><small>짧은 만료와 사용 후 폐기를 기본으로 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>비밀값이 고객 파일에 포함되지 않았다.</strong><small>토큰·개인키·DB 자격증명 패턴을 검사합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>동적 고객 문구가 안전하게 이스케이프된다.</strong><small>상품명·태그·공유값을 HTML로 직접 신뢰하지 않습니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>업로드 이미지에 크기·형식·픽셀 상한이 있다.</strong><small>브라우저가 멈출 정도의 대형 파일을 거부합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>보안 헤더를 실제 응답에서 확인했다.</strong><small>CSP·frame-ancestors·nosniff·Referrer·Permissions를 봅니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>공급처 등 내부 데이터가 고객 번들에 없다.</strong><small>화면에서 안 보이는 것과 파일에서 비공개인 것은 다릅니다.</small></span></label></li>
+        </ul></section>
+
+        <section class="domain" id="d3"><div class="domain__head"><div class="domain__no">03</div><h3>데이터 무결성</h3><div class="domain__meta">8 CHECKS</div></div><ul class="checks">
+          <li><label class="check"><input type="checkbox"><span><strong>상품마스터와 런타임 상품 수가 일치한다.</strong><small>현재 기준 110개 원본을 대조합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>운영 상품이 10개 카테고리 × 10개다.</strong><small>중복 ID와 순위 누락이 없어야 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>필수값과 숫자형 데이터가 유효하다.</strong><small>가격·최소 주문 수량·납기는 0보다 커야 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>상품 이미지 참조가 모두 존재한다.</strong><small>등록·교체 이미지도 실제 고객 주소로 열어 봅니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>상품 ID가 원본·추가상품 사이에서 겹치지 않는다.</strong><small>충돌 시 신규 레코드를 무시하는 상황을 막습니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>보관·숨김 상품이 추천에서 제외된다.</strong><small>고객 카탈로그와 추천 규칙을 각각 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>순위 승격 뒤 1~10위가 다시 촘촘하다.</strong><small>중간 상품을 숨기고 다음 순위가 올라오는지 봅니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>운영 설정 스키마와 허용 필드를 검사한다.</strong><small>예상 밖 필드와 손상된 설정을 그대로 받아들이지 않습니다.</small></span></label></li>
+        </ul></section>
+
+        <section class="domain" id="d4"><div class="domain__head"><div class="domain__no">04</div><h3>홈페이지 ↔ 어드민 정합성</h3><div class="domain__meta">10 CHECKS</div></div><ul class="checks">
+          <li><label class="check"><input type="checkbox"><span><strong>신규 등록이 고객 카탈로그에 나타난다.</strong><small>저장→배포→새 고객 창까지 전체 흐름을 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>상품명·가격·최소 수량 수정이 반영된다.</strong><small>한 필드씩 바꿔 정확한 값을 대조합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>사진 교체가 캐시를 피해 반영된다.</strong><small>기존 방문자 화면에서도 새 버전이 보이는지 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>숨김·보관·복원이 고객 화면과 일치한다.</strong><small>상태별로 카탈로그와 추천을 함께 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>순위와 카테고리 이동이 정확히 반영된다.</strong><small>이동 전후 주변 상품 순서까지 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>추천 점수와 행사 매핑 변경이 시뮬레이터와 같다.</strong><small>어드민 미리보기와 고객 추천 결과를 대조합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>연결 확인한 저장소와 실제 저장 대상이 같다.</strong><small>owner·repo·branch를 바꾸면 검증을 다시 해야 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>저장 성공 뒤 원격 상태를 다시 읽는다.</strong><small>새로고침해도 방금 반영한 값이 남아야 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>다른 컴퓨터의 최신 변경을 덮어쓰지 않는다.</strong><small>반영 전 원격 버전과 기준 버전을 비교합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>반영 기록번호와 고객 화면 증거를 남긴다.</strong><small>성공 문구 하나가 아니라 두 표면을 함께 기록합니다.</small></span></label></li>
+        </ul></section>
+
+        <section class="domain" id="d5"><div class="domain__head"><div class="domain__no">05</div><h3>오류감지·관측성</h3><div class="domain__meta">8 CHECKS</div></div><ul class="checks">
+          <li><label class="check"><input type="checkbox"><span><strong>고객 JavaScript 오류를 중앙 수집한다.</strong><small>브라우저 콘솔 밖에서도 장애를 알 수 있어야 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>관리 화면 저장 오류를 중앙 수집한다.</strong><small>실패 단계와 응답 코드, 기록번호를 남깁니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>공식 홈페이지 uptime을 감시한다.</strong><small>주요 URL의 200과 응답 시간을 정기 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>핵심 JS·설정·상품 데이터 URL을 감시한다.</strong><small>HTML만 200이고 자산이 깨지는 경우를 잡습니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>500·JS Error를 즉시 알림 받는다.</strong><small>담당 채널과 야간 대응 기준을 정합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>오류 알림의 소음 기준을 조정했다.</strong><small>같은 오류 반복은 묶고 새 오류는 즉시 드러냅니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>반영 후 10분 자동 smoke가 있다.</strong><small>캐시 갱신 뒤 실제 고객 화면을 재확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>운영자에게 장애 상태와 다음 행동이 보인다.</strong><small>단순 오류 코드 대신 재시도·중단·문의 기준을 안내합니다.</small></span></label></li>
+        </ul></section>
+
+        <section class="domain" id="d6"><div class="domain__head"><div class="domain__no">06</div><h3>QA·코드 품질</h3><div class="domain__meta">8 CHECKS</div></div><ul class="checks">
+          <li><label class="check"><input type="checkbox"><span><strong>전체 회귀 검사를 한 명령으로 실행한다.</strong><small>실행 위치가 달라도 같은 결과가 나와야 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>추천 전 경우의 수 검사가 통과한다.</strong><small>행사·예산·수량·날짜 경계를 포함합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>어드민 저장을 실제 실행하는 통합 테스트가 있다.</strong><small>문자열 존재 검사만으로 저장 성공을 판정하지 않습니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>저장 후 새로고침 회귀를 검사한다.</strong><small>원격 snapshot이 다음 세션에 보존돼야 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>공식 번들 구성과 고객 파일을 자동 검사한다.</strong><small>관리 파일·내부 데이터·죽은 자산 포함 여부를 봅니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>로컬과 라이브 핵심 파일 해시를 대조한다.</strong><small>주입되는 배포 태그는 허용 차이로 분리합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>다른 개발자가 변경을 리뷰하고 승인했다.</strong><small>출시 전 최소 1인의 독립 검토 기록을 남깁니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>검사기에 고장을 심어 음성 대조했다.</strong><small>실패를 실제로 잡는 계기만 출시 근거로 씁니다.</small></span></label></li>
+        </ul></section>
+
+        <section class="domain" id="d7"><div class="domain__head"><div class="domain__no">07</div><h3>사용자 화면 안정성</h3><div class="domain__meta">8 CHECKS</div></div><ul class="checks">
+          <li><label class="check"><input type="checkbox"><span><strong>데스크톱 Chrome 핵심 동선을 조작했다.</strong><small>추천·카탈로그·견적·상담까지 직접 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>모바일 Chrome 실기기 smoke를 통과했다.</strong><small>360px과 430px을 포함합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>모바일 Safari 실기기 smoke를 통과했다.</strong><small>클립보드·새 창·인쇄·고정 UI를 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>키보드만으로 핵심 조작이 가능하다.</strong><small>포커스 순서와 대화상자 닫기를 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>로딩·빈 상태·오류 상태가 있다.</strong><small>상품 데이터 실패와 추천 결과 0건을 구분합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>404와 깨진 링크가 없다.</strong><small>이미지·메뉴·상담 링크를 모두 검사합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>연타와 중복 요청을 안전하게 막는다.</strong><small>반영·공유·상담 버튼의 중복 실행을 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>페이지 전체 가로 넘침이 없다.</strong><small>상품 레일만 의도적으로 가로 이동해야 합니다.</small></span></label></li>
+        </ul></section>
+
+        <section class="domain" id="d8"><div class="domain__head"><div class="domain__no">08</div><h3>성능</h3><div class="domain__meta">6 CHECKS</div></div><ul class="checks">
+          <li><label class="check"><input type="checkbox"><span><strong>LCP가 2.5초 이하이다.</strong><small>공식 모바일 환경에서 여러 번 측정합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>INP가 200ms 이하이다.</strong><small>추천 입력과 상품 담기 같은 실제 조작을 측정합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>CLS가 0.1 이하이다.</strong><small>헤더와 동적 카테고리 생성으로 화면이 밀리지 않게 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>아래쪽 대형 이미지는 lazy load한다.</strong><small>첫 화면에 필요 없는 팀·스토리 자산을 늦게 받습니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>공식 번들에서 미참조 자산을 제외한다.</strong><small>구형 이미지와 중복 원본으로 전달 크기가 커지지 않게 합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>성능 예산과 회귀 기준이 자동화됐다.</strong><small>총 전송량·초기 이미지·핵심 지표의 악화를 막습니다.</small></span></label></li>
+        </ul></section>
+
+        <section class="domain" id="d9"><div class="domain__head"><div class="domain__no">09</div><h3>Analytics·SEO</h3><div class="domain__meta">7 CHECKS</div></div><ul class="checks">
+          <li><label class="check"><input type="checkbox"><span><strong>공식 도메인의 canonical·OG URL이 정확하다.</strong><small>스테이징 주소가 남지 않았는지 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>공식 robots.txt와 sitemap.xml이 열린다.</strong><small>검색 허용과 사이트맵 주소를 실제 응답으로 봅니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>JSON-LD와 화면 FAQ가 일치한다.</strong><small>5개 질문과 답변을 함께 바꿉니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>GA4 Production Property로 page_view가 들어온다.</strong><small>DebugView·Realtime에서 실제 수신을 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>추천·상품·검색·CTA 이벤트가 들어온다.</strong><small>survey_start·result_view·상담·견적 행동을 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>이벤트명과 파라미터 정의가 문서화됐다.</strong><small>운영자가 지표의 의미를 같은 방식으로 읽습니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>Search Console과 검색엔진 등록을 마쳤다.</strong><small>공식 HTTPS 개통 뒤 소유권과 sitemap 제출을 확인합니다.</small></span></label></li>
+        </ul></section>
+
+        <section class="domain" id="d10"><div class="domain__head"><div class="domain__no">10</div><h3>운영·복구</h3><div class="domain__meta">7 CHECKS</div></div><ul class="checks">
+          <li><label class="check"><input type="checkbox"><span><strong>반영 전 설정 백업을 받았다.</strong><small>복구할 원본과 변경 이유를 함께 보관합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>Git 이력에서 직전 정상 커밋을 찾을 수 있다.</strong><small>운영 기록번호와 고객 화면 버전을 연결합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>직전 버전 복구를 실제로 훈련했다.</strong><small>연습 환경에서 되돌리고 고객 화면까지 확인합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>운영 변경 이력에 누가·언제·무엇을 남긴다.</strong><small>설정 파일 커밋과 운영 기록을 함께 봅니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>보관 상품 복원 절차가 검증됐다.</strong><small>삭제 대신 보관 정책을 운영자가 이해합니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>장애 담당자와 연락 순서가 정해져 있다.</strong><small>발견·판단·복구·고객 안내의 역할을 나눕니다.</small></span></label></li>
+          <li><label class="check"><input type="checkbox"><span><strong>장애 후 원인과 재발 방지를 기록한다.</strong><small>같은 문제의 재시도 루프를 끊습니다.</small></span></label></li>
+        </ul></section>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="incident">
+    <div class="wrap">
+      <div class="section-head"><div><div class="eyebrow">When something breaks</div><h2>문제가 생기면</h2></div><p>여러 번 눌러 해결하려 하지 않습니다. 추가 변경을 멈추고, 마지막 정상 상태를 기준으로 영향 범위를 먼저 줄입니다.</p></div>
+      <div class="incident">
+        <article><div class="mono">01 · STOP</div><h3>추가 반영 중단</h3><p>반영 버튼을 다시 누르지 않고 현재 화면과 오류 문구를 보존합니다.</p></article>
+        <article><div class="mono">02 · RECORD</div><h3>증거 남기기</h3><p>시간·기록번호·바꾼 항목·고객 화면 상태를 캡처합니다.</p></article>
+        <article><div class="mono">03 · RESTORE</div><h3>직전 정상 복구</h3><p>검증된 설정 백업 또는 Git 이력으로 돌아가고 새 창에서 확인합니다.</p></article>
+        <article><div class="mono">04 · LEARN</div><h3>재발 방지</h3><p>원인과 놓친 Gate를 적고 자동 검사 또는 운영 절차에 반영합니다.</p></article>
+      </div>
+      <ul class="rule-list">
+        <li><strong>사진만 올라간 경우</strong><span>설정 파일이 바뀌지 않았다면 고객 화면은 기존 상태입니다. 설정 반영을 반복하기 전 업로드된 사진과 원격 상태를 확인합니다.</span></li>
+        <li><strong>설정은 바뀌었지만 화면이 구버전인 경우</strong><span>새 창·강제 새로고침·최대 10분 캐시 시간을 순서대로 확인합니다.</span></li>
+        <li><strong>다른 컴퓨터 변경과 충돌한 경우</strong><span>원격 최신 설정을 먼저 불러오고 양쪽 변경을 비교합니다. 한쪽을 통째로 덮어쓰지 않습니다.</span></li>
+        <li><strong>운영자 판단이 어려운 경우</strong><span>추가 반영을 멈추고 설치·개발 담당자에게 기록번호와 증거를 전달합니다.</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap foot__row"><div><div class="eyebrow" style="color:rgba(255,255,255,.6)">3PICKS Operations</div><strong>PASS의 근거가 없으면 아직 미검증입니다.</strong><p>이 문서는 운영 판단을 돕는 내부 가이드입니다. 고객 사이트 배포물에는 포함하지 않습니다.</p></div><a class="btn" href="admin.html">운영 콘솔로 돌아가기</a></div></footer>
+
+<script>
+(() => {
+  "use strict";
+  const key = "3picks:production-readiness:v1";
+  const checks = [...document.querySelectorAll('.check input[type="checkbox"]')];
+  const progressBar = document.getElementById("progressBar");
+  const progressText = document.getElementById("progressText");
+  function load() {
+    let saved = [];
+    try { saved = JSON.parse(localStorage.getItem(key) || "[]"); } catch { saved = []; }
+    checks.forEach((check, index) => { check.checked = Boolean(saved[index]); });
+  }
+  function update() {
+    const done = checks.filter((check) => check.checked).length;
+    const rate = checks.length ? (done / checks.length) * 100 : 0;
+    progressBar.style.width = `${rate}%`;
+    progressText.textContent = `${done} / ${checks.length} 완료`;
+    try { localStorage.setItem(key, JSON.stringify(checks.map((check) => check.checked))); } catch { /* 저장이 막혀도 체크 자체는 동작한다 */ }
+  }
+  checks.forEach((check) => check.addEventListener("change", update));
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    if (!window.confirm("이 브라우저에 저장된 80개 체크 상태를 모두 지울까요?")) return;
+    checks.forEach((check) => { check.checked = false; });
+    update();
+  });
+  document.getElementById("printBtn").addEventListener("click", () => window.print());
+  load();
+  update();
+})();
+</script>
+</body>
+</html>

@@ -22,7 +22,7 @@ const checks = [
   [html.includes(".quote-item__price{height:53px"), "quote item price reserves minimum-order copy height"],
   [html.includes("data-quote-clear disabled>비우기</button>"), "quote header clear action"],
   [html.includes(".quote-bar{height:208px;min-width:0;border:1px solid var(--tp-ink);background:var(--tp-cream)"), "quote bar keeps the original beige palette"],
-  [html.includes("--tp-shadow-overlay:0 0 15px rgba(0,0,0,.25)") && html.includes("box-shadow:var(--tp-shadow-overlay)"), "quote palette reads as one elevated sheet"],
+  [html.includes("--tp-shadow-overlay:0 -12px 22px rgba(0,0,0,.30)") && html.includes(".quote-float.is-open{filter:drop-shadow(var(--tp-shadow-overlay))}"), "quote palette shadow renders outside the clipped reveal surface"],
   [html.includes(".quote-items{min-width:0;min-height:0;display:flex;overflow-x:auto;scrollbar-width:thin;scroll-snap-type:x proximity;background:var(--tp-cream)}"), "quote list remainder replaces the incorrect dark gray with beige"],
   [html.includes("padding:12px;border-right:1px solid var(--tp-line);background:var(--tp-cream)"), "every populated quote item closes with a right separator"],
   [html.includes("justify-content:center;padding:16px;background:var(--tp-cream)") && html.includes("font-size:14px;text-align:center"), "empty quote guidance is centered on the beige palette"],
