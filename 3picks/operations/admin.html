@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F5F0E4">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<title>3PICKS 운영 콘솔</title>
+<style>
+:root {
+  --tp-cream: #F5F0E4;
+  --tp-ink: #000000;
+  --tp-line: #A89F91;
+  --tp-cell: #FFFFFF;
+  --tp-pop: #FC6B38;
+  --tp-sun: #FFFD78;
+  --tp-grey: #767676;
+  --tp-ink-70: rgba(0, 0, 0, 0.70);
+  --tp-ink-45: rgba(0, 0, 0, 0.45);
+  --tp-ink-12: rgba(0, 0, 0, 0.12);
+  --tp-font-sans: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --tp-font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --tp-fs-h1: 48px;
+  --tp-fs-h2: 32px;
+  --tp-fs-h3: 22px;
+  --tp-fs-lead: 19px;
+  --tp-fs-body: 16px;
+  --tp-fs-meta: 14px;
+  --tp-fs-label: 13px;
+  --tp-fs-num: 88px;
+  --tp-lh-head: 1.16;
+  --tp-lh-body: 1.6;
+  --tp-ls-label: 0.07em;
+  --tp-ls-eyebrow: 0.14em;
+  --tp-border: 1px;
+  --tp-radius-box: 8px;
+  --tp-radius-cta: 4px;
+  --tp-radius-badge: 5px;
+  --tp-radius-pop: 10px;
+  --tp-max: 1200px;
+  --tp-gutter: clamp(16px, 2.4vw, 32px);
+  --tp-section-y: clamp(40px, 6vw, 64px);
+  --tp-touch-min: 44px;
+  --tp-control-h: 48px;
+  --tp-s-1: 4px;
+  --tp-s-2: 8px;
+  --tp-s-3: 12px;
+  --tp-s-4: 16px;
+  --tp-s-5: 24px;
+  --tp-s-6: 40px;
+  --tp-s-7: 64px;
+  --tp-dur: 240ms;
+  --tp-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--tp-cream);
+  color: var(--tp-ink);
+  font-family: var(--tp-font-sans);
+  font-size: var(--tp-fs-body);
+  font-weight: 400;
+  line-height: var(--tp-lh-body);
+  word-break: keep-all;
+  line-break: strict;
+  overflow-wrap: break-word;
+}
+:focus-visible { outline: 2px solid var(--tp-ink); outline-offset: 2px; }
+img { max-width: 100%; display: block; border-radius: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+input, select { font: inherit; color: inherit; }
+.tp-wrap { max-width: var(--tp-max); margin: 0 auto; padding: 0 var(--tp-gutter); }
+.tp-eyebrow { font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-eyebrow); text-transform: uppercase; color: var(--tp-grey); }
+.tp-mono { font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-label); }
+.tp-cell { background: var(--tp-cell); border: var(--tp-border) solid var(--tp-line); border-radius: var(--tp-radius-box); }
+.tp-mesh { display: grid; gap: var(--tp-border); background: var(--tp-line); border: var(--tp-border) solid var(--tp-line); border-radius: var(--tp-radius-box); overflow: hidden; }
+.tp-mesh > * { background: var(--tp-cell); }
+.section { padding-block: var(--tp-section-y); }
+.section + .section { border-top: var(--tp-border) solid var(--tp-line); }
+.section-head { margin: 0 0 var(--tp-s-5); }
+.section-head .tp-eyebrow { display: block; margin-bottom: var(--tp-s-2); }
+.section-head h2 { margin: 0; font-size: var(--tp-fs-h2); font-weight: 700; line-height: var(--tp-lh-head); letter-spacing: -0.01em; }
+.section-head p { margin: var(--tp-s-2) 0 0; color: var(--tp-ink-70); max-width: 720px; }
+
+/* 헤더 · 액션 바 */
+.admin-header { position: sticky; top: 0; z-index: 40; background: var(--tp-cell); border-bottom: var(--tp-border) solid var(--tp-line); }
+.admin-header__row { display: flex; align-items: center; gap: var(--tp-s-4); min-height: 64px; flex-wrap: wrap; padding-block: var(--tp-s-2); }
+.admin-header__brand { display: flex; flex-direction: column; gap: 2px; margin-right: auto; }
+.admin-header__brand strong { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+.admin-header__actions { display: flex; align-items: center; gap: var(--tp-s-4); flex-wrap: wrap; }
+/* 기능군 구획 — 동기화 · 상태 · 반영을 여백과 헤어라인으로 가른다 */
+.hgroup { display: flex; align-items: center; gap: var(--tp-s-2); }
+.hgroup + .hgroup { border-left: var(--tp-border) solid var(--tp-line); padding-left: var(--tp-s-4); }
+/* 헤더 안 버튼은 역할이 달라도 크기·글자는 한 몸 */
+.admin-header__actions .tp-btn { min-height: 44px; font-size: 14px; padding: 0 var(--tp-s-4); }
+/* 상태 배지는 버튼으로 오해되지 않게 면색만 남긴다 (신호 상태 badge--sun은 그대로) */
+.admin-header__actions .badge--ghost { background: var(--tp-cream); border-color: transparent; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: var(--tp-radius-badge); font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-label); border: var(--tp-border) solid var(--tp-line); }
+.badge--sun { background: var(--tp-sun); border-color: var(--tp-ink); }
+.badge--pop { background: var(--tp-pop); color: var(--tp-ink); border-color: var(--tp-pop); }
+.badge--ghost { background: var(--tp-cell); color: var(--tp-grey); }
+.tp-btn { min-height: var(--tp-control-h); min-width: var(--tp-touch-min); padding: 0 var(--tp-s-5); border: var(--tp-border) solid var(--tp-line); background: var(--tp-cell); border-radius: var(--tp-radius-cta); font-weight: 700; font-size: 15px; transition: opacity var(--tp-dur) var(--tp-ease); }
+.tp-btn:hover { opacity: 0.72; }
+.tp-btn--primary { background: var(--tp-pop); color: var(--tp-ink); border-color: var(--tp-pop); border-radius: 0; }
+.tp-btn--secondary { background: var(--tp-sun); color: var(--tp-ink); border-color: var(--tp-line); }
+.tp-btn--small { min-height: 36px; padding: 0 var(--tp-s-3); font-size: var(--tp-fs-meta); font-weight: 500; }
+.tp-btn[disabled] { opacity: 0.35; cursor: not-allowed; }
+/* LLM 수정 감지 — 적용할 내용이 있으면 빨갛게 깜빡인다 */
+.llm-sync-btn[data-alert="true"] { background: var(--tp-pop); color: var(--tp-ink); border-color: var(--tp-pop); font-weight: 700; animation: llm-blink 1.2s step-end infinite; }
+@keyframes llm-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.anchor-nav { display: flex; gap: var(--tp-s-4); overflow-x: auto; padding-block: var(--tp-s-2); border-top: var(--tp-border) solid var(--tp-line); }
+.anchor-nav a { font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-label); color: var(--tp-ink-70); text-decoration: none; white-space: nowrap; padding: var(--tp-s-1) 0; }
+.anchor-nav a:hover { color: var(--tp-ink); text-decoration: underline; }
+
+/* 히어로 */
+.hero { padding-block: var(--tp-s-6); }
+.hero h1 { margin: var(--tp-s-2) 0 var(--tp-s-3); font-size: clamp(30px, 4.4vw, var(--tp-fs-h1)); font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; }
+.hero p { margin: 0; max-width: 760px; color: var(--tp-ink-70); font-size: var(--tp-fs-lead); }
+
+/* 폼 공통 */
+.field { display: flex; flex-direction: column; gap: var(--tp-s-1); }
+.field[hidden], [hidden] { display: none !important; }
+.field > span { font-size: var(--tp-fs-meta); color: var(--tp-ink-70); }
+.field input, .field select {
+  min-height: var(--tp-control-h);
+  border: var(--tp-border) solid var(--tp-line);
+  border-radius: var(--tp-radius-cta);
+  background: var(--tp-cell);
+  padding: 0 var(--tp-s-3);
+}
+.field input:invalid { border-color: var(--tp-pop); }
+.checks { display: flex; align-items: center; gap: var(--tp-s-2); font-size: var(--tp-fs-meta); color: var(--tp-ink-70); }
+.status-line { font-size: var(--tp-fs-meta); color: var(--tp-ink-70); margin: 0; }
+.status-line strong { color: var(--tp-ink); }
+
+/* 연결 설정 */
+.connect-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.connect-grid > div { padding: var(--tp-s-4); }
+.connect-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--tp-s-3); padding: var(--tp-s-4); flex-wrap: wrap; }
+.connect-note { padding: var(--tp-s-4); color: var(--tp-ink-70); font-size: var(--tp-fs-meta); }
+.connect-note ol { margin: var(--tp-s-2) 0 0; padding-left: 20px; }
+.connect-note li { margin-bottom: var(--tp-s-1); }
+
+/* 스텝 레일 */
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); }
+.steps > li { list-style: none; padding: var(--tp-s-4); display: flex; flex-direction: column; gap: var(--tp-s-2); min-height: 168px; }
+.steps { margin: 0; padding: 0; }
+.steps .step-no { font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-eyebrow); color: var(--tp-grey); }
+.steps h3 { margin: 0; font-size: 17px; font-weight: 700; }
+.steps p { margin: 0; font-size: var(--tp-fs-meta); color: var(--tp-ink-70); }
+
+/* 룰 리스트 */
+.rules { margin: 0; padding: 0; }
+.rules > li { list-style: none; display: grid; grid-template-columns: 180px 1fr; gap: var(--tp-s-4); padding: var(--tp-s-3) var(--tp-s-4); border-top: var(--tp-border) solid var(--tp-line); }
+.rules > li:first-child { border-top: 0; }
+.rules .rule-key { font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-label); color: var(--tp-grey); padding-top: 3px; }
+.rules .rule-body { font-size: var(--tp-fs-meta); }
+
+/* 표 공통 */
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: var(--tp-border) solid var(--tp-line); padding: var(--tp-s-2) var(--tp-s-3); font-size: var(--tp-fs-meta); text-align: left; vertical-align: middle; }
+th { background: var(--tp-cream); font-weight: 700; white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* 가중치 */
+.formula { display: flex; flex-wrap: wrap; gap: var(--tp-s-2); align-items: center; padding: var(--tp-s-4); font-family: var(--tp-font-mono); font-size: var(--tp-fs-meta); letter-spacing: var(--tp-ls-label); }
+.formula .op { color: var(--tp-grey); }
+.formula .term { border: var(--tp-border) solid var(--tp-line); border-radius: var(--tp-radius-badge); padding: 3px 10px; background: var(--tp-cream); }
+.weights-table input { width: 90px; min-height: 40px; border: var(--tp-border) solid var(--tp-line); border-radius: var(--tp-radius-cta); padding: 0 var(--tp-s-2); text-align: right; font-variant-numeric: tabular-nums; }
+.changed-mark { color: var(--tp-pop); font-weight: 700; }
+
+/* 매핑 */
+.map-table select { min-height: 40px; border: var(--tp-border) solid var(--tp-line); border-radius: var(--tp-radius-cta); background: var(--tp-cell); padding: 0 var(--tp-s-1); max-width: 160px; }
+.map-table .dup { outline: 2px solid var(--tp-pop); }
+.map-error { color: var(--tp-pop); font-size: var(--tp-fs-meta); margin: var(--tp-s-2) 0 0; }
+
+/* 카테고리 탭 · 상품 목록 */
+.cat-tabs { display: flex; gap: var(--tp-s-1); overflow-x: auto; padding-bottom: var(--tp-s-2); }
+.cat-tabs button { border: var(--tp-border) solid var(--tp-line); background: var(--tp-cell); border-radius: var(--tp-radius-cta); min-height: 40px; padding: 0 var(--tp-s-3); font-size: var(--tp-fs-meta); white-space: nowrap; }
+.cat-tabs button[aria-selected="true"] { background: var(--tp-ink); color: var(--tp-cell); border-color: var(--tp-ink); font-weight: 700; }
+.plist { margin: 0; padding: 0; }
+.plist > li { list-style: none; border-top: var(--tp-border) solid var(--tp-line); }
+.plist > li:first-child { border-top: 0; }
+.prow { display: grid; grid-template-columns: 56px 64px 1fr auto; gap: var(--tp-s-3); align-items: center; padding: var(--tp-s-2) var(--tp-s-3); }
+.prow .rank-cell { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.prow .rank-no { font-family: var(--tp-font-mono); font-size: 15px; font-variant-numeric: tabular-nums; }
+.prow .rank-cell button { border: var(--tp-border) solid var(--tp-line); background: var(--tp-cell); border-radius: var(--tp-radius-cta); width: 32px; height: 26px; line-height: 1; font-size: var(--tp-fs-meta); padding: 0; }
+.prow .thumb { width: 64px; height: 64px; object-fit: cover; border: var(--tp-border) solid var(--tp-line); background: var(--tp-cream); }
+.prow .pinfo { min-width: 0; }
+.prow .pname { font-size: 15px; font-weight: 500; margin: 0; }
+.prow .pmeta { margin: 2px 0 0; font-size: var(--tp-fs-meta); color: var(--tp-ink-70); font-variant-numeric: tabular-nums; }
+.prow .pacts { display: flex; align-items: center; gap: var(--tp-s-2); flex-wrap: wrap; justify-content: flex-end; }
+.vis-toggle { border: var(--tp-border) solid var(--tp-line); background: var(--tp-cell); border-radius: var(--tp-radius-cta); min-height: 36px; padding: 0 var(--tp-s-3); font-size: var(--tp-fs-label); font-family: var(--tp-font-mono); letter-spacing: var(--tp-ls-label); }
+.vis-toggle[data-on="true"] { background: var(--tp-sun); border-color: var(--tp-ink); }
+.bench-divider { display: flex; align-items: center; gap: var(--tp-s-3); padding: var(--tp-s-2) var(--tp-s-3); background: var(--tp-cream); font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-label); color: var(--tp-grey); border-top: var(--tp-border) solid var(--tp-line); }
+.pedit { display: none; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: var(--tp-s-3); padding: var(--tp-s-3); border-top: var(--tp-border) dashed var(--tp-line); background: var(--tp-cream); }
+.pedit.open { display: grid; }
+.pedit .field input, .pedit .field select { min-height: 40px; }
+.pedit .tagbox { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--tp-s-1); }
+.pedit .span2 { grid-column: span 2; }
+.tag-chip { border: var(--tp-border) solid var(--tp-line); background: var(--tp-cell); border-radius: var(--tp-radius-badge); min-height: 32px; padding: 2px 10px; font-size: var(--tp-fs-label); font-family: var(--tp-font-mono); letter-spacing: var(--tp-ls-label); }
+.tag-chip[data-on="true"] { background: var(--tp-ink); color: var(--tp-cell); border-color: var(--tp-ink); }
+
+/* 상품 등록 · 이미지 · 숨김/보관 */
+.reg-bar { display: flex; align-items: center; gap: var(--tp-s-3); margin-bottom: var(--tp-s-4); flex-wrap: wrap; }
+.reg-bar .status-line { max-width: 720px; }
+.reg-form { margin-bottom: var(--tp-s-4); overflow: hidden; }
+.reg-form__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--tp-s-3); padding: var(--tp-s-3) var(--tp-s-4); border-bottom: var(--tp-border) solid var(--tp-line); }
+.reg-form__head h3 { margin: 0; font-size: 17px; font-weight: 800; }
+.reg-form__foot { display: flex; align-items: center; gap: var(--tp-s-3); padding: var(--tp-s-3) var(--tp-s-4); border-top: var(--tp-border) solid var(--tp-line); flex-wrap: wrap; }
+.pform { display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: var(--tp-s-3); padding: var(--tp-s-3) var(--tp-s-4); }
+.pform .field input, .pform .field select { min-height: 40px; }
+.pform .span2 { grid-column: span 2; }
+.pform .tagbox { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--tp-s-1); align-items: center; }
+.imgrow { grid-column: 1 / -1; display: flex; gap: var(--tp-s-3); flex-wrap: wrap; }
+.imgrow > span:first-child { align-self: flex-start; }
+.imgslot { display: flex; flex-direction: column; gap: var(--tp-s-1); width: 128px; }
+.imgslot .imgbox { width: 128px; height: 128px; border: var(--tp-border) solid var(--tp-line); background: var(--tp-cell); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.imgslot .imgbox img { width: 100%; height: 100%; object-fit: cover; }
+.imgslot .imgbox span { font-size: var(--tp-fs-label); color: var(--tp-grey); font-family: var(--tp-font-mono); letter-spacing: var(--tp-ls-label); }
+.imgslot input[type="text"] { min-height: 36px; border: var(--tp-border) solid var(--tp-line); border-radius: var(--tp-radius-cta); padding: 0 var(--tp-s-2); font-size: var(--tp-fs-meta); }
+.form-error { grid-column: 1 / -1; color: var(--tp-pop); font-size: var(--tp-fs-meta); margin: 0; min-height: 1.4em; }
+.prow--hidden { opacity: 0.55; }
+.prow .pbadges { display: inline-flex; gap: var(--tp-s-1); margin-left: var(--tp-s-2); vertical-align: 2px; }
+
+/* 시뮬레이터 */
+.sim-form { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--tp-s-4); padding: var(--tp-s-4); border-bottom: var(--tp-border) solid var(--tp-line); }
+.sim-form .span2 { grid-column: span 2; }
+.sim-form .span4 { grid-column: 1 / -1; }
+.chip-row { display: flex; flex-wrap: wrap; gap: var(--tp-s-1); }
+.sim-run { display: flex; align-items: center; gap: var(--tp-s-3); padding: var(--tp-s-4); flex-wrap: wrap; }
+.sim-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--tp-s-4); margin-top: var(--tp-s-5); align-items: start; }
+.bundle { display: flex; flex-direction: column; }
+.bundle-head { padding: var(--tp-s-3) var(--tp-s-4); border-bottom: var(--tp-border) solid var(--tp-line); display: flex; align-items: baseline; justify-content: space-between; gap: var(--tp-s-2); }
+.bundle-head h3 { margin: 0; font-size: 17px; font-weight: 800; }
+.bundle-items { margin: 0; padding: 0; }
+.bundle-items > li { list-style: none; display: grid; grid-template-columns: 56px 1fr; gap: var(--tp-s-3); padding: var(--tp-s-3) var(--tp-s-4); border-bottom: var(--tp-border) solid var(--tp-line); }
+.bundle-items img { width: 56px; height: 56px; object-fit: cover; border: var(--tp-border) solid var(--tp-line); background: var(--tp-cream); }
+.bundle-items .iname { margin: 0; font-size: var(--tp-fs-meta); font-weight: 500; }
+.bundle-items .imeta { margin: 2px 0 var(--tp-s-1); font-size: var(--tp-fs-label); color: var(--tp-ink-70); font-variant-numeric: tabular-nums; }
+.bundle-items select { width: 100%; min-height: 36px; border: var(--tp-border) solid var(--tp-line); border-radius: var(--tp-radius-cta); background: var(--tp-cell); font-size: var(--tp-fs-label); }
+.bundle-total { padding: var(--tp-s-3) var(--tp-s-4); font-variant-numeric: tabular-nums; }
+.bundle-total dl { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 2px var(--tp-s-3); font-size: var(--tp-fs-meta); }
+.bundle-total dt { color: var(--tp-ink-70); }
+.bundle-total dd { margin: 0; text-align: right; }
+.bundle-total .total-line { font-weight: 800; font-size: var(--tp-fs-body); }
+.sim-empty { padding: var(--tp-s-5); color: var(--tp-ink-70); font-size: var(--tp-fs-meta); }
+
+/* 검토 */
+.diff-list { margin: 0; padding: 0; }
+.diff-list > li { list-style: none; display: grid; grid-template-columns: 140px 1fr; gap: var(--tp-s-4); padding: var(--tp-s-3) var(--tp-s-4); border-top: var(--tp-border) solid var(--tp-line); font-size: var(--tp-fs-meta); }
+.diff-list > li:first-child { border-top: 0; }
+.diff-list .diff-key { font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-label); color: var(--tp-grey); padding-top: 2px; }
+.review-actions { display: flex; gap: var(--tp-s-3); flex-wrap: wrap; align-items: center; padding: var(--tp-s-4); }
+.pop-note { background: var(--tp-pop); color: var(--tp-ink); border-radius: var(--tp-radius-pop); padding: var(--tp-s-4) var(--tp-s-5); margin-top: var(--tp-s-5); font-size: var(--tp-fs-meta); font-weight: 500; }
+.save-log { font-family: var(--tp-font-mono); font-size: var(--tp-fs-label); letter-spacing: var(--tp-ls-label); white-space: pre-wrap; padding: var(--tp-s-3) var(--tp-s-4); color: var(--tp-ink-70); }
+
+footer.page-foot { border-top: var(--tp-border) solid var(--tp-line); padding: var(--tp-s-5) 0 var(--tp-s-7); color: var(--tp-grey); font-size: var(--tp-fs-label); font-family: var(--tp-font-mono); letter-spacing: var(--tp-ls-label); }
+
+/* 접속 게이트 */
+.gate { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: var(--tp-gutter); }
+.gate-card { width: min(420px, 100%); background: var(--tp-cell); border: var(--tp-border) solid var(--tp-line); border-radius: var(--tp-radius-box); padding: var(--tp-s-6) var(--tp-s-5); }
+.gate-card .tp-eyebrow { display: block; margin-bottom: var(--tp-s-2); }
+.gate-card h1 { margin: 0 0 var(--tp-s-2); font-size: var(--tp-fs-h3); font-weight: 800; }
+.gate-card p { margin: 0 0 var(--tp-s-4); color: var(--tp-ink-70); font-size: var(--tp-fs-meta); }
+.gate-card form { display: flex; gap: var(--tp-s-2); }
+.gate-card input { flex: 1; min-height: var(--tp-control-h); border: var(--tp-border) solid var(--tp-line); border-radius: var(--tp-radius-cta); padding: 0 var(--tp-s-3); }
+.gate-error { color: var(--tp-pop); font-size: var(--tp-fs-meta); margin: var(--tp-s-2) 0 0; min-height: 1.4em; }
+
+@media (max-width: 900px) {
+  .admin-header { position: static; }
+  .hgroup + .hgroup { border-left: 0; padding-left: 0; }
+  .connect-grid { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .steps > li { min-height: 0; }
+  .rules > li { grid-template-columns: 1fr; gap: var(--tp-s-1); }
+  .sim-form { grid-template-columns: 1fr 1fr; }
+  .sim-form .span2, .sim-form .span4 { grid-column: 1 / -1; }
+  .sim-results { grid-template-columns: 1fr; }
+  .prow { grid-template-columns: 48px 56px 1fr; }
+  .prow .pacts { grid-column: 1 / -1; justify-content: flex-start; }
+  .pedit { grid-template-columns: 1fr 1fr; }
+  .pform { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .connect-grid { grid-template-columns: 1fr; }
+  .pedit { grid-template-columns: 1fr; }
+  .pform { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate" hidden>
+  <div class="gate-card">
+    <span class="tp-eyebrow">3PICKS Admin</span>
+    <h1>운영 콘솔 잠금</h1>
+    <p>3PICKS 홈페이지를 관리하는 담당자용 화면입니다. 전달받은 접속 코드를 입력해 주세요.</p>
+    <form id="gateForm">
+      <input id="gateCode" type="password" autocomplete="off" aria-label="접속 코드">
+      <button class="tp-btn tp-btn--primary" type="submit">열기</button>
+    </form>
+    <p class="gate-error" id="gateError"></p>
+  </div>
+</div>
+
+<header class="admin-header" data-app hidden>
+  <div class="tp-wrap">
+    <div class="admin-header__row">
+      <div class="admin-header__brand">
+        <span class="tp-eyebrow">3PICKS Admin Console</span>
+        <strong>운영 콘솔</strong>
+      </div>
+      <div class="admin-header__actions">
+        <div class="hgroup">
+          <button class="tp-btn llm-sync-btn" type="button" id="llmSyncBtn" data-alert="false">LLM으로 홈페이지 수정한 내용 어드민에 적용하기</button>
+        </div>
+        <div class="hgroup">
+          <span class="badge badge--ghost" id="draftBadge">고친 내용 없음</span>
+          <span class="badge badge--ghost" id="connBadge">홈페이지 연결 전</span>
+        </div>
+        <div class="hgroup">
+          <button class="tp-btn tp-btn--primary" type="button" id="saveBtnTop" disabled>홈페이지에 반영하기</button>
+        </div>
+      </div>
+    </div>
+    <nav class="anchor-nav" aria-label="섹션 이동">
+      <a href="#connect">처음 연결</a>
+      <a href="#logic">추천 원리</a>
+      <a href="#weights">점수 조정</a>
+      <a href="#mapping">행사 매핑</a>
+      <a href="#simulator">미리보기</a>
+      <a href="#products">상품 운영</a>
+      <a href="#review">홈페이지 반영</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tp-wrap" data-app hidden>
+
+  <section class="hero">
+    <span class="tp-eyebrow">3PICKS Homepage Manager</span>
+    <h1>홈페이지 관리 화면</h1>
+    <p>이 화면은 연습장이라고 생각하면 됩니다. 여기서 무엇을 고쳐도 실제 홈페이지는 바로 바뀌지 않아요. 맨 아래의 <strong>홈페이지에 반영하기</strong> 버튼을 눌러야만 진짜 홈페이지가 바뀝니다. 그 전까지는 마음껏 눌러 보고, 바꿔 보고, 미리보기로 확인해도 안전합니다.</p>
+    <div class="tp-cell" style="margin-top:var(--tp-s-5);overflow:hidden">
+      <ul class="rules">
+        <li><span class="rule-key">걱정하지 않아도 되는 이유</span><span class="rule-body">여기서 고치는 내용은 이 컴퓨터 화면 안에만 머뭅니다. 실수로 무엇을 누르거나 바꿔도 홈페이지는 그대로예요.</span></li>
+        <li><span class="rule-key">홈페이지가 바뀌는 순간</span><span class="rule-body">딱 하나, 「홈페이지에 반영하기」 버튼을 눌렀을 때뿐입니다. 누르면 1~10분 뒤에 바뀝니다.</span></li>
+        <li><span class="rule-key">고객 미니 견적</span><span class="rule-body">홈페이지 견적함의 수량 계산과 「비우기」는 고객 화면에서 바로 동작합니다. 상품·추천 설정은 이 운영 콘솔에서 관리하고, 담은 목록 자체는 고객의 브라우저에만 저장됩니다.</span></li>
+        <li><span class="rule-key">이메일 문의 담당자</span><span class="rule-body">홈페이지의 이메일 문의 레이어에 보이는 두 담당자는 <code>config.js</code>에서 바꿉니다. 이 운영 콘솔의 상품·추천 설정과는 별개입니다.</span></li>
+        <li><span class="rule-key">모바일 화면 확인</span><span class="rule-body">600px 이하에서는 전체 상단 메뉴가 본문을 계속 가리지 않도록 함께 스크롤됩니다. 상품 레일의 좌우 넘김만 의도된 가로 스크롤이며, 상품·추천 설정을 바꾼 뒤에는 모바일 미리보기에서도 확인합니다.</span></li>
+        <li><span class="rule-key">잘못 고쳤을 때</span><span class="rule-body">맨 아래 「고친 내용 모두 취소」를 누르면 이 화면이 처음 상태로 돌아옵니다. 홈페이지는 사라지지도, 바뀌지도 않습니다.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="connect">
+    <div class="section-head">
+      <span class="tp-eyebrow">01 · Connection</span>
+      <h2>처음 한 번, 홈페이지와 연결</h2>
+      <p>홈페이지 파일이 보관된 곳(깃허브라는 서비스)과 이 화면을 잇는 단계입니다. 아래 네 칸은 설치를 도와준 담당자가 알려준 값을 그대로 붙여 넣으면 됩니다. 한 번 연결해 두면 다음부터는 건드릴 일이 없습니다.</p>
+    </div>
+    <div class="tp-cell" style="overflow:hidden">
+      <div class="connect-grid tp-mesh" style="border:0;border-radius:0">
+        <label class="field"><span>깃허브 아이디 (owner)</span><input id="ghOwner" type="text" autocomplete="off" placeholder="github-id"></label>
+        <label class="field"><span>홈페이지 보관함 이름 (repo)</span><input id="ghRepo" type="text" autocomplete="off" placeholder="3picks-site"></label>
+        <label class="field"><span>브랜치 (main 그대로 두세요)</span><input id="ghBranch" type="text" autocomplete="off" value="main"></label>
+        <label class="field"><span>비밀 열쇠 (토큰)</span><input id="ghToken" type="password" autocomplete="off" placeholder="github_pat_…"></label>
+      </div>
+      <div class="connect-foot">
+        <p class="status-line">비밀 열쇠는 현재 탭을 닫으면 지워집니다.</p>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <p class="status-line" id="connStatus">아직 연결을 확인하지 않았습니다.</p>
+          <button class="tp-btn tp-btn--secondary" type="button" id="connTestBtn">연결 확인</button>
+        </div>
+      </div>
+      <div class="connect-note tp-rule" style="border-top:1px solid var(--tp-line)">
+        비밀 열쇠(토큰)는 깃허브 사이트에서 발급받습니다. 어렵게 느껴지면 설치 담당자에게 부탁하세요. 입력한 열쇠는 현재 탭에만 잠시 저장되며 탭을 닫으면 지워집니다.
+        <ol>
+          <li>깃허브(GitHub) 우측 상단 프로필 → Settings → Developer settings → Fine-grained tokens → Generate new token</li>
+          <li>Repository access는 이 홈페이지 보관함 하나만 선택합니다.</li>
+          <li>Permissions에서 Contents만 Read and write로 켭니다. 다른 권한은 필요 없습니다.</li>
+          <li>만든 열쇠를 위 칸에 붙여 넣고 연결 확인을 누릅니다. 자세한 순서는 함께 전달된 설치 가이드에 있습니다.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="logic">
+    <div class="section-head">
+      <span class="tp-eyebrow">02 · How it works</span>
+      <h2>맞춤 추천이 만들어지는 원리</h2>
+      <p>고객이 홈페이지에서 설문을 마치면 아래 다섯 단계를 거쳐 추천 3안이 만들어집니다. 각 단계를 이 화면의 어느 부분에서 조정하는지도 함께 적어 두었습니다.</p>
+    </div>
+    <ol class="steps tp-mesh">
+      <li>
+        <span class="step-no">STEP 1</span>
+        <h3>운영 상품 확정</h3>
+        <p>전체 상품 중 카테고리별 순위 1~10위, 총 100개가 홈페이지에 진열되고 추천 대상이 됩니다.</p>
+        <p class="tp-mono">편집: 상품 운영 → 순위</p>
+      </li>
+      <li>
+        <span class="step-no">STEP 2</span>
+        <h3>조건 필터</h3>
+        <p>자동 추천 대상 여부, 인원 대비 최소 주문 수량, 납기, 인쇄 가능 여부, 제외 품목, 공직자 5만 원 기준으로 후보를 거릅니다.</p>
+        <p class="tp-mono">편집: 상품 운영 → 추천 여부</p>
+      </li>
+      <li>
+        <span class="step-no">STEP 3</span>
+        <h3>점수 매기기</h3>
+        <p>남은 후보마다 태그 일치, 인기도, 품질 순위, 행사 관련성, 계절 가점을 합산합니다.</p>
+        <p class="tp-mono">편집: 가중치 · 행사 매핑</p>
+      </li>
+      <li>
+        <span class="step-no">STEP 4</span>
+        <h3>조합 만들기</h3>
+        <p>서로 다른 카테고리 1~3종을 묶는 모든 조합을 만듭니다. 같은 카테고리 중복은 허용하지 않습니다.</p>
+        <p class="tp-mono">확인: 미리보기에서 교체</p>
+      </li>
+      <li>
+        <span class="step-no">STEP 5</span>
+        <h3>예산 맞춤 3안</h3>
+        <p>총예산과 예상 총액의 차이가 가장 작은 순으로 3안을 고릅니다. 3안이 안 나오면 상담 확인 후보로 보충합니다.</p>
+        <p class="tp-mono">기준: 예산은 목표값</p>
+      </li>
+    </ol>
+
+    <div class="tp-cell" style="margin-top:var(--tp-s-5);overflow:hidden">
+      <ul class="rules">
+        <li><span class="rule-key">자동 순위 조정</span><span class="rule-body">워크샵(강의·연수형)은 볼펜을 3순위로 올립니다 · 워크샵(야외·단합형)이 6~8월이면 보온보냉·런치백을 4순위로 올립니다 · 전시(등록 참가자 키트)는 티셔츠·단체복을 3순위로 올립니다 · 명절 선물이 12~1월이면 노트·다이어리를 1순위로 올립니다.</span></li>
+        <li><span class="rule-key">계절 가점</span><span class="rule-body">우산 5~7월 · 노트·다이어리 10~12월 · 티셔츠·단체복 4·5·9·10월 · 보온보냉·런치백 4~7월에 계절 점수가 붙습니다.</span></li>
+        <li><span class="rule-key">공직자 기준</span><span class="rule-body">받는 분에 공직자·교직원·언론인이 포함되면 1인 구성가 5만 원 초과 상품과 조합을 제외합니다.</span></li>
+        <li><span class="rule-key">3안 보장</span><span class="rule-body">조건 그대로는 3안이 안 나올 때, 수량·납기·인쇄를 상담으로 조정할 수 있는 후보를 더해 항상 3안을 채우고 상담 확인 항목을 함께 표시합니다.</span></li>
+        <li><span class="rule-key">정렬 순서</span><span class="rule-body">예산 차이가 작은 조합 → 예산 안에 드는 조합 → 점수 높은 조합 → 구성 품목이 많은 조합 순으로 우선합니다.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="weights">
+    <div class="section-head">
+      <span class="tp-eyebrow">03 · Scoring</span>
+      <h2>맞춤 추천 점수 조정</h2>
+      <p>상품 하나의 추천 점수는 아래 다섯 가지를 더해 만듭니다. 숫자를 키우면 그 항목이 추천에서 더 중요해집니다. 잘 모르겠으면 그대로 두세요 — 기본값이 가장 안전하고, 언제든 아래 초기화 버튼으로 되돌릴 수 있습니다.</p>
+    </div>
+    <div class="tp-cell" style="overflow:hidden">
+      <div class="formula">
+        <span class="term">태그 일치 수 × 태그 점수</span><span class="op">+</span>
+        <span class="term">인기도 점수</span><span class="op">+</span>
+        <span class="term">품질 기준 − 순위</span><span class="op">+</span>
+        <span class="term">관련성 기준 − 순번 × 감점</span><span class="op">+</span>
+        <span class="term">계절 가점</span>
+      </div>
+      <div class="table-scroll">
+        <table class="weights-table" id="weightsTable">
+          <thead>
+            <tr><th>항목</th><th>설명</th><th class="num">기본값</th><th class="num">현재값</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="review-actions">
+        <button class="tp-btn tp-btn--small" type="button" id="weightsResetBtn">가중치 전체 초기화</button>
+        <p class="status-line" id="weightsStatus"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="mapping">
+    <div class="section-head">
+      <span class="tp-eyebrow">04 · Event mapping</span>
+      <h2>행사마다 어떤 카테고리를 먼저 보여줄까</h2>
+      <p>행사 유형마다 어떤 카테고리를 몇 순위로 내세울지 정합니다. 순위가 높을수록 추천에 먼저 올라옵니다. 한 행사 안에서 같은 카테고리는 두 번 고를 수 없고, 잘못 골랐으면 맨 오른쪽 「기본값」 버튼으로 되돌리면 됩니다.</p>
+    </div>
+    <div class="tp-cell" style="overflow:hidden">
+      <div class="table-scroll">
+        <table class="map-table" id="mapTable">
+          <thead>
+            <tr><th>행사</th><th>1순위</th><th>2순위</th><th>3순위</th><th>4순위</th><th>5순위</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="map-error" id="mapError" hidden>같은 행사에 같은 카테고리가 두 번 있습니다. 겹친 칸을 바꿔 주세요.</p>
+    </div>
+  </section>
+
+  <section class="section" id="simulator">
+    <div class="section-head">
+      <span class="tp-eyebrow">05 · Preview</span>
+      <h2>맞춤 추천 미리보기</h2>
+      <p>진짜 고객이 된 것처럼 조건을 넣고 「추천 실행」을 눌러 보세요. 위에서 고친 값 기준으로 어떤 추천이 나오는지 미리 볼 수 있습니다. 여기서는 아무리 돌려 봐도 홈페이지에 아무 영향이 없어요. 결과의 상품은 그 자리에서 다른 상품으로 바꿔 보며 금액 변화를 확인할 수 있습니다.</p>
+    </div>
+    <div class="tp-cell" style="overflow:hidden">
+      <div class="sim-form">
+        <label class="field"><span>행사 유형</span><select id="simEvent"></select></label>
+        <label class="field"><span>인원 수</span><input id="simCount" type="number" min="1" value="100"></label>
+        <label class="field"><span>총예산 (원)</span><input id="simBudget" type="number" min="0" step="10000" value="3000000"></label>
+        <label class="field"><span>희망 수령일</span><input id="simDue" type="date"></label>
+        <label class="field"><span>로고 인쇄</span><select id="simLogo"><option value="예">예</option><option value="아니오">아니오</option></select></label>
+        <label class="field"><span>공직자 포함 여부</span><select id="simPublic"><option value="미포함">미포함</option><option value="포함">포함</option></select></label>
+        <label class="field" id="simWorkshopWrap" hidden><span>워크샵 유형</span><select id="simWorkshop"><option value="강의·연수형">강의·연수형</option><option value="야외·단합형">야외·단합형</option></select></label>
+        <label class="field" id="simConferenceWrap" hidden><span>전시 배포 대상</span><select id="simConference"><option value="부스 방문객">부스 방문객</option><option value="등록 참가자 키트">등록 참가자 키트</option></select></label>
+        <div class="span2"><label class="checks"><input id="simBudgetUnknown" type="checkbox"> 예산 미정으로 추천</label></div>
+        <div class="span4 field"><span>선호 태그 (최대 3개)</span><div class="chip-row" id="simTags"></div></div>
+        <div class="span4 field"><span>제외 카테고리</span><div class="chip-row" id="simExcludes"></div></div>
+      </div>
+      <div class="sim-run">
+        <button class="tp-btn tp-btn--primary" type="button" id="simRunBtn">추천 실행</button>
+        <p class="status-line" id="simStatus">조건을 정하고 추천 실행을 누르면 구성 3안이 나옵니다.</p>
+      </div>
+    </div>
+    <div class="sim-results" id="simResults"></div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="section-head">
+      <span class="tp-eyebrow">06 · Catalog curation</span>
+      <h2>카테고리별 상품 운영</h2>
+      <p>위·아래 버튼으로 순위를 바꿉니다. 각 카테고리의 1~10위, 총 100개는 지금 홈페이지에 전부 진열되어 있습니다. 그 아래 대기 상품은 순위를 10위 안으로 올리면 자리를 맞바꿔 진열됩니다. 상품을 펼치면 이름·가격·수량·납기·인쇄 방식·사진까지 전부 고칠 수 있고, 「자동 추천에 나감」 버튼을 끄면 홈페이지 진열은 그대로 두고 자동 추천에서만 빠져 상담 때 제안하는 상품이 됩니다. 「숨김」을 누르면 홈페이지에서 잠시 내려가고 아래 순위 상품이 자동으로 올라와 자리를 채웁니다. 당분간 안 쓸 상품은 「보관」으로 보관함에 옮겨 두세요 — 지우는 기능은 없으니 무엇도 사라지지 않습니다. 여기서 바꾼 것도 아직 홈페이지에 올라간 상태는 아니에요.</p>
+    </div>
+    <div class="reg-bar">
+      <button class="tp-btn tp-btn--secondary" type="button" id="regOpenBtn">+ 새 상품 등록</button>
+      <p class="status-line">새 상품도 여기서 바로 만들 수 있습니다. 사진과 정보를 채워 「등록」을 누르면 아래 목록에 들어가고, 홈페이지에는 「홈페이지에 반영하기」를 눌러야 올라갑니다.</p>
+    </div>
+    <div class="tp-cell reg-form" id="regForm" hidden></div>
+    <div class="cat-tabs" id="catTabs" role="tablist"></div>
+    <div class="tp-cell" style="overflow:hidden">
+      <ul class="plist" id="productList"></ul>
+    </div>
+  </section>
+
+  <section class="section" id="review">
+    <div class="section-head">
+      <span class="tp-eyebrow">07 · Review &amp; publish</span>
+      <h2>바뀐 내용 확인하고 홈페이지에 올리기</h2>
+      <p>지금까지 이 화면에서 고친 내용이 아래에 목록으로 모입니다. 목록을 읽어 보고 맞으면 「홈페이지에 반영하기」를 누르세요. 실제 홈페이지를 바꾸는 버튼은 이것 하나뿐입니다.</p>
+    </div>
+    <div class="tp-cell" style="overflow:hidden;margin-bottom:var(--tp-s-5)">
+      <ul class="rules">
+        <li><span class="rule-key">홈페이지에 반영하기</span><span class="rule-body">여기서 고친 내용을 실제 홈페이지에 올립니다. 새로 올린 상품 사진이 있으면 사진 파일부터 먼저 올라가고 설정이 마지막에 올라갑니다. 1~10분 뒤부터 모든 방문자에게 새 내용이 보입니다.</span></li>
+        <li><span class="rule-key">백업 파일 받기</span><span class="rule-body">고친 내용을 파일 하나로 내 컴퓨터에 저장해 둡니다. 눌러도 홈페이지에는 아무 일도 일어나지 않아요. 꼭 받아야 하는 것도 아닙니다.</span></li>
+        <li><span class="rule-key">직전 정상본 불러오기</span><span class="rule-body">마지막 반영 직전의 홈페이지 설정을 이 화면에 초안으로 불러옵니다. 확인 뒤 「홈페이지에 반영하기」를 눌러야 실제 복구됩니다.</span></li>
+        <li><span class="rule-key">고친 내용 모두 취소</span><span class="rule-body">이 화면에서 고친 것만 지우고 처음 상태로 되돌립니다. 홈페이지는 그대로 있습니다. 사라지지 않아요.</span></li>
+      </ul>
+    </div>
+    <div class="tp-cell" style="overflow:hidden">
+      <ul class="diff-list" id="diffList"></ul>
+      <div class="review-actions" style="border-top:1px solid var(--tp-line)">
+        <button class="tp-btn tp-btn--primary" type="button" id="saveBtn" disabled>홈페이지에 반영하기</button>
+        <button class="tp-btn" type="button" id="exportBtn">백업 파일 받기</button>
+        <button class="tp-btn" type="button" id="restoreBtn" disabled>직전 정상본 불러오기</button>
+        <button class="tp-btn" type="button" id="discardBtn">고친 내용 모두 취소</button>
+      </div>
+      <p class="save-log" id="saveLog"></p>
+    </div>
+    <div class="pop-note">
+      「홈페이지에 반영하기」를 누르면 홈페이지가 새 내용으로 갈아입는 데 1~2분, 이미 접속해 있던 방문자 화면까지 바뀌는 데 길게는 10분이 걸립니다. 급하지 않다면 미리보기로 충분히 확인한 뒤 한 번에 반영하는 편이 좋습니다.
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-foot" data-app hidden>
+  <div class="tp-wrap">3PICKS 홈페이지 관리 화면 · 막히면 설치 담당자에게 문의하세요</div>
+</footer>
+
+<script src="admin-core.js?v=260814"></script>
+<script src="../site-overrides.js?v=260812d"></script>
+<script src="../assets/products-data.js?v=260810-2"></script>
+<script src="../recommendation-core.js?v=260812d"></script>
+<script>
+(() => {
+  "use strict";
+
+  // 접속 게이트 — 열람 잠금. 코드 변경은 새 코드의 SHA-256 값으로 아래 해시를 교체합니다.
+  const GATE_HASH = "9e044bf49b7ea0ef3d93d3c6c2c1cec15e0c7e3cd1eed70f40b9af9db62873a1";
+  const GATE_KEY = "3picks-admin:unlocked";
+  const sha256Hex = async (text) => {
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+  };
+  const revealApp = () => {
+    document.getElementById("gate").hidden = true;
+    document.querySelectorAll("[data-app]").forEach((node) => { node.hidden = false; });
+  };
+  let unlocked = false;
+  try { unlocked = sessionStorage.getItem(GATE_KEY) === GATE_HASH; } catch { unlocked = false; }
+  if (unlocked) revealApp();
+  else document.getElementById("gate").hidden = false;
+  document.getElementById("gateForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const code = document.getElementById("gateCode").value.trim();
+    const hash = await sha256Hex(code);
+    if (hash === GATE_HASH) {
+      try { sessionStorage.setItem(GATE_KEY, GATE_HASH); } catch { /* 세션 저장이 막혀도 이번 화면은 연다 */ }
+      revealApp();
+    } else {
+      document.getElementById("gateError").textContent = "코드가 맞지 않습니다. 담당자에게 다시 확인해 주세요.";
+    }
+  });
+
+  const core = window.RecommendationCore;
+  const adminCore = window.AdminCore;
+  const baseProducts = Array.isArray(window.PRODUCTS) ? window.PRODUCTS : [];
+  let committed = window.SITE_OVERRIDES || {};
+  const categories = [...core.CATEGORY_ORDER];
+  const defaultWeights = { ...core.DEFAULT_WEIGHTS };
+  // 덮어쓰기 필드·상태값·병합 규칙은 recommendation-core가 정본이다 (사본 금지)
+  const overridableFields = [...core.OVERRIDABLE_PRODUCT_FIELDS];
+  const productFieldLimits = core.PRODUCT_FIELD_LIMITS;
+  const titleHasSerialCode = core.titleHasSerialCode;
+  const productStatus = core.productStatus;
+  const statusNames = { active: "운영", hidden: "숨김", archived: "보관" };
+  const ARCHIVE_TAB = "보관함";
+  const IMAGE_BOX = 560;
+
+  // app.js와 같은 기본 매핑·선택지 (홈페이지 기본값의 사본)
+  const defaultEventMap = {
+    "워크샵·단합": ["텀블러", "노트·다이어리", "에코백", "수건·타올", "우산"],
+    "체육대회·사내 이벤트": ["수건·타올", "텀블러", "티셔츠·단체복", "에코백", "보온보냉·런치백"],
+    "창립기념": ["텀블러", "수건·타올", "우산", "머그컵", "보조배터리"],
+    "웰컴키트": ["텀블러", "볼펜", "노트·다이어리", "보조배터리", "에코백"],
+    "채용 부스": ["볼펜", "에코백", "노트·다이어리", "보조배터리", "텀블러"],
+    "전시·컨퍼런스 배포": ["에코백", "볼펜", "노트·다이어리", "텀블러", "티셔츠·단체복"],
+    "명절·시즌 선물": ["수건·타올", "텀블러", "우산", "노트·다이어리", "머그컵"],
+    "고객사·VIP 선물": ["우산", "볼펜", "텀블러", "수건·타올", "보조배터리"],
+  };
+  const eventOptions = Object.keys(defaultEventMap);
+  const trendTags = ["미니멀", "친환경", "실용템", "데스크테리어", "힙한", "레트로", "아웃도어", "프리미엄", "귀여움", "컬러팝", "테크", "시즌한정"];
+
+  const weightMeta = {
+    tagMatch: { name: "태그 점수", note: "고객이 고른 태그 1개가 일치할 때마다 더해집니다." },
+    popularityHigh: { name: "인기도 상", note: "인기도 상 상품에 더해집니다." },
+    popularityMid: { name: "인기도 중", note: "인기도 중 상품에 더해집니다." },
+    qualityBase: { name: "품질 기준", note: "이 값에서 카테고리 내 순위를 뺀 만큼이 품질 점수입니다." },
+    relevanceBase: { name: "관련성 기준", note: "행사 매핑 1순위 카테고리가 받는 관련성 점수입니다." },
+    relevanceStep: { name: "관련성 감점", note: "매핑 순위가 하나 내려갈 때마다 이만큼 깎입니다." },
+    seasonal: { name: "계절 가점", note: "계절 규칙에 맞는 상품에 더해집니다." },
+  };
+
+  const storage = {
+    repo: "3picks-admin:repo:v1",
+    tokenSession: "3picks-admin:token:session",
+    draft: "3picks-admin:draft:v1",
+    appliedBase: "3picks-admin:applied-base:v1",
+    syncReload: "3picks-admin:sync-reload",
+    published: "3picks-admin:published:v1",
+    lastGood: "3picks-admin:last-good:v1",
+  };
+
+  const readJson = (area, key) => {
+    try { return JSON.parse(area.getItem(key)); } catch { return null; }
+  };
+  const writeJson = (area, key, value) => {
+    try {
+      if (value === null || value === undefined) area.removeItem(key);
+      else area.setItem(key, JSON.stringify(value));
+    } catch { /* 저장 공간을 못 쓰면 초안 유지 없이 동작합니다 */ }
+  };
+
+  // 로컬 운영 콘솔은 고객 저장소의 파일과 별개이므로 마지막 반영 성공본을 브라우저에 보존한다.
+  const cachedPublished = readJson(localStorage, storage.published);
+  if (cachedPublished && Number(cachedPublished.version) === 2) committed = cachedPublished;
+
+  // ----- 상태: 기본값 + 배포된 설정 + 이 브라우저의 초안을 겹쳐 만든 유효값
+  const clone = (value) => JSON.parse(JSON.stringify(value));
+
+  const state = {
+    eventMap: {},
+    weights: {},
+    products: [],
+    // 반영 대기 사진 — { "assets/products/p111-01.webp": { dataUrl, bytes } }
+    pendingImages: {},
+    activeCategory: categories[0],
+    sim: { groups: [], answers: null, eligible: [] },
+  };
+  // 반영이 끝난 사진의 미리보기 — 로컬 폴더에 파일이 없어도 썸네일을 보여주기 위한 표시 전용 캐시
+  const imagePreviewCache = {};
+  function buildState(overrides) {
+    state.eventMap = { ...clone(defaultEventMap), ...clone(overrides.eventMap || {}) };
+    state.weights = { ...defaultWeights, ...(overrides.weights || {}) };
+    state.products = core.mergeSiteProducts(clone(baseProducts), overrides).map((product) => clone(product));
+    state.pendingImages = clone(overrides.pendingImages || {});
+    // 활성 상품 순위를 카테고리마다 1부터 촘촘하게 정규화 — 화면 번호와 저장값을 일치시킨다
+    categories.forEach((category) => reassignRanks(category, categoryList(category).map((product) => product.id)));
+  }
+  const imageManifest = () => Object.keys(state.pendingImages).sort()
+    .map((path) => `${path}:${state.pendingImages[path].bytes || 0}`);
+  const canonicalKey = (overrides) => JSON.stringify({
+    e: overrides.eventMap, w: overrides.weights, p: overrides.productOverrides,
+    a: overrides.productAdditions, i: imageManifest(),
+  });
+  let baselineCanonical = "";
+  function setBaselineFromState() { baselineCanonical = canonicalKey(computeOverrides()); }
+  const baseById = new Map(baseProducts.map((product) => [product.id, product]));
+  const stateById = () => new Map(state.products.map((product) => [product.id, product]));
+
+  // ----- 차이 계산: 기본값과 다른 것만 오버라이드로 남깁니다
+  const sameList = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  const fieldValueOf = (record, field) => {
+    if (field === "tags") return [...(record.tags || [])].sort();
+    if (field === "status") return productStatus(record);
+    return record[field];
+  };
+  const fieldDiffers = (left, right, field) => JSON.stringify(fieldValueOf(left, field)) !== JSON.stringify(fieldValueOf(right, field));
+  const productChanged = (product) => {
+    const base = baseById.get(product.id);
+    return base ? overridableFields.some((field) => fieldDiffers(product, base, field)) : false;
+  };
+
+  function computeOverrides() {
+    const eventMap = {};
+    eventOptions.forEach((event) => {
+      if (!sameList(state.eventMap[event], defaultEventMap[event])) eventMap[event] = [...state.eventMap[event]];
+    });
+    const weights = {};
+    Object.keys(defaultWeights).forEach((key) => {
+      if (Number(state.weights[key]) !== defaultWeights[key]) weights[key] = Number(state.weights[key]);
+    });
+    const productOverrides = {};
+    const productAdditions = [];
+    state.products.forEach((product) => {
+      const base = baseById.get(product.id);
+      if (!base) {
+        // 콘솔에서 등록한 신규 상품 — 전체 레코드를 그대로 싣는다
+        productAdditions.push(clone(product));
+        return;
+      }
+      const patch = {};
+      overridableFields.forEach((field) => {
+        if (fieldDiffers(product, base, field)) {
+          patch[field] = field === "status" ? productStatus(product) : clone(product[field]);
+        }
+      });
+      if (Object.keys(patch).length) productOverrides[product.id] = patch;
+    });
+    productAdditions.sort((left, right) =>
+      (categories.indexOf(left.category) - categories.indexOf(right.category)) || (Number(left.number) - Number(right.number)));
+    return {
+      version: 2,
+      updatedAt: null,
+      eventMap: Object.keys(eventMap).length ? eventMap : null,
+      weights: Object.keys(weights).length ? weights : null,
+      productOverrides,
+      productAdditions,
+    };
+  }
+
+  function overridesFileContent(overrides) {
+    const payload = { ...overrides, updatedAt: overrides.updatedAt || new Date().toISOString() };
+    return [
+      "// 3PICKS 운영 설정 — operations/admin.html에서 저장하면 이 파일이 갱신됩니다.",
+      "// 값이 null이거나 비어 있으면 사이트 기본값이 그대로 적용됩니다.",
+      "// productOverrides는 기존 상품의 수정 델타, productAdditions는 콘솔에서 등록한 신규 상품 전체 레코드입니다.",
+      `window.SITE_OVERRIDES = ${JSON.stringify(payload, null, 2)};`,
+      "",
+    ].join("\n");
+  }
+
+  function hasChanges(overrides) {
+    return Boolean(overrides.eventMap || overrides.weights
+      || Object.keys(overrides.productOverrides).length
+      || overrides.productAdditions.length
+      || Object.keys(state.pendingImages).length);
+  }
+
+
+  // ----- 유효성
+  function validate() {
+    const problems = [];
+    eventOptions.forEach((event) => {
+      const row = state.eventMap[event];
+      if (new Set(row).size !== row.length) problems.push(`행사 매핑 · ${event}에 같은 카테고리가 두 번 있습니다.`);
+    });
+    Object.keys(defaultWeights).forEach((key) => {
+      const value = Number(state.weights[key]);
+      if (!Number.isFinite(value) || value < 0) problems.push(`가중치 · ${weightMeta[key].name} 값이 0 이상 숫자가 아닙니다.`);
+    });
+    state.products.forEach((product) => {
+      const base = baseById.get(product.id);
+      const label = (product.name || "").trim() || product.id;
+      const printLength = [...String(product.printMethod || "")].length;
+      if (titleHasSerialCode(product.name)) {
+        problems.push(`상품 · ${label}의 고객용 상품명에서 품번·시리얼 코드를 지워 주세요.`);
+      }
+      if (printLength > productFieldLimits.printMethod) {
+        problems.push(`상품 · ${label}의 인쇄 방식은 ${productFieldLimits.printMethod}자 이하여야 합니다.`);
+      }
+      if (/\*\*|★|\[\d+/.test(`${product.moqText || ""} ${product.printMethod || ""}`)) {
+        problems.push(`상품 · ${label}의 고객용 문구에 편집 기호(**, ★, [번호])가 남아 있습니다.`);
+      }
+      if (base) {
+        if (Number(product.price) !== Number(base.price) && !(Number(product.price) > 0)) problems.push(`상품 · ${label}의 가격이 0보다 커야 합니다.`);
+        if (Number(product.moq) !== Number(base.moq) && !(Number(product.moq) > 0)) problems.push(`상품 · ${label}의 최소 수량이 0보다 커야 합니다.`);
+        if (Number(product.leadDays) !== Number(base.leadDays) && !(Number(product.leadDays) > 0)) problems.push(`상품 · ${label}의 납기가 0보다 커야 합니다.`);
+        if (product.name !== base.name && !(product.name || "").trim()) problems.push(`상품 · ${product.id}의 이름을 비울 수 없습니다.`);
+        return;
+      }
+      // 콘솔에서 등록한 신규 상품 — 홈페이지 카드가 성립하는 최소 조건
+      if (!(product.name || "").trim()) problems.push(`새 상품 · 이름을 입력해 주세요 (${product.id}).`);
+      if (!categories.includes(product.category)) problems.push(`새 상품 · ${label}의 카테고리가 올바르지 않습니다.`);
+      if (!(Number(product.price) > 0)) problems.push(`새 상품 · ${label}의 가격이 0보다 커야 합니다.`);
+      if (!(Number(product.moq) > 0)) problems.push(`새 상품 · ${label}의 최소 수량이 0보다 커야 합니다.`);
+      if (!(Number(product.leadDays) > 0)) problems.push(`새 상품 · ${label}의 납기가 0보다 커야 합니다.`);
+      if (!Array.isArray(product.images) || !product.images.length) problems.push(`새 상품 · ${label}의 사진이 1장 이상 필요합니다.`);
+      const strayTags = (product.tags || []).filter((tag) => !trendTags.includes(tag));
+      if (strayTags.length) problems.push(`새 상품 · ${label}의 태그 ${strayTags.join(", ")}는 쓸 수 없는 값입니다.`);
+    });
+    return problems;
+  }
+
+  // ----- 렌더: 공통 헬퍼
+  const el = (id) => document.getElementById(id);
+  const money = (value) => Number(value || 0).toLocaleString("ko-KR");
+  const create = (tag, className, text) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+
+  function refreshMeta() {
+    // 어떤 상품도 더는 참조하지 않는 반영 대기 사진은 정리한다 (사진 재교체·등록 취소 뒤 잔여물)
+    const referencedImages = new Set();
+    state.products.forEach((product) => (product.images || []).forEach((path) => referencedImages.add(path)));
+    Object.keys(state.pendingImages).forEach((path) => {
+      if (!referencedImages.has(path)) delete state.pendingImages[path];
+    });
+    const overrides = computeOverrides();
+    const unsaved = canonicalKey(overrides) !== baselineCanonical;
+    let draftStored = true;
+    try {
+      if (!unsaved) localStorage.removeItem(storage.draft);
+      else localStorage.setItem(storage.draft, JSON.stringify({
+        version: 2,
+        eventMap: overrides.eventMap || {},
+        weights: overrides.weights || {},
+        productOverrides: overrides.productOverrides,
+        productAdditions: overrides.productAdditions,
+        pendingImages: state.pendingImages,
+      }));
+    } catch { draftStored = false; /* 사진이 많아 초안 저장 공간이 넘치면 화면 안에서만 유지된다 */ }
+    const badge = el("draftBadge");
+    badge.textContent = unsaved
+      ? (draftStored ? "고친 내용 있음 · 반영 전" : "고친 내용 있음 · 초안 저장 공간 부족, 창을 닫기 전에 반영하세요")
+      : "고친 내용 없음";
+    badge.className = unsaved ? "badge badge--sun" : "badge badge--ghost";
+    const problems = validate();
+    const savable = unsaved && problems.length === 0 && connection.verified;
+    el("saveBtn").disabled = !savable;
+    el("saveBtnTop").disabled = !savable;
+    renderDiff(overrides, problems);
+    return overrides;
+  }
+
+  // ----- 가중치
+  function renderWeights() {
+    const tbody = el("weightsTable").querySelector("tbody");
+    tbody.textContent = "";
+    Object.keys(defaultWeights).forEach((key) => {
+      const row = create("tr");
+      row.append(create("th", null, weightMeta[key].name));
+      row.append(create("td", null, weightMeta[key].note));
+      const defaultCell = create("td", "num", String(defaultWeights[key]));
+      row.append(defaultCell);
+      const inputCell = create("td", "num");
+      const input = create("input");
+      input.type = "number";
+      input.min = "0";
+      input.step = "1";
+      input.value = String(state.weights[key]);
+      input.setAttribute("aria-label", `${weightMeta[key].name} 현재값`);
+      input.addEventListener("change", () => {
+        state.weights[key] = input.value === "" ? defaultWeights[key] : Number(input.value);
+        markCell();
+        refreshMeta();
+      });
+      inputCell.append(input);
+      row.append(inputCell);
+      const markCellNode = create("td");
+      const markCell = () => {
+        markCellNode.textContent = Number(state.weights[key]) !== defaultWeights[key] ? "변경됨" : "";
+        markCellNode.className = Number(state.weights[key]) !== defaultWeights[key] ? "changed-mark" : "";
+      };
+      markCell();
+      row.append(markCellNode);
+      tbody.append(row);
+    });
+  }
+  el("weightsResetBtn").addEventListener("click", () => {
+    state.weights = { ...defaultWeights };
+    renderWeights();
+    el("weightsStatus").textContent = "가중치를 기본값으로 되돌렸습니다.";
+    refreshMeta();
+  });
+
+  // ----- 행사 매핑
+  function renderMapping() {
+    const tbody = el("mapTable").querySelector("tbody");
+    tbody.textContent = "";
+    eventOptions.forEach((event) => {
+      const row = create("tr");
+      row.append(create("th", null, event));
+      for (let slot = 0; slot < 5; slot += 1) {
+        const cell = create("td");
+        const select = create("select");
+        select.setAttribute("aria-label", `${event} ${slot + 1}순위 카테고리`);
+        categories.forEach((category) => {
+          const option = create("option", null, category);
+          option.value = category;
+          select.append(option);
+        });
+        select.value = state.eventMap[event][slot];
+        select.addEventListener("change", () => {
+          state.eventMap[event][slot] = select.value;
+          markDuplicates();
+          refreshMeta();
+        });
+        cell.append(select);
+        row.append(cell);
+      }
+      const resetCell = create("td");
+      const resetBtn = create("button", "tp-btn tp-btn--small", "기본값");
+      resetBtn.type = "button";
+      resetBtn.addEventListener("click", () => {
+        state.eventMap[event] = [...defaultEventMap[event]];
+        renderMapping();
+        refreshMeta();
+      });
+      resetCell.append(resetBtn);
+      row.append(resetCell);
+      tbody.append(row);
+    });
+    markDuplicates();
+  }
+  function markDuplicates() {
+    let anyDup = false;
+    const tbody = el("mapTable").querySelector("tbody");
+    [...tbody.rows].forEach((row, rowIndex) => {
+      const event = eventOptions[rowIndex];
+      const values = state.eventMap[event];
+      const counts = values.reduce((acc, value) => acc.set(value, (acc.get(value) || 0) + 1), new Map());
+      [...row.querySelectorAll("select")].forEach((select, slot) => {
+        const dup = counts.get(values[slot]) > 1;
+        select.classList.toggle("dup", dup);
+        if (dup) anyDup = true;
+      });
+    });
+    el("mapError").hidden = !anyDup;
+  }
+
+  // ----- 상품 운영
+  function categoryList(category) {
+    return state.products
+      .filter((product) => product.category === category && productStatus(product) === "active")
+      .sort((a, b) => (Number(a.rank) - Number(b.rank)) || (Number(a.number) - Number(b.number)));
+  }
+  function hiddenList(category) {
+    return state.products
+      .filter((product) => product.category === category && productStatus(product) === "hidden")
+      .sort((a, b) => Number(a.number) - Number(b.number));
+  }
+  function archivedList() {
+    return state.products
+      .filter((product) => productStatus(product) === "archived")
+      .sort((a, b) => (categories.indexOf(a.category) - categories.indexOf(b.category)) || (Number(a.number) - Number(b.number)));
+  }
+  function reassignRanks(category, orderedIds) {
+    const byId = stateById();
+    orderedIds.forEach((id, index) => { byId.get(id).rank = index + 1; });
+  }
+  function moveProduct(category, id, delta) {
+    const ids = categoryList(category).map((product) => product.id);
+    const from = ids.indexOf(id);
+    const to = from + delta;
+    if (to < 0 || to >= ids.length) return;
+    ids.splice(from, 1);
+    ids.splice(to, 0, id);
+    reassignRanks(category, ids);
+    renderProducts();
+    refreshMeta();
+  }
+  function setStatus(product, status) {
+    if (productStatus(product) === status) return;
+    const wasActive = productStatus(product) === "active";
+    product.status = status;
+    if (status === "active") {
+      // 숨김 해제·복원은 맨 아래 순위로 합류한다 — 기존 진열 순서를 밀어내지 않기 위함
+      const ids = categoryList(product.category).filter((item) => item.id !== product.id).map((item) => item.id);
+      ids.push(product.id);
+      reassignRanks(product.category, ids);
+    } else if (wasActive) {
+      // 빠진 자리를 아래 순위가 채우도록 활성 상품만 다시 촘촘하게
+      reassignRanks(product.category, categoryList(product.category).map((item) => item.id));
+    }
+    renderCatTabs();
+    renderProducts();
+    refreshMeta();
+  }
+  function imageSrc(path) {
+    if (!path) return "";
+    const pending = state.pendingImages[path] || imagePreviewCache[path];
+    return pending ? pending.dataUrl : (path.startsWith("assets/") ? `../${path}` : path);
+  }
+
+  // ----- 사진: 홈페이지 규격(560×560 흰 바탕 WebP)으로 브라우저 안에서 변환
+  function readFileAsDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(reader.error || new Error("파일을 읽지 못했습니다"));
+      reader.readAsDataURL(file);
+    });
+  }
+  function loadImageElement(src) {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = () => reject(new Error("이미지 형식을 읽지 못했습니다"));
+      image.src = src;
+    });
+  }
+  const dataUrlBytes = (dataUrl) => Math.floor((dataUrl.length - dataUrl.indexOf(",") - 1) * 3 / 4);
+  async function convertToProductImage(file) {
+    const source = await loadImageElement(await readFileAsDataUrl(file));
+    const uploadProblem = adminCore.validateUploadMeta(file, source.naturalWidth, source.naturalHeight);
+    if (uploadProblem) throw new Error(uploadProblem);
+    const canvas = document.createElement("canvas");
+    canvas.width = IMAGE_BOX;
+    canvas.height = IMAGE_BOX;
+    const context = canvas.getContext("2d");
+    context.fillStyle = "#FFFFFF";
+    context.fillRect(0, 0, IMAGE_BOX, IMAGE_BOX);
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = "high";
+    const scale = Math.min(IMAGE_BOX / source.naturalWidth, IMAGE_BOX / source.naturalHeight, 1);
+    const width = Math.max(1, Math.round(source.naturalWidth * scale));
+    const height = Math.max(1, Math.round(source.naturalHeight * scale));
+    context.drawImage(source, Math.round((IMAGE_BOX - width) / 2), Math.round((IMAGE_BOX - height) / 2), width, height);
+    const webp = canvas.toDataURL("image/webp", 0.82);
+    const dataUrl = webp.startsWith("data:image/webp") ? webp : canvas.toDataURL("image/png"); // WebP 인코딩이 없는 브라우저는 PNG로
+    return { dataUrl, ext: dataUrl.startsWith("data:image/webp") ? "webp" : "png", bytes: dataUrlBytes(dataUrl) };
+  }
+  function nextImagePath(productId, slotIndex, currentPath, ext) {
+    // 같은 주소는 브라우저 캐시에 옛 사진이 남으므로 교체마다 새 버전 번호를 붙인다
+    const slot = String(slotIndex + 1).padStart(2, "0");
+    if (!currentPath) return `assets/products/${productId}-${slot}.${ext}`;
+    const versionMatch = currentPath.match(/-v(\d+)\.(?:webp|png)$/);
+    const version = versionMatch ? Number(versionMatch[1]) + 1 : 2;
+    return `assets/products/${productId}-${slot}-v${version}.${ext}`;
+  }
+
+  function renderCatTabs() {
+    const host = el("catTabs");
+    host.textContent = "";
+    const archivedCount = archivedList().length;
+    [...categories, ARCHIVE_TAB].forEach((category) => {
+      const label = category === ARCHIVE_TAB && archivedCount ? `${ARCHIVE_TAB} ${archivedCount}` : category;
+      const tab = create("button", null, label);
+      tab.type = "button";
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-selected", String(category === state.activeCategory));
+      tab.addEventListener("click", () => {
+        state.activeCategory = category;
+        renderCatTabs();
+        renderProducts();
+      });
+      host.append(tab);
+    });
+  }
+
+  function imageSlots(product) {
+    const row = create("div", "imgrow");
+    row.append(create("span", "tp-mono", "사진 · 최대 5장"));
+    const count = (product.images || []).length;
+    const slotTotal = Math.min(5, count < 5 ? count + 1 : 5);
+    for (let slotIndex = 0; slotIndex < slotTotal; slotIndex += 1) {
+      const slot = create("div", "imgslot");
+      const box = create("div", "imgbox");
+      const path = (product.images || [])[slotIndex];
+      if (path) {
+        const img = create("img");
+        img.src = imageSrc(path);
+        img.alt = "";
+        box.append(img);
+      } else {
+        box.append(create("span", null, "비어 있음"));
+      }
+      slot.append(box);
+      const labelInput = create("input");
+      labelInput.type = "text";
+      labelInput.placeholder = "색상 이름";
+      labelInput.setAttribute("aria-label", `${product.name || product.id} ${slotIndex + 1}번 사진 색상 이름`);
+      labelInput.value = (product.imageLabels || [])[slotIndex] || "";
+      labelInput.disabled = !path;
+      labelInput.addEventListener("change", () => {
+        const labels = [...(product.imageLabels || [])];
+        labels[slotIndex] = labelInput.value.trim() || `색상 ${slotIndex + 1}`;
+        product.imageLabels = labels;
+        refreshMeta();
+      });
+      slot.append(labelInput);
+      const pickBtn = create("button", "tp-btn tp-btn--small", path ? "사진 교체" : "사진 추가");
+      pickBtn.type = "button";
+      const fileInput = create("input");
+      fileInput.type = "file";
+      fileInput.accept = "image/*";
+      fileInput.hidden = true;
+      fileInput.setAttribute("aria-label", `${product.name || product.id} ${slotIndex + 1}번 사진 파일 선택`);
+      pickBtn.addEventListener("click", () => fileInput.click());
+      fileInput.addEventListener("change", async () => {
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+        pickBtn.disabled = true;
+        pickBtn.textContent = "변환 중…";
+        try {
+          const converted = await convertToProductImage(file);
+          const nextPath = nextImagePath(product.id, slotIndex, (product.images || [])[slotIndex] || null, converted.ext);
+          const images = [...(product.images || [])];
+          const labels = [...(product.imageLabels || [])];
+          images[slotIndex] = nextPath;
+          if (!labels[slotIndex]) labels[slotIndex] = `색상 ${slotIndex + 1}`;
+          product.images = images;
+          product.imageLabels = labels;
+          state.pendingImages[nextPath] = { dataUrl: converted.dataUrl, bytes: converted.bytes };
+          renderProducts();
+          refreshMeta();
+        } catch {
+          pickBtn.disabled = false;
+          pickBtn.textContent = "다시 시도";
+        }
+      });
+      slot.append(pickBtn, fileInput);
+      row.append(slot);
+    }
+    return row;
+  }
+
+  function fieldEditor(product) {
+    const wrap = create("div", "pedit");
+    const textField = (label, key, span2) => {
+      const field = create("label", span2 ? "field span2" : "field");
+      const maxLength = productFieldLimits[key];
+      field.append(create("span", null, maxLength ? `${label} · 최대 ${maxLength}자` : label));
+      const input = create("input");
+      input.type = "text";
+      if (maxLength) input.maxLength = maxLength;
+      input.value = product[key] == null ? "" : String(product[key]);
+      input.addEventListener("change", () => {
+        product[key] = input.value.trim();
+        renderProducts();
+        refreshMeta();
+      });
+      field.append(input);
+      return field;
+    };
+    const numberField = (label, key, min, onValue) => {
+      const field = create("label", "field");
+      field.append(create("span", null, label));
+      const input = create("input");
+      input.type = "number";
+      input.min = String(min);
+      input.value = String(product[key]);
+      input.addEventListener("change", () => {
+        const previous = Number(product[key]);
+        product[key] = Number(input.value);
+        if (onValue) onValue(previous);
+        renderProducts();
+        refreshMeta();
+      });
+      field.append(input);
+      return field;
+    };
+    wrap.append(textField("상품명", "name", true));
+    const variantTitleField = create("label", "checks span2");
+    const variantTitleInput = create("input");
+    variantTitleInput.type = "checkbox";
+    variantTitleInput.checked = Boolean(product.titleUsesImageLabel);
+    variantTitleInput.addEventListener("change", () => {
+      product.titleUsesImageLabel = variantTitleInput.checked;
+      refreshMeta();
+    });
+    variantTitleField.append(variantTitleInput, create("span", null, "선택한 색상명을 상품 제목에 표시"));
+    wrap.append(variantTitleField);
+    wrap.append(numberField("판매가 (원)", "price", 1));
+    const popField = create("label", "field");
+    popField.append(create("span", null, "인기도"));
+    const popSelect = create("select");
+    ["상", "중", "하"].forEach((value) => {
+      const option = create("option", null, value);
+      option.value = value;
+      popSelect.append(option);
+    });
+    popSelect.value = product.popularity || "하";
+    popSelect.addEventListener("change", () => {
+      product.popularity = popSelect.value;
+      refreshMeta();
+    });
+    popField.append(popSelect);
+    wrap.append(popField);
+    // 숫자를 바꾸면 방문자에게 보이는 문구도 자동으로 따라간다 — 직접 고친 문구는 건드리지 않는다
+    wrap.append(numberField("최소 주문 수량", "moq", 1, (previous) => {
+      if (!product.moqText || product.moqText === `${previous}개`) product.moqText = `${Number(product.moq)}개`;
+    }));
+    wrap.append(textField("최소 수량 문구", "moqText"));
+    wrap.append(numberField("납기 (일)", "leadDays", 1, (previous) => {
+      if (!product.lead || product.lead === `${previous}일`) product.lead = `${Number(product.leadDays)}일`;
+    }));
+    wrap.append(textField("납기 문구", "lead"));
+    wrap.append(textField("인쇄 방식", "printMethod", true));
+    wrap.append(textField("공급처", "supplier", true));
+    const tagBox = create("div", "tagbox");
+    tagBox.append(create("span", "tp-mono", "태그"));
+    trendTags.forEach((tag) => {
+      const chip = create("button", "tag-chip", tag);
+      chip.type = "button";
+      const sync = () => chip.dataset.on = String((product.tags || []).includes(tag));
+      sync();
+      chip.addEventListener("click", () => {
+        const tags = new Set(product.tags || []);
+        if (tags.has(tag)) tags.delete(tag); else tags.add(tag);
+        product.tags = trendTags.filter((name) => tags.has(name));
+        sync();
+        refreshMeta();
+      });
+      tagBox.append(chip);
+    });
+    wrap.append(tagBox);
+    wrap.append(imageSlots(product));
+    return wrap;
+  }
+
+  const openEditors = new Set();
+  function productRow(product, mode, index) {
+    const item = create("li");
+    const row = create("div", mode === "hidden" ? "prow prow--hidden" : "prow");
+
+    const rankCell = create("div", "rank-cell");
+    if (mode === "active") {
+      const upBtn = create("button", null, "위");
+      upBtn.type = "button";
+      upBtn.setAttribute("aria-label", `${product.name} 순위 올리기`);
+      upBtn.addEventListener("click", () => moveProduct(state.activeCategory, product.id, -1));
+      const downBtn = create("button", null, "아래");
+      downBtn.type = "button";
+      downBtn.setAttribute("aria-label", `${product.name} 순위 내리기`);
+      downBtn.addEventListener("click", () => moveProduct(state.activeCategory, product.id, 1));
+      rankCell.append(create("span", "rank-no", String(index + 1).padStart(2, "0")));
+      rankCell.append(upBtn, downBtn);
+    } else {
+      rankCell.append(create("span", "rank-no", "—"));
+    }
+    row.append(rankCell);
+
+    const thumb = create("img", "thumb");
+    thumb.src = imageSrc(product.images && product.images[0]);
+    thumb.alt = "";
+    thumb.loading = "lazy";
+    row.append(thumb);
+
+    const info = create("div", "pinfo");
+    const nameLine = create("p", "pname", product.name || "(이름 없음)");
+    const badges = create("span", "pbadges");
+    if (!baseById.has(product.id)) badges.append(create("span", "badge badge--pop", "새 상품"));
+    if (mode !== "active") badges.append(create("span", "badge badge--ghost", statusNames[productStatus(product)]));
+    if (badges.childNodes.length) nameLine.append(badges);
+    info.append(nameLine);
+    const changed = productChanged(product);
+    const metaParts = [`${money(product.price)}원`, `최소 ${money(product.moq)}개`, `납기 ${product.leadDays}일`];
+    if (mode === "archived") metaParts.unshift(product.category);
+    if (changed) metaParts.push("변경됨");
+    info.append(create("p", "pmeta", metaParts.join(" · ")));
+    row.append(info);
+
+    const acts = create("div", "pacts");
+    if (mode === "archived") {
+      const restoreBtn = create("button", "tp-btn tp-btn--small", "복원");
+      restoreBtn.type = "button";
+      restoreBtn.addEventListener("click", () => setStatus(product, "active"));
+      acts.append(restoreBtn);
+      row.append(acts);
+      item.append(row);
+      return item;
+    }
+    const visBtn = create("button", "vis-toggle", product.visibility === "화면노출" ? "자동 추천에 나감" : "추천 제외 · 상담용");
+    visBtn.type = "button";
+    visBtn.dataset.on = String(product.visibility === "화면노출");
+    visBtn.addEventListener("click", () => {
+      product.visibility = product.visibility === "화면노출" ? "상담제안" : "화면노출";
+      renderProducts();
+      refreshMeta();
+    });
+    const hideBtn = create("button", "tp-btn tp-btn--small", mode === "hidden" ? "숨김 해제" : "숨김");
+    hideBtn.type = "button";
+    hideBtn.addEventListener("click", () => setStatus(product, mode === "hidden" ? "active" : "hidden"));
+    const archiveBtn = create("button", "tp-btn tp-btn--small", "보관");
+    archiveBtn.type = "button";
+    archiveBtn.addEventListener("click", () => {
+      if (!window.confirm(`「${product.name || product.id}」 상품을 보관함으로 옮깁니다. 홈페이지에서 내려가지만 언제든 복원할 수 있습니다. 계속할까요?`)) return;
+      setStatus(product, "archived");
+    });
+    const editBtn = create("button", "tp-btn tp-btn--small", openEditors.has(product.id) ? "접기" : "펼치기");
+    editBtn.type = "button";
+    acts.append(visBtn, hideBtn, archiveBtn, editBtn);
+    row.append(acts);
+    item.append(row);
+
+    const editor = fieldEditor(product);
+    if (openEditors.has(product.id)) editor.classList.add("open");
+    editBtn.addEventListener("click", () => {
+      editor.classList.toggle("open");
+      if (editor.classList.contains("open")) openEditors.add(product.id);
+      else openEditors.delete(product.id);
+      editBtn.textContent = editor.classList.contains("open") ? "접기" : "펼치기";
+    });
+    item.append(editor);
+    return item;
+  }
+
+  function renderProducts() {
+    const host = el("productList");
+    host.textContent = "";
+    if (state.activeCategory === ARCHIVE_TAB) {
+      const archived = archivedList();
+      if (!archived.length) {
+        const emptyItem = create("li");
+        emptyItem.append(create("div", "bench-divider", "보관함이 비어 있습니다 · 상품의 「보관」 버튼으로 옮길 수 있습니다"));
+        host.append(emptyItem);
+        return;
+      }
+      archived.forEach((product) => host.append(productRow(product, "archived")));
+      return;
+    }
+    const list = categoryList(state.activeCategory);
+    list.forEach((product, index) => {
+      if (index === 10) {
+        const dividerItem = create("li");
+        dividerItem.append(create("div", "bench-divider", "여기까지(1~10위) 홈페이지에 진열 중 · 아래는 대기 상품"));
+        host.append(dividerItem);
+      }
+      host.append(productRow(product, "active", index));
+    });
+    const hidden = hiddenList(state.activeCategory);
+    if (hidden.length) {
+      const dividerItem = create("li");
+      dividerItem.append(create("div", "bench-divider", "숨김 상품 · 홈페이지에 나가지 않습니다 — 「숨김 해제」로 되돌립니다"));
+      host.append(dividerItem);
+      hidden.forEach((product) => host.append(productRow(product, "hidden")));
+    }
+  }
+
+  // ----- 새 상품 등록 — 폼이 열려 있는 동안은 화면 밖(state)에 아무 영향이 없다
+  let regDraft = null;
+  function nextProductNumber() {
+    return state.products.reduce((max, product) => Math.max(max, Number(product.number) || 0), 0) + 1;
+  }
+  function closeRegistration() {
+    regDraft = null;
+    el("regForm").hidden = true;
+    el("regForm").textContent = "";
+    el("regOpenBtn").disabled = false;
+  }
+  function openRegistration() {
+    const number = nextProductNumber();
+    regDraft = {
+      product: {
+        id: `p${String(number).padStart(3, "0")}`,
+        number,
+        category: state.activeCategory === ARCHIVE_TAB ? categories[0] : state.activeCategory,
+        name: "",
+        titleUsesImageLabel: false,
+        rank: 0,
+        visibility: "화면노출",
+        popularity: "중",
+        price: 0,
+        moq: 0,
+        moqText: "",
+        printMethod: "",
+        lead: "",
+        leadDays: 0,
+        available: true,
+        supplier: "",
+        images: [],
+        imageLabels: [],
+        tags: [],
+        status: "active",
+      },
+      images: [null, null, null, null, null],
+      labels: ["", "", "", "", ""],
+      position: null,
+    };
+    renderRegistrationForm();
+    el("regForm").hidden = false;
+    el("regOpenBtn").disabled = true;
+  }
+  function renderRegistrationForm() {
+    const host = el("regForm");
+    host.textContent = "";
+    const product = regDraft.product;
+
+    const head = create("div", "reg-form__head");
+    head.append(create("h3", null, `새 상품 등록 · ${product.id}`));
+    const cancelBtn = create("button", "tp-btn tp-btn--small", "등록 취소");
+    cancelBtn.type = "button";
+    cancelBtn.addEventListener("click", closeRegistration);
+    head.append(cancelBtn);
+    host.append(head);
+
+    const form = create("div", "pform");
+    const textField = (label, key, span2, placeholder) => {
+      const field = create("label", span2 ? "field span2" : "field");
+      const maxLength = productFieldLimits[key];
+      field.append(create("span", null, maxLength ? `${label} · 최대 ${maxLength}자` : label));
+      const input = create("input");
+      input.type = "text";
+      if (maxLength) input.maxLength = maxLength;
+      if (placeholder) input.placeholder = placeholder;
+      input.value = product[key] == null ? "" : String(product[key]);
+      input.addEventListener("change", () => { product[key] = input.value.trim(); });
+      field.append(input);
+      return field;
+    };
+    const numberField = (label, key, onValue) => {
+      const field = create("label", "field");
+      field.append(create("span", null, label));
+      const input = create("input");
+      input.type = "number";
+      input.min = "1";
+      input.value = product[key] ? String(product[key]) : "";
+      input.addEventListener("change", () => {
+        const previous = Number(product[key]);
+        product[key] = Number(input.value);
+        if (onValue) onValue(previous);
+      });
+      field.append(input);
+      return field;
+    };
+
+    const catField = create("label", "field");
+    catField.append(create("span", null, "카테고리"));
+    const catSelect = create("select");
+    categories.forEach((category) => {
+      const option = create("option", null, category);
+      option.value = category;
+      catSelect.append(option);
+    });
+    catSelect.value = product.category;
+    form.append(catField);
+    catField.append(catSelect);
+
+    const posField = create("label", "field");
+    posField.append(create("span", null, "진열 순위"));
+    const posSelect = create("select");
+    const fillPositions = () => {
+      posSelect.textContent = "";
+      const total = categoryList(product.category).length + 1;
+      for (let position = 1; position <= total; position += 1) {
+        const option = create("option", null, position === total ? `${position}위 (맨 아래)` : `${position}위`);
+        option.value = String(position);
+        posSelect.append(option);
+      }
+      posSelect.value = String(total);
+      regDraft.position = total;
+    };
+    fillPositions();
+    posSelect.addEventListener("change", () => { regDraft.position = Number(posSelect.value); });
+    catSelect.addEventListener("change", () => {
+      product.category = catSelect.value;
+      fillPositions();
+    });
+    posField.append(posSelect);
+    form.append(posField);
+
+    form.append(textField("상품명", "name", true));
+    const variantTitleField = create("label", "checks span2");
+    const variantTitleInput = create("input");
+    variantTitleInput.type = "checkbox";
+    variantTitleInput.checked = Boolean(product.titleUsesImageLabel);
+    variantTitleInput.addEventListener("change", () => { product.titleUsesImageLabel = variantTitleInput.checked; });
+    variantTitleField.append(variantTitleInput, create("span", null, "선택한 색상명을 상품 제목에 표시"));
+    form.append(variantTitleField);
+    form.append(numberField("판매가 (원)", "price"));
+    const popField = create("label", "field");
+    popField.append(create("span", null, "인기도"));
+    const popSelect = create("select");
+    ["상", "중", "하"].forEach((value) => {
+      const option = create("option", null, value);
+      option.value = value;
+      popSelect.append(option);
+    });
+    popSelect.value = product.popularity;
+    popSelect.addEventListener("change", () => { product.popularity = popSelect.value; });
+    popField.append(popSelect);
+    form.append(popField);
+    const visField = create("label", "field");
+    visField.append(create("span", null, "자동 추천"));
+    const visSelect = create("select");
+    [["화면노출", "자동 추천에 나감"], ["상담제안", "추천 제외 · 상담용"]].forEach(([value, label]) => {
+      const option = create("option", null, label);
+      option.value = value;
+      visSelect.append(option);
+    });
+    visSelect.value = product.visibility;
+    visSelect.addEventListener("change", () => { product.visibility = visSelect.value; });
+    visField.append(visSelect);
+    form.append(visField);
+    form.append(numberField("최소 주문 수량", "moq", (previous) => {
+      if (!product.moqText || product.moqText === `${previous}개`) product.moqText = `${Number(product.moq)}개`;
+    }));
+    form.append(textField("최소 수량 문구", "moqText", false, "예: 50개"));
+    form.append(numberField("납기 (일)", "leadDays", (previous) => {
+      if (!product.lead || product.lead === `${previous}일`) product.lead = `${Number(product.leadDays)}일`;
+    }));
+    form.append(textField("납기 문구", "lead", false, "예: 3~5일"));
+    form.append(textField("인쇄 방식", "printMethod", true, "예: 실크인쇄 500원/개"));
+    form.append(textField("공급처", "supplier", true));
+
+    const tagBox = create("div", "tagbox");
+    tagBox.append(create("span", "tp-mono", "태그"));
+    trendTags.forEach((tag) => {
+      const chip = create("button", "tag-chip", tag);
+      chip.type = "button";
+      const sync = () => chip.dataset.on = String(product.tags.includes(tag));
+      sync();
+      chip.addEventListener("click", () => {
+        const tags = new Set(product.tags);
+        if (tags.has(tag)) tags.delete(tag); else tags.add(tag);
+        product.tags = trendTags.filter((name) => tags.has(name));
+        sync();
+      });
+      tagBox.append(chip);
+    });
+    form.append(tagBox);
+
+    const imgRow = create("div", "imgrow");
+    imgRow.append(create("span", "tp-mono", "사진 · 1~5장 (자동으로 홈페이지 규격 560×560으로 변환됩니다)"));
+    for (let slotIndex = 0; slotIndex < 5; slotIndex += 1) {
+      const slot = create("div", "imgslot");
+      const box = create("div", "imgbox");
+      const syncBox = () => {
+        box.textContent = "";
+        const converted = regDraft.images[slotIndex];
+        if (converted) {
+          const img = create("img");
+          img.src = converted.dataUrl;
+          img.alt = "";
+          box.append(img);
+        } else {
+          box.append(create("span", null, slotIndex === 0 ? "필수" : "선택"));
+        }
+      };
+      syncBox();
+      slot.append(box);
+      const labelInput = create("input");
+      labelInput.type = "text";
+      labelInput.placeholder = "색상 이름";
+      labelInput.setAttribute("aria-label", `새 상품 ${slotIndex + 1}번 사진 색상 이름`);
+      labelInput.addEventListener("change", () => { regDraft.labels[slotIndex] = labelInput.value.trim(); });
+      slot.append(labelInput);
+      const pickBtn = create("button", "tp-btn tp-btn--small", "사진 선택");
+      pickBtn.type = "button";
+      const fileInput = create("input");
+      fileInput.type = "file";
+      fileInput.accept = "image/*";
+      fileInput.hidden = true;
+      fileInput.setAttribute("aria-label", `새 상품 ${slotIndex + 1}번 사진 파일 선택`);
+      pickBtn.addEventListener("click", () => fileInput.click());
+      fileInput.addEventListener("change", async () => {
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+        pickBtn.disabled = true;
+        pickBtn.textContent = "변환 중…";
+        try {
+          regDraft.images[slotIndex] = await convertToProductImage(file);
+          pickBtn.textContent = "사진 바꾸기";
+        } catch {
+          pickBtn.textContent = "다시 시도";
+        }
+        pickBtn.disabled = false;
+        syncBox();
+      });
+      slot.append(pickBtn, fileInput);
+      imgRow.append(slot);
+    }
+    form.append(imgRow);
+
+    const errorLine = create("p", "form-error");
+    errorLine.id = "regError";
+    form.append(errorLine);
+    host.append(form);
+
+    const foot = create("div", "reg-form__foot");
+    const submitBtn = create("button", "tp-btn tp-btn--primary", "등록");
+    submitBtn.type = "button";
+    submitBtn.addEventListener("click", submitRegistration);
+    foot.append(submitBtn);
+    foot.append(create("p", "status-line", "등록하면 아래 목록에 들어갑니다. 홈페이지에는 「홈페이지에 반영하기」를 눌러야 올라갑니다."));
+    host.append(foot);
+  }
+  function submitRegistration() {
+    const product = regDraft.product;
+    const errors = [];
+    if (!(product.name || "").trim()) errors.push("이름을 입력해 주세요.");
+    if (titleHasSerialCode(product.name)) errors.push("고객용 상품명에서 품번·시리얼 코드를 지워 주세요.");
+    if (!(Number(product.price) > 0)) errors.push("가격은 0보다 커야 합니다.");
+    if (!(Number(product.moq) > 0)) errors.push("최소 주문 수량은 0보다 커야 합니다.");
+    if (!(Number(product.leadDays) > 0)) errors.push("납기(일)는 0보다 커야 합니다.");
+    if ([...String(product.printMethod || "")].length > productFieldLimits.printMethod) {
+      errors.push(`인쇄 방식은 ${productFieldLimits.printMethod}자 이하여야 합니다.`);
+    }
+    if (/\*\*|★|\[\d+/.test(`${product.moqText || ""} ${product.printMethod || ""}`)) {
+      errors.push("고객용 문구에서 편집 기호(**, ★, [번호])를 지워 주세요.");
+    }
+    if (!regDraft.images.some(Boolean)) errors.push("사진을 1장 이상 올려 주세요.");
+    if (errors.length) {
+      el("regError").textContent = errors.join(" ");
+      return;
+    }
+    if (!product.moqText) product.moqText = `${Number(product.moq)}개`;
+    if (!product.lead) product.lead = `${Number(product.leadDays)}일`;
+    const images = [];
+    const labels = [];
+    regDraft.images.forEach((converted, slotIndex) => {
+      if (!converted) return;
+      const path = `assets/products/${product.id}-${String(images.length + 1).padStart(2, "0")}.${converted.ext}`;
+      state.pendingImages[path] = { dataUrl: converted.dataUrl, bytes: converted.bytes };
+      images.push(path);
+      labels.push(regDraft.labels[slotIndex] || `색상 ${images.length}`);
+    });
+    product.images = images;
+    product.imageLabels = labels;
+    state.products.push(product);
+    const ids = categoryList(product.category).filter((item) => item.id !== product.id).map((item) => item.id);
+    const position = Math.min(Math.max(1, Number(regDraft.position) || ids.length + 1), ids.length + 1);
+    ids.splice(position - 1, 0, product.id);
+    reassignRanks(product.category, ids);
+    state.activeCategory = product.category;
+    openEditors.add(product.id);
+    closeRegistration();
+    renderCatTabs();
+    renderProducts();
+    refreshMeta();
+  }
+  el("regOpenBtn").addEventListener("click", openRegistration);
+
+  // ----- 시뮬레이터
+  function moveCategory(list, category, targetIndex) {
+    const next = list.filter((item) => item !== category);
+    next.splice(Math.min(targetIndex, next.length), 0, category);
+    return next;
+  }
+  function rankedCategories(answers, month) {
+    let ranking = [...(state.eventMap[answers.event] || categories.slice(0, 5))];
+    if (answers.event === "워크샵·단합" && answers.workshopType === "강의·연수형") ranking = moveCategory(ranking, "볼펜", 2);
+    if (answers.event === "워크샵·단합" && answers.workshopType === "야외·단합형" && month >= 6 && month <= 8) ranking = moveCategory(ranking, "보온보냉·런치백", 3);
+    if (answers.event === "전시·컨퍼런스 배포" && answers.conferenceType === "등록 참가자 키트") ranking = moveCategory(ranking, "티셔츠·단체복", 2);
+    if (answers.event === "명절·시즌 선물" && (month === 12 || month === 1)) ranking = moveCategory(ranking, "노트·다이어리", 0);
+    return ranking.filter((category) => !answers.excludes.includes(category));
+  }
+  function daysUntil(dateValue) {
+    const now = new Date();
+    const due = new Date(`${dateValue}T23:59:59`);
+    return Math.max(0, Math.floor((due - now) / 86400000));
+  }
+
+  const simTagSet = new Set();
+  const simExcludeSet = new Set();
+  function renderChipRow(hostId, values, selected, max) {
+    const host = el(hostId);
+    host.textContent = "";
+    values.forEach((value) => {
+      const chip = create("button", "tag-chip", value);
+      chip.type = "button";
+      chip.dataset.on = String(selected.has(value));
+      chip.addEventListener("click", () => {
+        if (selected.has(value)) selected.delete(value);
+        else if (!max || selected.size < max) selected.add(value);
+        renderChipRow(hostId, values, selected, max);
+      });
+      host.append(chip);
+    });
+  }
+
+  function initSimForm() {
+    const eventSelect = el("simEvent");
+    eventOptions.forEach((event) => {
+      const option = create("option", null, event);
+      option.value = event;
+      eventSelect.append(option);
+    });
+    const due = new Date();
+    due.setDate(due.getDate() + 30);
+    el("simDue").value = due.toISOString().slice(0, 10);
+    const syncConditional = () => {
+      el("simWorkshopWrap").hidden = eventSelect.value !== "워크샵·단합";
+      el("simConferenceWrap").hidden = eventSelect.value !== "전시·컨퍼런스 배포";
+    };
+    eventSelect.addEventListener("change", syncConditional);
+    syncConditional();
+    el("simBudgetUnknown").addEventListener("change", () => {
+      el("simBudget").disabled = el("simBudgetUnknown").checked;
+    });
+    renderChipRow("simTags", trendTags, simTagSet, 3);
+    renderChipRow("simExcludes", categories, simExcludeSet, 0);
+  }
+
+  function runSimulation() {
+    const answers = {
+      event: el("simEvent").value,
+      count: el("simCount").value,
+      budget: el("simBudgetUnknown").checked ? "" : el("simBudget").value,
+      budgetUnknown: el("simBudgetUnknown").checked,
+      due: el("simDue").value,
+      logo: el("simLogo").value,
+      publicRecipient: el("simPublic").value,
+      workshopType: el("simWorkshop").value,
+      conferenceType: el("simConference").value,
+      tags: [...simTagSet],
+      excludes: [...simExcludeSet],
+    };
+    if (!Number(answers.count) || !answers.due || (!answers.budgetUnknown && !Number(answers.budget))) {
+      el("simStatus").textContent = "인원, 희망일, 예산(또는 예산 미정)을 채워야 실행할 수 있습니다.";
+      return;
+    }
+    const month = new Date(`${answers.due}T12:00:00`).getMonth() + 1;
+    const leadLimit = daysUntil(answers.due);
+    const categoryOrder = rankedCategories(answers, month);
+    // 홈페이지와 같은 규칙 — 숨김·보관 상품을 뺀 뒤 순위를 다시 매기고 1~10위만 쓴다
+    const products = core.selectOperatingProducts(core.filterActiveProducts(state.products), categories);
+    const groups = core.recommend({ products, answers, categoryOrder, leadLimit, month, weights: state.weights });
+    const eligible = core.eligibleProducts({ products, answers, categoryOrder, leadLimit, month, weights: state.weights });
+    state.sim = { groups: clone(groups), answers, eligible, categoryOrder };
+    el("simStatus").textContent = groups.length
+      ? `구성 ${groups.length}안이 나왔습니다. 각 상품은 아래에서 바로 바꿔볼 수 있습니다.`
+      : "이 조건으로는 구성이 나오지 않았습니다. 인원·예산·희망일을 조정해 보세요.";
+    renderSimResults();
+  }
+
+  function bundleTotals(group, answers) {
+    const count = Number(answers.count) || 0;
+    group.totalPrice = group.products.reduce((sum, product) => sum + Number(product.price), 0);
+    group.appliedQuantities = group.products.map((product) => Math.max(count, Number(product.moq) || 0));
+    group.estimatedTotal = group.products.reduce((sum, product, index) => sum + Number(product.price) * group.appliedQuantities[index], 0);
+    if (!answers.budgetUnknown && Number(answers.budget) > 0) {
+      const effectiveBudget = answers.publicRecipient === "포함" ? Math.min(Number(answers.budget), count * 50000) : Number(answers.budget);
+      group.totalDifference = effectiveBudget - group.estimatedTotal;
+    } else {
+      group.totalDifference = null;
+    }
+  }
+
+  function renderSimResults() {
+    const host = el("simResults");
+    host.textContent = "";
+    const { groups, answers, eligible } = state.sim;
+    if (!groups.length) return;
+    const eligibleById = new Map(eligible.map((item) => [item.product.id, item.product]));
+    groups.forEach((group, groupIndex) => {
+      bundleTotals(group, answers);
+      const card = create("article", "bundle tp-cell");
+      const head = create("div", "bundle-head");
+      head.append(create("h3", null, `${groupIndex + 1}번째 구성`));
+      if (group.manual) head.append(create("span", "badge badge--sun", "수동 조정"));
+      else if (group.usedFallback) head.append(create("span", "badge badge--ghost", "상담 확인 포함"));
+      card.append(head);
+
+      const items = create("ul", "bundle-items");
+      group.products.forEach((product, slotIndex) => {
+        const item = create("li");
+        const img = create("img");
+        img.src = imageSrc(product.images && product.images[0]);
+        img.alt = "";
+        img.loading = "lazy";
+        item.append(img);
+        const body = create("div");
+        body.append(create("p", "iname", product.name));
+        body.append(create("p", "imeta", `${product.category} · ${money(product.price)}원 · 최소 ${money(product.moq)}개`));
+        const swap = create("select");
+        swap.setAttribute("aria-label", `${slotIndex + 1}번 상품 교체`);
+        const usedCategories = new Set(group.products.filter((_, i) => i !== slotIndex).map((item2) => item2.category));
+        const candidates = [...eligibleById.values()].filter((candidate) => !usedCategories.has(candidate.category));
+        const byCategory = new Map();
+        candidates.forEach((candidate) => {
+          if (!byCategory.has(candidate.category)) byCategory.set(candidate.category, []);
+          byCategory.get(candidate.category).push(candidate);
+        });
+        const orderedCategories = [product.category, ...categories.filter((name) => name !== product.category)];
+        orderedCategories.forEach((categoryName) => {
+          const bucket = byCategory.get(categoryName);
+          if (!bucket) return;
+          const optgroup = document.createElement("optgroup");
+          optgroup.label = categoryName;
+          bucket.sort((a, b) => Number(a.rank) - Number(b.rank)).forEach((candidate) => {
+            const option = create("option", null, `${candidate.name} · ${money(candidate.price)}원`);
+            option.value = candidate.id;
+            optgroup.append(option);
+          });
+          swap.append(optgroup);
+        });
+        swap.value = product.id;
+        if (!eligibleById.has(product.id)) {
+          const currentOption = create("option", null, `${product.name} · ${money(product.price)}원 (상담 확인)`);
+          currentOption.value = product.id;
+          swap.prepend(currentOption);
+          swap.value = product.id;
+        }
+        swap.addEventListener("change", () => {
+          const next = eligibleById.get(swap.value);
+          if (!next) return;
+          group.products[slotIndex] = clone(next);
+          group.manual = true;
+          renderSimResults();
+        });
+        body.append(swap);
+        item.append(body);
+        items.append(item);
+      });
+      card.append(items);
+
+      const totals = create("div", "bundle-total");
+      const dl = create("dl");
+      const addLine = (label, value, strong) => {
+        const dt = create("dt", strong ? "total-line" : null, label);
+        const dd = create("dd", strong ? "total-line" : null, value);
+        dl.append(dt, dd);
+      };
+      addLine("1인 구성가", `${money(group.totalPrice)}원`);
+      addLine(`예상 총액 (${money(answers.count)}명 기준)`, `${money(group.estimatedTotal)}원`, true);
+      if (group.totalDifference !== null) {
+        addLine(group.totalDifference >= 0 ? "예산 잔액" : "예산 초과", `${money(Math.abs(group.totalDifference))}원`);
+      }
+      if (group.appliedQuantities.some((quantity, index) => quantity > Number(answers.count))) {
+        addLine("수량 참고", "최소 주문 수량에 맞춰 일부 상품 수량을 올렸습니다");
+      }
+      totals.append(dl);
+      card.append(totals);
+      host.append(card);
+    });
+  }
+
+  // ----- 검토·적용
+  function renderDiff(overrides, problems) {
+    const host = el("diffList");
+    host.textContent = "";
+    const add = (key, body) => {
+      const item = create("li");
+      item.append(create("span", "diff-key", key));
+      item.append(create("span", null, body));
+      host.append(item);
+    };
+    if (problems.length) {
+      problems.forEach((problem) => add("확인 필요", problem));
+    }
+    if (!hasChanges(overrides)) {
+      add("상태", "기본값·배포된 설정과 다른 항목이 없습니다.");
+      return;
+    }
+    if (overrides.eventMap) {
+      Object.entries(overrides.eventMap).forEach(([event, row]) => {
+        add("행사 매핑", `${event} → ${row.join(" · ")}`);
+      });
+    }
+    if (overrides.weights) {
+      Object.entries(overrides.weights).forEach(([key, value]) => {
+        add("가중치", `${weightMeta[key].name} ${defaultWeights[key]} → ${value}`);
+      });
+    }
+    const byId = new Map(baseProducts.map((product) => [product.id, product]));
+    const fieldNames = {
+      rank: "순위", visibility: "자동 추천", price: "가격", moq: "최소 수량", leadDays: "납기", tags: "태그", popularity: "인기도",
+      name: "상품명", printMethod: "인쇄 방식", lead: "납기 문구", moqText: "최소 수량 문구", supplier: "공급처",
+      imageLabels: "색상 이름", images: "사진", status: "상태",
+    };
+    const visNames = { "화면노출": "나감", "상담제안": "제외(상담용)" };
+    Object.entries(overrides.productOverrides).forEach(([id, patch]) => {
+      const base = byId.get(id);
+      const parts = Object.entries(patch).map(([field, value]) => {
+        if (field === "images") return `사진 ${(value || []).length}장 교체`;
+        const label = (raw) => {
+          if (field === "visibility") return visNames[raw] || raw;
+          if (field === "status") return statusNames[raw] || raw;
+          if (field === "tags" || field === "imageLabels") return (raw || []).join(",") || "없음";
+          return raw === undefined || raw === null || raw === "" ? "없음" : raw;
+        };
+        const from = label(field === "status" ? productStatus(base) : base[field]);
+        return `${fieldNames[field]} ${from} → ${label(value)}`;
+      });
+      add("상품", `${base ? base.name : id} · ${parts.join(" · ")}`);
+    });
+    (overrides.productAdditions || []).forEach((product) => {
+      add("새 상품", `${product.name} · ${product.category} ${product.rank}위 · ${money(product.price)}원 · 사진 ${(product.images || []).length}장${productStatus(product) !== "active" ? ` · ${statusNames[productStatus(product)]}` : ""}`);
+    });
+    const pendingPaths = Object.keys(state.pendingImages);
+    if (pendingPaths.length) {
+      const totalBytes = pendingPaths.reduce((sum, path) => sum + (state.pendingImages[path].bytes || 0), 0);
+      add("사진 업로드", `${pendingPaths.length}장 · 약 ${Math.max(1, Math.round(totalBytes / 1024))}KB — 반영할 때 설정보다 먼저 올라갑니다.`);
+    }
+  }
+
+  // ----- GitHub 연동
+  const connection = { verified: false, identity: "" };
+  function connectionInput() {
+    return {
+      owner: el("ghOwner").value.trim(),
+      repo: el("ghRepo").value.trim(),
+      branch: el("ghBranch").value.trim() || "main",
+      token: el("ghToken").value.trim(),
+    };
+  }
+  function loadConnection() {
+    const saved = readJson(localStorage, storage.repo);
+    if (saved) {
+      el("ghOwner").value = saved.owner || "";
+      el("ghRepo").value = saved.repo || "";
+      el("ghBranch").value = saved.branch || "main";
+    }
+    const sessionToken = sessionStorage.getItem(storage.tokenSession);
+    if (sessionToken) el("ghToken").value = sessionToken;
+    // 구버전에서 장기 저장한 토큰이 남아 있으면 즉시 제거한다.
+    try { localStorage.removeItem("3picks-admin:token:local"); } catch { /* 제거 실패는 현재 세션 동작과 무관 */ }
+  }
+  function persistConnection() {
+    const { owner, repo, branch, token } = connectionInput();
+    writeJson(localStorage, storage.repo, { owner, repo, branch });
+    try { sessionStorage.setItem(storage.tokenSession, token); } catch { /* 저장 공간이 막혀 있으면 입력값으로만 동작합니다 */ }
+  }
+  function currentConnectionIdentity() {
+    return adminCore.connectionIdentity(connectionInput());
+  }
+  function invalidateConnection() {
+    if (!connection.verified) return;
+    connection.verified = false;
+    connection.identity = "";
+    setConnStatus("연결 정보가 바뀌었습니다. 다시 연결 확인을 눌러 주세요.", false);
+    refreshMeta();
+  }
+  async function githubRequest(path, options = {}) {
+    const { token } = connectionInput();
+    const response = await fetch(`https://api.github.com${path}`, {
+      ...options,
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${token}`,
+        "X-GitHub-Api-Version": "2022-11-28",
+        ...(options.headers || {}),
+      },
+    });
+    return response;
+  }
+  function setConnStatus(text, ok) {
+    el("connStatus").innerHTML = "";
+    const strong = create("strong", null, ok ? "연결됨 · " : "");
+    if (ok) el("connStatus").append(strong);
+    el("connStatus").append(document.createTextNode(text));
+    const badge = el("connBadge");
+    badge.textContent = ok ? "홈페이지 연결됨" : "홈페이지 연결 전";
+    badge.className = ok ? "badge badge--sun" : "badge badge--ghost";
+  }
+  async function testConnection() {
+    const { owner, repo, branch, token } = connectionInput();
+    if (!owner || !repo || !token) {
+      setConnStatus("아이디·보관함 이름·비밀 열쇠를 모두 입력해 주세요.", false);
+      return;
+    }
+    setConnStatus("확인 중…", false);
+    try {
+      const repoResponse = await githubRequest(`/repos/${owner}/${repo}`);
+      if (repoResponse.status === 401) { setConnStatus("비밀 열쇠(토큰)가 맞지 않습니다. 설치 담당자에게 새 열쇠를 요청해 주세요.", false); connection.verified = false; refreshMeta(); return; }
+      if (repoResponse.status === 404) { setConnStatus("홈페이지 보관함을 찾지 못했습니다. 아이디·보관함 이름을 다시 확인해 주세요.", false); connection.verified = false; refreshMeta(); return; }
+      if (!repoResponse.ok) { setConnStatus(`보관함 확인에 실패했습니다 (오류 ${repoResponse.status}). 잠시 후 다시 시도해 주세요.`, false); connection.verified = false; refreshMeta(); return; }
+      const fileResponse = await githubRequest(`/repos/${owner}/${repo}/contents/site-overrides.js?ref=${encodeURIComponent(branch)}`);
+      if (fileResponse.status === 404) {
+        setConnStatus("홈페이지와 연결됐습니다. 설정 파일은 아직 없지만 처음 반영할 때 자동으로 만들어집니다.", true);
+      } else if (!fileResponse.ok) {
+        setConnStatus(`설정 파일 확인에 실패했습니다 (오류 ${fileResponse.status}). 잠시 후 다시 시도해 주세요.`, false);
+        connection.verified = false;
+        refreshMeta();
+        return;
+      } else {
+        setConnStatus("홈페이지와 연결됐고 설정 파일까지 확인했습니다.", true);
+      }
+      connection.verified = true;
+      connection.identity = currentConnectionIdentity();
+      persistConnection();
+      try {
+        // 자동으로 적용하면 이 화면의 작업과 꼬일 수 있어, 다른 점만 감지하고 적용은 상단 버튼에 맡긴다.
+        const remote = await fetchRemoteOverrides();
+        if (remote && overridesKey(remote) !== overridesKey(syncedOverrides)) {
+          remoteOverridesCache = remote;
+          llmSyncFlag("홈페이지에 올라가 있는 설정이 이 화면보다 최신입니다. 눌러서 불러오세요.");
+          el("connStatus").append(document.createTextNode(" 홈페이지에 이 화면보다 최신 설정이 있습니다. 상단의 빨간 「LLM으로 홈페이지 수정한 내용 어드민에 적용하기」 버튼으로 불러오세요."));
+        }
+      } catch { /* 원격 설정을 못 읽어도 연결 자체는 유효합니다 */ }
+    } catch {
+      setConnStatus("인터넷 연결 문제로 확인하지 못했습니다. 잠시 후 다시 시도해 주세요.", false);
+      connection.verified = false;
+    }
+    refreshMeta();
+  }
+  el("connTestBtn").addEventListener("click", testConnection);
+  ["ghOwner", "ghRepo", "ghBranch", "ghToken"].forEach((id) => {
+    el(id).addEventListener("input", invalidateConnection);
+  });
+
+  // ----- LLM 수정 감지·수동 적용 — 홈페이지 쪽이 바뀌어도 이 화면은 자동으로 따라가지 않는다.
+  //       바뀐 것이 감지되면 상단 버튼이 빨갛게 깜빡이고, 누를 때만 최신 내용을 적용한다.
+  const overridesKey = (overrides) => JSON.stringify({
+    e: overrides.eventMap || null,
+    w: overrides.weights || null,
+    p: overrides.productOverrides || {},
+    a: overrides.productAdditions || [],
+  });
+  let syncedOverrides = committed; // 이 화면이 마지막으로 적용한 '홈페이지에 올라간 설정'
+  let remoteOverridesCache = null;
+  const llmSync = { needed: false, reasons: [] };
+  function baseFingerprint() {
+    const seed = JSON.stringify([baseProducts, defaultEventMap, defaultWeights, trendTags, overridesKey(committed)]);
+    let hash = 5381;
+    for (let index = 0; index < seed.length; index += 1) hash = ((hash * 33) ^ seed.charCodeAt(index)) >>> 0;
+    return String(hash);
+  }
+  function updateLlmSyncBtn() {
+    const btn = el("llmSyncBtn");
+    btn.dataset.alert = String(llmSync.needed);
+    btn.title = llmSync.needed
+      ? llmSync.reasons.join(" ")
+      : "홈페이지 쪽에서 바뀐 내용이 감지되면 이 버튼이 빨갛게 깜빡입니다.";
+  }
+  function llmSyncFlag(reason) {
+    llmSync.needed = true;
+    if (!llmSync.reasons.includes(reason)) llmSync.reasons.push(reason);
+    updateLlmSyncBtn();
+  }
+  function checkBaseFingerprint() {
+    let syncReloaded = false;
+    let stored = null;
+    try {
+      syncReloaded = sessionStorage.getItem(storage.syncReload) === "1";
+      if (syncReloaded) sessionStorage.removeItem(storage.syncReload);
+      stored = localStorage.getItem(storage.appliedBase);
+    } catch { return; }
+    const current = baseFingerprint();
+    if (!stored || syncReloaded) {
+      try { localStorage.setItem(storage.appliedBase, current); } catch { /* 기록을 못 하면 다음에 다시 시도한다 */ }
+      return;
+    }
+    if (stored !== current) llmSyncFlag("홈페이지 파일(상품·기본값·설정)이 이 화면이 알던 것과 달라졌습니다. 눌러서 적용하세요.");
+  }
+  async function applyLlmSync() {
+    const unsaved = canonicalKey(computeOverrides()) !== baselineCanonical;
+    if (unsaved && !window.confirm("이 화면에 아직 반영 전인 수정이 있습니다. 홈페이지의 최신 내용을 적용하면 그 수정은 사라집니다. 남겨 두려면 먼저 「백업 파일 받기」를 누르세요. 계속할까요?")) return;
+    try { localStorage.removeItem(storage.draft); } catch { /* 초안이 안 지워져도 아래에서 새 기준으로 덮인다 */ }
+    if (connection.verified) {
+      try {
+        const remote = remoteOverridesCache || await fetchRemoteOverrides();
+        if (remote) {
+          committed = remote;
+          syncedOverrides = remote;
+          remoteOverridesCache = null;
+          writeJson(localStorage, storage.published, remote);
+          try { localStorage.setItem(storage.appliedBase, baseFingerprint()); } catch { /* 기록 실패는 무시 */ }
+          buildState(remote);
+          setBaselineFromState();
+          renderAll();
+          llmSync.needed = false;
+          llmSync.reasons = [];
+          updateLlmSyncBtn();
+          logSave("홈페이지의 최신 내용을 이 화면에 적용했습니다.");
+          return;
+        }
+      } catch { /* 원격을 못 읽으면 아래의 새로고침 경로로 간다 */ }
+    }
+    try { sessionStorage.setItem(storage.syncReload, "1"); } catch { /* 표시 없이 새로고침해도 동작은 같다 */ }
+    location.reload();
+  }
+  el("llmSyncBtn").addEventListener("click", applyLlmSync);
+
+  async function fetchRemoteOverrides() {
+    const { owner, repo, branch } = connectionInput();
+    const response = await githubRequest(`/repos/${owner}/${repo}/contents/site-overrides.js?ref=${encodeURIComponent(branch)}`, {
+      headers: { Accept: "application/vnd.github.raw+json" },
+    });
+    if (!response.ok) return null;
+    const text = await response.text();
+    const match = text.match(/window\.SITE_OVERRIDES\s*=\s*(\{[\s\S]*\});/);
+    if (!match) return null;
+    try { return JSON.parse(match[1]); } catch { return null; }
+  }
+
+  function toBase64(text) {
+    const bytes = new TextEncoder().encode(text);
+    let binary = "";
+    for (let index = 0; index < bytes.length; index += 1) binary += String.fromCharCode(bytes[index]);
+    return btoa(binary);
+  }
+  function logSave(text) {
+    const log = el("saveLog");
+    const time = new Date().toLocaleTimeString("ko-KR", { hour12: false });
+    log.textContent = `${log.textContent}${log.textContent ? "\n" : ""}${time} ${text}`;
+  }
+  // 저장소에 파일 하나를 커밋한다 — 이미 있으면 sha를 얻어 갱신, 없으면 신규
+  async function putRepoFile(filePath, base64Content, message) {
+    const { owner, repo, branch } = connectionInput();
+    const apiPath = `/repos/${owner}/${repo}/contents/${filePath}`;
+    let sha = null;
+    const current = await githubRequest(`${apiPath}?ref=${encodeURIComponent(branch)}`);
+    if (current.ok) sha = (await current.json()).sha;
+    else if (current.status !== 404) return { ok: false, status: current.status };
+    const body = { message, content: base64Content, branch };
+    if (sha) body.sha = sha;
+    const put = await githubRequest(apiPath, { method: "PUT", body: JSON.stringify(body) });
+    if (!put.ok) return { ok: false, status: put.status };
+    return { ok: true, result: await put.json() };
+  }
+  async function saveToGithub() {
+    const overrides = refreshMeta();
+    const problems = validate();
+    if (problems.length) { logSave(`반영 중단 · ${problems[0]}`); return; }
+    if (!connection.verified) { logSave("반영 중단 · 먼저 01번에서 연결 확인을 눌러 주세요."); return; }
+    if (connection.identity !== currentConnectionIdentity()) {
+      invalidateConnection();
+      logSave("반영 중단 · 연결 정보가 바뀌었습니다. 다시 연결 확인을 눌러 주세요.");
+      return;
+    }
+    el("saveBtn").disabled = true;
+    el("saveBtnTop").disabled = true;
+    try {
+      // 반영 직전 원격 설정은 간단한 복구용 정상본으로 보관한다.
+      const previousRemote = await fetchRemoteOverrides();
+      if (previousRemote) writeJson(localStorage, storage.lastGood, previousRemote);
+      el("restoreBtn").disabled = !previousRemote && !readJson(localStorage, storage.lastGood);
+      // 새 사진을 모두 올린 뒤 설정을 마지막에 올린다. 성공한 사진은 즉시 체크포인트에서 제외한다.
+      const imageEntries = Object.entries(state.pendingImages);
+      const outcome = await adminCore.publishOperation({
+        overrides,
+        pendingImages: state.pendingImages,
+        now: () => new Date().toISOString(),
+        uploadImage: async (imagePath, image, index, total) => {
+          logSave(`사진 올리는 중 (${index + 1}/${total}) · ${imagePath}`);
+          return putRepoFile(
+            imagePath,
+            image.dataUrl.slice(image.dataUrl.indexOf(",") + 1),
+            `운영 콘솔에서 상품 사진 업로드 · ${imagePath}`,
+          );
+        },
+        onCheckpoint: (remaining) => {
+          state.pendingImages = remaining;
+          refreshMeta();
+        },
+        saveSettings: (published) => {
+          logSave(imageEntries.length ? "사진 완료 · 설정 올리는 중…" : "홈페이지에 올리는 중…");
+          return putRepoFile("site-overrides.js", toBase64(overridesFileContent(published)), "운영 콘솔에서 상품·추천·카탈로그 설정 갱신");
+        },
+      });
+      if (!outcome.ok && outcome.phase === "image") {
+        logSave(`반영 중단 · ${outcome.index + 1}번째 사진을 올리지 못했습니다 (오류 ${outcome.status}). 설정은 바뀌지 않았으니 잠시 후 「홈페이지에 반영하기」를 다시 누르면 이어서 진행됩니다.`);
+        refreshMeta();
+        return;
+      }
+      if (!outcome.ok && outcome.status === 409) { logSave("반영 실패 · 다른 컴퓨터에서 먼저 반영했습니다. 연결 확인을 다시 누른 뒤 반영해 주세요."); refreshMeta(); return; }
+      if (!outcome.ok) { logSave(`반영 실패 · 오류 ${outcome.status}. 비밀 열쇠(토큰)의 권한 문제일 수 있으니 설치 담당자에게 확인해 주세요.`); refreshMeta(); return; }
+      const published = outcome.published;
+      const saved = outcome.saved;
+      const commitSha = saved.result.commit && saved.result.commit.sha ? saved.result.commit.sha.slice(0, 7) : "확인 불가";
+      // 올라간 사진의 미리보기는 표시 전용 캐시로 옮긴다 — 로컬 폴더에 파일이 없어도 썸네일 유지
+      imageEntries.forEach(([imagePath, image]) => { imagePreviewCache[imagePath] = image; });
+      state.pendingImages = {};
+      committed = published;
+      syncedOverrides = published;
+      writeJson(localStorage, storage.published, published);
+      writeJson(localStorage, storage.draft, null);
+      try { localStorage.setItem(storage.appliedBase, baseFingerprint()); } catch { /* 다음 실행에서 다시 대조한다 */ }
+      setBaselineFromState();
+      logSave(`반영 완료 · 1~10분 안에 홈페이지에 나타납니다. (기록번호 ${commitSha})`);
+    } catch {
+      logSave("반영 실패 · 인터넷 연결 문제입니다. 잠시 후 다시 시도해 주세요.");
+    }
+    refreshMeta();
+  }
+  el("saveBtn").addEventListener("click", saveToGithub);
+  el("saveBtnTop").addEventListener("click", saveToGithub);
+
+  function exportFile() {
+    const overrides = refreshMeta();
+    const blob = new Blob([overridesFileContent(overrides)], { type: "text/javascript" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "site-overrides.js";
+    document.body.append(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    logSave("백업 파일을 컴퓨터의 다운로드 폴더에 저장했습니다. 홈페이지에는 아무 변화가 없습니다.");
+  }
+  el("exportBtn").addEventListener("click", exportFile);
+
+  function restorePrevious() {
+    const previous = readJson(localStorage, storage.lastGood);
+    if (!previous) { logSave("불러올 직전 정상본이 없습니다."); return; }
+    if (!window.confirm("마지막 반영 직전의 홈페이지 설정을 이 화면에 불러올까요? 실제 홈페이지는 아직 바뀌지 않습니다.")) return;
+    buildState(previous);
+    renderAll();
+    logSave("직전 정상본을 초안으로 불러왔습니다. 미리보기로 확인한 뒤 「홈페이지에 반영하기」를 눌러 복구하세요.");
+  }
+  el("restoreBtn").addEventListener("click", restorePrevious);
+
+  el("discardBtn").addEventListener("click", () => {
+    if (!window.confirm("이 화면에서 고친 내용을 모두 지우고 처음 상태로 되돌립니다. 홈페이지는 바뀌지 않습니다. 계속할까요?")) return;
+    writeJson(localStorage, storage.draft, null);
+    location.reload();
+  });
+
+  el("simRunBtn").addEventListener("click", runSimulation);
+
+  // ----- 시작
+  function renderAll() {
+    renderWeights();
+    renderMapping();
+    renderCatTabs();
+    renderProducts();
+    refreshMeta();
+  }
+  buildState(committed);
+  setBaselineFromState();
+  const savedDraft = readJson(localStorage, storage.draft);
+  if (savedDraft) buildState(savedDraft);
+  loadConnection();
+  el("restoreBtn").disabled = !readJson(localStorage, storage.lastGood);
+  initSimForm();
+  renderAll();
+  checkBaseFingerprint();
+  updateLlmSyncBtn();
+})();
+</script>
+</body>
+</html>
