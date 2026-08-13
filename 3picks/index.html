@@ -674,16 +674,32 @@
       .footer-grid{gap:28px}
       .footer-info{font-size:13px;overflow-wrap:anywhere}
       .quote-float{z-index:150;left:8px;bottom:calc(8px + env(safe-area-inset-bottom));width:calc(100vw - 16px)}
-      .quote-trigger{width:56px;height:56px}
-      .quote-bar{width:100%;height:clamp(320px,52svh,500px);max-height:calc(100svh - 96px - env(safe-area-inset-bottom));overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain}
+      .quote-trigger{width:46px;height:46px;font-size:13px}
+      .quote-trigger__heart{font-size:18px}
+      .quote-bar{width:100%;height:clamp(300px,calc(45svh + 2px),430px);max-height:calc(100svh - 96px - env(safe-area-inset-bottom));overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain}
       .quote-bar__inner{height:auto;min-height:100%;min-width:0;padding:0;display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto}
       .quote-products{min-width:0;border:0;border-bottom:1px solid var(--tp-line)}
-      .quote-items{min-height:136px;max-height:148px}
-      .quote-item{flex-basis:216px}
-      .quote-summary{min-height:136px;border:0;border-bottom:1px solid var(--tp-line)}
-      .quote-actions{grid-template-columns:1fr 1fr;grid-template-rows:44px 44px 56px}
-      .quote-actions .tp-btn{min-height:44px}
-      .quote-actions .quote-consult{padding-left:64px}
+      .quote-products__head{min-height:36px;padding:3px 8px;font-size:13px;line-height:1.1}
+      .quote-inline-clear,.quote-inline-collapse{height:28px;padding-inline:7px;font-size:13px;line-height:1.1}
+      .quote-items{min-height:112px;max-height:120px}
+      .quote-item{flex-basis:190px;grid-template-columns:76px 1fr;column-gap:8px;padding:8px}
+      .quote-item__image{width:76px;height:76px;transform:scale(1.3)}
+      .quote-item__copy{padding-right:20px}
+      .quote-item__category,.quote-item__name,.quote-item__price,.quote-item__select{font-size:13px}
+      .quote-item__name{min-height:30px}
+      .quote-item__price{height:36px;margin-top:2px}
+      .quote-item__select{min-height:28px}
+      .quote-summary{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"label total" "quantity total" "meta meta";gap:2px 12px;align-items:end;padding:4px 8px;border:0;border-bottom:1px solid var(--tp-line)}
+      .quote-summary__label{grid-area:label}
+      .quote-summary__label,.quote-summary__meta,.quote-summary__total{font-size:13px;line-height:1.1}
+      .quote-quantity{grid-area:quantity;margin-top:0}
+      .quote-quantity button,.quote-quantity input{height:36px}
+      .quote-summary__meta{grid-area:meta;margin-top:2px}
+      .quote-summary__total{grid-area:total;align-self:end;margin-top:0;text-align:right;line-height:1;white-space:nowrap}
+      .quote-summary__total strong{font-size:18px}
+      .quote-actions{grid-template-columns:1fr 1fr;grid-template-rows:40px 40px 46px}
+      .quote-actions .tp-btn{min-height:40px;padding:6px 8px;font-size:13px;line-height:1.1}
+      .quote-actions .quote-consult{padding-left:56px}
       dialog{max-height:calc(100svh - 24px);overflow:auto}
       .dialog-body{padding:24px 18px}
       .dialog-body h2{font-size:28px}
