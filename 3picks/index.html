@@ -404,15 +404,7 @@
     .about-layout{padding-top:16px;border-top:1px solid var(--tp-line)}
     .about__lead h2{margin:8px 0 0;font-size:clamp(56px,5vw,68px);line-height:1.04;letter-spacing:-.05em;font-weight:900}
     .about__lead h2 span,.about__copy span{display:block;white-space:nowrap}
-    .about__content{display:grid;grid-template-columns:minmax(0,5fr) minmax(520px,7fr);align-items:start;gap:clamp(48px,7vw,96px);margin-top:clamp(48px,6vw,72px)}
-    .about-team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;justify-self:end;gap:clamp(12px,2vw,24px);width:100%;max-width:660px}
-    .team-member{min-width:0;background:transparent}
-    .team-member__visual{aspect-ratio:4/3;margin:0;display:grid;place-items:center;overflow:hidden;background:var(--tp-cream);border-bottom:1px solid var(--tp-line)}
-    .team-member__visual img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
-    .team-member--baek .team-member__visual img{transform:scale(1.02);transform-origin:center bottom}
-    .team-member__body{padding:16px 0 0}
-    .team-member__role{min-height:2.7em;font-family:var(--tp-font-mono);font-size:13px;line-height:1.35;letter-spacing:.12em;text-transform:uppercase;color:var(--tp-grey)}
-    .team-member h3{margin:8px 0 0;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.025em}
+    .about__content{display:block;margin-top:clamp(48px,6vw,72px)}
     .about__copy{max-width:none;padding-top:0}
     .about__copy p{margin:0}
     .about__copy-lead{color:var(--tp-ink);font-size:clamp(30px,2.5vw,34px);font-weight:800;line-height:1.34;letter-spacing:-.035em}
@@ -528,11 +520,10 @@
       .product-rail{grid-auto-columns:calc((100% - 1px)/2)}
       .process{grid-template-columns:repeat(2,1fr)}
       .about__lead h2{font-size:46px}
-      .about__content{grid-template-columns:1fr;gap:40px;margin-top:40px}
+      .about__content{margin-top:40px}
       .about__copy{max-width:100%}
       .about__copy-lead{font-size:28px}
       .about__copy-body{font-size:21px}
-      .about-team{justify-self:end;max-width:100%}
       .member-story__grid{grid-template-rows:none;grid-auto-rows:auto;column-gap:0;row-gap:32px;align-items:start}
       .story-panel{height:auto;width:100%;margin-inline:auto;justify-self:center;overflow:visible}
       .story-panel picture{height:auto;aspect-ratio:4/3}
@@ -645,10 +636,7 @@
       .about-layout{padding-top:12px}
       .about__lead h2{font-size:34px;line-height:1.08}
       .about__lead h2 span,.about__copy span{white-space:normal}
-      .about__content{gap:32px;margin-top:32px}
-      .about-team{gap:8px}
-      .team-member__body{padding-top:12px}
-      .team-member h3{font-size:22px}
+      .about__content{margin-top:32px}
       .about__copy-lead{font-size:22px;line-height:1.42}
       .about__copy-body{margin-top:24px!important;font-size:18px;line-height:1.55}
       .member-story{margin-top:48px}
@@ -910,22 +898,6 @@
             <div class="about__copy">
               <p class="about__copy-lead"><span>사람과 브랜드를 이해해 온 경험으로,</span><span>고객이 원하는 바를 정확히 읽습니다.</span></p>
               <p class="about__copy-body"><span>막연한 아이디어를 실행 가능한</span><span>세 가지 제안으로 정리하고,</span><span>굿즈 선정부터 실제 제작까지</span><span>끝까지 함께합니다.</span></p>
-            </div>
-            <div class="about-team" aria-label="3PICKS 멤버">
-              <article class="team-member team-member--ko-aekyung">
-                <figure class="team-member__visual" aria-hidden="true"><img src="assets/team-member-placeholder-v2.png" loading="lazy" alt=""></figure>
-                <div class="team-member__body">
-                  <div class="team-member__role">CEO</div>
-                  <h3>고애경 대표</h3>
-                </div>
-              </article>
-              <article class="team-member team-member--baek">
-                <figure class="team-member__visual" aria-hidden="true"><img src="assets/team-baek-sunmi-v2.png" loading="lazy" alt=""></figure>
-                <div class="team-member__body">
-                  <div class="team-member__role">Director</div>
-                  <h3>백선미 이사</h3>
-                </div>
-              </article>
             </div>
           </div>
         </div>
