@@ -22,5 +22,13 @@
     "last_kind": "redeploy",
     "last_sha256": "331c6279e4b1d3110bc6cd3b315b453f3618c8a0240076e1ec2b535f2e76ef3d",
     "timestamp": "2026-08-11T16:22:00.413799Z"
+  },
+  "project-ticket-no-no": {
+    "slug": "project-ticket-no-no",
+    "mode": "choi",
+    "url": "https://works.choi.build/project-ticket-no-no/",
+    "last_kind": "new",
+    "last_sha256": "e4729b08742e9f6e0acb7656bb6bc23f822ab4dc9f7b453a3f79097f06f934e0",
+    "timestamp": "2026-08-20T06:14:43.294335Z"
   }
 }
