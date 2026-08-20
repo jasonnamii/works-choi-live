@@ -27,8 +27,8 @@
     "slug": "project-ticket-no-no",
     "mode": "choi",
     "url": "https://works.choi.build/project-ticket-no-no/",
-    "last_kind": "new",
-    "last_sha256": "e4729b08742e9f6e0acb7656bb6bc23f822ab4dc9f7b453a3f79097f06f934e0",
-    "timestamp": "2026-08-20T06:14:43.294335Z"
+    "last_kind": "redeploy",
+    "last_sha256": "891624b88109465467929bfe0aa630121fd4adf9bef90d88b0038ace37e789bb",
+    "timestamp": "2026-08-20T06:23:20.269064Z"
   }
 }

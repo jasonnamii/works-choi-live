@@ -111,6 +111,7 @@
     .dark{background:var(--ink);color:var(--paper)}
     .dark p{color:#d3cfc6}
     .dark .chapter-no,.dark .spec{color:#9b978f}
+    .dark code{color:var(--ink);-webkit-text-fill-color:var(--ink)}
     .factory{border:1px solid #4b4b4b;margin:28px 0}
     .factory div{padding:13px 18px;border-bottom:1px solid #4b4b4b}
     .factory div:last-child{border-bottom:0}
@@ -209,8 +210,8 @@
           <p class="hero-lead">“티켓을 사람에게 일을 시키는 단위로 쓰는 조직운영은<br>점점 구식이 되고 있다”가 정확합니다.</p>
           <p class="hero-sub">2026년 8월 기준으로 보면 특히 AI-native / 고속 제품 조직에서 이 변화가 꽤 명확합니다.</p>
         </div>
-        <div class="hero-foot"><span class="spec">problem · project · team · context</span><span class="spec">10 sections</span></div>
-        <div class="hero-mark" aria-hidden="true">10</div>
+        <div class="hero-foot"><span class="spec">problem · project · team · context</span><span class="spec">9 sections + conclusion</span></div>
+        <div class="hero-mark" aria-hidden="true">09</div>
       </div>
     </section>
 
@@ -222,9 +223,9 @@
       </div>
     </aside>
 
-    <nav class="nav shell" aria-label="10개 섹션 목차"><div class="nav-grid">
+    <nav class="nav shell" aria-label="9개 섹션 목차"><div class="nav-grid">
       <a href="#s1">01 <b>핵심 변화</b></a><a href="#s2">02 <b>Basecamp</b></a><a href="#s3">03 <b>Linear</b></a><a href="#s4">04 <b>OpenAI</b></a><a href="#s5">05 <b>2026 변화</b></a>
-      <a href="#s6">06 <b>Coinbase</b></a><a href="#s7">07 <b>Ramp</b></a><a href="#s8">08 <b>Figma</b></a><a href="#s9">09 <b>DORA</b></a><a href="#s10">10 <b>GitLab</b></a>
+      <a href="#s6">06 <b>Coinbase</b></a><a href="#s7">07 <b>Ramp</b></a><a href="#s8">08 <b>Figma</b></a><a href="#s9">09 <b>DORA</b></a>
     </div></nav>
 
     <article class="chapter shell" id="s1"><div class="chapter-grid">
@@ -341,18 +342,6 @@
       </div></div>
     </div></article>
 
-    <article class="chapter shell" id="s10"><div class="chapter-grid">
-      <aside class="chapter-index"><span class="chapter-no">section</span><span class="big">10</span></aside>
-      <div><h2>반례도 있습니다.<br><span class="hl hl-block hl-display">GitLab</span>입니다</h2><div class="prose">
-        <p>GitLab은 지금도 상당히 체계적인 Issue workflow를 사용합니다.</p>
-        <p class="quote"><code>ready for design → design → planning breakdown → refinement → ready for development</code></p>
-        <p>같은 상태가 존재합니다.</p>
-        <p>그러므로 <strong>“좋은 IT 회사는 workflow를 안 쓴다.”</strong>라고 일반화하면 틀립니다.</p>
-        <p>그런데 GitLab조차 흥미롭게도 일반적으로 Issue를 특정 사람에게 바로 assign하지 않고, 엔지니어가 <span class="hl">project/epic 단위의 ownership</span>을 갖도록 권장합니다.</p>
-        <p class="signal">결국 똑같은 결론으로 옵니다.</p>
-      </div></div>
-    </div></article>
-
     <section class="chapter dark"><div class="shell"><div class="chapter-grid">
       <aside class="chapter-index"><span class="chapter-no">conclusion</span><span class="big">C</span></aside>
       <div><h2>그래서 제가 내린 결론</h2><div class="prose">
@@ -363,34 +352,12 @@
       </div></div>
     </div></div></section>
 
-    <section class="chapter shell"><div class="chapter-grid">
-      <aside class="chapter-index"><span class="chapter-no">application</span><span class="big">C8</span></aside>
-      <div><h2>제가 <span class="hl hl-block hl-display">Cre8orClub</span>이라면<br>이렇게 바꿉니다</h2><div class="prose">
-        <p class="signal">기획팀이 개발팀에 <span class="hl">Task를 Hand-off하면 안 됩니다.</span></p>
-        <div class="flow"><div class="flow-row"><span class="n">01</span><span class="t"><strong>대표</strong> → Vision / 사업적 의도</span></div><div class="flow-row"><span class="n">02</span><span class="t"><strong>기획</strong> → 고객 문제 / 사업목표 / 성공조건 / Constraint를 정의</span></div><div class="flow-row spine-step"><span class="n">03</span><span class="t"><span class="hl hl-tight">Project</span> → “Creator Profile을 처음 방문한 사용자가 30초 안에 Creator를 이해하고 Follow하도록 만든다.”</span></div></div>
-        <p>여기까지가 기획의 책임입니다.</p>
-        <p>그리고 <strong>기획 + UX + AOS + iOS + Web + Backend</strong> 중 필요한 사람을 붙여 <span class="hl">Project Team</span>을 만듭니다.</p>
-        <p>그 팀에게 <span class="hl">“이 결과를 만들어라.”</span>를 줍니다.</p>
-        <p>그다음부터</p><ul><li>어떤 UX가 필요한지</li><li>API를 어떻게 구성할지</li><li>화면을 몇 개 만들지</li><li>native인지 web인지</li><li>caching을 할지</li><li>먼저 prototype을 만들지</li><li>어떤 순서로 구현할지</li></ul>
-        <p>는 <span class="hl">그 사람들이 결정해야 합니다.</span></p>
-        <p>Issue는 그 과정에서 <span class="hl">그 사람들이 자기 일을 정리하기 위해 만드는 것</span>입니다.</p>
-        <h3>그래서 관리단위도 바뀌어야 합니다</h3>
-        <p>대표나 조직장이 보면 안 되는 것은 <strong>AOS-231 완료됐나? / BE-827 몇 %인가? / Story Point 몇 개 태웠나?</strong> 같은 개인 Task 상태입니다.</p>
-        <p>봐야 하는 것은 다음과 같습니다.</p>
-        <div class="project-card"><div class="head">Creator Profile Renewal</div><dl><dt>목표</dt><dd>Follow Conversion +20%</dd><dt>Owner</dt><dd>홍길동</dd><dt>Team</dt><dd>UX / AOS / iOS / BE</dd><dt>Status</dt><dd>Building</dd><dt>Confidence</dt><dd>High</dd><dt>Target</dt><dd>Aug 28</dd><dt>Current risk</dt><dd>Initial rendering latency</dd><dt>Evidence</dt><dd><span class="hl hl-tight">실제 작동하는 Prototype / Design / PR / Product</span></dd></dl></div>
-        <p>이게 훨씬 강한 조직을 만듭니다.</p>
-        <blockquote class="quote"><p>과거의 Agile은 “일을 잘게 쪼개서 사람을 관리”했고, 최신 고성과 제품조직은 <span class="hl">“문제를 명확히 정의해서 유능한 팀에 맡기는”</span> 방향으로 이동하고 있습니다.</p><p>Ticket은 없어지는 것이 아니라, <span class="hl">‘명령서’</span>에서 <span class="hl">‘맥락과 실행 기록’</span>으로 격하되고 있습니다.</p></blockquote>
-        <p>2026년 AI Agent가 들어오면서 이 변화가 더 빨라지고 있습니다. Atlassian 자신이 3,500명의 개발자·관리자를 조사한 2025 Developer Experience 보고서에서도 AI로 개인 생산성은 올라가는데 <strong>조직적 비효율은 오히려 증가하고 있다</strong>고 보고했습니다. 코드 생산속도보다 조직운영 방식이 병목이 된다는 얘기입니다.</p>
-        <p>Cre8orClub은 Jira냐 Linear냐를 결정하기 전에 이 Product Operating Model부터 설계하는 게 맞습니다. 다음 단계는 <code>대표의 Concept → Project 정의 → Team 구성 → 실행 → Review → Ship</code>까지 <span class="hl">티켓 공장 없이 돌아가는 Cre8orClub 전용 업무 시스템</span>을 설계하는 것입니다.</p>
-      </div></div>
-    </div></section>
-
     <section class="sources shell" id="sources"><h2>출처</h2><div>
       <div class="source"><span class="n">01</span><a href="https://basecamp.com/shapeup" target="_blank" rel="noopener">Shape Up</a><span class="pub">Basecamp</span></div><div class="source"><span class="n">02</span><a href="https://linear.app/method/write-issues-not-user-stories" target="_blank" rel="noopener">Write issues not user stories</a><span class="pub">Linear Method</span></div><div class="source"><span class="n">03</span><a href="https://linear.app/next" target="_blank" rel="noopener">Issue tracking is dead</a><span class="pub">Linear</span></div><div class="source"><span class="n">04</span><a href="https://linear.app/customers/openai" target="_blank" rel="noopener">OpenAI customer story</a><span class="pub">Linear</span></div><div class="source"><span class="n">05</span><a href="https://linear.app/customers/coinbase" target="_blank" rel="noopener">Coinbase customer story</a><span class="pub">Linear</span></div><div class="source"><span class="n">06</span><a href="https://linear.app/customers/ramp" target="_blank" rel="noopener">Ramp customer story</a><span class="pub">Linear</span></div><div class="source"><span class="n">07</span><a href="https://www.figma.com/blog/how-we-run-eng-crits-at-figma/" target="_blank" rel="noopener">How we engineer feedback at Figma with eng crits</a><span class="pub">Figma</span></div><div class="source"><span class="n">08</span><a href="https://www.figma.com/blog/2025-shifting-roles-report/" target="_blank" rel="noopener">Are roles and responsibilities a thing of the past?</a><span class="pub">Figma</span></div><div class="source"><span class="n">09</span><a href="https://www.figma.com/blog/2026-ai-report/" target="_blank" rel="noopener">2026 AI report</a><span class="pub">Figma</span></div><div class="source"><span class="n">10</span><a href="https://dora.dev/capabilities/loosely-coupled-teams/" target="_blank" rel="noopener">Loosely coupled teams</a><span class="pub">DORA</span></div><div class="source"><span class="n">11</span><a href="https://dora.dev/capabilities/team-experimentation/" target="_blank" rel="noopener">Team experimentation</a><span class="pub">DORA</span></div><div class="source"><span class="n">12</span><a href="https://handbook.gitlab.com/handbook/product-development/how-we-work/product-development-flow/" target="_blank" rel="noopener">Product Development Flow</a><span class="pub">GitLab</span></div><div class="source"><span class="n">13</span><a href="https://handbook.gitlab.com/handbook/engineering/infrastructure-platforms/tenant-scale/organizations/process/" target="_blank" rel="noopener">Organizations team processes</a><span class="pub">GitLab</span></div><div class="source"><span class="n">14</span><a href="https://www.atlassian.com/blog/developer/developer-experience-report-2025" target="_blank" rel="noopener">Developer Experience Report 2025</a><span class="pub">Atlassian</span></div>
     </div></section>
   </main>
 
-  <footer class="footer shell"><div class="footer-row"><span>Ticket-driven → Outcome / Project-driven · 2026-08</span><span class="mono">end / 10</span></div></footer>
+  <footer class="footer shell"><div class="footer-row"><span>Ticket-driven → Outcome / Project-driven · 2026-08</span><span class="mono">end / conclusion</span></div></footer>
   <button class="to-top" id="toTop" type="button" aria-label="문서 맨 위로 이동">↑</button>
   <script>
     const bar=document.getElementById('progressBar');
@@ -427,9 +394,13 @@
         const glyphHeight=metrics.actualBoundingBoxAscent+metrics.actualBoundingBoxDescent;
         if(!glyphHeight)return;
         const boxHeight=node.getBoundingClientRect().height;
-        const top=((boxHeight-glyphHeight)/2)-0.5;
+        const label=node.textContent.trim();
+        const hasDescender=/[gjpqy]/.test(label);
+        const hasHangul=/[가-힣]/.test(label);
+        const visualGap=hasDescender?0.5:(hasHangul?2.5:1.5);
+        const top=((boxHeight-glyphHeight)/2)-visualGap;
         node.style.setProperty('--hl-display-top',`${top}px`);
-        node.style.setProperty('--hl-display-height',`${glyphHeight+1}px`);
+        node.style.setProperty('--hl-display-height',`${glyphHeight+(visualGap*2)}px`);
       });
     };
     if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitDisplayHighlights);else fitDisplayHighlights();
