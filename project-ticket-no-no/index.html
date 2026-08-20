@@ -399,10 +399,7 @@
         const glyphHeight=metrics.actualBoundingBoxAscent+metrics.actualBoundingBoxDescent;
         if(!glyphHeight)return;
         const boxHeight=node.getBoundingClientRect().height;
-        const label=node.textContent.trim();
-        const hasDescender=/[gjpqy]/.test(label);
-        const hasHangul=/[가-힣]/.test(label);
-        const visualGap=hasDescender?0.5:(hasHangul?2.5:1.5);
+        const visualGap=4;
         const top=((boxHeight-glyphHeight)/2)-visualGap;
         node.style.setProperty('--hl-display-top',`${top}px`);
         node.style.setProperty('--hl-display-height',`${glyphHeight+(visualGap*2)}px`);
