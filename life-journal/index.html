@@ -13,787 +13,379 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<title>life journal</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iIzBhMGEwYSIvPgo8cmVjdCB4PSI4IiB5PSI5IiB3aWR0aD0iNDgiIGhlaWdodD0iNyIgZmlsbD0iI2ZmNTcyMiIvPgo8cmVjdCB4PSI4IiB5PSIyNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjMxIiBmaWxsPSIjZjRlZmU3Ii8+CjxyZWN0IHg9IjI2IiB5PSIyNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjMxIiBmaWxsPSIjZjRlZmU3Ii8+CjxyZWN0IHg9IjQ0IiB5PSIyNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjMxIiBmaWxsPSIjZjRlZmU3Ii8+Cjwvc3ZnPg==">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iIzBhMGEwYSIvPgo8cmVjdCB4PSI4IiB5PSI5IiB3aWR0aD0iNDgiIGhlaWdodD0iNyIgZmlsbD0iI2ZmNTcyMiIvPgo8cmVjdCB4PSI4IiB5PSIyNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjMxIiBmaWxsPSIjZjRlZmU3Ii8+CjxyZWN0IHg9IjI2IiB5PSIyNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjMxIiBmaWxsPSIjZjRlZmU3Ii8+CjxyZWN0IHg9IjQ0IiB5PSIyNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjMxIiBmaWxsPSIjZjRlZmU3Ii8+Cjwvc3ZnPg==">
 <meta name="theme-color" content="#0a0a0a">
+<title>life journal · issue 03</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iIzBhMGEwYSIvPgo8cmVjdCB4PSI4IiB5PSI5IiB3aWR0aD0iNDgiIGhlaWdodD0iNyIgZmlsbD0iI2ZmNTcyMiIvPgo8cmVjdCB4PSI4IiB5PSIyNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjMxIiBmaWxsPSIjZjRlZmU3Ii8+CjxyZWN0IHg9IjI2IiB5PSIyNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjMxIiBmaWxsPSIjZjRlZmU3Ii8+CjxyZWN0IHg9IjQ0IiB5PSIyNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjMxIiBmaWxsPSIjZjRlZmU3Ii8+Cjwvc3ZnPg==">
 <style>
 :root{
-  --bg-1:#ffffff; --bg-2:#f7f7f7; --bg-3:#efefef; --paper:#f4efe7;
-  --rule:#d8d8d8; --rule-strong:#aaaaaa;
-  --fg-1:#0a0a0a; --fg-2:#3a3a3a; --fg-3:#6a6a6a;
-  --ink:#0a0a0a;
-  --on-dark-1:#f4efe7; --on-dark-2:#c8c4ba; --on-dark-3:#908d83;
-  --accent:#ff5722; --accent-ink:#ffffff;
-
-  --font:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Helvetica Neue',helvetica,system-ui,'Malgun Gothic',sans-serif;
-  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
-
-  --fs-xl:72px; --fs-display:56px; --fs-h1:44px; --fs-h2:32px; --fs-h3:24px; --fs-h4:20px;
-  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:40px; --s-7:64px; --s-8:96px;
-  --wrap:1120px;
+  --bg:#fff;--bg-2:#f6f6f4;--paper:#f4efe7;--fg:#0a0a0a;--fg-2:#3a3a3a;--fg-3:#767676;
+  --rule:#d8d8d4;--rule-strong:#a8a8a4;--accent:#ff5722;--accent-ink:#0a0a0a;
+  --on-dark:#f4efe7;--on-dark-2:#c8c4ba;--on-dark-3:#908d83;
+  --font:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Helvetica Neue',Arial,'Malgun Gothic',sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;--wrap:1120px;
+  color-scheme:light dark;
 }
-@media (prefers-color-scheme:dark){
-  :root{
-    --bg-1:#0d0d0d; --bg-2:#141414; --bg-3:#1c1c1c; --paper:#141414;
-    --rule:#2a2a2a; --rule-strong:#4a4a4a;
-    --fg-1:#f4efe7; --fg-2:#c8c4ba; --fg-3:#908d83;
-    --ink:#f4efe7;
-    --on-dark-1:#0d0d0d; --on-dark-2:#3a3a3a; --on-dark-3:#6a6a6a;
-    --accent:#ff6b3d; --accent-ink:#140803;
-  }
+@media(prefers-color-scheme:dark){
+  :root{--bg:#0d0d0d;--bg-2:#161616;--paper:#171717;--fg:#f4efe7;--fg-2:#c8c4ba;--fg-3:#9a9a9a;--rule:#2a2a2a;--rule-strong:#4a4a4a;--accent:#ff6b3d;--accent-ink:#150802;--on-dark:#0d0d0d;--on-dark-2:#3a3a3a;--on-dark-3:#767676}
 }
-:root[data-theme="dark"]{
-  --bg-1:#0d0d0d; --bg-2:#141414; --bg-3:#1c1c1c; --paper:#141414;
-  --rule:#2a2a2a; --rule-strong:#4a4a4a;
-  --fg-1:#f4efe7; --fg-2:#c8c4ba; --fg-3:#908d83;
-  --ink:#f4efe7;
-  --on-dark-1:#0d0d0d; --on-dark-2:#3a3a3a; --on-dark-3:#6a6a6a;
-  --accent:#ff6b3d; --accent-ink:#140803;
-}
-:root[data-theme="light"]{
-  --bg-1:#ffffff; --bg-2:#f7f7f7; --bg-3:#efefef; --paper:#f4efe7;
-  --rule:#d8d8d8; --rule-strong:#aaaaaa;
-  --fg-1:#0a0a0a; --fg-2:#3a3a3a; --fg-3:#6a6a6a;
-  --ink:#0a0a0a;
-  --on-dark-1:#f4efe7; --on-dark-2:#c8c4ba; --on-dark-3:#908d83;
-  --accent:#ff5722; --accent-ink:#ffffff;
-}
-
 *{box-sizing:border-box}
-body{
-  margin:0; background:var(--bg-1); color:var(--fg-1);
-  font-family:var(--font); font-size:16px; line-height:1.45; letter-spacing:0;
-  word-break:keep-all; line-break:strict; overflow-wrap:break-word;
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{max-width:var(--wrap); margin:0 auto; padding:0 var(--s-5)}
-p{margin:0 0 var(--s-4); color:var(--fg-2); line-height:1.62}
-p:last-child{margin-bottom:0}
-strong{color:var(--fg-1); font-weight:600}
-a{color:var(--fg-1); text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--rule-strong)}
+html{scroll-behavior:smooth;scroll-padding-top:24px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Helvetica Neue',Arial,'Malgun Gothic',sans-serif;font-size:16px;line-height:1.55;word-break:keep-all;line-break:strict;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+p{orphans:2;widows:2}
+img,video{max-width:100%;height:auto}
+.wrap{width:min(calc(100% - 48px),var(--wrap));margin:0 auto}
+a{color:inherit;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
 a:hover{text-decoration-color:var(--accent)}
-a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
-img{max-width:100%}
-
-.spec{
-  font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.08em;
-  text-transform:uppercase; color:var(--fg-3);
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.spec{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+.ac{color:var(--accent);border-radius:0;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.mast{padding:64px 0 0;border-bottom:1px solid var(--fg)}
+.mast-top{display:flex;justify-content:space-between;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+.mast h1{margin:22px 0 18px;font-size:clamp(80px,18vw,144px);font-weight:900;line-height:.9;letter-spacing:-.055em;text-transform:lowercase}
+.meta{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule)}
+.meta div{padding:13px 14px 13px 0;border-right:1px solid var(--rule)}
+.meta div:last-child{border-right:0}
+.meta .k{display:block;margin-bottom:4px}
+.meta .v{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
+.shelf{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 24px;padding:12px 0;border-top:1px solid var(--rule)}
+.shelf a{font-family:var(--mono);font-size:12.5px}
+.issue{padding:64px 0 96px}
+.issue-hd{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:2px solid var(--fg)}
+.issue-hd .code{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--accent)}
+.folio{display:flex;align-items:center;gap:12px;margin:64px 0 24px;padding-bottom:8px;border-bottom:1px solid var(--fg)}
+.folio:first-of-type{margin-top:40px}
+.pg{padding:3px 7px;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:11px;letter-spacing:.08em;border-radius:0;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hl{max-width:1000px;margin:0 0 18px;font-size:clamp(54px,9.4vw,92px);font-weight:900;line-height:1;letter-spacing:-.045em;text-wrap:balance}
+.hl.small{font-size:clamp(42px,7vw,68px)}
+.dek{max-width:66ch;margin:0 0 26px;color:var(--fg-3);font-size:19px;line-height:1.6}
+.byline{display:flex;flex-wrap:wrap;gap:12px 36px;padding:13px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:40px 0 0;background:var(--fg);color:var(--on-dark)}
+.stat{min-height:152px;padding:24px 18px;border-right:1px solid rgba(144,141,131,.35)}
+.stat:last-child{border-right:0}
+.stat .k{display:block;margin-bottom:16px;color:var(--on-dark-3);font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase}
+.stat .v{display:block;color:var(--on-dark);font-family:var(--mono);font-size:clamp(30px,4vw,46px);font-variant-numeric:tabular-nums;line-height:1}
+.stat .v.on{color:var(--accent)}
+.stat .u{display:block;margin-top:14px;color:var(--on-dark-3);font-size:12.5px;line-height:1.45}
+.tl{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.tl li{display:grid;grid-template-columns:96px 10px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:start}
+.tl .t{font-family:var(--mono);font-size:12.5px;color:var(--fg-3);font-variant-numeric:tabular-nums}
+.tl .dot{width:8px;height:8px;margin-top:6px;background:var(--rule-strong)}
+.tl .on .dot{background:var(--accent)}
+.tl .on .t{color:var(--accent)}
+.tl b{display:block;margin-bottom:2px;font-size:16px;line-height:1.35}
+.tl span:last-child span{color:var(--fg-3);font-size:13.5px;line-height:1.55}
+.note{margin-top:14px;color:var(--fg-3);font-size:12.5px}
+.compare{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--fg)}
+.choice{padding:22px;border-right:1px solid var(--rule)}
+.choice:last-child{border-right:0}
+.choice.pick{box-shadow:inset 4px 0 0 var(--accent)}
+.choice-hd{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding-bottom:10px;margin-bottom:16px;border-bottom:1px solid var(--rule)}
+.choice h3{margin:0;font-size:22px;line-height:1.25}
+.choice .num{font-family:var(--mono);font-size:28px;color:var(--accent)}
+.choice p{margin:0 0 14px;color:var(--fg-3);font-size:14px;line-height:1.65}
+.choice dl{display:grid;grid-template-columns:76px 1fr;margin:18px 0 0;border-top:1px solid var(--rule)}
+.choice dt,.choice dd{margin:0;padding:9px 0;border-bottom:1px solid var(--rule);font-size:13px;line-height:1.5}
+.choice dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3)}
+.go{display:inline-flex;align-items:center;min-height:44px;margin-top:18px;padding:9px 13px;border:1px solid var(--fg);font-family:var(--mono);font-size:12px;text-decoration:none}
+.go:hover{border-color:var(--accent);color:var(--accent)}
+.rail{display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:24px;border-top:1px solid var(--fg);border-bottom:1px solid var(--fg)}
+.rail div{position:relative;min-height:120px;padding:18px 16px;border-right:1px solid var(--rule)}
+.rail div:last-child{border-right:0}
+.rail .n{display:block;margin-bottom:20px;font-family:var(--mono);font-size:11px;color:var(--accent)}
+.rail b{display:block;margin-bottom:5px;font-size:15px}
+.rail span:last-child{display:block;color:var(--fg-3);font-size:12.5px;line-height:1.5}
+.quote{margin:34px 0;padding:32px 0;border-top:1px solid var(--fg);border-bottom:1px solid var(--fg);font-size:clamp(32px,5.8vw,58px);font-weight:900;line-height:1.08;letter-spacing:-.035em;text-wrap:balance}
+.switches{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--fg)}
+.switch{padding:20px 18px 20px 0;border-right:1px solid var(--rule);border-bottom:1px solid var(--fg)}
+.switch:nth-child(2),.switch:nth-child(3){padding-left:18px}
+.switch:last-child{border-right:0}
+.switch .lamp{display:block;width:12px;height:12px;margin-bottom:18px;border:1px solid var(--rule-strong)}
+.switch.on .lamp{background:var(--accent);border-color:var(--accent)}
+.switch b{display:block;margin-bottom:6px;font-size:16px}
+.switch p{margin:0;color:var(--fg-3);font-size:13px;line-height:1.55}
+.actions{list-style:none;margin:0;padding:0;border-top:1px solid var(--fg);counter-reset:action}
+.actions li{counter-increment:action;display:grid;grid-template-columns:42px 1fr auto;gap:16px;align-items:center;min-height:76px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.actions li::before{content:counter(action,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--accent)}
+.actions b{display:block;font-size:16px}
+.actions span{display:block;color:var(--fg-3);font-size:13px;line-height:1.5}
+.actions .when{font-family:var(--mono);font-size:11px;color:var(--fg-3);white-space:nowrap}
+.sources{margin-top:48px;padding:20px;border:1px solid var(--rule);background:var(--bg-2)}
+.sources p{margin:0 0 8px;color:var(--fg-3);font-size:12.5px;line-height:1.6}
+.sources p:last-child{margin-bottom:0}
+footer{padding:24px 0 64px;border-top:1px solid var(--rule)}
+footer p{margin:0 0 7px;color:var(--fg-3);font-size:12px}
+@media(max-width:768px){
+  .meta{grid-template-columns:repeat(3,1fr)}
+  .meta div:nth-child(3){border-right:0}
+  .meta div:nth-child(n+4){border-top:1px solid var(--rule)}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(n+3){border-top:1px solid rgba(144,141,131,.35)}
+  .rail{grid-template-columns:1fr 1fr}
+  .rail div:nth-child(2){border-right:0}
+  .rail div:nth-child(n+3){border-top:1px solid var(--rule)}
+  .switches{grid-template-columns:1fr}
+  .switch,.switch:nth-child(2),.switch:nth-child(3){padding:18px 0;border-right:0}
 }
-.spec .ac{color:var(--accent)}
-.lc{text-transform:lowercase}
-
-/* ── masthead ──────────────────────────── */
-.mast{border-bottom:1px solid var(--ink); padding:var(--s-7) 0 0}
-.mast .top{
-  display:flex; justify-content:space-between; align-items:baseline; gap:var(--s-4);
-  padding-bottom:var(--s-4); border-bottom:1px solid var(--rule);
+@media(max-width:680px){
+  .wrap{width:min(calc(100% - 32px),var(--wrap))}
+  .mast{padding-top:38px}
+  .mast h1{font-size:clamp(50px,17vw,76px);line-height:.92}
+  .meta{grid-template-columns:1fr 1fr}
+  .meta div:nth-child(odd){border-right:1px solid var(--rule)}
+  .meta div:nth-child(even){border-right:0}
+  .meta div:nth-child(n+3){border-top:1px solid var(--rule)}
+  .issue{padding:44px 0 72px}
+  .folio{margin-top:52px}
+  .hl,.hl.small{font-size:clamp(40px,12.4vw,58px);line-height:1.04}
+  .dek{font-size:17px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{min-height:140px;padding:20px 14px}
+  .tl li{grid-template-columns:76px 8px 1fr;gap:10px}
+  .compare{grid-template-columns:1fr}
+  .choice{border-right:0;border-bottom:1px solid var(--rule)}
+  .choice:last-child{border-bottom:0}
+  .rail{grid-template-columns:1fr}
+  .rail div{min-height:auto;border-right:0;border-top:1px solid var(--rule)}
+  .rail div:first-child{border-top:0}
+  .quote{font-size:clamp(36px,10vw,48px)}
+  .actions li{grid-template-columns:34px 1fr;align-items:start;padding:16px 0}
+  .actions .when{grid-column:2;white-space:normal}
 }
-.mast h1{
-  font-size:clamp(80px,20vw,144px); line-height:.92; font-weight:900; letter-spacing:-.04em;
-  margin:var(--s-5) 0 var(--s-4); text-transform:lowercase;
+@media(max-width:420px){
+  .mast-top{align-items:flex-start;flex-direction:column}
+  .mast h1{font-size:clamp(50px,17vw,72px);line-height:.94}
+  .stats{grid-template-columns:1fr}
+  .stat{min-height:auto;border-right:0!important;border-top:1px solid rgba(144,141,131,.35)}
+  .stat:first-child{border-top:0}
+  .switches{grid-template-columns:1fr}
 }
-.mast .colo{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-  border-top:1px solid var(--rule);
-}
-.mast .colo div{padding:var(--s-3) var(--s-4) var(--s-3) 0; border-right:1px solid var(--rule)}
-.mast .colo div:last-child{border-right:0}
-.mast .colo .k{display:block; margin-bottom:3px}
-.mast .colo .v{font-family:var(--mono); font-size:14px; color:var(--fg-1); font-variant-numeric:tabular-nums}
-.mast .shelf{
-  display:flex; flex-wrap:wrap; align-items:baseline; gap:var(--s-3) var(--s-5);
-  border-top:1px solid var(--rule); padding:var(--s-3) 0;
-}
-.mast .shelf a{font-family:var(--mono); font-size:12.5px; font-variant-numeric:tabular-nums; text-decoration-color:var(--rule-strong)}
-
-/* ── issue ─────────────────────────────── */
-.issue{padding-top:var(--s-7)}
-.issue-hd{
-  display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline;
-  gap:var(--s-3); border-bottom:2px solid var(--ink); padding-bottom:var(--s-2);
-}
-.issue-hd .code{font-family:var(--mono); font-size:13px; font-weight:500; letter-spacing:.06em; color:var(--accent)}
-
-.folio{
-  display:flex; align-items:center; gap:var(--s-3);
-  margin:var(--s-7) 0 var(--s-5); padding-bottom:var(--s-2); border-bottom:1px solid var(--ink);
-}
-.folio .pg{
-  font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--accent-ink);
-  background:var(--accent); padding:3px 7px;
-}
-.issue > .folio:first-of-type{margin-top:var(--s-6)}
-
-.hl{
-  font-size:clamp(56px,11vw,88px); line-height:1.02; font-weight:900; letter-spacing:-.035em;
-  margin:0 0 var(--s-4); text-wrap:balance;
-}
-.dek{font-size:18px; line-height:1.55; color:var(--fg-3); margin:0 0 var(--s-5); max-width:62ch}
-.byline{
-  display:flex; flex-wrap:wrap; gap:var(--s-5); padding:var(--s-3) 0;
-  border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin-bottom:var(--s-5);
-}
-
-h3{font-size:var(--fs-h4); font-weight:600; line-height:1.25; margin:var(--s-6) 0 var(--s-3); letter-spacing:-.01em}
-h3.tight{margin-top:0}
-
-/* ── columns ───────────────────────────── */
-.cols{column-count:3; column-gap:var(--s-5); column-rule:1px solid var(--rule)}
-.cols-2{column-count:2; column-gap:var(--s-5); column-rule:1px solid var(--rule)}
-.cols p,.cols-2 p{margin:0 0 var(--s-4)}
-.cols > :first-child,.cols-2 > :first-child{margin-top:0}
-.keep{break-inside:avoid}
-.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:var(--s-5)}
-
-/* ── figure ────────────────────────────── */
-figure{margin:0 0 var(--s-5); break-inside:avoid}
-figure img{width:100%; display:block; border:1px solid var(--rule); background:var(--bg-3)}
-figure.w16 img{aspect-ratio:16/9; object-fit:cover}
-figure.w43 img{aspect-ratio:4/3; object-fit:cover}
-figure.w34 img{aspect-ratio:3/4; object-fit:cover}
-figcaption{padding-top:var(--s-3); margin-top:var(--s-3); border-top:1px solid var(--rule)}
-figcaption .cap{font-size:13.5px; line-height:1.55; color:var(--fg-2); display:block}
-figcaption .cred{display:block; margin-top:var(--s-2)}
-.lead{margin-bottom:var(--s-6)}
-.cafe3{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s-5); margin-bottom:var(--s-5)}
-.cafe3 figure{margin:0}
-.cafe3 img{aspect-ratio:4/3; object-fit:cover}
-@media (max-width:820px){ .cafe3{grid-template-columns:1fr} }
-
-/* ── menu 3-up ─────────────────────────── */
-.m3{display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--ink); margin:0 0 var(--s-5)}
-.m3 > div{padding:var(--s-4); border-right:1px solid var(--rule)}
-.m3 > div:last-child{border-right:0}
-.m3 h3{font-size:17px; margin:0 0 var(--s-2)}
-.m3 p{font-size:13.5px; line-height:1.55; margin:0 0 var(--s-3)}
-.m3 .spec{display:block}
-@media (max-width:680px){
-  .m3{grid-template-columns:1fr}
-  .m3 > div{border-right:0; border-bottom:1px solid var(--rule)}
-  .m3 > div:last-child{border-bottom:0}
-}
-
-/* ── statgrid · dark invert ────────────── */
-.stats{
-  background:var(--ink); color:var(--on-dark-1);
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); margin:0 0 var(--s-6);
-}
-.stats .st{padding:var(--s-5) var(--s-4); border-right:1px solid rgba(144,141,131,.32)}
-.stats .st:last-child{border-right:0}
-.stats .k{font-family:var(--mono); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--on-dark-3); display:block; margin-bottom:var(--s-3)}
-.stats .v{
-  font-family:var(--mono); font-size:clamp(30px,4.6vw,42px); line-height:1; font-weight:500;
-  font-variant-numeric:tabular-nums; display:block; letter-spacing:-.02em;
-}
-.stats .v.on{color:var(--accent)}
-.stats .u{font-size:12.5px; color:var(--on-dark-3); display:block; margin-top:var(--s-3); line-height:1.45}
-
-/* ── timeline ──────────────────────────── */
-.tl{list-style:none; margin:0; padding:0; border-top:1px solid var(--rule)}
-.tl li{
-  display:grid; grid-template-columns:66px 10px 1fr; gap:var(--s-3);
-  padding:11px 0; border-bottom:1px solid var(--rule); align-items:baseline;
-}
-.tl .t{font-family:var(--mono); font-size:12.5px; color:var(--fg-3); font-variant-numeric:tabular-nums}
-.tl .dot{width:7px; height:7px; background:var(--rule-strong); align-self:center}
-.tl li.on .dot{background:var(--accent)}
-.tl li.on .t{color:var(--accent)}
-.tl .w b{display:block; font-size:15px; font-weight:600; line-height:1.35}
-.tl .w span{font-size:13px; color:var(--fg-3); line-height:1.5}
-
-/* ── compare a/b ───────────────────────── */
-.ab{display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--ink)}
-.ab > div{padding:var(--s-4); border-right:1px solid var(--rule)}
-.ab > div:last-child{border-right:0}
-.ab .lbl{display:flex; justify-content:space-between; align-items:baseline; gap:var(--s-3); padding-bottom:var(--s-2); margin-bottom:var(--s-3); border-bottom:1px solid var(--rule)}
-.ab .big{font-family:var(--mono); font-size:30px; font-weight:500; font-variant-numeric:tabular-nums; letter-spacing:-.02em; display:block; margin-bottom:var(--s-2)}
-.ab .pick .big{color:var(--accent)}
-.ab p{font-size:14px; margin-bottom:var(--s-3)}
-
-/* ── box ───────────────────────────────── */
-.box{border:1px solid var(--ink); padding:var(--s-4); margin:0 0 var(--s-5); break-inside:avoid}
-.box .bh{padding-bottom:var(--s-2); margin-bottom:var(--s-3); border-bottom:1px solid var(--rule); display:flex; justify-content:space-between; gap:var(--s-3)}
-.box h3{font-size:17px; margin:0 0 var(--s-3)}
-.box p{font-size:14px; line-height:1.6}
-
-/* ── table ─────────────────────────────── */
-.tbox{overflow-x:auto; margin:0 0 var(--s-5)}
-table{width:100%; border-collapse:collapse; font-size:14px; min-width:600px}
-th,td{text-align:left; padding:11px var(--s-3) 11px 0; border-bottom:1px solid var(--rule); vertical-align:top; line-height:1.55}
-th{
-  font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--fg-3); border-bottom:1px solid var(--ink); padding-bottom:var(--s-2);
-}
-td.n,th.n{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
-tr.pick td{background:var(--bg-2)}
-tr.pick td:first-child{border-left:3px solid var(--accent); padding-left:var(--s-3)}
-td .nm{font-size:15px; font-weight:600; display:block; margin-bottom:var(--s-1)}
-.tag{
-  display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase;
-  border:1px solid var(--rule-strong); padding:1px 5px; color:var(--fg-3); margin-right:3px;
-}
-.tag.on{border-color:var(--accent); color:var(--accent)}
-
-/* ── changelog ─────────────────────────── */
-.cl{list-style:none; margin:0; padding:0; border-top:1px solid var(--rule)}
-.cl li{display:grid; grid-template-columns:72px 1fr; gap:var(--s-4); padding:var(--s-3) 0; border-bottom:1px solid var(--rule)}
-.cl .d{font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums; color:var(--fg-3)}
-.cl .d.near{color:var(--accent)}
-.cl .b b{display:block; font-size:15px; font-weight:600; margin-bottom:2px; line-height:1.35}
-.cl .b span{font-size:13px; color:var(--fg-3); line-height:1.5}
-
-/* ── scorecard ─────────────────────────── */
-.sc{list-style:none; margin:0; padding:0; border-top:1px solid var(--ink)}
-.sc li{display:grid; grid-template-columns:14px 1fr; gap:var(--s-3); padding:var(--s-3) 0; border-bottom:1px solid var(--rule)}
-.sc .s{width:10px; height:10px; margin-top:6px; border:1px solid var(--rule-strong)}
-.sc li.hi .s{background:var(--accent); border-color:var(--accent)}
-.sc .b b{display:block; font-size:15px; font-weight:600; margin-bottom:2px}
-.sc .b span{font-size:13.5px; color:var(--fg-3); line-height:1.55}
-
-/* ── archive · dark invert ─────────────── */
-.arch{background:var(--ink); color:var(--on-dark-1); margin-top:var(--s-8); padding:var(--s-7) 0}
-.arch .spec{color:var(--on-dark-3)}
-.arch h3{color:var(--on-dark-1)}
-.arch .folio{border-bottom-color:rgba(144,141,131,.4); margin-top:0}
-.empty{border:1px solid rgba(144,141,131,.4); padding:var(--s-6) var(--s-4); text-align:center; color:var(--on-dark-2); font-size:14px; line-height:1.7}
-.next{border:1px solid rgba(144,141,131,.4); padding:var(--s-4); margin-top:var(--s-4); max-width:380px}
-.next p{color:var(--on-dark-2); font-size:13.5px}
-
-footer{border-top:1px solid var(--rule); padding:var(--s-5) 0 var(--s-7)}
-footer p{font-size:12px; color:var(--fg-3); line-height:1.7}
-
-@media (max-width:940px){ .cols{column-count:2} }
-@media (max-width:680px){
-  .cols,.cols-2{column-count:1; column-rule:0}
-  .grid-2,.ab{grid-template-columns:1fr}
-  .ab > div{border-right:0; border-bottom:1px solid var(--rule)}
-  .ab > div:last-child{border-bottom:0}
-  .mast .colo div{border-right:0; border-bottom:1px solid var(--rule)}
-  .tl li{grid-template-columns:56px 8px 1fr; gap:var(--s-2)}
-  .stats .st{border-right:0; border-bottom:1px solid rgba(144,141,131,.32)}
-}
-@media (prefers-reduced-motion:no-preference){
-  .issue,.arch{animation:fade 240ms ease both}
-  @keyframes fade{from{opacity:0}to{opacity:1}}
-}
-@media print{ body{background:#fff} .issue{page-break-after:always} }
-
-/* ── course builder ────────────────────── */
-.cb-d{
-  display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.05em;
-  border:1px solid var(--rule-strong); padding:1px 5px; color:var(--fg-3);
-  margin-left:6px; white-space:nowrap; vertical-align:middle; margin-top:-2px;
-}
-.cb-add{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:20px; height:20px; margin-left:6px; vertical-align:middle; margin-top:-2px;
-  border:1px solid var(--ink); background:var(--bg-1); color:var(--fg-1);
-  font-family:var(--mono); font-size:13px; line-height:1; cursor:pointer; padding:0;
-}
-.cb-add:hover{border-color:var(--accent); color:var(--accent)}
-.cb-add.on{background:var(--accent); border-color:var(--accent); color:var(--accent-ink)}
-.cb-fab{
-  position:fixed; right:20px; bottom:20px; z-index:940;
-  display:flex; align-items:center; gap:10px;
-  background:var(--ink); color:var(--bg-1); border:0; cursor:pointer;
-  font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
-  padding:13px 16px; box-shadow:0 4px 18px rgba(0,0,0,.25);
-  transition:bottom .25s ease;
-}
-.cb-fab .bd{
-  background:var(--accent); color:var(--accent-ink); font-size:11px;
-  min-width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center;
-  padding:0 4px; font-variant-numeric:tabular-nums;
-}
-body.cb-open .cb-fab{bottom:calc(33vh + 14px)}
-.cb-sheet{
-  position:fixed; left:0; right:0; bottom:0; z-index:930;
-  height:33vh; min-height:252px; display:flex; flex-direction:column;
-  background:var(--bg-1); border-top:2px solid var(--ink);
-  box-shadow:0 -8px 30px rgba(0,0,0,.18);
-  transform:translateY(106%); transition:transform .26s ease;
-}
-body.cb-open .cb-sheet{transform:none}
-.cb-head{
-  display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px;
-  padding:7px 16px; border-bottom:1px solid var(--rule); flex:none;
-}
-.cb-head .tt{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--fg-1); font-weight:600}
-.cb-head .sum{font-family:var(--mono); font-size:11.5px; color:var(--fg-3); font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.cb-d{display:inline-flex;align-items:center;min-height:22px;margin:4px 4px 0 0;padding:2px 6px;border:1px solid var(--rule);color:var(--fg-3);font-family:var(--mono);font-size:10px;line-height:1.2;vertical-align:middle}
+.cb-add{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;margin:4px 0 0 2px;padding:0;border:1px solid var(--rule-strong);background:var(--bg);color:var(--fg);font-family:var(--mono);font-size:14px;cursor:pointer;vertical-align:middle}
+.cb-add:hover,.cb-add.on{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.cb-fab{position:fixed;right:20px;bottom:max(20px,env(safe-area-inset-bottom));z-index:1001;display:flex;align-items:center;gap:8px;min-height:46px;padding:10px 14px;border:1px solid var(--fg);background:var(--fg);color:var(--bg);font-family:var(--mono);font-size:12px;cursor:pointer;box-shadow:0 5px 22px rgba(0,0,0,.15)}
+.cb-fab .bd{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 5px;background:var(--accent);color:var(--accent-ink);font-size:11px}
+.cb-sheet{position:fixed;z-index:1000;left:0;right:0;bottom:0;height:36vh;min-height:320px;background:var(--bg);border-top:1px solid var(--fg);transform:translateY(101%);transition:transform .22s ease;box-shadow:0 -12px 40px rgba(0,0,0,.13)}
+body.cb-open .cb-sheet{transform:translateY(0)}
+body.cb-open .cb-fab{bottom:calc(36vh + 14px)}
+.cb-head{display:flex;align-items:center;gap:8px;min-height:52px;padding:7px 14px;border-bottom:1px solid var(--rule);overflow-x:auto}
+.cb-head .tt{font-size:16px;font-weight:800;white-space:nowrap}
+.cb-head .sum{font-family:var(--mono);font-size:11px;color:var(--accent);white-space:nowrap}
 .cb-head .sp{flex:1}
-.cb-head label{display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:11px; color:var(--fg-3); cursor:pointer}
-.cb-head label input{accent-color:var(--accent); margin:0}
-.cb-btn{
-  font-family:var(--mono); font-size:11px; letter-spacing:.05em; cursor:pointer;
-  border:1px solid var(--rule-strong); background:var(--bg-1); color:var(--fg-2); padding:4px 9px;
-}
-.cb-btn:hover{border-color:var(--accent); color:var(--accent)}
-.cb-main{flex:1; display:flex; min-height:0}
-.cb-mapbox{flex:1.25; min-width:0; position:relative; background:var(--bg-3)}
-#cbMap{position:absolute; inset:0}
-#cbMap .cb-pin{
-  background:var(--ink); color:var(--bg-1); border:1px solid var(--bg-1);
-  font-family:var(--mono); font-size:11px; font-weight:600;
-  display:flex; align-items:center; justify-content:center; font-variant-numeric:tabular-nums;
-}
-#cbMap .cb-pin.home{background:var(--accent); color:var(--accent-ink)}
-.cb-listbox{flex:1; min-width:0; overflow-y:auto; border-left:1px solid var(--rule)}
-.cb-empty{padding:22px 18px; font-size:13px; color:var(--fg-3); line-height:1.7}
-.cb-li{
-  display:grid; grid-template-columns:26px 1fr auto; gap:8px; align-items:center;
-  padding:7px 12px 7px 14px; border-bottom:1px solid var(--rule); cursor:grab;
-}
-.cb-li.drag{opacity:.35}
-.cb-li .no{
-  font-family:var(--mono); font-size:11px; font-weight:600; color:var(--bg-1);
-  background:var(--ink); width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center;
-  font-variant-numeric:tabular-nums;
-}
-.cb-li .nm2{font-size:13.5px; font-weight:600; line-height:1.3}
-.cb-li .nm2 .ct{font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; color:var(--fg-3); text-transform:uppercase; margin-left:6px; font-weight:500}
-.cb-li .leg{font-family:var(--mono); font-size:10.5px; color:var(--fg-3); margin-top:1px; font-variant-numeric:tabular-nums}
+.cb-head label{font-family:var(--mono);font-size:10.5px;color:var(--fg-3);white-space:nowrap}
+.cb-head select,.cb-btn{min-height:44px;border:1px solid var(--rule-strong);background:var(--bg);color:var(--fg);font-family:var(--mono);font-size:11px;padding:7px 9px;white-space:nowrap}
+.cb-head select{font-size:16px}
+.cb-btn{cursor:pointer}
+.cb-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cb-main{display:flex;height:calc(100% - 96px)}
+.cb-mapbox{flex:1;min-width:0;background:var(--bg-2)}
+#cbMap{width:100%;height:100%}
+.cb-listbox{width:min(440px,43vw);overflow:auto;border-left:1px solid var(--rule)}
+.cb-empty{padding:28px 18px;color:var(--fg-3);font-size:13px;line-height:1.65}
+.cb-li{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:start;padding:10px 12px;border-bottom:1px solid var(--rule)}
+.cb-li .no{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:var(--fg);color:var(--bg);font-family:var(--mono);font-size:11px}
+.cb-li .nm2{font-size:13.5px;font-weight:700;line-height:1.35;cursor:pointer}
+.cb-li .ct{margin-left:5px;color:var(--fg-3);font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.cb-li .leg{margin-top:3px;color:var(--fg-3);font-family:var(--mono);font-size:10.5px;line-height:1.45}
 .cb-li .leg .ac{color:var(--accent)}
-.cb-li .ops{display:flex; gap:3px}
-.cb-li .ops button{
-  width:22px; height:22px; border:1px solid var(--rule-strong); background:var(--bg-1);
-  color:var(--fg-3); font-family:var(--mono); font-size:11px; cursor:pointer; padding:0; line-height:1;
+.cb-li .ops{display:flex;gap:3px}
+.cb-li .ops button{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid var(--rule-strong);background:var(--bg);color:var(--fg-3);font-family:var(--mono);font-size:10px;cursor:pointer}
+.cb-saves{display:flex;align-items:center;gap:6px;height:44px;padding:6px 14px;border-top:1px solid var(--rule);overflow-x:auto}
+.cb-saves .lb{margin-right:auto;color:var(--fg-3);font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.cb-chip{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:3px 8px;border:1px solid var(--rule-strong);background:var(--bg);color:var(--fg-2);font-family:var(--mono);font-size:11px;cursor:pointer;white-space:nowrap}
+.cb-chip .x{color:var(--fg-3)}
+.cb-pin{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:2px solid var(--bg);background:var(--fg);color:var(--bg);font-family:var(--mono);font-size:10px;font-weight:700;box-shadow:0 1px 5px rgba(0,0,0,.3)}
+.cb-pin.home{background:var(--accent);color:var(--accent-ink)}
+@keyframes cbFlash{0%,100%{background:transparent;box-shadow:none}30%,70%{background:rgba(255,87,34,.12);box-shadow:inset 4px 0 0 var(--accent)}}
+.cb-flash{animation:cbFlash 1.5s ease 2}
+@media(max-width:680px){
+  .cb-fab{right:14px;bottom:max(14px,env(safe-area-inset-bottom))}
+  .cb-sheet{height:64vh;min-height:0}
+  body.cb-open .cb-fab{bottom:calc(64vh + 12px)}
+  .cb-main{height:calc(100% - 104px);flex-direction:column}
+  .cb-mapbox{flex:none;height:42%}
+  .cb-listbox{width:100%;flex:1;border-left:0;border-top:1px solid var(--rule)}
+  .cb-head{min-height:60px}
+  .cb-add{width:44px;height:44px}
+  .cb-li{grid-template-columns:32px 1fr}
+  .cb-li .ops{grid-column:2}
+  .cb-li .ops button{width:44px;height:44px}
 }
-.cb-li .ops button:hover{border-color:var(--accent); color:var(--accent)}
-@media (max-width:680px){
-  .cb-sheet{height:62vh}
-  body.cb-open .cb-fab{bottom:calc(62vh + 14px)}
-  .cb-main{flex-direction:column}
-  .cb-mapbox{flex:none; height:42%}
-  .cb-listbox{border-left:0; border-top:1px solid var(--rule)}
-  .cb-fab{right:14px; bottom:calc(14px + env(safe-area-inset-bottom))}
-}
-.cb-li .nm2{cursor:pointer}
-.cb-li .nm2:hover{color:var(--accent)}
-.cb-saves{flex:none; display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:6px; padding:6px 14px; border-top:1px solid var(--rule)}
-.cb-saves .lb{font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase; color:var(--fg-3); margin-right:auto}
-.cb-chip{display:inline-flex; align-items:center; gap:7px; border:1px solid var(--rule-strong); padding:3px 8px; font-family:var(--mono); font-size:11px; cursor:pointer; background:var(--bg-1); color:var(--fg-2); font-variant-numeric:tabular-nums}
-.cb-chip:hover{border-color:var(--accent); color:var(--accent)}
-.cb-chip .x{color:var(--fg-3); padding:0 1px}
-.cb-chip .x:hover{color:var(--accent)}
-@keyframes cbFlash{0%,100%{background:transparent; box-shadow:none}20%,60%{background:rgba(255,87,34,.16); box-shadow:inset 3px 0 0 var(--accent)}40%,80%{background:transparent; box-shadow:none}}
-.cb-flash{animation:cbFlash 1.7s ease 2}
-@media print{ .cb-fab,.cb-sheet{display:none} }
+@media(prefers-reduced-motion:reduce){.cb-sheet{transition:none}.cb-flash{animation:none}}
+@media print{body{background:#fff;color:#000}.issue{padding-bottom:30px}.go{border-color:#000}.shelf,.cb-fab,.cb-sheet{display:none}}
 </style>
 </head>
 <body>
 <header class="mast">
   <div class="wrap">
-    <div class="top">
+    <div class="mast-top">
       <span class="spec">life journal <span class="ac">/</span> 내부용</span>
       <span class="spec">jason</span>
     </div>
     <h1>life journal</h1>
-    <div class="colo">
-      <div><span class="spec k">issue</span><span class="v">02</span></div>
-      <div><span class="spec k">published</span><span class="v">2026.08.11</span></div>
-      <div><span class="spec k">covers</span><span class="v">08.14–08.17</span></div>
-      <div><span class="spec k">format</span><span class="v lc">menu</span></div>
-      <div><span class="spec k">editor</span><span class="v lc">pepper</span></div>
+    <div class="meta">
+      <div><span class="spec k">issue</span><span class="v">03</span></div>
+      <div><span class="spec k">published</span><span class="v">2026.08.20</span></div>
+      <div><span class="spec k">covers</span><span class="v">08.22–08.23</span></div>
+      <div><span class="spec k">format</span><span class="v">weekend</span></div>
+      <div><span class="spec k">editor</span><span class="v">pepper</span></div>
     </div>
-    <div class="shelf">
+    <nav class="shelf" aria-label="별책">
       <span class="spec">별책 <span class="ac">/</span> 수시 갱신</span>
-      <a href="exhibitions.html">전시판 — 지금 서울에 걸린 16</a>
-    </div>
-    <div class="shelf" style="border-top:0; padding-top:0">
+      <a href="exhibitions.html">전시판 · 지금 서울에 걸린 16</a>
+    </nav>
+    <nav class="shelf" aria-label="지난 호">
       <span class="spec">서고 <span class="ac">/</span> 지난 호</span>
-      <a href="issue-01.html">issue–01 정선·영월 — 2026.08.06</a>
-    </div>
+      <a href="issue-02.html">issue–02 속초 · 2026.08.11</a>
+      <a href="issue-01.html">issue–01 정선·영월 · 2026.08.06</a>
+    </nav>
   </div>
 </header>
 
 <main>
-
 <article class="issue">
   <div class="wrap">
-
     <div class="issue-hd">
-      <span class="code">ISSUE–02 · 속초판</span>
-      <span class="spec">2026년 8월 14일 금요일 — 17일 월요일 · 여행판</span>
+      <span class="code">ISSUE–03 · 책가옥 주말판</span>
+      <span class="spec">2026년 8월 22일 토요일 · 23일 일요일</span>
     </div>
 
-    <!-- ═══ A–1 ═══ -->
-    <div class="folio"><span class="pg">A–1</span><span class="spec">머리기사 · 속초 · 설악 · 동해</span></div>
-
-    <h2 class="hl">설악과 바다 사이, 사흘 밤</h2>
-    <p class="dek">시장까지 걸어서 5분, 창밖에는 동해. 사흘은 드라이브·절·빵·커피·밥, 다섯 메뉴에서 골라 채웁니다.</p>
+    <div class="folio"><span class="pg">A–1</span><span class="spec">머리기사 · 용인에서 한남까지</span></div>
+    <h2 class="hl">책가옥에서 시작해, 집으로 돌아오는 주말</h2>
+    <p class="dek">토요일은 김형석의 피아노와 이야기 하나만 중심에 둡니다. 일요일은 짐을 옮긴 뒤, 둘이 함께 쓸 자리 한 칸만 만듭니다.</p>
     <div class="byline">
       <span class="spec">글 <span class="ac">/</span> 페퍼</span>
-      <span class="spec">속초 3박 4일</span>
-      <span class="spec">uh flat the sokcho</span>
+      <span class="spec">용인 · 한남</span>
+      <span class="spec">실내 우선 · 자차</span>
     </div>
-
     <div class="stats">
-      <div class="st"><span class="k">nights</span><span class="v on">3</span><span class="u">금요일 도착, 월요일 출발</span></div>
-      <div class="st"><span class="k">drives</span><span class="v">3</span><span class="u">해안 둘 · 호수 하나 · 통행료 0원</span></div>
-      <div class="st"><span class="k">temples</span><span class="v">0<span style="font-size:18px">원</span></span><span class="u">관람료 폐지 — 낙산사·신흥사</span></div>
-      <div class="st"><span class="k">checkout</span><span class="v">10:00</span><span class="u">서울까지 여유를 남기는 시각</span></div>
+      <div class="stat"><span class="k">saturday</span><span class="v on">16:00</span><span class="u">책가옥 렉처 콘서트</span></div>
+      <div class="stat"><span class="k">rain</span><span class="v">73%</span><span class="u">토요일 용인 예보</span></div>
+      <div class="stat"><span class="k">moving</span><span class="v">2h</span><span class="u">일요일 13:00–15:00</span></div>
+      <div class="stat"><span class="k">sunday rule</span><span class="v">1칸</span><span class="u">정리는 여기까지만</span></div>
     </div>
 
-    <!-- ═══ A–2 ═══ -->
-    <div class="folio"><span class="pg">A–2</span><span class="spec">뼈대 · 사흘의 골격</span></div>
-
-    <h2 class="hl" style="font-size:clamp(46px,8.8vw,64px)">먼 곳은 토요일, 가까운 곳은 일요일</h2>
-    <p class="dek">도착과 복귀만 고정했습니다. 광복절인 토요일에는 먼 곳 하나, 일요일에는 가까운 곳 둘을 고릅니다.</p>
-
+    <div class="folio"><span class="pg">A–2</span><span class="spec">토요일 · 늦지 않는 뼈대</span></div>
+    <h2 class="hl small">강연 뒤, 저녁 하나</h2>
+    <p class="dek">책가옥 주변은 걸어서 여러 곳을 잇는 동네가 아닙니다. 비와 주말 교통을 생각해 일찍 도착하고, 강연이 끝나면 차로 저녁만 붙입니다.</p>
     <ul class="tl">
-      <li class="on"><span class="t">금 저녁</span><span class="dot"></span><span class="w"><b>도착</b><span>짐을 풀고 시장으로 — 첫 끼는 밥 메뉴에서</span></span></li>
-      <li class="on"><span class="t">토</span><span class="dot"></span><span class="w"><b>광복절 · 먼 곳의 날</b><span>고성 해안·낙산·설악 중 하나 — 권금성은 8시 전 도착 권장</span></span></li>
-      <li><span class="t">일</span><span class="dot"></span><span class="w"><b>가까운 날</b><span>영랑호·카페·빵집을 가볍게 잇습니다</span></span></li>
-      <li><span class="t">월 아침</span><span class="dot"></span><span class="w"><b>복귀</b><span>10시 전에 출발해 서울까지 여유롭게</span></span></li>
+      <li class="on"><span class="t">15:15–25</span><span class="dot"></span><span><b><a data-spot="책가옥" href="https://map.naver.com/p/search/%EC%B1%85%EA%B0%80%EC%98%A5" target="_blank" rel="noopener">책가옥</a> 도착</b><span>경기 용인시 수지구 고기로173번길 10-8 · 주차 가능 · 매진 회차라 35분 이상 여유</span></span></li>
+      <li class="on"><span class="t">16:00</span><span class="dot"></span><span><b>《AI and K-pop: Me and My Piano》</b><span>작곡가 김형석과 함께하는 Lecture + Concert · 전석 매진</span></span></li>
+      <li><span class="t">17:30 전후</span><span class="dot"></span><span><b>강연 종료</b><span>공식 종료 시각이 없어 90분 안팎으로 잡은 추정입니다</span></span></li>
+      <li class="on"><span class="t">18:00</span><span class="dot"></span><span><b>저녁</b><span>고기로426 예약이 가장 안정적 · 맛을 우선하면 고기리막국수</span></span></li>
+      <li><span class="t">19:30</span><span class="dot"></span><span><b>귀가</b><span>카페를 억지로 더 붙이지 않아도 하루가 완결됩니다</span></span></li>
     </ul>
-    <p style="font-size:12.5px; color:var(--fg-3); margin-top:12px">도보·차 시간은 숙소(UH 플랫 더 속초) 기준 추정치입니다. 이름 옆 + 를 누르면 우하단 코스 빌더에 담깁니다.</p>
+    <p class="note">공식 강연 안내와 매진 공지를 확인했습니다. 입장권은 이미 확보한 일정으로 전제합니다.</p>
 
-    <!-- ═══ A–3 ═══ -->
-    <div class="folio"><span class="pg">A–3</span><span class="spec">드라이브 메뉴 · drive menu</span></div>
+    <div class="folio"><span class="pg">A–3</span><span class="spec">토요일 저녁 · two choices</span></div>
+    <h2 class="hl small">편하게 먹을까, 기다려도 대표 맛을 볼까</h2>
+    <div class="compare">
+      <section class="choice pick" aria-labelledby="dinner-one">
+        <div class="choice-hd"><h3 id="dinner-one">고기로426</h3><span class="num">01</span></div>
+        <p><strong>이번 주말의 추천.</strong> 실내 통창 너머로 계곡 분위기를 보고, 넓은 좌석과 주차로 강연 뒤 피로를 줄입니다.</p>
+        <dl>
+          <dt>시간</dt><dd>매일 10:30–21:30</dd>
+          <dt>예산</dt><dd>2인 약 4.5만–10만 원</dd>
+          <dt>메뉴</dt><dd>한돈 1인분 14,000원대 · 한우갈비살 모둠 75,000원 · 상차림 1인 4,000원</dd>
+          <dt>이동</dt><dd>책가옥에서 차로 약 10–15분 추정</dd>
+          <dt>예약</dt><dd>18:00 권장 · 0507-1304-0462</dd>
+        </dl>
+        <a class="go" data-spot="고기로426" href="https://map.naver.com/p/search/%EA%B3%A0%EA%B8%B0%EB%A1%9C426" target="_blank" rel="noopener">지도에서 보기 ↗</a>
+      </section>
+      <section class="choice" aria-labelledby="dinner-two">
+        <div class="choice-hd"><h3 id="dinner-two">고기리막국수</h3><span class="num">02</span></div>
+        <p><strong>맛 우선 대안.</strong> 들기름막국수와 수육 조합은 분명하지만 주말 현장 대기가 변수입니다. 강연이 끝나면 바로 이동합니다.</p>
+        <dl>
+          <dt>시간</dt><dd>토요일 11:00–21:00 · 주문 마감 20:20 · 화요일 휴무</dd>
+          <dt>예산</dt><dd>막국수 1인 12,000원 · 수육 포함 2인 약 5만–7만 원 예상</dd>
+          <dt>이동</dt><dd>책가옥에서 차로 약 15–20분 추정</dd>
+          <dt>예약</dt><dd>예약 불가 · 현장 대기</dd>
+          <dt>전화</dt><dd>0507-1334-1107</dd>
+        </dl>
+        <a class="go" data-spot="고기리막국수" href="https://map.naver.com/p/search/%EA%B3%A0%EA%B8%B0%EB%A6%AC%EB%A7%89%EA%B5%AD%EC%88%98" target="_blank" rel="noopener">지도에서 보기 ↗</a>
+      </section>
+    </div>
+    <p class="note">모소밤부는 주문 마감이 19:00라 강연이 조금만 길어져도 서두르게 됩니다. 이번 호에서는 뺐습니다.</p>
 
-    <h2 class="hl" style="font-size:clamp(46px,8.8vw,64px)">드라이브 메뉴</h2>
-    <p class="dek">통행료 0원. 차창 밖 풍경이 이 세 코스의 전부입니다.</p>
-
-    <div class="tbox">
-      <table>
-        <thead><tr><th>course</th><th class="n">time</th><th>stops</th><th>fine print</th></tr></thead>
-        <tbody>
-          <tr class="pick">
-            <td><span class="nm">북쪽, 고성 해안선</span><span class="tag on">해안 풍경</span><br>7번 국도를 따라 정자에서 정자로</td>
-            <td class="n">3–4h</td>
-            <td><a href="https://map.naver.com/p/search/고성%20청간정" target="_blank" rel="noopener">청간정</a> → <a href="https://map.naver.com/p/search/아야진해변" target="_blank" rel="noopener">아야진</a> → <a href="https://map.naver.com/p/search/고성%20천학정" target="_blank" rel="noopener">천학정</a> → <a href="https://map.naver.com/p/search/고성%20능파대" target="_blank" rel="noopener">능파대</a></td>
-            <td>주차 대부분 무료 · 9시 이후 아야진 혼잡 · 편도 40분</td>
-          </tr>
-          <tr>
-            <td><span class="nm">남쪽, 낙산과 하조대</span><br>낙산사에서 하조대 해안까지</td>
-            <td class="n">3–4h</td>
-            <td><a href="https://map.naver.com/p/search/양양%20낙산해변" target="_blank" rel="noopener">낙산해변</a> → <a href="https://map.naver.com/p/search/양양%20낙산사" target="_blank" rel="noopener">낙산사</a> → <a href="https://map.naver.com/p/search/하조대%20스카이워크" target="_blank" rel="noopener">하조대 스카이워크</a></td>
-            <td>낙산사 편도 25분 · 하조대 45분 · 강풍·우천 시 전망대 통제 가능</td>
-          </tr>
-          <tr>
-            <td><span class="nm">영랑호 한 바퀴</span><br>호수 위 400m 부교를 걷는 코스</td>
-            <td class="n">1h</td>
-            <td><a href="https://map.naver.com/p/search/영랑호%20호수윗길" target="_blank" rel="noopener">호수윗길 부교</a> → <a href="https://map.naver.com/p/search/영랑호%20범바위" target="_blank" rel="noopener">범바위</a> → <a href="https://map.naver.com/p/search/속초%20영랑정" target="_blank" rel="noopener">영랑정</a></td>
-            <td>숙소에서 10분 · 부교 07:00~21:00 · 주차 무료</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="folio"><span class="pg">A–4</span><span class="spec">일요일 · moving day</span></div>
+    <h2 class="hl small">짐을 옮긴 날의 종료선</h2>
+    <p class="dek">일요일에는 집을 완성하지 않습니다. 함께 쓸 자리 하나만 만들고, 나머지 상자는 닫아둡니다.</p>
+    <div class="rail" aria-label="일요일 시간표">
+      <div><span class="n">01 · 13:00–15:00</span><b>짐 옮기기</b><span>두 시간만 정확히 씁니다</span></div>
+      <div><span class="n">02 · 15:00–16:00</span><b>샤워와 휴식</b><span>정리보다 먼저 쉬어갑니다</span></div>
+      <div><span class="n">03 · 16:00–17:00</span><b>한 칸만</b><span>옷장이나 수납 한 곳을 함께 완성</span></div>
+      <div><span class="n">04 · 저녁</span><b>배달과 영화</b><span>밖으로 다시 크게 나가지 않습니다</span></div>
+    </div>
+    <p class="quote">“함께 쓸 자리 한 칸이면, 오늘의 정리는 끝.”</p>
+    <div class="compare">
+      <section class="choice pick" aria-labelledby="sunday-one">
+        <div class="choice-hd"><h3 id="sunday-one">집 리셋</h3><span class="num">01</span></div>
+        <p><strong>1순위.</strong> 샤워하고 한 칸만 정리한 뒤, 좋아하는 비해산물 메뉴를 배달해 영화를 봅니다. 움직인 짐보다 둘의 기분이 남는 안입니다.</p>
+        <dl>
+          <dt>체력</dt><dd>0–6 / 10</dd>
+          <dt>예약</dt><dd>없음</dd>
+          <dt>비용</dt><dd>저녁 식사비만</dd>
+          <dt>종료선</dt><dd>수납 한 칸 완성</dd>
+        </dl>
+      </section>
+      <section class="choice" aria-labelledby="sunday-two">
+        <div class="choice-hd"><h3 id="sunday-two">한남 실내 한 바퀴</h3><span class="num">02</span></div>
+        <p><strong>에너지 7/10 이상일 때만.</strong> 16:20 리움에서 한 시간 보고, 17:40 빠르크에서 저녁을 먹고 돌아옵니다. 미술관만 보고 귀가해도 됩니다.</p>
+        <dl>
+          <dt>리움</dt><dd>《다른 공간 안으로》 · 성인 18,000원 · 10:00–18:00</dd>
+          <dt>기간</dt><dd>2026.05.05–11.29 · 월요일 휴관</dd>
+          <dt>빠르크</dt><dd>1인 2만–3만 원대 · 저녁 예약 권장</dd>
+          <dt>전환</dt><dd>15:00에 피곤하면 즉시 집 리셋</dd>
+        </dl>
+        <a class="go" href="https://ticket.leeum.org/" target="_blank" rel="noopener">리움 예매 ↗</a>
+        <a class="go" data-spot="리움미술관" href="https://map.naver.com/p/search/%EB%A6%AC%EC%9B%80%EB%AF%B8%EC%88%A0%EA%B4%80" target="_blank" rel="noopener">리움 지도 ↗</a>
+        <a class="go" data-spot="빠르크 한남" href="https://map.naver.com/p/search/%EB%B9%A0%EB%A5%B4%ED%81%AC%20%ED%95%9C%EB%82%A8" target="_blank" rel="noopener">빠르크 지도 ↗</a>
+      </section>
     </div>
 
-    <!-- ═══ A–4 ═══ -->
-    <div class="folio"><span class="pg">A–4</span><span class="spec">절·산 메뉴 · temple menu</span></div>
-
-    <h2 class="hl" style="font-size:clamp(46px,8.8vw,64px)">절·산 메뉴</h2>
-    <p class="dek">2023년 문화재 관람료가 폐지돼 두 절 모두 무료입니다. 주차비만 따로 챙기면 됩니다.</p>
-
-    <ul class="sc">
-      <li class="hi"><span class="s"></span><span class="b"><b><a href="https://map.naver.com/p/search/양양%20낙산사" target="_blank" rel="noopener">낙산사</a> — 바다 위의 절</b><span>의상대·홍련암·해수관음상, 한 바퀴 90분. 입장 무료 · 차 25분 · 홍련암 마루 아래로 바다가 보입니다. 남쪽 드라이브와 한 세트</span></span></li>
-      <li><span class="s"></span><span class="b"><b><a href="https://map.naver.com/p/search/속초%20신흥사" target="_blank" rel="noopener">신흥사</a> — 설악 초입의 보물</b><span>극락보전(보물)·통일대불 14.6m. 입장 무료 · 차 15~20분 · 성수기 진입로 정체, 08:30 전 도착 권장</span></span></li>
-      <li><span class="s"></span><span class="b"><b><a href="https://map.naver.com/p/search/설악케이블카" target="_blank" rel="noopener">권금성 케이블카</a> — 케이블카로 오르는 산</b><span>왕복 16,000원 · 예약 없이 당일 현장 발권 · 운행 시작 시각과 기상 공지는 당일 아침 확인</span></span></li>
-    </ul>
-
-    <!-- ═══ A–5 ═══ -->
-    <div class="folio"><span class="pg">A–5</span><span class="spec">빵 메뉴 · bakery menu</span></div>
-
-    <h2 class="hl" style="font-size:clamp(46px,8.8vw,64px)">빵 메뉴</h2>
-    <p class="dek">속초에서 빵 두 번. 숙소 앞 한 곳, 차로 찾아갈 한 곳만 고르면 됩니다.</p>
-
-    <div class="tbox">
-      <table>
-        <thead><tr><th>bakery</th><th class="n">hours</th><th class="n">price</th><th>fine print</th></tr></thead>
-        <tbody>
-          <tr class="pick">
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20초당소금빵" target="_blank" rel="noopener">초당소금빵</a></span><br>고메버터에 안데스 소금, 시장 초입</td>
-            <td class="n">10:00–21:00</td>
-            <td class="n">4개 14,000</td>
-            <td>무휴 · 아이스크림 소금빵 6,500~7,000 · 오후 소진 잦음</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초옥수수소금빵" target="_blank" rel="noopener">속초옥수수소금빵</a></span><br>옥수수를 품은 소금빵, 시장 건너편 코너의 흰 2층 건물</td>
-            <td class="n">확인 필요</td>
-            <td class="n">4개 12,000</td>
-            <td>옥수수 아이스크림 소금빵도 판매 · 웨이팅 잦음 — 대기 감안</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20히응커피" target="_blank" rel="noopener">히응커피</a></span><br>크랙과 소프트, 소금빵만 파는 집</td>
-            <td class="n">11:00–18:00</td>
-            <td class="n">3,000~</td>
-            <td>수·목 휴무(여행일 무관) · 13시 첫 빵이 나옴 · 테이크아웃 전용</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20봉브레드" target="_blank" rel="noopener">봉브레드</a></span><br>연유를 머금어 포크로 떠먹는 마늘바게트</td>
-            <td class="n">08:30–20:00</td>
-            <td class="n">6,800</td>
-            <td>목 휴무 · 일요일은 18:30 마감 · 방문 전 전화 권장 033-633-4826</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/베이커리가루%20속초점" target="_blank" rel="noopener">베이커리 가루 속초점</a></span><br>천연발효종 · 바질마늘바게트</td>
-            <td class="n">08:00–22:00</td>
-            <td class="n">확인 필요</td>
-            <td>봉브레드 쉬는 날과 늦은 밤의 대체재 · 주차 수월</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20강원도막걸리술빵" target="_blank" rel="noopener">강원도막걸리술빵</a></span><br>닭강정 골목의 단일 메뉴 노포</td>
-            <td class="n">09:00–19:00</td>
-            <td class="n">5,000</td>
-            <td>주말 08시 오픈 · 대기 20~30분, 성수기 1시간 — 문 열 때 방문 권장</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/세렝게티커피%20속초중앙시장점" target="_blank" rel="noopener">세렝게티 베이크샵</a></span><br>티그레와 바다샌드, 선물이 되는 디저트</td>
-            <td class="n">11:00–19:00</td>
-            <td class="n">3,000~</td>
-            <td>시장 초입 도보 3분 · 휴무 표기 상충(화요일 설) — 확인</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20뉴욕제과" target="_blank" rel="noopener">뉴욕제과</a></span><span class="tag">노포</span><br>1984년부터 2대째, 속초에서 가장 오래된 동네빵집 — 오징어쌀빵</td>
-            <td class="n">08:00–21:30</td>
-            <td class="n">2,000~</td>
-            <td>백년가게 · 오징어쌀빵 3,000 · 맘모스 6,000 · 이동 중 간식으로 좋음</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="folio"><span class="pg">A–5</span><span class="spec">전환 조건 · weather &amp; energy</span></div>
+    <h2 class="hl small">세 번의 결정</h2>
+    <div class="switches">
+      <section class="switch on"><span class="lamp"></span><b>토요일 비 73%</b><p>야외 산책은 빼고 책가옥과 실내 저녁만 유지합니다.</p></section>
+      <section class="switch"><span class="lamp"></span><b>일요일 비 59% · 32℃</b><p>리움을 가더라도 실내·근거리만 씁니다.</p></section>
+      <section class="switch on"><span class="lamp"></span><b>체력 7/10</b><p>일요일 15시에 이 숫자보다 낮으면 집 리셋으로 끝냅니다.</p></section>
     </div>
 
-    <!-- ═══ A–6 ═══ -->
-    <div class="folio"><span class="pg">A–6</span><span class="spec">커피 메뉴 · coffee menu</span></div>
+    <div class="folio"><span class="pg">A–6</span><span class="spec">지금 할 일 · three moves</span></div>
+    <h2 class="hl small">예약 하나, 확인 두 번</h2>
+    <ol class="actions">
+      <li><span><b>고기로426 18:00 예약</b><span>토요일 저녁만 미리 잡아두면 주말의 결정은 거의 끝납니다.</span></span><span class="when">오늘</span></li>
+      <li><span><b>책가옥 입장 안내와 비 확인</b><span>매진 회차·고기리 주말 도로를 감안해 도착 시각을 지킵니다.</span></span><span class="when">토요일 출발 전</span></li>
+      <li><span><b>체력 숫자로 일요일 선택</b><span>7 미만이면 집, 7 이상이면 리움. 고민을 길게 하지 않습니다.</span></span><span class="when">일요일 15:00</span></li>
+    </ol>
 
-    <h2 class="hl" style="font-size:clamp(46px,8.8vw,64px)">커피 메뉴</h2>
-    <p class="dek">보고 싶은 풍경부터 고릅니다. 속초해변·장사항·청초호·울산바위가 여섯 잔에 나뉩니다.</p>
-
-    <div class="m3">
-      <div>
-        <h3><a href="https://map.naver.com/p/search/속초%20SHLTR" target="_blank" rel="noopener">SHLTR</a> — 통창으로 크게</h3>
-        <p>속초해변 앞 3층을 통창으로 열었습니다. 실내에서도 파도 소리를 듣는 집.</p>
-        <span class="spec">09:30–20:00 · 무휴 · 시그니처 9,000 · 차 5분</span>
-      </div>
-      <div>
-        <h3><a href="https://map.naver.com/p/search/속초%20어나더블루" target="_blank" rel="noopener">어나더블루</a> — 조용하게</h3>
-        <p>장사항 앞에서 직접 볶아 핸드드립 8종을 냅니다. 케이크까지 잘하는 로스터리.</p>
-        <span class="spec">수 휴무(여행일 무관) · 아인슈페너 8,000 · 차 15분 · 마감 전화 확인</span>
-      </div>
-      <div>
-        <h3><a href="https://map.naver.com/p/search/속초%20칠성조선소" target="_blank" rel="noopener">칠성조선소</a> — 조선소에서</h3>
-        <p>배 올리던 슬립웨이 옆에서 커피. 조선소가 통째로 카페입니다.</p>
-        <span class="spec">11:00–19:00 유력 · 시간 확인 · 청초호변</span>
-      </div>
-    </div>
-
-    <div class="m3">
-      <div>
-        <h3><a href="https://map.naver.com/p/search/속초%20보사노바" target="_blank" rel="noopener">보사노바</a> — 로스터리</h3>
-        <p>속초해변 앞 4층 전관. 핸드드립과 루프탑, 주차까지 넉넉합니다.</p>
-        <span class="spec">08:00–22:00 · 무휴 · 전용주차 90분 · 차 8분</span>
-      </div>
-      <div>
-        <h3><a href="https://map.naver.com/p/search/속초%20시드누아" target="_blank" rel="noopener">시드누아</a> — 울산바위</h3>
-        <p>설악이 통창으로 들어오는 정원 카페. 울산바위를 향해 마시는 커피.</p>
-        <span class="spec">금~일 10:00–20:00 · 블랙 6,300 · 차 15분</span>
-      </div>
-      <div>
-        <h3><a href="https://map.naver.com/p/search/속초%20커피해요" target="_blank" rel="noopener">커피해요</a> — 루프탑</h3>
-        <p>등대해변 위 작은 옥상. 바다와 영랑호가 한 시야에 들어옵니다.</p>
-        <span class="spec">11:00–18:00 · 수·목 휴무(여행일 무관) · 차 10분</span>
-      </div>
-    </div>
-
-    <!-- ═══ A–7 ═══ -->
-    <div class="folio"><span class="pg">A–7</span><span class="spec">밥 메뉴 · dinner menu</span></div>
-
-    <h2 class="hl" style="font-size:clamp(46px,8.8vw,64px)">밥 메뉴</h2>
-    <p class="dek">항구 도시의 저녁을 고기와 면으로 채웠습니다. 해산물을 피한 열 가지입니다.</p>
-
-    <div class="tbox">
-      <table>
-        <thead><tr><th>table</th><th class="n">hours</th><th class="n">price</th><th>fine print</th></tr></thead>
-        <tbody>
-          <tr class="pick">
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20명가한우마을" target="_blank" rel="noopener">명가한우마을</a></span><br>쇼케이스에서 부위를 고르는 정육식당</td>
-            <td class="n">10:00–21:30</td>
-            <td class="n">차돌 28,320</td>
-            <td>꽃갈비 56,160 · 예약 033-635-5123 · 휴무 확인 필요</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20단천식당" target="_blank" rel="noopener">단천식당</a></span><br>돼지고기와 선지로 채운 아바이순대</td>
-            <td class="n">08:30–19:00</td>
-            <td class="n">국밥 10,000</td>
-            <td>갯배 타고 3분 · 아바이 단품 권장 · 물냉면 있음</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초탑골막국수%20본점" target="_blank" rel="noopener">속초탑골막국수 본점</a></span><br>회 없이 들기름과 메밀로 가는 막국수</td>
-            <td class="n">09:30–21:00</td>
-            <td class="n">13,000</td>
-            <td>공휴일 휴무 표기 있음 — 8/15는 전화 확인 · 콜키지 프리</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/감나무집감자옹심이" target="_blank" rel="noopener">감나무집 감자옹심이</a></span><br>메뉴가 감자옹심이 하나뿐인 30년</td>
-            <td class="n">10:00–14시대</td>
-            <td class="n">~12,000</td>
-            <td>재료 소진 조기 마감 · 2인부터 · 방문 전 통화 필수 033-633-2306</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20최가네" target="_blank" rel="noopener">최가네</a></span><br>삼겹살 정식 9,000원의 백반집</td>
-            <td class="n">11:00–22:00</td>
-            <td class="n">9,000</td>
-            <td>브레이크 14:30~16:30 · 수 휴무(여행일 무관) · 양이 적다는 후기가 있어 추가 주문 고려</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20춘천중앙닭갈비" target="_blank" rel="noopener">춘천중앙닭갈비</a></span><br>먹거리촌의 저녁 전용 닭갈비</td>
-            <td class="n">16:00–01:00</td>
-            <td class="n">확인 필요</td>
-            <td>일요일 휴무 — 8/16 불가 · 모둠 2인분부터</td>
-          </tr>
-          <tr>
-            <td><span class="nm">중앙시장 · <a href="https://map.naver.com/p/search/만석닭강정%20중앙시장" target="_blank" rel="noopener">만석닭강정</a></span><br>숙소 앞 시장에서 포장하는 첫 저녁</td>
-            <td class="n">08:00–24:00</td>
-            <td class="n">21,000</td>
-            <td>17시대 선점 또는 포장 · 주말 저녁 대기 1시간</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20연탄불생구이" target="_blank" rel="noopener">연탄불생구이</a></span><br>테이블마다 연탄 화덕, 30년 노포</td>
-            <td class="n">17:00–23:00</td>
-            <td class="n">12,000/인분</td>
-            <td>생갈비·뒷고기·소갈비살 동일가 · 격주 화 휴무 표기 있음 · 2·3호점 도보권</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20정든식당" target="_blank" rel="noopener">정든식당</a></span><br>1994년 장칼국수 원조, 수타면</td>
-            <td class="n">10:00–15:00</td>
-            <td class="n">9,000</td>
-            <td>금~일 15시 마감 · 월 휴무 — 8/17 불가 · 덜 맵게는 흰칼국수</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20김영애할머니순두부" target="_blank" rel="noopener">김영애할머니순두부</a></span><br>1965년부터 학사평을 지킨 원조 순두부</td>
-            <td class="n">07:00–14:00</td>
-            <td class="n">12,000</td>
-            <td>순두부 단일 메뉴 · 화·수 휴무 표기 있음 · 방문 전 확인</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/가보오토종닭" target="_blank" rel="noopener">가보오토종닭</a></span><span class="tag">노포</span><br>달군 돌판에 끓여 나오는 해물돌판짜장, 백숙집의 점심 별미</td>
-            <td class="n">확인 필요</td>
-            <td class="n">확인 필요</td>
-            <td>학사평 토종닭집 · 현지인이 줄 서는 집 — 오픈 직후 방문 권장 · 남은 밥은 돌판 누룽지로</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/양양%20송이버섯마을" target="_blank" rel="noopener">송이버섯마을</a></span><span class="tag">노포</span><br>남대천 옆에서 오래 끓여온 자연산 버섯전골</td>
-            <td class="n">확인 필요</td>
-            <td class="n">시세</td>
-            <td>양양읍 · 자연산 버섯이라 가격 변동 · 낙산 드라이브와 한 세트로 좋음</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20함흥냉면옥" target="_blank" rel="noopener">함흥냉면옥</a></span><span class="tag">노포</span><br>1951년 실향민이 연 함흥냉면 1호, 명태회냉면의 원조</td>
-            <td class="n">확인 필요</td>
-            <td class="n">확인 필요</td>
-            <td>자리에 앉으면 온육수·냉육수 주전자 둘이 나오는 집 · 뱃사람 해장으로 시작해 전국구가 된 노포</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20동춘관" target="_blank" rel="noopener">동춘관</a></span><span class="tag">노포</span><br>1969년부터 2대째, 짬뽕이 유명한 영랑호 중국집</td>
-            <td class="n">09:00–21:00</td>
-            <td class="n">짬뽕 8,000~</td>
-            <td>요즘식 얼큰함 대신 슴슴한 옛 짬뽕 · 탕수육 호평 · 가게 앞 주차 3대 — 시간·값 전화 확인</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20맥코리아" target="_blank" rel="noopener">맥코리아</a></span><span class="tag">노포</span><br>1994년 아남프라자 지하에서 그대로, 추억의 경양식 왕돈까스</td>
-            <td class="n">확인 필요</td>
-            <td class="n">확인 필요</td>
-            <td>속초 사람들의 왕돈까스 하면 이 집 · 쇼핑몰 지하 푸드코트 자리 그대로</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%2088순대국" target="_blank" rel="noopener">88순대국</a></span><span class="tag">노포</span><br>1981년부터 3대째 끓인 속초의 아침 국밥</td>
-            <td class="n">07:00–21:00</td>
-            <td class="n">11,000~</td>
-            <td>백년가게 · 아바이순대국밥 13,000 · 상인들 빠지는 9~11시가 한산</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20옛날수제비" target="_blank" rel="noopener">옛날수제비</a></span><span class="tag">노포</span><br>손으로 뜯어 넣는 수제비, 1998년부터 교동 그 자리</td>
-            <td class="n">10:00–19:30</td>
-            <td class="n">8,000~</td>
-            <td>일 휴무 — 8/16 불가 · 브레이크 15:00~16:30 · 주문 후 30~40분, 오픈런 권장</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20함흥막국수" target="_blank" rel="noopener">함흥막국수</a></span><span class="tag">노포</span><br>1984년부터 2대째, 명태회 고명의 함흥식 회막국수</td>
-            <td class="n">09:00–19:30</td>
-            <td class="n">11,000~</td>
-            <td>백년가게 · 회막국수 12,000 · 목 휴무(여행일 무관) · 성수기 점심 대기</td>
-          </tr>
-          <tr>
-            <td><span class="nm"><a href="https://map.naver.com/p/search/속초%20형제반점" target="_blank" rel="noopener">형제반점</a></span><span class="tag">노포</span><br>간판부터 옛날, 감자 든 짜장과 옛날식 탕수육</td>
-            <td class="n">10:30–19:30</td>
-            <td class="n">7,000~</td>
-            <td>영랑동 좌식 노포 · 탕수육 소 20,000 · 19:30 마감이라 이른 저녁으로</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p style="font-size:13.5px; color:var(--fg-3)">물회·생선구이류는 이번 판에서 접었습니다. 당기시면 단독 옵션으로 따로 검증해 올립니다.</p>
-
-    <!-- ═══ A–8 ═══ -->
-    <div class="folio"><span class="pg">A–8</span><span class="spec">산책 메뉴 · walk menu</span></div>
-
-    <ul class="sc">
-      <li><span class="s"></span><span class="b"><b><a href="https://map.naver.com/p/search/외옹치%20바다향기로" target="_blank" rel="noopener">외옹치 바다향기로</a></b><span>65년간 출입이 통제됐던 해안 데크 890m · 06:00~19:30 · 무료 · 아침 8시대가 그늘과 한산을 다 잡습니다</span></span></li>
-      <li><span class="s"></span><span class="b"><b><a href="https://map.naver.com/p/search/속초%20영금정" target="_blank" rel="noopener">영금정</a> 일출</b><span>동명항 정자 너머로 해가 옵니다 · 차 5분 · 05:40 일출</span></span></li>
-      <li><span class="s"></span><span class="b"><b><a href="https://map.naver.com/p/search/속초아이%20대관람차" target="_blank" rel="noopener">속초아이</a> 야경</b><span>아파트 22층 높이 15분 · 12,000원 · 운영 여부는 아래 확인란</span></span></li>
-      <li><span class="s"></span><span class="b"><b><a href="https://map.naver.com/p/search/속초%20상도문돌담마을" target="_blank" rel="noopener">상도문 돌담마을</a></b><span>500년 집성촌 돌담길과 학무정 · 무료 · 차 15분 · 주민 거주지라 조용히, 1~2시간</span></span></li>
-      <li><span class="s"></span><span class="b"><b><a href="https://map.naver.com/p/search/속초%20청초정" target="_blank" rel="noopener">청초호 해상보행교</a></b><span>숙소 도보 15분 · 야간 조명과 맨발걷기길 336m · 저녁 뒤 산책</span></span></li>
-    </ul>
-
-    <!-- ═══ A–9 ═══ -->
-    <div class="folio"><span class="pg">A–9</span><span class="spec">조합 · 편집장의 예시 셋</span></div>
-
-    <h2 class="hl" style="font-size:clamp(46px,8.8vw,64px)">세 가지 조합 예시</h2>
-    <p class="dek">마음에 드는 열을 고른 뒤, 칸의 메뉴만 바꿔 끼우면 됩니다.</p>
-
-    <div class="tbox">
-      <table>
-        <thead><tr><th>slot</th><th>① 절과 바다</th><th>② 북쪽 해안선</th><th>③ 빵의 속도</th></tr></thead>
-        <tbody>
-          <tr><td class="n">금 저녁</td><td>시장 닭강정 포장</td><td>시장 닭강정 포장</td><td>명가한우마을</td></tr>
-          <tr><td class="n">토</td><td>낙산 드라이브·낙산사 → 탑골막국수</td><td>고성 해안선 → 어나더블루</td><td>권금성 케이블카 → 감나무집 옹심이</td></tr>
-          <tr><td class="n">일</td><td>외옹치 아침 산책 → SHLTR</td><td>영랑호 한 바퀴 → 히응커피</td><td>봉브레드 → 칠성조선소</td></tr>
-          <tr><td class="n">월 아침</td><td>영금정 일출 → 소금빵 포장</td><td>소금빵 포장</td><td>늦잠 → 소금빵 포장</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- ═══ A–10 ═══ -->
-    <div class="folio"><span class="pg">A–10</span><span class="spec">편집국 · 출발 전 확인란</span></div>
-
-    <div class="grid-2">
-      <ul class="sc">
-        <li class="hi"><span class="s"></span><span class="b"><b>낙산사 개폐 시간</b><span>안내처마다 시간이 다릅니다 — 종무소 033-672-2447</span></span></li>
-        <li class="hi"><span class="s"></span><span class="b"><b>봉브레드 영업</b><span>영업 재개 후 정보가 자주 바뀝니다 — 033-633-4826</span></span></li>
-        <li><span class="s"></span><span class="b"><b>탑골막국수 8/15</b><span>일부 예약처에 공휴일 휴무로 표시 — 광복절 방문 전 전화</span></span></li>
-        <li><span class="s"></span><span class="b"><b>연탄불생구이 휴무</b><span>격주 화요일·혹서기 휴무 표기가 있습니다 — 방문 전 확인</span></span></li>
-      </ul>
-      <ul class="sc">
-        <li><span class="s"></span><span class="b"><b>감나무집 영업시간</b><span>안내처마다 14시·18시로 마감 시간이 다릅니다 — 033-633-2306</span></span></li>
-        <li><span class="s"></span><span class="b"><b>케이블카 당일 기상</b><span>권금성 선택 시 토요일 아침 sorakcablecar.co.kr 공지</span></span></li>
-        <li><span class="s"></span><span class="b"><b>속초아이 운영</b><span>철거 소송 중 — 집행정지로 항소심까지 운영, 방문 주 확인</span></span></li>
-        <li><span class="s"></span><span class="b"><b>세렝게티·순두부 시간</b><span>휴무·마감 안내가 엇갈립니다 — 당일 전화 확인</span></span></li>
-      </ul>
-    </div>
-
+    <aside class="sources" aria-label="확인 정보">
+      <p><span class="spec">official</span> · <a href="https://www.instagram.com/chaekgaok/reel/DbZpK7ghvic/" target="_blank" rel="noopener">책가옥 강연 안내</a> · <a href="https://www.instagram.com/chaekgaok/p/DbIRKZWhsdg/" target="_blank" rel="noopener">매진 안내</a> · <a href="https://www.leeumhoam.org/leeum/exhibition/93" target="_blank" rel="noopener">리움 전시 안내</a></p>
+      <p><span class="spec">checked</span> · 2026.08.20 16:40 KST · 날씨는 Open-Meteo 단기 예보. 책가옥 종료 시각과 차량 이동 시간은 공개값이 없어 여유를 둔 추정입니다.</p>
+    </aside>
   </div>
 </article>
-
 </main>
 
 <footer>
   <div class="wrap">
-    <p><span class="spec">life journal · issue–02 · 2026.08.11 · 내부용</span></p>
-    <p style="margin-top:8px">개인 일정이 담겨 있어 외부로 공유하지 않습니다.</p>
+    <p><span class="spec">life journal · issue–03 · 2026.08.20 · 내부용</span></p>
+    <p>개인 일정이 담겨 있어 외부로 공유하지 않습니다.</p>
   </div>
 </footer>
 
 <button class="cb-fab" id="cbFab" type="button" aria-expanded="false" aria-controls="cbSheet">코스 빌더 <span class="bd" id="cbBadge">0</span></button>
-
 <aside class="cb-sheet" id="cbSheet" aria-label="코스 빌더">
   <div class="cb-head">
     <span class="tt">코스 빌더</span>
     <span class="sum" id="cbSum">0곳</span>
     <span class="sp"></span>
-    <label><input type="checkbox" id="cbHome" checked aria-label="숙소 출발"> 숙소 출발</label>
+    <label for="cbBase">출발</label>
+    <select id="cbBase" aria-label="출발점 선택">
+      <option value="book">책가옥</option>
+      <option value="leeum">리움</option>
+    </select>
     <button class="cb-btn" id="cbSave" type="button" hidden>저장</button>
     <button class="cb-btn" id="cbSort" type="button">가까운 순</button>
     <button class="cb-btn" id="cbCopy" type="button">복사</button>
@@ -812,248 +404,56 @@ body.cb-open .cb-sheet{transform:none}
 <script>
 (function(){
 "use strict";
-var HOME = {name:"숙소 · UH 플랫 더 속초", lat:38.2060942, lng:128.5934209};
-var SPOTS = {"고성 청간정": {"name": "청간정", "cat": "드라이브", "lat": 38.2644317, "lng": 128.5583707, "p": "전용", "pn": "전용 주차장 무료·화장실 병설, 성수기 만차 가능"}, "아야진해변": {"name": "아야진해변", "cat": "드라이브", "lat": 38.2758723, "lng": 128.5533854, "p": "공영", "pn": "공영주차장 약 200대 무료, 8월 조기 만차"}, "고성 천학정": {"name": "천학정", "cat": "드라이브", "lat": 38.2890014, "lng": 128.5476596, "p": "전용", "pn": "입구 소규모 무료 주차장, 만차 시 교암항·교암해변"}, "고성 능파대": {"name": "능파대", "cat": "드라이브", "lat": 38.2967403, "lng": 128.5488754, "p": "공영", "pn": "자체 주차 불가 — 문암해변·문암항 무료 주차 후 도보"}, "양양 낙산해변": {"name": "낙산해변", "cat": "드라이브", "lat": 38.1179229, "lng": 128.6337826, "p": "공영", "pn": "해수욕장 공영주차장 무료, 피서철 만차 잦음"}, "하조대 스카이워크": {"name": "하조대 스카이워크", "cat": "드라이브", "lat": 38.0222689, "lng": 128.7291416, "p": "전용", "pn": "전망대 무료 주차(소형 약 100대), 협소 시 하조대해수욕장 주차 후 도보"}, "영랑호 호수윗길": {"name": "영랑호 부교", "cat": "드라이브", "lat": 38.2158084, "lng": 128.5782105, "p": "전용", "pn": "호수윗길 주차장(금호동 600-11)·장사동 대형주차장 무료"}, "영랑호 범바위": {"name": "범바위", "cat": "드라이브", "lat": 38.2147156, "lng": 128.5758236, "p": "공영", "pn": "영랑호수윗길·충혼비 무료 주차장에서 도보 5분"}, "속초 영랑정": {"name": "영랑정", "cat": "드라이브", "lat": 38.2141929, "lng": 128.5761624, "p": "공영", "pn": "영랑호수윗길 무료 주차장 이용 후 도보"}, "양양 낙산사": {"name": "낙산사", "cat": "절·산", "lat": 38.1265937, "lng": 128.6285213, "p": "전용", "pn": "정문 5,000원·의상대 4,000원 유료, 무료는 도보 10분 낙산항"}, "속초 신흥사": {"name": "신흥사", "cat": "절·산", "lat": 38.175604, "lng": 128.4847509, "p": "전용", "pn": "소공원 유료 주차장(4,000~6,000원대 안내 편차), 입장은 무료"}, "설악케이블카": {"name": "권금성 케이블카", "cat": "절·산", "lat": 38.1730493, "lng": 128.4891317, "p": "공영", "pn": "전용 없음 — 소공원 신흥사 유료 주차장 이용, 성수기 오전 만차"}, "속초 초당소금빵": {"name": "초당소금빵", "cat": "빵", "lat": 38.2053246, "lng": 128.5901816, "p": "공영", "pn": "관광수산시장 공영주차장 530대(30분 300원), 시장 1만원 구매 시 30분권"}, "속초옥수수소금빵": {"name": "속초옥수수소금빵", "cat": "빵", "lat": 38.2041639, "lng": 128.5882247, "p": "공영", "pn": "시장 공영주차장 바로 옆, 전용 없음"}, "속초 히응커피": {"name": "히응커피", "cat": "빵", "lat": 38.2008017, "lng": 128.5689766, "p": "가게앞", "pn": "매장 옆·뒤 2~3대, 뒤 도로변 노상 병용"}, "속초 봉브레드": {"name": "봉브레드", "cat": "빵", "lat": 38.2029121, "lng": 128.5684687, "p": "가게앞", "pn": "가게 앞 3~5대 협소 — 혼잡 시 운전자 대기 안내"}, "베이커리가루 속초점": {"name": "베이커리 가루", "cat": "빵", "lat": 38.1977832, "lng": 128.5813463, "p": "가게앞", "pn": "전용 없음 — 가게 앞·길가 잠시 주차 후기"}, "속초 강원도막걸리술빵": {"name": "강원도막걸리술빵", "cat": "빵", "lat": 38.2049814, "lng": 128.5896022, "p": "공영", "pn": "닭전골목 내 점포 — 5번 게이트 맞은편 공영주차장"}, "세렝게티커피 속초중앙시장점": {"name": "세렝게티 베이크샵", "cat": "빵", "lat": 38.2052177, "lng": 128.5892754, "p": "공영", "pn": "별도 주차 없음 — 시장 공영주차장(30분 300원)"}, "속초 SHLTR": {"name": "SHLTR", "cat": "커피", "lat": 38.1976357, "lng": 128.5974595, "p": "전용", "pn": "매장 뒤 도보 3분 전용 주차장, 만차 시 해안도로 노면"}, "속초 어나더블루": {"name": "어나더블루", "cat": "커피", "lat": 38.2267686, "lng": 128.5872898, "p": "가게앞", "pn": "매장 앞·건물 뒤 공터 무료, 협소 — 피크엔 장사항 공영주차장"}, "속초 칠성조선소": {"name": "칠성조선소", "cat": "커피", "lat": 38.1985154, "lng": 128.583475, "p": "공영", "pn": "앞 골목 협소 — 엑스포 제4공영주차장(무료) 주차 후 도보"}, "속초 보사노바": {"name": "보사노바", "cat": "커피", "lat": 38.1885616, "lng": 128.6038568, "p": "전용", "pn": "매장 뒤편 전용, 카운터 등록 시 90분~2시간 무료"}, "속초 시드누아": {"name": "시드누아", "cat": "커피", "lat": 38.1969076, "lng": 128.5308059, "p": "전용", "pn": "자체 주차장 약 30대 무료, 주말도 여유 후기"}, "속초 커피해요": {"name": "커피해요", "cat": "커피", "lat": 38.2161515, "lng": 128.5957708, "p": "갓길", "pn": "별도 자리 없음 — 등대해변 도로변 무료 노상"}, "속초 명가한우마을": {"name": "명가한우마을", "cat": "밥", "lat": 38.2073576, "lng": 128.5929582, "p": "확인", "pn": "'주차 가능' 표기는 있으나 규모·요금 근거 미확인 — 033-635-5123"}, "속초 단천식당": {"name": "단천식당", "cat": "밥", "lat": 38.2025844, "lng": 128.5937724, "p": "공영", "pn": "아바이마을 공영주차장·설악금강대교 아래 무료, 성수기 만차"}, "속초탑골막국수 본점": {"name": "탑골막국수", "cat": "밥", "lat": 38.1916152, "lng": 128.6017339, "p": "공영", "pn": "매장 앞 2대뿐 — 속초해수욕장 공영주차장, 식사 시 2시간 할인권"}, "감나무집감자옹심이": {"name": "감나무집 감자옹심이", "cat": "밥", "lat": 38.204315, "lng": 128.590906, "p": "공영", "pn": "바로 옆 시장 공영주차장, 식당에서 30분 할인권 제공"}, "속초 최가네": {"name": "최가네", "cat": "밥", "lat": 38.2116709, "lng": 128.5902277, "p": "불가", "pn": "주차 불가 — 근처 문화회관 공용주차장 이용"}, "속초 춘천중앙닭갈비": {"name": "춘천중앙닭갈비", "cat": "밥", "lat": 38.193649, "lng": 128.576215, "p": "갓길", "pn": "가게 양옆 골목 노상 주차"}, "만석닭강정 중앙시장": {"name": "만석닭강정", "cat": "밥", "lat": 38.2047589, "lng": 128.5902344, "p": "공영", "pn": "주차타워 350대, 1만원 구매 시 30분 무료권(최대 2매)"}, "속초 연탄불생구이": {"name": "연탄불생구이", "cat": "밥", "lat": 38.1962247, "lng": 128.5731656, "p": "갓길", "pn": "전용 없음 — 좌측 대로변 등 인근 자율 주차"}, "속초 정든식당": {"name": "정든식당", "cat": "밥", "lat": 38.2118546, "lng": 128.5879515, "p": "가게앞", "pn": "매장 앞 1~2대, 옆 공터 포함 약 5대"}, "속초 김영애할머니순두부": {"name": "김영애할머니순두부", "cat": "밥", "lat": 38.206068, "lng": 128.52795, "p": "전용", "pn": "자체 주차장·관리 요원, 피크엔 만석 후기"}, "외옹치 바다향기로": {"name": "외옹치 바다향기로", "cat": "산책", "lat": 38.1829608, "lng": 128.6093359, "p": "공영", "pn": "외옹치해변 무료(약 20대)·외옹치항 가능, 리조트 구간 진입 제한 확인"}, "속초 영금정": {"name": "영금정", "cat": "산책", "lat": 38.2118321, "lng": 128.6015368, "p": "공영", "pn": "동명항·활어직판장 주차장, 일부 구역 30분 1,000원 후기 — 현장 확인"}, "속초아이 대관람차": {"name": "속초아이", "cat": "산책", "lat": 38.1907178, "lng": 128.6027408, "p": "공영", "pn": "속초해수욕장 제1~3공영주차장 유료(성수기 2시간 2,000원), 할인 없음"}, "속초 상도문돌담마을": {"name": "상도문 돌담마을", "cat": "산책", "lat": 38.1640486, "lng": 128.5540375, "p": "공영", "pn": "도문농요전수관 앞 무료 주차 후 도보 — 주민 거주지"}, "속초 청초정": {"name": "청초호 해상보행교", "cat": "산책", "lat": 38.1969086, "lng": 128.5837544, "p": "공영", "pn": "청초호 호수공원·엑스포 제4공영주차장(무료 후기) 이용"}, "가보오토종닭": {"name": "가보오토종닭", "cat": "밥", "lat": 38.2031719, "lng": 128.5269438, "p": "전용", "pn": "가게 옆·뒤 자체 주차장에 주차요원, 수요일 휴무"}, "양양 송이버섯마을": {"name": "송이버섯마을", "cat": "밥", "lat": 38.0650501, "lng": 128.6209132, "p": "전용", "pn": "약 50대 무료 전용 주차, 식사 시간대 혼잡"}, "속초 함흥냉면옥": {"name": "함흥냉면옥", "cat": "밥", "lat": 38.2019835, "lng": 128.5898752, "p": "전용", "pn": "자체 주차장 넓고 무료, 앞 공영주차장 인접"}, "속초 동춘관": {"name": "동춘관", "cat": "밥", "lat": 38.210962, "lng": 128.5873065, "p": "가게앞", "pn": "건물 앞·옆 약 5대, 만차 시 인근 주차장"}, "속초 맥코리아": {"name": "맥코리아", "cat": "밥", "lat": 38.19727, "lng": 128.57758, "p": "전용", "pn": "아남프라자 부설주차장 약 350면, 무료·할인 여부는 미확인"}, "속초 88순대국": {"name": "88순대국", "cat": "밥", "lat": 38.2043788, "lng": 128.5889386, "p": "공영", "pn": "전용 없음 — 중앙시장 맞은편 공영주차장, 식사 손님 30분 할인권"}, "속초 옛날수제비": {"name": "옛날수제비", "cat": "밥", "lat": 38.2048536, "lng": 128.5772079, "p": "가게앞", "pn": "매장 앞 4~5대 협소, 만차 시 인근 골목 노상"}, "속초 함흥막국수": {"name": "함흥막국수", "cat": "밥", "lat": 38.2004131, "lng": 128.582385, "p": "가게앞", "pn": "가게 앞 1~2대 — 인근 로데오 민영·공영주차장 권장"}, "속초 뉴욕제과": {"name": "뉴욕제과", "cat": "빵", "lat": 38.201035, "lng": 128.5794119, "p": "전용", "pn": "매장 옆 전용 3~4대, 주말에도 여유 후기"}, "속초 형제반점": {"name": "형제반점", "cat": "밥", "lat": 38.2150736, "lng": 128.5952067, "p": "갓길", "pn": "전용 없음 — 매장 앞 갓길 주차 후기 다수"}};
-var LSKEY = "cb-issue02";
-
-/* ── 거리 모델: 직선거리 × 1.3 도로 보정, 도보 80m/분(1.2km 이하), 차 40km/h ── */
-function hav(a,b){
-  var R=6371000, r=Math.PI/180;
-  var dLat=(b.lat-a.lat)*r, dLng=(b.lng-a.lng)*r;
-  var s=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLng/2)*Math.sin(dLng/2);
-  return 2*R*Math.asin(Math.sqrt(s));
-}
-function leg(a,b){
-  var m=hav(a,b)*1.3;
-  if(m<=1200) return {mode:"🚶", min:Math.max(1,Math.round(m/80)), m:m};
-  return {mode:"🚗", min:Math.max(2,Math.round(m/667)), m:m};
-}
-function legTxt(l){
-  var d=l.m<950? Math.round(l.m/10)*10+"m" : (l.m/1000).toFixed(1)+"km";
-  return l.mode+" "+l.min+"분 · "+d;
-}
-
-/* ── 상태 ── */
-var state={sel:[], home:true, saves:[]};
-try{ var s=JSON.parse(localStorage.getItem(LSKEY)||"null"); if(s&&s.sel){state.sel=s.sel.filter(function(q){return SPOTS[q];}); state.home=s.home!==false;
-  if(Array.isArray(s.saves)) state.saves=s.saves.filter(function(v){return v&&Array.isArray(v.sel)&&v.sel.length;}).map(function(v){return {name:String(v.name||"저장"), sel:v.sel.filter(function(q){return SPOTS[q];}), home:v.home!==false};});
-} }catch(e){}
-function save(){ try{localStorage.setItem(LSKEY,JSON.stringify(state));}catch(e){} }
-
-/* ── 선택 버튼·거리 칩 주입: 페이지의 모든 지도 링크 ── */
-var anchors=[].slice.call(document.querySelectorAll('a[href^="https://map.naver.com/p/search/"]'));
-anchors.forEach(function(a){
-  var q=decodeURIComponent(a.getAttribute("href").split("/p/search/")[1]||"");
-  var sp=SPOTS[q]; if(!sp) return;
-  var l=leg(HOME,sp);
-  var chip=document.createElement("span"); chip.className="cb-d"; chip.textContent="숙소 "+l.mode+" "+l.min+"분";
-  var pchip=null;
-  if(sp.p){ pchip=document.createElement("span"); pchip.className="cb-d"; pchip.textContent="🅿️ "+sp.p; if(sp.pn) pchip.title=sp.pn; }
-  var btn=document.createElement("button"); btn.type="button"; btn.className="cb-add"; btn.dataset.q=q;
-  btn.setAttribute("aria-label",sp.name+" 코스에 담기"); btn.textContent="+";
-  btn.addEventListener("click",function(ev){ ev.preventDefault(); toggle(q); });
-  a.after(btn); if(pchip) a.after(pchip); a.after(chip);
-});
-function syncBtns(){
-  [].slice.call(document.querySelectorAll(".cb-add")).forEach(function(b){
-    var on=state.sel.indexOf(b.dataset.q)>=0;
-    b.classList.toggle("on",on); b.textContent=on?"✓":"+";
-  });
-}
-
-/* ── 지도 ── */
-var map=null, layer=null, tileL=null;
-function darkNow(){
-  var t=document.documentElement.getAttribute("data-theme");
-  if(t==="dark") return true; if(t==="light") return false;
-  return window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
-}
-function tiles(){
-  return L.tileLayer("https://{s}.basemaps.cartocdn.com/"+(darkNow()?"dark_all":"light_all")+"/{z}/{x}/{y}{r}.png",
-    {maxZoom:18, attribution:'&copy; OpenStreetMap &copy; CARTO'});
-}
-function ensureMap(){
-  if(map) return;
-  if(typeof L==="undefined"){
-    document.getElementById("cbMap").innerHTML='<div class="cb-empty">지도를 불러오지 못했습니다 — 네트워크 연결 뒤 새로고침해 주세요. 오른쪽 시나리오는 그대로 쓸 수 있습니다.</div>';
-    return;
-  }
-  map=L.map("cbMap",{zoomControl:true, attributionControl:true});
-  tileL=tiles().addTo(map);
-  layer=L.layerGroup().addTo(map);
-  map.setView([HOME.lat,HOME.lng],13);
-  if(window.matchMedia) window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){
-    if(!map) return; map.removeLayer(tileL); tileL=tiles().addTo(map);
-  });
-}
-function route(){
-  var pts=state.sel.map(function(q){return SPOTS[q];});
-  if(state.home&&pts.length) pts=[HOME].concat(pts);
-  return pts;
-}
-function drawMap(){
-  if(!map) return;
-  layer.clearLayers();
-  var pts=route(); if(!pts.length) return;
-  pts.forEach(function(p,i){
-    var home=(state.home&&i===0);
-    var ic=L.divIcon({className:"", html:'<div class="cb-pin'+(home?' home':'')+'" style="width:22px;height:22px">'+(home?"H":(state.home?i:i+1))+"</div>", iconSize:[22,22], iconAnchor:[11,11]});
-    L.marker([p.lat,p.lng],{icon:ic, title:p.name}).addTo(layer);
-  });
-  L.polyline(pts.map(function(p){return [p.lat,p.lng];}),{color:getComputedStyle(document.documentElement).getPropertyValue("--accent").trim()||"#ff5722", weight:2.5, dashArray:"6 5", opacity:.9}).addTo(layer);
-  var b=L.latLngBounds(pts.map(function(p){return [p.lat,p.lng];}));
-  map.fitBounds(b,{padding:[26,26], maxZoom:15});
-}
-
-/* ── 시나리오 리스트 ── */
-var listEl=document.getElementById("cbList");
-function drawList(){
-  listEl.innerHTML="";
-  if(!state.sel.length){
-    var d=document.createElement("div"); d.className="cb-empty";
-    d.textContent="메뉴 이름 옆 + 버튼으로 스팟을 담으면, 여기서 순서를 짜고 지도로 확인합니다.";
-    listEl.appendChild(d); return;
-  }
-  var prev=state.home?HOME:null;
-  state.sel.forEach(function(q,i){
-    var sp=SPOTS[q];
-    var li=document.createElement("div"); li.className="cb-li"; li.draggable=true; li.dataset.i=i;
-    var lg=prev?leg(prev,sp):null;
-    li.innerHTML='<span class="no">'+(i+1)+'</span>'
-      +'<span><span class="nm2">'+sp.name+'<span class="ct">'+sp.cat+'</span></span>'
-      +'<div class="leg">'+(lg?('<span class="ac">↳</span> '+legTxt(lg)):"출발점")+"</div></span>"
-      +'<span class="ops"><button type="button" data-op="up" aria-label="위로">▲</button><button type="button" data-op="dn" aria-label="아래로">▼</button><button type="button" data-op="rm" aria-label="빼기">✕</button></span>';
-    li.querySelector(".nm2").addEventListener("click",function(){ flashSpot(q); });
-    li.querySelectorAll("button").forEach(function(b){
-      b.addEventListener("click",function(){
-        var op=b.dataset.op;
-        if(op==="rm") return toggle(q);
-        var j=op==="up"?i-1:i+1;
-        if(j<0||j>=state.sel.length) return;
-        var t=state.sel[i]; state.sel[i]=state.sel[j]; state.sel[j]=t;
-        save(); render();
-      });
-    });
-    li.addEventListener("dragstart",function(e){ li.classList.add("drag"); e.dataTransfer.setData("text/plain",String(i)); });
-    li.addEventListener("dragend",function(){ li.classList.remove("drag"); });
-    li.addEventListener("dragover",function(e){ e.preventDefault(); });
-    li.addEventListener("drop",function(e){
-      e.preventDefault();
-      var from=parseInt(e.dataTransfer.getData("text/plain"),10);
-      if(isNaN(from)||from===i) return;
-      var it=state.sel.splice(from,1)[0]; state.sel.splice(i,0,it);
-      save(); render();
-    });
-    listEl.appendChild(li);
-    prev=sp;
-  });
-}
-function summary(){
-  var pts=route(), tot=0, mins=0;
-  for(var i=1;i<pts.length;i++){ var l=leg(pts[i-1],pts[i]); tot+=l.m; mins+=l.min; }
-  var t=mins>=60? Math.floor(mins/60)+"시간 "+(mins%60?mins%60+"분":""): mins+"분";
-  document.getElementById("cbSum").textContent=state.sel.length+"곳"+(pts.length>1?" · "+(tot/1000).toFixed(1)+"km · 이동 약 "+t.trim():"");
-  document.getElementById("cbBadge").textContent=state.sel.length;
-}
-function flashSpot(q){
-  var a=[].slice.call(document.querySelectorAll('a[href^="https://map.naver.com/p/search/"]')).filter(function(el){
-    return decodeURIComponent(el.getAttribute("href").split("/p/search/")[1]||"")===q;
-  })[0];
-  if(!a) return;
-  var box=a.closest("tr, .sc li, .m3 > div, .tl li")||a.parentElement;
-  a.scrollIntoView({behavior:"smooth", block:"center"});
-  box.classList.remove("cb-flash"); void box.offsetWidth;
-  box.classList.add("cb-flash");
-  setTimeout(function(){ box.classList.remove("cb-flash"); },3600);
-}
-function nextName(){
-  var n=0;
-  state.saves.forEach(function(v){ var m=/^저장(\d+)$/.exec(v.name); if(m) n=Math.max(n,parseInt(m[1],10)); });
-  return "저장"+(n+1);
-}
-function renderSaves(){
-  document.getElementById("cbSave").hidden = state.sel.length<2;
-  var box=document.getElementById("cbSaves");
-  box.hidden = !state.saves.length;
-  [].slice.call(box.querySelectorAll(".cb-chip")).forEach(function(c){c.remove();});
-  state.saves.slice().reverse().forEach(function(v){
-    var c=document.createElement("button"); c.type="button"; c.className="cb-chip";
-    c.innerHTML='<span>'+v.name+' · '+v.sel.length+'곳</span><span class="x" aria-label="'+v.name+' 삭제">✕</span>';
-    c.setAttribute("aria-label",v.name+" 불러오기");
-    c.addEventListener("click",function(e){
-      if(e.target.classList.contains("x")){ var idx=state.saves.indexOf(v); if(idx>=0) state.saves.splice(idx,1); save(); render(); return; }
-      state.sel=v.sel.slice(); state.home=v.home;
-      document.getElementById("cbHome").checked=v.home;
-      save(); render();
-    });
-    box.appendChild(c);
-  });
-}
-function render(){ syncBtns(); drawList(); summary(); renderSaves(); drawMap(); }
-
-/* ── 열고 닫기: FAB 토글, 배너 밖 클릭 시 접힘 ── */
-var fab=document.getElementById("cbFab"), sheet=document.getElementById("cbSheet");
-function open(){
-  document.body.classList.add("cb-open"); fab.setAttribute("aria-expanded","true");
-  ensureMap(); setTimeout(function(){ if(map){ map.invalidateSize(); drawMap(); } },280);
-}
-function close(){ document.body.classList.remove("cb-open"); fab.setAttribute("aria-expanded","false"); }
-fab.addEventListener("click",function(){ document.body.classList.contains("cb-open")?close():open(); });
-document.getElementById("cbClose").addEventListener("click",close);
-document.addEventListener("pointerdown",function(e){
-  if(!document.body.classList.contains("cb-open")) return;
-  if(sheet.contains(e.target)||fab.contains(e.target)) return;
-  if(e.target.closest&&e.target.closest(".cb-add")) return;
-  close();
-});
-document.addEventListener("keydown",function(e){ if(e.key==="Escape") close(); });
-
-/* ── 액션 ── */
-function toggle(q){
-  var i=state.sel.indexOf(q);
-  if(i>=0) state.sel.splice(i,1); else state.sel.push(q);
-  save(); render();
-  if(i<0&&!document.body.classList.contains("cb-open")) open();
-}
-document.getElementById("cbHome").checked=state.home;
-document.getElementById("cbHome").addEventListener("change",function(e){ state.home=e.target.checked; save(); render(); });
-document.getElementById("cbClear").addEventListener("click",function(){ state.sel=[]; save(); render(); });
-document.getElementById("cbSave").addEventListener("click",function(){
-  if(state.sel.length<2) return;
-  state.saves.push({name:nextName(), sel:state.sel.slice(), home:state.home});
-  save(); render();
-  var b=document.getElementById("cbSave"); b.textContent="저장됨";
-  setTimeout(function(){ b.textContent="저장"; },1200);
-});
-document.getElementById("cbSort").addEventListener("click",function(){
-  var rest=state.sel.slice(), out=[], cur;
-  if(state.home){ cur=HOME; }
-  else{ var first=rest.shift(); if(!first) return; out.push(first); cur=SPOTS[first]; }
-  while(rest.length){
-    var bi=0,bd=Infinity;
-    rest.forEach(function(q,i){ var d=hav(cur,SPOTS[q]); if(d<bd){bd=d;bi=i;} });
-    var q=rest.splice(bi,1)[0]; out.push(q); cur=SPOTS[q];
-  }
-  state.sel=out; save(); render();
-});
-document.getElementById("cbCopy").addEventListener("click",function(){
-  var pts=route(), lines=[], prev=null;
-  pts.forEach(function(p,i){
-    var head=(state.home&&i===0)?"출발 · ":(state.home?i+". ":(i+1)+". ");
-    var l=prev?leg(prev,p):null;
-    lines.push(head+p.name+(l?" — "+legTxt(l):""));
-    prev=p;
-  });
-  var txt=lines.join("\n");
-  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
-    document.getElementById("cbCopy").textContent="복사됨";
-    setTimeout(function(){document.getElementById("cbCopy").textContent="복사";},1400);
-  }).catch(function(){ window.prompt("복사해 주세요", txt); });
-});
-
+var BASES={
+  book:{name:"책가옥",lat:37.3503445,lng:127.0849517},
+  leeum:{name:"리움미술관",lat:37.5380141,lng:126.9994097}
+};
+var SPOTS={
+  "책가옥":{name:"책가옥",cat:"강연",lat:37.3503445,lng:127.0849517,p:"전용",pn:"장소 주차 가능. 매진 행사라 만차에 대비해 35–45분 일찍 도착합니다."},
+  "고기로426":{name:"고기로426",cat:"저녁",lat:37.3602729,lng:127.0624177,p:"넉넉",pn:"건물 앞 전용 주차공간이 넉넉합니다."},
+  "고기리막국수":{name:"고기리막국수",cat:"저녁",lat:37.3600125,lng:127.0400927,p:"전용",pn:"전용 주차 가능. 주말에는 식당 대기와 진입 정체를 함께 감안합니다."},
+  "리움미술관":{name:"리움미술관",cat:"전시",lat:37.5380141,lng:126.9994097,p:"협소",pn:"미술관 주차공간이 협소해 공식 안내는 대중교통 이용을 권합니다."},
+  "빠르크 한남":{name:"빠르크 한남본점",cat:"저녁",lat:37.5374926,lng:126.9997329,p:"발렛",pn:"한남동 744-31 아스티에드빌라트 주차장에서 발렛파킹을 이용합니다."}
+};
+var LSKEY="life-journal-issue03-builder";
+var state={sel:[],base:"book",saves:[]};
+try{var saved=JSON.parse(localStorage.getItem(LSKEY)||"null");if(saved){state.sel=Array.isArray(saved.sel)?saved.sel.filter(function(q){return SPOTS[q];}):[];state.base=BASES[saved.base]?saved.base:"book";state.saves=Array.isArray(saved.saves)?saved.saves:[];}}catch(e){}
+function persist(){try{localStorage.setItem(LSKEY,JSON.stringify(state));}catch(e){}}
+function hav(a,b){var R=6371000,r=Math.PI/180,dLat=(b.lat-a.lat)*r,dLng=(b.lng-a.lng)*r;var s=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLng/2)*Math.sin(dLng/2);return 2*R*Math.asin(Math.sqrt(s));}
+function leg(a,b){var m=hav(a,b)*1.3;if(m<=1200)return{mode:"🚶",min:Math.max(1,Math.round(m/80)),m:m};return{mode:"🚗",min:Math.max(2,Math.round(m/667)),m:m};}
+function legText(l){var d=l.m<950?Math.round(l.m/10)*10+"m":(l.m/1000).toFixed(1)+"km";return l.mode+" "+l.min+"분 · "+d;}
+var anchorRows=[];
+document.querySelectorAll("a[data-spot]").forEach(function(a){var q=a.dataset.spot,sp=SPOTS[q];if(!sp)return;var dist=document.createElement("span");dist.className="cb-d cb-distance";var park=document.createElement("span");park.className="cb-d";park.textContent="🅿️ "+sp.p;park.title=sp.pn;var add=document.createElement("button");add.type="button";add.className="cb-add";add.dataset.q=q;add.setAttribute("aria-label",sp.name+" 코스에 담기");add.addEventListener("click",function(ev){ev.preventDefault();toggle(q);});a.after(add);a.after(park);a.after(dist);anchorRows.push({q:q,dist:dist,add:add});});
+function updateAnchorRows(){var base=BASES[state.base];anchorRows.forEach(function(row){var l=leg(base,SPOTS[row.q]);row.dist.textContent=base.name+" "+l.mode+" "+l.min+"분";var on=state.sel.indexOf(row.q)>=0;row.add.classList.toggle("on",on);row.add.textContent=on?"✓":"+";});}
+function toggle(q){var i=state.sel.indexOf(q);if(i>=0)state.sel.splice(i,1);else state.sel.push(q);persist();render();}
+var map=null,layer=null,tile=null;
+function darkNow(){return window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;}
+function tiles(){return L.tileLayer("https://{s}.basemaps.cartocdn.com/"+(darkNow()?"dark_all":"light_all")+"/{z}/{x}/{y}{r}.png",{maxZoom:18,attribution:"&copy; OpenStreetMap &copy; CARTO"});}
+function ensureMap(){if(map||typeof L==="undefined")return;map=L.map("cbMap",{zoomControl:true,attributionControl:true});tile=tiles().addTo(map);layer=L.layerGroup().addTo(map);}
+function drawMap(){ensureMap();if(!map)return;layer.clearLayers();var pts=[BASES[state.base]].concat(state.sel.map(function(q){return SPOTS[q];}));pts.forEach(function(p,i){var icon=L.divIcon({className:"",html:'<div class="cb-pin'+(i===0?' home':'')+'">'+(i===0?'H':i)+'</div>',iconSize:[24,24],iconAnchor:[12,12]});L.marker([p.lat,p.lng],{icon:icon,title:p.name}).addTo(layer);});if(pts.length>1)L.polyline(pts.map(function(p){return[p.lat,p.lng];}),{color:getComputedStyle(document.documentElement).getPropertyValue("--accent").trim()||"#ff5722",weight:2.5,dashArray:"6 5"}).addTo(layer);map.fitBounds(L.latLngBounds(pts.map(function(p){return[p.lat,p.lng];})),{padding:[28,28],maxZoom:15});setTimeout(function(){map.invalidateSize();},80);}
+var list=document.getElementById("cbList");
+function move(i,d){var j=i+d;if(j<0||j>=state.sel.length)return;var t=state.sel[i];state.sel[i]=state.sel[j];state.sel[j]=t;persist();render();}
+function flash(q){var a=document.querySelector('a[data-spot="'+q+'"]');if(!a)return;closeSheet();a.scrollIntoView({behavior:"smooth",block:"center"});var box=a.closest(".choice")||a.closest("li")||a;box.classList.remove("cb-flash");void box.offsetWidth;box.classList.add("cb-flash");}
+function drawList(){list.innerHTML="";if(!state.sel.length){var e=document.createElement("div");e.className="cb-empty";e.textContent="장소 이름 옆 + 버튼으로 담으면 거리·주차·순서를 한 화면에서 볼 수 있습니다.";list.appendChild(e);return;}var prev=BASES[state.base];state.sel.forEach(function(q,i){var sp=SPOTS[q],l=leg(prev,sp),row=document.createElement("div");row.className="cb-li";row.innerHTML='<span class="no">'+(i+1)+'</span><span><span class="nm2">'+sp.name+'<span class="ct">'+sp.cat+'</span></span><span class="leg"><span class="ac">↳</span> '+legText(l)+' · 🅿️ '+sp.p+'</span></span><span class="ops"><button type="button" data-op="up" aria-label="위로">▲</button><button type="button" data-op="down" aria-label="아래로">▼</button><button type="button" data-op="remove" aria-label="빼기">✕</button></span>';row.querySelector(".nm2").addEventListener("click",function(){flash(q);});row.querySelector('[data-op="up"]').addEventListener("click",function(){move(i,-1);});row.querySelector('[data-op="down"]').addEventListener("click",function(){move(i,1);});row.querySelector('[data-op="remove"]').addEventListener("click",function(){toggle(q);});list.appendChild(row);prev=sp;});}
+function greedySort(){var left=state.sel.slice(),out=[],cur=BASES[state.base];while(left.length){left.sort(function(a,b){return hav(cur,SPOTS[a])-hav(cur,SPOTS[b]);});var q=left.shift();out.push(q);cur=SPOTS[q];}state.sel=out;persist();render();}
+function copyRoute(){var cur=BASES[state.base],lines=["출발 · "+cur.name];state.sel.forEach(function(q,i){var sp=SPOTS[q],l=leg(cur,sp);lines.push((i+1)+". "+sp.name+" · "+legText(l)+" · 주차 "+sp.p);cur=sp;});var text=lines.join("\n");if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(function(){document.getElementById("cbCopy").textContent="복사됨";setTimeout(function(){document.getElementById("cbCopy").textContent="복사";},1200);});}
+function saveRoute(){if(!state.sel.length)return;var name=window.prompt("저장할 코스 이름",state.base==="book"?"토요일":"일요일");if(!name)return;state.saves.push({name:name,sel:state.sel.slice(),base:state.base});persist();drawSaves();}
+function drawSaves(){var box=document.getElementById("cbSaves");box.querySelectorAll(".cb-chip").forEach(function(x){x.remove();});box.hidden=!state.saves.length;state.saves.forEach(function(s,i){var chip=document.createElement("button");chip.type="button";chip.className="cb-chip";chip.innerHTML=s.name+' <span class="x" aria-hidden="true">✕</span>';chip.addEventListener("click",function(ev){if(ev.target.classList.contains("x")){state.saves.splice(i,1);persist();drawSaves();return;}state.sel=s.sel.filter(function(q){return SPOTS[q];});state.base=BASES[s.base]?s.base:"book";document.getElementById("cbBase").value=state.base;persist();render();});box.appendChild(chip);});}
+function render(){updateAnchorRows();drawList();drawMap();drawSaves();document.getElementById("cbBadge").textContent=state.sel.length;document.getElementById("cbSum").textContent=state.sel.length+"곳";document.getElementById("cbSave").hidden=!state.sel.length;}
+var fab=document.getElementById("cbFab"),sheet=document.getElementById("cbSheet");
+function openSheet(){document.body.classList.add("cb-open");fab.setAttribute("aria-expanded","true");drawMap();}
+function closeSheet(){document.body.classList.remove("cb-open");fab.setAttribute("aria-expanded","false");}
+fab.addEventListener("click",function(){document.body.classList.contains("cb-open")?closeSheet():openSheet();});
+document.getElementById("cbClose").addEventListener("click",closeSheet);
+document.getElementById("cbBase").value=state.base;
+document.getElementById("cbBase").addEventListener("change",function(){state.base=this.value;persist();render();});
+document.getElementById("cbSort").addEventListener("click",greedySort);
+document.getElementById("cbCopy").addEventListener("click",copyRoute);
+document.getElementById("cbClear").addEventListener("click",function(){state.sel=[];persist();render();});
+document.getElementById("cbSave").addEventListener("click",saveRoute);
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet();});
 render();
 })();
 </script>
-
 </body>
 </html>
