@@ -35,8 +35,8 @@
     "slug": "kisas-plan-after-1st",
     "mode": "choi",
     "url": "https://works.choi.build/kisas-plan-after-1st/",
-    "last_kind": "new",
-    "last_sha256": "ee5cb04ee2d83fbe634a10208cf871d004ec89b570511f5f74d32a699583d327",
-    "timestamp": "2026-08-25T01:58:54.591458Z"
+    "last_kind": "redeploy",
+    "last_sha256": "adfe9f748f8ae1493ecabc95664166c8071a9635469225d03f2eb0b8410274e8",
+    "timestamp": "2026-08-25T01:59:50.933232Z"
   }
 }
