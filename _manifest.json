@@ -30,5 +30,13 @@
     "last_kind": "redeploy",
     "last_sha256": "c9918fe15d713e24e956324ff545a160988c525a9b8a1c7a45b4dba2f885ea0a",
     "timestamp": "2026-08-20T06:47:05.332714Z"
+  },
+  "kisas-plan-after-1st": {
+    "slug": "kisas-plan-after-1st",
+    "mode": "choi",
+    "url": "https://works.choi.build/kisas-plan-after-1st/",
+    "last_kind": "new",
+    "last_sha256": "ee5cb04ee2d83fbe634a10208cf871d004ec89b570511f5f74d32a699583d327",
+    "timestamp": "2026-08-25T01:58:54.591458Z"
   }
 }
