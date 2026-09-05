@@ -101,46 +101,68 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
 .system .st b.off{color:var(--ink)}
 .note{font-family:var(--font-mono);font-size:13px;color:var(--fg-3);margin-top:16px;text-transform:lowercase}
 
-/* ---- 실사 질감 오버라이드 (사용자 요청: 버튼·노브·LED 실사) ---- */
-.ko2{box-shadow:0 18px 40px -18px rgba(0,0,0,.55),0 2px 4px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.7);border-color:rgba(0,0,0,.28)}
-.plate{background:linear-gradient(180deg,#ebe8e5 0%,#e2dfdc 60%,#d9d6d2 100%)}
-.deck{background:linear-gradient(180deg,#b4b2b0 0%,#acaaa8 50%,#a19f9d 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
-.screw{background:radial-gradient(circle at 35% 30%,#f4f2ef,#b9b7b3 55%,#8e8c89);border-color:#77756f;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 1px 1px rgba(0,0,0,.35)}
-.tab{box-shadow:0 1px 2px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.6)}
-.tab.accent{background:linear-gradient(180deg,#f57a4c,#ea5a2b 55%,#d24d20)}
-.tab.dark{background:linear-gradient(180deg,#4a4a4a,#353535 55%,#262626)}
-.tab.grey{background:linear-gradient(180deg,#8f8f8f,#7f7f7f 55%,#6a6a6a)}
-.lcd{position:relative;background:radial-gradient(120% 90% at 50% 0%,#1a1a19 0%,#111 55%,#0b0b0b 100%);box-shadow:inset 0 3px 10px rgba(0,0,0,.85),inset 0 -1px 0 rgba(255,255,255,.06)}
-.lcd::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(112deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,.02) 28%,transparent 45%)}
+
+/* ---- 실사 오버라이드 v2 — EP-133 K.O. II 제품 렌더 기준 ---- */
+.ko2{border:0;border-radius:6px;box-shadow:0 30px 50px -22px rgba(0,0,0,.6),0 8px 16px -8px rgba(0,0,0,.35),0 0 0 1px rgba(0,0,0,.22)}
+.plate{background:linear-gradient(180deg,#e9e6e2 0%,#e2dfdb 55%,#dbd8d4 100%)}
+.deck{background:linear-gradient(180deg,#b3b1ae 0%,#acaaa7 45%,#a3a19e 100%);padding:16px 18px 20px;gap:14px 18px}
+.tabs{height:28px}
+.tab{height:24px;font-family:var(--font-display);font-size:9.5px;font-weight:500;letter-spacing:.06em;box-shadow:0 1px 1px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.7)}
+.tab.accent{background:linear-gradient(180deg,#f7834f,#ef5a1f 50%,#d94c16);text-shadow:0 1px 0 rgba(0,0,0,.25)}
+.tab.dark{background:linear-gradient(180deg,#4d4d4d,#333 50%,#232323)}
+.tab.grey{background:linear-gradient(180deg,#8e8d8b,#7d7c7a 50%,#6a6967)}
+.tab.push::before{background:linear-gradient(180deg,#ff8a55,#ef5a1f);box-shadow:0 1px 1px rgba(0,0,0,.3)}
+.screw{width:10px;height:10px;background:radial-gradient(circle at 35% 30%,#f7f5f2,#c9c7c3 50%,#8f8d8a);border:1px solid #6f6d6a;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),0 1px 1px rgba(0,0,0,.35)}
+.wordmark h3{font-weight:300;font-size:28px;letter-spacing:-.01em}
+.wordmark .spec{font-family:var(--font-display);font-size:11px;letter-spacing:.04em;font-weight:400;color:#2a2a2a}
+.grille rect:first-child{fill:#b9b7b3}
+.grille circle{fill:#3c3b39}
+.grille{width:84px;filter:drop-shadow(0 1px 0 rgba(255,255,255,.5))}
+.lcd{background:#070707;border-top:0;border-bottom:0;padding:14px 16px 14px;box-shadow:inset 0 0 0 1px #000,inset 0 6px 14px rgba(0,0,0,.9),inset 0 -2px 0 rgba(255,255,255,.04)}
+.lcd::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(160deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.015) 30%,transparent 48%)}
 .lcd-top,.acct{position:relative;z-index:1}
-.seg7 .s.on{filter:drop-shadow(0 0 3px rgba(242,242,240,.55))}
-.seg7 .s.on.red{filter:drop-shadow(0 0 4px rgba(226,67,42,.7))}
-.seg7 .s.on.org{filter:drop-shadow(0 0 4px rgba(230,96,58,.7))}
-.meter i.on{box-shadow:0 0 3px rgba(242,242,240,.45)}
-.meter i.on.org{box-shadow:0 0 4px rgba(230,96,58,.6)}
-.meter i.on.red{box-shadow:0 0 4px rgba(226,67,42,.7)}
-.lbl.on,.row .v,.acct-h .who{text-shadow:0 0 4px rgba(242,242,240,.35)}
-.led::before{background:radial-gradient(circle at 40% 35%,#7a7876,#4a4846 60%,#3a3836);outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.6),0 0 0 2px #8f8d8a,0 0 0 3px rgba(0,0,0,.25),0 1px 1px rgba(255,255,255,.35)}
-.led.on::before{background:radial-gradient(circle at 40% 35%,#ffb39c,#ff4d2c 45%,#c9260f 100%);box-shadow:inset 0 0 2px rgba(255,255,255,.6),0 0 0 2px #8f8d8a,0 0 0 3px rgba(0,0,0,.25),0 0 6px 2px rgba(229,52,28,.85),0 0 14px 4px rgba(229,52,28,.4)}
-.key{background:linear-gradient(180deg,#151413,#1e1d1c 40%,#2a2927);box-shadow:inset 0 1px 2px rgba(0,0,0,.8),0 1px 0 rgba(255,255,255,.25)}
-.key .face{background:linear-gradient(180deg,color-mix(in srgb,var(--k) 78%,#fff) 0%,var(--k) 38%,color-mix(in srgb,var(--k) 88%,#000) 100%);border-top-color:color-mix(in srgb,var(--lip) 70%,#fff);box-shadow:0 2px 3px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.25)}
-.key .face::before{content:"";position:absolute;left:8%;right:8%;top:2px;height:38%;border-radius:2px;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0));pointer-events:none}
-.key.light .face::before,.key.pale .face::before{background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0))}
-.key:active .face{box-shadow:0 0 1px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.2)}
-.split{background:linear-gradient(180deg,#151413,#1e1d1c 40%,#2a2927);box-shadow:inset 0 1px 2px rgba(0,0,0,.8),0 1px 0 rgba(255,255,255,.25)}
-.split .h{background:linear-gradient(180deg,color-mix(in srgb,var(--k) 80%,#fff) 0%,var(--k) 40%,color-mix(in srgb,var(--k) 88%,#000) 100%);box-shadow:0 2px 3px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.25);overflow:hidden}
-.split .h::before{content:"";position:absolute;left:3%;right:3%;top:1px;height:42%;border-radius:2px;background:linear-gradient(180deg,rgba(255,255,255,.26),rgba(255,255,255,0));pointer-events:none}
-.split .h.orange{text-shadow:0 1px 1px rgba(0,0,0,.35)}
-.knob{border:none;background:
- radial-gradient(circle at 38% 30%,rgba(255,255,255,.55) 0,rgba(255,255,255,.12) 18%,rgba(255,255,255,0) 40%),
- radial-gradient(circle at 50% 50%,#f06a3c 0,#e9592c 52%,#c8481f 72%,#9c3312 100%);
- box-shadow:0 0 0 5px #2b2927,0 0 0 6px #4a4846,0 6px 10px -2px rgba(0,0,0,.6),0 1px 0 rgba(255,255,255,.3),inset 0 -3px 5px rgba(0,0,0,.35),inset 0 2px 3px rgba(255,255,255,.35)}
-.knob::before{background:radial-gradient(circle at 40% 35%,#ffb79f,#f27a4e 55%,#d7562a);box-shadow:inset 0 1px 2px rgba(0,0,0,.35),0 1px 1px rgba(255,255,255,.35)}
-.knob::after{background:#fff;box-shadow:0 0 2px rgba(0,0,0,.6);border-radius:1px}
-.knob-lbl{text-shadow:0 1px 0 rgba(255,255,255,.4)}
-.grille rect:first-child{fill:url(#gr-metal)}
-.wordmark h3{text-shadow:0 1px 0 rgba(255,255,255,.6)}
-.bracket{opacity:.85}
+.seg7 .s{fill:#1c1c1c}.seg7 .s.on{fill:#f4f4f2;filter:drop-shadow(0 0 2px rgba(255,255,255,.45))}
+.seg7 .s.on.red{fill:#ff4a2e;filter:drop-shadow(0 0 4px rgba(255,74,46,.7))}.seg7 .s.on.org{fill:#ff7a3a;filter:drop-shadow(0 0 4px rgba(255,122,58,.7))}
+.lbl{color:#242424}.lbl.on{color:#f2f2f0}.lbl.box-ghost{border-color:#2a2a2a;color:#2a2a2a}
+.lbl.box-red{border-color:#ff4a2e;box-shadow:0 0 5px rgba(255,74,46,.55)}
+.meter i{background:#1c1c1c}
+.meter i.on{background:#f2f2f0;box-shadow:0 0 3px rgba(255,255,255,.35)}
+.meter i.on.org{background:#ff7a3a;box-shadow:0 0 4px rgba(255,122,58,.6)}
+.meter i.on.red{background:#ff4a2e;box-shadow:0 0 4px rgba(255,74,46,.7)}
+.meter i.thr{outline-color:#ff4a2e}
+.acct{border-top-color:#1e1e1e}.acct-h .who.dim,.row .w,.row .r{color:#2c2c2c}.row .w.on,.row .r.on{color:#e8e8e6}
+.led{font-family:var(--font-display);font-size:9.5px;letter-spacing:.05em;color:#3d3c3a;gap:8px}
+.led::before{width:7px;height:7px;background:radial-gradient(circle at 40% 35%,#5a5856,#2f2e2c 65%);outline:none;box-shadow:0 0 0 2px #7c7a77,0 0 0 3px rgba(0,0,0,.18),inset 0 1px 1px rgba(0,0,0,.7),0 1px 0 rgba(255,255,255,.35)}
+.led.on::before{background:radial-gradient(circle at 40% 35%,#ffd2c6,#ff4a2e 40%,#d3230c 100%);box-shadow:0 0 0 2px #7c7a77,0 0 0 3px rgba(0,0,0,.18),0 0 5px 1px rgba(255,74,46,.9),0 0 12px 3px rgba(255,74,46,.45),inset 0 0 2px rgba(255,255,255,.7)}
+/* 키캡: 두툼한 매트 플라스틱, 윗면 밝고 옆면 어둡고 아래 그림자 */
+.key{width:66px;height:52px;padding:0;background:transparent;border-radius:6px}
+.key .face{border-radius:5px;border:0;font-family:var(--font-display);font-size:10px;font-weight:500;letter-spacing:.06em;
+ background:linear-gradient(180deg,color-mix(in srgb,var(--k) 84%,#fff) 0%,var(--k) 30%,color-mix(in srgb,var(--k) 90%,#000) 100%);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.35),inset 1px 0 0 rgba(255,255,255,.08),inset -1px 0 0 rgba(0,0,0,.2),
+ 0 5px 0 color-mix(in srgb,var(--k) 55%,#000),0 8px 8px -2px rgba(0,0,0,.55),0 12px 18px -6px rgba(0,0,0,.35)}
+.key .face::before{content:"";position:absolute;left:6%;right:6%;top:3px;height:34%;border-radius:3px;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0))}
+.key.light .face::before,.key.pale .face::before{background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,0))}
+.key.light{--k:#d8d6d2}.key.mid{--k:#5a5856;--kink:#f2f2f0}
+.key.orange .face{text-shadow:0 1px 0 rgba(0,0,0,.3)}
+.key:active .face{transform:translateY(3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 2px 0 color-mix(in srgb,var(--k) 55%,#000),0 3px 4px -1px rgba(0,0,0,.5)}
+.keys{grid-template-columns:repeat(2,66px);gap:12px}
+.split{height:auto;padding:0;background:transparent;border-radius:6px;gap:8px}
+.split .h{height:40px;border:0;border-radius:5px;font-family:var(--font-display);font-size:10px;font-weight:500;letter-spacing:.04em;
+ background:linear-gradient(180deg,color-mix(in srgb,var(--k) 84%,#fff) 0%,var(--k) 30%,color-mix(in srgb,var(--k) 90%,#000) 100%);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.35),0 5px 0 color-mix(in srgb,var(--k) 55%,#000),0 8px 8px -2px rgba(0,0,0,.55),0 12px 18px -6px rgba(0,0,0,.35);overflow:hidden}
+.split .h::before{content:"";position:absolute;left:3%;right:3%;top:2px;height:36%;border-radius:3px;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0));pointer-events:none}
+.split .h.pale{--k:#dcdad6}.split .h.orange{text-shadow:0 1px 0 rgba(0,0,0,.3)}
+.split .h small{font-size:9px;opacity:.85}
+/* 노브: 원통형 다크 스커트 + 캡 + 딤플, 우하단 낙하 그림자 */
+.knob{width:62px;height:62px;border:0;margin:6px 0 4px;
+ background:radial-gradient(circle at 36% 28%,rgba(255,255,255,.5) 0,rgba(255,255,255,.1) 16%,rgba(255,255,255,0) 38%),radial-gradient(circle at 50% 50%,#f27448 0,#ee5c24 50%,#d24a17 74%,#a83a11 100%);
+ box-shadow:0 0 0 4px #1a1a1a,0 0 0 5px #3a3937,0 4px 0 4px #0e0e0e,0 10px 10px -2px rgba(0,0,0,.6),0 16px 22px -8px rgba(0,0,0,.45),inset 0 -4px 6px rgba(0,0,0,.35),inset 0 2px 3px rgba(255,255,255,.4)}
+.knob::before{width:18px;height:18px;margin:-9px 0 0 -9px;background:radial-gradient(circle at 40% 35%,#ffb79c,#f0703f 50%,#c9481c);box-shadow:inset 0 1px 2px rgba(0,0,0,.4),0 1px 0 rgba(255,255,255,.35)}
+.knob::after{height:10px;top:3px;background:#fff;border-radius:1px;box-shadow:0 0 1px rgba(0,0,0,.6)}
+.knob-lbl{font-family:var(--font-display);font-size:9.5px;letter-spacing:.05em;color:#3d3c3a;text-shadow:0 1px 0 rgba(255,255,255,.4)}
+.knob-lbl b{font-family:var(--font-display)}
+.bracket{font-family:var(--font-display);font-size:9.5px;color:#4a4948;opacity:1}
+.deck-right{gap:14px}
 @media(max-width:700px){.ko2{zoom:.8}body{padding:20px 12px 40px}.system{grid-template-columns:1fr}.system .st{text-align:left}}
 </style>
 <div class="page">
@@ -150,7 +172,7 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
  <div class="note">meter = 20 segments · red-outlined segment = switch line 95% · standby codex account shows last read (updates on switch or manual poll) · page refreshes every 120 s</div>
 </div>
 <script>
-const D={"generatedAt": "2026-09-05 15:50:40", "threshold": 95, "claude": [{"email": "j…h@gmail", "active": true, "status": "ok", "fetchedAt": "2026-09-05T06:50:40Z", "windows": [{"label": "5H", "pct": 11.0, "resetsAt": "2026-09-05T11:00:00.202550+00:00", "countdown": "4h 9m"}, {"label": "7D", "pct": 3.0, "resetsAt": "2026-09-12T05:00:00.202574+00:00", "countdown": "6d 22h"}, {"label": "FABLE", "pct": 4.0, "resetsAt": "2026-09-12T05:00:00.202826+00:00", "countdown": "6d 22h"}], "max": 11.0}, {"email": "j…n@cre8orclub", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:42:39Z", "windows": [{"label": "5H", "pct": 2.0, "resetsAt": "2026-09-05T11:09:59.656251+00:00", "countdown": "4h 19m"}, {"label": "7D", "pct": 0.0, "resetsAt": "2026-09-06T16:59:59.656274+00:00", "countdown": "1d 10h"}, {"label": "FABLE", "pct": 0.0, "resetsAt": "2026-09-06T16:59:59.656466+00:00", "countdown": "1d 10h"}], "max": 2.0}], "claudeError": null, "codex": [{"email": "j…n@cre8orclub", "active": true, "status": "ok", "fetchedAt": "2026-09-05T06:50:25+00:00", "windows": [{"label": "ACCT 7D", "pct": 19, "resetsAt": "2026-09-08T19:53:28+00:00", "countdown": "3d 13h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:50:25+00:00", "countdown": "4h 59m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:50:25+00:00", "countdown": "6d 23h"}], "max": 19, "plan": "pro", "resetCredits": 3}, {"email": "j…h@gmail", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:31:15+00:00", "windows": [{"label": "ACCT 7D", "pct": 93, "resetsAt": "2026-09-08T12:27:50+00:00", "countdown": "3d 5h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:31:15+00:00", "countdown": "4h 40m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:31:15+00:00", "countdown": "6d 23h"}], "max": 93, "plan": "pro", "resetCredits": 2}], "agents": {"pages": {"pid": "-", "code": "126"}, "codex": {"pid": "-", "code": "0"}, "dashboard": {"pid": "-", "code": "0"}, "claude": {"pid": "99388", "code": "-15"}}, "events": []};
+const D={"generatedAt": "2026-09-05 15:54:13", "threshold": 95, "claude": [{"email": "j…h@gmail", "active": true, "status": "ok", "fetchedAt": "2026-09-05T06:54:00Z", "windows": [{"label": "5H", "pct": 11.0, "resetsAt": "2026-09-05T11:00:00.270381+00:00", "countdown": "4h 5m"}, {"label": "7D", "pct": 3.0, "resetsAt": "2026-09-12T05:00:00.270399+00:00", "countdown": "6d 22h"}, {"label": "FABLE", "pct": 4.0, "resetsAt": "2026-09-12T05:00:00.270592+00:00", "countdown": "6d 22h"}], "max": 11.0}, {"email": "j…n@cre8orclub", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:53:22Z", "windows": [{"label": "5H", "pct": 2.0, "resetsAt": "2026-09-05T11:10:00.362505+00:00", "countdown": "4h 15m"}, {"label": "7D", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.362536+00:00", "countdown": "1d 10h"}, {"label": "FABLE", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.362783+00:00", "countdown": "1d 10h"}], "max": 2.0}], "claudeError": null, "codex": [{"email": "j…n@cre8orclub", "active": true, "status": "ok", "fetchedAt": "2026-09-05T06:52:26+00:00", "windows": [{"label": "ACCT 7D", "pct": 19, "resetsAt": "2026-09-08T19:53:28+00:00", "countdown": "3d 12h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:52:25+00:00", "countdown": "4h 58m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:52:25+00:00", "countdown": "6d 23h"}], "max": 19, "plan": "pro", "resetCredits": 3}, {"email": "j…h@gmail", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:31:15+00:00", "windows": [{"label": "ACCT 7D", "pct": 93, "resetsAt": "2026-09-08T12:27:50+00:00", "countdown": "3d 5h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:31:15+00:00", "countdown": "4h 37m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:31:15+00:00", "countdown": "6d 23h"}], "max": 93, "plan": "pro", "resetCredits": 2}], "agents": {"pages": {"pid": "-", "code": "126"}, "codex": {"pid": "-", "code": "0"}, "dashboard": {"pid": "-", "code": "0"}, "claude": {"pid": "99388", "code": "-15"}}, "events": []};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const T=D.threshold;
 const SEG={0:"abcdef",1:"bc",2:"abged",3:"abgcd",4:"fgbc",5:"afgcd",6:"afgedc",7:"abc",8:"abcdefg",9:"abcdfg"};
@@ -172,7 +194,7 @@ function unit(name,sub,spec,accts,err,tabs,poll){
    <div class="tabs">${tabs}</div>
    <span class="screw tl"></span><span class="screw tr"></span>
    <div class="wordmark"><div><h3>${name}</h3><div class="sub">${sub}</div><div class="spec">${spec}</div></div>
-    <svg class="grille" height="64" aria-hidden="true"><defs><pattern id="d${name.length}" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2" fill="#8f8d8a"/></pattern></defs><rect width="72" height="64" fill="#d2d0cd"/><rect width="72" height="64" fill="url(#d${name.length})"/></svg></div>
+    <svg class="grille" height="64" width="84" aria-hidden="true"><defs><pattern id="d${name.length}" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4.3" cy="4.6" r="2.1" fill="#f3f1ee"/><circle cx="4" cy="4" r="2.1" fill="#3c3b39"/></pattern></defs><rect width="84" height="64" fill="#b9b7b3"/><rect width="84" height="64" fill="url(#d${name.length})"/></svg></div>
   </div>
   <div class="lcd">
    <div class="lcd-top"><div class="seg7">${seg7(peak)}</div>
