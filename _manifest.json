@@ -1,42 +1,10 @@
 {
-  "life-journal": {
-    "slug": "life-journal",
+  "quota-deck-6848831e": {
+    "slug": "quota-deck-6848831e",
     "mode": "choi",
-    "url": "https://works.choi.build/life-journal/",
-    "last_kind": "redeploy",
-    "last_sha256": "3001c2b2fa360971ec356028a1fdb65683d83704e7f8518e1869a024fce7447f",
-    "timestamp": "2026-08-20T08:10:02.270381Z"
-  },
-  "3picks": {
-    "slug": "3picks",
-    "mode": "choi",
-    "url": "https://works.choi.build/3picks/",
-    "last_kind": "redeploy",
-    "last_sha256": "8fdab6ecd55062f4833c3c329714d7c9ee30d61136252aaee359b0e938e12acf",
-    "timestamp": "2026-08-14T05:31:43.669356Z"
-  },
-  "madpop-investment-agenda": {
-    "slug": "madpop-investment-agenda",
-    "mode": "choi",
-    "url": "https://works.choi.build/madpop-investment-agenda/",
-    "last_kind": "redeploy",
-    "last_sha256": "331c6279e4b1d3110bc6cd3b315b453f3618c8a0240076e1ec2b535f2e76ef3d",
-    "timestamp": "2026-08-11T16:22:00.413799Z"
-  },
-  "project-ticket-no-no": {
-    "slug": "project-ticket-no-no",
-    "mode": "choi",
-    "url": "https://works.choi.build/project-ticket-no-no/",
-    "last_kind": "redeploy",
-    "last_sha256": "c9918fe15d713e24e956324ff545a160988c525a9b8a1c7a45b4dba2f885ea0a",
-    "timestamp": "2026-08-20T06:47:05.332714Z"
-  },
-  "kisas-plan-after-1st": {
-    "slug": "kisas-plan-after-1st",
-    "mode": "choi",
-    "url": "https://works.choi.build/kisas-plan-after-1st/",
-    "last_kind": "redeploy",
-    "last_sha256": "3fc11bb7e68b9d56fd856a32e8a5be324bdb17c76a529e9e8c8f9e13dd49e51a",
-    "timestamp": "2026-08-25T02:00:39.252600Z"
+    "url": "https://works.choi.build/quota-deck-6848831e/",
+    "last_kind": "new",
+    "last_sha256": "9f449946d990ece02de3d63ff5f88bfb169a771de9002f17114de536f044e5ce",
+    "timestamp": "2026-09-05T06:46:43.241955Z"
   }
 }
