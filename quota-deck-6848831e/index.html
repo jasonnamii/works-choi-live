@@ -26,7 +26,8 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
 .eyebrow{font-family:var(--font-mono);font-size:13px;text-transform:lowercase;letter-spacing:.02em;color:var(--fg-3);margin:0 0 14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .eyebrow b{font-weight:500;color:var(--ink)}
 .units{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:20px;align-items:start;justify-content:center}
-.ko2{--plate:var(--ko2-plate);--housing:var(--ko2-housing);--accent:var(--ko2-orange);color:var(--ink);border-radius:var(--r-md);overflow:hidden;border:1px solid rgba(0,0,0,.18);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.08em;zoom:1.0}
+.ko2{--plate:var(--ko2-plate);--housing:var(--ko2-housing);--accent:var(--ko2-orange);--accent-hi:#f7834f;--accent-lo:#a63a15;--accent-cap:#f27448;--accent-dimple:#ffb79c;color:var(--ink);border-radius:var(--r-md);overflow:hidden;border:1px solid rgba(0,0,0,.18);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.08em;zoom:1.0}
+.ko2.blue{--accent:#2f6fe4;--accent-hi:#6f9cf0;--accent-lo:#173f9a;--accent-cap:#3d7ff0;--accent-dimple:#a9c6ff}
 .plate{background:var(--plate);position:relative}
 .deck{background:var(--housing);position:relative;padding:14px 16px 16px;display:grid;grid-template-columns:1fr auto;gap:12px 16px;align-items:start}
 .tabs{display:flex;padding:0 14px;height:26px;align-items:flex-start}
@@ -75,13 +76,13 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
 .key .face{position:relative;height:100%;border-radius:3px;background:var(--k);color:var(--kink);border-top:1px solid var(--lip);border-bottom:3px solid var(--base);display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:.08em;transition:transform var(--dur-fast) var(--ease-out),border-bottom-width var(--dur-fast) var(--ease-out)}
 .key:active .face{transform:translateY(1px);border-bottom-width:2px}
 .key.light{--k:var(--ko2-key-light);--lip:var(--ko2-key-light-lip);--base:var(--ko2-key-light-base);--kink:var(--ink)}
-.key.orange{--k:var(--ko2-orange);--lip:#f2804f;--base:var(--ko2-orange-base);--kink:#fff}
+.key.orange{--k:var(--accent);--lip:var(--accent-hi);--base:var(--accent-lo);--kink:#fff}
 .key.mid{--k:var(--ko2-key-mid);--lip:#686664;--base:#262524;--kink:#f2f2f0}
 .split{display:grid;grid-template-rows:1fr 1fr;gap:2px;width:100%;height:64px;padding:2px;background:var(--ko2-well);border-radius:4px}
 .split .h{position:relative;border-radius:3px;display:flex;align-items:center;justify-content:space-between;padding:0 8px;font-size:9px;letter-spacing:.04em;text-transform:none;border-top:1px solid var(--lip);border-bottom:3px solid var(--base);background:var(--k);color:var(--kink)}
 .split .h.dark{--k:var(--ko2-key-dark);--lip:var(--ko2-key-dark-lip);--base:var(--ko2-key-dark-base);--kink:var(--ko2-numeral)}
 .split .h.pale{--k:var(--ko2-key-pale);--lip:#f4f2ef;--base:#9c9a97;--kink:var(--ink)}
-.split .h.orange{--k:var(--ko2-orange);--lip:#f2804f;--base:var(--ko2-orange-base);--kink:#fff}
+.split .h.orange{--k:var(--accent);--lip:var(--accent-hi);--base:var(--accent-lo);--kink:#fff}
 .split .h small{font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
 .knob{width:54px;height:54px;border-radius:50%;position:relative;--cap:var(--ko2-knob-orange);--skirt:#c9481f;--dimple:#f27a4e;background:var(--cap);border:6px solid var(--skirt)}
 .knob::before{content:"";position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--dimple)}
@@ -92,6 +93,10 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
 .bracket::before,.bracket::after{content:"";height:8px;border-top:1px solid currentColor}
 .bracket::before{border-left:1px solid currentColor}.bracket::after{border-right:1px solid currentColor}
 .deck-left{display:grid;gap:10px}
+.cap{font-family:var(--font-display);font-size:9.5px;letter-spacing:.06em;color:#4a4948;text-transform:uppercase;text-align:center;margin-top:5px}
+.keys>div{display:grid;justify-items:center}
+.acct-brk{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;font-family:var(--font-display);font-size:9.5px;letter-spacing:.08em;color:#4a4948;margin-top:2px}
+.acct-brk::before,.acct-brk::after{content:"";height:7px;border-top:1px solid currentColor}.acct-brk::before{border-left:1px solid currentColor}.acct-brk::after{border-right:1px solid currentColor}
 .deck-right{display:grid;gap:10px;justify-items:center}
 .keys{display:grid;grid-template-columns:repeat(2,64px);gap:8px}
 .system{margin-top:28px;border-top:1px solid var(--ink);padding-top:10px;font-family:var(--font-mono);font-size:13px;display:grid;grid-template-columns:1fr auto;gap:8px 32px;text-transform:lowercase}
@@ -108,10 +113,10 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
 .deck{background:linear-gradient(180deg,#b3b1ae 0%,#acaaa7 45%,#a3a19e 100%);padding:16px 18px 20px;gap:14px 18px}
 .tabs{height:28px}
 .tab{height:24px;font-family:var(--font-display);font-size:9.5px;font-weight:500;letter-spacing:.06em;box-shadow:0 1px 1px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.7)}
-.tab.accent{background:linear-gradient(180deg,#f7834f,#ef5a1f 50%,#d94c16);text-shadow:0 1px 0 rgba(0,0,0,.25)}
+.tab.accent{background:linear-gradient(180deg,var(--accent-hi),var(--accent) 50%,var(--accent-lo));text-shadow:0 1px 0 rgba(0,0,0,.25)}
 .tab.dark{background:linear-gradient(180deg,#4d4d4d,#333 50%,#232323)}
 .tab.grey{background:linear-gradient(180deg,#8e8d8b,#7d7c7a 50%,#6a6967)}
-.tab.push::before{background:linear-gradient(180deg,#ff8a55,#ef5a1f);box-shadow:0 1px 1px rgba(0,0,0,.3)}
+.tab.push::before{background:linear-gradient(180deg,var(--accent-hi),var(--accent));box-shadow:0 1px 1px rgba(0,0,0,.3)}
 .screw{width:10px;height:10px;background:radial-gradient(circle at 35% 30%,#f7f5f2,#c9c7c3 50%,#8f8d8a);border:1px solid #6f6d6a;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),0 1px 1px rgba(0,0,0,.35)}
 .wordmark h3{font-weight:300;font-size:28px;letter-spacing:-.01em}
 .wordmark .spec{font-family:var(--font-display);font-size:11px;letter-spacing:.04em;font-weight:400;color:#2a2a2a}
@@ -147,17 +152,17 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
 .key:active .face{transform:translateY(3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 2px 0 color-mix(in srgb,var(--k) 55%,#000),0 3px 4px -1px rgba(0,0,0,.5)}
 .keys{grid-template-columns:repeat(2,66px);gap:12px}
 .split{height:auto;padding:0;background:transparent;border-radius:6px;gap:8px}
-.split .h{height:40px;border:0;border-radius:5px;font-family:var(--font-display);font-size:10px;font-weight:500;letter-spacing:.04em;
+.split .h{height:44px;border:0;border-radius:5px;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
  background:linear-gradient(180deg,color-mix(in srgb,var(--k) 84%,#fff) 0%,var(--k) 30%,color-mix(in srgb,var(--k) 90%,#000) 100%);
  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -1px 0 rgba(0,0,0,.35),0 5px 0 color-mix(in srgb,var(--k) 55%,#000),0 8px 8px -2px rgba(0,0,0,.55),0 12px 18px -6px rgba(0,0,0,.35);overflow:hidden}
 .split .h::before{content:"";position:absolute;left:3%;right:3%;top:2px;height:36%;border-radius:3px;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0));pointer-events:none}
 .split .h.pale{--k:#dcdad6}.split .h.orange{text-shadow:0 1px 0 rgba(0,0,0,.3)}
-.split .h small{font-size:9px;opacity:.85}
+.split .h small{font-size:10px;font-weight:500;letter-spacing:.08em;opacity:.9}
 /* 노브: 원통형 다크 스커트 + 캡 + 딤플, 우하단 낙하 그림자 */
 .knob{width:62px;height:62px;border:0;margin:6px 0 4px;
- background:radial-gradient(circle at 36% 28%,rgba(255,255,255,.5) 0,rgba(255,255,255,.1) 16%,rgba(255,255,255,0) 38%),radial-gradient(circle at 50% 50%,#f27448 0,#ee5c24 50%,#d24a17 74%,#a83a11 100%);
+ background:radial-gradient(circle at 36% 28%,rgba(255,255,255,.5) 0,rgba(255,255,255,.1) 16%,rgba(255,255,255,0) 38%),radial-gradient(circle at 50% 50%,var(--accent-cap) 0,var(--accent) 50%,color-mix(in srgb,var(--accent) 80%,#000) 74%,var(--accent-lo) 100%);
  box-shadow:0 0 0 4px #1a1a1a,0 0 0 5px #3a3937,0 4px 0 4px #0e0e0e,0 10px 10px -2px rgba(0,0,0,.6),0 16px 22px -8px rgba(0,0,0,.45),inset 0 -4px 6px rgba(0,0,0,.35),inset 0 2px 3px rgba(255,255,255,.4)}
-.knob::before{width:18px;height:18px;margin:-9px 0 0 -9px;background:radial-gradient(circle at 40% 35%,#ffb79c,#f0703f 50%,#c9481c);box-shadow:inset 0 1px 2px rgba(0,0,0,.4),0 1px 0 rgba(255,255,255,.35)}
+.knob::before{width:18px;height:18px;margin:-9px 0 0 -9px;background:radial-gradient(circle at 40% 35%,var(--accent-dimple),var(--accent-hi) 50%,var(--accent-lo));box-shadow:inset 0 1px 2px rgba(0,0,0,.4),0 1px 0 rgba(255,255,255,.35)}
 .knob::after{height:10px;top:3px;background:#fff;border-radius:1px;box-shadow:0 0 1px rgba(0,0,0,.6)}
 .knob-lbl{font-family:var(--font-display);font-size:9.5px;letter-spacing:.05em;color:#3d3c3a;text-shadow:0 1px 0 rgba(255,255,255,.4)}
 .knob-lbl b{font-family:var(--font-display)}
@@ -172,7 +177,7 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
  <div class="note">meter = 20 segments · red-outlined segment = switch line 95% · standby codex account shows last read (updates on switch or manual poll) · page refreshes every 120 s</div>
 </div>
 <script>
-const D={"generatedAt": "2026-09-05 15:55:43", "threshold": 95, "claude": [{"email": "j…h@gmail", "active": true, "status": "ok", "fetchedAt": "2026-09-05T06:54:00Z", "windows": [{"label": "5H", "pct": 11.0, "resetsAt": "2026-09-05T11:00:00.270381+00:00", "countdown": "4h 4m"}, {"label": "7D", "pct": 3.0, "resetsAt": "2026-09-12T05:00:00.270399+00:00", "countdown": "6d 22h"}, {"label": "FABLE", "pct": 4.0, "resetsAt": "2026-09-12T05:00:00.270592+00:00", "countdown": "6d 22h"}], "max": 11.0}, {"email": "j…n@cre8orclub", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:53:22Z", "windows": [{"label": "5H", "pct": 2.0, "resetsAt": "2026-09-05T11:10:00.362505+00:00", "countdown": "4h 14m"}, {"label": "7D", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.362536+00:00", "countdown": "1d 10h"}, {"label": "FABLE", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.362783+00:00", "countdown": "1d 10h"}], "max": 2.0}], "claudeError": null, "codex": [{"email": "j…n@cre8orclub", "active": true, "status": "ok", "fetchedAt": "2026-09-05T06:54:27+00:00", "windows": [{"label": "ACCT 7D", "pct": 19, "resetsAt": "2026-09-08T19:53:28+00:00", "countdown": "3d 12h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:54:26+00:00", "countdown": "4h 58m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:54:26+00:00", "countdown": "6d 23h"}], "max": 19, "plan": "pro", "resetCredits": 3}, {"email": "j…h@gmail", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:31:15+00:00", "windows": [{"label": "ACCT 7D", "pct": 93, "resetsAt": "2026-09-08T12:27:50+00:00", "countdown": "3d 5h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:31:15+00:00", "countdown": "4h 35m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:31:15+00:00", "countdown": "6d 23h"}], "max": 93, "plan": "pro", "resetCredits": 2}], "agents": {"pages": {"pid": "53431", "code": "126"}, "codex": {"pid": "-", "code": "0"}, "dashboard": {"pid": "-", "code": "0"}, "claude": {"pid": "99388", "code": "-15"}}, "events": []};
+const D={"generatedAt": "2026-09-05 15:59:02", "threshold": 95, "claude": [{"email": "j…h@gmail", "active": true, "status": "ok", "fetchedAt": "2026-09-05T06:58:41Z", "windows": [{"label": "5H", "pct": 12.0, "resetsAt": "2026-09-05T11:00:00.256101+00:00", "countdown": "4h 0m"}, {"label": "7D", "pct": 3.0, "resetsAt": "2026-09-12T05:00:00.256125+00:00", "countdown": "6d 22h"}, {"label": "FABLE", "pct": 4.0, "resetsAt": "2026-09-12T05:00:00.256354+00:00", "countdown": "6d 22h"}], "max": 12.0}, {"email": "j…n@cre8orclub", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:53:22Z", "windows": [{"label": "5H", "pct": 2.0, "resetsAt": "2026-09-05T11:10:00.362505+00:00", "countdown": "4h 10m"}, {"label": "7D", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.362536+00:00", "countdown": "1d 10h"}, {"label": "FABLE", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.362783+00:00", "countdown": "1d 10h"}], "max": 2.0}], "claudeError": null, "codex": [{"email": "j…n@cre8orclub", "active": true, "status": "ok", "fetchedAt": "2026-09-05T06:58:28+00:00", "windows": [{"label": "ACCT 7D", "pct": 19, "resetsAt": "2026-09-08T19:53:28+00:00", "countdown": "3d 12h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:58:28+00:00", "countdown": "4h 59m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:58:28+00:00", "countdown": "6d 23h"}], "max": 19, "plan": "pro", "resetCredits": 3}, {"email": "j…h@gmail", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:31:15+00:00", "windows": [{"label": "ACCT 7D", "pct": 93, "resetsAt": "2026-09-08T12:27:50+00:00", "countdown": "3d 5h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:31:15+00:00", "countdown": "4h 32m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:31:15+00:00", "countdown": "6d 23h"}], "max": 93, "plan": "pro", "resetCredits": 2}], "agents": {"pages": {"pid": "-", "code": "0"}, "codex": {"pid": "-", "code": "0"}, "dashboard": {"pid": "-", "code": "0"}, "claude": {"pid": "99388", "code": "-15"}}, "events": []};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const T=D.threshold;
 const SEG={0:"abcdef",1:"bc",2:"abged",3:"abgcd",4:"fgbc",5:"afgcd",6:"afgedc",7:"abc",8:"abcdefg",9:"abcdfg"};
@@ -182,14 +187,14 @@ function seg7(n){const cls=n>=T?"red":n>=80?"org":"";const s=String(Math.min(999
  return `<svg width="150" height="60" viewBox="0 0 236 96" aria-label="${Math.round(n)} percent"><g transform="skewX(-5)">${g}</g></svg>`}
 function meter(p){const n=Math.round((p||0)/5);const cls=p>=T?"red":p>=80?"org":"";let h="";for(let i=0;i<20;i++)h+=`<i class="${i<n?"on "+cls:""}${i===18?" thr":""}"></i>`;return h}
 function ago(iso){if(!iso)return"";const s=(Date.now()-new Date(iso))/1000;return s<90?"just now":s<3600?Math.round(s/60)+"m ago":Math.round(s/3600)+"h ago"}
-function unit(name,sub,spec,accts,err,tabs,poll){
+function unit(name,sub,spec,accts,err,tabs,poll,tone){
  const act=accts.find(a=>a.active)||accts[0]||{max:0,windows:[]};const peak=Math.max(0,...(act.windows||[]).map(w=>w.pct||0));
  const limit=peak>=T, near=peak>=80, both=accts.length>=2&&accts.every(a=>a.max>=T);
  const lcd=accts.length?accts.map(a=>`<div class="acct"><div class="acct-h"><span class="who ${a.active?"":"dim"}">${esc(a.email)}</span><span class="lbl ${a.active?"box-inv":"box-ghost"}">${a.active?"active":"standby"}</span></div>
    ${a.windows.map(w=>`<div class="row"><span class="w ${a.active?"on":""}">${esc(w.label)}</span><span class="meter">${meter(w.pct)}</span><span class="v">${w.pct==null?"--":Math.round(w.pct)}</span><span class="r ${a.active?"on":""}">${esc(w.countdown||"")}</span></div>`).join("")}
    <div class="row" style="grid-template-columns:1fr"><span class="w">read ${ago(a.fetchedAt)}${a.plan?" · "+esc(a.plan):""}${a.resetCredits?" · reset credits "+a.resetCredits:""}</span></div></div>`).join("")
   :`<div class="lbl">no data${err?" · "+esc(err):""}</div>`;
- return `<section class="ko2">
+ return `<section class="ko2 ${tone||""}">
   <div class="plate">
    <div class="tabs">${tabs}</div>
    <span class="screw tl"></span><span class="screw tr"></span>
@@ -207,12 +212,13 @@ function unit(name,sub,spec,accts,err,tabs,poll){
   <div class="deck">
    <div class="deck-left">
     <div class="leds"><span class="led ${act.email?"on":""}">link</span><span class="led ${accts.length>=2?"on":""}">armed</span><span class="led ${limit?"on":""}">limit</span><span class="led ${near&&!limit?"on":""}">near</span></div>
-    <div class="split">${accts.slice(0,2).map(a=>`<div class="h ${a.active?"orange":"dark"}"><span>${esc((a.email||"").split("@")[0])}</span><small>${a.active?"on":Math.round(a.max)+"%"}</small></div>`).join("")}${accts.length<2?'<div class="h pale"><span>—</span><small>add</small></div>':""}</div>
-    <div class="keys"><div class="key light"><div class="face">auto</div></div><div class="key mid"><div class="face">poll ${poll}</div></div></div>
+    <div class="acct-brk"><span>account · active / standby</span></div>
+    <div class="split">${accts.slice(0,2).map(a=>`<div class="h ${a.active?"orange":"dark"}"><span>${esc(((a.email||"").split("@")[1]||"").split(".")[0]||"account")}</span><small>${a.active?"active":"standby · "+Math.round(a.max)+"%"}</small></div>`).join("")}${accts.length<2?'<div class="h pale"><span>—</span><small>add account</small></div>':""}</div>
+    <div class="keys"><div><div class="key light"><div class="face">auto</div></div><div class="cap">auto switch · on</div></div><div><div class="key mid"><div class="face">${poll}</div></div><div class="cap">poll interval</div></div></div>
    </div>
    <div class="deck-right">
     <div><div class="knob" style="--rot:${-135+270*T/100}deg"></div><div class="knob-lbl">switch<b>${T}%</b></div></div>
-    <div class="key ${limit?"orange":"light"}" style="width:64px"><div class="face">${limit?"switching":"hold"}</div></div>
+    <div><div class="key ${limit?"orange":"light"}" style="width:64px"><div class="face">${limit?"switch":"hold"}</div></div><div class="cap">${limit?"switching now":"under 95%"}</div></div>
    </div>
    <div class="bracket"><span style="padding:0 6px">${esc(sub)}</span></div>
   </div>
@@ -220,7 +226,7 @@ function unit(name,sub,spec,accts,err,tabs,poll){
 document.getElementById("thr").textContent=T+"%";
 document.getElementById("units").innerHTML=
  unit("Claude Code","two-account failover · claude-swap","5h · 7d · per-model weekly",D.claude,D.claudeError,'<span class="tab">5h</span><span class="tab">7d</span><span class="tab accent">model</span><span class="tab plain push" style="margin-left:auto;margin-right:0">auto</span>',"60s")+
- unit("Codex CLI","cmux ~/.codex-c · caam","account 7d · per-model 5h/7d",D.codex,null,'<span class="tab">acct</span><span class="tab accent">model</span><span class="tab dark">cmux</span><span class="tab grey" style="margin-left:auto">mac app · separate</span><span class="tab plain push" style="margin-right:0">auto</span>',"120s");
+ unit("Codex CLI","cmux ~/.codex-c · caam","account 7d · per-model 5h/7d",D.codex,null,'<span class="tab">acct</span><span class="tab accent">model</span><span class="tab dark">cmux</span><span class="tab grey" style="margin-left:auto">mac app · separate</span><span class="tab plain push" style="margin-right:0">auto</span>',"120s","blue");
 document.getElementById("meta").textContent="generated "+D.generatedAt;
 const ag=D.agents;document.getElementById("agents").innerHTML=["claude","codex","dashboard","pages"].map(k=>{const a=ag[k];const run=a&&(a.pid!=="-"||a.code==="0");return `<div>${k} agent <b class="${run?"":"off"}">${a?(a.pid!=="-"?"running":"idle · exit "+a.code):"off"}</b></div>`}).join("");
 document.getElementById("events").innerHTML=(D.events.length?D.events.map(e=>`<div>${esc(e)}</div>`).join(""):`<div>no switch events yet</div>`);
