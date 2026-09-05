@@ -177,14 +177,19 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
 .bracket{font-family:var(--font-display);font-size:9.5px;color:#4a4948;opacity:1}
 .deck-right{gap:12px}
 
-/* 블루 유닛: LCD 점등·임계칸·LED를 코덱스 블루로 (한도 도달 빨강만 유지) */
-.ko2.blue .meter i.on{background:#cfe0ff;box-shadow:0 0 3px rgba(150,190,255,.45)}
-.ko2.blue .meter i.on.org{background:#4d8cff;box-shadow:0 0 4px rgba(77,140,255,.7)}
-.ko2.blue .meter i.thr{outline-color:#4d8cff}
-.ko2.blue .seg7 .s.on{fill:#dce8ff;filter:drop-shadow(0 0 2px rgba(150,190,255,.5))}
-.ko2.blue .seg7 .s.on.org{fill:#4d8cff;filter:drop-shadow(0 0 4px rgba(77,140,255,.7))}
-.ko2.blue .lbl.org{color:#4d8cff}
-.ko2.blue .lbl.box-inv{background:#dce8ff}
+/* LCD state colors: active follows the provider; standby stays readable white. */
+.ko2{--lcd-active:#ff7a3a;--lcd-standby:#f2f2f0}
+.ko2.blue{--lcd-active:#4d8cff}
+.ko2 .seg7 .s.on{fill:var(--lcd-active);filter:drop-shadow(0 0 2px var(--lcd-active))}
+.ko2 .lcd-top .lbl.on{color:var(--lcd-active)}
+.ko2 .acct{--account-color:var(--lcd-standby)}
+.ko2 .acct.is-active{--account-color:var(--lcd-active)}
+.ko2 .acct .who,.ko2 .acct .row .w,.ko2 .acct .row .v,.ko2 .acct .row .r,.ko2 .acct .lbl.box-ghost{color:var(--account-color)}
+.ko2 .acct .lbl.box-ghost{border-color:var(--account-color)}
+.ko2 .acct .lbl.box-inv{background:var(--account-color);color:#070707}
+.ko2 .acct .meter i.on{background:var(--account-color);box-shadow:0 0 3px color-mix(in srgb,var(--account-color) 45%,transparent)}
+.ko2 .acct .meter i.thr{outline-color:var(--account-color)}
+.ko2.blue .lbl.org{color:var(--lcd-active)}
 .ko2.blue .led.on::before{background:radial-gradient(circle at 40% 35%,#dbe8ff,#4d8cff 40%,#1b4fb0 100%);box-shadow:0 0 0 2px #7c7a77,0 0 0 3px rgba(0,0,0,.18),0 0 5px 1px rgba(77,140,255,.9),0 0 12px 3px rgba(77,140,255,.45),inset 0 0 2px rgba(255,255,255,.7)}
 @media(max-width:700px){.ko2{zoom:.8}body{padding:20px 12px 40px}.system{grid-template-columns:1fr}.system .st{text-align:left}}
 </style>
@@ -192,10 +197,10 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
  <div class="eyebrow"><span>quota deck — <b>claude code · codex cli</b> · two accounts each · auto switch at <b id="thr"></b></span><span id="meta"></span></div>
  <div class="units" id="units"></div>
  <div class="system"><div class="ev" id="events"></div><div class="st" id="agents"></div></div>
- <div class="note">meter = 20 segments · red-outlined segment = switch line 95% · standby codex account shows last read (updates on switch or manual poll) · page refreshes every 120 s</div>
+ <div class="note">meter = 20 segments · outlined segment = switch line 95% · standby codex account shows last read (updates on switch or manual poll) · page refreshes every 120 s</div>
 </div>
 <script>
-const D={"generatedAt": "2026-09-05 17:24:24", "threshold": 95, "cfg": {"threshold": 95, "claude_auto": true, "codex_auto": true, "codex_poll": 120, "codex_hold_until": 0, "claude_hold_until": 0, "claude_interval": 60}, "claude": [{"email": "j…h@gmail", "active": true, "status": "ok", "fetchedAt": "2026-09-05T08:20:15Z", "windows": [{"label": "5H", "pct": 21.0, "resetsAt": "2026-09-05T11:00:00.128288+00:00", "countdown": "2h 35m"}, {"label": "7D", "pct": 4.0, "resetsAt": "2026-09-12T05:00:00.128313+00:00", "countdown": "6d 20h"}, {"label": "FABLE", "pct": 5.0, "resetsAt": "2026-09-12T05:00:00.128497+00:00", "countdown": "6d 20h"}], "max": 21.0}, {"email": "j…n@cre8orclub", "active": false, "status": "ok", "fetchedAt": "2026-09-05T08:16:14Z", "windows": [{"label": "5H", "pct": 2.0, "resetsAt": "2026-09-05T11:10:00.161903+00:00", "countdown": "2h 45m"}, {"label": "7D", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.161924+00:00", "countdown": "1d 8h"}, {"label": "FABLE", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.162110+00:00", "countdown": "1d 8h"}], "max": 2.0}], "claudeError": null, "codex": [{"email": "j…n@cre8orclub", "active": true, "status": "ok", "fetchedAt": "2026-09-05T08:22:28+00:00", "windows": [{"label": "ACCT 7D", "pct": 30, "resetsAt": "2026-09-08T19:53:28+00:00", "countdown": "3d 11h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T13:22:27+00:00", "countdown": "4h 58m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T08:22:27+00:00", "countdown": "6d 23h"}], "max": 30, "plan": "pro", "resetCredits": 3}, {"email": "j…h@gmail", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:31:15+00:00", "windows": [{"label": "ACCT 7D", "pct": 93, "resetsAt": "2026-09-08T12:27:50+00:00", "countdown": "3d 4h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:31:15+00:00", "countdown": "3h 06m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:31:15+00:00", "countdown": "6d 22h"}], "max": 93, "plan": "pro", "resetCredits": 2}], "agents": {"pages": {"pid": "28687", "code": "3"}, "server": {"pid": "792", "code": "0"}, "codex": {"pid": "-", "code": "0"}, "dashboard": {"pid": "-", "code": "0"}, "claude": {"pid": "823", "code": "0"}}, "events": [], "codexMacApp": "j…h@gmail"};const LOCAL=/*LOCAL*/false;const C=D.cfg||{};
+const D={"generatedAt": "2026-09-05 17:34:36", "threshold": 95, "cfg": {"threshold": 95, "claude_auto": true, "codex_auto": true, "codex_poll": 120, "codex_hold_until": 0, "claude_hold_until": 0, "claude_interval": 60}, "claude": [{"email": "j…h@gmail", "active": true, "status": "ok", "fetchedAt": "2026-09-05T08:34:36Z", "windows": [{"label": "5H", "pct": 22.0, "resetsAt": "2026-09-05T11:00:00.409889+00:00", "countdown": "2h 25m"}, {"label": "7D", "pct": 4.0, "resetsAt": "2026-09-12T05:00:00.409911+00:00", "countdown": "6d 20h"}, {"label": "FABLE", "pct": 5.0, "resetsAt": "2026-09-12T05:00:00.410115+00:00", "countdown": "6d 20h"}], "max": 22.0}, {"email": "j…n@cre8orclub", "active": false, "status": "ok", "fetchedAt": "2026-09-05T08:25:48Z", "windows": [{"label": "5H", "pct": 2.0, "resetsAt": "2026-09-05T11:09:59.564366+00:00", "countdown": "2h 35m"}, {"label": "7D", "pct": 0.0, "resetsAt": "2026-09-06T16:59:59.564387+00:00", "countdown": "1d 8h"}, {"label": "FABLE", "pct": 0.0, "resetsAt": "2026-09-06T16:59:59.564561+00:00", "countdown": "1d 8h"}], "max": 2.0}], "claudeError": null, "codex": [{"email": "j…n@cre8orclub", "active": true, "status": "ok", "fetchedAt": "2026-09-05T08:34:35+00:00", "windows": [{"label": "ACCT 7D", "pct": 31, "resetsAt": "2026-09-08T19:53:28+00:00", "countdown": "3d 11h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T13:34:34+00:00", "countdown": "4h 59m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T08:34:34+00:00", "countdown": "6d 23h"}], "max": 31, "plan": "pro", "resetCredits": 3}, {"email": "j…h@gmail", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:31:15+00:00", "windows": [{"label": "ACCT 7D", "pct": 93, "resetsAt": "2026-09-08T12:27:50+00:00", "countdown": "3d 3h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:31:15+00:00", "countdown": "2h 56m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:31:15+00:00", "countdown": "6d 21h"}], "max": 93, "plan": "pro", "resetCredits": 2}], "agents": {"pages": {"pid": "55588", "code": "0"}, "server": {"pid": "792", "code": "0"}, "codex": {"pid": "-", "code": "0"}, "dashboard": {"pid": "-", "code": "0"}, "claude": {"pid": "823", "code": "0"}}, "events": [], "codexMacApp": "j…h@gmail"};const LOCAL=/*LOCAL*/false;const C=D.cfg||{};
 const short=e=>{const d=String(e||"").split("@")[1]||"";return d.startsWith("cre8orclub")?"C8":d.startsWith("gmail")?"gmail":(d.split(".")[0]||"?")};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const T=D.threshold;
@@ -211,7 +216,7 @@ function unit(name,sub,spec,accts,err,tabs,poll,tone,prov){
  const autoOn=C[prov+"_auto"]!==false, hold=(C[prov+"_hold_until"]||0)*1000>Date.now();
  const act=accts.find(a=>a.active)||accts[0]||{max:0,windows:[]};const peak=Math.max(0,...(act.windows||[]).map(w=>w.pct||0));
  const limit=peak>=T, near=peak>=80, both=accts.length>=2&&accts.every(a=>a.max>=T);
- const lcd=accts.length?accts.map(a=>`<div class="acct"><div class="acct-h"><span class="who ${a.active?"":"dim"}">${esc(a.email)}</span><span class="lbl ${a.active?"box-inv":"box-ghost"}">${a.active?"active":"standby"}</span></div>
+ const lcd=accts.length?accts.map(a=>`<div class="acct ${a.active?"is-active":"is-standby"}"><div class="acct-h"><span class="who ${a.active?"":"dim"}">${esc(a.email)}</span><span class="lbl ${a.active?"box-inv":"box-ghost"}">${a.active?"active":"standby"}</span></div>
    ${a.windows.map(w=>`<div class="row"><span class="w ${a.active?"on":""}">${esc(w.label)}</span><span class="meter">${meter(w.pct)}</span><span class="v">${w.pct==null?"--":Math.round(w.pct)}</span><span class="r ${a.active?"on":""}">${esc(w.countdown||"")}</span></div>`).join("")}
    <div class="row" style="grid-template-columns:1fr"><span class="w">read ${ago(a.fetchedAt)}${a.plan?" · "+esc(a.plan):""}${a.resetCredits?" · reset credits "+a.resetCredits:""}</span></div></div>`).join("")
   :`<div class="lbl">no data${err?" · "+esc(err):""}</div>`;
