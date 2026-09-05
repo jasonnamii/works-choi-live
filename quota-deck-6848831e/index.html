@@ -192,33 +192,67 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
 .ko2.blue .lbl.org{color:var(--lcd-active)}
 .ko2.blue .led.on::before{background:radial-gradient(circle at 40% 35%,#dbe8ff,#4d8cff 40%,#1b4fb0 100%);box-shadow:0 0 0 2px #7c7a77,0 0 0 3px rgba(0,0,0,.18),0 0 5px 1px rgba(77,140,255,.9),0 0 12px 3px rgba(77,140,255,.45),inset 0 0 2px rgba(255,255,255,.7)}
 @media(max-width:700px){.ko2{zoom:.8}body{padding:20px 12px 40px}.system{grid-template-columns:1fr}.system .st{text-align:left}}
+/* Remaining-first reading: each quota keeps its own reset beneath its date. */
+.lcd{position:relative}
+.summary{display:grid;gap:5px;font-family:var(--font-display);letter-spacing:0;font-size:12px}
+.summary strong{font-size:17px;color:var(--lcd-active);font-weight:500}
+.summary>span:last-child:empty{display:none}
+.limiting{font-family:var(--font-display);font-size:12px;letter-spacing:0;line-height:1.5;color:#d2d2cf}
+.limiting .reset-clock{display:flex;gap:8px;flex-wrap:wrap;color:#f2f2f0}
+.reset-clock{display:grid;gap:3px;line-height:1.4}
+.reset-clock small{font-size:10px;color:#bbb;letter-spacing:0}
+.columns{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:14px;font-family:var(--font-display);font-size:11px;letter-spacing:0;color:#bbb}
+.columns>span:last-child{text-align:right}
+.acct{gap:10px}
+.acct-h{font-size:10px;letter-spacing:0;gap:8px}
+.row{grid-template-columns:minmax(0,1fr) 150px;gap:5px 14px;font-size:11px;letter-spacing:0}
+.row .w{grid-column:1;grid-row:1;max-width:calc(100% - 48px);font-family:var(--font-display);letter-spacing:0;white-space:normal;overflow:visible}
+.row .v{grid-column:1;grid-row:1;justify-self:end;font-size:12px}
+.row .meter{grid-column:1;grid-row:2}
+.row .r{grid-column:2;grid-row:1 / 3;font-family:var(--font-display);white-space:normal;letter-spacing:0}
+.read-age{font-family:var(--font-display);font-size:10px;color:#bbb;letter-spacing:0;line-height:1.5}
+.note{font-family:var(--font-display);line-height:1.6}
+.eyebrow{height:auto;min-height:20px}.eyebrow>span{white-space:normal}
+.unknown{font-family:var(--font-display);font-size:28px}
+@media(max-width:700px){.units{grid-template-columns:minmax(0,1fr)}.ko2{zoom:1}.eyebrow{grid-template-columns:1fr;gap:4px}.eyebrow>#meta{text-align:left}.row,.columns{grid-template-columns:minmax(0,1fr) 132px;column-gap:10px}}
+@media(max-width:380px){.lcd{padding:14px 12px}.row,.columns{grid-template-columns:minmax(0,1fr) 122px}.row .w{font-size:10px}.acct-h{font-size:9px}.deck{padding:16px 12px}.split .h{font-size:10px}.split .h small{font-size:9px}.homeleds{gap:7px}.tab{margin-right:10px;padding:0 7px}}
 </style>
 <div class="page">
- <div class="eyebrow"><span>quota deck — <b>codex cli · claude code</b> · two accounts each · auto switch at <b id="thr"></b></span><span id="meta"></span></div>
+ <div class="eyebrow"><span>quota deck — <b>codex cli · claude code</b> · 잔여량 기준 · 자동 전환 잔여 <b id="thr"></b></span><span id="meta"></span></div>
  <div class="units" id="units"></div>
  <div class="system"><div class="ev" id="events"></div><div class="st" id="agents"></div></div>
- <div class="note">meter = 20 segments · outlined segment = switch line 95% · standby codex account shows last read (updates on switch or manual poll) · page refreshes every 120 s</div>
+ <div class="note" id="reading-guide"></div>
 </div>
 <script>
-const D={"generatedAt": "2026-09-05 19:15:13", "threshold": 95, "cfg": {"threshold": 95, "claude_auto": true, "codex_auto": true, "codex_poll": 120, "codex_hold_until": 0, "claude_hold_until": 0, "claude_interval": 60}, "claude": [{"email": "j…h@gmail", "active": true, "status": "ok", "fetchedAt": "2026-09-05T10:15:13Z", "windows": [{"label": "5H", "pct": 31.0, "resetsAt": "2026-09-05T10:59:59.569868+00:00", "countdown": "44m"}, {"label": "7D", "pct": 5.0, "resetsAt": "2026-09-12T04:59:59.569888+00:00", "countdown": "6d 18h"}, {"label": "FABLE", "pct": 6.0, "resetsAt": "2026-09-12T04:59:59.570044+00:00", "countdown": "6d 18h"}], "max": 31.0}, {"email": "j…n@cre8orclub", "active": false, "status": "ok", "fetchedAt": "2026-09-05T10:12:22Z", "windows": [{"label": "5H", "pct": 2.0, "resetsAt": "2026-09-05T11:09:59.792276+00:00", "countdown": "54m"}, {"label": "7D", "pct": 0.0, "resetsAt": "2026-09-06T16:59:59.792299+00:00", "countdown": "1d 6h"}, {"label": "FABLE", "pct": 0.0, "resetsAt": "2026-09-06T16:59:59.792507+00:00", "countdown": "1d 6h"}], "max": 2.0}], "claudeError": null, "codex": [{"email": "j…n@cre8orclub", "active": true, "status": "ok", "fetchedAt": "2026-09-05T10:13:29+00:00", "windows": [{"label": "ACCT 7D", "pct": 45, "resetsAt": "2026-09-08T19:53:28+00:00", "countdown": "3d 9h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T15:13:29+00:00", "countdown": "4h 58m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T10:13:29+00:00", "countdown": "6d 23h"}], "max": 45, "plan": "pro", "resetCredits": 3}, {"email": "j…h@gmail", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:31:15+00:00", "windows": [{"label": "ACCT 7D", "pct": 93, "resetsAt": "2026-09-08T12:27:50+00:00", "countdown": "3d 2h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:31:15+00:00", "countdown": "1h 16m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:31:15+00:00", "countdown": "6d 20h"}], "max": 93, "plan": "pro", "resetCredits": 2}], "agents": {"pages": {"pid": "37562", "code": "0"}, "server": {"pid": "792", "code": "0"}, "codex": {"pid": "-", "code": "0"}, "dashboard": {"pid": "-", "code": "0"}, "claude": {"pid": "823", "code": "0"}}, "events": [], "codexMacApp": "j…h@gmail"};const LOCAL=/*LOCAL*/false;const C=D.cfg||{};
+const D={"generatedAt": "2026-09-05 19:25:17", "threshold": 95, "cfg": {"threshold": 95, "claude_auto": true, "codex_auto": true, "codex_poll": 120, "codex_hold_until": 0, "claude_hold_until": 0, "claude_interval": 60}, "claude": [{"email": "j…h@gmail", "active": true, "status": "ok", "fetchedAt": "2026-09-05T10:23:24Z", "windows": [{"label": "5H", "pct": 31.0, "resetsAt": "2026-09-05T11:00:00.177423+00:00", "countdown": "34m"}, {"label": "7D", "pct": 5.0, "resetsAt": "2026-09-12T05:00:00.177445+00:00", "countdown": "6d 18h"}, {"label": "FABLE", "pct": 6.0, "resetsAt": "2026-09-12T05:00:00.177666+00:00", "countdown": "6d 18h"}], "max": 31.0}, {"email": "j…n@cre8orclub", "active": false, "status": "ok", "fetchedAt": "2026-09-05T10:23:24Z", "windows": [{"label": "5H", "pct": 2.0, "resetsAt": "2026-09-05T11:10:00.503792+00:00", "countdown": "44m"}, {"label": "7D", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.503820+00:00", "countdown": "1d 6h"}, {"label": "FABLE", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.504154+00:00", "countdown": "1d 6h"}], "max": 2.0}], "claudeError": null, "codex": [{"email": "j…n@cre8orclub", "active": true, "status": "ok", "fetchedAt": "2026-09-05T10:23:34+00:00", "windows": [{"label": "ACCT 7D", "pct": 51, "resetsAt": "2026-09-08T19:53:28+00:00", "countdown": "3d 9h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T15:23:33+00:00", "countdown": "4h 58m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T10:23:33+00:00", "countdown": "6d 23h"}], "max": 51, "plan": "pro", "resetCredits": 3}, {"email": "j…h@gmail", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:31:15+00:00", "windows": [{"label": "ACCT 7D", "pct": 93, "resetsAt": "2026-09-08T12:27:50+00:00", "countdown": "3d 2h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:31:15+00:00", "countdown": "1h 05m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:31:15+00:00", "countdown": "6d 20h"}], "max": 93, "plan": "pro", "resetCredits": 2}], "agents": {"pages": {"pid": "71278", "code": "0"}, "server": {"pid": "792", "code": "0"}, "codex": {"pid": "-", "code": "0"}, "dashboard": {"pid": "-", "code": "0"}, "claude": {"pid": "823", "code": "0"}}, "events": [], "codexMacApp": "j…h@gmail"};const LOCAL=/*LOCAL*/false;const C=D.cfg||{};
 const short=e=>{const d=String(e||"").split("@")[1]||"";return d.startsWith("cre8orclub")?"C8":d.startsWith("gmail")?"gmail":(d.split(".")[0]||"?")};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const T=D.threshold;
 const SEG={0:"abcdef",1:"bc",2:"abged",3:"abgcd",4:"fgbc",5:"afgcd",6:"afgedc",7:"abc",8:"abcdefg",9:"abcdfg"};
 function digit(ch,x,cls){const on=SEG[ch]||"";const r=(k,geo)=>`<rect class="s ${on.includes(k)?"on "+cls:""}" x="${geo[0]}" y="${geo[1]}" width="${geo[2]}" height="${geo[3]}"/>`;
  return `<g transform="translate(${x},0)">${r("a",[10,0,40,8])}${r("b",[52,6,8,38])}${r("c",[52,52,8,38])}${r("d",[10,88,40,8])}${r("e",[0,52,8,38])}${r("f",[0,6,8,38])}${r("g",[10,44,40,8])}</g>`}
-function seg7(n){const cls=n>=T?"red":n>=80?"org":"";const s=String(Math.min(999,Math.round(n))).padStart(3," ");let g="";[0,1,2].forEach(i=>{g+=digit(s[i]===" "?"":s[i],8+i*76,cls)});
- return `<svg width="150" height="60" viewBox="0 0 236 96" aria-label="${Math.round(n)} percent"><g transform="skewX(-5)">${g}</g></svg>`}
-function meter(p){const n=Math.round((p||0)/5);const cls=p>=T?"red":p>=80?"org":"";let h="";for(let i=0;i<20;i++)h+=`<i class="${i<n?"on "+cls:""}${i===18?" thr":""}"></i>`;return h}
-function ago(iso){if(!iso)return"";const s=(Date.now()-new Date(iso))/1000;return s<90?"just now":s<3600?Math.round(s/60)+"m ago":Math.round(s/3600)+"h ago"}
+const remaining=p=>typeof p==="number"&&Number.isFinite(p)?Math.max(0,Math.min(100,100-p)):null;
+const pctText=p=>p==null?"미확인":Math.round(p)+"%";
+const quotaRemaining=a=>{const values=(a.windows||[]).map(w=>remaining(w.pct)).filter(p=>p!=null);return values.length?Math.min(...values):null};
+const windowLabel=s=>String(s||"").replace(/^ACCT /,"계정 전체 · ").replace(/5H$/,"5시간 한도").replace(/7D$/,"주간 한도").replace(/^FABLE$/,"Fable · 주간 한도");
+function seg7(n){const s=n==null?"   ":String(Math.round(n)).padStart(3," ");let g="";[0,1,2].forEach(i=>{g+=digit(s[i]===" "?"":s[i],8+i*76,"")});
+ return n==null?'<span class="unknown">미확인</span>':`<svg width="150" height="60" viewBox="0 0 236 96" role="img" aria-label="잔여 ${Math.round(n)}%"><g transform="skewX(-5)">${g}</g></svg>`}
+function meter(p){const left=remaining(p),n=left==null?0:Math.round(left/5),mark=Math.max(0,Math.min(19,Math.ceil((100-T)/5)-1));let h="";for(let i=0;i<20;i++)h+=`<i class="${i<n?"on":""}${i===mark?" thr":""}"></i>`;return h}
+function ago(iso){if(!iso||!Number.isFinite(new Date(iso).getTime()))return"조회 시각 미확인";const s=Math.max(0,(Date.now()-new Date(iso))/1000);return s<90?"방금 조회":s<3600?Math.floor(s/60)+"분 전 조회":s<86400?Math.floor(s/3600)+"시간 전 조회":Math.floor(s/86400)+"일 전 조회"}
+function resetText(iso){const ts=iso?new Date(iso).getTime():NaN;if(!Number.isFinite(ts))return{relative:"리셋 시각 미확인",date:""};
+ const delta=ts-Date.now(),mins=Math.ceil(delta/60000),days=Math.floor(mins/1440),hours=Math.floor(mins%1440/60),m=mins%60;
+ const relative=delta<=0?"리셋 시각 지남 · 재조회 필요":(days?`${days}일 ${hours}시간`:hours?`${hours}시간 ${m}분`:`${m}분`)+" 후 리셋";
+ const d=new Date(ts),pad=n=>String(n).padStart(2,"0");return{relative,date:`${d.getMonth()+1}/${d.getDate()}(${'일월화수목금토'[d.getDay()]}) ${pad(d.getHours())}:${pad(d.getMinutes())}`}}
+function resetMarkup(iso){const r=resetText(iso);return `<span class="reset-clock" data-reset="${esc(iso||"")}"><span>${r.relative}</span><small>${r.date}</small></span>`}
 function unit(name,sub,spec,accts,err,tabs,poll,tone,prov){
  accts=[...accts].sort((a,b)=>(short(a.email)==="gmail"?0:1)-(short(b.email)==="gmail"?0:1));
  const autoOn=C[prov+"_auto"]!==false, hold=(C[prov+"_hold_until"]||0)*1000>Date.now();
- const act=accts.find(a=>a.active)||accts[0]||{max:0,windows:[]};const peak=Math.max(0,...(act.windows||[]).map(w=>w.pct||0));
+ const act=accts.find(a=>a.active)||{max:0,windows:[]};const peak=Math.max(0,...(act.windows||[]).map(w=>w.pct||0));
+ const left=quotaRemaining(act),tight=(act.windows||[]).filter(w=>remaining(w.pct)!=null).sort((a,b)=>b.pct-a.pct)[0];
  const limit=peak>=T, near=peak>=80, both=accts.length>=2&&accts.every(a=>a.max>=T);
- const lcd=accts.length?accts.map(a=>`<div class="acct ${a.active?"is-active":"is-standby"}"><div class="acct-h"><span class="who ${a.active?"":"dim"}">${esc(a.email)}</span><span class="lbl ${a.active?"box-inv":"box-ghost"}">${a.active?"active":"standby"}</span></div>
-   ${a.windows.map(w=>`<div class="row"><span class="w ${a.active?"on":""}">${esc(w.label)}</span><span class="meter">${meter(w.pct)}</span><span class="v">${w.pct==null?"--":Math.round(w.pct)}</span><span class="r ${a.active?"on":""}">${esc(w.countdown||"")}</span></div>`).join("")}
-   <div class="row" style="grid-template-columns:1fr"><span class="w">read ${ago(a.fetchedAt)}${a.plan?" · "+esc(a.plan):""}${a.resetCredits?" · reset credits "+a.resetCredits:""}</span></div></div>`).join("")
+ const lcd=accts.length?accts.map(a=>`<div class="acct ${a.active?"is-active":"is-standby"}"><div class="acct-h"><span class="who ${a.active?"":"dim"}">${esc(a.email)}</span><span class="lbl ${a.active?"box-inv":"box-ghost"}">${a.active?"사용 중":"대기"}</span></div>
+   ${a.windows.map(w=>`<div class="row"><span class="w ${a.active?"on":""}">${esc(windowLabel(w.label))}</span><span class="meter" role="img" aria-label="잔여 ${pctText(remaining(w.pct))}">${meter(w.pct)}</span><span class="v">${pctText(remaining(w.pct))}</span><span class="r ${a.active?"on":""}">${resetMarkup(w.resetsAt)}</span></div>`).join("")}
+   <div class="read-age">${ago(a.fetchedAt)}${!a.active&&prov==="codex"?" · 저장된 값":""}${a.plan?" · "+esc(a.plan):""}${a.resetCredits!=null?" · 리셋 크레딧 "+a.resetCredits:""}</div></div>`).join("")
   :`<div class="lbl">no data${err?" · "+esc(err):""}</div>`;
  return `<section class="ko2 ${tone||""}" data-prov="${prov}">
   <div class="plate">
@@ -228,34 +262,34 @@ function unit(name,sub,spec,accts,err,tabs,poll,tone,prov){
     <svg class="grille" height="64" width="84" aria-hidden="true"><defs><pattern id="d${name.length}" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4.3" cy="4.6" r="2.1" fill="#f3f1ee"/><circle cx="4" cy="4" r="2.1" fill="#3c3b39"/></pattern></defs><rect width="84" height="64" fill="#b9b7b3"/><rect width="84" height="64" fill="url(#d${name.length})"/></svg></div>
   </div>
   <div class="lcd">
-   <div class="lcd-top"><div class="seg7">${seg7(peak)}</div>
-    <div class="cluster">
-     <span class="lbl on">peak %</span><span class="lbl ${limit?"box-red":"box-ghost"}">limit</span><span class="lbl ${near?"org":""}">near</span><span class="lbl ${both?"red":""}">both</span>
-     <span class="lbl on">${short(act.email)}</span><span class="lbl ${accts.length>=2?"on":""}">2 acct</span><span class="lbl on">${T}</span><span class="lbl">hold</span>
-    </div></div>
+   <div class="lcd-top"><div class="seg7">${seg7(left)}</div>
+    <div class="summary"><strong>남은 한도 %</strong><span>${esc(short(act.email))} · ${act.email?"사용 중":"활성 계정 미확인"}</span><span>${limit?"전환 기준 도달":near?"잔여량 적음":""}${both?" · 두 계정 모두 부족":""}</span></div></div>
+   <div class="limiting">${tight?`가장 적게 남은 한도 · ${esc(windowLabel(tight.label))}${resetMarkup(tight.resetsAt)}`:"한도 데이터 미확인"}</div>
+   <div class="columns"><span>한도별 잔여량</span><span>리셋까지 · 기기 현지 시각</span></div>
    ${lcd}
   </div>
   <div class="deck">
    <div class="deck-left">
     <div class="leds"><span class="led ${act.email?"on":""}">link</span><span class="led ${accts.length>=2?"on":""}">armed</span><span class="led ${limit?"on":""}">limit</span><span class="led ${near&&!limit?"on":""}">near</span></div>
-    <div class="acct-brk"><span>account · active / standby</span></div>
-    <div class="split">${accts.slice(0,2).map(a=>`<div class="h ${a.active?"orange":"dark"}" data-act="switch" data-account="${esc(a.email)}" data-active="${a.active?1:0}"><span>${short(a.email)}</span><small>${a.active?"active":"standby · "+Math.round(a.max)+"%"}</small></div>`).join("")}${accts.length<2?'<div class="h pale"><span>—</span><small>add account</small></div>':""}</div>
+    <div class="acct-brk"><span>계정 선택 · 사용 중 / 대기</span></div>
+    <div class="split">${accts.slice(0,2).map(a=>`<div class="h ${a.active?"orange":"dark"}" data-act="switch" data-account="${esc(a.email)}" data-active="${a.active?1:0}"><span>${short(a.email)}</span><small>${a.active?"사용 중":"대기"} · 잔여 ${pctText(quotaRemaining(a))}</small></div>`).join("")}${accts.length<2?'<div class="h pale"><span>—</span><small>add account</small></div>':""}</div>
     <div class="keys"><div><div class="key ${autoOn?"light":"mid"}" data-act="auto" data-on="${autoOn?1:0}"><div class="face">auto</div></div><div class="cap">auto · ${autoOn?"on":"off"}</div></div><div><div class="key mid" data-act="poll"><div class="face">${poll}</div></div><div class="cap">interval</div></div></div>
    </div>
    <div class="deck-right">
-    <div><div class="knob" data-act="threshold" title="click: set switch %"></div><div class="knob-lbl">switch<b>${T}%</b></div></div>
+    <div><div class="knob" data-act="threshold" title="클릭: 자동 전환할 잔여량 설정"></div><div class="knob-lbl">자동 전환<b>잔여 ${100-T}%</b></div></div>
     <div><div class="key mid" style="width:64px" data-act="refresh"><div class="face" style="font-size:16px;font-weight:300">↻</div></div><div class="cap">read now</div></div>
-    <div><div class="key ${limit?"orange":(hold?"mid":"light")}" style="width:64px" data-act="hold" data-on="${hold?1:0}"><div class="face">${limit?"switch":"hold"}</div></div><div class="cap">${limit?"switching now":(hold?"held · 60 min":"under "+T+"%")}</div></div>
+    <div><div class="key ${limit?"orange":(hold?"mid":"light")}" style="width:64px" data-act="hold" data-on="${hold?1:0}"><div class="face">${hold?"해제":"보류"}</div></div><div class="cap">${hold?"60분 보류 중":"60분 보류"}</div></div>
    </div>
    <div class="bracket"><span style="padding:0 6px">${esc(sub)}</span></div>
   </div>
  </section>`}
-document.getElementById("thr").textContent=T+"%";
+document.getElementById("thr").textContent=(100-T)+"% 이하";
+document.getElementById("reading-guide").textContent="숫자·막대는 남은 양입니다. 큰 숫자는 사용 중 계정에서 가장 적게 남은 한도입니다. 잔여 "+(100-T)+"% 이하에서 자동 전환 · 대기 Codex는 마지막 조회 기준 · 화면은 2분마다 갱신됩니다.";
 document.getElementById("units").innerHTML=
- unit("Codex CLI","cmux ~/.codex-c · caam","account 7d · per-model 5h/7d",D.codex,null,`<span class="tab">acct</span><span class="tab accent">model</span>${(()=>{const cm=short((D.codex.find(a=>a.active)||{}).email), ap=short(D.codexMacApp);
+ unit("Codex CLI","cmux ~/.codex-c · caam","계정 전체 주간 · 모델별 5시간 / 주간",D.codex,null,`<span class="tab">acct</span><span class="tab accent">model</span>${(()=>{const cm=short((D.codex.find(a=>a.active)||{}).email), ap=short(D.codexMacApp);
    const grp=(name,cur)=>`<span class="hg"><b>${name}</b><span class="led ${cur==="gmail"?"on":""}">gm</span><span class="led ${cur==="C8"?"on":""}">c8</span></span>`;
    return `<span class="homeleds" style="margin-left:auto;margin-right:auto" title="두 홈은 분리되어 서로 영향 없음. CMUX=~/.codex-c (자동 전환 대상), APP=~/.codex (고정)">${grp("cmux",cm)}${grp("app",ap)}</span>`})()}<span class="tab plain push" style="margin-right:0">auto</span>`,(C.codex_poll||120)+"s","blue","codex")+
- unit("Claude Code","two-account failover · claude-swap","5h · 7d · per-model weekly",D.claude,D.claudeError,'<span class="tab">5h</span><span class="tab">7d</span><span class="tab accent">model</span><span class="tab plain push" style="margin-left:auto;margin-right:0">auto</span>',(C.claude_interval||60)+"s",null,"claude");
+ unit("Claude Code","two-account failover · claude-swap","전체 5시간 / 주간 · 모델별 주간",D.claude,D.claudeError,'<span class="tab">5h</span><span class="tab">7d</span><span class="tab accent">model</span><span class="tab plain push" style="margin-left:auto;margin-right:0">auto</span>',(C.claude_interval||60)+"s",null,"claude");
 document.getElementById("meta").textContent=D.generatedAt.slice(11,16)+(LOCAL?" · local control":" · display only");
 if(!LOCAL){document.querySelectorAll('[data-act="refresh"]').forEach(el=>{el.style.cursor="pointer";el.addEventListener("click",()=>location.reload())})}
 if(LOCAL){
@@ -266,11 +300,12 @@ if(LOCAL){
   if(act==="refresh")return post("refresh",{provider:prov});
   if(act==="auto")return post("auto",{provider:prov,on:el.dataset.on!=="1"});
   if(act==="hold")return post("hold",{provider:prov,on:el.dataset.on!=="1"});
-  if(act==="threshold"){const v=prompt("자동 전환 임계치 % (50–99, 두 유닛 공통)",T);if(v==null)return;return post("threshold",{value:parseInt(v,10)})}
+  if(act==="threshold"){const v=prompt("잔여량이 몇 % 이하이면 자동 전환할까요? (1–50, 두 유닛 공통)",100-T);if(v==null)return;const n=Number(v);if(!v.trim()||!Number.isInteger(n)||n<1||n>50){alert("1~50 사이의 정수를 입력해 주세요.");return}return post("threshold",{value:100-n})}
   if(act==="poll"){const v=prompt(prov+" 감시 주기(초)"+(prov==="codex"?" · 최소 120":" · 최소 15"),prov==="codex"?(C.codex_poll||120):(C.claude_interval||60));if(v==null)return;return post("poll",{provider:prov,seconds:parseInt(v,10)})}
  })});
- const rb=document.createElement("div");rb.className="note";rb.textContent='긴 키 = 계정 전환 · auto = 자동 전환 on/off · ↻ = 지금 다시 읽기 · hold = 60분 보류 · 노브 = 임계치 · 60s/120s = 주기';document.querySelector(".page").appendChild(rb);
+ const rb=document.createElement("div");rb.className="note";rb.textContent='긴 키 = 계정 전환 · auto = 자동 전환 on/off · ↻ = 지금 다시 읽기 · hold = 60분 보류 · 노브 = 자동 전환 잔여량 · 60s/120s = 주기';document.querySelector(".page").appendChild(rb);
 }
+setInterval(()=>{document.querySelectorAll(".reset-clock").forEach(el=>{const r=resetText(el.dataset.reset);el.firstElementChild.textContent=r.relative;el.lastElementChild.textContent=r.date})},30000);
 const ag=D.agents;document.getElementById("agents").innerHTML=["claude","codex","dashboard","pages","server"].map(k=>{const a=ag[k];const run=a&&(a.pid!=="-"||a.code==="0");return `<div>${k} agent <b class="${run?"":"off"}">${a?(a.pid!=="-"?"running":"idle · exit "+a.code):"off"}</b></div>`}).join("");
 document.getElementById("events").innerHTML=(D.events.length?D.events.map(e=>`<div>${esc(e)}</div>`).join(""):`<div>no switch events yet</div>`);
 </script>
