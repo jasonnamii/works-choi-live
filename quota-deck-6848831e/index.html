@@ -163,7 +163,7 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
  background:radial-gradient(circle at 36% 28%,rgba(255,255,255,.5) 0,rgba(255,255,255,.1) 16%,rgba(255,255,255,0) 38%),radial-gradient(circle at 50% 50%,var(--accent-cap) 0,var(--accent) 50%,color-mix(in srgb,var(--accent) 80%,#000) 74%,var(--accent-lo) 100%);
  box-shadow:0 0 0 4px #1a1a1a,0 0 0 5px #3a3937,0 4px 0 4px #0e0e0e,0 10px 10px -2px rgba(0,0,0,.6),0 16px 22px -8px rgba(0,0,0,.45),inset 0 -4px 6px rgba(0,0,0,.35),inset 0 2px 3px rgba(255,255,255,.4)}
 .knob::before{width:18px;height:18px;margin:-9px 0 0 -9px;background:radial-gradient(circle at 40% 35%,var(--accent-dimple),var(--accent-hi) 50%,var(--accent-lo));box-shadow:inset 0 1px 2px rgba(0,0,0,.4),0 1px 0 rgba(255,255,255,.35)}
-.knob::after{height:10px;top:3px;background:#fff;border-radius:1px;box-shadow:0 0 1px rgba(0,0,0,.6)}
+.knob::after{height:11px;top:4px;width:2px;transform:none;background:#fff;border-radius:1px;box-shadow:0 0 1px rgba(0,0,0,.6)}
 .knob-lbl{font-family:var(--font-display);font-size:9.5px;letter-spacing:.05em;color:#3d3c3a;text-shadow:0 1px 0 rgba(255,255,255,.4)}
 .knob-lbl b{font-family:var(--font-display)}
 .bracket{font-family:var(--font-display);font-size:9.5px;color:#4a4948;opacity:1}
@@ -187,7 +187,7 @@ body{margin:0;background:var(--bg-1);color:var(--ink);font-family:var(--font-dis
  <div class="note">meter = 20 segments · red-outlined segment = switch line 95% · standby codex account shows last read (updates on switch or manual poll) · page refreshes every 120 s</div>
 </div>
 <script>
-const D={"generatedAt": "2026-09-05 16:01:30", "threshold": 95, "claude": [{"email": "j…h@gmail", "active": true, "status": "ok", "fetchedAt": "2026-09-05T06:58:41Z", "windows": [{"label": "5H", "pct": 12.0, "resetsAt": "2026-09-05T11:00:00.256101+00:00", "countdown": "3h 58m"}, {"label": "7D", "pct": 3.0, "resetsAt": "2026-09-12T05:00:00.256125+00:00", "countdown": "6d 21h"}, {"label": "FABLE", "pct": 4.0, "resetsAt": "2026-09-12T05:00:00.256354+00:00", "countdown": "6d 21h"}], "max": 12.0}, {"email": "j…n@cre8orclub", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:53:22Z", "windows": [{"label": "5H", "pct": 2.0, "resetsAt": "2026-09-05T11:10:00.362505+00:00", "countdown": "4h 8m"}, {"label": "7D", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.362536+00:00", "countdown": "1d 9h"}, {"label": "FABLE", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.362783+00:00", "countdown": "1d 9h"}], "max": 2.0}], "claudeError": null, "codex": [{"email": "j…n@cre8orclub", "active": true, "status": "ok", "fetchedAt": "2026-09-05T07:00:29+00:00", "windows": [{"label": "ACCT 7D", "pct": 19, "resetsAt": "2026-09-08T19:53:28+00:00", "countdown": "3d 12h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T12:00:29+00:00", "countdown": "4h 58m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T07:00:29+00:00", "countdown": "6d 23h"}], "max": 19, "plan": "pro", "resetCredits": 3}, {"email": "j…h@gmail", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:31:15+00:00", "windows": [{"label": "ACCT 7D", "pct": 93, "resetsAt": "2026-09-08T12:27:50+00:00", "countdown": "3d 5h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:31:15+00:00", "countdown": "4h 29m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:31:15+00:00", "countdown": "6d 23h"}], "max": 93, "plan": "pro", "resetCredits": 2}], "agents": {"pages": {"pid": "-", "code": "0"}, "codex": {"pid": "-", "code": "0"}, "dashboard": {"pid": "-", "code": "0"}, "claude": {"pid": "99388", "code": "-15"}}, "events": []};
+const D={"generatedAt": "2026-09-05 16:05:47", "threshold": 95, "cfg": {"threshold": 95, "claude_auto": true, "codex_auto": true, "codex_poll": 120, "codex_hold_until": 0, "claude_hold_until": 0, "claude_interval": 60}, "claude": [{"email": "j…h@gmail", "active": true, "status": "ok", "fetchedAt": "2026-09-05T07:05:25Z", "windows": [{"label": "5H", "pct": 13.0, "resetsAt": "2026-09-05T10:59:59.584999+00:00", "countdown": "3h 54m"}, {"label": "7D", "pct": 3.0, "resetsAt": "2026-09-12T04:59:59.585017+00:00", "countdown": "6d 21h"}, {"label": "FABLE", "pct": 4.0, "resetsAt": "2026-09-12T04:59:59.585226+00:00", "countdown": "6d 21h"}], "max": 13.0}, {"email": "j…n@cre8orclub", "active": false, "status": "ok", "fetchedAt": "2026-09-05T07:03:20Z", "windows": [{"label": "5H", "pct": 2.0, "resetsAt": "2026-09-05T11:10:00.349747+00:00", "countdown": "4h 4m"}, {"label": "7D", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.349770+00:00", "countdown": "1d 9h"}, {"label": "FABLE", "pct": 0.0, "resetsAt": "2026-09-06T17:00:00.349954+00:00", "countdown": "1d 9h"}], "max": 2.0}], "claudeError": null, "codex": [{"email": "j…n@cre8orclub", "active": true, "status": "ok", "fetchedAt": "2026-09-05T07:04:31+00:00", "windows": [{"label": "ACCT 7D", "pct": 20, "resetsAt": "2026-09-08T19:53:28+00:00", "countdown": "3d 12h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T12:04:31+00:00", "countdown": "4h 58m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T07:04:31+00:00", "countdown": "6d 23h"}], "max": 20, "plan": "pro", "resetCredits": 3}, {"email": "j…h@gmail", "active": false, "status": "ok", "fetchedAt": "2026-09-05T06:31:15+00:00", "windows": [{"label": "ACCT 7D", "pct": 93, "resetsAt": "2026-09-08T12:27:50+00:00", "countdown": "3d 5h"}, {"label": "5.3-SPARK 5H", "pct": 0, "resetsAt": "2026-09-05T11:31:15+00:00", "countdown": "4h 25m"}, {"label": "5.3-SPARK 7D", "pct": 0, "resetsAt": "2026-09-12T06:31:15+00:00", "countdown": "6d 23h"}], "max": 93, "plan": "pro", "resetCredits": 2}], "agents": {"pages": {"pid": "78361", "code": "0"}, "dashboard": {"pid": "-", "code": "0"}, "claude": {"pid": "99388", "code": "-15"}}, "events": []};const LOCAL=/*LOCAL*/false;const C=D.cfg||{};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const T=D.threshold;
 const SEG={0:"abcdef",1:"bc",2:"abged",3:"abgcd",4:"fgbc",5:"afgcd",6:"afgedc",7:"abc",8:"abcdefg",9:"abcdfg"};
@@ -197,14 +197,15 @@ function seg7(n){const cls=n>=T?"red":n>=80?"org":"";const s=String(Math.min(999
  return `<svg width="150" height="60" viewBox="0 0 236 96" aria-label="${Math.round(n)} percent"><g transform="skewX(-5)">${g}</g></svg>`}
 function meter(p){const n=Math.round((p||0)/5);const cls=p>=T?"red":p>=80?"org":"";let h="";for(let i=0;i<20;i++)h+=`<i class="${i<n?"on "+cls:""}${i===18?" thr":""}"></i>`;return h}
 function ago(iso){if(!iso)return"";const s=(Date.now()-new Date(iso))/1000;return s<90?"just now":s<3600?Math.round(s/60)+"m ago":Math.round(s/3600)+"h ago"}
-function unit(name,sub,spec,accts,err,tabs,poll,tone){
+function unit(name,sub,spec,accts,err,tabs,poll,tone,prov){
+ const autoOn=C[prov+"_auto"]!==false, hold=(C[prov+"_hold_until"]||0)*1000>Date.now();
  const act=accts.find(a=>a.active)||accts[0]||{max:0,windows:[]};const peak=Math.max(0,...(act.windows||[]).map(w=>w.pct||0));
  const limit=peak>=T, near=peak>=80, both=accts.length>=2&&accts.every(a=>a.max>=T);
  const lcd=accts.length?accts.map(a=>`<div class="acct"><div class="acct-h"><span class="who ${a.active?"":"dim"}">${esc(a.email)}</span><span class="lbl ${a.active?"box-inv":"box-ghost"}">${a.active?"active":"standby"}</span></div>
    ${a.windows.map(w=>`<div class="row"><span class="w ${a.active?"on":""}">${esc(w.label)}</span><span class="meter">${meter(w.pct)}</span><span class="v">${w.pct==null?"--":Math.round(w.pct)}</span><span class="r ${a.active?"on":""}">${esc(w.countdown||"")}</span></div>`).join("")}
    <div class="row" style="grid-template-columns:1fr"><span class="w">read ${ago(a.fetchedAt)}${a.plan?" · "+esc(a.plan):""}${a.resetCredits?" · reset credits "+a.resetCredits:""}</span></div></div>`).join("")
   :`<div class="lbl">no data${err?" · "+esc(err):""}</div>`;
- return `<section class="ko2 ${tone||""}">
+ return `<section class="ko2 ${tone||""}" data-prov="${prov}">
   <div class="plate">
    <div class="tabs">${tabs}</div>
    <span class="screw tl"></span><span class="screw tr"></span>
@@ -223,22 +224,34 @@ function unit(name,sub,spec,accts,err,tabs,poll,tone){
    <div class="deck-left">
     <div class="leds"><span class="led ${act.email?"on":""}">link</span><span class="led ${accts.length>=2?"on":""}">armed</span><span class="led ${limit?"on":""}">limit</span><span class="led ${near&&!limit?"on":""}">near</span></div>
     <div class="acct-brk"><span>account · active / standby</span></div>
-    <div class="split">${accts.slice(0,2).map(a=>`<div class="h ${a.active?"orange":"dark"}"><span>${esc(((a.email||"").split("@")[1]||"").split(".")[0]||"account")}</span><small>${a.active?"active":"standby · "+Math.round(a.max)+"%"}</small></div>`).join("")}${accts.length<2?'<div class="h pale"><span>—</span><small>add account</small></div>':""}</div>
-    <div class="keys"><div><div class="key light"><div class="face">auto</div></div><div class="cap">auto switch · on</div></div><div><div class="key mid"><div class="face">${poll}</div></div><div class="cap">poll interval</div></div></div>
+    <div class="split">${accts.slice(0,2).map(a=>`<div class="h ${a.active?"orange":"dark"}" data-act="switch" data-account="${esc(a.email)}" data-active="${a.active?1:0}"><span>${esc(((a.email||"").split("@")[1]||"").split(".")[0]||"account")}</span><small>${a.active?"active":"standby · "+Math.round(a.max)+"%"}</small></div>`).join("")}${accts.length<2?'<div class="h pale"><span>—</span><small>add account</small></div>':""}</div>
+    <div class="keys"><div><div class="key ${autoOn?"light":"mid"}" data-act="auto" data-on="${autoOn?1:0}"><div class="face">auto</div></div><div class="cap">auto switch · ${autoOn?"on":"off"}</div></div><div><div class="key mid" data-act="poll"><div class="face">${poll}</div></div><div class="cap">poll interval</div></div></div>
    </div>
    <div class="deck-right">
-    <div><div class="knob" style="--rot:${-135+270*T/100}deg"></div><div class="knob-lbl">switch<b>${T}%</b></div></div>
-    <div><div class="key ${limit?"orange":"light"}" style="width:64px"><div class="face">${limit?"switch":"hold"}</div></div><div class="cap">${limit?"switching now":"under 95%"}</div></div>
+    <div><div class="knob" data-act="threshold" title="click: set switch %"></div><div class="knob-lbl">switch<b>${T}%</b></div></div>
+    <div><div class="key ${limit?"orange":(hold?"mid":"light")}" style="width:64px" data-act="hold" data-on="${hold?1:0}"><div class="face">${limit?"switch":"hold"}</div></div><div class="cap">${limit?"switching now":(hold?"held · 60 min":"under "+T+"%")}</div></div>
    </div>
    <div class="bracket"><span style="padding:0 6px">${esc(sub)}</span></div>
   </div>
  </section>`}
 document.getElementById("thr").textContent=T+"%";
 document.getElementById("units").innerHTML=
- unit("Claude Code","two-account failover · claude-swap","5h · 7d · per-model weekly",D.claude,D.claudeError,'<span class="tab">5h</span><span class="tab">7d</span><span class="tab accent">model</span><span class="tab plain push" style="margin-left:auto;margin-right:0">auto</span>',"60s")+
- unit("Codex CLI","cmux ~/.codex-c · caam","account 7d · per-model 5h/7d",D.codex,null,'<span class="tab">acct</span><span class="tab accent">model</span><span class="tab dark">cmux</span><span class="tab grey" style="margin-left:auto">mac app · separate</span><span class="tab plain push" style="margin-right:0">auto</span>',"120s","blue");
-document.getElementById("meta").textContent="generated "+D.generatedAt;
-const ag=D.agents;document.getElementById("agents").innerHTML=["claude","codex","dashboard","pages"].map(k=>{const a=ag[k];const run=a&&(a.pid!=="-"||a.code==="0");return `<div>${k} agent <b class="${run?"":"off"}">${a?(a.pid!=="-"?"running":"idle · exit "+a.code):"off"}</b></div>`}).join("");
+ unit("Claude Code","two-account failover · claude-swap","5h · 7d · per-model weekly",D.claude,D.claudeError,'<span class="tab">5h</span><span class="tab">7d</span><span class="tab accent">model</span><span class="tab plain push" style="margin-left:auto;margin-right:0">auto</span>',(C.claude_interval||60)+"s",null,"claude")+
+ unit("Codex CLI","cmux ~/.codex-c · caam","account 7d · per-model 5h/7d",D.codex,null,'<span class="tab">acct</span><span class="tab accent">model</span><span class="tab dark">cmux</span><span class="tab grey" style="margin-left:auto">mac app · separate</span><span class="tab plain push" style="margin-right:0">auto</span>',(C.codex_poll||120)+"s","blue","codex");
+document.getElementById("meta").textContent="generated "+D.generatedAt+(LOCAL?" · local control":" · display only");
+if(LOCAL){
+ const post=async(name,body)=>{const r=await fetch("/api/"+name,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});const j=await r.json();document.getElementById("meta").textContent=(j.ok?"ok · ":"error · ")+String(j.out||"").slice(0,120);setTimeout(()=>location.reload(),j.ok?2500:6000);return j};
+ document.querySelectorAll("[data-act]").forEach(el=>{el.style.cursor="pointer";el.addEventListener("click",async()=>{
+  const prov=el.closest("[data-prov]").dataset.prov, act=el.dataset.act;
+  if(act==="switch"){if(el.dataset.active==="1")return;if(!confirm(prov+" → "+el.dataset.account+" 로 전환할까요?"))return;return post("switch",{provider:prov,account:el.dataset.account})}
+  if(act==="auto")return post("auto",{provider:prov,on:el.dataset.on!=="1"});
+  if(act==="hold")return post("hold",{provider:prov,on:el.dataset.on!=="1"});
+  if(act==="threshold"){const v=prompt("자동 전환 임계치 % (50–99, 두 유닛 공통)",T);if(v==null)return;return post("threshold",{value:parseInt(v,10)})}
+  if(act==="poll"){const v=prompt(prov+" 감시 주기(초)"+(prov==="codex"?" · 최소 120":" · 최소 15"),prov==="codex"?(C.codex_poll||120):(C.claude_interval||60));if(v==null)return;return post("poll",{provider:prov,seconds:parseInt(v,10)})}
+ })});
+ const rb=document.createElement("div");rb.className="note";rb.innerHTML='<a href="#" id="rf">↻ refresh codex reading now</a> · 긴 키 = 계정 전환 · auto = 자동 전환 on/off · hold = 60분 보류 · 노브 = 임계치 · 60s/120s = 주기';rb.querySelector("#rf").onclick=e=>{e.preventDefault();post("refresh",{})};document.querySelector(".page").appendChild(rb);
+}
+const ag=D.agents;document.getElementById("agents").innerHTML=["claude","codex","dashboard","pages","server"].map(k=>{const a=ag[k];const run=a&&(a.pid!=="-"||a.code==="0");return `<div>${k} agent <b class="${run?"":"off"}">${a?(a.pid!=="-"?"running":"idle · exit "+a.code):"off"}</b></div>`}).join("");
 document.getElementById("events").innerHTML=(D.events.length?D.events.map(e=>`<div>${esc(e)}</div>`).join(""):`<div>no switch events yet</div>`);
 </script>
 </body></html>
