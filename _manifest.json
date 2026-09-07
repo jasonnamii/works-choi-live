@@ -4,15 +4,7 @@
     "mode": "choi",
     "url": "https://works.choi.build/quota-deck-6848831e/",
     "last_kind": "redeploy",
-    "last_sha256": "774cc3d5cad0847ded9f4dec29b65f1b101c18c0d4115a7f02fc65e946eb8c8d",
-    "timestamp": "2026-09-07T05:14:42.829818Z"
-  },
-  "coco-oauth": {
-    "slug": "coco-oauth",
-    "mode": "choi",
-    "url": "https://works.choi.build/coco-oauth/",
-    "last_kind": "new",
-    "last_sha256": "417cc902d8af51cb710ae14059cb90b04e02789a0e9162870f4f558519078a28",
-    "timestamp": "2026-09-05T12:01:54.356469Z"
+    "last_sha256": "4ce78ed36b40d8d7038af3086df763bb02d1201e7416dd8a446980101704dcfc",
+    "timestamp": "2026-09-07T05:15:38.407474Z"
   }
 }
