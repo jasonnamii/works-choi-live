@@ -1,0 +1,1 @@
+{"name": "Quota Deck", "short_name": "Quota Deck", "start_url": "./", "scope": "./", "display": "standalone", "background_color": "#087bff", "icons": [{"src": "./app-icon.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any maskable"}]}
