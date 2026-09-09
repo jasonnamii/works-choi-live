@@ -19,8 +19,8 @@
     "slug": "creator-club-dev-meeting",
     "mode": "choi",
     "url": "https://works.choi.build/creator-club-dev-meeting/",
-    "last_kind": "new",
-    "last_sha256": "d5132de79468c0410f23d2f6b44fb97e1547ad50a7e7714ec9100d141c08da1a",
-    "timestamp": "2026-09-09T14:21:58.898654Z"
+    "last_kind": "redeploy",
+    "last_sha256": "8a0638657b16610e292db3bddc560b5c93cccf1624b90f520aa92609816a93d3",
+    "timestamp": "2026-09-09T14:26:21.054220Z"
   }
 }
