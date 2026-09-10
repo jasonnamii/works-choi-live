@@ -1,0 +1,14 @@
+{
+  "entries": [
+    {
+      "path": "index.html",
+      "sha256": "8713dda63148ff08faf28549bfbd051e145766c445b29cabe083b59b2404f6f5",
+      "bytes": 38766
+    }
+  ],
+  "inputSha256": "d4b621b6af3346e21ff4bdc3b3b4a29a6fabfd0b7f8b62caea3fcb1ed2d89df9",
+  "externalReferences": [],
+  "hostRootReferences": [],
+  "version": "ace7d0d9c4c59bc6c7910d3c477e371dcf89686384f81ea1a4275b59e7a602e0",
+  "schema": 1
+}

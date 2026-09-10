@@ -4,31 +4,23 @@
     "mode": "choi",
     "url": "https://works.choi.build/quota-deck-6848831e/",
     "last_kind": "redeploy",
-    "last_sha256": "33f462857e0ffcc82bdad53dacbe437228ee244cf6c07ffff5996c3df583d40d",
-    "timestamp": "2026-09-09T01:42:37.461648Z"
-  },
-  "coco-oauth": {
-    "slug": "coco-oauth",
-    "mode": "choi",
-    "url": "https://works.choi.build/coco-oauth/",
-    "last_kind": "new",
-    "last_sha256": "417cc902d8af51cb710ae14059cb90b04e02789a0e9162870f4f558519078a28",
-    "timestamp": "2026-09-05T12:01:54.356469Z"
-  },
-  "creator-club-dev-meeting": {
-    "slug": "creator-club-dev-meeting",
-    "mode": "choi",
-    "url": "https://works.choi.build/creator-club-dev-meeting/",
-    "last_kind": "redeploy",
-    "last_sha256": "faaad3ce2de418e0fda22e8010b42d1d0948a3c7761d257d4f65534e7912286e",
-    "timestamp": "2026-09-09T14:27:08.164710Z"
+    "last_sha256": "6cf9754b1074d6a8eb7d947dde34ff1661eaadb8d5cac31cd8f121723877bf2e",
+    "timestamp": "2026-09-08T02:04:47.991869Z"
   },
   "won-meet-083ac96845": {
     "slug": "won-meet-083ac96845",
     "mode": "choi",
     "url": "https://works.choi.build/won-meet-083ac96845/",
-    "last_kind": "redeploy",
-    "last_sha256": "1a3b7d54798d278c680973992ecb4f8a4cfcdc9e39f60b39171aa48bf1da1726",
-    "timestamp": "2026-09-10T09:47:33.247877Z"
+    "last_kind": "new",
+    "last_sha256": "3f9cbecf9271990af6b237a96faba2115d26b443b08ed922cd39cdb386b658c6",
+    "timestamp": "2026-09-10T09:39:43.101935Z"
+  },
+  "sopa-review": {
+    "slug": "sopa-review",
+    "mode": "choi",
+    "url": "https://works.choi.build/sopa-review/",
+    "last_kind": "new",
+    "last_sha256": "d4b621b6af3346e21ff4bdc3b3b4a29a6fabfd0b7f8b62caea3fcb1ed2d89df9",
+    "timestamp": "2026-09-10T10:53:37.364577Z"
   }
 }
