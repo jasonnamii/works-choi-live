@@ -2,13 +2,36 @@
   "entries": [
     {
       "path": "index.html",
-      "sha256": "9a63c36270d9d36f4e3467a5a8dab771d3bb51a4472548d1dede29ac2f19094b",
-      "bytes": 575574
+      "sha256": "6f3a152fbc883fe6871adf9e5cacb8cac7f7f14828ddd11329553d6f12c45cca",
+      "bytes": 622447
     }
   ],
-  "inputSha256": "3f9cbecf9271990af6b237a96faba2115d26b443b08ed922cd39cdb386b658c6",
-  "externalReferences": [],
+  "inputSha256": "1a3b7d54798d278c680973992ecb4f8a4cfcdc9e39f60b39171aa48bf1da1726",
+  "externalReferences": [
+    "https://about.gitlab.com/blog/postmortem-of-database-outage-of-january-31/",
+    "https://abseil.io/resources/swe-book/html/ch09.html",
+    "https://aws.amazon.com/executive-insights/content/amazon-two-pizza-team/",
+    "https://baseweb.design/",
+    "https://customersthatstick.com/blog/the-ritz-carltons-famous-2000-rule/",
+    "https://deming.org/explore/red-bead-experiment/",
+    "https://github.com/shopify/polaris-tokens",
+    "https://gitlab.com/gitlab-org/gitlab/-/work_items/578758",
+    "https://google.github.io/eng-practices/review/reviewer/standard.html",
+    "https://hbr.org/2020/03/building-a-culture-of-experimentation",
+    "https://newsletter.pragmaticengineer.com/p/code-freezes",
+    "https://psychsafety.com/psychological-safety-79-the-andon-cord/",
+    "https://s2.q4cdn.com/299287126/files/doc_financials/annual/2015-Letter-to-Shareholders.PDF",
+    "https://www.britannica.com/event/bankruptcy-of-Barings-Bank",
+    "https://www.cpj.fyi/content/files/2022/12/Netflix-Culture-Deck.pdf",
+    "https://www.designsystems.one/design-systems/airbnb-design",
+    "https://www.forbes.com/sites/micahsolomon/2013/09/18/empowered-employees-vs-brand-standards-the-customer-experience-needs-both/",
+    "https://www.henricodolfing.ch/en/case-study-4-the-440-million-software-error-at-knight-capital/",
+    "https://www.industryweek.com/operations/continuous-improvement/article/55394935/andon-is-a-signalbut-leaderships-response-is-the-critical-part",
+    "https://www.nateliason.com/notes/high-output-management-andy-grove",
+    "https://www.quantt.co.uk/resources/how-a-software-bug-destroyed-a-400m-firm-in-45-minutes",
+    "https://www.reuters.com/article/us-tesla-musk-idUSKBN1HK0KH"
+  ],
   "hostRootReferences": [],
-  "version": "013dcb087cab4d31adc2f9732b637aac21d2d0c52821dc31f362dc6d1be6faf4",
+  "version": "e4ed168743b04d815c909e4e73c4b0d44ac73888f0eebd72b36e3c405711fe9b",
   "schema": 1
 }
