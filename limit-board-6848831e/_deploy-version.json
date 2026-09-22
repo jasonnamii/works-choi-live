@@ -1,0 +1,29 @@
+{
+  "entries": [
+    {
+      "path": "LICENSE-GmarketSans.txt",
+      "sha256": "01942ff564c52a8b2468e6d73b1410e83d06c135aba9363110d683520e39ba2e",
+      "bytes": 11536
+    },
+    {
+      "path": "app-icon.png",
+      "sha256": "bb567c81c2ca8e91c92ff72caeb10e6de3f34acbb3747a1be37852a926e9408b",
+      "bytes": 841466
+    },
+    {
+      "path": "index.html",
+      "sha256": "5b83ca46fbfcddea15f08552395a2a7dc3f19702e178af64f7819809da48737a",
+      "bytes": 793380
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "b2931fc40f0dd9088deec7944c393be22553456a8aff935d288f1a2aadb541e0",
+      "bytes": 250
+    }
+  ],
+  "inputSha256": "c5620a6dbc85e28c0b1af95feae9ae654a8a823efe8e7a6d35614e5425ea8f6d",
+  "externalReferences": [],
+  "hostRootReferences": [],
+  "version": "4ec707b1b7e9c1bd429a2baa3ccc4f529aa5526a78dfd5c483afc50a86af4a5c",
+  "schema": 1
+}

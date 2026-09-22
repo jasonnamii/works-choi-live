@@ -1,26 +1,10 @@
 {
-  "quota-deck-6848831e": {
-    "slug": "quota-deck-6848831e",
+  "limit-board-6848831e": {
+    "slug": "limit-board-6848831e",
     "mode": "choi",
-    "url": "https://works.choi.build/quota-deck-6848831e/",
-    "last_kind": "redeploy",
-    "last_sha256": "6cf9754b1074d6a8eb7d947dde34ff1661eaadb8d5cac31cd8f121723877bf2e",
-    "timestamp": "2026-09-08T02:04:47.991869Z"
-  },
-  "won-meet-083ac96845": {
-    "slug": "won-meet-083ac96845",
-    "mode": "choi",
-    "url": "https://works.choi.build/won-meet-083ac96845/",
+    "url": "https://works.choi.build/limit-board-6848831e/",
     "last_kind": "new",
-    "last_sha256": "3f9cbecf9271990af6b237a96faba2115d26b443b08ed922cd39cdb386b658c6",
-    "timestamp": "2026-09-10T09:39:43.101935Z"
-  },
-  "sopa-review": {
-    "slug": "sopa-review",
-    "mode": "choi",
-    "url": "https://works.choi.build/sopa-review/",
-    "last_kind": "new",
-    "last_sha256": "d4b621b6af3346e21ff4bdc3b3b4a29a6fabfd0b7f8b62caea3fcb1ed2d89df9",
-    "timestamp": "2026-09-10T10:53:37.364577Z"
+    "last_sha256": "c5620a6dbc85e28c0b1af95feae9ae654a8a823efe8e7a6d35614e5425ea8f6d",
+    "timestamp": "2026-09-22T15:53:49.773610Z"
   }
 }
