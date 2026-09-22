@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "path": "index.html",
+      "sha256": "3c99725c40815fc3e60699907702b3d6b5e17dfe999999c6b322939b27e5e876",
+      "bytes": 838
+    }
+  ],
+  "inputSha256": "f629ceafa3374378778f3892387c157552870c45a763f62499f779e682471d08",
+  "externalReferences": [
+    "https://works.choi.build/limit-board-6848831e/"
+  ],
+  "hostRootReferences": [],
+  "version": "9fe07578a78d8f907367ec1f55e6b7458781a30f1f791fd9543080d949d7bc08",
+  "schema": 1
+}

@@ -6,5 +6,13 @@
     "last_kind": "new",
     "last_sha256": "c5620a6dbc85e28c0b1af95feae9ae654a8a823efe8e7a6d35614e5425ea8f6d",
     "timestamp": "2026-09-22T15:53:49.773610Z"
+  },
+  "quota-deck-6848831e": {
+    "slug": "quota-deck-6848831e",
+    "mode": "choi",
+    "url": "https://works.choi.build/quota-deck-6848831e/",
+    "last_kind": "redeploy",
+    "last_sha256": "f629ceafa3374378778f3892387c157552870c45a763f62499f779e682471d08",
+    "timestamp": "2026-09-22T15:56:07.414579Z"
   }
 }
