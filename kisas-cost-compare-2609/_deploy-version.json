@@ -1,0 +1,17 @@
+{
+  "entries": [
+    {
+      "path": "index.html",
+      "sha256": "bca06db8ef7360665d56021e8a31449eab867aeeb2dd5c8221440445012d2b3a",
+      "bytes": 7360
+    }
+  ],
+  "inputSha256": "022e079eff004159c001e17851a387c6ef7abc2778064be22ff5e6b80b971ee3",
+  "externalReferences": [
+    "https://fonts.googleapis.com",
+    "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+  ],
+  "hostRootReferences": [],
+  "version": "b3a7ba54dd9172b86fe5ec585c316036d67acba1c2fdb0e4164cb4837837bce5",
+  "schema": 1
+}

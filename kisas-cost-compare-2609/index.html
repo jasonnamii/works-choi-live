@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) — GA4 auto-injected by github-deploy -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1HB3T0BTW6');
+</script>
+
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KISAS 매출·비용 비교</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f5f2; --card:#ffffff; --ink:#1d1d1f; --sub:#6b6b70; --line:#e4e2dc;
+  --head:#f0eee9; --total:#f7f4ec; --pos:#1f7a4d; --neg:#c0392b; --accent:#2f5bd3; --hl:#eef3ff;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141416; --card:#1d1d20; --ink:#ececef; --sub:#9a9aa2; --line:#2e2e33;
+    --head:#25252a; --total:#26241f; --pos:#4cc38a; --neg:#ff6b5e; --accent:#7ea0ff; --hl:#1f2638;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141416; --card:#1d1d20; --ink:#ececef; --sub:#9a9aa2; --line:#2e2e33;
+  --head:#25252a; --total:#26241f; --pos:#4cc38a; --neg:#ff6b5e; --accent:#7ea0ff; --hl:#1f2638;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",-apple-system,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+main{max-width:980px;margin:0 auto;padding:40px 16px 56px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:-.02em}
+.lead{color:var(--sub);margin:0 0 24px;font-size:15px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.kpi .name{font-size:13px;color:var(--sub)}
+.kpi .val{font-size:24px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .note{font-size:12.5px;color:var(--sub);margin-top:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:600px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+thead th{background:var(--head);font-weight:700;font-size:13.5px}
+thead th small{display:block;font-weight:400;color:var(--sub)}
+tr.sec td{background:var(--head);font-weight:700;font-size:13px;color:var(--sub);text-align:left}
+tr.sum td{background:var(--total);font-weight:700}
+tr.big td{font-size:16px}
+td.sub{color:var(--sub);font-size:13px}
+.pos{color:var(--pos)} .neg{color:var(--neg)}
+td.igc{background:var(--hl)}
+tr.sum td.igc{background:var(--hl)}
+.notes{margin-top:20px;font-size:13.5px;color:var(--sub)}
+.notes li{margin-bottom:4px}
+@media (max-width:640px){
+  .kpis{grid-template-columns:1fr}
+  h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>KISAS 1기 · 2기 매출·비용 비교</h1>
+  <p class="lead">1기 실적과 2기 100명 시뮬레이션(중앙대·인천글로벌캠퍼스). 단위 만 원, 부가세 포함 지출 기준. 2026-09-30</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="name">1기 실적 · 34명</div><div class="val neg">−8,898</div><div class="note">총비용 뺀 결과 · 이익률 −62%</div></div>
+    <div class="kpi"><div class="name">2기 중앙대 · 100명</div><div class="val pos">+3,560</div><div class="note">총비용 뺀 결과 · 이익률 +9%</div></div>
+    <div class="kpi"><div class="name">2기 인천 · 100명</div><div class="val neg">−2,435</div><div class="note">총비용 뺀 결과 · 이익률 −6%</div></div>
+  </div>
+
+  <div class="card"><div class="scroll">
+  <table>
+    <thead>
+      <tr><th>구분</th><th>1기 실적<small>34명</small></th><th>2기 중앙대<small>100명</small></th><th class="igc">2기 인천<small>100명 · 도시락</small></th></tr>
+    </thead>
+    <tbody>
+      <tr class="sum big"><td>매출</td><td>14,450</td><td>39,771</td><td class="igc">39,771</td></tr>
+
+      <tr class="sec"><td colspan="4">캠프 비용</td></tr>
+      <tr><td>사람 (강사·특강·서포터·매니저·박사님)</td><td>7,716</td><td>11,264</td><td class="igc">11,264</td></tr>
+      <tr><td>숙박</td><td>1,136</td><td>2,840</td><td class="igc">2,805</td></tr>
+      <tr><td>식사</td><td>1,688</td><td>3,425</td><td class="igc">3,168</td></tr>
+      <tr><td>인천 추가분 (대관·집기·장비·청소·침구)</td><td>0</td><td>0</td><td class="igc">6,997</td></tr>
+      <tr><td>공연장</td><td>61</td><td>900</td><td class="igc">0 <span class="sub">(대관료 포함)</span></td></tr>
+      <tr><td>굿즈·교재</td><td>2,981</td><td>4,622</td><td class="igc">4,622</td></tr>
+      <tr><td>영상·사진·공연팀</td><td>1,488</td><td>2,247</td><td class="igc">2,247</td></tr>
+      <tr><td>사전교육일</td><td>0</td><td>588</td><td class="igc">588</td></tr>
+      <tr><td>교통·보안·보험</td><td>417</td><td>727</td><td class="igc">743</td></tr>
+      <tr><td>기타 운영</td><td>931</td><td>1,815</td><td class="igc">1,815</td></tr>
+      <tr><td>예비비 (3%)</td><td>0</td><td>853</td><td class="igc">1,027</td></tr>
+      <tr class="sum"><td>캠프 비용 합계</td><td>16,418</td><td>29,281</td><td class="igc">35,276</td></tr>
+
+      <tr><td>라텔 직원 인건비</td><td>6,930</td><td>6,930</td><td class="igc">6,930</td></tr>
+      <tr class="sum big"><td>총비용</td><td>23,348</td><td>36,211</td><td class="igc">42,206</td></tr>
+
+      <tr class="sec"><td colspan="4">결과</td></tr>
+      <tr><td>캠프 비용만 뺀 결과</td><td class="neg">−1,968</td><td class="pos">+10,490</td><td class="igc pos">+4,495</td></tr>
+      <tr class="sum big"><td>총비용 뺀 결과</td><td class="neg">−8,898</td><td class="pos">+3,560</td><td class="igc neg">−2,435</td></tr>
+      <tr><td>총비용 대비 이익률</td><td class="neg">−62%</td><td class="pos">+9%</td><td class="igc neg">−6%</td></tr>
+      <tr><td>1인당 매출</td><td>425</td><td>398</td><td class="igc">398</td></tr>
+      <tr><td>1인당 캠프 비용</td><td>483</td><td>293</td><td class="igc">353</td></tr>
+    </tbody>
+  </table>
+  </div></div>
+
+  <ul class="notes">
+    <li>2기 매출은 100명 × 참가비 520만 원에서 할인·부가세·카드 수수료를 뺀 값입니다(9/28 비용 시뮬레이션).</li>
+    <li>1기 매출은 기존 기준값 144,496,000원입니다. 부가세 제외 여부는 확인하지 못해 2기와 기준이 다를 수 있습니다.</li>
+    <li>1기 비용은 9/28 시뮬레이션의 1기 열이며, 상표 출원 등 일회성 비용은 뺐습니다.</li>
+    <li>2기 인천은 9/30 IGC 장소비 판정(도시락안, 대관료 50% 감면)을 9/28 시뮬레이션에 끼워 넣은 값입니다. 식사 공간(400평) 대관료는 견적 전이라 빠져 있습니다.</li>
+    <li>인천에서 장비 협조를 받으면 총비용 뺀 결과는 약 +500만 원이 되고, 협상 5가지를 모두 받아내면 약 +3,850만 원이 됩니다.</li>
+  </ul>
+</main>
+</body>
+</html>
