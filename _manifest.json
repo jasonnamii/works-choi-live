@@ -30,5 +30,13 @@
     "last_kind": "redeploy",
     "last_sha256": "0feff47bf6095900ffa5f74c8fe34859d17b9ac8c7f3f49cc78cac7fba2ae71b",
     "timestamp": "2026-10-01T06:12:56.064424Z"
+  },
+  "minutes-8e09ef957959d51b": {
+    "slug": "minutes-8e09ef957959d51b",
+    "mode": "choi",
+    "url": "https://works.choi.build/minutes-8e09ef957959d51b/",
+    "last_kind": "new",
+    "last_sha256": "9af30fb6870f23a35a4f5f3475841cd56f5489e45c7888cfafc2625454cb3172",
+    "timestamp": "2026-10-01T06:53:44.348815Z"
   }
 }
