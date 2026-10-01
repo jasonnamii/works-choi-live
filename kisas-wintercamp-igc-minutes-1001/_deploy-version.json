@@ -2,15 +2,15 @@
   "entries": [
     {
       "path": "index.html",
-      "sha256": "f389311fa481effd4fc6de57724aeffe32e16cb08228a6b2cfd8a4f715d02148",
-      "bytes": 17343
+      "sha256": "44779942aace688de10323d8347493149988d2b67e5099be864645cc71075c68",
+      "bytes": 17395
     }
   ],
-  "inputSha256": "ac866b6d71a8b8778e90a3923b8d0cca486974924feac4b8ddf2164875dc1725",
+  "inputSha256": "f6293d40d628404bc27e8e22a88c09f63504626abf305c4005660ffb5167a5f0",
   "externalReferences": [
     "https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff"
   ],
   "hostRootReferences": [],
-  "version": "987a000f148a174eb18610136aac4e9e765d9227a932681111a99a08d469b2ca",
+  "version": "8fd6b8767b7011766e9590ac043cfec96387c1ce7516cca2d9b55f31a86911be",
   "schema": 1
 }
