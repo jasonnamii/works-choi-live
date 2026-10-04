@@ -12,8 +12,8 @@
     },
     {
       "path": "index.html",
-      "sha256": "76e71873ef203808438cdc36dd4dda68639b6ee70aed88a8d5c613dc605901da",
-      "bytes": 634959
+      "sha256": "eab6488e6f5cb16cdabb7f5cf8ab58879ed51c9c71be261166c14d4c09efb45c",
+      "bytes": 635061
     },
     {
       "path": "manifest.webmanifest",
@@ -21,9 +21,11 @@
       "bytes": 250
     }
   ],
-  "inputSha256": "eb87a4b5e802a170e2f30f477e562eaa85602414326ba0d1c6df7885c4b4404f",
-  "externalReferences": [],
+  "inputSha256": "6252e7c4b2b1209ad1312dcf300c83e240cd5c570f6b094d89eaab55c53535cf",
+  "externalReferences": [
+    "https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"
+  ],
   "hostRootReferences": [],
-  "version": "df11e465f3b293f50279bc635d3e997bc83a5ddd4dec9c2d0805daed35e81eaf",
+  "version": "6252e7c4b2b1209ad1312dcf300c83e240cd5c570f6b094d89eaab55c53535cf",
   "schema": 1
 }
