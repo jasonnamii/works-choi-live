@@ -2,13 +2,15 @@
   "entries": [
     {
       "path": "index.html",
-      "sha256": "9ef50631407bd3c66a79670e1656c4efd027d206c85f04a0fc551b439d1e57f5",
+      "sha256": "ed08719b50cc60dac26779b1c30efdb70c944c94287b6c8410ebeb5808f88281",
       "bytes": 560
     }
   ],
-  "inputSha256": "9af30fb6870f23a35a4f5f3475841cd56f5489e45c7888cfafc2625454cb3172",
-  "externalReferences": [],
+  "inputSha256": "ce13e641b3a1f651de97081d60073a6cc0acae1a78e4bba3c5ca988c9910bf74",
+  "externalReferences": [
+    "https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"
+  ],
   "hostRootReferences": [],
-  "version": "820b8414a6ccd137cc5d53ce815e43ec86533767ad222d58c18ab39c7cca060c",
+  "version": "ce13e641b3a1f651de97081d60073a6cc0acae1a78e4bba3c5ca988c9910bf74",
   "schema": 1
 }
