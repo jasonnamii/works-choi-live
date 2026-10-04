@@ -30,5 +30,13 @@
     "last_kind": "redeploy",
     "last_sha256": "ce13e641b3a1f651de97081d60073a6cc0acae1a78e4bba3c5ca988c9910bf74",
     "timestamp": "2026-10-04T11:17:28.897362Z"
+  },
+  "kisas-wintercamp-igc-minutes-1001": {
+    "slug": "kisas-wintercamp-igc-minutes-1001",
+    "mode": "choi",
+    "url": "https://works.choi.build/kisas-wintercamp-igc-minutes-1001/",
+    "last_kind": "redeploy",
+    "last_sha256": "2bcf65aaa5cdaab3ab2689910ca4ef560b7d4eb4218dca9a4858c77fd5aaf0fa",
+    "timestamp": "2026-10-04T11:17:58.765989Z"
   }
 }

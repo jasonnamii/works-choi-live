@@ -2,15 +2,16 @@
   "entries": [
     {
       "path": "index.html",
-      "sha256": "3f155c22ca183bbaf0eb268f8c653bfa039759a02d62fe130d24ef9012b41bb5",
-      "bytes": 15367
+      "sha256": "39b314d512d11a81a3529c4d295fa6e07756c1b6b50ead7a7eae213b83943b07",
+      "bytes": 15462
     }
   ],
-  "inputSha256": "0feff47bf6095900ffa5f74c8fe34859d17b9ac8c7f3f49cc78cac7fba2ae71b",
+  "inputSha256": "2bcf65aaa5cdaab3ab2689910ca4ef560b7d4eb4218dca9a4858c77fd5aaf0fa",
   "externalReferences": [
-    "https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff"
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff",
+    "https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"
   ],
   "hostRootReferences": [],
-  "version": "0aaf06f2e705fd5e091227c89fb803bd8e654c25692038c6908cae4a56c5ec56",
+  "version": "2bcf65aaa5cdaab3ab2689910ca4ef560b7d4eb4218dca9a4858c77fd5aaf0fa",
   "schema": 1
 }
