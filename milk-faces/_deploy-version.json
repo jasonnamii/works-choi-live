@@ -2,8 +2,8 @@
   "entries": [
     {
       "path": "jodan.png",
-      "sha256": "f0bfb39d51ee97f8853ee65ee8c420c055bf8e53f701d2672234b35b7ef98e0b",
-      "bytes": 54817
+      "sha256": "ee8d4e3d30a68c7f58e20e625360cfe87c48e274d28224a41094415d2faaf6c5",
+      "bytes": 70453
     },
     {
       "path": "kim-bujang.png",
@@ -16,9 +16,9 @@
       "bytes": 29663
     }
   ],
-  "inputSha256": "8d7f7b0c4ad6b4b1651e79adc6ff8c781b09a5be38cdd5e5fa5b305be6bab004",
+  "inputSha256": "4105d72c984f76a217a3100d4a7aef4a480a47686208c8fcd88bfcc16c6e6820",
   "externalReferences": [],
   "hostRootReferences": [],
-  "version": "8d7f7b0c4ad6b4b1651e79adc6ff8c781b09a5be38cdd5e5fa5b305be6bab004",
+  "version": "4105d72c984f76a217a3100d4a7aef4a480a47686208c8fcd88bfcc16c6e6820",
   "schema": 1
 }
