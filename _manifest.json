@@ -1,50 +1,50 @@
 {
-  "limit-board-6848831e": {
-    "slug": "limit-board-6848831e",
-    "mode": "choi",
-    "url": "https://works.choi.build/limit-board-6848831e/",
-    "last_kind": "redeploy",
-    "last_sha256": "6252e7c4b2b1209ad1312dcf300c83e240cd5c570f6b094d89eaab55c53535cf",
-    "timestamp": "2026-10-04T11:18:26.509362Z"
-  },
   "quota-deck-6848831e": {
     "slug": "quota-deck-6848831e",
     "mode": "choi",
     "url": "https://works.choi.build/quota-deck-6848831e/",
-    "last_kind": "skip-same-sha",
-    "last_sha256": "f629ceafa3374378778f3892387c157552870c45a763f62499f779e682471d08",
-    "timestamp": "2026-09-22T16:01:01.440969Z"
-  },
-  "kisas-cost-compare-2609": {
-    "slug": "kisas-cost-compare-2609",
-    "mode": "choi",
-    "url": "https://works.choi.build/kisas-cost-compare-2609/",
-    "last_kind": "new",
-    "last_sha256": "022e079eff004159c001e17851a387c6ef7abc2778064be22ff5e6b80b971ee3",
-    "timestamp": "2026-09-30T10:02:40.764484Z"
-  },
-  "minutes-8e09ef957959d51b": {
-    "slug": "minutes-8e09ef957959d51b",
-    "mode": "choi",
-    "url": "https://works.choi.build/minutes-8e09ef957959d51b/",
     "last_kind": "redeploy",
-    "last_sha256": "ce13e641b3a1f651de97081d60073a6cc0acae1a78e4bba3c5ca988c9910bf74",
-    "timestamp": "2026-10-04T11:17:28.897362Z"
+    "last_sha256": "6cf9754b1074d6a8eb7d947dde34ff1661eaadb8d5cac31cd8f121723877bf2e",
+    "timestamp": "2026-09-08T02:04:47.991869Z"
+  },
+  "won-meet-083ac96845": {
+    "slug": "won-meet-083ac96845",
+    "mode": "choi",
+    "url": "https://works.choi.build/won-meet-083ac96845/",
+    "last_kind": "new",
+    "last_sha256": "3f9cbecf9271990af6b237a96faba2115d26b443b08ed922cd39cdb386b658c6",
+    "timestamp": "2026-09-10T09:39:43.101935Z"
+  },
+  "sopa-review": {
+    "slug": "sopa-review",
+    "mode": "choi",
+    "url": "https://works.choi.build/sopa-review/",
+    "last_kind": "new",
+    "last_sha256": "d4b621b6af3346e21ff4bdc3b3b4a29a6fabfd0b7f8b62caea3fcb1ed2d89df9",
+    "timestamp": "2026-09-10T10:53:37.364577Z"
   },
   "kisas-wintercamp-igc-minutes-1001": {
     "slug": "kisas-wintercamp-igc-minutes-1001",
     "mode": "choi",
     "url": "https://works.choi.build/kisas-wintercamp-igc-minutes-1001/",
     "last_kind": "redeploy",
-    "last_sha256": "2bcf65aaa5cdaab3ab2689910ca4ef560b7d4eb4218dca9a4858c77fd5aaf0fa",
-    "timestamp": "2026-10-04T11:17:58.765989Z"
+    "last_sha256": "0feff47bf6095900ffa5f74c8fe34859d17b9ac8c7f3f49cc78cac7fba2ae71b",
+    "timestamp": "2026-10-01T06:12:56.064424Z"
   },
-  "milk-faces": {
-    "slug": "milk-faces",
+  "minutes-8e09ef957959d51b": {
+    "slug": "minutes-8e09ef957959d51b",
     "mode": "choi",
-    "url": "https://works.choi.build/milk-faces/",
-    "last_kind": "redeploy",
-    "last_sha256": "4105d72c984f76a217a3100d4a7aef4a480a47686208c8fcd88bfcc16c6e6820",
-    "timestamp": "2026-10-05T13:14:09.856663Z"
+    "url": "https://works.choi.build/minutes-8e09ef957959d51b/",
+    "last_kind": "new",
+    "last_sha256": "9af30fb6870f23a35a4f5f3475841cd56f5489e45c7888cfafc2625454cb3172",
+    "timestamp": "2026-10-01T06:53:44.348815Z"
+  },
+  "minutes-15ff176a67ba7c40": {
+    "slug": "minutes-15ff176a67ba7c40",
+    "mode": "choi",
+    "url": "https://works.choi.build/minutes-15ff176a67ba7c40/",
+    "last_kind": "new",
+    "last_sha256": "ca377e64840599cc9247a063a51afb2f6debb1b80b5faa288eef418e6284c871",
+    "timestamp": "2026-10-06T07:03:08.979395Z"
   }
 }

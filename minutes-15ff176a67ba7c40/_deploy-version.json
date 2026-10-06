@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "path": "index.html",
+      "sha256": "9f07b8e621a15811719588f80b71d0c33aaddcb784889ea223f979c63e97d56f",
+      "bytes": 20809
+    }
+  ],
+  "inputSha256": "ca377e64840599cc9247a063a51afb2f6debb1b80b5faa288eef418e6284c871",
+  "externalReferences": [
+    "https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff"
+  ],
+  "hostRootReferences": [],
+  "version": "b0125dfe02357653e9dbe088fae11e3c08d3ed74d76fbefe851871cb0b76263c",
+  "schema": 1
+}
