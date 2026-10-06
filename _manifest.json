@@ -51,8 +51,16 @@
     "slug": "minutes-4eed010ff39a5ac7",
     "mode": "choi",
     "url": "https://works.choi.build/minutes-4eed010ff39a5ac7/",
-    "last_kind": "new",
+    "last_kind": "skip-same-sha",
     "last_sha256": "357f24a50f78fc7132a62dcd058fee41a62531cfa0674b8e27655ec8f137c27f",
-    "timestamp": "2026-10-06T07:21:53.615092Z"
+    "timestamp": "2026-10-06T07:22:44.266764Z"
+  },
+  "minutes-b360fe5661131f96": {
+    "slug": "minutes-b360fe5661131f96",
+    "mode": "choi",
+    "url": "https://works.choi.build/minutes-b360fe5661131f96/",
+    "last_kind": "new",
+    "last_sha256": "4c55168fd8d772c8b398a8a9ce3df516525a917ccd661e51a94927a49f6b00dc",
+    "timestamp": "2026-10-06T07:27:22.741795Z"
   }
 }
