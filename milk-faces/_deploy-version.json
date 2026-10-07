@@ -1,7 +1,17 @@
 {
   "entries": [
     {
+      "path": "index.html",
+      "sha256": "f92f0af5e75038d1748c67e2e73e8e967cdc202d6ecc85659092786ae6f3da93",
+      "bytes": 534
+    },
+    {
       "path": "jodan.png",
+      "sha256": "ee8d4e3d30a68c7f58e20e625360cfe87c48e274d28224a41094415d2faaf6c5",
+      "bytes": 70453
+    },
+    {
+      "path": "jordan.png",
       "sha256": "ee8d4e3d30a68c7f58e20e625360cfe87c48e274d28224a41094415d2faaf6c5",
       "bytes": 70453
     },
@@ -14,11 +24,16 @@
       "path": "milk.png",
       "sha256": "5bc1230c08d3a469536930861eca8c4cb0db32437e042bbce69a9eb17645f4af",
       "bytes": 29663
+    },
+    {
+      "path": "yu-siljang.png",
+      "sha256": "49af29b7174e933e577a00e8f0ac90d37f0cf7fb522b886d24ea65d82cbd269e",
+      "bytes": 2009233
     }
   ],
-  "inputSha256": "4105d72c984f76a217a3100d4a7aef4a480a47686208c8fcd88bfcc16c6e6820",
+  "inputSha256": "22e2bae1f49d53a259d349ae874a48809adb323549a412723f70e5cac486b491",
   "externalReferences": [],
   "hostRootReferences": [],
-  "version": "4105d72c984f76a217a3100d4a7aef4a480a47686208c8fcd88bfcc16c6e6820",
+  "version": "2f1c71b4b8a51f17c80a00d0f904294a058e7952636ae2569ddab7396d3d06a8",
   "schema": 1
 }
