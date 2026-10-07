@@ -27,13 +27,13 @@
     },
     {
       "path": "yu-siljang.png",
-      "sha256": "49af29b7174e933e577a00e8f0ac90d37f0cf7fb522b886d24ea65d82cbd269e",
-      "bytes": 2009233
+      "sha256": "b62256fe7e1f98054671d942227d759c45800f6af4e7cfbbb0900e0a0b98b1b6",
+      "bytes": 2055763
     }
   ],
-  "inputSha256": "22e2bae1f49d53a259d349ae874a48809adb323549a412723f70e5cac486b491",
+  "inputSha256": "fd268eccd4215d68e1180886309845b3989c6e534645d98b25986c45cdea69d0",
   "externalReferences": [],
   "hostRootReferences": [],
-  "version": "2f1c71b4b8a51f17c80a00d0f904294a058e7952636ae2569ddab7396d3d06a8",
+  "version": "9aeef2b7b5d1373473334443482789df9869ec5490477500fbe61508931e78d0",
   "schema": 1
 }
