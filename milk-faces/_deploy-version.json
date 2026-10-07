@@ -47,8 +47,8 @@
     },
     {
       "path": "pizza-team.png",
-      "sha256": "211515a977673f1bdf55f1d96338c4a31717e842f5f5d581afc1c4af5d9511c9",
-      "bytes": 2055595
+      "sha256": "7df83cdb8dfeeaf161d6f9f837339d5bc22cacbb06920c312f30b90a8ac60cd3",
+      "bytes": 1590361
     },
     {
       "path": "yu-siljang.png",
@@ -56,11 +56,11 @@
       "bytes": 2037383
     }
   ],
-  "inputSha256": "2c7a67e3e893b9d014f55e602dc1b1b143ec237959e852ebd8d625d0f1389995",
+  "inputSha256": "58c3a49fea7c261dd825949e3de8607de1a16e6e7e428558486d8a5def7e031b",
   "externalReferences": [
     "https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"
   ],
   "hostRootReferences": [],
-  "version": "2c7a67e3e893b9d014f55e602dc1b1b143ec237959e852ebd8d625d0f1389995",
+  "version": "58c3a49fea7c261dd825949e3de8607de1a16e6e7e428558486d8a5def7e031b",
   "schema": 1
 }
