@@ -7,13 +7,13 @@
     },
     {
       "path": "jodan.png",
-      "sha256": "ee8d4e3d30a68c7f58e20e625360cfe87c48e274d28224a41094415d2faaf6c5",
-      "bytes": 70453
+      "sha256": "9c8e31fa9feee6df5150d1f4ce930780ea48eb37346506ea005f8f05b6d6fc17",
+      "bytes": 1811309
     },
     {
       "path": "jordan.png",
-      "sha256": "ee8d4e3d30a68c7f58e20e625360cfe87c48e274d28224a41094415d2faaf6c5",
-      "bytes": 70453
+      "sha256": "9c8e31fa9feee6df5150d1f4ce930780ea48eb37346506ea005f8f05b6d6fc17",
+      "bytes": 1811309
     },
     {
       "path": "kim-bujang.png",
@@ -56,11 +56,11 @@
       "bytes": 2037383
     }
   ],
-  "inputSha256": "58c3a49fea7c261dd825949e3de8607de1a16e6e7e428558486d8a5def7e031b",
+  "inputSha256": "d0e8241fe535298785323196e6fd1729df8410729096c937091f9264c08ee927",
   "externalReferences": [
     "https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"
   ],
   "hostRootReferences": [],
-  "version": "58c3a49fea7c261dd825949e3de8607de1a16e6e7e428558486d8a5def7e031b",
+  "version": "d0e8241fe535298785323196e6fd1729df8410729096c937091f9264c08ee927",
   "schema": 1
 }
