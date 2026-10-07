@@ -26,14 +26,41 @@
       "bytes": 29663
     },
     {
+      "path": "pizza-03.png",
+      "sha256": "ef93062efb5e931dac315850fec8d794951a51b6bdcb49959aab90c8b069b392",
+      "bytes": 1415366
+    },
+    {
+      "path": "pizza-06.png",
+      "sha256": "bb53756e5a85f2ab9a2251783f526bebe8099088e6866293bfabd8ce35e8806d",
+      "bytes": 1512673
+    },
+    {
+      "path": "pizza-07.png",
+      "sha256": "107a5efd21b8f6aa324485ca3434f4d410679e10aba7ffe00700c4009027ae5c",
+      "bytes": 1451420
+    },
+    {
+      "path": "pizza-09.png",
+      "sha256": "263b052a008e3cb633240327ad5dcbe96da95f664bc453c2490e3f9d77694c3a",
+      "bytes": 1313865
+    },
+    {
+      "path": "pizza-team.png",
+      "sha256": "211515a977673f1bdf55f1d96338c4a31717e842f5f5d581afc1c4af5d9511c9",
+      "bytes": 2055595
+    },
+    {
       "path": "yu-siljang.png",
       "sha256": "a0ee1d001f4b2bdeca1081bbdb343638d2e02b641444be6de2d1258d88b7472b",
       "bytes": 2037383
     }
   ],
-  "inputSha256": "33361e8b86389021478112860ad42207acbe6cfe08224caf8f27c503c922f48b",
-  "externalReferences": [],
+  "inputSha256": "2c7a67e3e893b9d014f55e602dc1b1b143ec237959e852ebd8d625d0f1389995",
+  "externalReferences": [
+    "https://www.googletagmanager.com/gtag/js?id=G-1HB3T0BTW6"
+  ],
   "hostRootReferences": [],
-  "version": "32e33660bf913f98d0d118124a439e3c4f9278a24ea47b65cbd5cf27a727b659",
+  "version": "2c7a67e3e893b9d014f55e602dc1b1b143ec237959e852ebd8d625d0f1389995",
   "schema": 1
 }
