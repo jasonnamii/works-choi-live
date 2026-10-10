@@ -54,21 +54,5 @@
     "last_kind": "redeploy",
     "last_sha256": "1a575b88f2156645f41d6f29b50bd2c4cf885eae889fe262a51ba32a1cd7553d",
     "timestamp": "2026-10-06T13:00:16.456220Z"
-  },
-  "kisas-shanghai": {
-    "slug": "kisas-shanghai",
-    "mode": "choi",
-    "url": "https://works.choi.build/kisas-shanghai/",
-    "last_kind": "new",
-    "last_sha256": "e1396df623f1b76e50229e21dcdc9d500e45eb8e715eb79bfc54a69cb2c5951a",
-    "timestamp": "2026-10-10T11:57:48.805631Z"
-  },
-  "kisas-shanghai-summary": {
-    "slug": "kisas-shanghai-summary",
-    "mode": "choi",
-    "url": "https://works.choi.build/kisas-shanghai-summary/",
-    "last_kind": "new",
-    "last_sha256": "6e25e2945897752f3ba76395bf2b8d787b658709bee0f380dc998db2ed1f2ecb",
-    "timestamp": "2026-10-10T11:59:08.490065Z"
   }
 }
